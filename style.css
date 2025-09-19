@@ -1,0 +1,204 @@
+/* ================================
+   ✅ Omkar Enterprises - Global Styles
+   ================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f9fafb;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+/* ================================
+   ✅ Header / Hero Banner
+   ================================ */
+header {
+  background: url('assets/banner.jpg') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+}
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 33, 71, 0.7);
+}
+header .content {
+  position: relative;
+  z-index: 1;
+}
+header img.logo {
+  height: 70px;
+  margin-bottom: 20px;
+}
+header h1 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+header p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* ================================
+   ✅ Sections
+   ================================ */
+section {
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+h2 {
+  color: #002147;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+p {
+  margin-bottom: 15px;
+}
+
+/* ================================
+   ✅ Investment Table
+   ================================ */
+.investment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1rem;
+}
+.investment-table th, 
+.investment-table td {
+  border: 1px solid #ddd;
+  padding: 14px;
+  text-align: center;
+}
+.investment-table th {
+  background: #002147;
+  color: white;
+}
+.investment-table tr:nth-child(even) {
+  background: #f3f8ff;
+}
+
+/* Highlight box */
+.highlight {
+  background: #e6f2ff;
+  padding: 20px;
+  border-left: 4px solid #002147;
+  margin: 20px 0;
+  border-radius: 6px;
+}
+
+/* ================================
+   ✅ Lead Capture Form
+   ================================ */
+form {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+form input,
+form textarea,
+form button {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #0047ab;
+  box-shadow: 0 0 4px rgba(0,71,171,0.3);
+}
+form button {
+  background: #002147;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+form button:hover {
+  background: #0047ab;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   ✅ Footer
+   ================================ */
+footer {
+  background: #002147;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+footer a {
+  color: #aad4ff;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+footer p {
+  margin: 8px 0;
+}
+
+/* ================================
+   ✅ Responsive Design
+   ================================ */
+@media (max-width: 992px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+  .investment-table {
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 768px) {
+  header {
+    padding: 60px 15px;
+  }
+  header h1 {
+    font-size: 1.6rem;
+  }
+  section {
+    padding: 35px 15px;
+  }
+  form {
+    padding: 20px;
+  }
+}
+@media (max-width: 480px) {
+  header img.logo {
+    height: 55px;
+  }
+  header h1 {
+    font-size: 1.4rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  body {
+    font-size: 15px;
+  }
+}

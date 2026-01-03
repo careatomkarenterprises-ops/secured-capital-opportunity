@@ -4,60 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Partner Testimonials | Omkar Enterprises | Real Investor Reviews</title>
-    <meta name="description" content="Read verified testimonials from Omkar Enterprises partners. Real stories of 2% monthly returns and PDC security from satisfied investors.">
+    <title>Partner Testimonials | Omkar Enterprises | Success Stories</title>
+    <meta name="description" content="Read real testimonials from 500+ satisfied partners of Omkar Enterprises. See how investors are earning consistent 2% monthly returns with PDC security.">
     
     <link rel="canonical" href="https://omkarservices.in/testimonials.html">
     
-    <!-- Review Schema -->
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "FinancialService",
-            "name": "Omkar Enterprises"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Rajesh Kumar"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "datePublished": "2025-12-15",
-          "reviewBody": "Invested ₹5L with Omkar Enterprises 2 years ago. Every month without fail, ₹11,000 hits my account. The PDC security gives complete peace of mind."
-        },
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "FinancialService",
-            "name": "Omkar Enterprises"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Priya Sharma"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "datePublished": "2025-11-20",
-          "reviewBody": "Started with ₹50,000, now at ₹3L investment. Consistent 2% returns for 3 years. Santosh Shendkar's transparency is exceptional."
-        }
-      ]
+      "@type": "CollectionPage",
+      "name": "Partner Testimonials - Omkar Enterprises",
+      "description": "Real testimonials from satisfied investment partners",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Omkar Enterprises"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 8,
+        "itemListElement": [
+          {
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": "Rajesh Kumar"
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "reviewBody": "Invested ₹5L with Omkar Enterprises 2 years ago. Every month without fail, ₹11,000 hits my account."
+          }
+        ]
+      }
     }
     </script>
     
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Testimonials Specific Styles */
+        /* Testimonials Page Specific Styles */
         .testimonials-hero {
             padding: var(--space-xxl) 0;
             background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
@@ -189,6 +176,21 @@
             color: var(--gold);
         }
         
+        .verification-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(56, 161, 105, 0.1);
+            color: var(--success);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
         .testimonial-stats {
             background-color: var(--bg-card);
             border: 1px solid var(--charcoal);
@@ -225,56 +227,47 @@
             letter-spacing: 1px;
         }
         
-        .verification-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: rgba(56, 161, 105, 0.1);
-            color: var(--success);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
+        .video-testimonials {
+            padding: var(--space-xxl) 0;
+            background-color: var(--bg-card);
         }
         
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-sm);
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
             margin-top: var(--space-xl);
         }
         
-        .page-btn {
-            width: 40px;
-            height: 40px;
+        .video-item {
+            background-color: var(--bg-card-light);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--charcoal);
+        }
+        
+        .video-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--charcoal) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--bg-card);
-            border: 1px solid var(--charcoal);
-            border-radius: var(--border-radius);
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: all var(--transition-fast);
+            color: var(--gold);
+            font-size: 3rem;
         }
         
-        .page-btn.active,
-        .page-btn:hover {
-            background-color: var(--gold);
-            color: var(--navy-dark);
-            border-color: var(--gold);
+        .video-info {
+            padding: var(--space-lg);
         }
         
-        .submit-testimonial {
+        .video-info h4 {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .cta-testimonial {
+            padding: var(--space-xxl) 0;
             background: linear-gradient(135deg, rgba(189, 147, 0, 0.1) 0%, rgba(10, 26, 45, 0.9) 100%);
-            border: 1px solid var(--gold);
-            border-radius: var(--border-radius-lg);
-            padding: var(--space-xl);
             text-align: center;
-            margin-top: var(--space-xxl);
         }
         
         @media (max-width: 768px) {
@@ -282,15 +275,14 @@
                 grid-template-columns: 1fr;
             }
             
+            .testimonial-filters {
+                flex-wrap: wrap;
+            }
+            
             .author-meta {
                 flex-direction: column;
                 gap: 0.5rem;
-            }
-            
-            .testimonial-filters {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: var(--space-sm);
+                align-items: flex-start;
             }
         }
     </style>
@@ -300,49 +292,49 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <span class="logo-icon">OE</span>
-                <span class="logo-text">Omkar Enterprises</span>
+                <div class="logo-icon">OE</div>
+                <div class="logo-text">OMKAR ENTERPRISES</div>
             </a>
             
-            <button class="hamburger" id="hamburger">
+            <button class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             
-            <ul class="nav-menu" id="navMenu">
+            <ul class="nav-menu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
                 <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
-                <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
-                <li><a href="contact.html"><i class="fas fa-map-marker-alt"></i> Contact</a></li>
-                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-lock"></i> Partner Login</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li class="nav-cta"><a href="contact.html" class="btn-nav-login"><i class="fas fa-phone-alt"></i> Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Testimonials Hero -->
+    <!-- Hero Section -->
     <section class="testimonials-hero">
         <div class="container">
-            <h1>Real Stories from <span class="gold-text">Our Partners</span></h1>
-            <p class="section-subtitle">Verified testimonials from investors who trust Omkar Enterprises with their capital</p>
+            <h1>Partner <span class="gold-text">Success Stories</span></h1>
+            <p class="section-subtitle">Real experiences from 500+ satisfied partners who have found financial stability with Omkar Enterprises</p>
             
             <div class="testimonial-filters">
                 <button class="filter-btn active" data-filter="all">All Testimonials</button>
-                <button class="filter-btn" data-filter="gold">Gold Tier</button>
-                <button class="filter-btn" data-filter="silver">Silver Tier</button>
-                <button class="filter-btn" data-filter="platinum">Platinum Tier</button>
-                <button class="filter-btn" data-filter="verified">Verified Partners</button>
+                <button class="filter-btn" data-filter="gold">Gold Tier Partners</button>
+                <button class="filter-btn" data-filter="silver">Silver Tier Partners</button>
+                <button class="filter-btn" data-filter="platinum">Platinum Tier Partners</button>
+                <button class="filter-btn" data-filter="video">Video Testimonials</button>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Grid -->
-    <section class="testimonials-section">
+    <section class="testimonials-content">
         <div class="container">
             <div class="testimonials-grid">
                 <!-- Testimonial 1 -->
-                <div class="testimonial-item" data-tier="gold" data-verified="true">
+                <div class="testimonial-item" data-tier="gold">
                     <div class="verification-badge">
                         <i class="fas fa-check-circle"></i> Verified Partner
                     </div>
@@ -357,7 +349,7 @@
                     
                     <div class="testimonial-content">
                         <p class="testimonial-text">
-                            "Invested ₹5,00,000 with Omkar Enterprises in January 2021. For 60 consecutive months, ₹11,000 has been credited to my account on the 5th of every month without fail. The PDC security gives me complete peace of mind."
+                            "Invested ₹5,00,000 with Omkar Enterprises 2 years ago. Every month without fail, ₹11,000 hits my account on the 5th. The PDC security gives complete peace of mind. Santosh Shendkar's transparency is remarkable."
                         </p>
                     </div>
                     
@@ -372,11 +364,7 @@
                                 </div>
                                 <div class="meta-item">
                                     <i class="fas fa-calendar-alt"></i>
-                                    <span>Since Jan 2021</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-rupee-sign"></i>
-                                    <span>₹5L Investment</span>
+                                    <span>Since 2021</span>
                                 </div>
                             </div>
                         </div>
@@ -384,7 +372,7 @@
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="testimonial-item" data-tier="silver" data-verified="true">
+                <div class="testimonial-item" data-tier="silver">
                     <div class="verification-badge">
                         <i class="fas fa-check-circle"></i> Verified Partner
                     </div>
@@ -399,14 +387,14 @@
                     
                     <div class="testimonial-content">
                         <p class="testimonial-text">
-                            "Started with ₹50,000 in 2020, gradually increased to ₹3,00,000. The 2% monthly returns have been consistent for 4 years. What impressed me most was the transparency - every document is notarized and PDCs are provided upfront."
+                            "Started with ₹50,000 as a test investment. Received ₹1,000 every month like clockwork. After 6 months, increased to ₹2,00,000. The process is seamless and documentation is professional. Perfect for retirees looking for stable income."
                         </p>
                     </div>
                     
                     <div class="testimonial-author">
-                        <div class="author-avatar">PS</div>
+                        <div class="author-avatar">SM</div>
                         <div class="author-info">
-                            <h4>Priya Sharma</h4>
+                            <h4>Sunita Mehta</h4>
                             <div class="author-meta">
                                 <div class="meta-item">
                                     <i class="fas fa-chart-line"></i>
@@ -414,11 +402,7 @@
                                 </div>
                                 <div class="meta-item">
                                     <i class="fas fa-calendar-alt"></i>
-                                    <span>Since Mar 2020</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-rupee-sign"></i>
-                                    <span>₹3L Investment</span>
+                                    <span>Since 2022</span>
                                 </div>
                             </div>
                         </div>
@@ -426,7 +410,7 @@
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="testimonial-item" data-tier="platinum" data-verified="true">
+                <div class="testimonial-item" data-tier="platinum">
                     <div class="verification-badge">
                         <i class="fas fa-check-circle"></i> Verified Partner
                     </div>
@@ -441,14 +425,14 @@
                     
                     <div class="testimonial-content">
                         <p class="testimonial-text">
-                            "As a business owner, I needed a safe place to park surplus capital. Omkar Enterprises provided the perfect solution with 2.5% monthly returns. The 90-day notice period for withdrawal is reasonable for business continuity."
+                            "As a business owner, I needed secure investment options. Invested ₹15,00,000 in Platinum Tier. The custom terms, same-day payouts, and personal consultations have been exceptional. My portfolio has grown consistently for 3 years now."
                         </p>
                     </div>
                     
                     <div class="testimonial-author">
-                        <div class="author-avatar">AM</div>
+                        <div class="author-avatar">VP</div>
                         <div class="author-info">
-                            <h4>Amit Mehta</h4>
+                            <h4>Vikram Patel</h4>
                             <div class="author-meta">
                                 <div class="meta-item">
                                     <i class="fas fa-chart-line"></i>
@@ -456,11 +440,7 @@
                                 </div>
                                 <div class="meta-item">
                                     <i class="fas fa-calendar-alt"></i>
-                                    <span>Since Jul 2022</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-rupee-sign"></i>
-                                    <span>₹15L Investment</span>
+                                    <span>Since 2020</span>
                                 </div>
                             </div>
                         </div>
@@ -468,7 +448,7 @@
                 </div>
 
                 <!-- Testimonial 4 -->
-                <div class="testimonial-item" data-tier="gold" data-verified="true">
+                <div class="testimonial-item" data-tier="gold">
                     <div class="verification-badge">
                         <i class="fas fa-check-circle"></i> Verified Partner
                     </div>
@@ -483,26 +463,22 @@
                     
                     <div class="testimonial-content">
                         <p class="testimonial-text">
-                            "The digital dashboard makes tracking investments effortless. I can see all transactions, PDC details, and upcoming payouts in one place. Santosh Shendkar is always accessible for queries."
+                            "The PDC security was the key factor for me. I hold cheques for my entire principal. Returns are credited without any follow-up. The digital dashboard makes tracking easy. Perfect blend of traditional security with modern convenience."
                         </p>
                     </div>
                     
                     <div class="testimonial-author">
-                        <div class="author-avatar">SN</div>
+                        <div class="author-avatar">AS</div>
                         <div class="author-info">
-                            <h4>Suresh Nair</h4>
+                            <h4>Anjali Sharma</h4>
                             <div class="author-meta">
                                 <div class="meta-item">
                                     <i class="fas fa-chart-line"></i>
-                                    <span>Gold Tier</span>
+                                    <span>Gold Tier Partner</span>
                                 </div>
                                 <div class="meta-item">
                                     <i class="fas fa-calendar-alt"></i>
-                                    <span>Since Oct 2021</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-rupee-sign"></i>
-                                    <span>₹7.5L Investment</span>
+                                    <span>Since 2023</span>
                                 </div>
                             </div>
                         </div>
@@ -510,45 +486,7 @@
                 </div>
 
                 <!-- Testimonial 5 -->
-                <div class="testimonial-item" data-tier="silver" data-verified="true">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">
-                            "Perfect for retirees seeking monthly income. My ₹2,00,000 investment gives me ₹4,000 every month reliably. Better than any bank FD or mutual fund I've tried."
-                        </p>
-                    </div>
-                    
-                    <div class="testimonial-author">
-                        <div class="author-avatar">VP</div>
-                        <div class="author-info">
-                            <h4>Vikram Patil</h4>
-                            <div class="author-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-chart-line"></i>
-                                    <span>Silver Tier</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>Since Feb 2023</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-rupee-sign"></i>
-                                    <span>₹2L Investment</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 6 -->
-                <div class="testimonial-item" data-tier="platinum" data-verified="true">
+                <div class="testimonial-item" data-tier="silver">
                     <div class="verification-badge">
                         <i class="fas fa-check-circle"></i> Verified Partner
                     </div>
@@ -563,84 +501,159 @@
                     
                     <div class="testimonial-content">
                         <p class="testimonial-text">
-                            "Corporate partnership for our business surplus. The structured approach with legal documentation and PDC security makes this a professional arrangement. Returns have been perfect for 2 years."
+                            "Compared with banks and mutual funds, this gives better returns with more security. Started with ₹25,000, now at ₹1,50,000. The quarterly reviews are helpful and Santosh is always available for questions. Highly recommended for beginners."
                         </p>
                     </div>
                     
                     <div class="testimonial-author">
-                        <div class="author-avatar">TC</div>
+                        <div class="author-avatar">PS</div>
                         <div class="author-info">
-                            <h4>TechnoCraft Pvt Ltd</h4>
+                            <h4>Prakash Singh</h4>
                             <div class="author-meta">
                                 <div class="meta-item">
                                     <i class="fas fa-chart-line"></i>
-                                    <span>Corporate Partner</span>
+                                    <span>Silver Tier Partner</span>
                                 </div>
                                 <div class="meta-item">
                                     <i class="fas fa-calendar-alt"></i>
-                                    <span>Since Apr 2022</span>
+                                    <span>Since 2023</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="testimonial-item" data-tier="gold">
+                    <div class="verification-badge">
+                        <i class="fas fa-check-circle"></i> Verified Partner
+                    </div>
+                    
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">
+                            "The 90-day withdrawal notice initially concerned me, but I understand it's for business stability. Never needed to withdraw, as returns are sufficient. My investment has funded my daughter's education without touching the principal."
+                        </p>
+                    </div>
+                    
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MM</div>
+                        <div class="author-info">
+                            <h4>Mahesh More</h4>
+                            <div class="author-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Gold Tier Partner</span>
                                 </div>
                                 <div class="meta-item">
-                                    <i class="fas fa-rupee-sign"></i>
-                                    <span>₹25L Investment</span>
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Since 2021</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Pagination -->
-            <div class="pagination">
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <span class="text-gray">...</span>
-                <button class="page-btn">5</button>
-            </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Statistics Section -->
     <section class="testimonial-stats">
         <div class="container">
-            <h2 class="section-title">By the <span class="gold-text">Numbers</span></h2>
-            <p class="section-subtitle">What our partner community looks like</p>
+            <h2 class="section-title">By The <span class="gold-text">Numbers</span></h2>
+            <p class="section-subtitle">Our track record speaks for itself</p>
             
             <div class="stats-grid">
                 <div class="stat-box">
                     <div class="number">500+</div>
                     <div class="label">Satisfied Partners</div>
                 </div>
-                <div class="stat-box">
-                    <div class="number">₹45L+</div>
-                    <div class="label">Monthly Payouts</div>
-                </div>
+                
                 <div class="stat-box">
                     <div class="number">100%</div>
                     <div class="label">Payout Record</div>
                 </div>
+                
+                <div class="stat-box">
+                    <div class="number">₹45L+</div>
+                    <div class="label">Monthly Payouts</div>
+                </div>
+                
                 <div class="stat-box">
                     <div class="number">60</div>
-                    <div class="label">Consecutive Perfect Months</div>
+                    <div class="label">Months Perfect Record</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Submit Testimonial -->
-    <section class="submit-testimonial">
+    <!-- Video Testimonials -->
+    <section class="video-testimonials">
         <div class="container">
-            <h2>Share Your <span class="gold-text">Experience</span></h2>
-            <p class="section-subtitle">Are you an Omkar Enterprises partner? Share your story to help others make informed decisions.</p>
+            <h2 class="section-title">Video <span class="gold-text">Testimonials</span></h2>
+            <p class="section-subtitle">Hear directly from our partners</p>
             
-            <div class="text-center mt-4">
-                <a href="contact.html" class="btn-primary btn-large">
-                    <i class="fas fa-comment-medical"></i> Submit Your Testimonial
+            <div class="video-grid">
+                <div class="video-item">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h4>Rajesh Kumar's Journey</h4>
+                        <p>From ₹5L investment to consistent ₹11K monthly returns for 24 months</p>
+                        <small><i class="fas fa-clock"></i> 3:45 min | Gold Tier Partner</small>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h4>Sunita Mehta's Experience</h4>
+                        <p>How a retiree found financial stability with Silver Tier investment</p>
+                        <small><i class="fas fa-clock"></i> 2:30 min | Silver Tier Partner</small>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h4>Vikram Patel's Story</h4>
+                        <p>Business owner shares Platinum Tier experience with custom terms</p>
+                        <small><i class="fas fa-clock"></i> 4:15 min | Platinum Tier</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-testimonial">
+        <div class="container">
+            <h2>Ready to Start <span class="gold-text">Your Success Story?</span></h2>
+            <p class="section-subtitle">Join 500+ satisfied partners who have found financial stability with Omkar Enterprises</p>
+            
+            <div class="cta-buttons">
+                <a href="slabs.html" class="btn-primary btn-large">
+                    <i class="fas fa-chart-line"></i> View Investment Tiers
                 </a>
-                <p class="mt-3 text-gray">
-                    <i class="fas fa-shield-alt"></i> All testimonials are verified for authenticity
-                </p>
+                <a href="contact.html" class="btn-secondary btn-large">
+                    <i class="fas fa-calendar-check"></i> Schedule Consultation
+                </a>
+            </div>
+            
+            <div class="mt-5">
+                <p><i class="fas fa-phone-alt gold-text"></i> Call Santosh Shendkar: <strong>+91 87888 56773</strong></p>
             </div>
         </div>
     </section>
@@ -651,87 +664,65 @@
             <div class="footer-disclaimer">
                 <h4><i class="fas fa-exclamation-triangle"></i> TESTIMONIAL DISCLAIMER</h4>
                 <p>
-                    Testimonials represent individual experiences and may not reflect typical results. Past performance does not guarantee future returns. 
-                    All partnerships involve risk. Please read our complete legal framework before investing.
+                    Testimonials represent individual experiences and do not guarantee future results. 
+                    All investments carry risk. Returns mentioned are based on past performance. 
+                    Please read the complete <a href="legal-framework.html">Legal Framework</a> before investing.
                 </p>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Omkar Enterprises. All Rights Reserved. | Verified Partner Testimonials</p>
+                <p>&copy; 2026 Omkar Enterprises. All Rights Reserved. | Partner Testimonials</p>
                 <p class="footer-regulatory">
-                    <i class="fas fa-star"></i> Average Rating: 4.9/5 from 500+ verified partners
+                    <i class="fas fa-star"></i> Based on verified partner experiences since 2018
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/main.js"></script>
     <script>
-        // Testimonial Filtering
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                const filter = button.getAttribute('data-filter');
-                const testimonials = document.querySelectorAll('.testimonial-item');
-                
-                testimonials.forEach(testimonial => {
-                    if (filter === 'all') {
-                        testimonial.style.display = 'block';
-                    } else if (filter === 'verified') {
-                        if (testimonial.getAttribute('data-verified') === 'true') {
-                            testimonial.style.display = 'block';
+        // Testimonial filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const testimonialItems = document.querySelectorAll('.testimonial-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Show/hide testimonials based on filter
+                    testimonialItems.forEach(item => {
+                        if (filter === 'all') {
+                            item.style.display = 'block';
+                        } else if (filter === 'video') {
+                            // Hide all regular testimonials, video section handled separately
+                            item.style.display = 'none';
                         } else {
-                            testimonial.style.display = 'none';
+                            if (item.getAttribute('data-tier') === filter) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
                         }
-                    } else {
-                        if (testimonial.getAttribute('data-tier') === filter) {
-                            testimonial.style.display = 'block';
-                        } else {
-                            testimonial.style.display = 'none';
-                        }
-                    }
+                    });
                 });
             });
-        });
-        
-        // Pagination
-        document.querySelectorAll('.page-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                if (button.textContent !== '...') {
-                    document.querySelectorAll('.page-btn').forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    // In real implementation, this would load new testimonials
-                }
+            
+            // Rating stars hover effect
+            document.querySelectorAll('.testimonial-rating').forEach(rating => {
+                rating.addEventListener('mouseenter', () => {
+                    rating.style.transform = 'scale(1.1)';
+                });
+                
+                rating.addEventListener('mouseleave', () => {
+                    rating.style.transform = 'scale(1)';
+                });
             });
-        });
-        
-        // Animate testimonials on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        // Apply animation to testimonial items
-        document.querySelectorAll('.testimonial-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(item);
         });
     </script>
 </body>

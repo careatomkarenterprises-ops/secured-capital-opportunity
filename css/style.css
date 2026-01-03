@@ -3155,3 +3155,55 @@ p {
         height: calc(100vh - 60px) !important;
     }
 }
+/* ===== MOBILE MENU HAMBURGER VISIBILITY FIX ===== */
+
+/* Force hamburger to always show on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 1002 !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+        width: 30px !important;
+        height: 24px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .hamburger span {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        height: 3px !important;
+        background-color: var(--gold) !important;
+        border-radius: 2px !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        transform-origin: center !important;
+        margin: 4px 0 !important;
+    }
+    
+    /* Remove any hiding styles */
+    .hamburger[style*="display: none"],
+    .hamburger[style*="display:none"] {
+        display: flex !important;
+    }
+}
+
+/* Additional fix for very small screens */
+@media (max-width: 480px) {
+    .hamburger {
+        width: 28px !important;
+        height: 22px !important;
+    }
+    
+    .hamburger span {
+        height: 2.5px !important;
+        margin: 3px 0 !important;
+    }
+}

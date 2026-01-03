@@ -1010,5 +1010,33 @@
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('appointmentDate').min = today;
     </script>
+<script>
+    // Mobile menu toggle for contact page
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            document.addEventListener('click', function(event) {
+                if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

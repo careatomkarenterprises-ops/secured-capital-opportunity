@@ -67,13 +67,18 @@
             padding: 0 var(--space-md);
         }
 
+        /* FIXED: Proper grid for 3 cards side by side */
+        .tiers-container {
+            max-width: 1400px;
+            margin: var(--space-xxl) auto;
+            padding: 0 var(--space-xl);
+        }
+
         .tiers-grid-slabs {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Fixed: Always 3 columns */
+            grid-template-columns: repeat(3, 1fr);
             gap: var(--space-xl);
-            margin: var(--space-xxl) auto;
-            max-width: 1400px; /* Increased for better spacing */
-            padding: 0 var(--space-xl);
+            width: 100%;
         }
 
         .tier-card-slabs {
@@ -270,7 +275,7 @@
             background-color: var(--bg-card);
         }
 
-        .comparison-section .container {
+        .comparison-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 var(--space-xl);
@@ -279,25 +284,30 @@
         .section-header {
             text-align: center;
             margin-bottom: var(--space-xl);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section-header h2 {
             font-size: 2.5rem;
             margin-bottom: var(--space-sm);
+            color: var(--text-white);
         }
 
         .section-header p {
             font-size: 1.1rem;
             color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto;
+            line-height: 1.6;
         }
 
+        /* FIXED: Better table spacing */
         .comparison-table {
             overflow-x: auto;
             margin-top: var(--space-xl);
             border: 1px solid var(--charcoal);
             border-radius: var(--border-radius-lg);
+            background-color: var(--bg-card);
         }
 
         .comparison-table table {
@@ -308,7 +318,7 @@
 
         .comparison-table th,
         .comparison-table td {
-            padding: var(--space-lg) var(--space-md); /* Increased padding */
+            padding: var(--space-lg) var(--space-md);
             text-align: center;
             border: 1px solid var(--charcoal);
             line-height: 1.6;
@@ -319,10 +329,12 @@
             color: var(--text-white);
             font-weight: 600;
             font-size: 1.1rem;
+            padding: var(--space-md) var(--space-sm);
         }
 
         .comparison-table td {
             color: var(--text-gray);
+            padding: var(--space-md) var(--space-sm);
         }
 
         .comparison-table .feature {
@@ -330,7 +342,8 @@
             background-color: var(--bg-card-light);
             color: var(--text-white);
             font-weight: 500;
-            width: 200px; /* Fixed width for feature column */
+            min-width: 180px;
+            padding-left: var(--space-md);
         }
 
         .comparison-table .yes {
@@ -345,12 +358,43 @@
 
         .faq-section {
             padding: var(--space-xxl) 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-xxl) var(--space-xl);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius);
+            padding: var(--space-xl);
+        }
+
+        .faq-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-sm);
+            color: var(--text-white);
+        }
+
+        .faq-item p {
+            color: var(--text-gray);
+            line-height: 1.6;
         }
 
         @media (max-width: 1200px) {
-            .tiers-grid-slabs {
-                grid-template-columns: repeat(3, 1fr);
-                gap: var(--space-lg);
+            .tiers-container {
+                padding: 0 var(--space-lg);
+            }
+            
+            .comparison-container,
+            .faq-section {
                 padding: 0 var(--space-lg);
             }
         }
@@ -358,6 +402,7 @@
         @media (max-width: 992px) {
             .tiers-grid-slabs {
                 grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-lg);
             }
             
             .tier-card-slabs:nth-child(3) {
@@ -365,13 +410,16 @@
                 max-width: 500px;
                 margin: 0 auto;
             }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
             .tiers-grid-slabs {
                 grid-template-columns: 1fr;
                 gap: var(--space-lg);
-                padding: 0 var(--space-md);
             }
             
             .tier-card-slabs:nth-child(3) {
@@ -389,13 +437,33 @@
             
             .comparison-table th,
             .comparison-table td {
-                padding: var(--space-md) var(--space-sm);
+                padding: var(--space-sm);
+                font-size: 0.9rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
             }
         }
 
         @media (max-width: 576px) {
-            .tiers-grid-slabs {
-                padding: 0 var(--space-sm);
+            .tiers-container {
+                padding: 0 var(--space-md);
+            }
+            
+            .comparison-container,
+            .faq-section {
+                padding: 0 var(--space-md);
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: var(--space-xs) var(--space-xs);
+                font-size: 0.85rem;
+            }
+            
+            .comparison-table .feature {
+                min-width: 140px;
             }
         }
     </style>
@@ -437,7 +505,7 @@
     </section>
 
     <!-- Investment Tiers -->
-    <section class="container">
+    <section class="tiers-container">
         <div class="tiers-grid-slabs">
             <!-- Silver Tier -->
             <div class="tier-card-slabs">
@@ -621,7 +689,7 @@
 
     <!-- Comparison Table Section -->
     <section class="comparison-section">
-        <div class="container">
+        <div class="comparison-container">
             <div class="section-header">
                 <h2>Tier Comparison</h2>
                 <p>Detailed comparison of features across all investment tiers to help you make the right choice.</p>
@@ -712,32 +780,30 @@
 
     <!-- FAQ Section -->
     <section class="faq-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Tier Selection FAQ</h2>
-                <p>Common questions about choosing the right investment tier for your needs.</p>
+        <div class="section-header">
+            <h2>Tier Selection FAQ</h2>
+            <p>Common questions about choosing the right investment tier for your needs.</p>
+        </div>
+        
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>How do I choose between Silver, Gold, and Platinum tiers?</h3>
+                <p>The main factors are your investment amount and desired level of service. Silver is ideal for first-time investors, Gold offers the best value with performance bonuses, and Platinum provides premium services for larger investments.</p>
             </div>
             
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>How do I choose between Silver, Gold, and Platinum tiers?</h3>
-                    <p>The main factors are your investment amount and desired level of service. Silver is ideal for first-time investors, Gold offers the best value with performance bonuses, and Platinum provides premium services for larger investments.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Is the Post-Dated Cheque security the same for all tiers?</h3>
-                    <p>Yes, all tiers are equally secured by Post-Dated Cheques (PDC). The security mechanism is identical regardless of investment amount.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Can I upgrade my tier later?</h3>
-                    <p>Yes, you can upgrade to a higher tier at any time by investing additional funds. The returns will be calculated based on the new total investment amount.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>What happens after the 8-month minimum tenure?</h3>
-                    <p>After 8 months, you can choose to continue your investment, withdraw your principal, or reinvest. All options are available with no penalties after the minimum period.</p>
-                </div>
+            <div class="faq-item">
+                <h3>Is the Post-Dated Cheque security the same for all tiers?</h3>
+                <p>Yes, all tiers are equally secured by Post-Dated Cheques (PDC). The security mechanism is identical regardless of investment amount.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Can I upgrade my tier later?</h3>
+                <p>Yes, you can upgrade to a higher tier at any time by investing additional funds. The returns will be calculated based on the new total investment amount.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What happens after the 8-month minimum tenure?</h3>
+                <p>After 8 months, you can choose to continue your investment, withdraw your principal, or reinvest. All options are available with no penalties after the minimum period.</p>
             </div>
         </div>
     </section>

@@ -2760,3 +2760,43 @@ p {
 
 .search-box {
     max-width: 500px
+/* ===== MOBILE FIXES (NO CONTENT CHANGED) ===== */
+@media (max-width: 768px) {
+    /* Fix mobile menu visibility */
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: #0a1a2d;
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        transition: right 0.3s ease;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+        right: 0;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    /* Fix layout on small screens */
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .tiers-grid,
+    .trust-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}

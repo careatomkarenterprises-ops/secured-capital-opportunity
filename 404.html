@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Page Not Found | Omkar Enterprises</title>
+    <meta name="description" content="The page you're looking for cannot be found. Return to Omkar Enterprises homepage or contact us for assistance.">
+    
+    <link rel="canonical" href="https://omkarservices.in/404.html">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 404 Page Specific Styles */
+        .error-page {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-xxl) 0;
+            background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
+            text-align: center;
+        }
+        
+        .error-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: var(--space-md);
+            font-family: var(--font-heading);
+        }
+        
+        .error-code span {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .error-code span:nth-child(1) { animation-delay: 0s; }
+        .error-code span:nth-child(2) { animation-delay: 0.2s; }
+        .error-code span:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: var(--space-xl);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+        }
+        
+        .error-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        .error-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-lg);
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--text-gray);
+            transition: all var(--transition-fast);
+        }
+        
+        .error-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-5px);
+        }
+        
+        .error-link i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .error-link span {
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: var(--space-xl) auto;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
+            color: var(--text-white);
+            font-size: 1rem;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            .error-title {
+                font-size: 1.75rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+            }
+            
+            .error-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">OE</span>
+                <span class="logo-text">Omkar Enterprises</span>
+            </a>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-lock"></i> Partner Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 404 Content -->
+    <section class="error-page">
+        <div class="container error-container">
+            <div class="error-code">
+                <span>4</span>
+                <span>0</span>
+                <span>4</span>
+            </div>
+            
+            <h1 class="error-title">Page Not <span class="gold-text">Found</span></h1>
+            
+            <p class="error-description">
+                The page you're looking for might have been moved, deleted, or doesn't exist. 
+                Let's get you back on track to explore our private lending partnerships.
+            </p>
+            
+            <div class="error-actions">
+                <a href="index.html" class="btn-primary btn-large">
+                    <i class="fas fa-home"></i> Return Home
+                </a>
+                <a href="contact.html" class="btn-secondary btn-large">
+                    <i class="fas fa-phone-alt"></i> Contact Support
+                </a>
+            </div>
+            
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search Omkar Enterprises website...">
+            </div>
+            
+            <div class="error-links">
+                <a href="slabs.html" class="error-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Partnership Tiers</span>
+                    <small>Explore investment slabs</small>
+                </a>
+                
+                <a href="legal-framework.html" class="error-link">
+                    <i class="fas fa-gavel"></i>
+                    <span>Legal Framework</span>
+                    <small>Understand our security</small>
+                </a>
+                
+                <a href="testimonials.html" class="error-link">
+                    <i class="fas fa-star"></i>
+                    <span>Testimonials</span>
+                    <small>Read partner stories</small>
+                </a>
+                
+                <a href="faq.html" class="error-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ</span>
+                    <small>Find answers</small>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Omkar Enterprises. All Rights Reserved. | Error 404 - Page Not Found</p>
+                <p class="footer-regulatory">
+                    <i class="fas fa-map-marker-alt"></i> BK 684, Central Hospital Area, Ulhasnagar 421003
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Simple search functionality for 404 page
+        document.querySelector('.search-box input')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim().toLowerCase();
+                if (query) {
+                    // Simple keyword matching - in production, this would be more sophisticated
+                    const pages = {
+                        'investment': 'slabs.html',
+                        'tier': 'slabs.html',
+                        'slab': 'slabs.html',
+                        'legal': 'legal-framework.html',
+                        'agreement': 'legal-framework.html',
+                        'pdc': 'legal-framework.html',
+                        'testimonial': 'testimonials.html',
+                        'review': 'testimonials.html',
+                        'faq': 'faq.html',
+                        'question': 'faq.html',
+                        'contact': 'contact.html',
+                        'about': 'about.html',
+                        'founder': 'about.html',
+                        'santosh': 'about.html',
+                        'login': 'partner-portal.html',
+                        'dashboard': 'partner-portal.html',
+                        'partner': 'partner-portal.html'
+                    };
+                    
+                    for (const [keyword, page] of Object.entries(pages)) {
+                        if (query.includes(keyword)) {
+                            window.location.href = page;
+                            return;
+                        }
+                    }
+                    
+                    // Default to home page with search parameter
+                    window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

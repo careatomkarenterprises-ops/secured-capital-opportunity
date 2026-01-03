@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Partner Portal | Secure Login | Omkar Enterprises</title>
+    <meta name="description" content="Secure login portal for Omkar Enterprises partners. Access your investment dashboard, payout history, and agreement documents.">
+    
+    <link rel="canonical" href="https://omkarservices.in/partner-portal.html">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Partner Portal Specific Styles */
+        .portal-hero {
+            padding: var(--space-xxl) 0;
+            background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
+            text-align: center;
+        }
+        
+        .portal-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .portal-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+        
+        .portal-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--charcoal);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .portal-tab {
+            flex: 1;
+            padding: var(--space-md);
+            text-align: center;
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+        
+        .portal-tab.active {
+            color: var(--gold);
+        }
+        
+        .portal-tab.active:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .portal-content {
+            display: none;
+        }
+        
+        .portal-content.active {
+            display: block;
+        }
+        
+        .access-key-input {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .legal-gate {
+            background-color: rgba(189, 147, 0, 0.05);
+            border: 1px solid rgba(189, 147, 0, 0.2);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+        }
+        
+        .legal-gate h4 {
+            color: var(--gold);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .verification-step {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background-color: var(--bg-card-light);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--space-md);
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background-color: var(--gold);
+            color: var(--navy-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+        
+        .security-features {
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--charcoal);
+        }
+        
+        .security-features h4 {
+            margin-bottom: var(--space-md);
+            color: var(--text-light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        .feature-item i {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- System Status -->
+    <div class="system-status">
+        <div class="container">
+            <span class="status-indicator active"></span>
+            <span class="status-text">SYSTEM: <strong>ALL PAYMENTS PROCESSED</strong> | NEXT PAYOUT CYCLE: 07 FEB 2026</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">OE</span>
+                <span class="logo-text">Omkar Enterprises</span>
+            </a>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Partnership Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal Framework</a></li>
+                <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
+                <li><a href="contact.html"><i class="fas fa-map-marker-alt"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Partner Portal Hero -->
+    <section class="portal-hero">
+        <div class="container">
+            <h1>Partner <span class="gold-text">Portal</span></h1>
+            <p class="section-subtitle">Secure access to your investment dashboard and partnership details</p>
+        </div>
+    </section>
+
+    <!-- Portal Container -->
+    <section class="portal-section">
+        <div class="container portal-container">
+            <div class="portal-card">
+                <div class="portal-tabs">
+                    <button class="portal-tab active" data-tab="login">Partner Login</button>
+                    <button class="portal-tab" data-tab="new">New Partner Access</button>
+                </div>
+
+                <!-- Existing Partner Login -->
+                <div class="portal-content active" id="login-content">
+                    <h3 class="text-center mb-4">Access Your Dashboard</h3>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="accessKey"><i class="fas fa-key"></i> Your Access Key</label>
+                            <input type="text" 
+                                   id="accessKey" 
+                                   name="accessKey" 
+                                   class="access-key-input"
+                                   placeholder="OMK-XXXX-XXXX"
+                                   required
+                                   maxlength="13">
+                            <small class="text-gray">Enter the 13-digit access key from your agreement</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loginMobile"><i class="fas fa-mobile-alt"></i> Registered Mobile</label>
+                            <input type="tel" 
+                                   id="loginMobile" 
+                                   name="loginMobile"
+                                   placeholder="+91 XXXXX XXXXX"
+                                   required
+                                   pattern="[0-9]{10}">
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-100">
+                            <i class="fas fa-lock"></i> Access Dashboard
+                        </button>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-gray" id="forgotKey">
+                            <i class="fas fa-question-circle"></i> Forgot Access Key?
+                        </a>
+                    </div>
+                </div>
+
+                <!-- New Partner Access -->
+                <div class="portal-content" id="new-content">
+                    <h3 class="text-center mb-4">Request Partner Access</h3>
+                    
+                    <div class="legal-gate">
+                        <h4><i class="fas fa-shield-alt"></i> Legal Disclosure & Verification</h4>
+                        <p>Before proceeding, you must acknowledge the private nature of this partnership:</p>
+                        
+                        <div class="verification-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <p><strong>Private Bilateral Agreement</strong><br>
+                                This is NOT a public investment scheme. All partnerships are private bilateral agreements under Indian Contract Act, 1872.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="verification-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <p><strong>90-Day Grace Period</strong><br>
+                                Principal withdrawal requires 90-day written notice for business continuity.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="verification-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <p><strong>PDC Security</strong><br>
+                                Your principal is secured by Post-Dated Cheques as per Negotiable Instruments Act.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="newPartnerForm" action="https://formspree.io/f/mdkqpkqp" method="POST">
+                        <div class="form-group">
+                            <label for="fullName"><i class="fas fa-user"></i> Full Name (as per PAN)</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="partnerMobile"><i class="fas fa-mobile-alt"></i> WhatsApp Number</label>
+                            <input type="tel" id="partnerMobile" name="partnerMobile" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="panNumber"><i class="fas fa-id-card"></i> PAN Number</label>
+                            <input type="text" id="panNumber" name="panNumber" placeholder="ABCDE1234F" required>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="legalConsent" required>
+                            <label for="legalConsent">
+                                I confirm I have read and understood the <a href="legal-framework.html" target="_blank">Legal Framework</a>. 
+                                This is a private B2B partnership under Indian Contract Act, 1872.
+                            </label>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="communicationConsent" required>
+                            <label for="communicationConsent">
+                                I consent to receive partnership updates via WhatsApp and email from Omkar Enterprises.
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-100">
+                            <i class="fas fa-paper-plane"></i> Submit & Request Access
+                        </button>
+                        
+                        <p class="form-note">
+                            <i class="fas fa-clock"></i> Access key will be issued within 24 hours after document verification
+                        </p>
+                    </form>
+                </div>
+                
+                <div class="security-features">
+                    <h4><i class="fas fa-shield-check"></i> Security Features</h4>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-lock"></i>
+                            <span>256-bit SSL Encryption</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-fingerprint"></i>
+                            <span>Two-Factor Authentication</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-history"></i>
+                            <span>Login Activity Logs</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Auto-logout: 30 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="text-gray">
+                    <i class="fas fa-phone-alt"></i> Need help? Call: +91 81693 02861 | +91 92263 93837
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-disclaimer">
+                <h4><i class="fas fa-exclamation-triangle"></i> IMPORTANT SECURITY NOTICE</h4>
+                <p>
+                    This portal is for authorized partners only. Unauthorized access is prohibited. 
+                    All login activities are logged and monitored. Never share your access key with anyone. 
+                    Omkar Enterprises will never ask for your access key via phone or email.
+                </p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Omkar Enterprises. All Rights Reserved. | Sister Concern of Trfsk Omkar Services Private Limited</p>
+                <p class="footer-regulatory">
+                    <i class="fas fa-shield-alt"></i> Private Bilateral Partnerships | CIN: U70200MH2023PTC407336
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/917066393830" class="float-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Business WhatsApp</span>
+    </a>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Tab Switching
+        document.querySelectorAll('.portal-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.portal-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.portal-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+            });
+        });
+        
+        // Access Key Formatting
+        document.getElementById('accessKey')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^A-Z0-9]/g, '');
+            
+            if (value.length > 4 && value.length <= 8) {
+                value = value.slice(0, 4) + '-' + value.slice(4);
+            } else if (value.length > 8) {
+                value = value.slice(0, 4) + '-' + value.slice(4, 8) + '-' + value.slice(8, 12);
+            }
+            
+            e.target.value = value.toUpperCase();
+        });
+        
+        // PAN Number Formatting
+        document.getElementById('panNumber')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^A-Z0-9]/g, '').toUpperCase();
+            
+            if (value.length > 5 && value.length <= 10) {
+                value = value.slice(0, 5) + value.slice(5, 9) + value.slice(9, 10);
+            }
+            
+            e.target.value = value;
+        });
+        
+        // Forgot Key
+        document.getElementById('forgotKey')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Please call +91 81693 02861 to retrieve your access key. Verification required.');
+        });
+        
+        // Login Form Submission
+        document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const accessKey = document.getElementById('accessKey').value;
+            const mobile = document.getElementById('loginMobile').value;
+            
+            if (!accessKey || !mobile) {
+                alert('Please enter both access key and mobile number.');
+                return;
+            }
+            
+            if (accessKey.length !== 13) {
+                alert('Please enter a valid 13-digit access key (format: OMK-XXXX-XXXX).');
+                return;
+            }
+            
+            if (mobile.length !== 10) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // In real implementation, this would validate against your Google Sheet
+                // For demo, redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

@@ -1,33 +1,80 @@
-// Complete Mobile Navigation System
+// ===== FINAL MOBILE MENU FIX - SIMPLE AND CLEAN =====
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
+    console.log('DOM loaded - Initializing mobile menu...');
+    
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking on links
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
+    if (!hamburger || !navMenu) {
+        console.error('Menu elements not found!');
+        return;
     }
-
+    
+    console.log('Menu elements found:', hamburger, navMenu);
+    
+    // Toggle menu function
+    function toggleMenu() {
+        console.log('Toggle menu clicked');
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Add click event to hamburger
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        console.log('Hamburger clicked');
+        toggleMenu();
+    });
+    
+    // Close menu when clicking links
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            console.log('Menu link clicked');
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (navMenu.classList.contains('active') && 
+            !hamburger.contains(e.target) && 
+            !navMenu.contains(e.target)) {
+            console.log('Clicked outside menu');
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            console.log('Escape key pressed');
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    console.log('Mobile menu initialized successfully!');
+    
+    // ===== REST OF YOUR EXISTING CODE =====
+    // KEEP ALL YOUR EXISTING CODE BELOW THIS LINE
+    // Your FAQ toggle, smooth scrolling, form validation, etc.
+    // DO NOT DELETE ANYTHING, JUST ADD THE ABOVE CODE AT THE BEGINNING
+});
     // FAQ Toggle
     document.querySelectorAll('.faq-question').forEach(question => {
         question.addEventListener('click', function() {

@@ -2745,4 +2745,38 @@ p {
     border-radius: var(--border-radius);
     text-decoration: none;
     color: var(--text-gray);
-    transition
+    transition: all var(--transition-fast);
+}
+
+.error-link:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-5px);
+}
+
+.error-link i {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: var(--space-sm);
+}
+
+.error-link span {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.search-box {
+    max-width: 500px;
+    margin: var(--space-xl) auto;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 1rem 1.5rem 1rem 3rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--charcoal);
+    border-radius: var(--border-radius-lg);
+    color: var(--text-white);
+    font-size: 1rem;
+}

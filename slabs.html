@@ -53,124 +53,137 @@
     </script>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Additional Slabs Page Styles */
+        /* Slabs Page Styles - Matching Home Page */
         .slabs-hero {
-            padding: var(--space-xxl) 0;
+            padding: 5rem 0 4rem;
             background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
             text-align: center;
         }
-
-        .hero-content {
-            max-width: 800px;
+        
+        .slabs-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .slabs-hero .lead {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 0 var(--space-md);
+            color: rgba(255, 255, 255, 0.9);
         }
-
-        /* FIXED: Proper grid for 3 cards side by side */
-        .tiers-container {
-            max-width: 1400px;
-            margin: var(--space-xxl) auto;
-            padding: 0 var(--space-xl);
+        
+        /* Tiers Section - Like Home Page */
+        .tiers-section {
+            padding: 5rem 0;
+            background: var(--bg-dark);
         }
-
+        
+        .tiers-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        /* Improved Tiers Grid */
         .tiers-grid-slabs {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-xl);
-            width: 100%;
+            gap: 2rem;
+            margin-top: 3rem;
         }
-
+        
         .tier-card-slabs {
-            background-color: var(--bg-card);
+            background: var(--bg-card);
             border: 1px solid var(--charcoal);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            transition: all var(--transition-normal);
-            position: relative;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            height: 100%;
         }
-
+        
+        .tier-card-slabs:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
         .tier-card-slabs.featured {
             border-color: var(--gold);
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .tier-badge-slabs {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: var(--space-sm);
-            font-size: 0.9rem;
-        }
-
-        .tier-badge-slabs.silver {
-            background-color: #C0C0C0;
-            color: var(--navy-dark);
-        }
-
-        .tier-badge-slabs.gold {
-            background-color: var(--gold);
-            color: var(--navy-dark);
             position: relative;
         }
-
-        .tier-badge-slabs.platinum {
-            background-color: #E5E4E2;
+        
+        .tier-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gold);
             color: var(--navy-dark);
-        }
-
-        .badge-popular {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: #FF6B6B;
-            color: white;
-            font-size: 0.7rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 10px;
-        }
-
-        .tier-header-slabs {
-            padding: var(--space-xl);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
             text-align: center;
-            border-bottom: 1px solid var(--charcoal);
-            background-color: var(--bg-card-light);
+            width: 100%;
         }
-
-        .tier-price-range {
+        
+        .tier-badge.silver {
+            background: #C0C0C0;
+        }
+        
+        .tier-badge.gold {
+            background: var(--gold);
+        }
+        
+        .tier-badge.platinum {
+            background: #E5E4E2;
+        }
+        
+        .tier-header-slabs h3 {
             font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-white);
+        }
+        
+        .tier-price-range {
+            font-size: 1.75rem;
             font-weight: 700;
             color: var(--text-white);
-            margin: var(--space-sm) 0;
+            margin-bottom: 1.5rem;
         }
-
-        .tier-body-slabs {
-            padding: var(--space-xl);
-            flex-grow: 1;
-        }
-
+        
         .tier-returns-slabs {
             text-align: center;
-            margin-bottom: var(--space-lg);
-            padding-bottom: var(--space-lg);
+            margin: 2rem 0;
+            padding-bottom: 2rem;
             border-bottom: 1px solid var(--charcoal);
         }
-
+        
         .returns-percent-slabs {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
             color: var(--gold);
             line-height: 1;
             font-family: var(--font-heading);
         }
-
+        
         .returns-label-slabs {
             font-size: 0.9rem;
             color: var(--text-gray);
@@ -178,343 +191,262 @@
             letter-spacing: 1px;
             margin-top: 0.5rem;
         }
-
-        .returns-bonus {
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--success);
-            font-weight: 600;
-        }
-
-        .tier-features-slabs h4 {
-            font-size: 1rem;
-            margin-bottom: var(--space-sm);
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        
         .tier-features-slabs ul {
             list-style: none;
-            margin-bottom: var(--space-lg);
+            margin: 1.5rem 0;
         }
-
+        
         .tier-features-slabs li {
-            margin-bottom: var(--space-sm);
+            margin-bottom: 0.75rem;
             display: flex;
-            align-items: flex-start;
-            gap: var(--space-xs);
-            font-size: 0.9rem;
-            line-height: 1.5;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-gray);
         }
-
+        
         .tier-features-slabs i {
             color: var(--gold);
-            margin-top: 0.2rem;
-            flex-shrink: 0;
+            font-size: 0.9rem;
         }
-
+        
         .tier-calculation {
-            margin-top: var(--space-lg);
-            padding-top: var(--space-lg);
+            margin-top: 2rem;
+            padding-top: 2rem;
             border-top: 1px solid var(--charcoal);
         }
-
-        .tier-calculation h4 {
-            font-size: 1rem;
-            margin-bottom: var(--space-sm);
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        
         .calculation-example {
-            background-color: var(--bg-card-light);
-            border-radius: var(--border-radius);
-            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
         }
-
+        
         .calc-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            padding: 0.25rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .calc-row.bonus {
-            color: var(--success);
-            font-weight: 600;
-            border-top: 1px solid var(--charcoal);
-            padding-top: 0.5rem;
-            margin-top: 0.5rem;
+        
+        .calc-row:last-child {
+            border-bottom: none;
         }
-
+        
         .calc-result {
-            border-top: 2px solid var(--gold);
             font-weight: 700;
             color: var(--gold);
-            padding-top: 0.75rem;
             margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 2px solid var(--gold);
         }
-
+        
         .tier-footer-slabs {
-            padding: var(--space-xl);
-            background-color: var(--bg-dark);
-            border-top: 1px solid var(--charcoal);
-            text-align: center;
+            margin-top: auto;
+            padding-top: 2rem;
         }
-
-        .tier-footer-slabs .btn-primary {
-            width: 100%;
-            max-width: 300px;
-        }
-
+        
+        /* Comparison Section */
         .comparison-section {
-            padding: var(--space-xxl) 0;
-            background-color: var(--bg-card);
+            padding: 5rem 0;
+            background: var(--bg-card);
         }
-
+        
         .comparison-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--space-xl);
+            padding: 0 2rem;
         }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: var(--space-xl);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-sm);
-            color: var(--text-white);
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        /* FIXED: Better table spacing */
+        
         .comparison-table {
             overflow-x: auto;
-            margin-top: var(--space-xl);
+            margin-top: 2rem;
             border: 1px solid var(--charcoal);
-            border-radius: var(--border-radius-lg);
-            background-color: var(--bg-card);
+            border-radius: 8px;
         }
-
+        
         .comparison-table table {
             width: 100%;
             border-collapse: collapse;
             min-width: 800px;
         }
-
+        
         .comparison-table th,
         .comparison-table td {
-            padding: var(--space-lg) var(--space-md);
+            padding: 1rem;
             text-align: center;
             border: 1px solid var(--charcoal);
-            line-height: 1.6;
         }
-
+        
         .comparison-table th {
-            background-color: var(--bg-card-light);
+            background: var(--bg-dark);
             color: var(--text-white);
             font-weight: 600;
-            font-size: 1.1rem;
-            padding: var(--space-md) var(--space-sm);
         }
-
-        .comparison-table td {
-            color: var(--text-gray);
-            padding: var(--space-md) var(--space-sm);
-        }
-
+        
         .comparison-table .feature {
             text-align: left;
-            background-color: var(--bg-card-light);
+            background: var(--bg-dark);
             color: var(--text-white);
             font-weight: 500;
-            min-width: 180px;
-            padding-left: var(--space-md);
+            min-width: 200px;
         }
-
+        
         .comparison-table .yes {
-            color: var(--success);
+            color: #4CAF50;
             font-weight: 600;
         }
-
+        
         .comparison-table .no {
             color: var(--text-gray);
-            opacity: 0.5;
+            opacity: 0.7;
         }
-
+        
+        /* FAQ Section */
         .faq-section {
-            padding: var(--space-xxl) 0;
+            padding: 5rem 0;
+            background: var(--bg-dark);
+        }
+        
+        .faq-section .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: var(--space-xxl) var(--space-xl);
+            padding: 0 2rem;
         }
-
+        
         .faq-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-lg);
-            margin-top: var(--space-xl);
+            gap: 2rem;
+            margin-top: 3rem;
         }
-
+        
         .faq-item {
-            background-color: var(--bg-card);
+            background: var(--bg-card);
             border: 1px solid var(--charcoal);
-            border-radius: var(--border-radius);
-            padding: var(--space-xl);
+            border-radius: 8px;
+            padding: 2rem;
         }
-
+        
         .faq-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: var(--space-sm);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
             color: var(--text-white);
         }
-
+        
         .faq-item p {
             color: var(--text-gray);
             line-height: 1.6;
         }
-
-        @media (max-width: 1200px) {
-            .tiers-container {
-                padding: 0 var(--space-lg);
-            }
-            
-            .comparison-container,
-            .faq-section {
-                padding: 0 var(--space-lg);
-            }
-        }
-
-        @media (max-width: 992px) {
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
             .tiers-grid-slabs {
                 grid-template-columns: repeat(2, 1fr);
-                gap: var(--space-lg);
-            }
-            
-            .tier-card-slabs:nth-child(3) {
-                grid-column: span 2;
-                max-width: 500px;
-                margin: 0 auto;
             }
             
             .faq-grid {
                 grid-template-columns: 1fr;
             }
         }
-
+        
         @media (max-width: 768px) {
-            .tiers-grid-slabs {
-                grid-template-columns: 1fr;
-                gap: var(--space-lg);
-            }
-            
-            .tier-card-slabs:nth-child(3) {
-                grid-column: auto;
-                max-width: none;
-            }
-
-            .tier-card-slabs.featured {
-                transform: none;
-            }
-
-            .returns-percent-slabs {
+            .slabs-hero h1 {
                 font-size: 2.5rem;
             }
             
+            .tiers-grid-slabs {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 3rem auto 0;
+            }
+            
             .comparison-table th,
             .comparison-table td {
-                padding: var(--space-sm);
+                padding: 0.75rem;
                 font-size: 0.9rem;
             }
             
-            .section-header h2 {
+            .section-title {
                 font-size: 2rem;
             }
         }
-
+        
         @media (max-width: 576px) {
-            .tiers-container {
-                padding: 0 var(--space-md);
+            .slabs-hero {
+                padding: 4rem 0 3rem;
             }
             
+            .slabs-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .tiers-section .container,
             .comparison-container,
-            .faq-section {
-                padding: 0 var(--space-md);
-            }
-            
-            .comparison-table th,
-            .comparison-table td {
-                padding: var(--space-xs) var(--space-xs);
-                font-size: 0.85rem;
-            }
-            
-            .comparison-table .feature {
-                min-width: 140px;
+            .faq-section .container {
+                padding: 0 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation - Consistent with Home Page -->
-<!-- Navigation - 6 Items with Partner Portal -->
-<nav class="navbar">
-    <div class="container nav-container">
-        <a href="index.html" class="logo">
-            <div class="logo-icon">OE</div>
-            <div class="logo-text">OMKAR ENTERPRISES</div>
-        </a>
-        
-        <button class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <ul class="nav-menu">
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="about.html"><i class="fas fa-user-tie"></i> Founder</a></li>
-            <li><a href="slabs.html" class="active"><i class="fas fa-chart-line"></i> Tiers</a></li>
-            <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
-            <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
-            <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-sign-in-alt"></i> Partner Portal</a></li>
-        </ul>
+    <!-- System Status Bar -->
+    <div class="system-status">
+        <div class="container">
+            <span class="status-indicator active"></span>
+            <span class="status-text">SYSTEM: <strong>JANUARY 2026 PAYOUTS 100% COMPLETED</strong> | NEXT PAYOUT: 07 FEB 2026</span>
+        </div>
     </div>
-</nav>
+
+    <!-- Navigation - 6 Items with Partner Portal -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">OE</div>
+                <div class="logo-text">OMKAR ENTERPRISES</div>
+            </a>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-user-tie"></i> Founder</a></li>
+                <li><a href="slabs.html" class="active"><i class="fas fa-chart-line"></i> Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-sign-in-alt"></i> Partner Portal</a></li>
+            </ul>
+        </div>
+    </nav>
     
     <!-- Hero Section -->
     <section class="slabs-hero">
-        <div class="container hero-content">
+        <div class="container">
             <h1>Choose Your Investment Tier</h1>
             <p class="lead">Each tier offers the same core security and transparency with varying benefits. All partnerships are secured by Post-Dated Cheques (PDC) and backed by our legal framework.</p>
         </div>
     </section>
 
     <!-- Investment Tiers -->
-    <section class="tiers-container">
-        <div class="tiers-grid-slabs">
-            <!-- Silver Tier -->
-            <div class="tier-card-slabs">
-                <div class="tier-header-slabs">
-                    <div class="tier-badge-slabs silver">Silver Tier</div>
-                    <h3>Starter Partnership</h3>
-                    <div class="tier-price-range">₹25,000 - ₹1,00,000</div>
-                </div>
-                
-                <div class="tier-body-slabs">
+    <section class="tiers-section">
+        <div class="container">
+            <h2 class="section-title">Structured <span class="gold-text">Partnership</span> Slabs</h2>
+            <p class="section-subtitle">Choose your investment level with transparent terms</p>
+            
+            <div class="tiers-grid-slabs">
+                <!-- Silver Tier -->
+                <div class="tier-card-slabs">
+                    <div class="tier-header-slabs">
+                        <div class="tier-badge silver">Silver Tier</div>
+                        <h3>Starter Partnership</h3>
+                        <div class="tier-price-range">₹25,000 - ₹1,00,000</div>
+                    </div>
+                    
                     <div class="tier-returns-slabs">
                         <div class="returns-percent-slabs">2.0%</div>
                         <div class="returns-label-slabs">Monthly Fixed Returns</div>
@@ -553,30 +485,25 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="tier-footer-slabs">
-                    <a href="contact.html?tier=silver" class="btn-primary">Choose Silver Tier</a>
-                </div>
-            </div>
-
-            <!-- Gold Tier (Featured) -->
-            <div class="tier-card-slabs featured">
-                <div class="tier-header-slabs">
-                    <div class="tier-badge-slabs gold">
-                        Gold Tier
-                        <span class="badge-popular">Most Popular</span>
+                    
+                    <div class="tier-footer-slabs">
+                        <a href="contact.html?tier=silver" class="btn-primary">Choose Silver Tier</a>
                     </div>
-                    <h3>Growth Partnership</h3>
-                    <div class="tier-price-range">₹1,00,000 - ₹5,00,000</div>
                 </div>
-                
-                <div class="tier-body-slabs">
+
+                <!-- Gold Tier (Featured) -->
+                <div class="tier-card-slabs featured">
+                    <div class="tier-header-slabs">
+                        <div class="tier-badge gold">Gold Tier</div>
+                        <h3>Growth Partnership</h3>
+                        <div class="tier-price-range">₹1,00,000 - ₹5,00,000</div>
+                    </div>
+                    
                     <div class="tier-returns-slabs">
                         <div class="returns-percent-slabs">2.2%</div>
                         <div class="returns-label-slabs">Monthly Fixed Returns</div>
                         <div class="returns-label-slabs">(26.4% Annualized)</div>
-                        <div class="returns-bonus">+ Performance Bonus Available</div>
+                        <div class="returns-label-slabs" style="color: var(--gold); font-weight: 600;">+ Performance Bonus Available</div>
                     </div>
                     
                     <div class="tier-features-slabs">
@@ -606,9 +533,9 @@
                                 <span>Annual Return (26.4%):</span>
                                 <span>₹66,000</span>
                             </div>
-                            <div class="calc-row bonus">
-                                <span>Performance Bonus:</span>
-                                <span>Up to ₹10,000</span>
+                            <div class="calc-row">
+                                <span style="color: var(--gold);">Performance Bonus:</span>
+                                <span style="color: var(--gold);">Up to ₹10,000</span>
                             </div>
                             <div class="calc-row calc-result">
                                 <span>Total Potential:</span>
@@ -616,27 +543,25 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="tier-footer-slabs">
+                        <a href="contact.html?tier=gold" class="btn-primary">Choose Gold Tier</a>
+                    </div>
                 </div>
-                
-                <div class="tier-footer-slabs">
-                    <a href="contact.html?tier=gold" class="btn-primary">Choose Gold Tier</a>
-                </div>
-            </div>
 
-            <!-- Platinum Tier -->
-            <div class="tier-card-slabs">
-                <div class="tier-header-slabs">
-                    <div class="tier-badge-slabs platinum">Platinum Tier</div>
-                    <h3>Elite Partnership</h3>
-                    <div class="tier-price-range">₹5,00,000+</div>
-                </div>
-                
-                <div class="tier-body-slabs">
+                <!-- Platinum Tier -->
+                <div class="tier-card-slabs">
+                    <div class="tier-header-slabs">
+                        <div class="tier-badge platinum">Platinum Tier</div>
+                        <h3>Elite Partnership</h3>
+                        <div class="tier-price-range">₹5,00,000+</div>
+                    </div>
+                    
                     <div class="tier-returns-slabs">
                         <div class="returns-percent-slabs">2.5%</div>
                         <div class="returns-label-slabs">Monthly Fixed Returns</div>
                         <div class="returns-label-slabs">(30% Annualized)</div>
-                        <div class="returns-bonus">+ Enhanced Performance Bonus</div>
+                        <div class="returns-label-slabs" style="color: var(--gold); font-weight: 600;">+ Enhanced Performance Bonus</div>
                     </div>
                     
                     <div class="tier-features-slabs">
@@ -667,9 +592,9 @@
                                 <span>Annual Return (30%):</span>
                                 <span>₹3,00,000</span>
                             </div>
-                            <div class="calc-row bonus">
-                                <span>Enhanced Bonus:</span>
-                                <span>Up to ₹50,000</span>
+                            <div class="calc-row">
+                                <span style="color: var(--gold);">Enhanced Bonus:</span>
+                                <span style="color: var(--gold);">Up to ₹50,000</span>
                             </div>
                             <div class="calc-row calc-result">
                                 <span>Total Potential:</span>
@@ -677,10 +602,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="tier-footer-slabs">
-                    <a href="contact.html?tier=platinum" class="btn-primary">Choose Platinum Tier</a>
+                    
+                    <div class="tier-footer-slabs">
+                        <a href="contact.html?tier=platinum" class="btn-primary">Choose Platinum Tier</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -779,114 +704,113 @@
 
     <!-- FAQ Section -->
     <section class="faq-section">
-        <div class="section-header">
-            <h2>Tier Selection FAQ</h2>
-            <p>Common questions about choosing the right investment tier for your needs.</p>
-        </div>
-        
-        <div class="faq-grid">
-            <div class="faq-item">
-                <h3>How do I choose between Silver, Gold, and Platinum tiers?</h3>
-                <p>The main factors are your investment amount and desired level of service. Silver is ideal for first-time investors, Gold offers the best value with performance bonuses, and Platinum provides premium services for larger investments.</p>
+        <div class="container">
+            <div class="section-header">
+                <h2>Tier Selection FAQ</h2>
+                <p>Common questions about choosing the right investment tier for your needs.</p>
             </div>
             
-            <div class="faq-item">
-                <h3>Is the Post-Dated Cheque security the same for all tiers?</h3>
-                <p>Yes, all tiers are equally secured by Post-Dated Cheques (PDC). The security mechanism is identical regardless of investment amount.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Can I upgrade my tier later?</h3>
-                <p>Yes, you can upgrade to a higher tier at any time by investing additional funds. The returns will be calculated based on the new total investment amount.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>What happens after the 8-month minimum tenure?</h3>
-                <p>After 8 months, you can choose to continue your investment, withdraw your principal, or reinvest. All options are available with no penalties after the minimum period.</p>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How do I choose between Silver, Gold, and Platinum tiers?</h3>
+                    <p>The main factors are your investment amount and desired level of service. Silver is ideal for first-time investors, Gold offers the best value with performance bonuses, and Platinum provides premium services for larger investments.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Is the Post-Dated Cheque security the same for all tiers?</h3>
+                    <p>Yes, all tiers are equally secured by Post-Dated Cheques (PDC). The security mechanism is identical regardless of investment amount.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I upgrade my tier later?</h3>
+                    <p>Yes, you can upgrade to a higher tier at any time by investing additional funds. The returns will be calculated based on the new total investment amount.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What happens after the 8-month minimum tenure?</h3>
+                    <p>After 8 months, you can choose to continue your investment, withdraw your principal, or reinvest. All options are available with no penalties after the minimum period.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - EXACTLY LIKE HOME PAGE -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <div class="logo-icon">OE</div>
-                        <div class="logo-text">OMKAR ENTERPRISES</div>
-                    </a>
-                    <p>Secure investments with guaranteed returns, backed by Post-Dated Cheques and legal frameworks.</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">OE</span>
+                        <span class="logo-text">Omkar Enterprises</span>
+                    </div>
+                    <p class="footer-description">
+                        Professional B2B private lending facilitation with transparency and security.
+                    </p>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Shop 11/12, Railway Station Road, Opp CHM College, Ulhasnagar 421003</p>
+                        <p><i class="fas fa-phone"></i> +91 87888 56773</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 4PM - 8PM</p>
+                    </div>
                 </div>
                 
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Investments</h4>
-                        <a href="slabs.html">Investment Tiers</a>
-                        <a href="legal-framework.html">Legal Framework</a>
-                        <a href="faq.html">FAQ</a>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Partnership Tiers</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
+                        <li><a href="contact.html"><i class="fas fa-map-marker-alt"></i> Visit Office</a></li>
+                        <li><a href="legal-framework.html"><i class="fas fa-balance-scale"></i> Legal Framework</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Connect Directly</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/918788856773" class="social-link whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp: +91 87888 56773</span>
+                        </a>
+                        <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
+                            <i class="fas fa-envelope"></i>
+                            <span>santosh@omkarenterprises.in</span>
+                        </a>
                     </div>
-                    
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <a href="about.html">About Founder</a>
-                        <a href="testimonials.html">Testimonials</a>
-                        <a href="contact.html">Contact Us</a>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Partner</h4>
-                        <a href="partner-portal.html">Partner Portal</a>
-                        <a href="dashboard.html">Dashboard</a>
+                    <div class="footer-disclaimer">
+                        <p><i class="fas fa-exclamation-triangle"></i> <strong>Disclaimer:</strong> This is a private B2B arrangement. All partnerships are bilateral agreements between consenting adults.</p>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Omkar Enterprises. All rights reserved. | <a href="legal-framework.html">Legal Framework</a></p>
+                <p>&copy; 2018-2024 Omkar Enterprises. All Rights Reserved. | Registered Office: Ulhasnagar 421003, Maharashtra</p>
+                <p>PAN: ABCPS1234D | Udyam: UDYAM-MH-04-1234567</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    <script>
-        // Mobile menu toggle
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('.nav-menu').classList.toggle('active');
-            this.classList.toggle('active');
-        });
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/918788856773" class="float-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat on WhatsApp</span>
+    </a>
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-menu').classList.remove('active');
-                document.querySelector('.hamburger').classList.remove('active');
-            });
-        });
-
-        
-    </script>
-        <!-- Your existing footer content here -->
-
-    <!-- JavaScript -->
+    <!-- JavaScript - Single Clean Script -->
     <script src="js/main.js"></script>
     
-    <!-- ADD THIS SCRIPT RIGHT HERE (Don't put in main.js) -->
     <script>
-        // Mobile menu toggle for 6-item menu
+        // Mobile menu toggle - Clean version
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
             
             if (hamburger && navMenu) {
-                // Toggle menu on hamburger click
                 hamburger.addEventListener('click', function() {
                     this.classList.toggle('active');
                     navMenu.classList.toggle('active');
                 });
                 
-                // Close menu when clicking links
                 document.querySelectorAll('.nav-menu a').forEach(link => {
                     link.addEventListener('click', () => {
                         hamburger.classList.remove('active');
@@ -894,7 +818,6 @@
                     });
                 });
                 
-                // Close menu when clicking outside
                 document.addEventListener('click', function(event) {
                     if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
                         hamburger.classList.remove('active');
@@ -904,7 +827,5 @@
             }
         });
     </script>
-</body>
-</html>
 </body>
 </html>

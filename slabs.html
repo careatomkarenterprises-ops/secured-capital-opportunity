@@ -964,6 +964,165 @@
     // Force show hamburger immediately
     document.querySelector('.hamburger')?.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important;';
 </script>
-    
+    <script>
+    // UNIVERSAL MOBILE MENU FIX FOR ALL PAGES
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🔧 Mobile Menu Initializer Started');
+        
+        // Get menu elements
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        // If elements don't exist, try to find them differently
+        if (!hamburger) {
+            console.warn('⚠️ Hamburger not found by .hamburger selector');
+            // Try alternative selectors
+            const altHamburger = document.querySelector('button.hamburger') || 
+                                document.querySelector('[class*="hamburger"]') ||
+                                document.querySelector('button[class*="menu"]');
+            if (altHamburger) {
+                console.log('✅ Found hamburger with alternative selector');
+                altHamburger.classList.add('hamburger');
+                initMenu(altHamburger, navMenu);
+                return;
+            }
+        }
+        
+        if (!navMenu) {
+            console.warn('⚠️ Nav menu not found by .nav-menu selector');
+            // Try alternative selectors
+            const altNavMenu = document.querySelector('.nav-menu') || 
+                             document.querySelector('ul.nav-menu') ||
+                             document.querySelector('[class*="nav-menu"]') ||
+                             document.querySelector('ul[class*="menu"]');
+            if (altNavMenu) {
+                console.log('✅ Found nav menu with alternative selector');
+                altNavMenu.classList.add('nav-menu');
+                initMenu(hamburger, altNavMenu);
+                return;
+            }
+        }
+        
+        if (hamburger && navMenu) {
+            initMenu(hamburger, navMenu);
+        } else {
+            console.error('❌ Menu elements not found!');
+            emergencyMenuFix();
+        }
+        
+        function initMenu(hamburgerEl, menuEl) {
+            console.log('✅ Initializing mobile menu');
+            
+            // Force visibility on mobile
+            if (window.innerWidth <= 768) {
+                hamburgerEl.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important;';
+            }
+            
+            // Click handler for hamburger
+            hamburgerEl.addEventListener('click', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                console.log('🟡 Hamburger clicked');
+                
+                // Toggle classes
+                this.classList.toggle('active');
+                menuEl.classList.toggle('active');
+                
+                // Prevent body scroll when menu is open
+                document.body.style.overflow = menuEl.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            // Close menu when clicking links
+            menuEl.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log('🔗 Menu link clicked');
+                    hamburgerEl.classList.remove('active');
+                    menuEl.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scroll
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideMenu = menuEl.contains(event.target);
+                const isClickOnHamburger = hamburgerEl.contains(event.target);
+                
+                if (!isClickInsideMenu && !isClickOnHamburger && menuEl.classList.contains('active')) {
+                    console.log('👆 Click outside, closing menu');
+                    hamburgerEl.classList.remove('active');
+                    menuEl.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scroll
+                }
+            });
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && menuEl.classList.contains('active')) {
+                    hamburgerEl.classList.remove('active');
+                    menuEl.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scroll
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    // On desktop, ensure menu is visible
+                    hamburgerEl.classList.remove('active');
+                    menuEl.classList.remove('active');
+                    document.body.style.overflow = '';
+                } else {
+                    // On mobile, ensure hamburger is visible
+                    hamburgerEl.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important;';
+                }
+            });
+            
+            console.log('✅ Mobile menu initialized successfully');
+        }
+        
+        function emergencyMenuFix() {
+            console.log('🚨 Running emergency menu fix');
+            
+            // Create hamburger if it doesn't exist
+            let hamburger = document.querySelector('.hamburger');
+            if (!hamburger) {
+                hamburger = document.createElement('button');
+                hamburger.className = 'hamburger';
+                hamburger.innerHTML = '<span></span><span></span><span></span>';
+                hamburger.setAttribute('aria-label', 'Toggle menu');
+                
+                // Add to navbar
+                const navContainer = document.querySelector('.nav-container') || 
+                                   document.querySelector('.navbar .container');
+                if (navContainer) {
+                    navContainer.appendChild(hamburger);
+                    console.log('✅ Created hamburger button');
+                }
+            }
+            
+            // Ensure nav menu exists
+            let navMenu = document.querySelector('.nav-menu');
+            if (!navMenu) {
+                navMenu = document.querySelector('ul.nav-menu') || 
+                         document.querySelector('.navbar ul');
+                if (navMenu) {
+                    navMenu.classList.add('nav-menu');
+                    console.log('✅ Added nav-menu class to existing menu');
+                }
+            }
+            
+            // Re-initialize with new elements
+            setTimeout(() => {
+                const newHamburger = document.querySelector('.hamburger');
+                const newNavMenu = document.querySelector('.nav-menu');
+                if (newHamburger && newNavMenu) {
+                    initMenu(newHamburger, newNavMenu);
+                }
+            }, 100);
+        }
+        
+        console.log('🔧 Mobile Menu Initializer Complete');
+    });
+</script>
 </body>
 </html>

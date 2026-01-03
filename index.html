@@ -80,7 +80,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- FIXED: Changed style.css to css/style.css -->
     <link rel="stylesheet" href="css/style.css">
     
     <!-- Favicon -->
@@ -98,29 +97,29 @@
         </div>
     </div>
 
-  <!-- Navigation -->
-<nav class="navbar">
-    <div class="container nav-container">
-        <a href="index.html" class="logo">
-            <div class="logo-icon">OE</div>
-            <div class="logo-text">OMKAR ENTERPRISES</div>
-        </a>
-        
-        <button class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <ul class="nav-menu">
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
-            <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
-            <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
-            <li class="nav-cta"><a href="contact.html" class="btn-nav-login"><i class="fas fa-phone-alt"></i> Contact</a></li>
-        </ul>
-    </div>
-</nav>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">OE</div>
+                <div class="logo-text">OMKAR ENTERPRISES</div>
+            </a>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li class="nav-cta"><a href="contact.html" class="btn-nav-login"><i class="fas fa-phone-alt"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -420,7 +419,6 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <!-- FIXED: Changed faq.html and legal-framework.html paths -->
                         <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Partnership Tiers</a></li>
                         <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
                         <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
@@ -461,28 +459,7 @@
         <span>Chat on WhatsApp</span>
     </a>
 
-    <!-- FIXED: Changed script.js to js/script.js -->
-    <script src="js/script.js"></script>
-    
-    <script>
-    // Mobile Menu Toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    }
-    
-    // FAQ Toggle
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-            const faqItem = question.closest('.faq-item');
-            faqItem.classList.toggle('active');
-        });
-    });
-    </script>
+    <!-- Load main.js (NOT script.js) -->
+    <script src="js/main.js"></script>
 </body>
 </html>

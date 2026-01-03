@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Partner Dashboard | Omkar Enterprises | Investment Portfolio</title>
+    <meta name="description" content="Your personal investment dashboard. Track your monthly returns, view PDC details, and manage your partnership with Omkar Enterprises.">
+    
+    <link rel="canonical" href="https://omkarservices.in/dashboard.html">
+    
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Dashboard Specific Styles */
+        .dashboard-header {
+            padding: var(--space-lg) 0;
+            background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
+            border-bottom: 1px solid var(--charcoal);
+        }
+        
+        .dashboard-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .partner-welcome h1 {
+            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+        }
+        
+        .partner-tier {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--navy-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .dashboard-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .stat-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--gold);
+        }
+        
+        .stat-card.primary:before {
+            background-color: var(--success);
+        }
+        
+        .stat-card.warning:before {
+            background-color: var(--warning);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-white);
+            font-family: var(--font-heading);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-subtext {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .dashboard-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+        }
+        
+        .dashboard-card h3 {
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: var(--space-xs);
+        }
+        
+        .card-action {
+            background: none;
+            border: 1px solid var(--charcoal);
+            color: var(--text-gray);
+            width: 32px;
+            height: 32px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-action:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
+        .transaction-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--charcoal);
+        }
+        
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+        
+        .transaction-info h4 {
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+        
+        .transaction-date {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+        
+        .transaction-amount {
+            font-weight: 700;
+            color: var(--success);
+        }
+        
+        .transaction-amount.pending {
+            color: var(--warning);
+        }
+        
+        .transaction-amount.failed {
+            color: var(--danger);
+        }
+        
+        .pdc-details {
+            background-color: rgba(189, 147, 0, 0.05);
+            border: 1px solid rgba(189, 147, 0, 0.2);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .pdc-details h4 {
+            color: var(--gold);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .pdc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+        }
+        
+        .pdc-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .pdc-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+        
+        .pdc-value {
+            font-weight: 600;
+            color: var(--text-white);
+        }
+        
+        .agreement-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--charcoal);
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.active {
+            background-color: rgba(56, 161, 105, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(56, 161, 105, 0.3);
+        }
+        
+        .status-badge.pending {
+            background-color: rgba(214, 158, 46, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(214, 158, 46, 0.3);
+        }
+        
+        .chart-container {
+            height: 250px;
+            margin-top: var(--space-lg);
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .quick-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md);
+            background-color: var(--bg-card-light);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--text-gray);
+            transition: all var(--transition-fast);
+            text-align: center;
+        }
+        
+        .quick-action:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+        
+        .quick-action i {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        
+        .quick-action span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .security-alert {
+            background-color: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            margin-top: var(--space-lg);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+        }
+        
+        .security-alert i {
+            color: #FFC107;
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+        
+        .security-alert p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: #FFC107;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-nav">
+                <div class="partner-welcome">
+                    <h1>Welcome, <span class="gold-text" id="partnerName">Rajesh Kumar</span></h1>
+                    <div class="partner-tier" id="partnerTier">Gold Tier Partner</div>
+                </div>
+                
+                <div class="dashboard-actions">
+                    <button class="btn-secondary" onclick="window.print()">
+                        <i class="fas fa-print"></i> Print Statement
+                    </button>
+                    <button class="btn-secondary" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-label">Active Principal</div>
+                    <div class="stat-value" id="activePrincipal">₹5,00,000</div>
+                    <div class="stat-subtext">Fully secured by PDC</div>
+                </div>
+                
+                <div class="stat-card primary">
+                    <div class="stat-label">Monthly Returns</div>
+                    <div class="stat-value" id="monthlyReturns">₹11,000</div>
+                    <div class="stat-subtext">Next: 07 Feb 2026</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">Total Returns</div>
+                    <div class="stat-value" id="totalReturns">₹2,64,000</div>
+                    <div class="stat-subtext">Since Jan 2021</div>
+                </div>
+                
+                <div class="stat-card warning">
+                    <div class="stat-label">Agreement Expiry</div>
+                    <div class="stat-value" id="agreementExpiry">180</div>
+                    <div class="stat-subtext">Days remaining</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard-main">
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Left Column -->
+                <div class="dashboard-column">
+                    <!-- Recent Transactions -->
+                    <div class="dashboard-card">
+                        <h3>
+                            Recent Transactions
+                            <div class="card-actions">
+                                <button class="card-action" title="Refresh">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="card-action" title="Export">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </h3>
+                        
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Monthly Finance Charge</h4>
+                                    <div class="transaction-date">05 Jan 2026 | NEFT Credit</div>
+                                </div>
+                                <div class="transaction-amount">+₹11,000</div>
+                            </div>
+                            
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Monthly Finance Charge</h4>
+                                    <div class="transaction-date">05 Dec 2025 | NEFT Credit</div>
+                                </div>
+                                <div class="transaction-amount">+₹11,000</div>
+                            </div>
+                            
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Monthly Finance Charge</h4>
+                                    <div class="transaction-date">05 Nov 2025 | NEFT Credit</div>
+                                </div>
+                                <div class="transaction-amount">+₹11,000</div>
+                            </div>
+                            
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Additional Investment</h4>
+                                    <div class="transaction-date">15 Oct 2025 | Cheque Deposit</div>
+                                </div>
+                                <div class="transaction-amount">+₹1,00,000</div>
+                            </div>
+                            
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Monthly Finance Charge</h4>
+                                    <div class="transaction-date">05 Oct 2025 | NEFT Credit</div>
+                                </div>
+                                <div class="transaction-amount">+₹10,000</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <a href="#" class="btn-outline">
+                                <i class="fas fa-history"></i> View Full Transaction History
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- PDC Security Details -->
+                    <div class="dashboard-card">
+                        <h3>
+                            <i class="fas fa-shield-alt"></i> PDC Security Details
+                        </h3>
+                        
+                        <div class="pdc-details">
+                            <h4><i class="fas fa-file-invoice-dollar"></i> Post-Dated Cheques</h4>
+                            <div class="pdc-grid">
+                                <div class="pdc-item">
+                                    <span class="pdc-label">Total PDC Value</span>
+                                    <span class="pdc-value" id="pdcValue">₹5,00,000</span>
+                                </div>
+                                <div class="pdc-item">
+                                    <span class="pdc-label">PDC Count</span>
+                                    <span class="pdc-value" id="pdcCount">5 Cheques</span>
+                                </div>
+                                <div class="pdc-item">
+                                    <span class="pdc-label">Held With</span>
+                                    <span class="pdc-value" id="pdcHolder">You (Partner)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="agreement-status">
+                            <div class="status-badge active">Agreement Active</div>
+                            <span class="text-gray">ID: <span id="agreementId">OMK-2021-RK-05</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="dashboard-column">
+                    <!-- Portfolio Growth -->
+                    <div class="dashboard-card">
+                        <h3>Portfolio Growth</h3>
+                        
+                        <div class="chart-container">
+                            <canvas id="portfolioChart"></canvas>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <small class="text-gray">
+                                <i class="fas fa-info-circle"></i> Chart shows cumulative returns since partnership began
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        
+                        <div class="quick-actions">
+                            <a href="#" class="quick-action">
+                                <i class="fas fa-file-contract"></i>
+                                <span>View Agreement</span>
+                            </a>
+                            
+                            <a href="#" class="quick-action">
+                                <i class="fas fa-download"></i>
+                                <span>Download Statement</span>
+                            </a>
+                            
+                            <a href="contact.html" class="quick-action">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Schedule Meeting</span>
+                            </a>
+                            
+                            <a href="tel:+918169302861" class="quick-action">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>Contact Support</span>
+                            </a>
+                        </div>
+                        
+                        <div class="security-alert">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>
+                                <strong>Security Notice:</strong> Never share your access key. 
+                                Omkar Enterprises will never ask for your PDC details via phone.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Partnership Details -->
+                    <div class="dashboard-card">
+                        <h3>Partnership Details</h3>
+                        
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">Start Date</span>
+                                <span class="detail-value" id="startDate">15 Jan 2021</span>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Tenure</span>
+                                <span class="detail-value" id="partnershipTenure">60 Months</span>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Monthly Rate</span>
+                                <span class="detail-value" id="monthlyRate">2.2%</span>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Withdrawal Notice</span>
+                                <span class="detail-value" id="withdrawalNotice">90 Days</span>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <a href="legal-framework.html" class="btn-outline">
+                                <i class="fas fa-gavel"></i> Review Legal Terms
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Important Notices -->
+            <div class="dashboard-notices">
+                <div class="notice-card">
+                    <div class="notice-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="notice-content">
+                        <h4>Upcoming Payout: 07 February 2026</h4>
+                        <p>Your next monthly finance charge of ₹11,000 will be credited via NEFT. Ensure your bank details are up to date.</p>
+                    </div>
+                    <button class="btn-secondary">
+                        <i class="fas fa-edit"></i> Update Details
+                    </button>
+                </div>
+                
+                <div class="notice-card">
+                    <div class="notice-icon">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <div class="notice-content">
+                        <h4>Agreement Renewal Due</h4>
+                        <p>Your partnership agreement expires in 180 days. Contact us 60 days prior for seamless renewal.</p>
+                    </div>
+                    <a href="contact.html" class="btn-primary">
+                        <i class="fas fa-calendar-check"></i> Schedule Renewal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-disclaimer">
+                <h4><i class="fas fa-lock"></i> CONFIDENTIAL PARTNER DASHBOARD</h4>
+                <p>
+                    This dashboard contains confidential financial information. Unauthorized access or sharing is prohibited. 
+                    All data is protected by 256-bit encryption. Last accessed: <span id="lastAccess">Today, 10:45 AM</span>
+                </p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Omkar Enterprises. All Rights Reserved. | Partner Dashboard v2.1</p>
+                <p class="footer-regulatory">
+                    <i class="fas fa-shield-alt"></i> Secure Connection • Auto-logout in: <span id="logoutTimer">29:45</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Dashboard Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentPartner = JSON.parse(localStorage.getItem('currentPartner'));
+            const accessKey = localStorage.getItem('accessKey');
+            
+            if (!currentPartner || !accessKey) {
+                window.location.href = 'partner-portal.html';
+                return;
+            }
+            
+            // Load partner data
+            loadPartnerData(currentPartner);
+            
+            // Initialize chart
+            initializePortfolioChart();
+            
+            // Setup auto-logout timer
+            setupAutoLogout();
+            
+            // Update last access time
+            updateLastAccess();
+        });
+        
+        function loadPartnerData(partner) {
+            // Update dashboard with partner data
+            document.getElementById('partnerName').textContent = partner.name || 'Partner';
+            document.getElementById('partnerTier').textContent = partner.tier || 'Gold Tier';
+            document.getElementById('activePrincipal').textContent = partner.principal || '₹5,00,000';
+            document.getElementById('monthlyReturns').textContent = partner.monthlyReturns || '₹11,000';
+            document.getElementById('totalReturns').textContent = partner.totalReturns || '₹2,64,000';
+            document.getElementById('agreementExpiry').textContent = partner.daysRemaining || '180';
+            document.getElementById('pdcValue').textContent = partner.pdcValue || '₹5,00,000';
+            document.getElementById('pdcCount').textContent = partner.pdcCount || '5 Cheques';
+            document.getElementById('agreementId').textContent = partner.agreementId || 'OMK-2021-RK-05';
+            document.getElementById('startDate').textContent = partner.startDate || '15 Jan 2021';
+            document.getElementById('partnershipTenure').textContent = partner.tenure || '60 Months';
+            document.getElementById('monthlyRate').textContent = partner.monthlyRate || '2.2%';
+            document.getElementById('withdrawalNotice').textContent = partner.withdrawalNotice || '90 Days';
+        }
+        
+        function initializePortfolioChart() {
+            const ctx = document.getElementById('portfolioChart').getContext('2d');
+            
+            // Sample data - replace with actual partner data
+            const data = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{
+                    label: 'Cumulative Returns',
+                    data: [11000, 22000, 33000, 44000, 55000, 66000, 77000],
+                    borderColor: '#bd9300',
+                    backgroundColor: 'rgba(189, 147, 0, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            };
+            
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `₹${context.parsed.y.toLocaleString('en-IN')}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + value.toLocaleString('en-IN');
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        }
+                    }
+                }
+            };
+            
+            new Chart(ctx, config);
+        }
+        
+        function setupAutoLogout() {
+            let timeLeft = 30 * 60; // 30 minutes in seconds
+            const timerElement = document.getElementById('logoutTimer');
+            
+            const timer = setInterval(() => {
+                timeLeft--;
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    logout();
+                }
+            }, 1000);
+            
+            // Reset timer on user activity
+            ['click', 'mousemove', 'keypress'].forEach(event => {
+                document.addEventListener(event, () => {
+                    timeLeft = 30 * 60;
+                });
+            });
+        }
+        
+        function updateLastAccess() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('lastAccess').textContent = now.toLocaleDateString('en-IN', options);
+        }
+        
+        // Logout function
+        document.getElementById('logoutBtn')?.addEventListener('click', logout);
+        
+        function logout() {
+            // Clear all stored data
+            localStorage.removeItem('currentPartner');
+            localStorage.removeItem('accessKey');
+            sessionStorage.clear();
+            
+            // Redirect to login
+            window.location.href = 'partner-portal.html';
+        }
+        
+        // Print functionality
+        window.addEventListener('beforeprint', () => {
+            document.querySelectorAll('.no-print').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+        
+        window.addEventListener('afterprint', () => {
+            document.querySelectorAll('.no-print').forEach(el => {
+                el.style.display = '';
+            });
+        });
+    </script>
+    
+    <style>
+        /* Additional dashboard styles */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-white);
+        }
+        
+        .dashboard-notices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .notice-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+        }
+        
+        .notice-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(189, 147, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .notice-content {
+            flex: 1;
+        }
+        
+        .notice-content h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .notice-content p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-nav {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .notice-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</body>
+</html>

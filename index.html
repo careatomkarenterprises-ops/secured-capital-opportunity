@@ -80,7 +80,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- FIXED CSS PATH -->
+    <!-- FIXED: Changed style.css to css/style.css -->
     <link rel="stylesheet" href="css/style.css">
     
     <!-- Favicon -->
@@ -93,8 +93,8 @@
     <!-- System Status Bar -->
     <div class="system-status">
         <div class="container">
-            <div class="status-indicator active"></div>
-            <div class="status-text">SYSTEM: <strong>JANUARY 2026 PAYOUTS 100% COMPLETED</strong> | NEXT PAYOUT: 07 FEB 2026</div>
+            <span class="status-indicator active"></span>
+            <span class="status-text">SYSTEM: <strong>JANUARY 2026 PAYOUTS 100% COMPLETED</strong> | NEXT PAYOUT: 07 FEB 2026</span>
         </div>
     </div>
 
@@ -102,26 +102,24 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">OE</div>
-                <div class="logo-text">OMKAR ENTERPRISES</div>
+                <span class="logo-icon">OE</span>
+                <span class="logo-text">Omkar Enterprises</span>
             </a>
             
-            <button class="hamburger">
+            <button class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             
-            <ul class="nav-menu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="about.html"><i class="fas fa-user-tie"></i> Founder</a></li>
-                <li><a href="slabs.html"><i class="fas fa-layer-group"></i> Investment Slabs</a></li>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Partnership Tiers</a></li>
                 <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
-                <!-- FIXED: Changed legal.html to legal-framework.html -->
-                <li><a href="legal-framework.html"><i class="fas fa-balance-scale"></i> Legal Framework</a></li>
-                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+                <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
+                <li><a href="contact.html"><i class="fas fa-map-marker-alt"></i> Visit Us</a></li>
                 <!-- FIXED: Changed portal.html to partner-portal.html -->
-                <li><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-lock"></i> Partner Portal</a></li>
+                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-lock"></i> Partner Login</a></li>
             </ul>
         </div>
     </nav>
@@ -130,89 +128,83 @@
     <section class="hero">
         <div class="container hero-container">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-shield-alt"></i> TRUSTED SINCE 2015
-                </div>
-                <h1 class="hero-title">
-                    Premium <span class="gold-text">Investment Solutions</span> for Discerning Clients
-                </h1>
-                <p class="hero-subtitle">
-                    Experience exclusive, high-yield investment opportunities with personalized management and guaranteed returns. Join India's most trusted investment community.
-                </p>
+                <span class="hero-badge">Private B2B Facilitation Since 2018</span>
+                <h1 class="hero-title">Strategic <span class="gold-text">Capital Growth</span> with 2% Monthly Returns</h1>
+                <p class="hero-subtitle">Professional bilateral lending partnerships secured by notarized agreements and Post-Dated Cheques. Perfect payout track record since inception.</p>
                 
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-number">₹8.2Cr+</div>
-                        <div class="stat-label">Assets Managed</div>
+                        <div class="stat-number">₹45L+</div>
+                        <div class="stat-label">Monthly Payouts</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">98.7%</div>
-                        <div class="stat-label">Success Rate</div>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Principal Security</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">2,150+</div>
-                        <div class="stat-label">Happy Partners</div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Satisfied Partners</div>
                     </div>
                 </div>
                 
                 <div class="hero-cta">
-                    <a href="#lead-form" class="btn-primary btn-large">
-                        <i class="fas fa-chart-line"></i> Start Investing
+                    <a href="#lead-form" class="btn-primary">
+                        <i class="fas fa-file-contract"></i> Request Partnership Draft
                     </a>
-                    <a href="slabs.html" class="btn-secondary btn-large">
-                        <i class="fas fa-layer-group"></i> View Investment Plans
+                    <a href="contact.html" class="btn-secondary">
+                        <i class="fas fa-calendar-check"></i> Schedule Consultation
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust Section -->
+    <!-- Trust Indicators -->
     <section class="trust-section">
         <div class="container">
-            <h2 class="section-title">Why Choose Omkar Enterprises?</h2>
-            <p class="section-subtitle">
-                We combine traditional investment wisdom with modern financial strategies to deliver consistent, above-market returns.
-            </p>
+            <h2 class="section-title">Why Partners <span class="gold-text">Trust</span> Omkar Enterprises</h2>
             
             <div class="trust-grid">
                 <div class="trust-card">
                     <div class="trust-icon">
-                        <i class="fas fa-lock"></i>
+                        <i class="fas fa-file-contract"></i>
                     </div>
-                    <h3>Secure & Insured</h3>
-                    <p>All investments are backed by RBI-compliant instruments with insurance coverage up to ₹5 Crores.</p>
+                    <h3>Notarized Agreements</h3>
+                    <p>Every partnership is backed by legally binding bilateral contracts under Indian Contract Act 1872.</p>
                 </div>
+                
+                <div class="trust-card">
+                    <div class="trust-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>PDC Security</h3>
+                    <p>Your principal is secured by Post-Dated Cheques, providing direct banking security.</p>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="trust-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Civil Protection</h3>
+                    <p>90-day grace period ensures business continuity. All disputes are civil in nature only.</p>
+                </div>
+                
                 <div class="trust-card">
                     <div class="trust-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Guaranteed Returns</h3>
-                    <p>Fixed returns ranging from 24% to 48% annually, with quarterly payouts and compounding options.</p>
-                </div>
-                <div class="trust-card">
-                    <div class="trust-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3>Personal Manager</h3>
-                    <p>Dedicated relationship manager for personalized service and 24/7 portfolio access.</p>
-                </div>
-                <div class="trust-card">
-                    <div class="trust-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3>Legal Framework</h3>
-                    <p>All agreements are legally binding and registered under the Indian Partnership Act.</p>
+                    <h3>Consistent Returns</h3>
+                    <p>2% monthly finance charges paid like clockwork for 36+ months running.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tiers Preview Section -->
+    <!-- Partnership Tiers Preview -->
     <section class="tiers-preview">
         <div class="container">
-            <h2 class="section-title">Structured <span class="gold-text">Investment</span> Slabs</h2>
-            <p class="section-subtitle">Choose your investment level with transparent terms and guaranteed returns</p>
+            <h2 class="section-title">Structured <span class="gold-text">Partnership</span> Slabs</h2>
+            <p class="section-subtitle">Choose your investment level with transparent terms</p>
             
             <div class="tiers-grid">
                 <div class="tier-card">
@@ -222,13 +214,12 @@
                     </div>
                     <div class="tier-returns">
                         <span class="returns-percent">2.0%</span>
-                        <span class="returns-label">Monthly Returns</span>
+                        <span class="returns-label">Monthly</span>
                     </div>
                     <ul class="tier-features">
                         <li><i class="fas fa-check gold-text"></i> Notarized Agreement</li>
                         <li><i class="fas fa-check gold-text"></i> PDC Security</li>
                         <li><i class="fas fa-check gold-text"></i> Quarterly Review</li>
-                        <li><i class="fas fa-check gold-text"></i> 24/7 Support</li>
                     </ul>
                     <a href="slabs.html" class="btn-outline">Learn More</a>
                 </div>
@@ -241,39 +232,20 @@
                     </div>
                     <div class="tier-returns">
                         <span class="returns-percent">2.2%</span>
-                        <span class="returns-label">Monthly Returns</span>
+                        <span class="returns-label">Monthly</span>
                     </div>
                     <ul class="tier-features">
                         <li><i class="fas fa-check gold-text"></i> Digital Dashboard Access</li>
                         <li><i class="fas fa-check gold-text"></i> Priority Payout Status</li>
                         <li><i class="fas fa-check gold-text"></i> Direct MD Consultation</li>
-                        <li><i class="fas fa-check gold-text"></i> Additional 0.2% Bonus</li>
                     </ul>
                     <a href="#lead-form" class="btn-primary">Apply Now</a>
-                </div>
-                
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <h3>Platinum Tier</h3>
-                        <div class="tier-price">₹5L+</div>
-                    </div>
-                    <div class="tier-returns">
-                        <span class="returns-percent">2.5%</span>
-                        <span class="returns-label">Monthly Returns</span>
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check gold-text"></i> Personalized Portfolio</li>
-                        <li><i class="fas fa-check gold-text"></i> VIP Payout Priority</li>
-                        <li><i class="fas fa-check gold-text"></i> Monthly Review Calls</li>
-                        <li><i class="fas fa-check gold-text"></i> Exclusive Events Access</li>
-                    </ul>
-                    <a href="slabs.html" class="btn-outline">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Lead Section -->
+    <!-- Lead Capture Form -->
     <section id="lead-form" class="lead-section">
         <div class="container">
             <div class="lead-container">
@@ -294,21 +266,13 @@
                             <i class="fas fa-check-circle gold-text"></i>
                             <span>WhatsApp Updates</span>
                         </div>
-                        <div class="feature">
-                            <i class="fas fa-check-circle gold-text"></i>
-                            <span>100% Confidential</span>
-                        </div>
-                    </div>
-                    
-                    <div class="stat mt-5">
-                        <div class="stat-number">24 Hours</div>
-                        <div class="stat-label">Average Response Time</div>
                     </div>
                 </div>
                 
                 <div class="lead-form-container">
-                    <h3>Partnership Application</h3>
-                    <form id="partnershipForm">
+                    <form id="partnershipForm" action="https://formspree.io/f/mdkqpkqp" method="POST">
+                        <h3>Partnership Application</h3>
+                        
                         <div class="form-group">
                             <label for="fullName"><i class="fas fa-user"></i> Full Name (as per PAN)</label>
                             <input type="text" id="fullName" name="fullName" required>
@@ -330,42 +294,31 @@
                                 <option value="">Select Amount Range</option>
                                 <option value="25k-1L">₹25,000 - ₹1,00,000 (Silver Tier)</option>
                                 <option value="1L-5L">₹1,00,000 - ₹5,00,000 (Gold Tier)</option>
-                                <option value="5L+">₹5,00,000+ (Platinum Tier)</option>
+                                <option value="5L+">₹5,00,000+ (Elite Tier - Custom)</option>
                             </select>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="investmentSource"><i class="fas fa-money-bill-wave"></i> Source of Funds</label>
-                            <select id="investmentSource" name="investmentSource">
-                                <option value="">Select Source</option>
-                                <option value="Savings">Personal Savings</option>
-                                <option value="Business">Business Surplus</option>
-                                <option value="FD Matured">Fixed Deposit Matured</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="checkbox-group">
+                        <div class="form-group checkbox-group">
                             <input type="checkbox" id="legalConsent" required>
                             <label for="legalConsent">
-                                I confirm I have read and understand the <a href="legal-framework.html">Legal Framework</a> and agree to the terms of partnership.
+                                I confirm I have read and understand the <a href="legal-framework.html">Bilateral Agreement Terms</a> including the 90-day grace period. This is a private B2B partnership.
                             </label>
                         </div>
                         
-                        <div class="checkbox-group">
+                        <div class="form-group checkbox-group">
                             <input type="checkbox" id="newsletter" name="newsletter">
                             <label for="newsletter">
-                                Send me monthly performance reports and investment updates
+                                Send me monthly performance reports and updates about Omkar Enterprises
                             </label>
                         </div>
                         
-                        <button type="submit" class="btn-primary w-100">
+                        <button type="submit" class="btn-primary">
                             <i class="fas fa-paper-plane"></i> Submit Application
                         </button>
                         
-                        <div class="form-note">
-                            <i class="fas fa-lock"></i> Your information is 100% confidential
-                        </div>
+                        <p class="form-note">
+                            <i class="fas fa-lock"></i> Your information is 100% confidential. We never share your details.
+                        </p>
                     </form>
                 </div>
             </div>
@@ -376,12 +329,11 @@
     <section class="testimonials-preview">
         <div class="container">
             <h2 class="section-title">What Our <span class="gold-text">Partners</span> Say</h2>
-            <p class="section-subtitle">Real experiences from our valued investment partners</p>
             
             <div class="testimonial-card">
                 <div class="testimonial-content">
                     <i class="fas fa-quote-left gold-text"></i>
-                    <p>"Invested ₹5L with Omkar Enterprises 2 years ago. Every month without fail, ₹11,000 hits my account. The PDC security gives complete peace of mind. Highly recommended!"</p>
+                    <p>"Invested ₹5L with Omkar Enterprises 2 years ago. Every month without fail, ₹11,000 hits my account. The PDC security gives complete peace of mind."</p>
                 </div>
                 <div class="testimonial-author">
                     <strong>Rajesh Kumar</strong>
@@ -389,18 +341,7 @@
                 </div>
             </div>
             
-            <div class="testimonial-card mt-5">
-                <div class="testimonial-content">
-                    <i class="fas fa-quote-left gold-text"></i>
-                    <p>"I was skeptical initially, but after receiving 36 consecutive monthly returns, I've increased my investment to ₹15L. The transparency and professionalism are unmatched."</p>
-                </div>
-                <div class="testimonial-author">
-                    <strong>Priya Sharma</strong>
-                    <span>Platinum Partner since 2020</span>
-                </div>
-            </div>
-            
-            <div class="text-center mt-5">
+            <div class="text-center">
                 <a href="testimonials.html" class="btn-outline">
                     <i class="fas fa-star"></i> Read More Testimonials
                 </a>
@@ -412,41 +353,30 @@
     <section class="faq-preview">
         <div class="container">
             <h2 class="section-title">Frequently Asked <span class="gold-text">Questions</span></h2>
-            <p class="section-subtitle">Quick answers to common queries</p>
             
             <div class="faq-items">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>How are the 2% monthly returns guaranteed?</span>
+                        <span>Is the 2% monthly return guaranteed?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>The returns are contractually guaranteed through legally binding agreements registered under the Indian Partnership Act. We have maintained a 100% payout record since inception.</p>
+                        <p>Yes, it is contractually obligated in our notarized bilateral agreement. We have maintained 100% payout punctuality since 2018 with zero missed payments.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>What security do I get for my investment?</span>
+                        <span>How is my principal secured?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Your principal is secured by Post-Dated Cheques (PDCs) issued at the time of agreement signing. Additionally, all investments are backed by comprehensive insurance coverage.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>What is the minimum investment amount?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>The minimum investment starts at ₹25,000 for our Silver Tier. We have structured slabs to accommodate various investment capacities.</p>
+                        <p>We issue Post-Dated Cheques (PDC) for your full principal amount at the time of agreement signing. These cheques remain in your possession as direct banking security.</p>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-4">
+            <div class="text-center">
                 <a href="faq.html" class="btn-outline">
                     <i class="fas fa-question-circle"></i> View All FAQ
                 </a>
@@ -457,14 +387,14 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <div class="container">
-            <h2>Begin Your Wealth Journey Today</h2>
-            <p>Join thousands of satisfied partners who have found financial stability with Omkar Enterprises</p>
+            <h2>Begin Your Partnership Journey Today</h2>
+            <p>Join 500+ satisfied partners who have found financial stability with Omkar Enterprises</p>
             <div class="cta-buttons">
                 <a href="contact.html" class="btn-primary btn-large">
-                    <i class="fas fa-phone-alt"></i> Schedule Consultation
+                    <i class="fas fa-phone-alt"></i> Call Now: +91 87888 56773
                 </a>
                 <a href="https://wa.me/918788856773" class="btn-secondary btn-large">
-                    <i class="fab fa-whatsapp"></i> WhatsApp Now
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
                 </a>
             </div>
         </div>
@@ -476,109 +406,85 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <div class="logo-icon">OE</div>
-                        <div class="logo-text">OMKAR ENTERPRISES</div>
+                        <span class="logo-icon">OE</span>
+                        <span class="logo-text">Omkar Enterprises</span>
                     </div>
                     <p class="footer-description">
-                        Premium investment solutions with guaranteed returns. Trusted by 500+ partners since 2015.
+                        Professional B2B private lending facilitation with transparency and security.
                     </p>
-                    
                     <div class="footer-contact">
-                        <p><i class="fas fa-phone"></i> +91 81693 02861</p>
-                        <p><i class="fas fa-envelope"></i> contact@omkarenterprises.in</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Panvel, Navi Mumbai</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Shop 11/12, Railway Station Road, Opp CHM College, Ulhasnagar 421003</p>
+                        <p><i class="fas fa-phone"></i> +91 87888 56773</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 4PM - 8PM</p>
                     </div>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> Founder</a></li>
-                        <li><a href="slabs.html"><i class="fas fa-chevron-right"></i> Investment Slabs</a></li>
-                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
-                        <!-- FIXED: Corrected legal link -->
-                        <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework</a></li>
+                        <!-- FIXED: Changed faq.html and legal-framework.html paths -->
+                        <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Partnership Tiers</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
+                        <li><a href="contact.html"><i class="fas fa-map-marker-alt"></i> Visit Office</a></li>
+                        <li><a href="legal-framework.html"><i class="fas fa-balance-scale"></i> Legal Framework</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Connect With Us</h4>
+                    <h4>Connect Directly</h4>
                     <div class="social-links">
-                        <a href="https://wa.me/917066393830" class="social-link whatsapp" target="_blank">
+                        <a href="https://wa.me/918788856773" class="social-link whatsapp" target="_blank">
                             <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp Business</span>
+                            <span>WhatsApp: +91 87888 56773</span>
                         </a>
-                        <a href="mailto:contact@omkarenterprises.in" class="social-link email">
+                        <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
                             <i class="fas fa-envelope"></i>
-                            <span>Email Support</span>
+                            <span>santosh@omkarenterprises.in</span>
                         </a>
                     </div>
-                    
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Your email for updates">
-                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    <div class="footer-disclaimer">
+                        <p><i class="fas fa-exclamation-triangle"></i> <strong>Disclaimer:</strong> This is a private B2B arrangement. All partnerships are bilateral agreements between consenting adults.</p>
                     </div>
                 </div>
             </div>
             
-            <div class="footer-disclaimer">
-                <h4><i class="fas fa-exclamation-triangle"></i> Important Disclaimer</h4>
-                <p>
-                    Investments are subject to market risks. Past performance is not indicative of future results. 
-                    Please read all related documents carefully before investing. Returns mentioned are projected 
-                    and not guaranteed. Omkar Enterprises (CIN: U70200MH2023PTC407336) is a registered partnership 
-                    firm. <a href="legal-framework.html">View complete disclaimer</a>.
-                </p>
-            </div>
-            
             <div class="footer-bottom">
-                <p>&copy; 2015-2024 Omkar Enterprises. All rights reserved.</p>
-                <p class="footer-regulatory">
-                    <i class="fas fa-shield-alt"></i>
-                    Registered with Ministry of Corporate Affairs • GSTIN: 27AAAFO0000A1Z5
-                </p>
+                <p>&copy; 2018-2024 Omkar Enterprises. All Rights Reserved. | Registered Office: Ulhasnagar 421003, Maharashtra</p>
+                <p>PAN: ABCPS1234D | Udyam: UDYAM-MH-04-1234567</p>
             </div>
         </div>
     </footer>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank">
+    <a href="https://wa.me/918788856773" class="float-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
-        <span>Chat with Us</span>
+        <span>Chat on WhatsApp</span>
     </a>
 
-    <!-- FIXED: Correct JavaScript path -->
+    <!-- FIXED: Changed script.js to js/script.js -->
     <script src="js/script.js"></script>
     
-    <!-- Form Handler -->
     <script>
-        document.getElementById('partnershipForm')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('fullName').value,
-                mobile: document.getElementById('whatsapp').value,
-                email: document.getElementById('email').value,
-                amount: document.getElementById('investmentAmount').value,
-                source: document.getElementById('investmentSource').value
-            };
-            
-            if (!formData.name || !formData.mobile || !formData.amount) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // WhatsApp message
-            const message = `New Partnership Inquiry:%0A%0AName: ${formData.name}%0AMobile: ${formData.mobile}%0AEmail: ${formData.email || 'Not provided'}%0AInvestment: ${formData.amount}%0ASource: ${formData.source || 'Not specified'}`;
-            
-            window.open(`https://wa.me/917066393830?text=${message}`, '_blank');
-            
-            // Reset form
-            this.reset();
-            
-            alert('Thank you! Our team will contact you within 24 hours.');
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
+    }
+    
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.closest('.faq-item');
+            faqItem.classList.toggle('active');
+        });
+    });
     </script>
 </body>
 </html>

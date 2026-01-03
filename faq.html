@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Frequently Asked Questions | Omkar Enterprises | Private Lending FAQ</title>
+    <meta name="description" content="Get answers to all your questions about Omkar Enterprises private lending partnerships, PDC security, returns, and legal framework.">
+    
+    <link rel="canonical" href="https://omkarservices.in/faq.html">
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is the 2% monthly return guaranteed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, it is contractually obligated in our notarized bilateral agreement under Indian Contract Act 1872. We have maintained 100% payout punctuality since 2018 with zero missed payments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is my principal secured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We issue Post-Dated Cheques (PDC) for your full principal amount at the time of agreement signing. These cheques remain in your possession as direct banking security under Negotiable Instruments Act 1881."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the 90-day grace period?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To ensure business continuity, we maintain a 90-day written notice period for principal withdrawal requests. This allows for orderly capital rotation and protects all partners' interests."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* FAQ Specific Styles */
+        .faq-hero {
+            padding: var(--space-xxl) 0;
+            background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
+            text-align: center;
+        }
+        
+        .faq-search {
+            max-width: 600px;
+            margin: var(--space-xl) auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
+            color: var(--text-white);
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(189, 147, 0, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+        
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin: var(--space-xl) 0;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius);
+            color: var(--text-gray);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .category-btn.active,
+        .category-btn:hover {
+            background-color: var(--gold);
+            color: var(--navy-dark);
+            border-color: var(--gold);
+        }
+        
+        .faq-category {
+            margin-bottom: var(--space-xxl);
+        }
+        
+        .category-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .category-header h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .category-header .icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(189, 147, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        
+        .faq-items {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--space-md);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+        
+        .faq-item.active {
+            border-color: var(--gold);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .faq-question {
+            padding: var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: var(--bg-card-light);
+        }
+        
+        .faq-question h3 {
+            margin-bottom: 0;
+            font-size: 1.1rem;
+            color: var(--text-white);
+            flex: 1;
+        }
+        
+        .faq-question .number {
+            width: 32px;
+            height: 32px;
+            background-color: var(--gold);
+            color: var(--navy-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: var(--space-md);
+            flex-shrink: 0;
+        }
+        
+        .faq-toggle {
+            color: var(--gold);
+            transition: transform var(--transition-normal);
+            flex-shrink: 0;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 var(--space-lg);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-normal), padding var(--transition-normal);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 var(--space-lg) var(--space-lg);
+            max-height: 1000px;
+        }
+        
+        .faq-answer p {
+            color: var(--text-gray);
+            margin-bottom: var(--space-md);
+        }
+        
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .answer-highlight {
+            background-color: rgba(189, 147, 0, 0.05);
+            border-left: 3px solid var(--gold);
+            padding: var(--space-md);
+            margin: var(--space-md) 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .answer-highlight p {
+            margin-bottom: 0;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .legal-reference {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            background-color: var(--bg-dark);
+            border-radius: var(--border-radius);
+            margin-top: var(--space-md);
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+        
+        .legal-reference i {
+            color: var(--gold);
+            margin-top: 0.2rem;
+        }
+        
+        .contact-promo {
+            background: linear-gradient(135deg, rgba(189, 147, 0, 0.1) 0%, rgba(10, 26, 45, 0.9) 100%);
+            border: 1px solid var(--gold);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            margin: var(--space-xxl) auto;
+            max-width: 800px;
+        }
+        
+        .contact-promo h2 {
+            margin-bottom: var(--space-md);
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+            flex-wrap: wrap;
+        }
+        
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            color: var(--text-gray);
+            transition: color var(--transition-fast);
+        }
+        
+        .contact-method:hover {
+            color: var(--gold);
+        }
+        
+        .contact-method .icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(189, 147, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-question {
+                padding: var(--space-md);
+            }
+            
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+            
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .contact-methods {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">OE</span>
+                <span class="logo-text">Omkar Enterprises</span>
+            </a>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
+                <li class="nav-cta"><a href="contact.html" class="btn-nav-login"><i class="fas fa-phone-alt"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- FAQ Hero -->
+    <section class="faq-hero">
+        <div class="container">
+            <h1>Frequently Asked <span class="gold-text">Questions</span></h1>
+            <p class="section-subtitle">Get clear answers about our private lending partnerships, security, and returns</p>
+            
+            <div class="faq-search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search for answers..." id="faqSearch">
+            </div>
+            
+            <div class="faq-categories">
+                <button class="category-btn active" data-category="all">
+                    <i class="fas fa-th-large"></i> All Questions
+                </button>
+                <button class="category-btn" data-category="returns">
+                    <i class="fas fa-chart-line"></i> Returns & Payments
+                </button>
+                <button class="category-btn" data-category="security">
+                    <i class="fas fa-shield-alt"></i> Security & PDC
+                </button>
+                <button class="category-btn" data-category="legal">
+                    <i class="fas fa-gavel"></i> Legal Framework
+                </button>
+                <button class="category-btn" data-category="process">
+                    <i class="fas fa-cogs"></i> Partnership Process
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-content">
+        <div class="container">
+            <!-- Returns & Payments -->
+            <div class="faq-category" id="category-returns">
+                <div class="category-header">
+                    <h2>
+                        <div class="icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        Returns & Payments
+                    </h2>
+                    <p class="section-subtitle">Understanding your monthly returns and payment process</p>
+                </div>
+                
+                <div class="faq-items">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item active" data-category="returns">
+                        <div class="faq-question">
+                            <div class="number">1</div>
+                            <h3>Is the 2% monthly return guaranteed?</h3>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, the 2% monthly finance charge is contractually obligated in our notarized bilateral agreement under the Indian Contract Act, 1872. This is not a discretionary return but a fixed finance charge for the capital provided.</p>
+                            
+                            <div class="answer-highlight">
+                                <p><i class="fas fa-check-circle"></i> We have maintained 100% payout punctuality since 2018 with zero missed payments across 500+ partners.</p>
+                            </div>
+                            
+                            <p>The agreement clearly specifies:</p>
+                            <ul>
+                                <li>2% fixed monthly finance charges</li>
+                                <li>Payment date: 5th of every month</li>
+                                <li>Mode: NEFT/IMPS transfer</li>
+                                <li>Late payment penalty: 1.5% per day (never invoked)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="faq-item" data-category="returns">
+                        <div class="faq-question">
+                            <div class="number">2</div>
+                            <h3>When will I receive my monthly returns?</h3>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Monthly finance charges are credited on the <strong>5th of every month</strong> via NEFT/IMPS transfer to your registered bank account.</p>
+                            
+                            <p><strong>Payment Schedule:</strong></p>
+                            <ul>
+                                <li>Month 1: Returns credited on 5th of following month</li>
+                                <li>Subsequent months: Regular 5th of month schedule</li>
+                                <li>Weekends/Holidays: Payment made on previous working day</li>
+                            </ul>
+                            
+                            <div class="legal-reference">
+                                <i class="fas fa-file-contract"></i>
+                                <span>Reference: Clause 4.2 - Payment Schedule in Bilateral Agreement</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="faq-item" data-category="returns">
+                        <div class="faq-question">
+                            <div class="number">3</div>
+                            <h3>Can I increase my investment later?</h3>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can increase your investment at any time. The process is simple:</p>
+                            
+                            <ol>
+                                <li>Submit written request for additional investment</li>
+                                <li>Fresh PDCs issued for additional amount</li>
+                                <li>Supplementary agreement signed</li>
+                                <li>Returns calculated from date of additional investment</li>
+                            </ol>
+                            
+                            <p><strong>Important:</strong> Additional investments follow the same security protocols and are covered under separate PDCs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Security & PDC -->
+            <div class="faq-category" id="category-security">
+                <div class="category-header">
+                    <h2>
+                        <div class="icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        Security & PDC
+                    </h2>
+                    <p class="section-subtitle">How your principal is protected through banking instruments</p>
+                </div>
+                
+                <div class="faq-items">
+                    <!-- FAQ 4 -->
+                    <div class="faq-item" data-category="security">
+                        <div class="faq-question">
+                            <div class="number">4</div>
+                            <h3>How is my principal secured?</h3>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Your principal is secured through multiple layers of protection:</p>
+                            
+                            <p><strong>1. Post-Dated Cheques (PDC):</strong></p>
+                            <ul>
+                                <li>We issue PDCs for your full principal amount</li>
+                                <li>Cheques remain in your physical possession</li>
+                                <li>Dated for principal repayment date (13th month)</li>
+                                <li>Enforceable under Section 138 of Negotiable Instruments Act</li>
+                            </ul>
+                            
+                            <p><strong>2. Notarized Agreement:</strong></p>
+                            <ul>
+                                <li>Legally binding contract signed before notary</li>
+                                <li>Clearly defines all terms and obligations</li>
+                                <li>Provides civil remedy in case of disputes</li>
+                            </ul>
+                            
+                            <div class="answer-highlight">
+                                <p><i class="fas fa-lock"></i> Your PDCs are your direct banking security - they never leave your possession.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 5 -->
+                    <div class="faq-item" data-category="security">
+                        <div class="faq-question">
+                            <div class="number">5</div>
+                            <h3>What happens if I need to withdraw my principal?</h3>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Principal withdrawal follows a structured process:</p>
+                            
+                            <p><strong>90-Day Written Notice:</strong></p>
+                            <ul>
+                                <li>Submit written withdrawal request</li>
+                                <li>90-day notice period begins</li>
+                                <li>Monthly returns continue during notice period</li>
+                                <li>Principal returned on agreed date</li>
+                            </ul>
+                            
+                            <p><strong>Early Withdrawal (Before 8 months):</strong></p>
+                            <ul>
+                                <li>Allowed only in exceptional circumstances</li>
+                                <li>Returns recalculated at 1.5% for actual period</li>
+                                <li>Excess returns adjusted against principal</li>
+                            </ul>
+                            
+                            <div class="legal-reference">
+                                <i class="fas fa-file-contract"></i>
+                                <span>Reference: Clause 6.3 - Withdrawal Process in Bilateral Agreement</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 6 -->
+                    <div class="faq-item" data-category="security">
+                        <div class="faq-question">
+                            <div class="number">6</div>
+                            <h3>Are there any hidden charges or fees?</h3>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>No hidden charges whatsoever.</strong> Our partnership is transparent with all costs clearly outlined:</p>
+                            
+                            <p><strong>What's Included:</strong></p>
+                            <ul>
+                                <li>No processing fees</li>
+                                <li>No documentation charges</li>
+                                <li>No maintenance fees</li>
+                                <li>No withdrawal charges (after 8 months)</li>
+                            </ul>
+                            
+                            <p><strong>Only Two Costs:</strong></p>
+                            <ol>
+                                <li><strong>Notary Charges:</strong> ₹500-1000 (one-time, paid directly to notary)</li>
+                                <li><strong>Early Withdrawal:</strong> Reduced returns at 1.5% if withdrawn before 8 months</li>
+                            </ol>
+                            
+                            <div class="answer-highlight">
+                                <p><i class="fas fa-check-circle"></i> 100% transparency - all costs disclosed upfront in the agreement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Legal Framework -->
+            <div class="faq-category" id="category-legal">
+                <div class="category-header">
+                    <h2>
+                        <div class="icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        Legal Framework
+                    </h2>
+                    <p class="section-subtitle">Understanding the legal structure of our partnerships</p>
+                </div>
+                
+                <div class="faq-items">
+                    <!-- FAQ 7 -->
+                    <div class="faq-item" data-category="legal">
+                        <div class="faq-question">
+                            <div class="number">7</div>
+                            <h3>Is this regulated by SEBI or RBI?</h3>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>No.</strong> Omkar Enterprises operates under a specific legal framework:</p>
+                            
+                            <p><strong>Legal Status:</strong></p>
+                            <ul>
+                                <li><strong>Private Bilateral Agreement:</strong> Under Indian Contract Act, 1872</li>
+                                <li><strong>Not SEBI Regulated:</strong> Not a collective investment scheme</li>
+                                <li><strong>Not RBI Regulated:</strong> Not an NBFC accepting public deposits</li>
+                                <li><strong>Exempt from BUDS Act 2019:</strong> As per Section 2(4) for business transactions</li>
+                            </ul>
+                            
+                            <p><strong>Why This is Advantageous:</strong></p>
+                            <ul>
+                                <li>Direct contractual relationship</li>
+                                <li>Clear civil remedies</li>
+                                <li>No regulatory compliance delays</li>
+                                <li>Flexible partnership terms</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 8 -->
+                    <div class="faq-item" data-category="legal">
+                        <div class="faq-question">
+                            <div class="number">8</div>
+                            <h3>What happens in case of disputes?</h3>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Dispute resolution follows a structured escalation process:</p>
+                            
+                            <p><strong>Step 1: Written Notice (30 days)</strong></p>
+                            <ul>
+                                <li>Parties attempt amicable resolution</li>
+                                <li>Direct discussions between partners</li>
+                            </ul>
+                            
+                            <p><strong>Step 2: Mediation (30 days)</strong></p>
+                            <ul>
+                                <li>Mutually agreed mediator</li>
+                                <li>Non-binding recommendations</li>
+                            </ul>
+                            
+                            <p><strong>Step 3: Arbitration (Final & Binding)</strong></p>
+                            <ul>
+                                <li>Single arbitrator in Pune/Thane jurisdiction</li>
+                                <li>Under Arbitration and Conciliation Act, 1996</li>
+                                <li>Costs shared equally</li>
+                            </ul>
+                            
+                            <div class="answer-highlight">
+                                <p><i class="fas fa-handshake"></i> Important: All disputes are civil in nature only. No criminal proceedings unless fraud established in civil court first.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Promo -->
+    <section class="contact-promo">
+        <div class="container">
+            <h2>Still Have <span class="gold-text">Questions?</span></h2>
+            <p class="section-subtitle">Get personalized answers directly from Santosh Shendkar</p>
+            
+            <div class="contact-methods">
+                <a href="tel:+918169302861" class="contact-method">
+                    <div class="icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <span>Call Now</span>
+                    <strong>+91 81693 02861</strong>
+                </a>
+                
+                <a href="https://wa.me/917066393830" class="contact-method">
+                    <div class="icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <span>WhatsApp</span>
+                    <strong>+91 70663 93830</strong>
+                </a>
+                
+                <a href="contact.html" class="contact-method">
+                    <div class="icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <span>Schedule Meeting</span>
+                    <strong>Ulhasnagar Office</strong>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-disclaimer">
+                <h4><i class="fas fa-info-circle"></i> FAQ DISCLAIMER</h4>
+                <p>
+                    These FAQs are for informational purposes only and do not constitute legal advice. 
+                    The actual notarized bilateral agreement governs all partnerships. Please read the complete 
+                    legal framework and consult with your legal advisor before proceeding.
+                </p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Omkar Enterprises. All Rights Reserved. | Frequently Asked Questions</p>
+                <p class="footer-regulatory">
+                    <i class="fas fa-book"></i> Last Updated: January 2026 | Based on 500+ partner queries
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // FAQ Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ Toggle
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other FAQs in same category
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        if (otherItem !== item && otherItem.getAttribute('data-category') === item.getAttribute('data-category')) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+                        }
+                    });
+                    
+                    // Toggle current FAQ
+                    item.classList.toggle('active');
+                    const answer = item.querySelector('.faq-answer');
+                    
+                    if (!isActive) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    } else {
+                        answer.style.maxHeight = '0';
+                    }
+                });
+            });
+            
+            // Category Filtering
+            document.querySelectorAll('.category-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const category = button.getAttribute('data-category');
+                    
+                    // Show/hide categories
+                    document.querySelectorAll('.faq-category').forEach(cat => {
+                        if (category === 'all' || cat.id === `category-${category}`) {
+                            cat.style.display = 'block';
+                        } else {
+                            cat.style.display = 'none';
+                        }
+                    });
+                    
+                    // Reset all FAQs to closed state
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').style.maxHeight = '0';
+                    });
+                });
+            });
+            
+            // Search Functionality
+            document.getElementById('faqSearch')?.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                
+                if (searchTerm.length < 2) {
+                    // Show all FAQs if search term is too short
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.style.display = 'block';
+                    });
+                    return;
+                }
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        
+                        // Open matching FAQ
+                        item.classList.add('active');
+                        const answerEl = item.querySelector('.faq-answer');
+                        answerEl.style.maxHeight = answerEl.scrollHeight + 'px';
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').style.maxHeight = '0';
+                    }
+                });
+            });
+            
+            // Open first FAQ in each category by default
+            document.querySelectorAll('.faq-category').forEach(category => {
+                const firstFaq = category.querySelector('.faq-item');
+                if (firstFaq) {
+                    firstFaq.classList.add('active');
+                    const answer = firstFaq.querySelector('.faq-answer');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

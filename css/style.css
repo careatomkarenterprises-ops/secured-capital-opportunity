@@ -1,0 +1,276 @@
+/* Slabs Page Specific Styles */
+.tiers-section {
+    padding: var(--space-xxl) 0;
+    background-color: var(--bg-secondary);
+}
+
+.tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.tier-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--charcoal-lighter);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.tier-card.featured {
+    border-color: var(--gold);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.tier-header {
+    padding: var(--space-lg);
+    text-align: center;
+    border-bottom: 1px solid var(--charcoal-lighter);
+}
+
+.tier-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-sm);
+    font-size: 0.9rem;
+}
+
+.tier-badge.silver {
+    background-color: #C0C0C0;
+    color: var(--charcoal);
+}
+
+.tier-badge.gold {
+    background-color: var(--gold);
+    color: var(--charcoal);
+    position: relative;
+}
+
+.tier-badge.platinum {
+    background-color: #E5E4E2;
+    color: var(--charcoal);
+}
+
+.badge-popular {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #FF6B6B;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+}
+
+.tier-price-range {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.tier-body {
+    padding: var(--space-lg);
+}
+
+.tier-returns {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--charcoal-lighter);
+}
+
+.returns-percent {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+}
+
+.returns-label {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+.returns-bonus {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--success);
+    font-weight: 600;
+}
+
+.tier-features h4 {
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
+    color: var(--text-tertiary);
+}
+
+.tier-features ul {
+    list-style: none;
+}
+
+.tier-features li {
+    margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+    font-size: 0.9rem;
+}
+
+.tier-features i {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.tier-calculation {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--charcoal-lighter);
+}
+
+.tier-calculation h4 {
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
+    color: var(--text-tertiary);
+}
+
+.calculation-example {
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+}
+
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.calc-row.bonus {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.calc-result {
+    font-weight: 600;
+    color: var(--gold);
+}
+
+.tier-footer {
+    padding: var(--space-lg);
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--charcoal-lighter);
+    text-align: center;
+}
+
+.tier-footer .btn-primary {
+    width: 100%;
+}
+
+/* Comparison Table */
+.comparison-section {
+    padding: var(--space-xxl) 0;
+    background-color: var(--bg-primary);
+}
+
+.comparison-table {
+    overflow-x: auto;
+    margin-top: var(--space-xl);
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-card);
+}
+
+.comparison-table th {
+    background-color: var(--charcoal-lighter);
+    padding: var(--space-md);
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-primary);
+    border: 1px solid var(--charcoal-lighter);
+}
+
+.comparison-table th:first-child {
+    text-align: left;
+    background-color: transparent;
+}
+
+.comparison-table td {
+    padding: var(--space-md);
+    text-align: center;
+    border: 1px solid var(--charcoal-lighter);
+    color: var(--text-secondary);
+}
+
+.comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-primary);
+    background-color: rgba(197, 160, 89, 0.05);
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* FAQ Compact */
+.faq-compact {
+    padding: var(--space-xxl) 0;
+    background-color: var(--bg-secondary);
+}
+
+/* CTA Section */
+.cta-section {
+    padding: var(--space-xxl) 0;
+}
+
+.cta-card {
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.1) 0%, rgba(11, 11, 11, 0.9) 100%);
+    border: 1px solid var(--gold);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-card h2 {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+}
+
+.cta-card p {
+    font-size: 1.1rem;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-xl);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+}
+
+.cta-note {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+}
+
+.cta-note i {
+    color: var(--gold);
+    margin-right: 0.5rem;
+}

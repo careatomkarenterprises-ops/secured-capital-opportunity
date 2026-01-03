@@ -850,5 +850,120 @@
         console.log('Mobile menu setup complete');
     });
 </script>
+    <script>
+    // ULTIMATE MOBILE MENU FIX WITH DEBUGGING
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('=== MOBILE MENU DEBUG START ===');
+        
+        // Force hamburger visibility on mobile
+        function forceHamburgerVisibility() {
+            const hamburger = document.querySelector('.hamburger');
+            if (!hamburger) {
+                console.error('❌ Hamburger element not found!');
+                // Create hamburger if it doesn't exist
+                const navContainer = document.querySelector('.nav-container');
+                if (navContainer) {
+                    const newHamburger = document.createElement('button');
+                    newHamburger.className = 'hamburger';
+                    newHamburger.innerHTML = '<span></span><span></span><span></span>';
+                    navContainer.appendChild(newHamburger);
+                    console.log('✅ Created missing hamburger button');
+                }
+                return;
+            }
+            
+            console.log('✅ Hamburger found:', hamburger);
+            
+            // Force show on mobile
+            if (window.innerWidth <= 768) {
+                hamburger.style.display = 'flex';
+                hamburger.style.visibility = 'visible';
+                hamburger.style.opacity = '1';
+                console.log('✅ Forced hamburger visibility on mobile');
+            }
+        }
+        
+        // Initialize menu functionality
+        function initMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (!hamburger || !navMenu) {
+                console.error('❌ Menu elements not found!');
+                return;
+            }
+            
+            console.log('✅ Both menu elements found');
+            
+            // Click handler
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                console.log('🟡 Hamburger clicked');
+                
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                
+                console.log('Hamburger active:', this.classList.contains('active'));
+                console.log('Menu active:', navMenu.classList.contains('active'));
+            });
+            
+            // Close menu when clicking links
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log('🔗 Menu link clicked, closing menu');
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Close when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideMenu = navMenu.contains(event.target);
+                const isClickOnHamburger = hamburger.contains(event.target);
+                
+                if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('active')) {
+                    console.log('👆 Click outside, closing menu');
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+            
+            // Prevent clicks inside menu from closing it
+            navMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            console.log('✅ Mobile menu initialized successfully');
+        }
+        
+        // Run both functions
+        forceHamburgerVisibility();
+        initMobileMenu();
+        
+        // Re-check on window resize
+        window.addEventListener('resize', forceHamburgerVisibility);
+        
+        console.log('=== MOBILE MENU DEBUG END ===');
+        
+        // Emergency fix: Add hamburger if missing after 1 second
+        setTimeout(() => {
+            if (!document.querySelector('.hamburger')) {
+                console.log('⚠️ Hamburger still missing, creating...');
+                forceHamburgerVisibility();
+            }
+        }, 1000);
+    });
+</script>
+<script>
+    // Quick diagnostic
+    console.log('Hamburger exists:', !!document.querySelector('.hamburger'));
+    console.log('Nav menu exists:', !!document.querySelector('.nav-menu'));
+    console.log('Window width:', window.innerWidth);
+    
+    // Force show hamburger immediately
+    document.querySelector('.hamburger')?.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important;';
+</script>
+    
 </body>
 </html>

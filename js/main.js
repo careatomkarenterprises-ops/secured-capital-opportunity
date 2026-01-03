@@ -100,3 +100,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ===== ADD THIS TO EXISTING main.js (at the end) =====
+
+// Fix for mobile menu z-index and visibility
+document.addEventListener('DOMContentLoaded', function() {
+    // Force mobile menu to be visible and properly layered
+    setTimeout(function() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (window.innerWidth <= 768) {
+            // Make sure hamburger is properly positioned
+            if (hamburger) {
+                hamburger.style.zIndex = '1002';
+                hamburger.style.position = 'relative';
+            }
+            
+            // Make sure nav menu is properly layered
+            if (navMenu) {
+                navMenu.style.zIndex = '1001';
+                navMenu.style.position = 'fixed';
+                navMenu.style.top = '70px';
+                navMenu.style.left = '-100%';
+                navMenu.style.width = '100%';
+                navMenu.style.height = 'calc(100vh - 70px)';
+                navMenu.style.backgroundColor = 'var(--navy-dark)';
+                navMenu.style.transition = 'left 0.3s ease';
+                navMenu.style.display = 'flex';
+                navMenu.style.flexDirection = 'column';
+                navMenu.style.alignItems = 'center';
+                navMenu.style.padding = '20px 0';
+            }
+        }
+    }, 100);
+});

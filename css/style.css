@@ -5759,3 +5759,24 @@ p {
         padding: 20px 15px 15px !important;
     }
 }
+/* ===== ONE SIMPLE FIX ===== */
+
+/* Mobile fix only - add this at the END of your CSS file */
+@media (max-width: 768px) {
+    .founder-image {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid var(--gold);
+        box-shadow: 0 10px 30px rgba(189, 147, 0, 0.25);
+        margin: 0 auto 1.5rem;
+    }
+    
+    .founder-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}

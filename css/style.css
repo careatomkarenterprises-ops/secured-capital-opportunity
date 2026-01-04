@@ -2160,17 +2160,17 @@ p {
     gap: var(--space-sm);
 }
 
-/* ===== FOUNDER HERO - THE FINAL UNIFIED FIX ===== */
+/* ===== FOUNDER SECTION - NO ZOOM + PERFECT CENTER ===== */
 
+/* 1. Desktop stays exactly as it is in your style.css */
 .founder-hero {
     padding: 5rem 0;
     background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
-    width: 100%;
 }
 
 .founder-intro {
     display: flex;
-    flex-direction: row; /* KEEP SIDE-BY-SIDE FOR DESKTOP */
+    flex-direction: row; /* Desktop: Side-by-side */
     align-items: center;
     justify-content: center;
     gap: 4rem;
@@ -2179,79 +2179,49 @@ p {
     padding: 0 2rem;
 }
 
-.founder-image {
-    width: 350px; /* Desktop Size */
-    height: 350px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid #bd9300; /* Gold */
-    flex-shrink: 0; /* FIX: Prevents the "Oval" shape on all screens */
-    box-shadow: 0 15px 40px rgba(189, 147, 0, 0.25);
-}
-
-.founder-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-}
-
-.founder-content {
-    text-align: left; /* KEEP LEFT-ALIGN FOR DESKTOP */
-    max-width: 650px;
-}
-
-.founder-stats {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-/* ===== MOBILE & HANDSET FIX (Triggers only on small screens) ===== */
-
-@media (max-width: 1024px) {
+/* 2. Mobile Fix: Triggers only for Handsets */
+@media (max-width: 768px) {
     .founder-intro {
-        flex-direction: column !important; /* FORCE VERTICAL STACK ON MOBILE */
+        flex-direction: column !important; /* Forces everything to center stack */
         text-align: center !important;
-        gap: 2rem;
+        padding: 0 1rem;
     }
 
     .founder-content {
-        text-align: center !important;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; /* Centers the name, badge, and tagline */
+        width: 100%;
     }
 
     .founder-image {
-        width: 240px; /* Correct circle size for mobile */
+        width: 240px;
         height: 240px;
-        margin: 0 auto 1.5rem auto; /* Centers the circle */
+        border-radius: 50%;
+        margin: 0 auto 2rem auto; /* Centers the circle itself */
+        flex-shrink: 0; /* Prevents the oval shape */
+        background: var(--bg-dark); /* Keeps background clean for contain */
     }
 
-    .founder-hero h1 {
-        font-size: 2.2rem;
-        text-align: center;
-    }
-
-    .founder-tagline {
-        text-align: center;
-        margin: 0 auto 2rem auto;
+    .founder-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain !important; /* YOUR PREFERRED FIX: No zooming */
+        transform: scale(1);
     }
 
     .founder-stats {
-        flex-direction: column; /* Stacks boxes vertically for mobile */
-        align-items: center;
+        flex-direction: column !important; /* Stacks the boxes */
+        align-items: center !important;
         width: 100%;
+        gap: 1rem;
     }
 
     .stat {
         width: 100%;
-        max-width: 280px;
-        margin-bottom: 1rem;
+        max-width: 280px; /* Keeps boxes centered and neat */
     }
 }
-
 
 
 /* Testimonials Page */

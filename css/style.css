@@ -105,6 +105,58 @@ body {
     padding: 0 var(--space-md);
 }
 
+/* ===== SYSTEM STATUS BAR ===== */
+.system-status {
+    background-color: var(--navy-dark);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(189, 147, 0, 0.2);
+    font-size: 0.85rem;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+}
+
+.system-status .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 15px !important;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--success);
+    position: relative;
+}
+
+.status-indicator.active {
+    background-color: var(--success);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.status-text {
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.status-text strong {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* Adjust navbar to account for system status bar */
+.navbar {
+    top: 30px; /* Height of system status bar */
+}
 /* ===== BASE STYLES FOR ALL PAGES ===== */
 
 /* Typography */

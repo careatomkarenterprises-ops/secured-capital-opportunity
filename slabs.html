@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <title>Investment Tiers | Omkar Enterprises | Partnership Slabs</title>
     <meta name="description" content="Choose your investment tier: Silver (₹25K-₹1L), Gold (₹1L-₹5L), Platinum (₹5L+). All tiers secured by PDC with 2-2.5% monthly returns.">
-
+    <meta name="keywords" content="investment tiers omkar enterprises, silver gold platinum slabs, 2% monthly returns, private lending slabs">
+    
     <link rel="canonical" href="https://omkarservices.in/slabs.html">
-
+    
     <!-- Schema Markup -->
     <script type="application/ld+json">
     {
@@ -51,13 +52,19 @@
       ]
     }
     </script>
-
-    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Page Specific Styles -->
     <style>
-        /* Slabs Page Styles - Matching Home Page */
+        /* Slabs Hero */
         .slabs-hero {
-            padding: 5rem 0 4rem;
+            padding: 100px 0;
             background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
             text-align: center;
         }
@@ -76,112 +83,95 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Tiers Section - Like Home Page */
+        /* Tiers Section */
         .tiers-section {
-            padding: 5rem 0;
+            padding: 80px 0;
             background: var(--bg-dark);
         }
         
-        .tiers-section .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            text-align: center;
-            line-height: 1.6;
-        }
-        
-        /* Improved Tiers Grid */
         .tiers-grid-slabs {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 30px;
+            margin-top: 50px;
         }
         
         .tier-card-slabs {
             background: var(--bg-card);
             border: 1px solid var(--charcoal);
             border-radius: 12px;
-            padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 40px;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
         }
         
         .tier-card-slabs:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
         
         .tier-card-slabs.featured {
-            border-color: var(--gold);
+            border: 2px solid var(--gold);
+            background: rgba(189, 147, 0, 0.05);
             position: relative;
         }
         
         .tier-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 10px 25px;
             background: var(--gold);
             color: var(--navy-dark);
             border-radius: 20px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.9rem;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
             text-align: center;
             width: 100%;
         }
         
         .tier-badge.silver {
             background: #C0C0C0;
+            color: var(--navy-dark);
         }
         
         .tier-badge.gold {
             background: var(--gold);
+            color: var(--navy-dark);
         }
         
         .tier-badge.platinum {
             background: #E5E4E2;
+            color: var(--navy-dark);
         }
         
         .tier-header-slabs h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
             color: var(--text-white);
         }
         
         .tier-price-range {
-            font-size: 1.75rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--text-white);
-            margin-bottom: 1.5rem;
+            margin-bottom: 25px;
         }
         
         .tier-returns-slabs {
             text-align: center;
-            margin: 2rem 0;
-            padding-bottom: 2rem;
+            margin: 30px 0;
+            padding-bottom: 30px;
             border-bottom: 1px solid var(--charcoal);
         }
         
         .returns-percent-slabs {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--gold);
             line-height: 1;
-            font-family: var(--font-heading);
+            margin-bottom: 10px;
         }
         
         .returns-label-slabs {
@@ -189,44 +179,44 @@
             color: var(--text-gray);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 0.5rem;
         }
         
         .tier-features-slabs ul {
             list-style: none;
-            margin: 1.5rem 0;
+            margin: 25px 0;
         }
         
         .tier-features-slabs li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
             color: var(--text-gray);
+            font-size: 0.95rem;
         }
         
         .tier-features-slabs i {
             color: var(--gold);
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         
         .tier-calculation {
-            margin-top: 2rem;
-            padding-top: 2rem;
+            margin-top: 30px;
+            padding-top: 30px;
             border-top: 1px solid var(--charcoal);
         }
         
         .calculation-example {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
+            padding: 20px;
+            margin-top: 15px;
         }
         
         .calc-row {
             display: flex;
             justify-content: space-between;
-            padding: 0.5rem 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
@@ -237,31 +227,25 @@
         .calc-result {
             font-weight: 700;
             color: var(--gold);
-            margin-top: 0.5rem;
-            padding-top: 0.5rem;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 2px solid var(--gold);
         }
         
         .tier-footer-slabs {
             margin-top: auto;
-            padding-top: 2rem;
+            padding-top: 30px;
         }
         
         /* Comparison Section */
         .comparison-section {
-            padding: 5rem 0;
+            padding: 80px 0;
             background: var(--bg-card);
-        }
-        
-        .comparison-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
         
         .comparison-table {
             overflow-x: auto;
-            margin-top: 2rem;
+            margin-top: 40px;
             border: 1px solid var(--charcoal);
             border-radius: 8px;
         }
@@ -274,7 +258,7 @@
         
         .comparison-table th,
         .comparison-table td {
-            padding: 1rem;
+            padding: 20px;
             text-align: center;
             border: 1px solid var(--charcoal);
         }
@@ -283,6 +267,7 @@
             background: var(--bg-dark);
             color: var(--text-white);
             font-weight: 600;
+            font-size: 1rem;
         }
         
         .comparison-table .feature {
@@ -305,39 +290,33 @@
         
         /* FAQ Section */
         .faq-section {
-            padding: 5rem 0;
+            padding: 80px 0;
             background: var(--bg-dark);
-        }
-        
-        .faq-section .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
         
         .faq-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 30px;
+            margin-top: 40px;
         }
         
         .faq-item {
             background: var(--bg-card);
             border: 1px solid var(--charcoal);
             border-radius: 8px;
-            padding: 2rem;
+            padding: 30px;
         }
         
         .faq-item h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             color: var(--text-white);
         }
         
         .faq-item p {
             color: var(--text-gray);
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
         /* Responsive Design */
@@ -358,13 +337,13 @@
             
             .tiers-grid-slabs {
                 grid-template-columns: 1fr;
-                max-width: 400px;
-                margin: 3rem auto 0;
+                max-width: 500px;
+                margin: 40px auto 0;
             }
             
             .comparison-table th,
             .comparison-table td {
-                padding: 0.75rem;
+                padding: 15px;
                 font-size: 0.9rem;
             }
             
@@ -375,17 +354,19 @@
         
         @media (max-width: 576px) {
             .slabs-hero {
-                padding: 4rem 0 3rem;
+                padding: 80px 0;
             }
             
             .slabs-hero h1 {
                 font-size: 2rem;
             }
             
-            .tiers-section .container,
-            .comparison-container,
-            .faq-section .container {
-                padding: 0 1.5rem;
+            .tier-card-slabs {
+                padding: 25px;
+            }
+            
+            .returns-percent-slabs {
+                font-size: 2.8rem;
             }
         }
     </style>
@@ -399,29 +380,29 @@
         </div>
     </div>
 
-    <!-- Navigation - 6 Items with Partner Portal -->
-<nav class="navbar">
-    <div class="container nav-container">
-        <a href="index.html" class="logo">
-            <div class="logo-icon">OE</div>
-            <div class="logo-text">OMKAR ENTERPRISES</div>
-        </a>
-        
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="slabs.html">Tiers</a></li>
-            <li><a href="legal-framework.html">Legal</a></li>
-            <li><a href="testimonials.html">Testimonials</a></li>
-            <li class="nav-cta"><a href="contact.html" class="btn-nav-login">Contact</a></li>
-        </ul>
-    </div>
-</nav>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">OE</div>
+                <div class="logo-text">OMKAR ENTERPRISES</div>
+            </a>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li class="nav-cta"><a href="contact.html" class="btn-nav-login"><i class="fas fa-phone-alt"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
     
     <!-- Hero Section -->
     <section class="slabs-hero">
@@ -612,11 +593,9 @@
 
     <!-- Comparison Table Section -->
     <section class="comparison-section">
-        <div class="comparison-container">
-            <div class="section-header">
-                <h2>Tier Comparison</h2>
-                <p>Detailed comparison of features across all investment tiers to help you make the right choice.</p>
-            </div>
+        <div class="container">
+            <h2 class="section-title">Tier <span class="gold-text">Comparison</span></h2>
+            <p class="section-subtitle">Detailed comparison of features across all investment tiers</p>
             
             <div class="comparison-table">
                 <table>
@@ -704,10 +683,8 @@
     <!-- FAQ Section -->
     <section class="faq-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Tier Selection FAQ</h2>
-                <p>Common questions about choosing the right investment tier for your needs.</p>
-            </div>
+            <h2 class="section-title">Tier Selection <span class="gold-text">FAQ</span></h2>
+            <p class="section-subtitle">Common questions about choosing the right investment tier</p>
             
             <div class="faq-grid">
                 <div class="faq-item">
@@ -733,7 +710,23 @@
         </div>
     </section>
 
-      <!-- Footer -->
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Begin Your Partnership?</h2>
+            <p>Choose your tier and start earning consistent monthly returns today</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn-primary btn-large">
+                    <i class="fas fa-phone-alt"></i> Call Now: +91 8169302861
+                </a>
+                <a href="https://wa.me/918169302861" class="btn-secondary btn-large">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -746,8 +739,8 @@
                         Professional B2B private lending facilitation with transparency and security.
                     </p>
                     <div class="footer-contact">
-                        <p><i class="fas fa-map-marker-alt"></i> Shop 11/12, Railway Station Road, Opp CHM College, Ulhasnagar 421003</p>
-                        <p><i class="fas fa-phone"></i> +91 87888 56773</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Ulhasnagar, Greater Mumbai | Operations: Pune, Maharashtra</p>
+                        <p><i class="fas fa-phone"></i> +91 8169302861 | +91 9226393837</p>
                         <p><i class="fas fa-clock"></i> Mon-Fri: 4PM - 8PM</p>
                     </div>
                 </div>
@@ -767,9 +760,9 @@
                 <div class="footer-col">
                     <h4>Connect Directly</h4>
                     <div class="social-links">
-                        <a href="https://wa.me/918788856773" class="social-link whatsapp" target="_blank">
+                        <a href="https://wa.me/918169302861" class="social-link whatsapp" target="_blank">
                             <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp: +91 87888 56773</span>
+                            <span>WhatsApp: +91 8169302861</span>
                         </a>
                         <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
                             <i class="fas fa-envelope"></i>
@@ -783,345 +776,62 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2018-2024 Omkar Enterprises. All Rights Reserved. | Registered Office: Ulhasnagar 421003, Maharashtra</p>
-                <p>PAN: ABCPS1234D | Udyam: UDYAM-MH-04-1234567</p>
+                <p>&copy; 2018-2024 Omkar Enterprises. All Rights Reserved. | Registered Office: Ulhasnagar, Greater Mumbai</p>
+                <p>Operations Office: Pune, Maharashtra</p>
             </div>
         </div>
     </footer>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/918788856773" class="float-whatsapp" target="_blank">
+    <a href="https://wa.me/918169302861" class="float-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
         <span>Chat on WhatsApp</span>
     </a>
 
-    
-<script>
-    // SIMPLE MOBILE MENU FIX - 100% WORKING
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('Page loaded - checking menu...');
-        
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        if (!hamburger) {
-            console.error('Hamburger button not found!');
-            return;
-        }
-        
-        if (!navMenu) {
-            console.error('Nav menu not found!');
-            return;
-        }
-        
-        console.log('Menu elements found, adding click events...');
-        
-        // Hamburger click
-        hamburger.addEventListener('click', function() {
-            console.log('Hamburger clicked');
-            this.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        
-        // Menu link clicks
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                console.log('Menu link clicked, closing menu');
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isHamburger = event.target.closest('.hamburger');
-            const isNavMenu = event.target.closest('.nav-menu');
-            
-            if (!isHamburger && !isNavMenu && navMenu.classList.contains('active')) {
-                console.log('Click outside, closing menu');
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-        
-        console.log('Mobile menu setup complete');
-    });
-</script>
+    <!-- JavaScript -->
     <script>
-    // ULTIMATE MOBILE MENU FIX WITH DEBUGGING
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('=== MOBILE MENU DEBUG START ===');
-        
-        // Force hamburger visibility on mobile
-        function forceHamburgerVisibility() {
-            const hamburger = document.querySelector('.hamburger');
-            if (!hamburger) {
-                console.error('❌ Hamburger element not found!');
-                // Create hamburger if it doesn't exist
-                const navContainer = document.querySelector('.nav-container');
-                if (navContainer) {
-                    const newHamburger = document.createElement('button');
-                    newHamburger.className = 'hamburger';
-                    newHamburger.innerHTML = '<span></span><span></span><span></span>';
-                    navContainer.appendChild(newHamburger);
-                    console.log('✅ Created missing hamburger button');
-                }
-                return;
-            }
+        // Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
             
-            console.log('✅ Hamburger found:', hamburger);
-            
-            // Force show on mobile
-            if (window.innerWidth <= 768) {
-                hamburger.style.display = 'flex';
-                hamburger.style.visibility = 'visible';
-                hamburger.style.opacity = '1';
-                console.log('✅ Forced hamburger visibility on mobile');
-            }
-        }
-        
-        // Initialize menu functionality
-        function initMobileMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (!hamburger || !navMenu) {
-                console.error('❌ Menu elements not found!');
-                return;
-            }
-            
-            console.log('✅ Both menu elements found');
-            
-            // Click handler
-            hamburger.addEventListener('click', function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-                console.log('🟡 Hamburger clicked');
-                
-                this.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                
-                console.log('Hamburger active:', this.classList.contains('active'));
-                console.log('Menu active:', navMenu.classList.contains('active'));
-            });
-            
-            // Close menu when clicking links
-            navMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    console.log('🔗 Menu link clicked, closing menu');
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
                 });
-            });
-            
-            // Close when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInsideMenu = navMenu.contains(event.target);
-                const isClickOnHamburger = hamburger.contains(event.target);
                 
-                if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('active')) {
-                    console.log('👆 Click outside, closing menu');
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
-            });
-            
-            // Prevent clicks inside menu from closing it
-            navMenu.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-            
-            console.log('✅ Mobile menu initialized successfully');
-        }
-        
-        // Run both functions
-        forceHamburgerVisibility();
-        initMobileMenu();
-        
-        // Re-check on window resize
-        window.addEventListener('resize', forceHamburgerVisibility);
-        
-        console.log('=== MOBILE MENU DEBUG END ===');
-        
-        // Emergency fix: Add hamburger if missing after 1 second
-        setTimeout(() => {
-            if (!document.querySelector('.hamburger')) {
-                console.log('⚠️ Hamburger still missing, creating...');
-                forceHamburgerVisibility();
-            }
-        }, 1000);
-    });
-</script>
-<script>
-    // Quick diagnostic
-    console.log('Hamburger exists:', !!document.querySelector('.hamburger'));
-    console.log('Nav menu exists:', !!document.querySelector('.nav-menu'));
-    console.log('Window width:', window.innerWidth);
-    
-    // Force show hamburger immediately
-    document.querySelector('.hamburger')?.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important;';
-</script>
-    <script>
-    // UNIVERSAL MOBILE MENU FIX FOR ALL PAGES
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('🔧 Mobile Menu Initializer Started');
-        
-        // Get menu elements
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        // If elements don't exist, try to find them differently
-        if (!hamburger) {
-            console.warn('⚠️ Hamburger not found by .hamburger selector');
-            // Try alternative selectors
-            const altHamburger = document.querySelector('button.hamburger') || 
-                                document.querySelector('[class*="hamburger"]') ||
-                                document.querySelector('button[class*="menu"]');
-            if (altHamburger) {
-                console.log('✅ Found hamburger with alternative selector');
-                altHamburger.classList.add('hamburger');
-                initMenu(altHamburger, navMenu);
-                return;
-            }
-        }
-        
-        if (!navMenu) {
-            console.warn('⚠️ Nav menu not found by .nav-menu selector');
-            // Try alternative selectors
-            const altNavMenu = document.querySelector('.nav-menu') || 
-                             document.querySelector('ul.nav-menu') ||
-                             document.querySelector('[class*="nav-menu"]') ||
-                             document.querySelector('ul[class*="menu"]');
-            if (altNavMenu) {
-                console.log('✅ Found nav menu with alternative selector');
-                altNavMenu.classList.add('nav-menu');
-                initMenu(hamburger, altNavMenu);
-                return;
-            }
-        }
-        
-        if (hamburger && navMenu) {
-            initMenu(hamburger, navMenu);
-        } else {
-            console.error('❌ Menu elements not found!');
-            emergencyMenuFix();
-        }
-        
-        function initMenu(hamburgerEl, menuEl) {
-            console.log('✅ Initializing mobile menu');
-            
-            // Force visibility on mobile
-            if (window.innerWidth <= 768) {
-                hamburgerEl.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important;';
-            }
-            
-            // Click handler for hamburger
-            hamburgerEl.addEventListener('click', function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-                console.log('🟡 Hamburger clicked');
-                
-                // Toggle classes
-                this.classList.toggle('active');
-                menuEl.classList.toggle('active');
-                
-                // Prevent body scroll when menu is open
-                document.body.style.overflow = menuEl.classList.contains('active') ? 'hidden' : '';
-            });
-            
-            // Close menu when clicking links
-            menuEl.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    console.log('🔗 Menu link clicked');
-                    hamburgerEl.classList.remove('active');
-                    menuEl.classList.remove('active');
-                    document.body.style.overflow = ''; // Restore scroll
+                // Close menu when clicking links
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
                 });
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInsideMenu = menuEl.contains(event.target);
-                const isClickOnHamburger = hamburgerEl.contains(event.target);
                 
-                if (!isClickInsideMenu && !isClickOnHamburger && menuEl.classList.contains('active')) {
-                    console.log('👆 Click outside, closing menu');
-                    hamburgerEl.classList.remove('active');
-                    menuEl.classList.remove('active');
-                    document.body.style.overflow = ''; // Restore scroll
-                }
-            });
-            
-            // Close menu on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && menuEl.classList.contains('active')) {
-                    hamburgerEl.classList.remove('active');
-                    menuEl.classList.remove('active');
-                    document.body.style.overflow = ''; // Restore scroll
-                }
-            });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    // On desktop, ensure menu is visible
-                    hamburgerEl.classList.remove('active');
-                    menuEl.classList.remove('active');
-                    document.body.style.overflow = '';
-                } else {
-                    // On mobile, ensure hamburger is visible
-                    hamburgerEl.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important;';
-                }
-            });
-            
-            console.log('✅ Mobile menu initialized successfully');
-        }
-        
-        function emergencyMenuFix() {
-            console.log('🚨 Running emergency menu fix');
-            
-            // Create hamburger if it doesn't exist
-            let hamburger = document.querySelector('.hamburger');
-            if (!hamburger) {
-                hamburger = document.createElement('button');
-                hamburger.className = 'hamburger';
-                hamburger.innerHTML = '<span></span><span></span><span></span>';
-                hamburger.setAttribute('aria-label', 'Toggle menu');
-                
-                // Add to navbar
-                const navContainer = document.querySelector('.nav-container') || 
-                                   document.querySelector('.navbar .container');
-                if (navContainer) {
-                    navContainer.appendChild(hamburger);
-                    console.log('✅ Created hamburger button');
-                }
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
             }
             
-            // Ensure nav menu exists
-            let navMenu = document.querySelector('.nav-menu');
-            if (!navMenu) {
-                navMenu = document.querySelector('ul.nav-menu') || 
-                         document.querySelector('.navbar ul');
-                if (navMenu) {
-                    navMenu.classList.add('nav-menu');
-                    console.log('✅ Added nav-menu class to existing menu');
+            // Tier selection highlight
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedTier = urlParams.get('tier');
+            if (selectedTier) {
+                const tierElement = document.querySelector(`.tier-card-slabs .tier-badge.${selectedTier}`);
+                if (tierElement) {
+                    tierElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    tierElement.parentElement.parentElement.style.boxShadow = '0 0 20px rgba(189, 147, 0, 0.5)';
+                    setTimeout(() => {
+                        tierElement.parentElement.parentElement.style.boxShadow = '';
+                    }, 3000);
                 }
             }
-            
-            // Re-initialize with new elements
-            setTimeout(() => {
-                const newHamburger = document.querySelector('.hamburger');
-                const newNavMenu = document.querySelector('.nav-menu');
-                if (newHamburger && newNavMenu) {
-                    initMenu(newHamburger, newNavMenu);
-                }
-            }, 100);
-        }
-        
-        console.log('🔧 Mobile Menu Initializer Complete');
-    });
-</script>
-      <!-- JavaScript - Single Clean Script -->
-    <script src="js/main.js"></script>
+        });
+    </script>
 </body>
 </html>

@@ -2438,3 +2438,30 @@ img {
 /* All meta tags preserved */
 /* All semantic HTML preserved */
 /* All headings hierarchy preserved */
+
+<!-- Community Impact Section - FIXED VISIBILITY -->
+<section class="community-section">
+    <div class="container">
+        <div class="community-card">
+            <h2 class="section-title">Building <span class="gold-text">Trust</span> in Ulhasnagar</h2>
+            <p class="section-subtitle">Santosh Shendkar has become a trusted name in Ulhasnagar's financial community through consistent performance and transparency</p>
+            
+            <div class="community-stats">
+                <div class="community-stat">
+                    <div class="community-stat-number">₹45L+</div>
+                    <div class="community-stat-label">Monthly Payouts Distributed</div>
+                </div>
+                
+                <div class="community-stat">
+                    <div class="community-stat-number">60</div>
+                    <div class="community-stat-label">Consecutive Perfect Payouts</div>
+                </div>
+                
+                <div class="community-stat">
+                    <div class="community-stat-number">0</div>
+                    <div class="community-stat-label">Legal Disputes with Partners</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

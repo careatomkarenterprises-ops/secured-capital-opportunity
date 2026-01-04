@@ -1352,3 +1352,44 @@ p {
         padding: var(--space-md);
     }
 }
+/* Fix for Horizontal Dragging (The Orange Line Issue) */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Force Menu Alignment & Visibility */
+@media (max-width: 768px) {
+    .navbar {
+        z-index: 9999 !important;
+    }
+    .hamburger {
+        display: block !important;
+        z-index: 10001 !important;
+    }
+    .nav-menu {
+        display: flex !important;
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: #0a1a2d !important; /* Your brand navy color */
+        z-index: 10000 !important;
+        transition: left 0.3s ease;
+    }
+    .nav-menu.active {
+        left: 0 !important;
+    }
+    /* Fix for the Legal Page stats breaking alignment */
+    .stats-row {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+}
+

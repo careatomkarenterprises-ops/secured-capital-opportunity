@@ -2160,79 +2160,101 @@ p {
     gap: var(--space-sm);
 }
 
-/* ===== FOUNDER SECTION - MOBILE CENTER & CIRCLE FIX ===== */
+/* ===== FOUNDER HERO - THE FINAL UNIFIED FIX ===== */
 
 .founder-hero {
-    padding: 3rem 0;
+    padding: 5rem 0;
     background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
     width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .founder-intro {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* This centers everything horizontally */
-    text-align: center;   /* This centers the text lines */
-    width: 100%;
+    flex-direction: row; /* KEEP SIDE-BY-SIDE FOR DESKTOP */
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
-/* Fixed Image: Circular and Not Squished */
 .founder-image {
-    width: 240px;  /* Fixed size for mobile */
-    height: 240px; /* Must match width for a perfect circle */
+    width: 350px; /* Desktop Size */
+    height: 350px;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid #bd9300; /* Your gold color */
-    box-shadow: 0 10px 30px rgba(189, 147, 0, 0.3);
-    margin: 0 auto 2rem auto;
-    flex-shrink: 0; /* Prevents the "Oval" squishing effect */
+    border: 5px solid #bd9300; /* Gold */
+    flex-shrink: 0; /* FIX: Prevents the "Oval" shape on all screens */
+    box-shadow: 0 15px 40px rgba(189, 147, 0, 0.25);
 }
 
 .founder-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top; /* Keeps the face centered */
+    object-position: center top;
 }
 
 .founder-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers the Badge and Stats */
-    width: 100%;
+    text-align: left; /* KEEP LEFT-ALIGN FOR DESKTOP */
+    max-width: 650px;
 }
 
-/* Centers the Heading and Tagline */
-.founder-hero h1, 
-.founder-tagline {
-    width: 100%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Centering the Stats Cards */
 .founder-stats {
     display: flex;
-    flex-direction: column; /* Stacks them like in your screenshot */
-    align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     margin-top: 2rem;
-    width: 100%;
 }
 
-.stat {
-    width: 200px; /* Gives cards a consistent width */
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(189, 147, 0, 0.2);
+/* ===== MOBILE & HANDSET FIX (Triggers only on small screens) ===== */
+
+@media (max-width: 1024px) {
+    .founder-intro {
+        flex-direction: column !important; /* FORCE VERTICAL STACK ON MOBILE */
+        text-align: center !important;
+        gap: 2rem;
+    }
+
+    .founder-content {
+        text-align: center !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .founder-image {
+        width: 240px; /* Correct circle size for mobile */
+        height: 240px;
+        margin: 0 auto 1.5rem auto; /* Centers the circle */
+    }
+
+    .founder-hero h1 {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .founder-tagline {
+        text-align: center;
+        margin: 0 auto 2rem auto;
+    }
+
+    .founder-stats {
+        flex-direction: column; /* Stacks boxes vertically for mobile */
+        align-items: center;
+        width: 100%;
+    }
+
+    .stat {
+        width: 100%;
+        max-width: 280px;
+        margin-bottom: 1rem;
+    }
 }
-}/* Testimonials Page */
+
+
+
+/* Testimonials Page */
 .testimonials-hero {
     padding: var(--space-xxl) 0;
     background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);

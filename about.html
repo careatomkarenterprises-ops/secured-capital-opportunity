@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ALL YOUR SEO TAGS - NO CHANGES -->
     <title>Santosh Maruti Shendkar | Founder of Omkar Enterprises | Private Lending Expert</title>
     <meta name="description" content="Meet Santosh Maruti Shendkar, founder of Omkar Enterprises. With 10+ years experience in private B2B lending, creating secure 2% monthly returns for 500+ partners.">
+    <meta name="keywords" content="Santosh Shendkar, Omkar Enterprises, private lending, B2B lending, investment, monthly returns, Ulhasnagar, Maharashtra, financial services">
+    <meta name="author" content="Omkar Enterprises">
+    
     <link rel="canonical" href="https://omkarservices.in/about.html">
+    
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Santosh Maruti Shendkar | Founder of Omkar Enterprises">
+    <meta property="og:description" content="10+ years experience in private B2B lending with 500+ satisfied partners.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://omkarservices.in/about.html">
     
     <!-- Person Schema -->
     <script type="application/ld+json">
@@ -16,76 +27,74 @@
       "jobTitle": "Founder & Managing Director",
       "worksFor": {
         "@type": "Organization",
-        "name": "Omkar Enterprises"
+        "name": "Omkar Enterprises",
+        "url": "https://omkarservices.in"
       },
-      "description": "Founder of Omkar Enterprises, specializing in private B2B lending partnerships with 2% monthly returns.",
+      "description": "Founder of Omkar Enterprises, specializing in private B2B lending partnerships with 2% monthly returns. 10+ years experience with 500+ satisfied partners.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Ulhasnagar",
         "addressRegion": "Maharashtra",
-        "addressCountry": "IN"
+        "addressCountry": "IN",
+        "postalCode": "421003"
       },
       "telephone": "+918788856773",
       "sameAs": []
     }
     </script>
     
-    <!-- FIXED: Added proper CSS for about page -->
     <style>
-        /* Reset and Base Styles */
+        /* ===== BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
         }
-
+        
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* System Status Bar */
+        
+        /* ===== SYSTEM STATUS ===== */
         .system-status {
             background: #2c3e50;
             color: white;
             padding: 8px 0;
             font-size: 0.9rem;
         }
-
+        
         .system-status .container {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
+        
         .status-indicator {
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background: #2ecc71;
-        }
-
-        .status-indicator.active {
-            background: #2ecc71;
             animation: pulse 2s infinite;
         }
-
+        
         @keyframes pulse {
             0% { opacity: 1; }
             50% { opacity: 0.6; }
             100% { opacity: 1; }
         }
-
-        /* Navigation */
+        
+        /* ===== NAVIGATION ===== */
         .navbar {
             background: white;
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
@@ -93,14 +102,14 @@
             top: 0;
             z-index: 1000;
         }
-
+        
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
@@ -108,7 +117,7 @@
             text-decoration: none;
             color: #2c3e50;
         }
-
+        
         .logo-icon {
             background: #3498db;
             color: white;
@@ -121,19 +130,19 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
-
+        
         .logo-text {
             font-weight: 700;
             font-size: 1.3rem;
         }
-
+        
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 25px;
             align-items: center;
         }
-
+        
         .nav-menu a {
             text-decoration: none;
             color: #555;
@@ -143,15 +152,15 @@
             align-items: center;
             gap: 8px;
         }
-
+        
         .nav-menu a:hover {
             color: #3498db;
         }
-
+        
         .nav-cta {
             margin-left: 10px;
         }
-
+        
         .btn-nav-login {
             background: #3498db;
             color: white !important;
@@ -159,11 +168,11 @@
             border-radius: 6px;
             transition: background 0.3s;
         }
-
+        
         .btn-nav-login:hover {
             background: #2980b9;
         }
-
+        
         .hamburger {
             display: none;
             background: none;
@@ -172,31 +181,31 @@
             flex-direction: column;
             gap: 4px;
         }
-
+        
         .hamburger span {
             width: 25px;
             height: 3px;
             background: #333;
             border-radius: 2px;
         }
-
-        /* Founder Hero Section - FIXED ALIGNMENT */
+        
+        /* ===== FOUNDER HERO ===== */
         .founder-hero {
             background: linear-gradient(135deg, #1a2980, #26d0ce);
             color: white;
             padding: 80px 0;
         }
-
+        
         .founder-intro {
             display: flex;
             align-items: center;
             gap: 50px;
         }
-
+        
         .founder-image {
             flex: 0 0 350px;
         }
-
+        
         .founder-photo {
             width: 100%;
             height: 400px;
@@ -205,11 +214,11 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
             border: 5px solid rgba(255,255,255,0.1);
         }
-
+        
         .founder-content {
             flex: 1;
         }
-
+        
         .founder-badge {
             display: inline-block;
             background: rgba(255,255,255,0.2);
@@ -219,64 +228,63 @@
             margin-bottom: 20px;
             backdrop-filter: blur(10px);
         }
-
+        
         .founder-content h1 {
             font-size: 3.5rem;
             margin-bottom: 15px;
             line-height: 1.2;
         }
-
+        
         .gold-text {
             color: #FFD700;
         }
-
+        
         .founder-tagline {
             font-size: 1.3rem;
             opacity: 0.9;
             margin-bottom: 40px;
             max-width: 600px;
         }
-
+        
         .founder-stats {
             display: flex;
             gap: 40px;
             margin-top: 40px;
         }
-
+        
         .stat {
             text-align: center;
         }
-
+        
         .stat-number {
             font-size: 2.8rem;
             font-weight: 800;
             line-height: 1;
             margin-bottom: 5px;
         }
-
+        
         .stat-label {
             font-size: 0.95rem;
             opacity: 0.9;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        /* Vision Section */
+        
+        /* ===== VISION SECTION ===== */
         .vision-section {
             padding: 80px 0;
         }
-
+        
         .vision-card {
             background: white;
             border-radius: 15px;
             padding: 50px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             text-align: center;
-            position: relative;
             max-width: 900px;
             margin: 0 auto;
         }
-
+        
         .vision-icon {
             width: 80px;
             height: 80px;
@@ -289,13 +297,14 @@
             color: white;
             font-size: 2rem;
         }
-
+        
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: #2c3e50;
+            text-align: center;
         }
-
+        
         .section-subtitle {
             color: #7f8c8d;
             font-size: 1.1rem;
@@ -303,8 +312,9 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            text-align: center;
         }
-
+        
         .vision-card blockquote {
             font-size: 1.4rem;
             line-height: 1.8;
@@ -312,9 +322,8 @@
             font-style: italic;
             margin: 30px 0;
             padding: 0 20px;
-            position: relative;
         }
-
+        
         .vision-card blockquote:before {
             content: '"';
             font-size: 4rem;
@@ -324,25 +333,25 @@
             top: -20px;
             opacity: 0.3;
         }
-
+        
         .vision-author {
             font-size: 1.1rem;
             color: #7f8c8d;
             font-weight: 600;
         }
-
-        /* Timeline Section */
+        
+        /* ===== TIMELINE ===== */
         .journey-section {
             padding: 80px 0;
             background: #f8f9fa;
         }
-
+        
         .timeline {
             position: relative;
             max-width: 900px;
             margin: 40px auto 0;
         }
-
+        
         .timeline:before {
             content: '';
             position: absolute;
@@ -352,14 +361,14 @@
             height: 100%;
             background: #3498db;
         }
-
+        
         .timeline-item {
             display: flex;
             justify-content: center;
             margin-bottom: 50px;
             position: relative;
         }
-
+        
         .timeline-year {
             position: absolute;
             left: 50%;
@@ -374,7 +383,7 @@
             min-width: 100px;
             text-align: center;
         }
-
+        
         .timeline-content {
             width: 45%;
             background: white;
@@ -382,33 +391,33 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-
+        
         .timeline-item:nth-child(odd) .timeline-content {
             margin-right: 55%;
         }
-
+        
         .timeline-item:nth-child(even) .timeline-content {
             margin-left: 55%;
         }
-
+        
         .timeline-content h4 {
             color: #2c3e50;
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
-
-        /* Philosophy Grid */
+        
+        /* ===== PHILOSOPHY ===== */
         .philosophy-section {
             padding: 80px 0;
         }
-
+        
         .philosophy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
-
+        
         .philosophy-card {
             background: white;
             padding: 30px;
@@ -417,12 +426,12 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
+        
         .philosophy-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-
+        
         .philosophy-icon {
             width: 70px;
             height: 70px;
@@ -435,25 +444,26 @@
             color: white;
             font-size: 1.8rem;
         }
-
+        
         .philosophy-card h3 {
             color: #2c3e50;
             margin-bottom: 15px;
+            font-size: 1.3rem;
         }
-
-        /* Community Section */
+        
+        /* ===== COMMUNITY ===== */
         .community-section {
             padding: 80px 0;
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
         }
-
+        
         .community-card {
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
         }
-
+        
         .community-stats {
             display: flex;
             justify-content: center;
@@ -461,28 +471,28 @@
             margin-top: 50px;
             flex-wrap: wrap;
         }
-
+        
         .community-stat {
             text-align: center;
         }
-
+        
         .community-stat-number {
             font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 10px;
         }
-
+        
         .community-stat-label {
             font-size: 0.95rem;
             opacity: 0.9;
             max-width: 150px;
         }
-
-        /* Commitment Section */
+        
+        /* ===== COMMITMENT ===== */
         .commitment-section {
             padding: 80px 0;
         }
-
+        
         .commitment-card {
             background: white;
             border-radius: 15px;
@@ -492,7 +502,7 @@
             max-width: 900px;
             margin: 0 auto;
         }
-
+        
         .commitment-icon {
             width: 80px;
             height: 80px;
@@ -505,7 +515,7 @@
             color: white;
             font-size: 2rem;
         }
-
+        
         .commitment-text {
             font-size: 1.2rem;
             line-height: 1.8;
@@ -513,33 +523,33 @@
             margin: 30px 0;
             font-style: italic;
         }
-
+        
         .signature {
             margin-top: 40px;
             padding-top: 20px;
             border-top: 2px solid #eee;
         }
-
+        
         .signature strong {
             display: block;
             font-size: 1.3rem;
             color: #2c3e50;
             margin-bottom: 5px;
         }
-
-        /* Connect Section */
+        
+        /* ===== CONNECT ===== */
         .connect-section {
             padding: 80px 0;
             background: #f8f9fa;
         }
-
+        
         .connect-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
-
+        
         .connect-card {
             background: white;
             padding: 40px 30px;
@@ -550,12 +560,12 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
+        
         .connect-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-
+        
         .connect-icon {
             width: 70px;
             height: 70px;
@@ -568,12 +578,13 @@
             color: white;
             font-size: 1.8rem;
         }
-
+        
         .connect-card h3 {
             color: #2c3e50;
             margin-bottom: 15px;
+            font-size: 1.3rem;
         }
-
+        
         .connect-btn {
             display: inline-block;
             margin-top: 20px;
@@ -584,46 +595,46 @@
             font-weight: 600;
             transition: background 0.3s;
         }
-
+        
         .connect-card:hover .connect-btn {
             background: #2980b9;
         }
-
+        
         .whatsapp-btn {
             background: #25D366 !important;
         }
-
+        
         .whatsapp-btn:hover {
             background: #128C7E !important;
         }
-
-        /* Footer */
+        
+        /* ===== FOOTER ===== */
         .footer {
             background: #2c3e50;
             color: white;
             padding: 60px 0 30px;
         }
-
+        
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
-
+        
         .footer-logo {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 20px;
         }
-
+        
         .footer-description {
             opacity: 0.8;
             margin-bottom: 25px;
             line-height: 1.7;
         }
-
+        
         .footer-contact p {
             margin-bottom: 10px;
             opacity: 0.8;
@@ -631,21 +642,21 @@
             align-items: center;
             gap: 10px;
         }
-
+        
         .footer-col h4 {
             color: white;
             margin-bottom: 20px;
             font-size: 1.2rem;
         }
-
+        
         .footer-links {
             list-style: none;
         }
-
+        
         .footer-links li {
             margin-bottom: 10px;
         }
-
+        
         .footer-links a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
@@ -654,17 +665,17 @@
             gap: 10px;
             transition: color 0.3s;
         }
-
+        
         .footer-links a:hover {
             color: #3498db;
         }
-
+        
         .social-links {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
+        
         .social-link {
             display: flex;
             align-items: center;
@@ -675,26 +686,26 @@
             border-radius: 6px;
             transition: background 0.3s;
         }
-
+        
         .social-link.whatsapp {
             background: #25D366;
         }
-
+        
         .social-link.email {
             background: #3498db;
         }
-
+        
         .social-link:hover {
             opacity: 0.9;
         }
-
+        
         .footer-disclaimer {
             background: rgba(0,0,0,0.2);
             padding: 20px;
             border-radius: 8px;
             margin: 40px 0;
         }
-
+        
         .footer-disclaimer h4 {
             color: #FFD700;
             margin-bottom: 10px;
@@ -702,7 +713,7 @@
             align-items: center;
             gap: 10px;
         }
-
+        
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -710,8 +721,8 @@
             opacity: 0.7;
             font-size: 0.9rem;
         }
-
-        /* Floating WhatsApp */
+        
+        /* ===== FLOATING WHATSAPP ===== */
         .float-whatsapp {
             position: fixed;
             bottom: 30px;
@@ -728,16 +739,12 @@
             z-index: 1000;
             transition: transform 0.3s;
         }
-
+        
         .float-whatsapp:hover {
             transform: scale(1.05);
         }
-
-        .float-whatsapp i {
-            font-size: 1.5rem;
-        }
-
-        /* Responsive Design */
+        
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 992px) {
             .founder-intro {
                 flex-direction: column;
@@ -753,8 +760,13 @@
                 height: 350px;
             }
             
+            .founder-content h1 {
+                font-size: 2.8rem;
+            }
+            
             .founder-stats {
                 justify-content: center;
+                flex-wrap: wrap;
             }
             
             .timeline:before {
@@ -770,8 +782,12 @@
                 left: 30px;
                 transform: translateX(0);
             }
+            
+            .community-stats {
+                gap: 30px;
+            }
         }
-
+        
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -801,14 +817,426 @@
                 font-size: 2rem;
             }
             
-            .community-stats {
-                gap: 30px;
+            .stat-number {
+                font-size: 2.2rem;
             }
             
             .community-stat-number {
                 font-size: 2.2rem;
             }
+            
+            .vision-card,
+            .commitment-card {
+                padding: 30px 20px;
+            }
+            
+            .float-whatsapp span {
+                display: none;
+            }
+            
+            .float-whatsapp {
+                padding: 15px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .founder-content h1 {
+                font-size: 2rem;
+            }
+            
+            .founder-tagline {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .founder-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .community-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <!-- System Status Bar -->
+    <div class="system-status">
+        <div class="container">
+            <div class="status-indicator active"></div>
+            <div class="status-text">System Status: <strong>All Services Operational</strong> • Last Updated: Just Now</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">OE</div>
+                <div class="logo-text">OMKAR ENTERPRISES</div>
+            </a>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-lock"></i> Partner Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Founder Hero -->
+    <section class="founder-hero">
+        <div class="container">
+            <div class="founder-intro">
+                <div class="founder-image">
+                    <img src="assets/founder.jpg" 
+                         alt="Santosh Maruti Shendkar - Founder of Omkar Enterprises - Private Lending Expert" 
+                         class="founder-photo"
+                         onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"350\" height=\"400\"><rect width=\"100%\" height=\"100%\" fill=\"%231a2980\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"white\" text-anchor=\"middle\" dy=\".3em\">OMKAR ENTERPRISES</text></svg>'">
+                </div>
+                <div class="founder-content">
+                    <span class="founder-badge">Founder & Managing Director</span>
+                    <h1>Santosh Maruti <span class="gold-text">Shendkar</span></h1>
+                    <p class="founder-tagline">Pioneering Transparent Private Lending in Maharashtra Since 2018</p>
+                    
+                    <div class="founder-stats">
+                        <div class="stat">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Satisfied Partners</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Payout Record</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <div class="container">
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2 class="section-title">The <span class="gold-text">Vision</span></h2>
+                <blockquote>
+                    "My vision is to create a platform where capital meets opportunity through transparency, security, and mutual growth. At Omkar Enterprises, we don't just facilitate partnerships - we build relationships based on trust and consistent performance."
+                </blockquote>
+                <p class="vision-author">- Santosh Maruti Shendkar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="journey-section">
+        <div class="container">
+            <h2 class="section-title">Professional <span class="gold-text">Journey</span></h2>
+            <p class="section-subtitle">A decade of dedication to financial excellence and partner success</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2014</div>
+                    <div class="timeline-content">
+                        <h4>Early Beginnings</h4>
+                        <p>Started in the financial services sector, gaining deep insights into capital markets and private lending dynamics in the Ulhasnagar region.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-content">
+                        <h4>Founding Omkar Enterprises</h4>
+                        <p>Established Omkar Enterprises with a clear mission: to provide secure, transparent private lending options for local businesses and investors.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h4>Developing the Bilateral Protocol</h4>
+                        <p>Created the structured partnership framework that combines PDC security with notarized agreements, setting new standards in the industry.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h4>Expanding the Network</h4>
+                        <p>Grew the partner network to 500+ satisfied investors while maintaining a perfect 100% payout record for 60 consecutive months.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-content">
+                        <h4>Digital Transformation</h4>
+                        <p>Launched the digital platform to provide partners with real-time portfolio access and enhanced transparency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="container">
+            <h2 class="section-title">Business <span class="gold-text">Philosophy</span></h2>
+            <p class="section-subtitle">Core principles that guide every partnership and decision</p>
+            
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security First</h3>
+                    <p>Every partnership begins with protecting the principal through PDC security and notarized agreements.</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Transparency Always</h3>
+                    <p>Clear terms, regular updates, and open communication form the foundation of every partnership.</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Consistent Performance</h3>
+                    <p>Delivering 2% monthly returns consistently for over 5 years has built unmatched trust.</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Relationship Building</h3>
+                    <p>Beyond transactions, we focus on building long-term relationships based on mutual success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Impact -->
+    <section class="community-section">
+        <div class="container">
+            <div class="community-card">
+                <h2 class="section-title">Building <span class="gold-text">Trust</span> in Ulhasnagar</h2>
+                <p class="section-subtitle">Santosh Shendkar has become a trusted name in Ulhasnagar's financial community through consistent performance and transparency</p>
+                
+                <div class="community-stats">
+                    <div class="community-stat">
+                        <div class="community-stat-number">₹45L+</div>
+                        <div class="community-stat-label">Monthly Payouts Distributed</div>
+                    </div>
+                    
+                    <div class="community-stat">
+                        <div class="community-stat-number">60</div>
+                        <div class="community-stat-label">Consecutive Perfect Payouts</div>
+                    </div>
+                    
+                    <div class="community-stat">
+                        <div class="community-stat-number">0</div>
+                        <div class="community-stat-label">Legal Disputes with Partners</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Commitment -->
+    <section class="commitment-section">
+        <div class="container">
+            <div class="commitment-card">
+                <div class="commitment-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h2 class="section-title">Personal <span class="gold-text">Commitment</span></h2>
+                <p class="commitment-text">
+                    "As the founder, I personally review every partnership agreement and ensure that our commitment to security and transparency is upheld in every transaction. My personal mobile number (+91 87888 56773) is available to all partners for direct communication."
+                </p>
+                <div class="signature">
+                    <strong>Santosh Maruti Shendkar</strong>
+                    <span>Founder, Omkar Enterprises</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section class="connect-section">
+        <div class="container">
+            <h2 class="section-title">Connect with <span class="gold-text">Santosh</span></h2>
+            <p class="section-subtitle">Direct access for consultations and partnership discussions</p>
+            
+            <div class="connect-grid">
+                <a href="contact.html" class="connect-card">
+                    <div class="connect-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Schedule Meeting</h3>
+                    <p>Book a personal consultation at our Ulhasnagar office</p>
+                    <span class="connect-btn">Book Now</span>
+                </a>
+                
+                <a href="tel:+918788856773" class="connect-card">
+                    <div class="connect-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Direct Call</h3>
+                    <p>Call directly: +91 87888 56773</p>
+                    <span class="connect-btn">Call Now</span>
+                </a>
+                
+                <a href="https://wa.me/918788856773" class="connect-card">
+                    <div class="connect-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Chat directly on WhatsApp for quick responses</p>
+                    <span class="connect-btn whatsapp-btn">Message Now</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <div class="logo-icon">OE</div>
+                        <div class="logo-text">OMKAR ENTERPRISES</div>
+                    </div>
+                    <p class="footer-description">
+                        Premium investment solutions with guaranteed returns. Trusted by 500+ partners since 2015.
+                    </p>
+                    
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +91 87888 56773</p>
+                        <p><i class="fas fa-envelope"></i> santosh@omkarenterprises.in</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Shop 11/12, Railway Station Road, Opp CHM College, Ulhasnagar 421003</p>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="slabs.html"><i class="fas fa-chevron-right"></i> Investment Tiers</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                        <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/918788856773" class="social-link whatsapp" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp Business</span>
+                        </a>
+                        <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email Support</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-disclaimer">
+                <h4><i class="fas fa-exclamation-triangle"></i> Important Disclaimer</h4>
+                <p>
+                    Investments are subject to market risks. Past performance is not indicative of future results. 
+                    Please read all related documents carefully before investing. Returns mentioned are projected 
+                    and not guaranteed. Omkar Enterprises is a registered partnership firm.
+                </p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2018-2024 Omkar Enterprises. All rights reserved.</p>
+                <p class="footer-regulatory">
+                    <i class="fas fa-shield-alt"></i>
+                    Registered Office: Ulhasnagar 421003, Maharashtra
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/918788856773" class="float-whatsapp" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat with Us</span>
+    </a>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

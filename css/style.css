@@ -2162,115 +2162,86 @@ p {
 
 /* ===== ABOUT PAGE - FOUNDER SECTION REFINED ===== */
 
+/* ===== ABOUT PAGE - FOUNDER SECTION FIXED ===== */
+
 .founder-hero {
-    padding: 5rem 0;
-    /* Using a fixed background color with the gradient for better mobile rendering */
-    background: #0a1a2d;
+    padding: 6rem 0 4rem; /* Added more top padding for navbar clearance */
     background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
     overflow: hidden;
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
-.founder-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers horizontally */
-    justify-content: center; /* Centers vertically */
-    text-align: center;
+/* Updated Container Logic */
+.premium-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
 
-/* Image Container - Improved Scaling */
+.founder-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Forces horizontal centering */
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Image Fix - Stops the "Zoomed" look */
 .founder-image {
-    position: relative;
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     border-radius: 50%;
     overflow: hidden;
     border: 5px solid var(--gold);
     box-shadow: 0 15px 40px rgba(189, 147, 0, 0.25);
     background: var(--bg-dark);
-    margin: 0 auto 2.5rem auto; /* Auto margins ensure center */
-    flex-shrink: 0; /* Prevents image from squishing */
+    margin-bottom: 2rem;
+    flex-shrink: 0; /* Prevents container from squishing on mobile */
 }
 
 .founder-photo {
     width: 100%;
     height: 100%;
-    /* 'cover' is usually best, but 'center 25%' might be too high 
-       on mobile. 'center center' is safer for all handsets. */
     object-fit: cover;
-    object-position: center center; 
+    object-position: center top; /* Adjusted to prevent cutting off the head */
     display: block;
 }
 
 .founder-content {
-    width: 100%;
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.founder-badge {
-    display: inline-block;
-    background: rgba(189, 147, 0, 0.1);
-    color: var(--gold);
-    padding: 0.5rem 2rem;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(189, 147, 0, 0.3);
+    align-items: center; /* Ensures text/badge/stats stay centered */
 }
 
 .founder-hero h1 {
-    font-size: clamp(2rem, 8vw, 3.5rem); /* Responsive font size */
+    font-size: clamp(2rem, 8vw, 3.5rem); /* Responsive typography */
     margin-bottom: 1rem;
-    line-height: 1.2;
-    color: #ffffff;
+    line-height: 1.1;
 }
 
-.founder-tagline {
-    font-size: clamp(1rem, 4vw, 1.3rem);
-    color: var(--text-gray);
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
-    max-width: 600px;
-}
-
-/* Founder Stats - Simplified for Centering */
 .founder-stats {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 3rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap; /* Allows wrapping on small screens */
     width: 100%;
-    flex-wrap: wrap;
 }
 
-.founder-stats .stat {
-    text-align: center;
-    flex: 1;
-    min-width: 120px;
-}
-
-/* ===== RESPONSIVE FIXES ===== */
+/* ===== MOBILE & HANDSET OPTIMIZATIONS ===== */
 
 @media (max-width: 768px) {
     .founder-hero {
-        padding: 3.5rem 0;
+        padding: 4rem 0 3rem;
     }
 
     .founder-image {
-        /* Reducing size for mobile to prevent "Zoomed" feel */
         width: 220px;
         height: 220px;
         margin-bottom: 1.5rem;
@@ -2278,11 +2249,9 @@ p {
 
     .founder-stats {
         gap: 1.5rem;
-        /* Keep them in a row unless very small, 
-           or use 2 columns for better balance */
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        max-width: 400px;
+        display: grid; /* Switched to grid for perfect alignment on mobile */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet/mobile */
+        max-width: 450px;
     }
 }
 
@@ -2290,19 +2259,26 @@ p {
     .founder-image {
         width: 180px;
         height: 180px;
+        border-width: 4px;
     }
 
     .founder-stats {
-        grid-template-columns: 1fr; /* Stack on tiny phones */
+        grid-template-columns: 1fr; /* 1 column on very small handsets */
         gap: 1rem;
     }
 
-    .founder-stats .stat {
-        background: rgba(255, 255, 255, 0.03);
+    .stat {
+        background: rgba(255, 255, 255, 0.05);
         padding: 1rem;
         border-radius: 12px;
+        border: 1px solid rgba(189, 147, 0, 0.1);
     }
     
+    .founder-tagline {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
+}    
 }/* Testimonials Page */
 .testimonials-hero {
     padding: var(--space-xxl) 0;

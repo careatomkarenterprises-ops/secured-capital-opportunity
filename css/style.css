@@ -2160,125 +2160,78 @@ p {
     gap: var(--space-sm);
 }
 
-/* ===== ABOUT PAGE - FOUNDER SECTION REFINED ===== */
-
-/* ===== ABOUT PAGE - FOUNDER SECTION FIXED ===== */
+/* ===== FOUNDER SECTION - MOBILE CENTER & CIRCLE FIX ===== */
 
 .founder-hero {
-    padding: 6rem 0 4rem; /* Added more top padding for navbar clearance */
+    padding: 3rem 0;
     background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
-    overflow: hidden;
     width: 100%;
     display: flex;
     justify-content: center;
-}
-
-/* Updated Container Logic */
-.premium-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
 }
 
 .founder-intro {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Forces horizontal centering */
-    justify-content: center;
-    text-align: center;
+    align-items: center; /* This centers everything horizontally */
+    text-align: center;   /* This centers the text lines */
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Image Fix - Stops the "Zoomed" look */
+/* Fixed Image: Circular and Not Squished */
 .founder-image {
-    width: 280px;
-    height: 280px;
+    width: 240px;  /* Fixed size for mobile */
+    height: 240px; /* Must match width for a perfect circle */
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid var(--gold);
-    box-shadow: 0 15px 40px rgba(189, 147, 0, 0.25);
-    background: var(--bg-dark);
-    margin-bottom: 2rem;
-    flex-shrink: 0; /* Prevents container from squishing on mobile */
+    border: 4px solid #bd9300; /* Your gold color */
+    box-shadow: 0 10px 30px rgba(189, 147, 0, 0.3);
+    margin: 0 auto 2rem auto;
+    flex-shrink: 0; /* Prevents the "Oval" squishing effect */
 }
 
 .founder-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top; /* Adjusted to prevent cutting off the head */
-    display: block;
+    object-position: center top; /* Keeps the face centered */
 }
 
 .founder-content {
-    max-width: 850px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Ensures text/badge/stats stay centered */
-}
-
-.founder-hero h1 {
-    font-size: clamp(2rem, 8vw, 3.5rem); /* Responsive typography */
-    margin-bottom: 1rem;
-    line-height: 1.1;
-}
-
-.founder-stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap; /* Allows wrapping on small screens */
+    align-items: center; /* Centers the Badge and Stats */
     width: 100%;
 }
 
-/* ===== MOBILE & HANDSET OPTIMIZATIONS ===== */
-
-@media (max-width: 768px) {
-    .founder-hero {
-        padding: 4rem 0 3rem;
-    }
-
-    .founder-image {
-        width: 220px;
-        height: 220px;
-        margin-bottom: 1.5rem;
-    }
-
-    .founder-stats {
-        gap: 1.5rem;
-        display: grid; /* Switched to grid for perfect alignment on mobile */
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet/mobile */
-        max-width: 450px;
-    }
+/* Centers the Heading and Tagline */
+.founder-hero h1, 
+.founder-tagline {
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-@media (max-width: 480px) {
-    .founder-image {
-        width: 180px;
-        height: 180px;
-        border-width: 4px;
-    }
+/* Centering the Stats Cards */
+.founder-stats {
+    display: flex;
+    flex-direction: column; /* Stacks them like in your screenshot */
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+}
 
-    .founder-stats {
-        grid-template-columns: 1fr; /* 1 column on very small handsets */
-        gap: 1rem;
-    }
-
-    .stat {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1rem;
-        border-radius: 12px;
-        border: 1px solid rgba(189, 147, 0, 0.1);
-    }
-    
-    .founder-tagline {
-        font-size: 1.1rem;
-        padding: 0 10px;
-    }
-}    
+.stat {
+    width: 200px; /* Gives cards a consistent width */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(189, 147, 0, 0.2);
+}
 }/* Testimonials Page */
 .testimonials-hero {
     padding: var(--space-xxl) 0;

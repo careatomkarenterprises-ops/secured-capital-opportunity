@@ -1583,3 +1583,65 @@ html, body {
         margin: 1rem 0;
     }
 }
+/* GLOBAL ALIGNMENT FIX */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 0 15px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+/* DESKTOP FIX */
+@media (min-width: 992px) {
+    .hamburger { display: none !important; }
+    .nav-menu {
+        display: flex !important;
+        position: static;
+        background: transparent;
+        flex-direction: row;
+        gap: 20px;
+        width: auto;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* MOBILE FIX (Fixes center button and alignment) */
+@media (max-width: 991px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-card);
+        padding: 20px;
+        z-index: 1000;
+        text-align: center;
+        border-bottom: 2px solid var(--gold);
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    /* Fixes legal/contact page overflow */
+    .container {
+        width: 100%;
+        overflow-x: hidden;
+    }
+}

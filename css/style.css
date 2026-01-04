@@ -1,4 +1,28 @@
-/* ===== COMPLETE UNIFIED CSS FOR OMKAR ENTERPRISES ===== */
+/* KILL ALL HORIZONTAL SCROLLING */
+html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Force every container to fit the phone screen */
+.container, .legal-container, .portal-container, .founder-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    margin: 0 auto !important;
+    overflow: hidden;
+}
+
 
 /* ===== ROOT VARIABLES (Updated) ===== */
 :root {

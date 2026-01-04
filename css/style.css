@@ -1416,4 +1416,36 @@ html, body {
         width: 100% !important;
     }
 }
+@media (max-width: 768px) {
+    .navbar {
+        z-index: 10000 !important;
+        position: sticky;
+        top: 0;
+        background: #0a1a2d;
+    }
+
+    .hamburger {
+        display: flex !important; /* Force display */
+        z-index: 10002 !important;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .nav-menu {
+        display: flex !important;
+        position: fixed;
+        left: -100% !important;
+        top: 60px; /* Adjust based on navbar height */
+        width: 100% !important;
+        height: 100vh !important;
+        background: #0a1a2d !important;
+        z-index: 10001 !important;
+        transition: 0.4s ease-in-out;
+    }
+
+    .nav-menu.active {
+        left: 0 !important;
+    }
+}
+
 

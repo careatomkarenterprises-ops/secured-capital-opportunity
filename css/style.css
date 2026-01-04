@@ -1536,41 +1536,50 @@ html, body {
     max-width: 100% !important;
     padding: 0 10px;
 }
-/* Professional Desktop Alignment Fix */
-@media (min-width: 992px) {
-    .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 80px;
-    }
 
+/* --- PROFESSIONAL ALIGNMENT FIX --- */
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* Pushes Logo left, Menu right */
+    align-items: center;
+    width: 100%;
+}
+
+/* DESKTOP ALIGNMENT (Fixes Professional Look) */
+@media (min-width: 992px) {
+    .hamburger { display: none; }
+    
     .nav-menu {
         display: flex !important;
         position: static;
         flex-direction: row;
         background: transparent;
-        padding: 0;
         width: auto;
         gap: 2rem;
+        padding: 0;
+    }
+}
+
+/* MOBILE MENU & TEXT ALIGNMENT (Fixes Spacing/Disappearing) */
+@media (max-width: 991px) {
+    .nav-menu {
+        display: none; /* Keeps it hidden until hamburger clicked */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-card); /* Matches your theme */
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+        border-bottom: 2px solid var(--gold);
+    }
+
+    .nav-menu.active {
+        display: flex; /* Shows menu when button is clicked */
     }
 
     .nav-menu li {
-        margin: 0;
-    }
-
-    .hero-container {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        padding-top: 100px;
+        margin: 1rem 0;
     }
 }
-
-/* Mobile Menu Fix */
-.nav-menu.active {
-    display: flex !important;
-    transform: translateY(0);
-}
-
-

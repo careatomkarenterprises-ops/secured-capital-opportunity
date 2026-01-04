@@ -1536,6 +1536,41 @@ html, body {
     max-width: 100% !important;
     padding: 0 10px;
 }
+/* Professional Desktop Alignment Fix */
+@media (min-width: 992px) {
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+    }
 
+    .nav-menu {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background: transparent;
+        padding: 0;
+        width: auto;
+        gap: 2rem;
+    }
+
+    .nav-menu li {
+        margin: 0;
+    }
+
+    .hero-container {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding-top: 100px;
+    }
+}
+
+/* Mobile Menu Fix */
+.nav-menu.active {
+    display: flex !important;
+    transform: translateY(0);
+}
 
 

@@ -1447,5 +1447,38 @@ html, body {
         left: 0 !important;
     }
 }
+/* Professional Legal Article Cards */
+.legal-article-card {
+    background: #16213e;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.stats-row {
+    display: flex;
+    flex-wrap: wrap; /* Fixes the horizontal overflow */
+    gap: 15px;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.stat-card {
+    flex: 1 1 45%; /* Two cards per row on mobile */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    color: #bd9300; /* Gold */
+    font-weight: bold;
+    display: block;
+}
+
 
 

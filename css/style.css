@@ -1190,12 +1190,15 @@ p {
 }
 
 /* Mobile Devices */
+/* === FIX MOBILE IMAGE ZOOM - ADD THIS ONLY === */
+
 @media (max-width: 768px) {
-    /* Base adjustments */
-    html {
-        font-size: 14px;
+    /* Reduce the zoom on mobile */
+    .founder-photo {
+        transform: scale(0.9); /* Reduce zoom by 10% */
+        object-position: center 30%; /* Adjust to show more face */
     }
-    
+}    
     .container {
         padding: 0 var(--space-sm);
     }

@@ -1135,3 +1135,8 @@ input:focus, select:focus, textarea:focus {
     max-width: 600px;
     margin: 0 auto var(--space-xl);
 }
+/* Gold Text Utility */
+.gold-text {
+    color: var(--gold);
+    font-weight: 700;
+}

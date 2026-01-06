@@ -1,24 +1,34 @@
+about.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ALL YOUR SEO TAGS - NO CHANGES -->
-    <title>Santosh Maruti Shendkar | Founder of Omkar Enterprises | Private Lending Expert</title>
-    <meta name="description" content="Meet Santosh Maruti Shendkar, founder of Omkar Enterprises. With 10+ years experience in private B2B lending, creating secure 2% monthly returns for 500+ partners.">
-    <meta name="keywords" content="Santosh Shendkar, Omkar Enterprises, private lending, B2B lending, investment, monthly returns, Ulhasnagar, Maharashtra, financial services">
-    <meta name="author" content="Omkar Enterprises">
+    <!-- Primary Meta Tags -->
+    <title>Santosh Maruti Shendkar | Founder & Managing Director | Omkar Enterprises Private Lending</title>
+    <meta name="description" content="Meet Santosh Maruti Shendkar, founder of Omkar Enterprises. With 10+ years experience in private B2B lending, creating secure 2% monthly returns for 500+ partners in Ulhasnagar.">
+    <meta name="keywords" content="Santosh Shendkar, Omkar Enterprises founder, private lending expert, B2B lending, investment specialist, Ulhasnagar, Maharashtra, monthly returns">
     
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://omkarservices.in/about.html">
     
-    <!-- Open Graph Tags for Social Media -->
-    <meta property="og:title" content="Santosh Maruti Shendkar | Founder of Omkar Enterprises">
-    <meta property="og:description" content="10+ years experience in private B2B lending with 500+ satisfied partners.">
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://omkarservices.in/about.html">
+    <meta property="og:title" content="Santosh Maruti Shendkar | Founder of Omkar Enterprises">
+    <meta property="og:description" content="10+ years experience in private B2B lending with 500+ satisfied partners and 100% payout record.">
+    <meta property="og:image" content="https://omkarservices.in/assets/founder-og.jpg">
     
-    <!-- Person Schema -->
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://omkarservices.in/about.html">
+    <meta property="twitter:title" content="Santosh Shendkar | Omkar Enterprises Founder">
+    <meta property="twitter:description" content="Pioneering transparent private lending in Maharashtra since 2018.">
+    <meta property="twitter:image" content="https://omkarservices.in/assets/founder-og.jpg">
+    
+    <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -33,146 +43,210 @@
       "description": "Founder of Omkar Enterprises, specializing in private B2B lending partnerships with 2% monthly returns. 10+ years experience with 500+ satisfied partners.",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Ulhasnagar, Greater Mumbai",
         "addressLocality": "Ulhasnagar",
         "addressRegion": "Maharashtra",
-        "addressCountry": "IN",
-        "postalCode": "421003"
+        "postalCode": "421003",
+        "addressCountry": "IN"
       },
-      "telephone": "+918788856773",
+      "telephone": "+918169302861",
       "sameAs": []
     }
     </script>
     
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS with ALL fixes included -->
     <style>
+        /* ===== ROOT VARIABLES (Matching index.html) ===== */
+        :root {
+            /* Luxury Color Palette */
+            --primary-blue: #1a365d;
+            --navy-dark: #0a1a2d;
+            --gold: #bd9300;
+            --gold-light: #d4af37;
+            --gold-dark: #8a6d00;
+            --charcoal: #2d3748;
+            --charcoal-light: #4a5568;
+            --charcoal-lighter: #718096;
+            
+            /* Text Colors */
+            --text-white: #ffffff;
+            --text-light: #e2e8f0;
+            --text-gray: #a0aec0;
+            
+            /* Background Colors */
+            --bg-dark: #0d1117;
+            --bg-card: #1a202c;
+            --bg-card-light: #2d3748;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-xxl: 5rem;
+            
+            /* Borders & Shadows */
+            --border-radius: 6px;
+            --border-radius-lg: 12px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-gold: 0 0 20px rgba(189, 147, 0, 0.3);
+            
+            /* Transitions */
+            --transition-fast: 200ms ease;
+            --transition-normal: 300ms ease;
+            --transition-slow: 500ms ease;
+        }
+
         /* ===== BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            max-width: 100%;
         }
-        
+
+        html, body {
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            position: relative;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        /* ===== LUXURY FINANCIAL THEME COLORS ===== */
-        :root {
-            --charcoal: #1a1a1a;
-            --gold: #D4AF37;
-            --light-gold: #FFD700;
-            --dark-gold: #B8860B;
-            --light-charcoal: #2d2d2d;
-            --off-white: #f8f8f8;
-        }
-        
-        /* ===== SYSTEM STATUS ===== */
+
+        /* ===== SYSTEM STATUS BAR ===== */
         .system-status {
-            background: var(--charcoal);
-            color: var(--gold);
-            padding: 8px 0;
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            background-color: var(--navy-dark);
+            padding: 10px 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(189, 147, 0, 0.2);
         }
-        
+
         .system-status .container {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
         }
-        
+
         .status-indicator {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: var(--gold);
+            background-color: #38a169;
+            position: relative;
+        }
+
+        .status-indicator.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
             animation: pulse 2s infinite;
+            background-color: #38a169;
         }
-        
+
         @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
         }
-        
+
         /* ===== NAVIGATION ===== */
         .navbar {
-            background: var(--charcoal);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            background-color: var(--navy-dark);
+            border-bottom: 1px solid rgba(189, 147, 0, 0.2);
+            padding: 1rem 0;
         }
-        
+
         .nav-container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            justify-content: space-between;
+            position: relative;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--gold);
+            color: var(--text-white);
         }
-        
+
         .logo-icon {
-            background: var(--gold);
-            color: var(--charcoal);
             width: 45px;
             height: 45px;
+            background-color: var(--gold);
+            color: var(--navy-dark);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
-            border: 1px solid rgba(255, 215, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.3);
         }
-        
+
         .logo-text {
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
             font-size: 1.4rem;
-            letter-spacing: 0.5px;
+            color: var(--gold);
         }
-        
+
         .nav-menu {
             display: flex;
-            list-style: none;
-            gap: 25px;
             align-items: center;
+            gap: 30px;
+            list-style: none;
         }
-        
+
         .nav-menu a {
+            color: var(--text-light);
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
             font-weight: 500;
-            transition: all 0.3s;
+            font-size: 0.95rem;
+            transition: color var(--transition-fast);
             display: flex;
             align-items: center;
             gap: 8px;
             padding: 8px 0;
             position: relative;
         }
-        
+
         .nav-menu a:hover {
             color: var(--gold);
         }
-        
+
         .nav-menu a:after {
             content: '';
             position: absolute;
@@ -183,32 +257,30 @@
             background: var(--gold);
             transition: width 0.3s;
         }
-        
+
         .nav-menu a:hover:after {
             width: 100%;
         }
-        
+
         .nav-cta {
             margin-left: 15px;
         }
-        
+
         .btn-nav-login {
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
-            color: var(--charcoal) !important;
-            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--navy-dark) !important;
+            padding: 10px 24px;
             border-radius: 6px;
-            transition: all 0.3s;
             font-weight: 600;
+            transition: all 0.3s;
             border: none;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
-        
+
         .btn-nav-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-            color: var(--charcoal) !important;
+            box-shadow: var(--shadow-gold);
         }
-        
+
         .hamburger {
             display: none;
             background: none;
@@ -216,8 +288,9 @@
             cursor: pointer;
             flex-direction: column;
             gap: 4px;
+            z-index: 1002;
         }
-        
+
         .hamburger span {
             width: 25px;
             height: 3px;
@@ -225,28 +298,15 @@
             border-radius: 2px;
             transition: 0.3s;
         }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        
+
         /* ===== FOUNDER HERO ===== */
         .founder-hero {
-            background: linear-gradient(135deg, var(--charcoal), var(--light-charcoal));
-            color: white;
             padding: 100px 0;
+            background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
             position: relative;
             overflow: hidden;
         }
-        
+
         .founder-hero:before {
             content: '';
             position: absolute;
@@ -256,129 +316,110 @@
             height: 100%;
             background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1));
         }
-        
-        .founder-intro {
-            display: flex;
-            align-items: center;
+
+        .founder-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 60px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
             position: relative;
             z-index: 1;
         }
-        
+
         .founder-image {
-            flex: 0 0 380px;
+            text-align: center;
         }
-        
+
         .founder-photo {
             width: 100%;
-            height: 450px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            max-width: 400px;
+            border-radius: var(--border-radius-lg);
             border: 3px solid var(--gold);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow-lg);
         }
-        
-        .founder-photo:hover {
-            transform: scale(1.02);
-        }
-        
+
         .founder-content {
-            flex: 1;
+            text-align: left;
         }
-        
+
         .founder-badge {
             display: inline-block;
-            background: rgba(212, 175, 55, 0.2);
+            background: rgba(189, 147, 0, 0.1);
             color: var(--gold);
             padding: 10px 25px;
             border-radius: 30px;
             font-size: 0.95rem;
-            margin-bottom: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 30px;
+            border: 1px solid rgba(189, 147, 0, 0.3);
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-        
-        .founder-content h1 {
-            font-size: 3.8rem;
-            margin-bottom: 15px;
+
+        .founder-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             line-height: 1.2;
             font-weight: 700;
         }
-        
+
         .gold-text {
             color: var(--gold);
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
         }
-        
+
         .founder-tagline {
-            font-size: 1.4rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            max-width: 600px;
             margin-bottom: 40px;
-            max-width: 650px;
-            color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
         }
-        
+
         .founder-stats {
             display: flex;
+            justify-content: flex-start;
             gap: 50px;
-            margin-top: 50px;
+            margin-top: 40px;
         }
-        
-        .stat {
+
+        .founder-stat {
             text-align: center;
-            position: relative;
         }
-        
-        .stat:not(:last-child):after {
-            content: '';
-            position: absolute;
-            right: -25px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 50px;
-            background: rgba(212, 175, 55, 0.3);
-        }
-        
-        .stat-number {
-            font-size: 3.2rem;
+
+        .founder-stat-number {
+            font-size: 2.8rem;
             font-weight: 800;
-            line-height: 1;
-            margin-bottom: 8px;
             color: var(--gold);
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
         }
-        
-        .stat-label {
+
+        .founder-stat-label {
             font-size: 0.95rem;
-            opacity: 0.9;
+            color: var(--text-gray);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1px;
         }
-        
+
         /* ===== VISION SECTION ===== */
         .vision-section {
             padding: 100px 0;
-            background: var(--off-white);
+            background: var(--bg-card);
         }
-        
+
         .vision-card {
-            background: white;
-            border-radius: 20px;
+            background: var(--bg-card-light);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
             padding: 60px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
-            border: 1px solid rgba(212, 175, 55, 0.1);
             position: relative;
         }
-        
+
         .vision-card:before {
             content: '';
             position: absolute;
@@ -386,261 +427,211 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
-            border-radius: 20px 20px 0 0;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
         }
-        
+
         .vision-icon {
             width: 90px;
             height: 90px;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            background: rgba(189, 147, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 30px;
-            color: var(--charcoal);
-            font-size: 2.2rem;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            font-size: 2.5rem;
         }
-        
+
         .section-title {
+            font-family: 'Playfair Display', serif;
             font-size: 2.8rem;
-            margin-bottom: 25px;
-            color: var(--charcoal);
             text-align: center;
-            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-white);
         }
-        
+
         .section-subtitle {
-            color: #666;
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
             text-align: center;
-            line-height: 1.6;
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
         }
-        
-        .vision-card blockquote {
-            font-size: 1.5rem;
-            line-height: 1.8;
-            color: var(--charcoal);
+
+        .vision-quote {
             font-style: italic;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: var(--text-light);
             margin: 40px 0;
-            padding: 0 30px;
+            padding: 0 40px;
             position: relative;
         }
-        
-        .vision-card blockquote:before,
-        .vision-card blockquote:after {
+
+        .vision-quote:before,
+        .vision-quote:after {
             content: '"';
-            font-size: 5rem;
+            font-size: 4rem;
             color: var(--gold);
             position: absolute;
-            opacity: 0.2;
+            opacity: 0.3;
         }
-        
-        .vision-card blockquote:before {
-            left: -10px;
-            top: -30px;
+
+        .vision-quote:before {
+            left: 0;
+            top: -20px;
         }
-        
-        .vision-card blockquote:after {
-            right: -10px;
-            bottom: -60px;
+
+        .vision-quote:after {
+            right: 0;
+            bottom: -40px;
         }
-        
+
         .vision-author {
             font-size: 1.2rem;
-            color: var(--charcoal);
+            color: var(--gold);
             font-weight: 600;
             margin-top: 30px;
         }
-        
-        /* ===== TIMELINE ===== */
+
+        /* ===== JOURNEY TIMELINE ===== */
         .journey-section {
             padding: 100px 0;
-            background: white;
+            background: var(--bg-dark);
         }
-        
+
         .timeline {
-            position: relative;
             max-width: 900px;
-            margin: 50px auto 0;
+            margin: 60px auto 0;
+            position: relative;
         }
-        
+
         .timeline:before {
             content: '';
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--gold), var(--dark-gold));
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
         }
-        
+
         .timeline-item {
             display: flex;
-            justify-content: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             position: relative;
         }
-        
+
         .timeline-year {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
             background: var(--gold);
-            color: var(--charcoal);
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: 700;
-            top: -20px;
-            z-index: 2;
-            min-width: 100px;
-            text-align: center;
-            border: 2px solid white;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-        
-        .timeline-content {
-            width: 45%;
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-            transition: transform 0.3s;
-        }
-        
-        .timeline-content:hover {
-            transform: translateY(-5px);
-        }
-        
-        .timeline-content:before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--gold);
+            color: var(--navy-dark);
             border-radius: 50%;
-            top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-right: 30px;
+            z-index: 1;
+            border: 3px solid var(--bg-dark);
         }
-        
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-right: 55%;
+
+        .timeline-content {
+            flex: 1;
+            padding-top: 10px;
         }
-        
-        .timeline-item:nth-child(odd) .timeline-content:before {
-            right: -40px;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-left: 55%;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content:before {
-            left: -40px;
-        }
-        
-        .timeline-content h4 {
-            color: var(--charcoal);
-            margin-bottom: 15px;
+
+        .timeline-content h3 {
             font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-white);
         }
-        
+
         .timeline-content p {
-            color: #666;
+            color: var(--text-gray);
             line-height: 1.7;
         }
-        
-        /* ===== PHILOSOPHY ===== */
+
+        /* ===== PHILOSOPHY SECTION ===== */
         .philosophy-section {
             padding: 100px 0;
-            background: var(--off-white);
+            background: var(--bg-card);
         }
-        
+
         .philosophy-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
             margin-top: 50px;
         }
-        
+
         .philosophy-card {
-            background: white;
+            background: var(--bg-card-light);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
             padding: 40px 30px;
-            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: all 0.3s;
-            border: 1px solid rgba(212, 175, 55, 0.1);
             position: relative;
         }
-        
+
         .philosophy-card:hover {
+            border-color: var(--gold);
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow-md);
         }
-        
+
         .philosophy-card:before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
-            border-radius: 15px 15px 0 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+            transform: scaleY(0);
+            transition: transform 0.3s;
         }
-        
+
+        .philosophy-card:hover:before {
+            transform: scaleY(1);
+        }
+
         .philosophy-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            width: 70px;
+            height: 70px;
+            background: rgba(189, 147, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            color: var(--charcoal);
-            font-size: 2rem;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            font-size: 1.8rem;
         }
-        
+
         .philosophy-card h3 {
-            color: var(--charcoal);
-            margin-bottom: 15px;
             font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-white);
         }
-        
+
         .philosophy-card p {
-            color: #666;
+            color: var(--text-gray);
             line-height: 1.7;
         }
-        
-        /* ===== COMMUNITY ===== */
+
+        /* ===== COMMUNITY SECTION ===== */
         .community-section {
             padding: 100px 0;
-            background: linear-gradient(135deg, var(--charcoal), var(--light-charcoal));
-            color: white;
-            position: relative;
+            background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
         }
-        
-        .community-card {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
+
         .community-stats {
             display: flex;
             justify-content: center;
@@ -648,554 +639,576 @@
             margin-top: 60px;
             flex-wrap: wrap;
         }
-        
+
         .community-stat {
             text-align: center;
         }
-        
+
         .community-stat-number {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 15px;
             color: var(--gold);
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
         }
-        
+
         .community-stat-label {
             font-size: 1rem;
-            opacity: 0.9;
+            color: var(--text-gray);
             max-width: 180px;
-            color: rgba(255, 255, 255, 0.9);
             line-height: 1.5;
         }
-        
-        /* ===== COMMITMENT ===== */
+
+        /* ===== COMMITMENT SECTION ===== */
         .commitment-section {
             padding: 100px 0;
-            background: white;
+            background: var(--bg-dark);
         }
-        
+
         .commitment-card {
-            background: white;
-            border-radius: 20px;
+            background: var(--bg-card-light);
+            border: 2px solid var(--gold);
+            border-radius: var(--border-radius-lg);
             padding: 60px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
+            background: rgba(189, 147, 0, 0.05);
         }
-        
-        .commitment-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
-            border-radius: 20px 20px 0 0;
-        }
-        
+
         .commitment-icon {
             width: 90px;
             height: 90px;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            background: rgba(189, 147, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 30px;
-            color: var(--charcoal);
-            font-size: 2.2rem;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            font-size: 2.5rem;
         }
-        
+
         .commitment-text {
             font-size: 1.3rem;
             line-height: 1.8;
-            color: var(--charcoal);
+            color: var(--text-light);
             margin: 40px 0;
             font-style: italic;
-            position: relative;
-            padding: 0 20px;
         }
-        
+
         .signature {
-            margin-top: 50px;
-            padding-top: 25px;
-            border-top: 2px solid rgba(212, 175, 55, 0.2);
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(189, 147, 0, 0.3);
         }
-        
+
         .signature strong {
             display: block;
             font-size: 1.4rem;
-            color: var(--charcoal);
+            color: var(--text-white);
             margin-bottom: 8px;
         }
-        
+
         .signature span {
-            color: #666;
+            color: var(--text-gray);
             font-size: 1rem;
         }
-        
-        /* ===== CONNECT ===== */
+
+        /* ===== CONNECT SECTION ===== */
         .connect-section {
             padding: 100px 0;
-            background: var(--off-white);
+            background: var(--bg-card);
         }
-        
+
         .connect-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
+            gap: 30px;
             margin-top: 50px;
         }
-        
+
         .connect-card {
-            background: white;
-            padding: 45px 35px;
-            border-radius: 15px;
+            background: var(--bg-card-light);
+            border: 1px solid var(--charcoal);
+            border-radius: var(--border-radius-lg);
+            padding: 40px 30px;
             text-align: center;
             text-decoration: none;
             color: inherit;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: all 0.3s;
-            border: 1px solid rgba(212, 175, 55, 0.1);
             position: relative;
             overflow: hidden;
         }
-        
+
         .connect-card:hover {
+            border-color: var(--gold);
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow-md);
         }
-        
+
         .connect-card:before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+            transform: scaleY(0);
+            transition: transform 0.3s;
         }
-        
+
+        .connect-card:hover:before {
+            transform: scaleY(1);
+        }
+
         .connect-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            width: 70px;
+            height: 70px;
+            background: rgba(189, 147, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            color: var(--charcoal);
-            font-size: 2rem;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            font-size: 1.8rem;
             transition: transform 0.3s;
         }
-        
+
         .connect-card:hover .connect-icon {
             transform: scale(1.1);
         }
-        
+
         .connect-card h3 {
-            color: var(--charcoal);
-            margin-bottom: 15px;
             font-size: 1.4rem;
-            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-white);
         }
-        
+
         .connect-card p {
-            color: #666;
+            color: var(--text-gray);
             line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
-        
-        .connect-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
-            color: var(--charcoal);
-            border-radius: 30px;
+
+        /* ===== BUTTONS ===== */
+        .btn-primary, .btn-secondary, .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: var(--border-radius);
             font-weight: 600;
-            transition: all 0.3s;
-            border: none;
+            font-size: 1rem;
+            text-decoration: none;
             cursor: pointer;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            min-height: 56px;
         }
-        
-        .connect-card:hover .connect-btn {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--navy-dark);
         }
-        
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(189, 147, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--charcoal);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+
         /* ===== FOOTER ===== */
         .footer {
-            background: var(--charcoal);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 70px 0 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            background: var(--navy-dark);
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(189, 147, 0, 0.2);
         }
-        
+
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
         }
-        
+
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 25px;
         }
-        
+
         .footer-logo .logo-icon {
-            background: var(--gold);
-            color: var(--charcoal);
             width: 45px;
             height: 45px;
-            font-size: 1.3rem;
         }
-        
+
         .footer-logo .logo-text {
             color: var(--gold);
             font-size: 1.4rem;
         }
-        
+
         .footer-description {
-            opacity: 0.8;
-            margin-bottom: 30px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 35px;
             line-height: 1.7;
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            color: var(--text-gray);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
             font-size: 0.95rem;
         }
-        
-        .footer-contact p {
-            margin-bottom: 12px;
-            opacity: 0.8;
+
+        .footer-contact i {
+            color: var(--gold);
+            margin-top: 3px;
+        }
+
+        .footer-col h4 {
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
             display: flex;
             align-items: center;
             gap: 12px;
             font-size: 0.95rem;
         }
-        
-        .footer-contact i {
-            color: var(--gold);
-            width: 20px;
-        }
-        
-        .footer-col h4 {
-            color: var(--gold);
-            margin-bottom: 25px;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
-        
+
         .footer-links a:hover {
             color: var(--gold);
-            transform: translateX(5px);
         }
-        
+
         .footer-links i {
             color: var(--gold);
-            font-size: 0.8rem;
+            width: 16px;
+            opacity: 0.7;
         }
-        
+
         .social-links {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            margin-bottom: 40px;
         }
-        
+
         .social-link {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            color: var(--charcoal);
+            gap: 15px;
+            padding: 15px 20px;
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
             text-decoration: none;
-            padding: 14px 22px;
-            border-radius: 8px;
+            color: var(--text-gray);
             transition: all 0.3s;
-            font-weight: 500;
+            border: 1px solid var(--charcoal);
         }
-        
-        .social-link.whatsapp {
-            background: linear-gradient(135deg, #25D366, #128C7E);
+
+        .social-link.whatsapp:hover {
+            background: rgba(37, 211, 102, 0.1);
+            border-color: #25D366;
+            color: #25D366;
         }
-        
-        .social-link.email {
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+
+        .social-link.email:hover {
+            background: rgba(189, 147, 0, 0.1);
+            border-color: var(--gold);
+            color: var(--gold);
         }
-        
-        .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        
+
         .footer-disclaimer {
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(189, 147, 0, 0.05);
+            border: 1px solid rgba(189, 147, 0, 0.2);
+            border-radius: var(--border-radius);
             padding: 25px;
-            border-radius: 10px;
-            margin: 50px 0;
-            border-left: 4px solid var(--gold);
+            margin-bottom: 40px;
         }
-        
-        .footer-disclaimer h4 {
-            color: var(--gold);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.1rem;
-        }
-        
+
         .footer-disclaimer p {
-            opacity: 0.8;
-            line-height: 1.7;
             font-size: 0.9rem;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-        
-        .footer-regulatory {
-            margin-top: 10px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            color: var(--gold);
+            align-items: flex-start;
+            gap: 12px;
         }
-        
+
+        .footer-disclaimer i {
+            color: var(--gold);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(189, 147, 0, 0.1);
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
         /* ===== FLOATING WHATSAPP ===== */
         .float-whatsapp {
             position: fixed;
-            bottom: 35px;
-            right: 35px;
+            bottom: 30px;
+            right: 30px;
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
-            padding: 16px 22px;
+            padding: 16px 24px;
             border-radius: 50px;
+            text-decoration: none;
             display: flex;
             align-items: center;
             gap: 12px;
-            text-decoration: none;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
             transition: all 0.3s;
             font-weight: 600;
-            font-size: 0.95rem;
         }
-        
+
         .float-whatsapp:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
         }
-        
+
         .float-whatsapp i {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
-        
+
+        .text-center {
+            text-align: center;
+        }
+
         /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 1100px) {
-            .founder-content h1 {
-                font-size: 3.2rem;
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .founder-hero h1 {
+                font-size: 2.8rem;
             }
             
-            .founder-image {
-                flex: 0 0 340px;
+            .section-title {
+                font-size: 2.4rem;
             }
             
-            .founder-photo {
-                height: 420px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .founder-intro {
-                flex-direction: column;
-                text-align: center;
+            .founder-container {
+                grid-template-columns: 1fr;
                 gap: 50px;
             }
             
             .founder-image {
-                flex: 0 0 auto;
-                width: 320px;
+                text-align: center;
             }
             
             .founder-photo {
-                height: 380px;
+                max-width: 350px;
             }
             
-            .founder-content h1 {
-                font-size: 3rem;
+            .founder-content {
+                text-align: center;
             }
             
             .founder-stats {
                 justify-content: center;
-                flex-wrap: wrap;
-                gap: 40px;
-            }
-            
-            .stat:not(:last-child):after {
-                display: none;
-            }
-            
-            .timeline:before {
-                left: 30px;
-            }
-            
-            .timeline-content {
-                width: calc(100% - 80px);
-                margin-left: 80px !important;
-            }
-            
-            .timeline-year {
-                left: 30px;
-                transform: translateX(0);
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-content:before,
-            .timeline-item:nth-child(even) .timeline-content:before {
-                left: -40px;
-                right: auto;
             }
             
             .community-stats {
-                gap: 40px;
-            }
-            
-            .vision-card,
-            .commitment-card {
-                padding: 45px 30px;
+                gap: 50px;
             }
         }
-        
+
+        /* Mobile */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: var(--charcoal);
-                flex-direction: column;
-                padding: 25px;
-                box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-                z-index: 999;
-                border-top: 1px solid rgba(212, 175, 55, 0.2);
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
+            /* Navigation */
             .hamburger {
                 display: flex;
             }
             
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--navy-dark);
+                flex-direction: column;
+                padding: 50px 30px;
+                gap: 25px;
+                transition: left 0.4s ease;
+                z-index: 1001;
+                overflow-y: auto;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-cta {
+                margin-left: 0;
+            }
+            
+            /* Founder Hero */
             .founder-hero {
                 padding: 80px 0;
             }
             
-            .founder-content h1 {
-                font-size: 2.6rem;
-            }
-            
-            .founder-tagline {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
+            .founder-hero h1 {
                 font-size: 2.2rem;
             }
             
-            .section-subtitle {
+            .founder-tagline {
                 font-size: 1.1rem;
             }
             
-            .stat-number {
-                font-size: 2.8rem;
+            .founder-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .founder-stat {
+                min-width: auto;
+            }
+            
+            /* Sections */
+            .philosophy-grid,
+            .connect-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .vision-card,
+            .commitment-card {
+                padding: 40px 25px;
+            }
+            
+            .vision-quote {
+                font-size: 1.2rem;
+                padding: 0 20px;
+            }
+            
+            .timeline:before {
+                left: 20px;
+            }
+            
+            .timeline-year {
+                width: 50px;
+                height: 50px;
+                font-size: 0.9rem;
+                margin-right: 20px;
+            }
+            
+            .community-stats {
+                flex-direction: column;
+                gap: 40px;
             }
             
             .community-stat-number {
                 font-size: 2.8rem;
             }
             
-            .vision-card blockquote {
-                font-size: 1.3rem;
-                padding: 0 15px;
+            .commitment-text {
+                font-size: 1.1rem;
             }
             
+            /* Buttons */
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            /* Floating WhatsApp */
             .float-whatsapp span {
                 display: none;
             }
             
             .float-whatsapp {
                 padding: 18px;
-                font-size: 1.3rem;
-            }
-            
-            .footer {
-                padding: 50px 0 25px;
+                font-size: 1.5rem;
             }
         }
-        
-        @media (max-width: 576px) {
-            .founder-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .founder-tagline {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .founder-hero h1 {
                 font-size: 1.9rem;
             }
             
-            .founder-stats {
-                flex-direction: column;
-                gap: 30px;
+            .section-title {
+                font-size: 1.8rem;
             }
             
-            .community-stats {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
+            .founder-stat-number {
+                font-size: 2.2rem;
             }
             
             .community-stat-number {
@@ -1204,24 +1217,24 @@
             
             .vision-card,
             .commitment-card {
-                padding: 35px 20px;
+                padding: 30px 20px;
             }
             
-            .connect-grid {
-                grid-template-columns: 1fr;
+            .vision-icon,
+            .commitment-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
             }
         }
     </style>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    
     <!-- System Status Bar -->
     <div class="system-status">
         <div class="container">
-            <div class="status-indicator active"></div>
-            <div class="status-text">System Status: <strong>All Services Operational</strong> • Last Updated: Just Now</div>
+            <span class="status-indicator active"></span>
+            <span class="status-text">SYSTEM: <strong>JANUARY 2026 PAYOUTS 100% COMPLETED</strong> | NEXT PAYOUT: 07 FEB 2026</span>
         </div>
     </div>
 
@@ -1229,9 +1242,12 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">OE</div>
-                <div class="logo-text">OMKAR ENTERPRISES</div>
-            </a>
+    <div class="logo-icon">
+        <img src="assets/logo.png" alt="Omkar Enterprises Logo" 
+             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 45 45\"><rect width=\"100%\" height=\"100%\" fill=\"%23D4AF37\"/><text x=\"50%\" y=\"55%\" font-family=\"Arial\" font-size=\"16\" fill=\"%231a1a1a\" text-anchor=\"middle\" dy=\".3em\">OE</text></svg>';">
+    </div>
+    <div class="logo-text">OMKAR ENTERPRISES</div>
+</a>
             
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -1244,8 +1260,8 @@
                 <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
                 <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
                 <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
-                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
-                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-lock"></i> Partner Login</a></li>
+                <li><a href="about.html" class="active"><i class="fas fa-user-tie"></i> About</a></li>
+                <li class="nav-cta"><a href="contact.html" class="btn-nav-login"><i class="fas fa-phone-alt"></i> Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -1253,37 +1269,37 @@
     <!-- Founder Hero -->
     <section class="founder-hero">
         <div class="container">
-            <div class="founder-intro">
+            <div class="founder-container">
                 <div class="founder-image">
                     <img src="assets/founder.jpg" 
                          alt="Santosh Maruti Shendkar - Founder & Managing Director of Omkar Enterprises - Private Lending Expert in Ulhasnagar, Maharashtra" 
                          class="founder-photo"
-                         onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 380 450\"><rect width=\"100%\" height=\"100%\" fill=\"%231a1a1a\"/><rect x=\"10\" y=\"10\" width=\"360\" height=\"430\" rx=\"15\" fill=\"%232d2d2d\" stroke=\"%23D4AF37\" stroke-width=\"3\"/><text x=\"50%\" y=\"45%\" font-family=\"Arial\" font-size=\"32\" fill=\"%23D4AF37\" text-anchor=\"middle\" dy=\".3em\">OMKAR</text><text x=\"50%\" y=\"55%\" font-family=\"Arial\" font-size=\"32\" fill=\"%23D4AF37\" text-anchor=\"middle\" dy=\".3em\">ENTERPRISES</text></svg>'">
+                         onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 400\"><rect width=\"100%\" height=\"100%\" fill=\"%230a1a2d\"/><rect x=\"10\" y=\"10\" width=\"380\" height=\"380\" rx=\"12\" fill=\"%231a202c\" stroke=\"%23bd9300\" stroke-width=\"3\"/><text x=\"50%\" y=\"45%\" font-family=\"Playfair Display\" font-size=\"48\" fill=\"%23bd9300\" text-anchor=\"middle\" dy=\".3em\">SANTOSH</text><text x=\"50%\" y=\"55%\" font-family=\"Playfair Display\" font-size=\"48\" fill=\"%23bd9300\" text-anchor=\"middle\" dy=\".3em\">SHENDKAR</text></svg>'">
                 </div>
                 <div class="founder-content">
                     <span class="founder-badge">Founder & Managing Director</span>
                     <h1>Santosh Maruti <span class="gold-text">Shendkar</span></h1>
-                    <p class="founder-tagline">Pioneering Transparent Private Lending in Maharashtra Since 2018</p>
+                    <p class="founder-tagline">Pioneering Transparent Private Lending in Maharashtra Since 2018. Building trust through consistent performance and secure partnerships.</p>
                     
                     <div class="founder-stats">
-                        <div class="stat">
-                            <div class="stat-number">10+</div>
-                            <div class="stat-label">Years Experience</div>
+                        <div class="founder-stat">
+                            <div class="founder-stat-number">10+</div>
+                            <div class="founder-stat-label">Years Experience</div>
                         </div>
-                        <div class="stat">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Satisfied Partners</div>
+                        <div class="founder-stat">
+                            <div class="founder-stat-number">500+</div>
+                            <div class="founder-stat-label">Satisfied Partners</div>
                         </div>
-                        <div class="stat">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Payout Record</div>
+                        <div class="founder-stat">
+                            <div class="founder-stat-number">100%</div>
+                            <div class="founder-stat-label">Payout Record</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Vision Section -->
     <section class="vision-section">
         <div class="container">
@@ -1292,9 +1308,9 @@
                     <i class="fas fa-eye"></i>
                 </div>
                 <h2 class="section-title">The <span class="gold-text">Vision</span></h2>
-                <blockquote>
+                <p class="vision-quote">
                     "My vision is to create a platform where capital meets opportunity through transparency, security, and mutual growth. At Omkar Enterprises, we don't just facilitate partnerships - we build relationships based on trust and consistent performance."
-                </blockquote>
+                </p>
                 <p class="vision-author">- Santosh Maruti Shendkar</p>
             </div>
         </div>
@@ -1310,7 +1326,7 @@
                 <div class="timeline-item">
                     <div class="timeline-year">2014</div>
                     <div class="timeline-content">
-                        <h4>Early Beginnings</h4>
+                        <h3>Early Beginnings</h3>
                         <p>Started in the financial services sector, gaining deep insights into capital markets and private lending dynamics in the Ulhasnagar region.</p>
                     </div>
                 </div>
@@ -1318,7 +1334,7 @@
                 <div class="timeline-item">
                     <div class="timeline-year">2018</div>
                     <div class="timeline-content">
-                        <h4>Founding Omkar Enterprises</h4>
+                        <h3>Founding Omkar Enterprises</h3>
                         <p>Established Omkar Enterprises with a clear mission: to provide secure, transparent private lending options for local businesses and investors.</p>
                     </div>
                 </div>
@@ -1326,7 +1342,7 @@
                 <div class="timeline-item">
                     <div class="timeline-year">2020</div>
                     <div class="timeline-content">
-                        <h4>Developing the Bilateral Protocol</h4>
+                        <h3>Developing the Bilateral Protocol</h3>
                         <p>Created the structured partnership framework that combines PDC security with notarized agreements, setting new standards in the industry.</p>
                     </div>
                 </div>
@@ -1334,7 +1350,7 @@
                 <div class="timeline-item">
                     <div class="timeline-year">2023</div>
                     <div class="timeline-content">
-                        <h4>Expanding the Network</h4>
+                        <h3>Expanding the Network</h3>
                         <p>Grew the partner network to 500+ satisfied investors while maintaining a perfect 100% payout record for 60 consecutive months.</p>
                     </div>
                 </div>
@@ -1342,7 +1358,7 @@
                 <div class="timeline-item">
                     <div class="timeline-year">2026</div>
                     <div class="timeline-content">
-                        <h4>Digital Transformation</h4>
+                        <h3>Digital Transformation</h3>
                         <p>Launched the digital platform to provide partners with real-time portfolio access and enhanced transparency.</p>
                     </div>
                 </div>
@@ -1362,7 +1378,7 @@
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Security First</h3>
-                    <p>Every partnership begins with protecting the principal through PDC security and notarized agreements.</p>
+                    <p>Every partnership begins with protecting the principal through PDC security and notarized agreements. Your investment is our responsibility.</p>
                 </div>
                 
                 <div class="philosophy-card">
@@ -1370,7 +1386,7 @@
                         <i class="fas fa-handshake"></i>
                     </div>
                     <h3>Transparency Always</h3>
-                    <p>Clear terms, regular updates, and open communication form the foundation of every partnership.</p>
+                    <p>Clear terms, regular updates, and open communication form the foundation of every partnership. No hidden clauses, no surprises.</p>
                 </div>
                 
                 <div class="philosophy-card">
@@ -1378,7 +1394,7 @@
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Consistent Performance</h3>
-                    <p>Delivering 2% monthly returns consistently for over 5 years has built unmatched trust.</p>
+                    <p>Delivering 2% monthly returns consistently for over 5 years has built unmatched trust. We believe in performance, not promises.</p>
                 </div>
                 
                 <div class="philosophy-card">
@@ -1386,7 +1402,7 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Relationship Building</h3>
-                    <p>Beyond transactions, we focus on building long-term relationships based on mutual success.</p>
+                    <p>Beyond transactions, we focus on building long-term relationships based on mutual success. Our partners become part of our financial family.</p>
                 </div>
             </div>
         </div>
@@ -1395,25 +1411,23 @@
     <!-- Community Impact -->
     <section class="community-section">
         <div class="container">
-            <div class="community-card">
-                <h2 class="section-title">Building <span class="gold-text">Trust</span> in Ulhasnagar</h2>
-                <p class="section-subtitle">Santosh Shendkar has become a trusted name in Ulhasnagar's financial community through consistent performance and transparency</p>
+            <h2 class="section-title">Building <span class="gold-text">Trust</span> in Ulhasnagar</h2>
+            <p class="section-subtitle">Santosh Shendkar has become a trusted name in Ulhasnagar's financial community through consistent performance and transparency</p>
+            
+            <div class="community-stats">
+                <div class="community-stat">
+                    <div class="community-stat-number">₹45L+</div>
+                    <div class="community-stat-label">Monthly Payouts Distributed</div>
+                </div>
                 
-                <div class="community-stats">
-                    <div class="community-stat">
-                        <div class="community-stat-number">₹45L+</div>
-                        <div class="community-stat-label">Monthly Payouts Distributed</div>
-                    </div>
-                    
-                    <div class="community-stat">
-                        <div class="community-stat-number">60</div>
-                        <div class="community-stat-label">Consecutive Perfect Payouts</div>
-                    </div>
-                    
-                    <div class="community-stat">
-                        <div class="community-stat-number">0</div>
-                        <div class="community-stat-label">Legal Disputes with Partners</div>
-                    </div>
+                <div class="community-stat">
+                    <div class="community-stat-number">60</div>
+                    <div class="community-stat-label">Consecutive Perfect Payouts</div>
+                </div>
+                
+                <div class="community-stat">
+                    <div class="community-stat-number">0</div>
+                    <div class="community-stat-label">Legal Disputes with Partners</div>
                 </div>
             </div>
         </div>
@@ -1428,7 +1442,7 @@
                 </div>
                 <h2 class="section-title">Personal <span class="gold-text">Commitment</span></h2>
                 <p class="commitment-text">
-                    "As the founder, I personally review every partnership agreement and ensure that our commitment to security and transparency is upheld in every transaction. My personal mobile number (+91 87888 56773) is available to all partners for direct communication."
+                    "As the founder, I personally review every partnership agreement and ensure that our commitment to security and transparency is upheld in every transaction. My personal mobile number (+91 8169302861) is available to all partners for direct communication. Your trust is my most valuable asset, and I am committed to protecting it with every partnership we create."
                 </p>
                 <div class="signature">
                     <strong>Santosh Maruti Shendkar</strong>
@@ -1450,26 +1464,32 @@
                         <i class="fas fa-calendar-check"></i>
                     </div>
                     <h3>Schedule Meeting</h3>
-                    <p>Book a personal consultation at our Ulhasnagar office</p>
-                    <span class="connect-btn">Book Now</span>
+                    <p>Book a personal consultation at our Ulhasnagar office. Discuss your investment goals and get personalized guidance.</p>
+                    <div class="text-center">
+                        <span class="btn-primary">Book Now</span>
+                    </div>
                 </a>
                 
-                <a href="tel:+918788856773" class="connect-card">
+                <a href="tel:+919226393837" class="connect-card">
                     <div class="connect-icon">
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <h3>Direct Call</h3>
-                    <p>Call directly: +91 87888 56773</p>
-                    <span class="connect-btn">Call Now</span>
+                    <p>Call directly for immediate assistance. Available during business hours for partnership discussions and queries.</p>
+                    <div class="text-center">
+                        <span class="btn-secondary">Call Now: +91 9226393837</span>
+                    </div>
                 </a>
                 
-                <a href="https://wa.me/918788856773" class="connect-card">
+                <a href="https://wa.me/9226393837" class="connect-card">
                     <div class="connect-icon">
                         <i class="fab fa-whatsapp"></i>
                     </div>
                     <h3>WhatsApp</h3>
-                    <p>Chat directly on WhatsApp for quick responses</p>
-                    <span class="connect-btn">Message Now</span>
+                    <p>Chat directly on WhatsApp for quick responses. Share documents and get instant clarifications on partnerships.</p>
+                    <div class="text-center">
+                        <span class="btn-primary">Message Now</span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -1500,8 +1520,9 @@
                     <ul class="footer-links">
                         <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
                         <li><a href="slabs.html"><i class="fas fa-chevron-right"></i> Investment Tiers</a></li>
-                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
                         <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Founder</a></li>
                         <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
                     </ul>
                 </div>
@@ -1518,6 +1539,12 @@
                             <span>Email Support</span>
                         </a>
                     </div>
+                    
+                    <h4 style="margin-top: 30px;">Office Hours</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-clock"></i> Mon-Sat: 10 AM - 7 PM</p>
+                        <p><i class="fas fa-calendar"></i> Sunday: Appointment Only</p>
+                    </div>
                 </div>
             </div>
             
@@ -1531,7 +1558,8 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2018-2024 Omkar Enterprises. All rights reserved.</p>
+                <p>&copy; 2018-2024 Omkar Enterprises. All Rights Reserved. | Registered Office: Ulhasnagar, Greater Mumbai</p>
+                <p>Operations Office: Pune, Maharashtra | Founder: Santosh Maruti Shendkar</p>
                 <p class="footer-regulatory">
                     <i class="fas fa-shield-alt"></i>
                     Registered Office: Ulhasnagar 421003, Maharashtra
@@ -1540,12 +1568,16 @@
         </div>
     </footer>
 
+
+
+
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/918788856773" class="float-whatsapp" target="_blank" rel="noopener">
+    <a href="https://wa.me/918169302861" class="float-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
-        <span>Chat with Us</span>
+        <span>Chat on WhatsApp</span>
     </a>
 
+    <!-- JavaScript -->
     <script>
         // Mobile Navigation Toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -1576,7 +1608,7 @@
                 });
             }
             
-            // Add smooth scrolling
+            // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
@@ -1603,29 +1635,33 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animated');
+                        // Animate numbers if they have data-count attribute
+                        if (entry.target.hasAttribute('data-count')) {
+                            animateValue(entry.target, 0, parseInt(entry.target.getAttribute('data-count')), 2000);
+                        }
                     }
                 });
             }, observerOptions);
             
-            // Observe elements
-            document.querySelectorAll('.stat-number, .community-stat-number').forEach(el => {
+            // Observe elements that should animate
+            document.querySelectorAll('.founder-stat-number, .community-stat-number').forEach(el => {
                 observer.observe(el);
             });
+            
+            // Simple number animation function
+            function animateValue(element, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    element.textContent = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
         });
-        
-        // Simple animation for numbers
-        function animateValue(element, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                element.textContent = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
     </script>
 
 </body>

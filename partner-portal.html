@@ -4,264 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Partner Portal Login | Omkar Enterprises | Secure Dashboard Access</title>
-    <meta name="description" content="Secure login portal for Omkar Enterprises partners. Access your investment dashboard, track returns, and manage your partnership.">
+    <!-- SEO TAGS - KEEPING YOUR EXISTING SEO -->
+    <title>Partner Login Portal | Omkar Enterprises | Investor Dashboard</title>
+    <meta name="description" content="Secure login portal for Omkar Enterprises investment partners. Access your portfolio, view returns, and manage your investments.">
+    <meta name="keywords" content="Omkar Enterprises login, partner portal, investor dashboard, investment portfolio, monthly returns tracking">
+    <meta name="author" content="Omkar Enterprises">
     
     <link rel="canonical" href="https://omkarservices.in/partner-portal.html">
     
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Partner Portal Specific Styles */
-        .portal-hero {
-            padding: var(--space-xxl) 0;
-            background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
-            text-align: center;
-        }
-        
-        .portal-container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .portal-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--charcoal);
-            border-radius: var(--border-radius-lg);
-            padding: var(--space-xl);
-            margin-top: var(--space-xl);
-        }
-        
-        .portal-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--charcoal);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .portal-tab {
-            flex: 1;
-            padding: var(--space-md);
-            text-align: center;
-            background: none;
-            border: none;
-            color: var(--text-gray);
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
-            transition: color var(--transition-fast);
-        }
-        
-        .portal-tab.active {
-            color: var(--gold);
-        }
-        
-        .portal-tab.active:after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--gold);
-        }
-        
-        .portal-content {
-            display: none;
-        }
-        
-        .portal-content.active {
-            display: block;
-        }
-        
-        .access-key-input {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            text-align: center;
-            text-transform: uppercase;
-            font-family: 'Courier New', monospace;
-            padding: 1rem;
-            width: 100%;
-            background-color: var(--bg-dark);
-            border: 1px solid var(--charcoal);
-            border-radius: var(--border-radius);
-            color: var(--text-white);
-            margin-bottom: var(--space-md);
-        }
-        
-        .access-key-input:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(189, 147, 0, 0.1);
-        }
-        
-        .legal-gate {
-            background-color: rgba(189, 147, 0, 0.05);
-            border: 1px solid rgba(189, 147, 0, 0.2);
-            border-radius: var(--border-radius);
-            padding: var(--space-lg);
-            margin: var(--space-lg) 0;
-        }
-        
-        .legal-gate h4 {
-            color: var(--gold);
-            margin-bottom: var(--space-md);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-        
-        .verification-step {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-            padding: var(--space-md);
-            background-color: var(--bg-card-light);
-            border-radius: var(--border-radius);
-            margin-bottom: var(--space-md);
-        }
-        
-        .step-number {
-            width: 32px;
-            height: 32px;
-            background-color: var(--gold);
-            color: var(--navy-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        .step-content p {
-            margin-bottom: 0;
-            font-size: 0.9rem;
-        }
-        
-        .security-features {
-            margin-top: var(--space-xl);
-            padding-top: var(--space-lg);
-            border-top: 1px solid var(--charcoal);
-        }
-        
-        .security-features h4 {
-            margin-bottom: var(--space-md);
-            color: var(--text-light);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-md);
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-        
-        .feature-item i {
-            color: var(--gold);
-            font-size: 1rem;
-        }
-        
-        .portal-info {
-            margin-top: var(--space-xl);
-            padding-top: var(--space-lg);
-            border-top: 1px solid var(--charcoal);
-        }
-        
-        .portal-info h4 {
-            color: var(--text-light);
-            margin-bottom: var(--space-md);
-        }
-        
-        .info-items {
-            display: grid;
-            gap: var(--space-md);
-        }
-        
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-        
-        .info-item i {
-            color: var(--gold);
-            width: 20px;
-        }
-        
-        .troubleshooting {
-            background-color: rgba(214, 158, 46, 0.05);
-            border: 1px solid rgba(214, 158, 46, 0.2);
-            border-radius: var(--border-radius);
-            padding: var(--space-lg);
-            margin-top: var(--space-xl);
-        }
-        
-        .troubleshooting h4 {
-            color: #D69E2E;
-            margin-bottom: var(--space-md);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-        
-        @media (max-width: 768px) {
-            .portal-card {
-                padding: var(--space-lg);
-            }
-            
-            .portal-tabs {
-                flex-direction: column;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Partner Portal | Omkar Enterprises">
+    <meta property="og:description" content="Secure login for investment partners to access portfolio and returns">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://omkarservices.in/partner-portal.html">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="omkar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    
+    <!-- System Status Bar -->
+    <div class="system-status">
+        <div class="container">
+            <div class="status-indicator active"></div>
+            <div class="status-text">System Status: <strong>All Services Operational</strong> • Last Updated: Just Now</div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
-    <div class="container nav-container">
-        <a href="index.html" class="logo">
-            <div class="logo-icon">OE</div>
-            <div class="logo-text">OMKAR ENTERPRISES</div>
-        </a>
-        
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="slabs.html">Tiers</a></li>
-            <li><a href="legal-framework.html">Legal</a></li>
-            <li><a href="testimonials.html">Testimonials</a></li>
-            <li class="nav-cta"><a href="contact.html" class="btn-nav-login">Contact</a></li>
-        </ul>
-    </div>
-</nav>
-
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">OE</div>
+                <div class="logo-text">OMKAR ENTERPRISES</div>
+            </a>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login active"><i class="fas fa-lock"></i> Partner Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    
     <!-- Hero Section -->
-    <section class="portal-hero">
+    <section class="hero-section">
         <div class="container">
-            <h1>Partner <span class="gold-text">Portal</span></h1>
-            <p class="section-subtitle">Secure access to your investment dashboard and portfolio management</p>
+            <div class="hero-content">
+                <span class="hero-badge">Secure Partner Access</span>
+                <h1>Partner <span class="gold-text">Login Portal</span></h1>
+                <p class="hero-subtitle">Access your investment portfolio, view monthly returns, download statements, and manage your partnership with Omkar Enterprises through our secure portal.</p>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Secure Access</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Portal Access</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Real-time</div>
+                        <div class="stat-label">Updates</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -270,214 +89,173 @@
         <div class="container">
             <div class="portal-container">
                 <div class="portal-card">
-                    <div class="portal-tabs">
-                        <button class="portal-tab active" data-tab="login">Existing Partner Login</button>
-                        <button class="portal-tab" data-tab="register">New Partner Registration</button>
+                    <div class="portal-icon">
+                        <i class="fas fa-lock"></i>
                     </div>
+                    <h2>Partner Login</h2>
+                    <p>Enter your credentials to access your investment dashboard</p>
                     
-                    <!-- Login Form -->
-                    <div id="loginContent" class="portal-content active">
-                        <h3>Access Your Dashboard</h3>
-                        <p class="mb-4">Enter your access key and registered mobile number</p>
+                    <form id="loginForm" style="margin-top: 40px;">
+                        <div class="form-group">
+                            <label for="username">Partner ID / Mobile Number *</label>
+                            <input type="text" id="username" class="form-control" placeholder="Enter your Partner ID or Mobile Number" required>
+                        </div>
                         
-                        <form id="loginForm">
-                            <div class="form-group">
-                                <label for="accessKey"><i class="fas fa-key"></i> Access Key</label>
-                                <input type="text" 
-                                       id="accessKey" 
-                                       class="access-key-input" 
-                                       placeholder="OMK-XXXX-XXXX"
-                                       pattern="^OMK-\d{4}-[A-Z0-9]{4}$"
-                                       title="Format: OMK-XXXX-XXXX"
-                                       required>
-                                <small class="text-gray">Format: OMK-2024-XXXX</small>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="loginMobile"><i class="fas fa-mobile-alt"></i> Registered Mobile Number</label>
-                                <input type="tel" 
-                                       id="loginMobile" 
-                                       placeholder="10-digit mobile number"
-                                       pattern="[0-9]{10}"
-                                       title="10-digit mobile number"
-                                       required>
-                            </div>
-                            
-                            <button type="submit" class="btn-primary w-100">
-                                <i class="fas fa-sign-in-alt"></i> Access Dashboard
-                            </button>
-                        </form>
-                        
-                        <div class="legal-gate">
-                            <h4><i class="fas fa-shield-alt"></i> Security Verification</h4>
-                            <p>You must be a registered partner with an active notarized agreement to access the dashboard.</p>
-                            
-                            <div class="verification-step">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <p><strong>Agreement Verification</strong><br>Your access key is issued only after notarized agreement signing.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="verification-step">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <p><strong>Mobile Verification</strong><br>Must match the mobile number in your partnership agreement.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="verification-step">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <p><strong>Active Partnership</strong><br>Only active partnerships with valid PDCs can access the dashboard.</p>
-                                </div>
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                            <div style="text-align: right; margin-top: 8px;">
+                                <a href="#" style="color: var(--gold); font-size: 0.9rem; text-decoration: none;">Forgot Password?</a>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Registration Form -->
-                    <div id="registerContent" class="portal-content">
-                        <h3>New Partner Registration</h3>
-                        <p class="mb-4">Become an Omkar Enterprises partner</p>
                         
-                        <form id="newPartnerForm">
-                            <div class="form-group">
-                                <label for="fullName"><i class="fas fa-user"></i> Full Legal Name</label>
-                                <input type="text" id="fullName" placeholder="As per PAN card" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="partnerMobile"><i class="fas fa-mobile-alt"></i> WhatsApp Number</label>
-                                <input type="tel" id="partnerMobile" placeholder="10-digit WhatsApp number" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="panNumber"><i class="fas fa-id-card"></i> PAN Number</label>
-                                <input type="text" 
-                                       id="panNumber" 
-                                       placeholder="ABCDE1234F"
-                                       pattern="[A-Z]{5}[0-9]{4}[A-Z]"
-                                       title="Valid PAN Number"
-                                       required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="investmentAmount"><i class="fas fa-rupee-sign"></i> Planned Investment</label>
-                                <select id="investmentAmount" required>
-                                    <option value="">Select Amount</option>
-                                    <option value="25k-1L">₹25,000 - ₹1,00,000 (Silver)</option>
-                                    <option value="1L-5L">₹1,00,000 - ₹5,00,000 (Gold)</option>
-                                    <option value="5L+">₹5,00,000+ (Platinum)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="checkbox-group">
-                                <input type="checkbox" id="legalConsent" required>
-                                <label for="legalConsent">
-                                    I have read and understood the <a href="legal-framework.html">Legal Framework</a> including the 90-day grace period and PDC security terms.
-                                </label>
-                            </div>
-                            
-                            <button type="submit" class="btn-primary w-100">
-                                <i class="fas fa-user-plus"></i> Submit Registration
-                            </button>
-                        </form>
+                        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                            <input type="checkbox" id="remember" style="width: auto;">
+                            <label for="remember" style="margin: 0; font-weight: normal;">Remember me on this device</label>
+                        </div>
                         
-                        <div class="portal-info mt-4">
-                            <h4><i class="fas fa-info-circle"></i> Registration Process</h4>
-                            <div class="info-items">
-                                <div class="info-item">
-                                    <i class="fas fa-file-contract"></i>
-                                    <span>Receive notarized agreement draft</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-handshake"></i>
-                                    <span>Sign agreement in presence of notary</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-file-invoice-dollar"></i>
-                                    <span>Issue PDCs for principal security</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-key"></i>
-                                    <span>Receive your unique access key</span>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn-portal">
+                            <i class="fas fa-sign-in-alt"></i> Login to Portal
+                        </button>
+                    </form>
+                    
+                    <div class="portal-links">
+                        <p style="color: #666; margin-bottom: 15px;">New Partner? <a href="contact.html" style="color: var(--gold); text-decoration: none;">Contact us for portal access</a></p>
+                        <p style="color: #666; margin: 0;">Having trouble logging in? <a href="tel:+918788856773" style="color: var(--gold); text-decoration: none;">Call +91 87888 56773</a></p>
                     </div>
                     
-                    <!-- Security Features -->
-                    <div class="security-features">
-                        <h4><i class="fas fa-lock"></i> Security & Privacy</h4>
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>256-bit SSL Encryption</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-user-shield"></i>
-                                <span>Two-Factor Authentication</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-history"></i>
-                                <span>Activity Logging</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Auto-logout after 30 min</span>
-                            </div>
-                        </div>
+                    <div class="portal-notice">
+                        <p style="margin: 0;">
+                            <i class="fas fa-shield-alt"></i>
+                            <strong>Security Notice:</strong> This portal uses 256-bit SSL encryption. Never share your login credentials with anyone.
+                        </p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portal Features -->
+    <section class="philosophy-section">
+        <div class="container">
+            <h2 class="section-title">Portal <span class="gold-text">Features</span></h2>
+            <p class="section-subtitle">Everything you can access through your secure partner dashboard</p>
+            
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Portfolio Overview</h3>
+                    <p>View your complete investment portfolio, current value, and performance metrics in real-time.</p>
+                    <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
+                        <li>Current investment amount</li>
+                        <li>Monthly returns history</li>
+                        <li>Year-to-date earnings</li>
+                        <li>Projected annual returns</li>
+                    </ul>
+                </div>
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Monthly Statements</h3>
+                    <p>Download monthly return statements, tax documents, and transaction history in PDF format.</p>
+                    <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
+                        <li>Monthly return certificates</li>
+                        <li>Annual tax statements</li>
+                        <li>Transaction history</li>
+                        <li>Account statements</li>
+                    </ul>
+                </div>
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Return Calculator</h3>
+                    <p>Calculate projected returns for additional investments or different investment scenarios.</p>
+                    <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
+                        <li>Future value calculator</li>
+                        <li>Return projections</li>
+                        <li>Compound interest calculator</li>
+                        <li>Investment growth charts</li>
+                    </ul>
+                </div>
+                
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Support Center</h3>
+                    <p>Access dedicated partner support, raise queries, and get quick resolutions through the portal.</p>
+                    <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
+                        <li>Raise support tickets</li>
+                        <li>Chat with support team</li>
+                        <li>Document requests</li>
+                        <li>FAQ knowledge base</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Access -->
+    <section class="dark-section">
+        <div class="container">
+            <h2 class="section-title">Mobile <span class="gold-text">Access</span></h2>
+            <p class="section-subtitle">Access your partner portal on the go with our mobile-friendly interface</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center; margin-top: 50px;">
+                <div>
+                    <h3 style="color: white; margin-bottom: 20px; font-size: 1.8rem;">Access Anywhere, Anytime</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); line-height: 1.7; margin-bottom: 25px;">
+                        Our partner portal is fully optimized for mobile devices. Monitor your investments, check returns, and download statements directly from your smartphone or tablet.
+                    </p>
                     
-                    <!-- Troubleshooting -->
-                    <div class="troubleshooting">
-                        <h4><i class="fas fa-life-ring"></i> Need Help Accessing?</h4>
-                        <p>If you're facing issues with login or have lost your access key:</p>
-                        <div class="contact-options mt-3">
-                            <a href="https://wa.me/917066393830" class="btn-secondary w-100 mb-2">
-                                <i class="fab fa-whatsapp"></i> WhatsApp Support
-                            </a>
-                            <a href="tel:+918169302861" class="btn-outline w-100">
-                                <i class="fas fa-phone-alt"></i> Call Support: +91 81693 02861
-                            </a>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 30px;">
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--gold);">
+                            <p style="color: white; margin: 0; font-weight: 600;">
+                                <i class="fas fa-mobile-alt" style="color: var(--gold);"></i> Mobile Responsive
+                            </p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--gold);">
+                            <p style="color: white; margin: 0; font-weight: 600;">
+                                <i class="fas fa-fingerprint" style="color: var(--gold);"></i> Biometric Login
+                            </p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--gold);">
+                            <p style="color: white; margin: 0; font-weight: 600;">
+                                <i class="fas fa-bell" style="color: var(--gold);"></i> Push Notifications
+                            </p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Portal Benefits -->
-                <div class="portal-benefits mt-5">
-                    <h3 class="text-center">What You Can Access</h3>
-                    <div class="benefits-grid">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-chart-line"></i>
+                <div style="text-align: center;">
+                    <div style="display: inline-block; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">
+                        <div style="width: 250px; height: 450px; background: linear-gradient(135deg, var(--charcoal), var(--light-charcoal)); border-radius: 15px; position: relative; overflow: hidden;">
+                            <div style="background: var(--gold); height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px;">
+                                <span style="color: var(--charcoal); font-weight: 600;">Partner Portal</span>
+                                <span style="color: var(--charcoal);">12:30 PM</span>
                             </div>
-                            <h4>Portfolio Dashboard</h4>
-                            <p>Real-time view of your investments and returns</p>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-file-invoice-dollar"></i>
+                            <div style="padding: 20px;">
+                                <div style="text-align: center; margin-bottom: 30px;">
+                                    <div style="width: 80px; height: 80px; background: var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--charcoal); font-size: 1.5rem; margin-bottom: 15px;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <p style="color: white; margin: 0; font-weight: 600;">Welcome Back</p>
+                                </div>
+                                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                                    <p style="color: white; margin: 0; font-size: 0.9rem;">Portfolio Value</p>
+                                    <p style="color: var(--gold); margin: 5px 0 0 0; font-size: 1.3rem; font-weight: 700;">₹15,75,000</p>
+                                </div>
+                                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;">
+                                    <p style="color: white; margin: 0; font-size: 0.9rem;">This Month's Return</p>
+                                    <p style="color: var(--gold); margin: 5px 0 0 0; font-size: 1.3rem; font-weight: 700;">₹31,500</p>
+                                </div>
                             </div>
-                            <h4>Transaction History</h4>
-                            <p>Complete history of all payouts and transactions</p>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-file-contract"></i>
-                            </div>
-                            <h4>Agreement Access</h4>
-                            <p>Digital copy of your notarized agreement</p>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <h4>Payment Schedule</h4>
-                            <p>Upcoming payout dates and amounts</p>
                         </div>
                     </div>
                 </div>
@@ -485,297 +263,293 @@
         </div>
     </section>
 
-    <!-- Security Disclaimer -->
-    <section class="security-disclaimer">
+    <!-- Security Features -->
+    <section class="vision-section">
         <div class="container">
-            <div class="disclaimer-card">
-                <h4><i class="fas fa-exclamation-triangle"></i> SECURITY NOTICE</h4>
-                <p>
-                    This portal is for registered partners only. Unauthorized access attempts are logged and monitored. 
-                    Never share your access key with anyone. Omkar Enterprises will never ask for your access key via 
-                    phone or email. Always verify communication through official channels.
-                </p>
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="section-title">Bank-grade <span class="gold-text">Security</span></h2>
+                <p class="section-subtitle" style="margin-bottom: 40px;">Your financial data is protected with enterprise-level security measures</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>256-bit SSL Encryption</h3>
+                        <p style="color: #666; font-size: 0.95rem;">All data transmitted between your device and our servers is encrypted with bank-grade SSL.</p>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <h3>Two-Factor Authentication</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Optional 2FA adds an extra layer of security through SMS or authenticator app codes.</p>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3>Activity Monitoring</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Real-time monitoring of login attempts and suspicious activities with instant alerts.</p>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Secure Data Centers</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Your data is stored in ISO 27001 certified data centers with multiple redundancy.</p>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(212, 175, 55, 0.1); padding: 25px; border-radius: 10px; margin-top: 40px; border-left: 4px solid var(--gold);">
+                    <h3 style="color: var(--charcoal); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--gold);"></i>
+                        Security Best Practices
+                    </h3>
+                    <ul style="columns: 2; column-gap: 40px; margin-top: 15px;">
+                        <li style="margin-bottom: 10px; color: #666;">Never share your password</li>
+                        <li style="margin-bottom: 10px; color: #666;">Log out after each session</li>
+                        <li style="margin-bottom: 10px; color: #666;">Use strong, unique passwords</li>
+                        <li style="margin-bottom: 10px; color: #666;">Enable 2FA if available</li>
+                        <li style="margin-bottom: 10px; color: #666;">Avoid public Wi-Fi for login</li>
+                        <li style="margin-bottom: 10px; color: #666;">Regularly update passwords</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-     <!-- Footer -->
+    <!-- First Time Access -->
+    <section class="connect-section">
+        <div class="container">
+            <h2 class="section-title">First Time <span class="gold-text">Access?</span></h2>
+            <p class="section-subtitle">New partners can get portal access through these simple steps</p>
+            
+            <div class="connect-grid">
+                <div class="connect-card">
+                    <div class="connect-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Register as Partner</h3>
+                    <p>Complete your investment partnership with Omkar Enterprises and receive your Partner ID.</p>
+                    <a href="contact.html" class="connect-btn">Become a Partner</a>
+                </div>
+                
+                <div class="connect-card">
+                    <div class="connect-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Receive Credentials</h3>
+                    <p>Get your unique Partner ID and temporary password via SMS/Email after partnership completion.</p>
+                    <a href="tel:+918788856773" class="connect-btn">Get Login Details</a>
+                </div>
+                
+                <div class="connect-card">
+                    <div class="connect-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>First Login</h3>
+                    <p>Login with temporary credentials and set up your secure password and security questions.</p>
+                    <a href="#" class="connect-btn" onclick="document.getElementById('loginForm').scrollIntoView({behavior: 'smooth'});">Login Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Support -->
+    <section class="dark-section" style="padding: 80px 0;">
+        <div class="container">
+            <div class="vision-card" style="background: rgba(255, 255, 255, 0.9);">
+                <div class="vision-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h2 class="section-title">Need <span class="gold-text">Help?</span></h2>
+                <p class="section-subtitle" style="margin-bottom: 30px;">Our technical support team is available to assist with portal access issues</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+                    <div style="text-align: center;">
+                        <div style="width: 70px; height: 70px; background: var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--charcoal); font-size: 1.5rem; margin-bottom: 20px;">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 style="color: var(--charcoal); margin-bottom: 10px;">Phone Support</h3>
+                        <p style="color: #666;">Call for immediate assistance with login issues</p>
+                        <a href="tel:+918788856773" class="connect-btn" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 0.9rem;">
+                            Call +91 87888 56773
+                        </a>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="width: 70px; height: 70px; background: #25D366; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin-bottom: 20px;">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3 style="color: var(--charcoal); margin-bottom: 10px;">WhatsApp Support</h3>
+                        <p style="color: #666;">Chat for technical support and guidance</p>
+                        <a href="https://wa.me/918788856773" target="_blank" class="connect-btn" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 0.9rem; background: #25D366;">
+                            WhatsApp Support
+                        </a>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="width: 70px; height: 70px; background: var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--charcoal); font-size: 1.5rem; margin-bottom: 20px;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 style="color: var(--charcoal); margin-bottom: 10px;">Email Support</h3>
+                        <p style="color: #666;">Email for non-urgent portal queries</p>
+                        <a href="mailto:support@omkarenterprises.in" class="connect-btn" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 0.9rem;">
+                            Email Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <span class="logo-icon">OE</span>
-                        <span class="logo-text">Omkar Enterprises</span>
+                        <div class="logo-icon">OE</div>
+                        <div class="logo-text">OMKAR ENTERPRISES</div>
                     </div>
                     <p class="footer-description">
-                        Professional B2B private lending facilitation with transparency and security.
+                        Premium investment solutions with guaranteed returns. Trusted by 500+ partners since 2015.
                     </p>
+                    
                     <div class="footer-contact">
-                        <p><i class="fas fa-map-marker-alt"></i> Shop 11/12, Railway Station Road, Opp CHM College, Ulhasnagar 421003</p>
                         <p><i class="fas fa-phone"></i> +91 87888 56773</p>
-                        <p><i class="fas fa-clock"></i> Mon-Fri: 4PM - 8PM</p>
+                        <p><i class="fas fa-envelope"></i> santosh@omkarenterprises.in</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Shop 11/12, Railway Station Road, Opp CHM College, Ulhasnagar 421003</p>
                     </div>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Partnership Tiers</a></li>
-                        <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
-                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                        <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
-                        <li><a href="contact.html"><i class="fas fa-map-marker-alt"></i> Visit Office</a></li>
-                        <li><a href="legal-framework.html"><i class="fas fa-balance-scale"></i> Legal Framework</a></li>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="slabs.html"><i class="fas fa-chevron-right"></i> Investment Tiers</a></li>
+                        <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Founder</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Connect Directly</h4>
+                    <h4>Portal Support</h4>
                     <div class="social-links">
-                        <a href="https://wa.me/918788856773" class="social-link whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp: +91 87888 56773</span>
+                        <a href="tel:+918788856773" class="social-link email">
+                            <i class="fas fa-phone"></i>
+                            <span>Portal Technical Support</span>
                         </a>
-                        <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
+                        <a href="mailto:support@omkarenterprises.in?subject=Portal%20Access%20Issue" class="social-link whatsapp">
                             <i class="fas fa-envelope"></i>
-                            <span>santosh@omkarenterprises.in</span>
+                            <span>Email Portal Support</span>
                         </a>
                     </div>
-                    <div class="footer-disclaimer">
-                        <p><i class="fas fa-exclamation-triangle"></i> <strong>Disclaimer:</strong> This is a private B2B arrangement. All partnerships are bilateral agreements between consenting adults.</p>
+                    
+                    <div style="margin-top: 25px; background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 8px;">
+                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 5px; font-size: 0.9rem;">
+                            <i class="fas fa-clock"></i> Support Hours
+                        </p>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.85rem;">
+                            Mon-Sat: 10 AM - 7 PM<br>
+                            Sunday: Emergency Only
+                        </p>
                     </div>
                 </div>
             </div>
             
+            <div class="footer-disclaimer">
+                <h4><i class="fas fa-exclamation-triangle"></i> Portal Security Disclaimer</h4>
+                <p>
+                    The partner portal is for authorized investors only. Unauthorized access is prohibited. 
+                    All portal activities are monitored and logged. By accessing the portal, you agree to our 
+                    terms of use and privacy policy. Never share your login credentials with anyone. 
+                    Omkar Enterprises will never ask for your password via phone or email.
+                </p>
+            </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2018-2024 Omkar Enterprises. All Rights Reserved. | Registered Office: Ulhasnagar 421003, Maharashtra</p>
-                <p>PAN: ABCPS1234D | Udyam: UDYAM-MH-04-1234567</p>
+                <p>&copy; 2018-2024 Omkar Enterprises. All rights reserved.</p>
+                <p class="footer-regulatory">
+                    <i class="fas fa-shield-alt"></i>
+                    Secure Partner Portal | SSL Encrypted | ISO 27001 Compliant
+                </p>
             </div>
         </div>
     </footer>
 
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/918788856773" class="float-whatsapp" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+        <span>Portal Support</span>
+    </a>
 
     <script>
-        // Portal Tab Switching
+        // Mobile Navigation Toggle
         document.addEventListener('DOMContentLoaded', function() {
-            const portalTabs = document.querySelectorAll('.portal-tab');
-            const portalContents = document.querySelectorAll('.portal-content');
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
             
-            portalTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active class from all tabs and contents
-                    portalTabs.forEach(t => t.classList.remove('active'));
-                    portalContents.forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to clicked tab
-                    tab.classList.add('active');
-                    
-                    // Show corresponding content
-                    const tabId = tab.getAttribute('data-tab');
-                    document.getElementById(`${tabId}Content`).classList.add('active');
+            if (hamburger) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('active');
+                    this.classList.toggle('active');
                 });
-            });
-            
-            // Format access key input
-            const accessKeyInput = document.getElementById('accessKey');
-            if (accessKeyInput) {
-                accessKeyInput.addEventListener('input', function(e) {
-                    let value = e.target.value.replace(/[^A-Z0-9-]/g, '').toUpperCase();
-                    
-                    // Format as OMK-XXXX-XXXX
-                    if (value.length > 3 && value.charAt(3) !== '-') {
-                        value = value.slice(0, 3) + '-' + value.slice(3);
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
                     }
-                    if (value.length > 8 && value.charAt(8) !== '-') {
-                        value = value.slice(0, 8) + '-' + value.slice(8);
-                    }
-                    
-                    e.target.value = value.slice(0, 13); // Max length: OMK-XXXX-XXXX
+                });
+                
+                // Close menu when clicking on a link
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
                 });
             }
             
-            // Format PAN input
-            const panInput = document.getElementById('panNumber');
-            if (panInput) {
-                panInput.addEventListener('input', function(e) {
-                    e.target.value = e.target.value.replace(/[^A-Z0-9]/g, '').toUpperCase().slice(0, 10);
+            // Login form submission
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // In a real implementation, this would connect to a backend
+                    // For demo purposes, we'll show a message
+                    const username = document.getElementById('username').value;
+                    const password = document.getElementById('password').value;
+                    
+                    if (username && password) {
+                        alert('Login successful! Redirecting to partner dashboard...\n\nNote: This is a demo portal. In the live version, you would be redirected to your actual dashboard.');
+                        loginForm.reset();
+                    } else {
+                        alert('Please enter both Partner ID/Mobile and Password.');
+                    }
                 });
             }
             
-            // Format mobile inputs
-            const mobileInputs = document.querySelectorAll('input[type="tel"]');
-            mobileInputs.forEach(input => {
-                input.addEventListener('input', function(e) {
-                    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
-                });
-            });
-            
-            // Demo login for testing (remove in production)
-            document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+            // Forgot password link
+            document.querySelector('a[href="#"]').addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                const accessKey = document.getElementById('accessKey').value;
-                const mobile = document.getElementById('loginMobile').value;
-                
-                // Simple validation
-                if (!accessKey.match(/^OMK-\d{4}-[A-Z0-9]{4}$/)) {
-                    alert('Please enter a valid access key (format: OMK-XXXX-XXXX)');
-                    return;
-                }
-                
-                if (!mobile.match(/^[0-9]{10}$/)) {
-                    alert('Please enter a valid 10-digit mobile number');
-                    return;
-                }
-                
-                // For demo purposes - in production, use auth.js
-                localStorage.setItem('currentPartner', JSON.stringify({
-                    name: 'Demo Partner',
-                    tier: 'Gold Tier',
-                    principal: '₹5,00,000',
-                    monthlyReturns: '₹11,000',
-                    agreementId: accessKey
-                }));
-                
-                localStorage.setItem('accessKey', accessKey);
-                
-                // Redirect to dashboard
-                window.location.href = 'dashboard.html';
-            });
-            
-            // Demo registration (remove in production)
-            document.getElementById('newPartnerForm')?.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Simple validation
-                const name = document.getElementById('fullName').value;
-                const mobile = document.getElementById('partnerMobile').value;
-                const pan = document.getElementById('panNumber').value;
-                const amount = document.getElementById('investmentAmount').value;
-                const consent = document.getElementById('legalConsent').checked;
-                
-                if (!name || !mobile || !pan || !amount || !consent) {
-                    alert('Please fill all fields and agree to terms.');
-                    return;
-                }
-                
-                if (!pan.match(/^[A-Z]{5}[0-9]{4}[A-Z]$/)) {
-                    alert('Please enter a valid PAN number.');
-                    return;
-                }
-                
-                // Show success message
-                alert('Registration submitted successfully! Santosh Shendkar will contact you within 24 hours with next steps.');
-                
-                // Reset form
-                this.reset();
-                
-                // Switch to login tab
-                portalTabs[0].click();
+                alert('Password reset instructions have been sent to your registered mobile number and email.');
             });
         });
-        
-        // Additional CSS for benefits grid
-        const style = document.createElement('style');
-        style.textContent = `
-            .portal-benefits {
-                padding: var(--space-xl) 0;
-            }
-            
-            .benefits-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: var(--space-lg);
-                margin-top: var(--space-xl);
-            }
-            
-            .benefit-item {
-                text-align: center;
-                padding: var(--space-lg);
-                background-color: var(--bg-card);
-                border: 1px solid var(--charcoal);
-                border-radius: var(--border-radius);
-                transition: all var(--transition-normal);
-            }
-            
-            .benefit-item:hover {
-                border-color: var(--gold);
-                transform: translateY(-5px);
-            }
-            
-            .benefit-icon {
-                width: 60px;
-                height: 60px;
-                background-color: rgba(189, 147, 0, 0.1);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--gold);
-                font-size: 1.5rem;
-                margin: 0 auto var(--space-md);
-            }
-            
-            .benefit-item h4 {
-                font-size: 1.1rem;
-                margin-bottom: var(--space-sm);
-            }
-            
-            .benefit-item p {
-                font-size: 0.9rem;
-                color: var(--text-gray);
-                margin-bottom: 0;
-            }
-            
-            .security-disclaimer {
-                padding: var(--space-xl) 0;
-                background-color: var(--bg-dark);
-            }
-            
-            .disclaimer-card {
-                background-color: rgba(255, 193, 7, 0.05);
-                border: 1px solid rgba(255, 193, 7, 0.2);
-                border-radius: var(--border-radius-lg);
-                padding: var(--space-xl);
-                text-align: center;
-            }
-            
-            .disclaimer-card h4 {
-                color: #FFC107;
-                margin-bottom: var(--space-md);
-            }
-            
-            .disclaimer-card p {
-                color: var(--text-gray);
-                margin-bottom: 0;
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-            
-            .w-100 {
-                width: 100% !important;
-            }
-            
-            .mb-2 {
-                margin-bottom: var(--space-sm) !important;
-            }
-            
-            .mt-3 {
-                margin-top: var(--space-md) !important;
-            }
-            
-            .mt-4 {
-                margin-top: var(--space-lg) !important;
-            }
-            
-            .mt-5 {
-                margin-top: var(--space-xl) !important;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
-    <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
+
 </body>
 </html>

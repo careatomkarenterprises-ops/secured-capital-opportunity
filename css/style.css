@@ -88,19 +88,21 @@ body {
 }
 
 .logo-icon {
-    background: var(--gold);
-    color: var(--charcoal);
     width: 45px;
     height: 45px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 1.3rem;
-    border: 1px solid rgba(255, 215, 0, 0.5);
+    overflow: hidden;
 }
 
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
 .logo-text {
     font-weight: 700;
     font-size: 1.4rem;

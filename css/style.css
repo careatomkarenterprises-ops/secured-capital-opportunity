@@ -2764,3 +2764,175 @@ img {
         display: block !important;
     }
 }
+
+/* ===== MOBILE EMERGENCY FIXES ===== */
+@media (max-width: 768px) {
+    /* Fix 1: Make text readable */
+    body {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Fix 2: Fix hero section */
+    .hero-section {
+        padding-top: 80px !important;
+        min-height: 70vh !important;
+        text-align: center !important;
+    }
+    
+    .hero-title {
+        font-size: 28px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 15px !important;
+        padding: 0 10px !important;
+    }
+    
+    /* Fix 3: Fix container width */
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 15px !important;
+    }
+    
+    /* Fix 4: Fix section spacing */
+    .section {
+        padding: 50px 0 !important;
+    }
+    
+    .section-title {
+        font-size: 24px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Fix 5: Fix buttons */
+    .btn {
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 0 auto 10px !important;
+        display: block !important;
+        padding: 14px 20px !important;
+        font-size: 16px !important;
+    }
+    
+    .hero-cta {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        margin-top: 30px !important;
+    }
+    
+    /* Fix 6: Fix cards/grid */
+    .card {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+    }
+    
+    .grid-3,
+    .grid-2,
+    .grid-4 {
+        display: block !important;
+    }
+    
+    /* Fix 7: Fix footer */
+    .footer-grid {
+        display: block !important;
+    }
+    
+    .footer-col {
+        width: 100% !important;
+        margin-bottom: 30px !important;
+    }
+    
+    /* Fix 8: Fix forms */
+    .form-control {
+        width: 100% !important;
+        padding: 15px !important;
+        font-size: 16px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Fix 9: Fix testimonials */
+    .testimonial-content {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Fix 10: Fix FAQ */
+    .faq-item {
+        margin-bottom: 15px !important;
+    }
+    
+    .faq-question {
+        font-size: 16px !important;
+        padding: 15px !important;
+    }
+    
+    /* Fix 11: Fix contact info */
+    .contact-info {
+        font-size: 14px !important;
+        margin: 10px 0 !important;
+    }
+    
+    /* Fix 12: Fix headings hierarchy */
+    h1 {
+        font-size: 28px !important;
+    }
+    
+    h2 {
+        font-size: 22px !important;
+    }
+    
+    h3 {
+        font-size: 18px !important;
+    }
+    
+    h4 {
+        font-size: 16px !important;
+    }
+    
+    /* Fix 13: Fix paragraph spacing */
+    p {
+        margin-bottom: 15px !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Fix 14: Fix lists */
+    ul, ol {
+        padding-left: 20px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    li {
+        margin-bottom: 8px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Fix 15: Fix call-to-action sections */
+    .cta-section {
+        padding: 40px 15px !important;
+        text-align: center !important;
+    }
+    
+    .cta-title {
+        font-size: 20px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Fix 16: Fix navigation */
+    .navbar {
+        padding: 10px 0 !important;
+        height: 60px !important;
+    }
+    
+    .logo-text {
+        font-size: 16px !important;
+    }
+    
+    /* Fix 17: Fix main content spacing */
+    .main-content {
+        padding-top: 60px !important;
+    }
+}

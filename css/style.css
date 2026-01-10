@@ -4692,7 +4692,6 @@ html, body {
         max-width: 300px;
     }
 }
-
 /* ===== OMKAR ENTERPRISES CSS ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { width: 100%; font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; }
@@ -4788,4 +4787,58 @@ html, body { width: 100%; font-family: 'Inter', sans-serif; background: #0a0a0f;
 .form-group { margin-bottom: 20px; }
 .form-group label { display: block; margin-bottom: 8px; color: #fff; font-weight: 500; }
 .form-group input, .form-group select { width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 8px; color: #fff; font-size: 16px; }
-.checkbox-group {
+.checkbox-group { display: flex; align-items: flex-start; gap: 10px; }
+.form-note { font-size: 14px; color: #a0aec0; text-align: center; margin-top: 20px; }
+
+/* Testimonials */
+.testimonials-preview { padding: 80px 0; background: #121826; }
+.testimonial-card { background: #1a2035; padding: 40px; border-radius: 16px; border-left: 4px solid #d4af37; max-width: 800px; margin: 0 auto 50px; }
+.testimonial-content p { font-size: 1.125rem; font-style: italic; color: #a0aec0; line-height: 1.6; }
+
+/* FAQ */
+.faq-preview { padding: 80px 0; background: #0a0a0f; }
+.faq-items { max-width: 800px; margin: 50px auto; }
+.faq-item { margin-bottom: 15px; border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 12px; overflow: hidden; background: #1a2035; }
+.faq-question { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #fff; font-weight: 600; }
+.faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-item.active .faq-answer { padding: 0 20px 20px; max-height: 500px; }
+
+/* Final CTA */
+.final-cta { padding: 80px 0; background: linear-gradient(135deg, #121826, #1a2035); text-align: center; }
+.cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+/* Footer */
+.footer { background: #0a0a0f; padding: 80px 0 30px; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; margin-bottom: 60px; }
+.footer-links { list-style: none; }
+.footer-links a { color: #a0aec0; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.social-links { display: flex; flex-direction: column; gap: 15px; }
+.social-link { display: flex; align-items: center; gap: 15px; padding: 15px; background: #1a2035; border-radius: 8px; text-decoration: none; color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(212, 175, 55, 0.1); padding-top: 30px; text-align: center; color: #a0aec0; }
+
+/* WhatsApp Float */
+.float-whatsapp { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; padding: 15px 20px; border-radius: 50px; display: flex; align-items: center; gap: 10px; text-decoration: none; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3); z-index: 9999; }
+
+/* Utility */
+.text-center { text-align: center; }
+
+/* Mobile */
+@media (max-width: 992px) {
+    .trust-grid, .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .lead-container { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    .nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; background: rgba(26, 32, 53, 0.98); flex-direction: column; padding: 20px; transition: left 0.3s ease; }
+    .nav-menu.active { left: 0; }
+    .nav-menu li { width: 100%; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .trust-grid, .tiers-grid, .footer-grid { grid-template-columns: 1fr; }
+    .tier-card, .trust-card, .testimonial-card { padding: 25px; }
+    .returns-percent { font-size: 2.5rem; }
+    .float-whatsapp span { display: none; }
+    .btn { width: 100%; max-width: 300px; }
+    .hero-cta { flex-direction: column; align-items: center; gap: 15px; }
+}

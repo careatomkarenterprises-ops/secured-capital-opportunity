@@ -1,1174 +1,1364 @@
-<!DOCTYPE html>
-<html lang="en" data-n-head="lang" prefix="schema: https://schema.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* ===== OMKAR ENTERPRISES - PREMIUM LUXURY CSS ===== */
+/* Optimized for SEO, YMYL Compliance & Google Ranking 2026 */
+
+/* ===== GOOGLE FONTS FOR AUTHORITY ===== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ===== ROOT VARIABLES - LUXURY FINANCIAL THEME ===== */
+:root {
+    /* Primary Luxury Colors */
+    --charcoal: #0a0a0f;
+    --navy-dark: #121826;
+    --deep-navy: #1a2035;
+    --gold: #d4af37;
+    --gold-light: #e6c158;
+    --gold-dark: #b8941f;
+    --accent-gold: #ffd700;
     
-    <!-- ===== CRITICAL YMYL METADATA ===== -->
-    <title>Omkar Enterprises | Private B2B Lending & 2% Monthly Returns in Ulhasnagar</title>
-    <meta name="description" content="Secure 2% monthly returns with Omkar Enterprises. Private B2B lending with PDC security, managed by Santosh Maruti Shendkar in Ulhasnagar. ₹25k minimum investment. 500+ satisfied partners since 2018.">
-    <meta name="keywords" content="private lending ulhasnagar, monthly returns investment, omkar enterprises, santosh shendkar, b2b lending, 2% monthly returns, pdc security ulhasnagar, secured capital investment, ulhasnagar investment">
+    /* Gradient Colors */
+    --gradient-gold: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    --gradient-dark: linear-gradient(135deg, var(--charcoal), var(--navy-dark));
+    --gradient-card: linear-gradient(145deg, #1a2035, #121826);
     
-    <!-- ===== E-E-A-T SIGNALS ===== -->
-    <meta name="author" content="Santosh Maruti Shendkar">
-    <meta name="publisher" content="Omkar Enterprises">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    /* Text Colors */
+    --text-white: #ffffff;
+    --text-light: #f0f2f5;
+    --text-gray: #a0aec0;
+    --text-dark: #2d3748;
     
-    <!-- ===== LOCAL SEO ===== -->
-    <meta name="geo.region" content="IN-MH">
-    <meta name="geo.placename" content="Ulhasnagar">
-    <meta name="geo.position" content="19.2183;73.1643">
-    <meta name="ICBM" content="19.2183, 73.1643">
+    /* Background Colors */
+    --bg-dark: #0a0a0f;
+    --bg-card: #1a2035;
+    --bg-card-light: #242b3f;
+    --bg-overlay: rgba(10, 10, 15, 0.9);
     
-    <!-- ===== SECURITY ===== -->
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#0a1a2d">
+    /* Accent & Status */
+    --success: #38a169;
+    --warning: #d69e2e;
+    --error: #e53e3e;
+    --info: #3182ce;
     
-    <!-- ===== CANONICAL ===== -->
-    <link rel="canonical" href="https://omkarservices.in/">
+    /* Spacing Scale (8px base) */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-xxl: 5rem;
     
-    <!-- ===== OPEN GRAPH ===== -->
-    <meta property="og:locale" content="en_IN">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://omkarservices.in/">
-    <meta property="og:site_name" content="Omkar Enterprises">
-    <meta property="og:title" content="Omkar Enterprises | 2% Monthly Private Lending in Ulhasnagar">
-    <meta property="og:description" content="Secure private B2B lending with 2% monthly returns and PDC security in Ulhasnagar. Managed by Santosh Shendkar since 2018.">
-    <meta property="og:image" content="https://omkarservices.in/assets/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Omkar Enterprises - Private Lending Solutions">
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 30px;
+    --radius-full: 9999px;
     
-    <!-- ===== TWITTER CARD ===== -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://omkarservices.in/">
-    <meta property="twitter:title" content="Omkar Enterprises | Private Lending Ulhasnagar">
-    <meta property="twitter:description" content="2% monthly returns with PDC security. Private B2B lending partnerships.">
-    <meta property="twitter:image" content="https://omkarservices.in/assets/og-image.jpg">
+    /* Shadows - Premium Depth */
+    --shadow-sm: 0 2px 15px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+    --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.25);
+    --shadow-gold-hover: 0 15px 40px rgba(212, 175, 55, 0.4);
+    --shadow-inset: inset 0 2px 10px rgba(0, 0, 0, 0.2);
     
-    <!-- ===== ENHANCED SCHEMA MARKUP ===== -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "FinancialService",
-          "@id": "https://omkarservices.in/#financialservice",
-          "name": "Omkar Enterprises",
-          "alternateName": "Omkar Private Lending",
-          "description": "Professional B2B private lending with 2% monthly returns and PDC security",
-          "url": "https://omkarservices.in/",
-          "logo": "https://omkarservices.in/assets/logo.png",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "BK 673, Sai Baba Colony, Opportunity Rajaram Furniture, Central Hospital Area",
-            "addressLocality": "Ulhasnagar",
-            "addressRegion": "Maharashtra",
-            "postalCode": "421002",
-            "addressCountry": "IN"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "19.2183",
-            "longitude": "73.1643"
-          },
-          "founder": {
-            "@type": "Person",
-            "name": "Santosh Maruti Shendkar",
-            "jobTitle": "Founder & Managing Director",
-            "experienceYears": "10",
-            "knowsAbout": ["Private Lending", "B2B Financing", "Investment Security", "PDC Management"]
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+918169302861",
-            "contactType": "customer service",
-            "areaServed": ["IN", "Maharashtra", "Ulhasnagar"],
-            "availableLanguage": ["English", "Hindi", "Marathi"]
-          },
-          "priceRange": "₹25000 - ₹2500000",
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "10:00",
-            "closes": "19:00"
-          },
-          "knowsAbout": ["Private Lending", "B2B Financing", "Monthly Returns", "PDC Security"],
-          "serviceType": "Private Lending & Investment",
-          "areaServed": {
-            "@type": "City",
-            "name": "Ulhasnagar"
-          }
-        }
-      ]
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Container Widths */
+    --container-xs: 640px;
+    --container-sm: 768px;
+    --container-md: 1024px;
+    --container-lg: 1280px;
+    --container-xl: 1440px;
+}
+
+/* ===== CSS RESET & BASE STYLES ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-light);
+    background-color: var(--bg-dark);
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ===== TYPOGRAPHY HIERARCHY ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+    color: var(--text-white);
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.3px;
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: var(--space-md);
+    font-size: 1.125rem;
+    line-height: 1.7;
+}
+
+.gold-text {
+    color: var(--gold);
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+/* ===== CONTAINER SYSTEM ===== */
+.container {
+    width: 100%;
+    max-width: var(--container-lg);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.container-narrow {
+    max-width: var(--container-md);
+}
+
+.container-wide {
+    max-width: var(--container-xl);
+}
+
+/* ===== SYSTEM STATUS BAR - YMYL SIGNAL ===== */
+.system-status {
+    background: var(--gradient-dark);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    z-index: 100;
+}
+
+.system-status .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background: var(--success);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.status-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border-radius: var(--radius-full);
+    background: var(--success);
+    opacity: 0.3;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+    70% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+.status-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-gray);
+}
+
+.status-text strong {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* ===== PREMIUM NAVIGATION ===== */
+.navbar {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all var(--transition-normal);
+}
+
+.navbar.scrolled {
+    background: rgba(26, 32, 53, 0.95);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) 0;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    transition: transform var(--transition-fast);
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-gold);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--navy-dark);
+    border-radius: calc(var(--radius-md) - 1px);
+}
+
+.logo-icon img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    list-style: none;
+}
+
+.nav-menu a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+    padding: var(--space-xs) 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-gold);
+    transition: width var(--transition-normal);
+}
+
+.nav-menu a:hover {
+    color: var(--gold);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+.nav-menu a i {
+    font-size: 0.9rem;
+    color: var(--gold);
+    transition: transform var(--transition-fast);
+}
+
+.nav-menu a:hover i {
+    transform: translateY(-1px);
+}
+
+/* Navigation CTA */
+.nav-cta {
+    margin-left: var(--space-lg);
+}
+
+.btn-nav-login {
+    background: var(--gradient-gold);
+    color: var(--charcoal) !important;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    box-shadow: var(--shadow-gold);
+}
+
+.btn-nav-login:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold-hover);
+}
+
+/* Mobile Menu */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    margin: 5px 0;
+    transition: all var(--transition-normal);
+    border-radius: 1px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ===== PREMIUM HERO SECTION ===== */
+.hero-section {
+    padding: var(--space-xxl) 0;
+    background: var(--gradient-dark);
+    position: relative;
+    overflow: hidden;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, var(--bg-dark));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Hero Badge */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xl);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(10px);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Hero Title */
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: var(--space-lg);
+    background: linear-gradient(135deg, var(--text-white) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    color: var(--text-gray);
+    max-width: 700px;
+    margin: 0 auto var(--space-xl);
+    line-height: 1.7;
+}
+
+/* Hero Stats */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xxl);
+    margin: var(--space-xl) 0;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: calc(var(--space-xxl) / -2);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+}
+
+.stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: var(--space-xs);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+/* Hero CTA */
+.hero-cta {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    margin-top: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+/* Hero Disclaimer - YMYL Critical */
+.hero-disclaimer {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-md);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-disclaimer p {
+    font-size: 0.875rem;
+    color: var(--text-gray);
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+}
+
+.hero-disclaimer i {
+    color: var(--warning);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.hero-disclaimer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.hero-disclaimer a:hover {
+    border-bottom-color: var(--gold);
+}
+
+/* ===== PREMIUM BUTTON SYSTEM ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    z-index: -1;
+    transition: transform var(--transition-normal);
+}
+
+.btn:hover::before {
+    transform: scale(1.05);
+}
+
+.btn-primary {
+    background: var(--gradient-gold);
+    color: var(--charcoal);
+    box-shadow: var(--shadow-gold);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-gold-hover);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+}
+
+.btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-gold);
+}
+
+.btn-large {
+    padding: var(--space-lg) var(--space-xxl);
+    font-size: 1.125rem;
+    min-width: 220px;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--bg-card-light);
+}
+
+.btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* ===== WHY CHOOSE US SECTION ===== */
+.why-choose-section {
+    padding: var(--space-xxl) 0;
+    background: var(--bg-card);
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto var(--space-xxl);
+    line-height: 1.7;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.feature-card {
+    background: var(--gradient-card);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-gold);
+    transform: scaleY(0);
+    transition: transform var(--transition-normal);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-card:hover::before {
+    transform: scaleY(1);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+    color: var(--gold);
+    font-size: 2rem;
+    transition: all var(--transition-normal);
+}
+
+.feature-card:hover .feature-icon {
+    background: var(--gradient-gold);
+    color: var(--charcoal);
+    transform: scale(1.1);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-white);
+}
+
+.feature-card p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ===== PROCESS SECTION ===== */
+.process-section {
+    padding: var(--space-xxl) 0;
+    background: var(--bg-dark);
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+    position: relative;
+}
+
+.process-step {
+    background: var(--gradient-card);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-gold);
+    color: var(--charcoal);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto var(--space-lg);
+    position: relative;
+    z-index: 2;
+    border: 4px solid var(--bg-dark);
+}
+
+.step-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+}
+
+.step-content p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ===== RISK DISCLOSURE SECTION - YMYL CRITICAL ===== */
+.risk-section {
+    padding: var(--space-xxl) 0;
+    background: linear-gradient(135deg, var(--navy-dark), var(--charcoal));
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.risk-card {
+    background: var(--gradient-card);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xxl);
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.risk-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-gold);
+}
+
+.risk-content {
+    display: grid;
+    gap: var(--space-xl);
+    margin: var(--space-xl) 0;
+}
+
+.risk-item {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+}
+
+.risk-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 1.5rem;
+}
+
+.risk-text h4 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+    color: var(--text-white);
+}
+
+.risk-text p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-section {
+    padding: var(--space-xxl) 0;
+    background: var(--bg-card);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.testimonial-card {
+    background: var(--gradient-card);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    position: relative;
+}
+
+.testimonial-content {
+    margin-bottom: var(--space-lg);
+    position: relative;
+}
+
+.testimonial-content::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.2;
+    font-family: 'Playfair Display', serif;
+}
+
+.testimonial-content p {
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.8;
+    font-size: 1.125rem;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--charcoal);
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.author-info h4 {
+    font-size: 1.125rem;
+    margin-bottom: 4px;
+    color: var(--text-white);
+}
+
+.author-info span {
+    color: var(--text-gray);
+    font-size: 0.875rem;
+}
+
+/* ===== CONTACT FORM SECTION ===== */
+.contact-section {
+    padding: var(--space-xxl) 0;
+    background: linear-gradient(135deg, var(--charcoal), var(--navy-dark));
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xxl);
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    background: var(--gradient-card);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xxl);
+    box-shadow: var(--shadow-lg);
+}
+
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--space-sm);
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-md);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.form-control::placeholder {
+    color: var(--text-gray);
+}
+
+/* ===== PREMIUM FOOTER ===== */
+.footer {
+    background: var(--charcoal);
+    padding: var(--space-xxl) 0 var(--space-xl);
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-gold);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xxl);
+    margin-bottom: var(--space-xxl);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.footer-description {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-xl);
+}
+
+.footer-contact p {
+    color: var(--text-gray);
+    margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.95rem;
+}
+
+.footer-contact i {
+    color: var(--gold);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.footer-col h4 {
+    color: var(--gold);
+    margin-bottom: var(--space-lg);
+    font-size: 1.25rem;
+    position: relative;
+    padding-bottom: var(--space-sm);
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--gradient-gold);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: var(--space-sm);
+}
+
+.footer-links a {
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+    transform: translateX(5px);
+}
+
+.footer-links i {
+    color: var(--gold);
+    font-size: 0.8rem;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-card-light);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-light);
+    transition: all var(--transition-normal);
+    border: 1px solid transparent;
+}
+
+.social-link.whatsapp:hover {
+    background: rgba(37, 211, 102, 0.1);
+    border-color: #25D366;
+    color: #25D366;
+    transform: translateY(-2px);
+}
+
+.social-link.email:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* Footer Disclaimer - YMYL */
+.footer-disclaimer {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin: var(--space-xxl) 0;
+}
+
+.footer-disclaimer h4 {
+    color: var(--gold);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 1.125rem;
+}
+
+.footer-disclaimer p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    padding-top: var(--space-xl);
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--text-gray);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-xs);
+}
+
+.footer-regulatory {
+    margin-top: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    color: var(--gold);
+    font-size: 0.875rem;
+}
+
+/* ===== FLOATING WHATSAPP ===== */
+.float-whatsapp {
+    position: fixed;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: var(--text-white);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    transition: all var(--transition-normal);
+    font-weight: 600;
+}
+
+.float-whatsapp:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
+}
+
+.float-whatsapp i {
+    font-size: 1.5rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
     }
-    </script>
     
-    <!-- ===== FONTS & ICONS ===== -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    .hero-stats {
+        gap: var(--space-xl);
+    }
     
-    <!-- ===== PREMIUM CSS STYLES ===== -->
-    <style>
-        /* ===== LUXURY FINANCIAL THEME VARIABLES ===== */
-        :root {
-            /* Color Palette */
-            --primary-dark: #0a1a2d;
-            --secondary-dark: #121f36;
-            --accent-gold: #d4af37;
-            --accent-gold-light: #f4d03f;
-            --accent-gold-dark: #9c7c1e;
-            --text-white: #ffffff;
-            --text-light: #e2e8f0;
-            --text-gray: #94a3b8;
-            --card-bg: #1a253a;
-            
-            /* Gradients */
-            --gradient-dark: linear-gradient(145deg, var(--primary-dark), var(--secondary-dark));
-            --gradient-gold: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            
-            /* Shadows */
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 15px 50px rgba(0, 0, 0, 0.4);
-            --shadow-gold: 0 5px 20px rgba(212, 175, 55, 0.3);
-            
-            /* Spacing */
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 1.5rem;
-            --space-lg: 2rem;
-            --space-xl: 3rem;
-            --space-xxl: 5rem;
-            
-            /* Borders */
-            --radius-sm: 6px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --radius-xl: 30px;
-        }
-
-        /* ===== BASE RESET ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            color: var(--text-light);
-            background: var(--gradient-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        /* ===== TYPOGRAPHY ===== */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: var(--space-md);
-        }
-
-        h1 {
-            font-size: clamp(2.8rem, 5vw, 4.5rem);
-            letter-spacing: -0.5px;
-        }
-
-        h2 {
-            font-size: clamp(2.2rem, 4vw, 3.2rem);
-            margin-bottom: var(--space-lg);
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            margin-bottom: var(--space-sm);
-        }
-
-        p {
-            font-size: 1.125rem;
-            line-height: 1.7;
-            margin-bottom: var(--space-md);
-            color: var(--text-gray);
-        }
-
-        .gold-text {
-            color: var(--accent-gold);
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* ===== CONTAINERS ===== */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-lg);
-        }
-
-        .container-narrow {
-            max-width: 900px;
-        }
-
-        /* ===== SYSTEM STATUS BAR ===== */
-        .system-status {
-            background: rgba(10, 26, 45, 0.9);
-            padding: var(--space-sm) 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            position: relative;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-
-        .system-status .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
-            text-align: center;
-        }
-
-        .status-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #38a169;
-            position: relative;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-
-        .status-text {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-
-        .status-text strong {
-            color: var(--accent-gold);
-        }
-
-        /* ===== PREMIUM NAVIGATION ===== */
-        .navbar {
-            background: rgba(10, 26, 45, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: var(--space-sm) 0;
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            padding: 0.5rem 0;
-            box-shadow: var(--shadow-md);
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Logo */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: translateY(-2px);
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient-gold);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: var(--shadow-gold);
-        }
-
-        .logo-icon img {
-            width: 70%;
-            height: 70%;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--accent-gold);
-            letter-spacing: 0.5px;
-        }
-
-        /* Navigation Menu */
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: var(--space-xl);
-            list-style: none;
-        }
-
-        .nav-menu a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: var(--space-xs) 0;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            color: var(--accent-gold);
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .nav-menu a i {
-            font-size: 0.9rem;
-            color: var(--accent-gold);
-        }
-
-        /* Navigation CTA Button */
-        .btn-nav-login {
-            background: var(--gradient-gold);
-            color: var(--primary-dark) !important;
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            box-shadow: var(--shadow-gold);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-nav-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        /* Mobile Menu Toggle */
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 4px;
-            padding: var(--space-xs);
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--accent-gold);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* ===== LUXURY HERO SECTION ===== */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: var(--space-xxl) 0;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: radial-gradient(circle at 70% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Hero Badge */
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-sm);
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--accent-gold);
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--radius-xl);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: var(--space-xl);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            backdrop-filter: blur(10px);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-badge i {
-            font-size: 1rem;
-        }
-
-        /* Hero Title */
-        .hero-title {
-            margin-bottom: var(--space-lg);
-            line-height: 1.1;
-        }
-
-        /* Hero Subtitle */
-        .hero-subtitle {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto var(--space-xl);
-            color: var(--text-light);
-        }
-
-        /* Hero Stats */
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-xxl);
-            margin: var(--space-xl) 0;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-            position: relative;
-        }
-
-        .stat:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: calc(var(--space-xxl) / -2);
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 50px;
-            background: linear-gradient(to bottom, transparent, var(--accent-gold), transparent);
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--accent-gold);
-            margin-bottom: var(--space-xs);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        /* Hero CTA Buttons */
-        .hero-cta {
-            display: flex;
-            gap: var(--space-lg);
-            justify-content: center;
-            margin-top: var(--space-xl);
-            flex-wrap: wrap;
-        }
-
-        /* Hero Disclaimer */
-        .hero-disclaimer {
-            margin-top: var(--space-xl);
-            padding: var(--space-lg);
-            background: rgba(212, 175, 55, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: var(--radius-md);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-disclaimer p {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            margin: 0;
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-sm);
-        }
-
-        .hero-disclaimer i {
-            color: #e53e3e;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .hero-disclaimer a {
-            color: var(--accent-gold);
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-
-        .hero-disclaimer a:hover {
-            border-bottom-color: var(--accent-gold);
-        }
-
-        /* ===== BUTTON SYSTEM ===== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-            padding: var(--space-md) var(--space-xl);
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            z-index: -1;
-            transition: transform 0.3s ease;
-        }
-
-        .btn:hover::before {
-            transform: scale(1.05);
-        }
-
-        .btn-primary {
-            background: var(--gradient-gold);
-            color: var(--primary-dark);
-            box-shadow: var(--shadow-gold);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent-gold);
-            border: 2px solid var(--accent-gold);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-gold);
-        }
-
-        .btn-large {
-            padding: var(--space-lg) var(--space-xxl);
-            font-size: 1.1rem;
-            min-width: 220px;
-        }
-
-        /* ===== WHY CHOOSE US SECTION ===== */
-        .trust-section {
-            padding: var(--space-xxl) 0;
-            background: var(--secondary-dark);
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: var(--space-lg);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto var(--space-xxl);
-            font-size: 1.2rem;
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-xl);
-            margin-top: var(--space-xl);
-        }
-
-        .trust-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .trust-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--gradient-gold);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .trust-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-gold);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .trust-card:hover::before {
-            transform: scaleY(1);
-        }
-
-        .trust-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto var(--space-lg);
-            color: var(--accent-gold);
-            font-size: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .trust-card:hover .trust-icon {
-            background: var(--gradient-gold);
-            color: var(--primary-dark);
-            transform: scale(1.1);
-        }
-
-        .trust-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: var(--space-md);
-            color: var(--text-white);
-        }
-
-        .trust-card p {
-            color: var(--text-gray);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        /* ===== PROCESS SECTION ===== */
-        .tiers-preview {
-            padding: var(--space-xxl) 0;
-            background: var(--primary-dark);
-        }
-
-        .tiers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-xl);
-            margin-top: var(--space-xl);
-        }
-
-        .tier-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .tier-card.featured {
-            border: 2px solid var(--accent-gold);
-            background: rgba(212, 175, 55, 0.05);
-            transform: scale(1.05);
-        }
-
-        .tier-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-gold);
-            color: var(--primary-dark);
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--radius-xl);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tier-header {
-            margin-bottom: var(--space-lg);
-        }
-
-        .tier-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: var(--space-sm);
-            color: var(--text-white);
-        }
-
-        .tier-card p {
-            color: var(--text-gray);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 1024px) {
-            .hero-stats {
-                gap: var(--space-xl);
-            }
-            
-            .stat:not(:last-child)::after {
-                display: none;
-            }
-            
-            .tiers-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(10, 26, 45, 0.98);
-                flex-direction: column;
-                padding: var(--space-xl);
-                gap: var(--space-lg);
-                transition: left 0.4s ease;
-                z-index: 1000;
-                overflow-y: auto;
-                backdrop-filter: blur(20px);
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-cta {
-                margin-left: 0;
-                margin-top: var(--space-lg);
-            }
-            
-            .hero-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-large {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .trust-grid,
-            .tiers-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: var(--space-lg);
-            }
-            
-            .tier-card.featured {
-                transform: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 var(--space-md);
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .stat-number {
-                font-size: 2.8rem;
-            }
-        }
-    </style>
-</head>
-<body itemscope itemtype="https://schema.org/WebPage">
-    <!-- ===== SYSTEM STATUS BAR ===== -->
-    <div class="system-status" role="status" aria-live="polite" aria-label="System status">
-        <div class="container">
-            <span class="status-indicator active" aria-hidden="true"></span>
-            <span class="status-text">
-                <strong itemprop="name" content="Omkar Enterprises">Omkar Enterprises Status:</strong> 
-                All Services Operational • 
-                <span itemprop="description" content="January 2026 Payouts Completed">January 2026 Payouts: 100% Completed</span> • 
-                Next Payout: <time datetime="2026-02-07T00:00:00+05:30">07 Feb 2026</time>
-            </span>
-        </div>
-    </div>
-
-    <!-- ===== MAIN NAVIGATION ===== -->
-    <nav class="navbar" aria-label="Main navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
-        <div class="container nav-container">
-            <!-- Logo with Schema -->
-            <a href="index.html" class="logo" itemprop="url" aria-label="Omkar Enterprises Home">
-                <div class="logo-icon" aria-hidden="true">
-                    <img src="assets/logo.png" alt="Omkar Enterprises Logo - Private Lending Services" width="48" height="48" loading="eager">
-                </div>
-                <div class="logo-text" itemprop="name">OMKAR ENTERPRISES</div>
-            </a>
-            
-            <!-- Mobile Menu Toggle -->
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <!-- Navigation Menu -->
-            <ul class="nav-menu" id="navMenu" role="menubar">
-                <li role="none" itemprop="name"><a href="index.html" role="menuitem" aria-current="page" itemprop="url"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
-                <li role="none" itemprop="name"><a href="slabs.html" role="menuitem" itemprop="url"><i class="fas fa-chart-line" aria-hidden="true"></i> Investment Tiers</a></li>
-                <li role="none" itemprop="name"><a href="legal-framework.html" role="menuitem" itemprop="url"><i class="fas fa-gavel" aria-hidden="true"></i> Legal Framework</a></li>
-                <li role="none" itemprop="name"><a href="testimonials.html" role="menuitem" itemprop="url"><i class="fas fa-star" aria-hidden="true"></i> Testimonials</a></li>
-                <li role="none" itemprop="name"><a href="about.html" role="menuitem" itemprop="url"><i class="fas fa-user-tie" aria-hidden="true"></i> About Founder</a></li>
-                <li role="none" itemprop="name"><a href="contact.html" role="menuitem" itemprop="url"><i class="fas fa-phone-alt" aria-hidden="true"></i> Contact</a></li>
-                
-                <!-- Navigation CTA -->
-                <li class="nav-cta" role="none">
-                    <a href="tel:+918169302861" class="btn-nav-login" role="button" itemprop="telephone" aria-label="Call Santosh Shendkar">
-                        <i class="fas fa-phone-alt" aria-hidden="true"></i> +91 8169 302 861
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- ===== LUXURY HERO SECTION ===== -->
-    <main class="hero" itemscope itemtype="https://schema.org/FinancialService">
-        <div class="container">
-            <div class="hero-content">
-                <!-- Trust Badge -->
-                <span class="hero-badge" aria-label="Service badge">
-                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Secure Private Lending
-                </span>
-                
-                <!-- Main Heading -->
-                <h1 class="hero-title" itemprop="name">
-                    Secure <span class="gold-text">2% Monthly Returns</span><br>
-                    with Omkar Enterprises
-                </h1>
-                
-                <!-- Subtitle -->
-                <p class="hero-subtitle" itemprop="description">
-                    Trusted by 500+ partners in Ulhasnagar with 100% payout record since 2018. 
-                    Experience transparent private lending with guaranteed returns.
-                </p>
-                
-                <!-- Stats -->
-                <div class="hero-stats" aria-label="Performance statistics">
-                    <div class="stat" itemscope itemtype="https://schema.org/QuantitativeValue">
-                        <div class="stat-number" itemprop="value">10<span itemprop="unitCode" content="YR">+</span></div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    
-                    <div class="stat" itemscope itemtype="https://schema.org/QuantitativeValue">
-                        <div class="stat-number" itemprop="value">500<span itemprop="unitCode" content="PRT">+</span></div>
-                        <div class="stat-label">Satisfied Partners</div>
-                    </div>
-                    
-                    <div class="stat" itemscope itemtype="https://schema.org/QuantitativeValue">
-                        <div class="stat-number" itemprop="value">100<span itemprop="unitCode" content="PCT">%</span></div>
-                        <div class="stat-label">Payout Record</div>
-                    </div>
-                </div>
-                
-                <!-- CTA Buttons -->
-                <div class="hero-cta">
-                    <a href="contact.html" class="btn-primary btn-large" role="button" aria-label="Start partnership with Omkar Enterprises">
-                        <i class="fas fa-handshake" aria-hidden="true"></i> Start Your Partnership
-                    </a>
-                    <a href="tel:+919226393837" class="btn-secondary btn-large" role="button" aria-label="Call for consultation">
-                        <i class="fas fa-phone-alt" aria-hidden="true"></i> Call: +91 9226 393 837
-                    </a>
-                </div>
-                
-                <!-- YMYL Risk Disclosure -->
-                <div class="hero-disclaimer" role="note" aria-label="Important investment disclaimer">
-                    <p><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
-                        <strong>Investment Notice:</strong> Returns are based on historical performance. 
-                        Past performance doesn't guarantee future results. Capital is at risk. 
-                        <a href="risk-disclosure.html" aria-label="Read full risk disclosure">Read full risk disclosure</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- ===== WHY CHOOSE US SECTION ===== -->
-    <section class="trust-section" aria-labelledby="why-choose-heading" id="services">
-        <div class="container">
-            <h2 class="section-title" id="why-choose-heading">Why Choose <span class="gold-text">Us</span></h2>
-            <p class="section-subtitle">
-                Experience the Omkar Enterprises difference with our commitment to security, 
-                transparency, and consistent returns
-            </p>
-            
-            <div class="trust-grid">
-                <div class="trust-card" itemscope itemtype="https://schema.org/Service">
-                    <div class="trust-icon" aria-hidden="true">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 itemprop="name">Secure Investments</h3>
-                    <p itemprop="description">
-                        Every partnership is secured with PDC (Post Dated Cheques) and legally 
-                        notarized agreements ensuring complete protection of your principal amount.
-                    </p>
-                </div>
-                
-                <div class="trust-card" itemscope itemtype="https://schema.org/Service">
-                    <div class="trust-icon" aria-hidden="true">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 itemprop="name">Consistent 2% Returns</h3>
-                    <p itemprop="description">
-                        Earn guaranteed 2% monthly returns (24% annually) with our proven private 
-                        lending model. We've maintained this return rate for over 5 years.
-                    </p>
-                </div>
-                
-                <div class="trust-card" itemscope itemtype="https://schema.org/Service">
-                    <div class="trust-icon" aria-hidden="true">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <h3 itemprop="name">Transparent Process</h3>
-                    <p itemprop="description">
-                        Complete transparency in all transactions. Regular updates, clear documentation, 
-                        and open communication with our founder Santosh Shendkar.
-                    </p>
-                </div>
-                
-                <div class="trust-card" itemscope itemtype="https://schema.org/Service">
-                    <div class="trust-icon" aria-hidden="true">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 itemprop="name">Trusted Community</h3>
-                    <p itemprop="description">
-                        Join 500+ satisfied partners who trust Omkar Enterprises for their investment 
-                        needs. Be part of Ulhasnagar's most trusted financial community.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SIMPLE PROCESS SECTION ===== -->
-    <section class="tiers-preview" aria-labelledby="process-heading">
-        <div class="container">
-            <h2 class="section-title" id="process-heading">Simple <span class="gold-text">4-Step Process</span></h2>
-            <p class="section-subtitle">
-                From consultation to monthly returns - our streamlined process ensures a smooth partnership experience
-            </p>
-            
-            <div class="tiers-grid">
-                <div class="tier-card" itemscope itemtype="https://schema.org/HowToStep">
-                    <div class="tier-badge" aria-hidden="true">Step 1</div>
-                    <div class="tier-header">
-                        <h3 itemprop="name">Initial Consultation</h3>
-                    </div>
-                    <p itemprop="text">
-                        Meet with our founder Santosh Shendkar to discuss your investment goals 
-                        and understand our partnership model.
-                    </p>
-                </div>
-                
-                <div class="tier-card" itemscope itemtype="https://schema.org/HowToStep">
-                    <div class="tier-badge" aria-hidden="true">Step 2</div>
-                    <div class="tier-header">
-                        <h3 itemprop="name">Documentation</h3>
-                    </div>
-                    <p itemprop="text">
-                        Complete the notarized partnership agreement and provide PDCs for security. 
-                        All documents are explained in detail.
-                    </p>
-                </div>
-                
-                <div class="tier-card" itemscope itemtype="https://schema.org/HowToStep">
-                    <div class="tier-badge" aria-hidden="true">Step 3</div>
-                    <div class="tier-header">
-                        <h3 itemprop="name">Fund Transfer</h3>
-                    </div>
-                    <p itemprop="text">
-                        Transfer your investment amount through secure banking channels. 
-                        Receive immediate confirmation.
-                    </p>
-                </div>
-                
-                <div class="tier-card featured" itemscope itemtype="https://schema.org/HowToStep">
-                    <div class="tier-badge" aria-hidden="true">Step 4</div>
-                    <div class="tier-header">
-                        <h3 itemprop="name">Monthly Returns</h3>
-                    </div>
-                    <p itemprop="text">
-                        Start receiving 2% monthly returns on the 1st of every month. 
-                        Consistent payouts for the duration of partnership.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== JAVASCRIPT FOR INTERACTIVITY ===== -->
-    <script>
-        // Mobile Navigation Toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('navMenu');
-            
-            if (hamburger) {
-                hamburger.addEventListener('click', function() {
-                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', !isExpanded);
-                    navMenu.classList.toggle('active');
-                    
-                    // Animate hamburger to X
-                    this.classList.toggle('active');
-                });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                        hamburger.setAttribute('aria-expanded', 'false');
-                        navMenu.classList.remove('active');
-                        hamburger.classList.remove('active');
-                    }
-                });
-            }
-            
-            // Navbar scroll effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-            
-            // Animate stats when they come into view
-            const observerOptions = {
-                threshold: 0.5
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const statNumbers = entry.target.querySelectorAll('.stat-number');
-                        statNumbers.forEach((stat, index) => {
-                            const finalValue = parseInt(stat.textContent);
-                            let current = 0;
-                            const increment = finalValue / 50;
-                            const timer = setInterval(() => {
-                                current += increment;
-                                if (current >= finalValue) {
-                                    stat.textContent = finalValue + (stat.textContent.includes('+') ? '+' : '');
-                                    clearInterval(timer);
-                                } else {
-                                    stat.textContent = Math.floor(current);
-                                }
-                            }, 30);
-                        });
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe hero stats section
-            const heroStats = document.querySelector('.hero-stats');
-            if (heroStats) observer.observe(heroStats);
-        });
-    </script>
-</body>
-</html>
+    .stat-item:not(:last-child)::after {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--bg-card);
+        flex-direction: column;
+        padding: var(--space-xl);
+        gap: var(--space-lg);
+        transition: left var(--transition-normal);
+        z-index: 1000;
+        overflow-y: auto;
+        backdrop-filter: blur(20px);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-cta {
+        margin-left: 0;
+        margin-top: var(--space-lg);
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-large {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .features-grid,
+    .process-steps,
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+    
+    .float-whatsapp {
+        bottom: var(--space-lg);
+        right: var(--space-lg);
+        padding: var(--space-md);
+    }
+    
+    .float-whatsapp span {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .feature-card,
+    .testimonial-card,
+    .risk-card {
+        padding: var(--space-lg);
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .navbar,
+    .hero-cta,
+    .float-whatsapp,
+    .footer-disclaimer,
+    .footer-bottom {
+        display: none;
+    }
+    
+    body {
+        color: #000;
+        background: #fff;
+    }
+    
+    .container {
+        max-width: 100%;
+    }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lazy-loaded {
+    opacity: 1;
+}

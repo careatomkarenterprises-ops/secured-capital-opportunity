@@ -1046,3 +1046,108 @@ html, body {
         font-size: 16px;
     }
 }
+/* ===== LOGO STYLING ===== */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 15px;
+    padding: 5px 0;
+}
+
+.logo-image-container {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--white);
+    border: 2px solid var(--light-blue);
+    padding: 5px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.logo-image-container:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+    border-color: var(--gold-accent);
+}
+
+.logo-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.color-logo {
+    filter: none !important;
+}
+
+.logo-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+}
+
+.logo-main {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--trust-blue);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.logo-tagline {
+    font-size: 11px;
+    color: var(--slate-light);
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile Responsive for Logo */
+@media (max-width: 768px) {
+    .logo {
+        gap: 12px;
+    }
+    
+    .logo-image-container {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .logo-main {
+        font-size: 18px;
+    }
+    
+    .logo-tagline {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        gap: 10px;
+    }
+    
+    .logo-image-container {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .logo-main {
+        font-size: 16px;
+    }
+    
+    .logo-tagline {
+        font-size: 9px;
+        display: none; /* Hide tagline on very small screens */
+    }
+}

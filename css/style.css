@@ -1362,3 +1362,91 @@ p {
 .lazy-loaded {
     opacity: 1;
 }
+
+/* Returns Structure Styling */
+.returns-highlight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(56, 161, 105, 0.1);
+    border: 1px solid rgba(56, 161, 105, 0.3);
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+.returns-highlight i {
+    color: #38a169;
+    font-size: 1.2rem;
+}
+
+/* Performance Bonus Styling */
+.bonus-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--navy-dark);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-left: 8px;
+}
+
+/* Fixed Returns Styling */
+.fixed-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #38a169, #2f855a);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-left: 8px;
+}
+
+/* Timeline for Returns */
+.returns-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #38a169;
+    position: relative;
+}
+
+.timeline-dot.bonus {
+    background: var(--gold);
+}
+
+.timeline-dot:after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 2px;
+    background: var(--charcoal);
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+}
+
+.timeline-dot:last-child:after {
+    display: none;
+}
+
+.timeline-label {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}

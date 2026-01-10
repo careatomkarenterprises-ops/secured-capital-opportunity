@@ -2282,3 +2282,357 @@ img {
         transition: none;
     }
 }
+/* ===== OMKAR ENTERPRISES - FIXED LAYOUT CSS ===== */
+/* Simple, Professional & Perfectly Aligned */
+/* Last Updated: January 2026 */
+
+/* ===== 1. BASIC RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #ffffff;
+}
+
+/* ===== 2. CONTAINER FOR PERFECT ALIGNMENT ===== */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== 3. FIXED NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #1a2035;
+    z-index: 1000;
+    padding: 15px 0;
+    border-bottom: 1px solid #d4af37;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #d4af37;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* ===== 4. PERFECT HERO SECTION ===== */
+.hero-section {
+    padding-top: 120px; /* Space for fixed navbar */
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #0a0a0f, #121826);
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hero-title {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: #a0aec0;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* ===== 5. BUTTONS ===== */
+.btn {
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #d4af37;
+    color: #0a0a0f;
+}
+
+.btn-primary:hover {
+    background: #b8941f;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #d4af37;
+    border: 2px solid #d4af37;
+}
+
+.btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* ===== 6. SECTION STYLES ===== */
+.section {
+    padding: 80px 0;
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: #ffffff;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #a0aec0;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* ===== 7. GRID SYSTEM ===== */
+.grid {
+    display: grid;
+    gap: 30px;
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* ===== 8. CARDS ===== */
+.card {
+    background: #1a2035;
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
+}
+
+/* ===== 9. FOOTER ===== */
+.footer {
+    background: #0a0a0f;
+    padding: 60px 0 30px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+/* ===== 10. MOBILE RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+    
+    .grid-3,
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Mobile Menu */
+    .hamburger {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #1a2035;
+        padding: 20px;
+    }
+    
+    .nav-menu.active {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* ===== 11. FIXES FOR COMMON ISSUES ===== */
+/* Fix for images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Fix for text alignment */
+.text-center {
+    text-align: center;
+}
+
+/* Fix for spacing */
+.mt-40 { margin-top: 40px; }
+.mb-40 { margin-bottom: 40px; }
+.pt-80 { padding-top: 80px; }
+.pb-80 { padding-bottom: 80px; }
+
+/* Fix for floating elements */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Fix for links */
+a {
+    color: #d4af37;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== 12. WHATSAPP BUTTON ===== */
+.float-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25D366;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+/* ===== 13. FORMS ===== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+}
+
+/* ===== 14. TABLES ===== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* ===== 15. UTILITY CLASSES ===== */
+.d-flex { display: flex; }
+.d-block { display: block; }
+.d-none { display: none; }
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+.align-center { align-items: center; }
+.justify-center { justify-content: center; }
+.flex-column { flex-direction: column; }

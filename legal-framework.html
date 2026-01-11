@@ -1712,14 +1712,16 @@
                 });
             });
             
-            // Handle preview buttons (that have href="#")
-            document.querySelectorAll('a.connect-btn[href="#"], a.cta-btn-secondary[href="#"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    alert('For security and privacy reasons, document previews are available only during in-person consultations. Please schedule a meeting to review complete documents.');
-                });
-            });
-            
+            // Handle document preview requests (only for buttons without proper links)
+document.querySelectorAll('a[href="#"]').forEach(link => {
+    // Only apply to buttons that don't have valid document links
+    if (!link.href.includes('.pdf') && !link.href.includes('contact.html')) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('For security and privacy reasons, document previews are available only during in-person consultations. Please schedule a meeting to review complete documents.');
+        });
+    }
+});            
             // Partner portal protection
             document.querySelectorAll('a[href*="partner-portal"]').forEach(link => {
                 link.addEventListener('click', function(e) {

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO TAGS - MATCHING HOME PAGE FORMAT -->
+    <!-- Primary Meta Tags -->
     <title>Santosh Shendkar | Founder & Managing Partner | Omkar Enterprises Private Lending</title>
     <meta name="description" content="Meet Santosh Shendkar, founder of Omkar Enterprises. 10+ years experience in private lending partnerships with 500+ satisfied partners and 100% payout record since 2015.">
-    <meta name="keywords" content="Santosh Shendkar, Omkar Enterprises founder, private lending expert, investment specialist, Ulhasnagar, Maharashtra, secure monthly returns">
+    <meta name="keywords" content="Santosh Shendkar, Omkar Enterprises founder, private lending expert, investment specialist, Ulhasnagar, Maharashtra, secure monthly returns, 1% monthly returns, PDC security, private lending partnership">
     <meta name="author" content="Omkar Enterprises - Santosh Shendkar">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
@@ -19,16 +19,20 @@
     <meta property="og:description" content="10+ years experience in private lending with 500+ satisfied partners and 100% payout record since 2015.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://omkarservices.in/about.html">
-    <meta property="og:image" content="https://omkarservices.in/assets/founder-og.jpg">
+    <meta property="og:image" content="https://omkarservices.in/assets/founder.jpg">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
+    <meta property="og:image:alt" content="Santosh Shendkar - Founder of Omkar Enterprises, Private Lending Expert">
     <meta property="og:site_name" content="Omkar Enterprises">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Santosh Shendkar | Omkar Enterprises Founder">
     <meta name="twitter:description" content="Pioneering transparent private lending in Maharashtra since 2015.">
-    <meta name="twitter:image" content="https://omkarservices.in/assets/twitter-founder.jpg">
+    <meta name="twitter:image" content="https://omkarservices.in/assets/founder.jpg">
+    <meta name="twitter:image:alt" content="Santosh Shendkar - Founder of Omkar Enterprises">
     
-    <!-- Schema Markup - Person & LocalBusiness -->
+    <!-- Schema Markup - Enhanced for Person & LocalBusiness -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -36,11 +40,14 @@
       "name": "Santosh Shendkar",
       "jobTitle": "Founder & Managing Partner",
       "description": "Founder of Omkar Enterprises, specializing in private lending partnerships with 1% monthly returns. 10+ years experience with 500+ satisfied partners and 100% payout record since 2015.",
+      "image": "https://omkarservices.in/assets/founder.jpg",
       "worksFor": {
         "@type": "Organization",
         "name": "Omkar Enterprises",
         "url": "https://omkarservices.in",
-        "foundingDate": "2015"
+        "foundingDate": "2015",
+        "numberOfEmployees": "15",
+        "areaServed": ["Maharashtra", "India"]
       },
       "address": [
         {
@@ -60,9 +67,13 @@
           "addressCountry": "IN"
         }
       ],
-      "telephone": ["+91-81693-02861", "+91-92263-93837", Official Whatsapp"+91-70663-93830"],
-      "email": "care@omkarservices.in",
+      "telephone": ["+91-81693-02861", "+91-92263-93837", "+91-70663-93830"],
+      "email": "santosh@omkarenterprises.in",
       "knowsAbout": ["Private Lending", "Investment Partnerships", "Financial Management", "PDC Security", "Business Funding"],
+      "hasCredential": "10+ Years Financial Experience",
+      "award": "100% Payout Record Since 2015",
+      "memberOf": "Private Lending Association",
+      "knowsLanguage": ["English", "Hindi", "Marathi"],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Investment Partnership Tiers",
@@ -84,7 +95,34 @@
             }
           }
         ]
-      }
+      },
+      "sameAs": []
+    }
+    </script>
+    
+    <!-- Additional FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Santosh Shendkar's experience in private lending?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Santosh Shendkar has over 10 years of experience in private lending and financial partnerships. He founded Omkar Enterprises in 2015 and has since managed investments worth ₹50Cr+ with a 100% payout record."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Santosh Shendkar available for direct consultation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Santosh Shendkar is personally available for consultations at both Ulhasnagar and Pune offices. You can schedule a meeting, call directly, or connect via WhatsApp for partnership discussions."
+          }
+        }
+      ]
     }
     </script>
     
@@ -423,45 +461,78 @@
             }
         }
 
-        /* Founder Hero Section - Matching Homepage Style */
+        /* Founder Hero Section - With Image */
         .founder-hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-            color: var(--white);
             padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             position: relative;
-            overflow: hidden;
         }
 
-        .founder-hero::before {
-            content: '';
+        .founder-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .founder-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .founder-photo-frame {
+            position: relative;
+            display: inline-block;
+            max-width: 400px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--gold-accent);
+        }
+
+        .founder-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .founder-photo-frame:hover .founder-photo {
+            transform: scale(1.02);
+        }
+
+        .photo-badge {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill="rgba(255,255,255,0.05)" d="M0,0V100H1000V0ZM250,50L500,25L750,50L1000,25V0H0V25Z"/></svg>');
-            background-size: cover;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
         }
 
         .founder-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
+            text-align: left;
         }
 
         .founder-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
             color: var(--white);
             padding: 10px 20px;
             border-radius: 30px;
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .founder-hero h1 {
@@ -469,22 +540,16 @@
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--slate-dark);
         }
 
         .gold-text {
-            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--gold-accent);
         }
 
         .founder-subtitle {
             font-size: 20px;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--slate-light);
             margin-bottom: 40px;
             line-height: 1.6;
         }
@@ -499,23 +564,23 @@
         .founder-stat-item {
             text-align: center;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--white);
             border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--light-blue);
             min-width: 150px;
         }
 
         .founder-stat-number {
             font-size: 40px;
             font-weight: 800;
-            color: var(--gold-accent);
+            color: var(--trust-blue);
             margin-bottom: 5px;
         }
 
         .founder-stat-label {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--slate-light);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -1132,6 +1197,23 @@
                 font-size: 20px;
                 padding: 0 20px;
             }
+            
+            .founder-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .founder-image {
+                order: -1;
+            }
+            
+            .founder-content {
+                text-align: center;
+            }
+            
+            .founder-stats {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1300,7 +1382,7 @@
             <!-- FIXED LOGO - IDENTICAL TO HOME PAGE -->
             <a href="index.html" class="logo">
                 <div class="logo-image-container">
-                    <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
+                    <img src="assets/logo.png" alt="Omkar Enterprises Logo - Private Lending Partnership Since 2015" class="color-logo">
                 </div>
                 <div class="logo-text-container">
                     <div class="logo-main">OMKAR ENTERPRISES</div>
@@ -1326,39 +1408,55 @@
         </div>
     </nav>
 
-    <!-- Founder Hero Section -->
+    <!-- Founder Hero Section with Image -->
     <section class="founder-hero">
         <div class="container">
-            <div class="founder-content fade-in">
-                <div class="founder-badge">
-                    <i class="fas fa-user-tie"></i>
-                    Founder & Managing Partner
-                </div>
-                <h1>Santosh <span class="gold-text">Shendkar</span></h1>
-                <p class="founder-subtitle">Pioneering transparent private lending partnerships in Maharashtra since 2015. With 10+ years of expertise in financial management and a commitment to secure investments, I've built Omkar Enterprises on principles of trust, transparency, and consistent returns.</p>
-                
-                <div class="founder-stats">
-                    <div class="founder-stat-item">
-                        <div class="founder-stat-number">10+</div>
-                        <div class="founder-stat-label">Years Experience</div>
-                    </div>
-                    <div class="founder-stat-item">
-                        <div class="founder-stat-number">500+</div>
-                        <div class="founder-stat-label">Satisfied Partners</div>
-                    </div>
-                    <div class="founder-stat-item">
-                        <div class="founder-stat-number">100%</div>
-                        <div class="founder-stat-label">Payout Record</div>
-                    </div>
-                    <div class="founder-stat-item">
-                        <div class="founder-stat-number">₹50Cr+</div>
-                        <div class="founder-stat-label">Total Investments Managed</div>
+            <div class="founder-container">
+                <div class="founder-image">
+                    <div class="founder-photo-frame">
+                        <img src="assets/founder.jpg" 
+                             alt="Santosh Shendkar - Founder & Managing Partner of Omkar Enterprises - Private Lending Expert with 10+ years experience in Ulhasnagar, Maharashtra"
+                             title="Santosh Shendkar - Founder of Omkar Enterprises"
+                             class="founder-photo"
+                             width="400"
+                             height="400">
+                        <div class="photo-badge">
+                            <i class="fas fa-user-tie"></i> Founder Since 2015
+                        </div>
                     </div>
                 </div>
                 
-                <a href="#connect" class="connect-btn">
-                    <i class="fas fa-handshake"></i> Connect with Santosh
-                </a>
+                <div class="founder-content fade-in">
+                    <div class="founder-badge">
+                        <i class="fas fa-user-tie"></i>
+                        Founder & Managing Partner
+                    </div>
+                    <h1>Santosh <span class="gold-text">Shendkar</span></h1>
+                    <p class="founder-subtitle">Pioneering transparent private lending partnerships in Maharashtra since 2015. With 10+ years of expertise in financial management and a commitment to secure investments, I've built Omkar Enterprises on principles of trust, transparency, and consistent returns.</p>
+                    
+                    <div class="founder-stats">
+                        <div class="founder-stat-item">
+                            <div class="founder-stat-number">10+</div>
+                            <div class="founder-stat-label">Years Experience</div>
+                        </div>
+                        <div class="founder-stat-item">
+                            <div class="founder-stat-number">500+</div>
+                            <div class="founder-stat-label">Satisfied Partners</div>
+                        </div>
+                        <div class="founder-stat-item">
+                            <div class="founder-stat-number">100%</div>
+                            <div class="founder-stat-label">Payout Record</div>
+                        </div>
+                        <div class="founder-stat-item">
+                            <div class="founder-stat-number">₹50Cr+</div>
+                            <div class="founder-stat-label">Total Investments Managed</div>
+                        </div>
+                    </div>
+                    
+                    <a href="#connect" class="connect-btn">
+                        <i class="fas fa-handshake"></i> Connect with Santosh
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -1541,7 +1639,7 @@
                     <!-- FIXED FOOTER LOGO - IDENTICAL TO HOME PAGE -->
                     <div class="footer-logo">
                         <div class="logo-image-container" style="background: transparent; border: 2px solid rgba(212, 175, 55, 0.3);">
-                            <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
+                            <img src="assets/logo.png" alt="Omkar Enterprises Logo - Trusted Private Lending Partnership Since 2015" class="color-logo">
                         </div>
                         <div class="logo-text-container">
                             <div class="logo-main" style="color: #d4af37;">OMKAR ENTERPRISES</div>
@@ -1549,15 +1647,20 @@
                         </div>
                     </div>
                     <p class="footer-description">
-                        Established in 2015, Omkar Enterprises has become Maharashtra's most trusted private lending partnership firm. With 500+ satisfied partners and 100% payout record, we offer secured investments with guaranteed monthly returns.
-                    </p>
-                    
+    Since 2015, <strong>Omkar Enterprises</strong> has served as a premier 
+    <strong>private lending partnership</strong> in India, maintaining a 
+    <strong>100% payout record</strong> for our 500+ partners. We specialize in 
+    <strong>secured investments</strong> designed for those seeking 
+    <strong>reliable monthly returns</strong> and long-term capital growth. 
+    Operating under the Indian Partnership Act, we provide a stable 
+    <strong>alternative investment</strong> platform for the modern Indian investor.
+</p>
                     <div class="footer-contact">
                         <div class="footer-contact-item">
                             <i class="fas fa-phone"></i>
                             <div>
                                 <strong>Investment Helpline:</strong><br>
-                                +91 8169 302 861 | +91 9226 393 837 | +91 7066 393 830
+                                +91 8169 302 861 | +91 9226 393 837 | (Official Whatsapp) +91 7066 393 830
                             </div>
                         </div>
                         <div class="footer-contact-item">
@@ -1615,9 +1718,9 @@
                             <i class="fab fa-whatsapp"></i>
                             <span>WhatsApp For Any Query</span>
                         </a>
-                        <a href="mailto:care@omkarservices.in" class="social-link email">
+                        <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
                             <i class="fas fa-envelope"></i>
-                            <span>Email Investment Proposal</span>
+                            <span>@Email Us</span>
                         </a>
                     </div>
                 </div>
@@ -1770,6 +1873,13 @@
                     console.log('CTA Click:', action, this.href);
                 });
             });
+            
+            // Image loading optimization
+            const founderImage = document.querySelector('.founder-photo');
+            if (founderImage) {
+                founderImage.loading = 'eager';
+                founderImage.fetchPriority = 'high';
+            }
         });
     </script>
 

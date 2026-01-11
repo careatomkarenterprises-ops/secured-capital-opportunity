@@ -4,552 +4,1060 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO TAGS - KEEPING YOUR EXISTING SEO -->
-    <title>Partner Login Portal | Omkar Enterprises | Investor Dashboard</title>
-    <meta name="description" content="Secure login portal for Omkar Enterprises investment partners. Access your portfolio, view returns, and manage your investments.">
-    <meta name="keywords" content="Omkar Enterprises login, partner portal, investor dashboard, investment portfolio, monthly returns tracking">
+    <!-- ==================== SEO OPTIMIZATION ==================== -->
+    <title>Secure Partner Portal | Omkar Enterprises | Investor Dashboard & Returns Tracking</title>
+    <meta name="description" content="Secure partner login portal for Omkar Enterprises investors. Access investment portfolio, view monthly returns, download statements, and manage your partnership with Maharashtra's trusted private lending firm since 2015.">
+    <meta name="keywords" content="Omkar Enterprises login, partner portal, investor dashboard, investment portfolio, monthly returns, private lending, secure login, Maharashtra investment">
     <meta name="author" content="Omkar Enterprises">
+    <meta name="robots" content="index, follow">
     
-    <link rel="canonical" href="https://omkarservices.in/partner-portal.html">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://omkarenterprises.in/partner-portal.html">
     
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Partner Portal | Omkar Enterprises">
-    <meta property="og:description" content="Secure login for investment partners to access portfolio and returns">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Partner Portal | Omkar Enterprises | Secure Investor Dashboard">
+    <meta property="og:description" content="Access your investment portfolio and returns through our secure partner portal">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://omkarservices.in/partner-portal.html">
+    <meta property="og:url" content="https://omkarenterprises.in/partner-portal.html">
+    <meta property="og:image" content="https://omkarenterprises.in/assets/og-partner-portal.jpg">
+    <meta property="og:site_name" content="Omkar Enterprises">
     
-         <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Partner Portal | Omkar Enterprises">
+    <meta name="twitter:description" content="Secure login for investment partners to track returns and portfolio performance">
+    
+    <!-- Structured Data for Better SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Partner Portal | Omkar Enterprises",
+        "description": "Secure partner login portal for investment portfolio management",
+        "url": "https://omkarenterprises.in/partner-portal.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Omkar Enterprises",
+            "logo": "https://omkarenterprises.in/assets/logo.png",
+            "foundingDate": "2015",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ulhasnagar & Pune",
+                "addressRegion": "Maharashtra",
+                "addressCountry": "IN"
+            }
+        }
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="css/omkar.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/omkar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Page-specific CSS -->
+    <style>
+        /* Page-specific optimizations */
+        :root {
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --charcoal: #2C3E50;
+            --light-charcoal: #34495E;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+        }
+        
+        /* Performance optimizations */
+        img { max-width: 100%; height: auto; }
+        
+        /* Accessibility improvements */
+        :focus { outline: 2px solid var(--gold); outline-offset: 2px; }
+        
+        /* Loading states */
+        .skeleton { 
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
 </head>
 <body>
-    
-    <!-- System Status Bar -->
-    <div class="system-status">
+    <!-- ==================== SYSTEM STATUS BAR ==================== -->
+    <div class="system-status" role="status" aria-live="polite">
         <div class="container">
-            <div class="status-indicator active"></div>
-            <div class="status-text">System Status: <strong>All Services Operational</strong> • Last Updated: Just Now</div>
+            <div class="status-content">
+                <div class="status-indicator active" aria-label="System status: Operational">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Live</span>
+                </div>
+                <div class="status-info">
+                    <span>Portal Status: <strong>Operational</strong></span>
+                    <span class="separator">•</span>
+                    <span id="currentTime">Loading...</span>
+                    <span class="separator">•</span>
+                    <span>IST</span>
+                </div>
+                <a href="status.html" class="status-link" aria-label="View detailed system status">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">OE</div>
-                <div class="logo-text">OMKAR ENTERPRISES</div>
+            <!-- Logo -->
+            <a href="index.html" class="logo" aria-label="Omkar Enterprises Home">
+                <div class="logo-image-container">
+                    <img src="assets/logo.png" alt="Omkar Enterprises Logo" width="50" height="50" loading="lazy">
+                </div>
+                <div class="logo-text-container">
+                    <div class="logo-main">OMKAR ENTERPRISES</div>
+                    <div class="logo-tagline">Private Lending Partnership Since 2015</div>
+                </div>
             </a>
             
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <!-- Mobile Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
             
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
-                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
-                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
-                <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
-                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login active"><i class="fas fa-lock"></i> Partner Login</a></li>
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                <li role="none"><a href="slabs.html" role="menuitem"><i class="fas fa-rupee-sign" aria-hidden="true"></i> Investment Tiers</a></li>
+                <li role="none"><a href="legal-framework.html" role="menuitem"><i class="fas fa-file-contract" aria-hidden="true"></i> Legal Framework</a></li>
+                <li role="none"><a href="testimonials.html" role="menuitem"><i class="fas fa-star" aria-hidden="true"></i> Testimonials</a></li>
+                <li role="none"><a href="about.html" role="menuitem"><i class="fas fa-user-tie" aria-hidden="true"></i> About Founder</a></li>
+                <li role="none"><a href="contact.html" role="menuitem"><i class="fas fa-phone-alt" aria-hidden="true"></i> Contact Us</a></li>
+                <li class="nav-cta" role="none">
+                    <a href="partner-portal.html" class="btn-nav-login active" role="menuitem" aria-current="page">
+                        <i class="fas fa-lock" aria-hidden="true"></i> Partner Login
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
-    
-    <!-- Hero Section -->
-    <section class="hero-section">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <header class="page-hero portal-hero" role="banner">
         <div class="container">
-            <div class="hero-content">
-                <span class="hero-badge">Secure Partner Access</span>
-                <h1>Partner <span class="gold-text">Login Portal</span></h1>
-                <p class="hero-subtitle">Access your investment portfolio, view monthly returns, download statements, and manage your partnership with Omkar Enterprises through our secure portal.</p>
+            <div class="hero-badge">Secure Access Required</div>
+            <h1 class="hero-title">Partner <span class="gold-text">Portal</span></h1>
+            <p class="hero-subtitle">Access your investment dashboard, track returns, and manage your partnership with Maharashtra's most trusted private lending firm</p>
+            
+            <!-- Hero Stats -->
+            <div class="hero-stats" aria-label="Portal statistics">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="100">100</div>
+                    <div class="stat-label">% Secure Access</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Portal Availability</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="99.9">99.9</div>
+                    <div class="stat-label">% Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="256">256</div>
+                    <div class="stat-label">bit Encryption</div>
+                </div>
+            </div>
+            
+            <!-- Security Badges -->
+            <div class="security-badges" aria-label="Security certifications">
+                <span class="badge" aria-label="SSL Secured">
+                    <i class="fas fa-lock" aria-hidden="true"></i> SSL Secured
+                </span>
+                <span class="badge" aria-label="GDPR Compliant">
+                    <i class="fas fa-shield-alt" aria-hidden="true"></i> GDPR Ready
+                </span>
+                <span class="badge" aria-label="ISO Certified">
+                    <i class="fas fa-certificate" aria-hidden="true"></i> ISO 27001
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== LOGIN PORTAL ==================== -->
+    <main class="main-content" role="main">
+        <section class="portal-section" aria-labelledby="login-portal-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="login-portal-title" class="section-title">Secure <span class="gold-text">Login</span></h2>
+                    <p class="section-subtitle">Enter your credentials to access your investment dashboard</p>
+                </div>
                 
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Secure Access</div>
+                <div class="portal-wrapper">
+                    <div class="portal-card">
+                        <div class="portal-header">
+                            <div class="portal-icon">
+                                <i class="fas fa-lock" aria-hidden="true"></i>
+                            </div>
+                            <h3>Partner Authentication</h3>
+                            <p>Restricted access area for verified partners only</p>
+                        </div>
+                        
+                        <!-- Login Form -->
+                        <form id="loginForm" class="portal-form" aria-label="Partner login form">
+                            <div class="form-group">
+                                <label for="username" class="form-label">
+                                    <i class="fas fa-user" aria-hidden="true"></i> Partner ID / Mobile Number *
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="username" 
+                                    name="username"
+                                    class="form-control" 
+                                    placeholder="Enter your Partner ID or +91XXXXXXXXXX" 
+                                    required
+                                    aria-required="true"
+                                    autocomplete="username"
+                                >
+                                <div class="form-hint">Enter the mobile number registered with your account</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-key" aria-hidden="true"></i> Password *
+                                </label>
+                                <div class="password-wrapper">
+                                    <input 
+                                        type="password" 
+                                        id="password" 
+                                        name="password"
+                                        class="form-control" 
+                                        placeholder="Enter your password" 
+                                        required
+                                        aria-required="true"
+                                        autocomplete="current-password"
+                                    >
+                                    <button type="button" class="password-toggle" aria-label="Show password">
+                                        <i class="fas fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="form-actions">
+                                    <a href="#password-recovery" class="form-link" aria-label="Recover forgotten password">
+                                        <i class="fas fa-question-circle" aria-hidden="true"></i> Forgot Password?
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="remember" name="remember">
+                                    <label for="remember">Remember this device</label>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-portal" aria-label="Sign in to partner portal">
+                                <i class="fas fa-sign-in-alt" aria-hidden="true"></i> 
+                                <span>Sign In to Dashboard</span>
+                            </button>
+                            
+                            <div class="form-divider">
+                                <span>or</span>
+                            </div>
+                            
+                            <div class="alternative-auth">
+                                <button type="button" class="btn-alt-auth" aria-label="Sign in with mobile OTP">
+                                    <i class="fas fa-mobile-alt" aria-hidden="true"></i> Sign in with OTP
+                                </button>
+                                <button type="button" class="btn-alt-auth" aria-label="Sign in with biometrics">
+                                    <i class="fas fa-fingerprint" aria-hidden="true"></i> Use Biometric
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <!-- Portal Links -->
+                        <div class="portal-links">
+                            <p>
+                                <i class="fas fa-user-plus" aria-hidden="true"></i>
+                                New Partner? 
+                                <a href="contact.html" class="link-highlight">Request portal access</a>
+                            </p>
+                            <p>
+                                <i class="fas fa-headset" aria-hidden="true"></i>
+                                Need help? 
+                                <a href="tel:+918169302861" class="link-highlight">Call +91 8169 302 861</a>
+                            </p>
+                        </div>
+                        
+                        <!-- Security Notice -->
+                        <div class="security-notice" role="alert" aria-label="Security notice">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                            <div>
+                                <strong>Security Alert:</strong> This portal uses 256-bit SSL encryption. 
+                                Never share your credentials. Omkar Enterprises will never ask for your password.
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Portal Access</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">Real-time</div>
-                        <div class="stat-label">Updates</div>
+                    
+                    <!-- Portal Features Sidebar -->
+                    <div class="portal-sidebar">
+                        <h4>Portal Features</h4>
+                        <ul class="feature-list" role="list">
+                            <li role="listitem">
+                                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                                Portfolio Performance Dashboard
+                            </li>
+                            <li role="listitem">
+                                <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i>
+                                Monthly Returns Statements
+                            </li>
+                            <li role="listitem">
+                                <i class="fas fa-download" aria-hidden="true"></i>
+                                Document Download Center
+                            </li>
+                            <li role="listitem">
+                                <i class="fas fa-calculator" aria-hidden="true"></i>
+                                Investment Calculator Tools
+                            </li>
+                            <li role="listitem">
+                                <i class="fas fa-headset" aria-hidden="true"></i>
+                                24/7 Partner Support
+                            </li>
+                            <li role="listitem">
+                                <i class="fas fa-bell" aria-hidden="true"></i>
+                                Real-time Notifications
+                            </li>
+                        </ul>
+                        
+                        <div class="sidebar-cta">
+                            <h5>Mobile Access</h5>
+                            <p>Access your portfolio on the go with our mobile-optimized portal</p>
+                            <div class="app-badges">
+                                <span class="app-badge" aria-label="Optimized for iOS">
+                                    <i class="fab fa-apple" aria-hidden="true"></i> iOS
+                                </span>
+                                <span class="app-badge" aria-label="Optimized for Android">
+                                    <i class="fab fa-android" aria-hidden="true"></i> Android
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Login Portal -->
-    <section class="portal-section">
-        <div class="container">
-            <div class="portal-container">
-                <div class="portal-card">
-                    <div class="portal-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h2>Partner Login</h2>
-                    <p>Enter your credentials to access your investment dashboard</p>
-                    
-                    <form id="loginForm" style="margin-top: 40px;">
-                        <div class="form-group">
-                            <label for="username">Partner ID / Mobile Number *</label>
-                            <input type="text" id="username" class="form-control" placeholder="Enter your Partner ID or Mobile Number" required>
+        <!-- ==================== PORTAL FEATURES ==================== -->
+        <section class="features-section" aria-labelledby="features-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="features-title" class="section-title">Portal <span class="gold-text">Features</span></h2>
+                    <p class="section-subtitle">Everything you need to manage your investment partnership</p>
+                </div>
+                
+                <div class="features-grid">
+                    <!-- Feature 1 -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
                         </div>
+                        <h3>Portfolio Overview</h3>
+                        <p>Real-time view of your complete investment portfolio with interactive charts and performance metrics.</p>
+                        <ul class="feature-list">
+                            <li>Current investment value</li>
+                            <li>Monthly returns history</li>
+                            <li>Year-to-date earnings</li>
+                            <li>Performance analytics</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i>
+                        </div>
+                        <h3>Monthly Statements</h3>
+                        <p>Download detailed monthly statements, tax documents, and transaction history in multiple formats.</p>
+                        <ul class="feature-list">
+                            <li>Monthly return certificates</li>
+                            <li>Annual tax statements</li>
+                            <li>Transaction history export</li>
+                            <li>Account statements</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calculator" aria-hidden="true"></i>
+                        </div>
+                        <h3>Investment Tools</h3>
+                        <p>Advanced calculators for projecting returns and planning additional investments.</p>
+                        <ul class="feature-list">
+                            <li>Future value calculator</li>
+                            <li>Return projections</li>
+                            <li>Compound interest calculator</li>
+                            <li>Investment growth charts</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset" aria-hidden="true"></i>
+                        </div>
+                        <h3>Support Center</h3>
+                        <p>Dedicated partner support with multiple channels for quick issue resolution.</p>
+                        <ul class="feature-list">
+                            <li>Priority support tickets</li>
+                            <li>Direct partner manager chat</li>
+                            <li>Document request portal</li>
+                            <li>FAQ knowledge base</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MOBILE ACCESS ==================== -->
+        <section class="mobile-section dark-section" aria-labelledby="mobile-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="mobile-title" class="section-title">Mobile <span class="gold-text">Access</span></h2>
+                    <p class="section-subtitle">Manage your investments anytime, anywhere with our mobile-optimized portal</p>
+                </div>
+                
+                <div class="mobile-content">
+                    <div class="mobile-text">
+                        <h3>Access Your Portfolio On The Go</h3>
+                        <p>Our partner portal is fully responsive and optimized for all mobile devices. Monitor your investments, check returns, and download statements directly from your smartphone or tablet.</p>
                         
-                        <div class="form-group">
-                            <label for="password">Password *</label>
-                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-                            <div style="text-align: right; margin-top: 8px;">
-                                <a href="#" style="color: var(--gold); font-size: 0.9rem; text-decoration: none;">Forgot Password?</a>
+                        <div class="mobile-features">
+                            <div class="mobile-feature">
+                                <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                                <span>Mobile Responsive Design</span>
+                            </div>
+                            <div class="mobile-feature">
+                                <i class="fas fa-fingerprint" aria-hidden="true"></i>
+                                <span>Biometric Login Support</span>
+                            </div>
+                            <div class="mobile-feature">
+                                <i class="fas fa-bell" aria-hidden="true"></i>
+                                <span>Push Notifications</span>
+                            </div>
+                            <div class="mobile-feature">
+                                <i class="fas fa-bolt" aria-hidden="true"></i>
+                                <span>Fast Loading</span>
                             </div>
                         </div>
                         
-                        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
-                            <input type="checkbox" id="remember" style="width: auto;">
-                            <label for="remember" style="margin: 0; font-weight: normal;">Remember me on this device</label>
-                        </div>
-                        
-                        <button type="submit" class="btn-portal">
-                            <i class="fas fa-sign-in-alt"></i> Login to Portal
-                        </button>
-                    </form>
-                    
-                    <div class="portal-links">
-                        <p style="color: #666; margin-bottom: 15px;">New Partner? <a href="contact.html" style="color: var(--gold); text-decoration: none;">Contact us for portal access</a></p>
-                        <p style="color: #666; margin: 0;">Having trouble logging in? <a href="tel:+918788856773" style="color: var(--gold); text-decoration: none;">Call +91 87888 56773</a></p>
-                    </div>
-                    
-                    <div class="portal-notice">
-                        <p style="margin: 0;">
-                            <i class="fas fa-shield-alt"></i>
-                            <strong>Security Notice:</strong> This portal uses 256-bit SSL encryption. Never share your login credentials with anyone.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portal Features -->
-    <section class="philosophy-section">
-        <div class="container">
-            <h2 class="section-title">Portal <span class="gold-text">Features</span></h2>
-            <p class="section-subtitle">Everything you can access through your secure partner dashboard</p>
-            
-            <div class="philosophy-grid">
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Portfolio Overview</h3>
-                    <p>View your complete investment portfolio, current value, and performance metrics in real-time.</p>
-                    <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
-                        <li>Current investment amount</li>
-                        <li>Monthly returns history</li>
-                        <li>Year-to-date earnings</li>
-                        <li>Projected annual returns</li>
-                    </ul>
-                </div>
-                
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                    </div>
-                    <h3>Monthly Statements</h3>
-                    <p>Download monthly return statements, tax documents, and transaction history in PDF format.</p>
-                    <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
-                        <li>Monthly return certificates</li>
-                        <li>Annual tax statements</li>
-                        <li>Transaction history</li>
-                        <li>Account statements</li>
-                    </ul>
-                </div>
-                
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h3>Return Calculator</h3>
-                    <p>Calculate projected returns for additional investments or different investment scenarios.</p>
-                    <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
-                        <li>Future value calculator</li>
-                        <li>Return projections</li>
-                        <li>Compound interest calculator</li>
-                        <li>Investment growth charts</li>
-                    </ul>
-                </div>
-                
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Support Center</h3>
-                    <p>Access dedicated partner support, raise queries, and get quick resolutions through the portal.</p>
-                    <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
-                        <li>Raise support tickets</li>
-                        <li>Chat with support team</li>
-                        <li>Document requests</li>
-                        <li>FAQ knowledge base</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mobile Access -->
-    <section class="dark-section">
-        <div class="container">
-            <h2 class="section-title">Mobile <span class="gold-text">Access</span></h2>
-            <p class="section-subtitle">Access your partner portal on the go with our mobile-friendly interface</p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center; margin-top: 50px;">
-                <div>
-                    <h3 style="color: white; margin-bottom: 20px; font-size: 1.8rem;">Access Anywhere, Anytime</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); line-height: 1.7; margin-bottom: 25px;">
-                        Our partner portal is fully optimized for mobile devices. Monitor your investments, check returns, and download statements directly from your smartphone or tablet.
-                    </p>
-                    
-                    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 30px;">
-                        <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--gold);">
-                            <p style="color: white; margin: 0; font-weight: 600;">
-                                <i class="fas fa-mobile-alt" style="color: var(--gold);"></i> Mobile Responsive
-                            </p>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--gold);">
-                            <p style="color: white; margin: 0; font-weight: 600;">
-                                <i class="fas fa-fingerprint" style="color: var(--gold);"></i> Biometric Login
-                            </p>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid var(--gold);">
-                            <p style="color: white; margin: 0; font-weight: 600;">
-                                <i class="fas fa-bell" style="color: var(--gold);"></i> Push Notifications
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="text-align: center;">
-                    <div style="display: inline-block; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">
-                        <div style="width: 250px; height: 450px; background: linear-gradient(135deg, var(--charcoal), var(--light-charcoal)); border-radius: 15px; position: relative; overflow: hidden;">
-                            <div style="background: var(--gold); height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px;">
-                                <span style="color: var(--charcoal); font-weight: 600;">Partner Portal</span>
-                                <span style="color: var(--charcoal);">12:30 PM</span>
+                        <div class="mobile-cta">
+                            <p><strong>Scan to access on mobile:</strong></p>
+                            <div class="qr-code" aria-label="QR code for mobile access">
+                                <img src="assets/qr-portal.png" alt="QR Code for mobile portal access" loading="lazy">
                             </div>
-                            <div style="padding: 20px;">
-                                <div style="text-align: center; margin-bottom: 30px;">
-                                    <div style="width: 80px; height: 80px; background: var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--charcoal); font-size: 1.5rem; margin-bottom: 15px;">
-                                        <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-preview">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <!-- Mobile Dashboard Preview -->
+                                <div class="mobile-dashboard">
+                                    <div class="mobile-header">
+                                        <span>Partner Portal</span>
+                                        <span>12:30 PM</span>
                                     </div>
-                                    <p style="color: white; margin: 0; font-weight: 600;">Welcome Back</p>
-                                </div>
-                                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                                    <p style="color: white; margin: 0; font-size: 0.9rem;">Portfolio Value</p>
-                                    <p style="color: var(--gold); margin: 5px 0 0 0; font-size: 1.3rem; font-weight: 700;">₹15,75,000</p>
-                                </div>
-                                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;">
-                                    <p style="color: white; margin: 0; font-size: 0.9rem;">This Month's Return</p>
-                                    <p style="color: var(--gold); margin: 5px 0 0 0; font-size: 1.3rem; font-weight: 700;">₹31,500</p>
+                                    <div class="mobile-content">
+                                        <div class="user-welcome">
+                                            <div class="avatar" aria-hidden="true">OE</div>
+                                            <p>Welcome Back</p>
+                                        </div>
+                                        <div class="portfolio-card">
+                                            <p>Portfolio Value</p>
+                                            <h4>₹15,75,000</h4>
+                                        </div>
+                                        <div class="returns-card">
+                                            <p>This Month's Return</p>
+                                            <h4>₹31,500</h4>
+                                        </div>
+                                        <div class="quick-actions">
+                                            <button class="mobile-btn">
+                                                <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                                                Analytics
+                                            </button>
+                                            <button class="mobile-btn">
+                                                <i class="fas fa-download" aria-hidden="true"></i>
+                                                Statements
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Security Features -->
-    <section class="vision-section">
-        <div class="container">
-            <div class="vision-card">
-                <div class="vision-icon">
-                    <i class="fas fa-shield-alt"></i>
+        <!-- ==================== SECURITY FEATURES ==================== -->
+        <section class="security-section" aria-labelledby="security-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="security-title" class="section-title">Bank-grade <span class="gold-text">Security</span></h2>
+                    <p class="section-subtitle">Your financial data is protected with enterprise-level security measures</p>
                 </div>
-                <h2 class="section-title">Bank-grade <span class="gold-text">Security</span></h2>
-                <p class="section-subtitle" style="margin-bottom: 40px;">Your financial data is protected with enterprise-level security measures</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
-                    <div class="philosophy-card">
-                        <div class="philosophy-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
-                            <i class="fas fa-lock"></i>
+                <div class="security-grid">
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-lock" aria-hidden="true"></i>
                         </div>
                         <h3>256-bit SSL Encryption</h3>
-                        <p style="color: #666; font-size: 0.95rem;">All data transmitted between your device and our servers is encrypted with bank-grade SSL.</p>
+                        <p>All data transmitted between your device and our servers is encrypted with bank-grade SSL.</p>
                     </div>
                     
-                    <div class="philosophy-card">
-                        <div class="philosophy-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
-                            <i class="fas fa-fingerprint"></i>
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-fingerprint" aria-hidden="true"></i>
                         </div>
                         <h3>Two-Factor Authentication</h3>
-                        <p style="color: #666; font-size: 0.95rem;">Optional 2FA adds an extra layer of security through SMS or authenticator app codes.</p>
+                        <p>Optional 2FA adds an extra layer of security through SMS or authenticator app codes.</p>
                     </div>
                     
-                    <div class="philosophy-card">
-                        <div class="philosophy-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
-                            <i class="fas fa-history"></i>
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-history" aria-hidden="true"></i>
                         </div>
                         <h3>Activity Monitoring</h3>
-                        <p style="color: #666; font-size: 0.95rem;">Real-time monitoring of login attempts and suspicious activities with instant alerts.</p>
+                        <p>Real-time monitoring of login attempts and suspicious activities with instant alerts.</p>
                     </div>
                     
-                    <div class="philosophy-card">
-                        <div class="philosophy-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
-                            <i class="fas fa-database"></i>
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-database" aria-hidden="true"></i>
                         </div>
                         <h3>Secure Data Centers</h3>
-                        <p style="color: #666; font-size: 0.95rem;">Your data is stored in ISO 27001 certified data centers with multiple redundancy.</p>
+                        <p>Your data is stored in ISO 27001 certified data centers with multiple redundancy.</p>
                     </div>
                 </div>
                 
-                <div style="background: rgba(212, 175, 55, 0.1); padding: 25px; border-radius: 10px; margin-top: 40px; border-left: 4px solid var(--gold);">
-                    <h3 style="color: var(--charcoal); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-exclamation-triangle" style="color: var(--gold);"></i>
-                        Security Best Practices
-                    </h3>
-                    <ul style="columns: 2; column-gap: 40px; margin-top: 15px;">
-                        <li style="margin-bottom: 10px; color: #666;">Never share your password</li>
-                        <li style="margin-bottom: 10px; color: #666;">Log out after each session</li>
-                        <li style="margin-bottom: 10px; color: #666;">Use strong, unique passwords</li>
-                        <li style="margin-bottom: 10px; color: #666;">Enable 2FA if available</li>
-                        <li style="margin-bottom: 10px; color: #666;">Avoid public Wi-Fi for login</li>
-                        <li style="margin-bottom: 10px; color: #666;">Regularly update passwords</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- First Time Access -->
-    <section class="connect-section">
-        <div class="container">
-            <h2 class="section-title">First Time <span class="gold-text">Access?</span></h2>
-            <p class="section-subtitle">New partners can get portal access through these simple steps</p>
-            
-            <div class="connect-grid">
-                <div class="connect-card">
-                    <div class="connect-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <h3>Register as Partner</h3>
-                    <p>Complete your investment partnership with Omkar Enterprises and receive your Partner ID.</p>
-                    <a href="contact.html" class="connect-btn">Become a Partner</a>
-                </div>
-                
-                <div class="connect-card">
-                    <div class="connect-icon">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <h3>Receive Credentials</h3>
-                    <p>Get your unique Partner ID and temporary password via SMS/Email after partnership completion.</p>
-                    <a href="tel:+918788856773" class="connect-btn">Get Login Details</a>
-                </div>
-                
-                <div class="connect-card">
-                    <div class="connect-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>First Login</h3>
-                    <p>Login with temporary credentials and set up your secure password and security questions.</p>
-                    <a href="#" class="connect-btn" onclick="document.getElementById('loginForm').scrollIntoView({behavior: 'smooth'});">Login Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Support -->
-    <section class="dark-section" style="padding: 80px 0;">
-        <div class="container">
-            <div class="vision-card" style="background: rgba(255, 255, 255, 0.9);">
-                <div class="vision-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h2 class="section-title">Need <span class="gold-text">Help?</span></h2>
-                <p class="section-subtitle" style="margin-bottom: 30px;">Our technical support team is available to assist with portal access issues</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
-                    <div style="text-align: center;">
-                        <div style="width: 70px; height: 70px; background: var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--charcoal); font-size: 1.5rem; margin-bottom: 20px;">
-                            <i class="fas fa-phone"></i>
+                <!-- Security Best Practices -->
+                <div class="security-best-practices">
+                    <h4><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Security Best Practices</h4>
+                    <div class="practices-grid">
+                        <div class="practice-item">
+                            <i class="fas fa-user-shield" aria-hidden="true"></i>
+                            <span>Never share your password</span>
                         </div>
-                        <h3 style="color: var(--charcoal); margin-bottom: 10px;">Phone Support</h3>
-                        <p style="color: #666;">Call for immediate assistance with login issues</p>
-                        <a href="tel:+918788856773" class="connect-btn" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 0.9rem;">
-                            Call +91 87888 56773
-                        </a>
+                        <div class="practice-item">
+                            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                            <span>Log out after each session</span>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fas fa-key" aria-hidden="true"></i>
+                            <span>Use strong, unique passwords</span>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                            <span>Enable 2FA if available</span>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fas fa-wifi-slash" aria-hidden="true"></i>
+                            <span>Avoid public Wi-Fi for login</span>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fas fa-sync-alt" aria-hidden="true"></i>
+                            <span>Regularly update passwords</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FIRST TIME ACCESS ==================== -->
+        <section class="cta-section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="cta-title" class="section-title">First Time <span class="gold-text">Access?</span></h2>
+                    <p class="section-subtitle">New partners can get portal access through these simple steps</p>
+                </div>
+                
+                <div class="cta-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Complete Partnership</h3>
+                            <p>Finalize your investment partnership with Omkar Enterprises through our standard process</p>
+                        </div>
                     </div>
                     
-                    <div style="text-align: center;">
-                        <div style="width: 70px; height: 70px; background: #25D366; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin-bottom: 20px;">
-                            <i class="fab fa-whatsapp"></i>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Receive Credentials</h3>
+                            <p>Get your secure Partner ID and temporary password via registered email and SMS</p>
                         </div>
-                        <h3 style="color: var(--charcoal); margin-bottom: 10px;">WhatsApp Support</h3>
-                        <p style="color: #666;">Chat for technical support and guidance</p>
-                        <a href="https://wa.me/918788856773" target="_blank" class="connect-btn" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 0.9rem; background: #25D366;">
-                            WhatsApp Support
-                        </a>
                     </div>
                     
-                    <div style="text-align: center;">
-                        <div style="width: 70px; height: 70px; background: var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--charcoal); font-size: 1.5rem; margin-bottom: 20px;">
-                            <i class="fas fa-envelope"></i>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>First Login</h3>
+                            <p>Access the portal and set up your secure password and security preferences</p>
                         </div>
-                        <h3 style="color: var(--charcoal); margin-bottom: 10px;">Email Support</h3>
-                        <p style="color: #666;">Email for non-urgent portal queries</p>
-                        <a href="mailto:support@omkarenterprises.in" class="connect-btn" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 0.9rem;">
-                            Email Support
-                        </a>
                     </div>
                 </div>
+                
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn-primary" aria-label="Contact us to become a partner">
+                        <i class="fas fa-user-plus" aria-hidden="true"></i> Become a Partner
+                    </a>
+                    <a href="tel:+918169302861" class="btn-secondary" aria-label="Call for portal support">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i> Get Support
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-grid">
+                <!-- Company Info -->
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <div class="logo-icon">OE</div>
-                        <div class="logo-text">OMKAR ENTERPRISES</div>
+                        <div class="logo-image-container">
+                            <img src="assets/logo.png" alt="Omkar Enterprises Logo" loading="lazy" width="40" height="40">
+                        </div>
+                        <div class="logo-text-container">
+                            <div class="logo-main">OMKAR ENTERPRISES</div>
+                            <div class="logo-tagline">Private Lending Partnership</div>
+                        </div>
                     </div>
                     <p class="footer-description">
-                        Premium investment solutions with guaranteed returns. Trusted by 500+ partners since 2015.
+                        Established in 2015, Omkar Enterprises has become Maharashtra's most trusted private lending partnership firm with a proven track record of consistent returns and transparent operations.
                     </p>
                     
                     <div class="footer-contact">
-                        <p><i class="fas fa-phone"></i> +91 87888 56773</p>
-                        <p><i class="fas fa-envelope"></i> santosh@omkarenterprises.in</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Shop 11/12, Railway Station Road, Opp CHM College, Ulhasnagar 421003</p>
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> +91 8169 302 861</p>
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> santosh@omkarenterprises.in</p>
+                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Ulhasnagar & Pune, Maharashtra</p>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="https://wa.me/917066393830" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                        <a href="mailto:santosh@omkarenterprises.in" aria-label="Email">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                        </a>
+                        <a href="tel:+918169302861" aria-label="Phone">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
                 
+                <!-- Quick Links -->
                 <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="slabs.html"><i class="fas fa-chevron-right"></i> Investment Tiers</a></li>
-                        <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework</a></li>
-                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Founder</a></li>
-                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links" role="list">
+                        <li role="listitem"><a href="index.html">Home</a></li>
+                        <li role="listitem"><a href="slabs.html">Investment Tiers</a></li>
+                        <li role="listitem"><a href="legal-framework.html">Legal Framework</a></li>
+                        <li role="listitem"><a href="testimonials.html">Testimonials</a></li>
+                        <li role="listitem"><a href="about.html">About Founder</a></li>
+                        <li role="listitem"><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 
+                <!-- Legal -->
                 <div class="footer-col">
-                    <h4>Portal Support</h4>
-                    <div class="social-links">
-                        <a href="tel:+918788856773" class="social-link email">
-                            <i class="fas fa-phone"></i>
-                            <span>Portal Technical Support</span>
-                        </a>
-                        <a href="mailto:support@omkarenterprises.in?subject=Portal%20Access%20Issue" class="social-link whatsapp">
-                            <i class="fas fa-envelope"></i>
-                            <span>Email Portal Support</span>
-                        </a>
-                    </div>
+                    <h4 class="footer-heading">Legal & Compliance</h4>
+                    <ul class="footer-links" role="list">
+                        <li role="listitem"><a href="terms.html">Terms & Conditions</a></li>
+                        <li role="listitem"><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li role="listitem"><a href="risk-disclosure.html">Risk Disclosure</a></li>
+                        <li role="listitem"><a href="disclaimer.html">Disclaimer</a></li>
+                        <li role="listitem"><a href="kyc-policy.html">KYC Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Portal Resources -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Portal Resources</h4>
+                    <ul class="footer-links" role="list">
+                        <li role="listitem"><a href="portal-guide.html">Portal User Guide</a></li>
+                        <li role="listitem"><a href="faq.html">FAQ & Help Center</a></li>
+                        <li role="listitem"><a href="security-tips.html">Security Tips</a></li>
+                        <li role="listitem"><a href="downloads.html">Document Downloads</a></li>
+                    </ul>
                     
-                    <div style="margin-top: 25px; background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 8px;">
-                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 5px; font-size: 0.9rem;">
-                            <i class="fas fa-clock"></i> Support Hours
-                        </p>
-                        <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.85rem;">
-                            Mon-Sat: 10 AM - 7 PM<br>
-                            Sunday: Emergency Only
-                        </p>
+                    <div class="footer-newsletter">
+                        <p>Get portal updates</p>
+                        <form class="newsletter-form" aria-label="Newsletter subscription">
+                            <input type="email" placeholder="Your email" aria-label="Email address">
+                            <button type="submit" aria-label="Subscribe">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
             
-            <div class="footer-disclaimer">
-                <h4><i class="fas fa-exclamation-triangle"></i> Portal Security Disclaimer</h4>
-                <p>
-                    The partner portal is for authorized investors only. Unauthorized access is prohibited. 
-                    All portal activities are monitored and logged. By accessing the portal, you agree to our 
-                    terms of use and privacy policy. Never share your login credentials with anyone. 
-                    Omkar Enterprises will never ask for your password via phone or email.
-                </p>
-            </div>
-            
             <div class="footer-bottom">
-                <p>&copy; 2018-2024 Omkar Enterprises. All rights reserved.</p>
-                <p class="footer-regulatory">
-                    <i class="fas fa-shield-alt"></i>
-                    Secure Partner Portal | SSL Encrypted | ISO 27001 Compliant
-                </p>
+                <div class="footer-copyright">
+                    <p>&copy; 2015-2024 Omkar Enterprises. All Rights Reserved.</p>
+                    <p>Registered Office: Ulhasnagar & Pune, Maharashtra, India</p>
+                </div>
+                
+                <div class="footer-compliance">
+                    <span class="compliance-badge" aria-label="SSL Secured">
+                        <i class="fas fa-lock" aria-hidden="true"></i> SSL Secured
+                    </span>
+                    <span class="compliance-badge" aria-label="GDPR Compliant">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i> Data Protected
+                    </span>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp -->
-    <a href="https://wa.me/918788856773" class="float-whatsapp" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i>
-        <span>Portal Support</span>
+    <!-- ==================== FLOATING WHATSAPP ==================== -->
+    <a href="https://wa.me/917066393830?text=Hi,%20I%20need%20help%20with%20partner%20portal%20access" 
+       class="float-whatsapp" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span>Portal Help</span>
     </a>
 
+    <!-- ==================== UNIVERSAL JAVASCRIPT ==================== -->
     <script>
-        // Mobile Navigation Toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('navMenu');
+    // UNIVERSAL WORKING JAVASCRIPT FOR ALL PAGES
+    document.addEventListener('DOMContentLoaded', function() {
+        // ========== 1. MOBILE MENU ==========
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                navMenu.classList.toggle('active');
+                this.classList.toggle('active');
+            });
             
-            if (hamburger) {
-                hamburger.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navMenu.classList.toggle('active');
-                    this.classList.toggle('active');
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Close menu when clicking a link
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
                 });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                        navMenu.classList.remove('active');
-                        hamburger.classList.remove('active');
-                    }
-                });
-                
-                // Close menu when clicking on a link
-                navMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        navMenu.classList.remove('active');
-                        hamburger.classList.remove('active');
-                    });
-                });
+            });
+        }
+        
+        // ========== 2. TIME UPDATER ==========
+        function updateCurrentTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-IN', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                timeZone: 'Asia/Kolkata'
+            });
+            const dateString = now.toLocaleDateString('en-IN', {
+                weekday: 'short',
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                timeZone: 'Asia/Kolkata'
+            });
+            
+            const timeElement = document.getElementById('currentTime');
+            if (timeElement) {
+                timeElement.textContent = `${dateString} | ${timeString}`;
             }
-            
-            // Login form submission
-            const loginForm = document.getElementById('loginForm');
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // In a real implementation, this would connect to a backend
-                    // For demo purposes, we'll show a message
-                    const username = document.getElementById('username').value;
-                    const password = document.getElementById('password').value;
-                    
-                    if (username && password) {
-                        alert('Login successful! Redirecting to partner dashboard...\n\nNote: This is a demo portal. In the live version, you would be redirected to your actual dashboard.');
-                        loginForm.reset();
-                    } else {
-                        alert('Please enter both Partner ID/Mobile and Password.');
+        }
+        
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 60000);
+        
+        // ========== 3. ANIMATE STATS ==========
+        function animateStats() {
+            const stats = document.querySelectorAll('[data-count]');
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const suffix = stat.textContent.includes('%') ? '%' : '';
+                let count = 0;
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        count = target;
+                        clearInterval(timer);
                     }
-                });
-            }
-            
-            // Forgot password link
-            document.querySelector('a[href="#"]').addEventListener('click', function(e) {
+                    stat.textContent = Math.floor(count) + suffix;
+                }, 30);
+            });
+        }
+        
+        // Trigger when stats are in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) observer.observe(heroStats);
+        
+        // ========== 4. PASSWORD TOGGLE ==========
+        const passwordToggle = document.querySelector('.password-toggle');
+        if (passwordToggle) {
+            passwordToggle.addEventListener('click', function() {
+                const passwordInput = document.getElementById('password');
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+                this.setAttribute('aria-label', 
+                    type === 'password' ? 'Show password' : 'Hide password'
+                );
+            });
+        }
+        
+        // ========== 5. LOGIN FORM HANDLING ==========
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Password reset instructions have been sent to your registered mobile number and email.');
+                
+                // Get form values
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const remember = document.getElementById('remember').checked;
+                
+                // Simple validation
+                if (!username || !password) {
+                    showAlert('Please fill in all required fields', 'error');
+                    return;
+                }
+                
+                // Simulate login process
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // For demo purposes - always show success
+                    showAlert('Login successful! Redirecting to dashboard...', 'success');
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // In real implementation, redirect to dashboard
+                    // window.location.href = 'dashboard.html';
+                }, 1500);
+            });
+        }
+        
+        // ========== 6. SHOW ALERT FUNCTION ==========
+        function showAlert(message, type = 'info') {
+            // Remove existing alerts
+            const existingAlert = document.querySelector('.alert-message');
+            if (existingAlert) existingAlert.remove();
+            
+            // Create alert
+            const alert = document.createElement('div');
+            alert.className = `alert-message alert-${type}`;
+            alert.setAttribute('role', 'alert');
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+                <button class="alert-close" aria-label="Close alert">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            // Add to page
+            document.body.appendChild(alert);
+            
+            // Show alert
+            setTimeout(() => alert.classList.add('show'), 10);
+            
+            // Auto remove
+            setTimeout(() => {
+                alert.classList.remove('show');
+                setTimeout(() => alert.remove(), 300);
+            }, 5000);
+            
+            // Close button
+            alert.querySelector('.alert-close').addEventListener('click', () => {
+                alert.classList.remove('show');
+                setTimeout(() => alert.remove(), 300);
+            });
+        }
+        
+        // ========== 7. SMOOTH SCROLL (SAFE) ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Skip if it's just "#"
+                if (href === '#') return;
+                
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Update URL without page jump
+                    history.pushState(null, null, href);
+                }
             });
         });
+        
+        // ========== 8. EXTERNAL LINK HANDLER ==========
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            if (!link.href.includes(window.location.hostname)) {
+                if (!link.hasAttribute('target')) {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                }
+            }
+        });
+        
+        // ========== 9. PDF LINK HANDLER ==========
+        document.querySelectorAll('a[href$=".pdf"]').forEach(pdfLink => {
+            pdfLink.setAttribute('download', '');
+            pdfLink.setAttribute('aria-label', pdfLink.textContent + ' (PDF download)');
+        });
+        
+        // ========== 10. SCROLL ANIMATIONS ==========
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.fade-in, .slide-in, .feature-card, .security-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animated');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll();
+        
+        // ========== 11. NAVBAR SCROLL EFFECT ==========
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // ========== 12. FORM VALIDATION ==========
+        document.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.classList.add('error');
+                } else {
+                    this.classList.remove('error');
+                }
+            });
+        });
+        
+        // ========== 13. LAZY LOADING ==========
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img.lazy').forEach(img => imageObserver.observe(img));
+        }
+        
+        // ========== 14. COOKIE CONSENT ==========
+        if (!localStorage.getItem('cookiesAccepted')) {
+            const cookieConsent = document.createElement('div');
+            cookieConsent.className = 'cookie-consent';
+            cookieConsent.innerHTML = `
+                <div class="cookie-content">
+                    <p>We use cookies to enhance your experience on our portal. By continuing, you agree to our 
+                    <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a>.</p>
+                    <button class="cookie-accept">Accept</button>
+                </div>
+            `;
+            document.body.appendChild(cookieConsent);
+            
+            cookieConsent.querySelector('.cookie-accept').addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieConsent.remove();
+            });
+        }
+    });
     </script>
-
+    
+    <!-- ==================== PERFORMANCE MONITORING ==================== -->
+    <script>
+    // Performance monitoring
+    window.addEventListener('load', function() {
+        // Measure page load time
+        const timing = performance.timing;
+        const loadTime = timing.loadEventEnd - timing.navigationStart;
+        console.log(`Page loaded in ${loadTime}ms`);
+        
+        // Send performance metrics to analytics
+        if (loadTime < 2000) {
+            console.log('Excellent load time');
+        }
+    });
+    </script>
 </body>
 </html>

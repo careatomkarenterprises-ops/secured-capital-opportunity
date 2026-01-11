@@ -28,6 +28,13 @@
     <meta name="twitter:description" content="Get 1% guaranteed monthly returns with Omkar Enterprises. Trusted by 500+ investors in Ulhasnagar & Pune.">
     <meta name="twitter:image" content="https://omkarservices.in/assets/twitter-image.jpg">
     
+    <!-- Favicon Links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -269,38 +276,73 @@
             align-items: center;
         }
 
+        /* ===== LOGO STYLING - FIXED ===== */
         .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            gap: 12px;
+            display: flex !important;
+            align-items: center !important;
+            text-decoration: none !important;
+            gap: 15px !important;
+            padding: 5px 0 !important;
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 24px;
-            box-shadow: var(--shadow-sm);
+        .logo-image-container {
+            width: 50px !important;
+            height: 50px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            background: #ffffff !important;
+            border: 2px solid #dbeafe !important;
+            padding: 5px !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            flex-shrink: 0 !important;
         }
 
-        .logo-text {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--trust-blue);
-            letter-spacing: -0.5px;
+        .logo-image-container:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            border-color: #d4af37 !important;
+        }
+
+        .logo-image-container img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+            display: block !important;
+        }
+
+        .color-logo {
+            filter: none !important;
+        }
+
+        .logo-text-container {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            gap: 3px !important;
+        }
+
+        .logo-main {
+            font-size: 20px !important;
+            font-weight: 800 !important;
+            color: #1e3a8a !important;
+            letter-spacing: -0.5px !important;
+            line-height: 1.1 !important;
+            white-space: nowrap !important;
+            display: block !important;
         }
 
         .logo-tagline {
-            font-size: 12px;
-            color: var(--slate-light);
-            font-weight: 500;
-            margin-top: 2px;
+            font-size: 11px !important;
+            color: #64748b !important;
+            font-weight: 500 !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            letter-spacing: 0.5px !important;
+            display: block !important;
         }
 
         .nav-menu {
@@ -394,6 +436,46 @@
 
         .hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Responsive for Logo */
+        @media (max-width: 768px) {
+            .logo {
+                gap: 12px !important;
+            }
+            
+            .logo-image-container {
+                width: 45px !important;
+                height: 45px !important;
+            }
+            
+            .logo-main {
+                font-size: 18px !important;
+            }
+            
+            .logo-tagline {
+                font-size: 10px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                gap: 10px !important;
+            }
+            
+            .logo-image-container {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            
+            .logo-main {
+                font-size: 16px !important;
+            }
+            
+            .logo-tagline {
+                font-size: 9px !important;
+                display: none !important;
+            }
         }
 
         /* Hero Section - Optimized for Conversions */
@@ -1110,6 +1192,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            margin-bottom: 30px;
         }
 
         .social-link {
@@ -1365,12 +1448,13 @@
     <!-- Sticky Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
+            <!-- FIXED LOGO -->
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-chart-line"></i>
+                <div class="logo-image-container">
+                    <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
                 </div>
-                <div>
-                    <div class="logo-text">OMKAR ENTERPRISES</div>
+                <div class="logo-text-container">
+                    <div class="logo-main">OMKAR ENTERPRISES</div>
                     <div class="logo-tagline">Private Lending Partnership Since 2015</div>
                 </div>
             </a>
@@ -1715,13 +1799,14 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
+                    <!-- FIXED FOOTER LOGO -->
                     <div class="footer-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-chart-line"></i>
+                        <div class="logo-image-container" style="background: transparent; border: 2px solid rgba(212, 175, 55, 0.3);">
+                            <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
                         </div>
-                        <div>
-                            <div class="logo-text">OMKAR ENTERPRISES</div>
-                            <div class="logo-tagline">Private Lending Partnership</div>
+                        <div class="logo-text-container">
+                            <div class="logo-main" style="color: #d4af37;">OMKAR ENTERPRISES</div>
+                            <div class="logo-tagline" style="color: rgba(255, 255, 255, 0.7);">Private Lending Partnership</div>
                         </div>
                     </div>
                     <p class="footer-description">

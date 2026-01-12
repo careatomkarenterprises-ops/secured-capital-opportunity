@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- ADD THESE 3 LINES AT THE TOP of your existing sitemap -->
+    <url><loc>https://omkarservices.in/compliance.html</loc><priority>1.0</priority></url>
+    <url><loc>https://omkarservices.in/philosophy.html</loc><priority>0.9</priority></url>
+    <url><loc>https://omkarservices.in/privacy-policy.html</loc><priority>0.9</priority></url>
+    <!-- THEN your existing URLs below -->
+    <url><loc>https://omkarservices.in/</loc><priority>0.8</priority></url>
+    <!-- ... rest of your existing URLs -->
+</urlset>
+
     <url>
         <loc>https://omkarservices.in/</loc>
         <lastmod>2026-01-01</lastmod>

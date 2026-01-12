@@ -4,166 +4,1033 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Page Not Found | Omkar Enterprises</title>
-    <meta name="description" content="The page you're looking for cannot be found. Return to Omkar Enterprises homepage or contact us for assistance.">
+    <!-- SEO TAGS FOR 404 PAGE -->
+    <title>Page Not Found (404) | Omkar Enterprises | Private Lending Partnership | Ulhasnagar Pune</title>
+    <meta name="description" content="The page you're looking for cannot be found. Return to Omkar Enterprises homepage for 1% monthly returns investment partnerships in Ulhasnagar & Pune with PDC security.">
+    <meta name="keywords" content="Omkar Enterprises 404, page not found, broken link, investment page not found, Ulhasnagar Pune investment, 1% monthly returns, PDC security">
+    <meta name="robots" content="noindex, follow">
+    <meta name="googlebot" content="noindex, follow">
     
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://omkarservices.in/404.html">
     
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Page Not Found | Omkar Enterprises">
+    <meta property="og:description" content="Return to Omkar Enterprises for secure investment partnerships with 1% monthly returns and PDC security in Ulhasnagar & Pune">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://omkarservices.in/404.html">
+    <meta property="og:image" content="https://omkarservices.in/assets/og-image-404.jpg">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "404 Page Not Found - Omkar Enterprises",
+      "description": "Error page for broken links on Omkar Enterprises website",
+      "url": "https://omkarservices.in/404.html",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://omkarservices.in/"
+      },
+      "relatedLink": [
+        "https://omkarservices.in/index.html",
+        "https://omkarservices.in/slabs.html",
+        "https://omkarservices.in/legal-framework.html",
+        "https://omkarservices.in/testimonials.html",
+        "https://omkarservices.in/contact.html"
+      ]
+    }
+    </script>
+    
+    <!-- Favicon Links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- CSS - EXACT MATCH with Home Page -->
     <style>
-        /* 404 Page Specific Styles */
-        .error-page {
-            min-height: 80vh;
+        /* Base Styles with Trust Blue Color Palette - EXACT MATCH with Home Page */
+        :root {
+            --trust-blue: #1e3a8a;
+            --navy-blue: #1e40af;
+            --royal-blue: #2563eb;
+            --light-blue: #dbeafe;
+            --modern-slate: #334155;
+            --slate-dark: #1e293b;
+            --slate-light: #64748b;
+            --gold-accent: #d4af37;
+            --gold-light: #fef3c7;
+            --white: #ffffff;
+            --gray-light: #f8fafc;
+            --success-green: #10b981;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--modern-slate);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* System Status Bar - EXACT MATCH with Home Page */
+        .system-status {
+            background: linear-gradient(90deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-status::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success-green);
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--success-green);
+            animation: ripple 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* Sticky Navigation - EXACT MATCH with Home Page */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* LOGO STYLING - EXACT MATCH with Home Page */
+        .logo {
+            display: flex !important;
+            align-items: center !important;
+            text-decoration: none !important;
+            gap: 15px !important;
+            padding: 5px 0 !important;
+        }
+
+        .logo-image-container {
+            width: 50px !important;
+            height: 50px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            background: #ffffff !important;
+            border: 2px solid #dbeafe !important;
+            padding: 5px !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            flex-shrink: 0 !important;
+        }
+
+        .logo-image-container:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            border-color: #d4af37 !important;
+        }
+
+        .logo-image-container img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+            display: block !important;
+        }
+
+        .color-logo {
+            filter: none !important;
+        }
+
+        .logo-text-container {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            gap: 3px !important;
+        }
+
+        .logo-main {
+            font-size: 20px !important;
+            font-weight: 800 !important;
+            color: #1e3a8a !important;
+            letter-spacing: -0.5px !important;
+            line-height: 1.1 !important;
+            white-space: nowrap !important;
+            display: block !important;
+        }
+
+        .logo-tagline {
+            font-size: 11px !important;
+            color: #64748b !important;
+            font-weight: 500 !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            letter-spacing: 0.5px !important;
+            display: block !important;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--modern-slate);
+            font-weight: 600;
+            font-size: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: var(--space-xxl) 0;
-            background: linear-gradient(135deg, rgba(10, 26, 45, 0.95) 0%, rgba(26, 32, 44, 0.95) 100%);
+            gap: 8px;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold-accent);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--trust-blue);
+        }
+
+        .nav-cta .btn-nav-login {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+        }
+
+        .nav-cta .btn-nav-login:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold-accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--modern-slate);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* 404 Hero Section */
+        .error-hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: var(--white);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill="rgba(255,255,255,0.05)" d="M0,0V100H1000V0ZM250,50L500,25L750,50L1000,25V0H0V25Z"/></svg>');
+            background-size: cover;
+        }
+
+        .error-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
         }
-        
-        .error-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: var(--space-xl);
-        }
-        
+
         .error-code {
-            font-size: 8rem;
+            font-size: 120px;
             font-weight: 800;
-            color: var(--gold);
             line-height: 1;
-            margin-bottom: var(--space-md);
-            font-family: var(--font-heading);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 10px;
         }
-        
+
         .error-code span {
             display: inline-block;
-            animation: float 3s ease-in-out infinite;
+            animation: bounce 2s infinite;
         }
-        
-        .error-code span:nth-child(1) { animation-delay: 0s; }
+
+        .error-code span:nth-child(1) { animation-delay: 0.1s; }
         .error-code span:nth-child(2) { animation-delay: 0.2s; }
-        .error-code span:nth-child(3) { animation-delay: 0.4s; }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .error-code span:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
         }
-        
+
         .error-title {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-md);
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--white);
         }
-        
+
+        .gold-text {
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .error-description {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: var(--space-xl);
-            max-width: 500px;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
-        
+
+        /* Error Actions */
         .error-actions {
             display: flex;
-            gap: var(--space-md);
+            gap: 20px;
             justify-content: center;
-            margin-bottom: var(--space-xl);
+            margin: 40px 0;
             flex-wrap: wrap;
         }
-        
-        .error-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-md);
-            margin-top: var(--space-xl);
-        }
-        
-        .error-link {
-            display: flex;
-            flex-direction: column;
+
+        /* Button Styles */
+        .connect-btn {
+            display: inline-flex;
             align-items: center;
-            gap: var(--space-sm);
-            padding: var(--space-lg);
-            background-color: var(--bg-card);
-            border: 1px solid var(--charcoal);
-            border-radius: var(--border-radius);
+            gap: 12px;
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
+            color: var(--white);
+            padding: 18px 36px;
+            border-radius: 30px;
             text-decoration: none;
-            color: var(--text-gray);
-            transition: all var(--transition-fast);
+            font-weight: 700;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
         }
-        
-        .error-link:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-5px);
+
+        .connect-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            color: var(--white);
         }
-        
-        .error-link i {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: var(--space-sm);
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 18px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
-        
-        .error-link span {
-            font-weight: 500;
-            color: var(--text-light);
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
-        
+
+        /* Search Section */
+        .search-section {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--slate-dark);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--slate-light);
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+        }
+
         .search-box {
-            max-width: 500px;
-            margin: var(--space-xl) auto;
             position: relative;
+            max-width: 500px;
+            margin: 40px auto;
         }
-        
+
         .search-box input {
             width: 100%;
-            padding: 1rem 1.5rem 1rem 3rem;
-            background-color: var(--bg-card);
-            border: 1px solid var(--charcoal);
-            border-radius: var(--border-radius-lg);
-            color: var(--text-white);
-            font-size: 1rem;
+            padding: 18px 25px 18px 50px;
+            background: var(--gray-light);
+            border: 2px solid var(--light-blue);
+            border-radius: 30px;
+            font-size: 16px;
+            color: var(--slate-dark);
+            transition: var(--transition);
         }
-        
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--gold-accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
         .search-box i {
             position: absolute;
-            left: 1rem;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-gray);
+            color: var(--slate-light);
+            font-size: 20px;
         }
-        
+
+        /* Quick Links Grid */
+        .quick-links-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--gray-light) 0%, #f1f5f9 100%);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .link-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--light-blue);
+            text-align: center;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--slate-dark);
+        }
+
+        .link-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold-accent);
+        }
+
+        .link-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 32px;
+            margin: 0 auto 25px;
+        }
+
+        .link-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--slate-dark);
+        }
+
+        .link-card p {
+            color: var(--slate-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .link-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-small {
+            text-align: center;
+        }
+
+        .stat-number-small {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gold-accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-label-small {
+            font-size: 12px;
+            color: var(--slate-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer - EXACT MATCH with Home Page */
+        .footer {
+            background: var(--slate-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        /* FIXED FOOTER LOGO - EXACT MATCH with Home Page */
+        .footer-logo {
+            display: flex !important;
+            align-items: center !important;
+            gap: 15px !important;
+            margin-bottom: 25px !important;
+        }
+
+        .footer-logo .logo-image-container {
+            background: transparent !important;
+            border: 2px solid rgba(212, 175, 55, 0.3) !important;
+        }
+
+        .footer-logo .logo-main {
+            color: #d4af37 !important;
+        }
+
+        .footer-logo .logo-tagline {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact-item i {
+            color: var(--gold-accent);
+            margin-top: 4px;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .footer-col h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gold-accent);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            padding: 5px 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-accent);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-link.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .social-link.email {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .footer-disclaimer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 4px solid var(--gold-accent);
+        }
+
+        .footer-disclaimer h4 {
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+        }
+
+        .footer-disclaimer p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* Floating WhatsApp */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white);
+            padding: 18px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .float-whatsapp:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Mobile Responsive - EXACT MATCH with Home Page */
         @media (max-width: 768px) {
+            .logo {
+                gap: 12px !important;
+            }
+            
+            .logo-image-container {
+                width: 45px !important;
+                height: 45px !important;
+            }
+            
+            .logo-main {
+                font-size: 18px !important;
+            }
+            
+            .logo-tagline {
+                font-size: 10px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                gap: 10px !important;
+            }
+            
+            .logo-image-container {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            
+            .logo-main {
+                font-size: 16px !important;
+            }
+            
+            .logo-tagline {
+                font-size: 9px !important;
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 992px) {
             .error-code {
-                font-size: 5rem;
+                font-size: 80px;
+                letter-spacing: 5px;
             }
             
             .error-title {
-                font-size: 1.75rem;
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .links-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: var(--shadow-lg);
+                padding: 20px 0;
+                gap: 0;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                padding: 0;
+            }
+
+            .nav-menu a {
+                justify-content: center;
+                padding: 20px;
+                border-bottom: 1px solid var(--gray-light);
+            }
+
+            .error-hero {
+                padding: 80px 0;
+                min-height: 60vh;
+            }
+            
+            .error-code {
+                font-size: 60px;
+                letter-spacing: 3px;
+            }
+            
+            .error-title {
+                font-size: 28px;
+            }
+            
+            .error-description {
+                font-size: 18px;
             }
             
             .error-actions {
                 flex-direction: column;
+                align-items: center;
             }
             
-            .error-links {
+            .connect-btn, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .links-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 50px;
+                letter-spacing: 2px;
+            }
+            
+            .error-title {
+                font-size: 24px;
+            }
+            
+            .error-description {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
     </style>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    
+    <!-- System Status Bar - EXACT MATCH with Home Page -->
+    <div class="system-status">
+        <div class="container">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <div class="status-text">System Status: <strong>All Services Operational</strong> • Live Payouts Processing • Last Updated: <span id="currentTime"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation - EXACT MATCH with Home Page -->
+    <nav class="navbar" id="navbar">
         <div class="container nav-container">
+            <!-- FIXED LOGO - EXACT MATCH with Home Page -->
             <a href="index.html" class="logo">
-                <span class="logo-icon">OE</span>
-                <span class="logo-text">Omkar Enterprises</span>
+                <div class="logo-image-container">
+                    <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
+                </div>
+                <div class="logo-text-container">
+                    <div class="logo-main">OMKAR ENTERPRISES</div>
+                    <div class="logo-tagline">Private Lending Partnership Since 2015</div>
+                </div>
             </a>
             
-            <button class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -171,124 +1038,444 @@
             
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Tiers</a></li>
-                <li><a href="legal-framework.html"><i class="fas fa-gavel"></i> Legal</a></li>
-                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
-                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login"><i class="fas fa-lock"></i> Partner Login</a></li>
+                <li><a href="slabs.html"><i class="fas fa-rupee-sign"></i> Investment Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-file-contract"></i> Legal Framework</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
+                <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login" rel="noopener noreferrer"><i class="fas fa-lock"></i> Partner Login</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- 404 Content -->
-    <section class="error-page">
-        <div class="container error-container">
-            <div class="error-code">
-                <span>4</span>
-                <span>0</span>
-                <span>4</span>
+    <!-- 404 Hero Section -->
+    <section class="error-hero">
+        <div class="container">
+            <div class="error-content">
+                <h1 class="error-code">
+                    <span>4</span>
+                    <span>0</span>
+                    <span>4</span>
+                </h1>
+                <h2 class="error-title">Page <span class="gold-text">Not Found</span></h2>
+                <p class="error-description">
+                    The page you're looking for might have been moved, deleted, or doesn't exist. 
+                    Don't worry - let's get you back on track to explore our secure investment partnerships 
+                    with 1% monthly returns and PDC security.
+                </p>
+                
+                <div class="error-actions">
+                    <a href="index.html" class="connect-btn">
+                        <i class="fas fa-home"></i> Return to Homepage
+                    </a>
+                    <a href="contact.html" class="btn-secondary">
+                        <i class="fas fa-phone-alt"></i> Contact Support
+                    </a>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <h2 class="section-title">Find What You're <span class="gold-text">Looking For</span></h2>
+            <p class="section-subtitle">Search our website for investment partnerships, legal framework, testimonials, or contact information</p>
             
-            <h1 class="error-title">Page Not <span class="gold-text">Found</span></h1>
-            
-            <p class="error-description">
-                The page you're looking for might have been moved, deleted, or doesn't exist. 
-                Let's get you back on track to explore our private lending partnerships.
-            </p>
-            
-            <div class="error-actions">
-                <a href="index.html" class="btn-primary btn-large">
-                    <i class="fas fa-home"></i> Return Home
-                </a>
-                <a href="contact.html" class="btn-secondary btn-large">
-                    <i class="fas fa-phone-alt"></i> Contact Support
-                </a>
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="siteSearch" placeholder="Search for investment tiers, PDC security, 1% returns, testimonials...">
+                </div>
+                <p style="color: var(--slate-light); margin-top: 20px;">
+                    <i class="fas fa-lightbulb" style="color: var(--gold-accent); margin-right: 10px;"></i>
+                    Try searching for: <strong>investment tiers</strong>, <strong>PDC security</strong>, <strong>1% monthly returns</strong>, or <strong>partner testimonials</strong>
+                </p>
             </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Grid -->
+    <section class="quick-links-section">
+        <div class="container">
+            <h2 class="section-title">Popular <span class="gold-text">Pages</span></h2>
+            <p class="section-subtitle">Browse our most visited pages for secure investment partnerships in Ulhasnagar & Pune</p>
             
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search Omkar Enterprises website...">
-            </div>
-            
-            <div class="error-links">
-                <a href="slabs.html" class="error-link">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Partnership Tiers</span>
-                    <small>Explore investment slabs</small>
+            <div class="links-grid">
+                <!-- Investment Tiers -->
+                <a href="slabs.html" class="link-card fade-in">
+                    <div class="link-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Investment Tiers</h3>
+                    <p>Explore our investment slabs with 1% monthly returns. Choose from ₹1L to ₹50L+ partnerships with PDC security.</p>
+                    <div class="link-stats">
+                        <div class="stat-small">
+                            <div class="stat-number-small">1%</div>
+                            <div class="stat-label-small">Monthly Returns</div>
+                        </div>
+                        <div class="stat-small">
+                            <div class="stat-number-small">PDC</div>
+                            <div class="stat-label-small">Security</div>
+                        </div>
+                    </div>
                 </a>
                 
-                <a href="legal-framework.html" class="error-link">
-                    <i class="fas fa-gavel"></i>
-                    <span>Legal Framework</span>
-                    <small>Understand our security</small>
+                <!-- Legal Framework -->
+                <a href="legal-framework.html" class="link-card fade-in">
+                    <div class="link-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Legal Framework</h3>
+                    <p>Understand our secure legal structure with notarized agreements, PDC security, and compliance with Indian Partnership Act.</p>
+                    <div class="link-stats">
+                        <div class="stat-small">
+                            <div class="stat-number-small">100%</div>
+                            <div class="stat-label-small">Legal</div>
+                        </div>
+                        <div class="stat-small">
+                            <div class="stat-number-small">PDC</div>
+                            <div class="stat-label-small">Protected</div>
+                        </div>
+                    </div>
                 </a>
                 
-                <a href="testimonials.html" class="error-link">
-                    <i class="fas fa-star"></i>
-                    <span>Testimonials</span>
-                    <small>Read partner stories</small>
+                <!-- Testimonials -->
+                <a href="testimonials.html" class="link-card fade-in">
+                    <div class="link-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Partner Testimonials</h3>
+                    <p>Read authentic experiences from 500+ satisfied partners who trust Omkar Enterprises for consistent monthly returns.</p>
+                    <div class="link-stats">
+                        <div class="stat-small">
+                            <div class="stat-number-small">500+</div>
+                            <div class="stat-label-small">Partners</div>
+                        </div>
+                        <div class="stat-small">
+                            <div class="stat-number-small">4.9/5</div>
+                            <div class="stat-label-small">Rating</div>
+                        </div>
+                    </div>
                 </a>
                 
-                <a href="faq.html" class="error-link">
-                    <i class="fas fa-question-circle"></i>
-                    <span>FAQ</span>
-                    <small>Find answers</small>
+                <!-- Contact -->
+                <a href="contact.html" class="link-card fade-in">
+                    <div class="link-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Contact & Location</h3>
+                    <p>Visit our offices in Ulhasnagar or Pune for personal consultation. Schedule appointment for investment partnership.</p>
+                    <div class="link-stats">
+                        <div class="stat-small">
+                            <div class="stat-number-small">2</div>
+                            <div class="stat-label-small">Offices</div>
+                        </div>
+                        <div class="stat-small">
+                            <div class="stat-number-small">24/7</div>
+                            <div class="stat-label-small">Support</div>
+                        </div>
+                    </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - EXACT MATCH with Home Page -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <!-- FIXED FOOTER LOGO - EXACT MATCH with Home Page -->
+                    <div class="footer-logo">
+                        <div class="logo-image-container" style="background: transparent; border: 2px solid rgba(212, 175, 55, 0.3);">
+                            <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
+                        </div>
+                        <div class="logo-text-container">
+                            <div class="logo-main" style="color: #d4af37;">OMKAR ENTERPRISES</div>
+                            <div class="logo-tagline" style="color: rgba(255, 255, 255, 0.7);">Private Lending Partnership</div>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Since 2015, <strong>Omkar Enterprises</strong> has served as a premier 
+                        <strong>private lending partnership</strong> in India, maintaining a 
+                        <strong>100% payout record</strong> for our 500+ partners. We specialize in 
+                        <strong>secured investments</strong> designed for those seeking 
+                        <strong>reliable monthly returns</strong> and long-term capital growth. 
+                        Operating under the Indian Partnership Act, we provide a stable 
+                        <strong>alternative investment</strong> platform for the modern Indian investor.
+                    </p>
+                    
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Investment Helpline:</strong><br>
+                                +91 8169 302 861 | +91 9226 393 837 | (Official Whatsapp) +91 7066 393 830
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email:</strong><br>
+                                care@omkarservices.in
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Ulhasnagar Office:</strong><br>
+                                BK 673, Sai Baba Colony, Opp Rajaram Furniturewala, Central Hospital Area, Ulhasnagar 421002, Maharashtra
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Pune Office:</strong><br>
+                                Office No 101, Rajas Society, Katraj-Kondhwa Road, Bibwewadi Annex, Katraj, Pune 411046
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="slabs.html"><i class="fas fa-chevron-right"></i> Investment Tiers & Plans</a></li>
+                        <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework & Security</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Partner Testimonials</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Founder</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact & Location</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Connect With Partners</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/917066393830" class="social-link whatsapp" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Chat with Existing Partners</span>
+                        </a>
+                        <a href="contact.html?subject=Partner%20Reference" class="social-link email">
+                            <i class="fas fa-handshake"></i>
+                            <span>Request Partner References</span>
+                        </a>
+                    </div>
+                    
+                    <h4 style="margin-top: 30px;">Legal Documents</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                        <li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="risk-disclosure.html"><i class="fas fa-chevron-right"></i> Risk Disclosure</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-disclaimer">
+                <h4><i class="fas fa-exclamation-triangle"></i> 404 Page & Investment Disclaimer</h4>
+                <p><strong>Page Not Found Notice:</strong> If you reached this page through a broken link, please report it to us. This 404 page is designed to help you find relevant investment information on our website.</p>
+                <p><strong>Investment Disclaimer:</strong> Omkar Enterprises is not a SEBI registered investment advisor, bank, or NBFC. We operate as a private lending partnership firm under the Indian Contract Act, 1872. Investors should carefully consider their financial situation, consult with independent financial advisors, and read all documentation before making investment decisions.</p>
+            </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2026 Omkar Enterprises. All Rights Reserved. | Error 404 - Page Not Found</p>
-                <p class="footer-regulatory">
-                    <i class="fas fa-map-marker-alt"></i> BK 684, Central Hospital Area, Ulhasnagar 421003
+                <p>&copy; 2015-2024 Omkar Enterprises. All Rights Reserved. | 404 Page - Page Not Found</p>
+                <p><i class="fas fa-shield-alt"></i> Registered Office: Ulhasnagar, Maharashtra | Operations Office: Pune, Maharashtra</p>
+                <p class="footer-regulatory" style="margin-top: 10px; font-size: 12px; color: rgba(255, 255, 255, 0.4);">
+                    Compliant with Indian Contract Act, 1872 | All partnerships governed by bilateral agreements | PDC security system implemented
                 </p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span>Get Help with Navigation</span>
+    </a>
+
+    <!-- JavaScript -->
     <script>
-        // Simple search functionality for 404 page
-        document.querySelector('.search-box input')?.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const query = this.value.trim().toLowerCase();
-                if (query) {
-                    // Simple keyword matching - in production, this would be more sophisticated
-                    const pages = {
-                        'investment': 'slabs.html',
-                        'tier': 'slabs.html',
-                        'slab': 'slabs.html',
-                        'legal': 'legal-framework.html',
-                        'agreement': 'legal-framework.html',
-                        'pdc': 'legal-framework.html',
-                        'testimonial': 'testimonials.html',
-                        'review': 'testimonials.html',
-                        'faq': 'faq.html',
-                        'question': 'faq.html',
-                        'contact': 'contact.html',
-                        'about': 'about.html',
-                        'founder': 'about.html',
-                        'santosh': 'about.html',
-                        'login': 'partner-portal.html',
-                        'dashboard': 'partner-portal.html',
-                        'partner': 'partner-portal.html'
-                    };
-                    
-                    for (const [keyword, page] of Object.entries(pages)) {
-                        if (query.includes(keyword)) {
-                            window.location.href = page;
-                            return;
-                        }
+        // Mobile Navigation Toggle - EXACT MATCH with Home Page
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const navbar = document.getElementById('navbar');
+            
+            // Toggle mobile menu
+            if (hamburger) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
                     }
-                    
-                    // Default to home page with search parameter
-                    window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+                });
+                
+                // Close menu when clicking on a link
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+            }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Update current time
+            function updateCurrentTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-IN', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    timeZone: 'Asia/Kolkata'
+                });
+                const dateString = now.toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    timeZone: 'Asia/Kolkata'
+                });
+                
+                const timeElement = document.getElementById('currentTime');
+                if (timeElement) {
+                    timeElement.textContent = `${dateString} ${timeString} IST`;
                 }
             }
+            
+            // Update time every second
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+
+            // Set current year in copyright
+            const yearElement = document.querySelector('.footer-bottom p');
+            if (yearElement && yearElement.textContent.includes('2024')) {
+                yearElement.innerHTML = yearElement.innerHTML.replace('2024', new Date().getFullYear());
+            }
+
+            // Search functionality for 404 page
+            const searchInput = document.getElementById('siteSearch');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const query = this.value.trim().toLowerCase();
+                        if (query) {
+                            // Define search mappings
+                            const searchMappings = {
+                                // Investment related
+                                'investment': 'slabs.html',
+                                'tier': 'slabs.html',
+                                'slab': 'slabs.html',
+                                'plan': 'slabs.html',
+                                'returns': 'slabs.html',
+                                '1%': 'slabs.html',
+                                'monthly returns': 'slabs.html',
+                                
+                                // Legal related
+                                'legal': 'legal-framework.html',
+                                'pdc': 'legal-framework.html',
+                                'security': 'legal-framework.html',
+                                'agreement': 'legal-framework.html',
+                                'contract': 'legal-framework.html',
+                                'compliance': 'legal-framework.html',
+                                
+                                // Testimonials
+                                'testimonial': 'testimonials.html',
+                                'review': 'testimonials.html',
+                                'feedback': 'testimonials.html',
+                                'experience': 'testimonials.html',
+                                'partner story': 'testimonials.html',
+                                
+                                // Contact
+                                'contact': 'contact.html',
+                                'location': 'contact.html',
+                                'office': 'contact.html',
+                                'address': 'contact.html',
+                                'appointment': 'contact.html',
+                                'visit': 'contact.html',
+                                
+                                // About
+                                'about': 'about.html',
+                                'founder': 'about.html',
+                                'santosh': 'about.html',
+                                'shendkar': 'about.html',
+                                'history': 'about.html',
+                                
+                                // FAQ
+                                'faq': 'faq.html',
+                                'question': 'faq.html',
+                                'answer': 'faq.html',
+                                'help': 'faq.html',
+                                
+                                // Login
+                                'login': 'partner-portal.html',
+                                'dashboard': 'partner-portal.html',
+                                'portal': 'partner-portal.html',
+                                'partner login': 'partner-portal.html',
+                                
+                                // Home
+                                'home': 'index.html',
+                                'main': 'index.html',
+                                'welcome': 'index.html'
+                            };
+                            
+                            // Check for matches
+                            for (const [keyword, page] of Object.entries(searchMappings)) {
+                                if (query.includes(keyword)) {
+                                    window.location.href = page;
+                                    return;
+                                }
+                            }
+                            
+                            // If no direct match, show search results on home page
+                            window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+                        }
+                    }
+                });
+            }
+
+            // Add animation classes on scroll
+            function checkScroll() {
+                const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('animated');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Initial check
+            
+            // Auto-focus search input on page load
+            setTimeout(() => {
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            }, 500);
         });
     </script>
+
 </body>
 </html>

@@ -1,24 +1,16 @@
 User-agent: *
 Allow: /
 Disallow: /dashboard.html
-Disallow: /js/
-Disallow: /css/
-Disallow: /assets/
-
-# Crawl delay
-Crawl-delay: 10
-
-# Sitemap
-Sitemap: https://omkarservices.in/sitemap.xml
 
 # Googlebot specific
 User-agent: Googlebot
 Allow: /
-Disallow: /dashboard.html
-Crawl-delay: 5
+Crawl-delay: 1
 
-# Bingbot specific
+# Bingbot
 User-agent: Bingbot
 Allow: /
-Disallow: /dashboard.html
-Crawl-delay: 10
+Crawl-delay: 2
+
+# Sitemap
+Sitemap: https://omkarservices.in/sitemap.xml

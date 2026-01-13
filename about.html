@@ -104,28 +104,70 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
+      "@graph": [
         {
-          "@type": "Question",
-          "name": "What is Santosh Shendkar's experience in private lending?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Santosh Shendkar has over 10 years of experience in private lending and financial partnerships. He founded Omkar Enterprises in 2015 and has since managed investments worth ₹50Cr+ with a 100% payout record."
-          }
+          "@type": ["Person", "LocalBusiness"],
+          "name": "Santosh Shendkar",
+          "@id": "https://omkarservices.in/#founder",
+          "jobTitle": "Founder & Managing Partner",
+          "description": "Founder of Omkar Enterprises, specializing in private lending partnerships with 1% monthly returns.",
+          "image": "https://omkarservices.in/assets/founder.jpg",
+          "url": "https://omkarservices.in/about.html",
+          "telephone": ["+91-81693-02861", "+91-92263-93837", "+91-70663-93830"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "BK 673, Sai Baba Colony",
+            "addressLocality": "Ulhasnagar",
+            "addressRegion": "Maharashtra",
+            "postalCode": "421002",
+            "addressCountry": "IN"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "2"
+          },
+          "review": [
+            {
+              "@type": "Review",
+              "author": { "@type": "Person", "name": "Rajesh Kumar" },
+              "datePublished": "2023-12-15",
+              "reviewBody": "I've been investing with Omkar Enterprises for 3 years now, and I have received 1% returns every single month without fail.",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5" }
+            },
+            {
+              "@type": "Review",
+              "author": { "@type": "Person", "name": "Amit Sharma" },
+              "datePublished": "2023-11-20",
+              "reviewBody": "After trying various investment options, I finally found Omkar Enterprises. The 1% monthly returns come like clockwork.",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5" }
+            }
+          ]
         },
         {
-          "@type": "Question",
-          "name": "Is Santosh Shendkar available for direct consultation?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, Santosh Shendkar is personally available for consultations at both Ulhasnagar and Pune offices. You can schedule a meeting, call directly, or connect via WhatsApp for partnership discussions."
-          }
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Santosh Shendkar's experience in private lending?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Santosh Shendkar has over 10 years of experience in private lending and financial partnerships. He founded Omkar Enterprises in 2015."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Santosh Shendkar available for direct consultation?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, Santosh Shendkar is personally available for consultations at both Ulhasnagar and Pune offices."
+              }
+            }
+          ]
         }
       ]
     }
-    </script>
-    
+    </script>    
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">

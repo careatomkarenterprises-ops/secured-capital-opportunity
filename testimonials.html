@@ -28,56 +28,45 @@
     <meta name="twitter:description" content="Authentic reviews from 500+ partners about private lending partnerships with monthly returns">
     <meta name="twitter:image" content="https://omkarservices.in/assets/twitter-testimonials-image.jpg">
     
-    <!-- Review Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Client Testimonials - Omkar Enterprises",
-      "description": "Authentic testimonials from 500+ satisfied investment partners about 1% monthly returns and PDC security",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Omkar Enterprises",
-        "url": "https://omkarservices.in"
-      },
-      "hasPart": [
+      "@graph": [
         {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "Service",
-            "name": "Private Lending Partnership",
-            "description": "1% monthly returns with PDC security"
+          "@type": "LocalBusiness",
+          "@id": "https://omkarservices.in/#business",
+          "name": "Omkar Enterprises",
+          "url": "https://omkarservices.in/testimonials.html",
+          "telephone": "+91-81693-02861",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "BK 673, Sai Baba Colony",
+            "addressLocality": "Ulhasnagar",
+            "addressRegion": "Maharashtra",
+            "postalCode": "421002",
+            "addressCountry": "IN"
           },
-          "reviewRating": {
-            "@type": "Rating",
+          "aggregateRating": {
+            "@type": "AggregateRating",
             "ratingValue": "5",
-            "bestRating": "5"
+            "reviewCount": "2"
           },
-          "author": {
-            "@type": "Person",
-            "name": "Rajesh Kumar"
-          },
-          "reviewBody": "I've been investing with Omkar Enterprises for 3 years now, and I have received 1% returns every single month without fail. The PDC security gives complete peace of mind.",
-          "datePublished": "2023-12-15"
-        },
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "Service",
-            "name": "Private Lending Partnership",
-            "description": "1% monthly returns with PDC security"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Amit Sharma"
-          },
-          "reviewBody": "After trying various investment options, I finally found Omkar Enterprises. The 1% monthly returns come like clockwork on the 1st of every month.",
-          "datePublished": "2023-11-20"
+          "review": [
+            {
+              "@type": "Review",
+              "author": { "@type": "Person", "name": "Rajesh Kumar" },
+              "datePublished": "2023-12-15",
+              "reviewBody": "I've been investing with Omkar Enterprises for 3 years now, and I have received 1% returns every single month without fail.",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5" }
+            },
+            {
+              "@type": "Review",
+              "author": { "@type": "Person", "name": "Amit Sharma" },
+              "datePublished": "2023-11-20",
+              "reviewBody": "After trying various investment options, I finally found Omkar Enterprises. The 1% monthly returns come like clockwork.",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5" }
+            }
+          ]
         }
       ]
     }

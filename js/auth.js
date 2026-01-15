@@ -1,7 +1,7 @@
 // Omkar Enterprises - Professional Partner Portal Authentication
 const CONFIG = {
-    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwKM7ZCpcrawy_ip5_ErgLTIL536F4_NXPdmCYMOEpgNRHR9PUHmD5YB1E4jBNQwVZs/exec',
-    WHATSAPP_SUPPORT: '917066393830'
+    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzx2XWe4eNssr1kmksZSPN4dMEarX2bx0URi36eU8Imad_cAaYHIlQ4lCy8KP6kSEgL/exec',
+    WHATSAPP_SUPPORT: '919226393837'
 };
 
 class OmkarAuth {

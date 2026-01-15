@@ -1,6 +1,6 @@
-// Complete Authentication System for Omkar Enterprises - FIXED VERSION
+// Complete Authentication System for Omkar Enterprises
 const CONFIG = {
-    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbycaM-u64zXMMWVtGIyQBtSX_rBxVuesgh-B9R5F29OxTw_TrdR1E_YVDAdxqOUEoAe/exec',
+    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwKM7ZCpcrawy_ip5_ErgLTIL536F4_NXPdmCYMOEpgNRHR9PUHmD5YB1E4jBNQwVZs/exec',
     WHATSAPP_NUMBER: '917066393830',
     SUPPORT_NUMBER: '918169302861',
     COMPANY_NAME: 'Omkar Enterprises',
@@ -52,7 +52,7 @@ class SessionManager {
     }
 }
 
-// API Client
+// API Client - UPDATED TO FIX CORS
 class ApiClient {
     async fetchFromGoogleScript(action, params = {}) {
         const url = new URL(CONFIG.GOOGLE_SCRIPT_URL);
@@ -63,30 +63,22 @@ class ApiClient {
         });
 
         try {
+            // We use standard fetch which handles the Google redirect automatically
             const response = await fetch(url.toString(), {
-                method: 'GET',
-                mode: 'no-cors'  // Changed from 'cors' to 'no-cors' to avoid CORS issues
+                method: 'GET'
             });
             
-            // With no-cors mode, we can't read the response directly
-            // We'll handle this differently
-            return await this.handleNoCorsResponse(action, params);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            return data;
             
         } catch (error) {
             console.error('API Error:', error);
-            return { error: 'Network error. Please try again.' };
+            return { error: 'Connection error. Please check your internet or contact support.' };
         }
-    }
-
-    async handleNoCorsResponse(action, params) {
-        // For no-cors mode, we need to simulate the response
-        // In production, you should enable CORS properly in Google Apps Script
-        
-        if (action === 'verifyLogin' && params.accessKey === 'TEST001' && params.mobile === '9876543210') {
-            return { success: true, message: "Login verified", partnerId: 'TEST001' };
-        }
-        
-        return { error: "Please use TEST001 and 9876543210 for testing" };
     }
 
     async verifyPartnerLogin(accessKey, mobile) {
@@ -97,33 +89,16 @@ class ApiClient {
     }
 
     async getPartnerData(accessKey) {
-        // For testing, return mock data
-        if (accessKey === 'TEST001') {
-            return {
-                name: "Test Partner",
-                mobile: "9876543210",
-                email: "test@omkarservices.in",
-                startDate: "2024-01-01",
-                principal: 500000,
-                monthlyReturns: 5000,
-                rate: "1%",
-                nextPayoutDate: "2024-02-01",
-                agreementEndDate: "2024-12-31",
-                status: "Active",
-                tier: "Gold",
-                agreementId: "TEST001",
-                accessKey: "TEST001"
-            };
-        }
-        return { error: "Partner not found" };
+        return await this.fetchFromGoogleScript('getPartner', {
+            accessKey: accessKey.trim().toUpperCase()
+        });
     }
 }
 
 // Form Validators
 class FormValidators {
     static validateAccessKey(key) {
-        // Accept any non-empty key for testing
-        return key && key.trim().length > 0;
+        return key && key.trim().length >= 4;
     }
 
     static validateMobile(mobile) {
@@ -146,19 +121,16 @@ class OmkarEnterprisesApp {
     }
 
     setupEventListeners() {
-        // Login form
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => this.handleLogin(e));
         }
         
-        // Logout button
         const logoutBtn = document.getElementById('logoutBtn');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => this.sessionManager.logout());
         }
         
-        // Reset timer on user activity
         ['click', 'mousemove', 'keypress'].forEach(event => {
             document.addEventListener(event, () => this.sessionManager.resetTimer());
         });
@@ -171,7 +143,7 @@ class OmkarEnterprisesApp {
         const mobile = document.getElementById('loginMobile')?.value;
         
         if (!FormValidators.validateAccessKey(accessKey)) {
-            this.showError('Please enter your access key');
+            this.showError('Please enter a valid access key');
             return;
         }
         
@@ -183,34 +155,31 @@ class OmkarEnterprisesApp {
         this.showLoading('Verifying credentials...');
         
         try {
-            // For testing, allow any key/mobile combination
-            // In production, use the actual API call
-            const result = { success: true, message: "Login successful for testing" };
+            // 1. Verify Login with Google Sheet
+            const loginResult = await this.apiClient.verifyPartnerLogin(accessKey, mobile);
             
-            if (result.error) {
-                this.showError(result.error);
+            if (loginResult.error) {
+                this.showError(loginResult.error);
                 return;
             }
             
-            const partnerData = await this.apiClient.getPartnerData(accessKey);
-            
-            if (partnerData.error) {
-                this.showError(partnerData.error);
-                return;
+            if (loginResult.success) {
+                // 2. Fetch full partner details
+                const partnerData = await this.apiClient.getPartnerData(accessKey);
+                
+                if (partnerData.error) {
+                    this.showError(partnerData.error);
+                    return;
+                }
+                
+                // 3. Start Session and Redirect
+                this.sessionManager.startSession(partnerData);
+                localStorage.setItem('omkar_access_key', accessKey.toUpperCase());
+                window.location.href = 'dashboard.html';
             }
-            
-            this.sessionManager.startSession({
-                ...partnerData,
-                accessKey: accessKey.toUpperCase()
-            });
-            
-            localStorage.setItem('omkar_access_key', accessKey.toUpperCase());
-            
-            // Redirect to dashboard
-            window.location.href = 'dashboard.html';
             
         } catch (error) {
-            this.showError('Login failed. Please try again or contact support.');
+            this.showError('Login system is currently busy. Please try again in a moment.');
         } finally {
             this.hideLoading();
         }
@@ -228,85 +197,76 @@ class OmkarEnterprisesApp {
     }
 
     loadDashboardData(session) {
-        // Update dashboard with session data
-        if (document.getElementById('partnerName')) {
-            document.getElementById('partnerName').textContent = session.name || 'Test Partner';
-        }
-        if (document.getElementById('partnerTier')) {
-            document.getElementById('partnerTier').textContent = session.tier || 'Gold Tier';
-        }
-        if (document.getElementById('activePrincipal')) {
-            document.getElementById('activePrincipal').textContent = this.formatCurrency(session.principal || 500000);
-        }
-        if (document.getElementById('monthlyReturns')) {
-            document.getElementById('monthlyReturns').textContent = this.formatCurrency(session.monthlyReturns || 5000);
-        }
-        if (document.getElementById('totalReturns')) {
-            const months = this.monthsSince(session.startDate || '2024-01-01');
-            document.getElementById('totalReturns').textContent = this.formatCurrency(months * (session.monthlyReturns || 5000));
-        }
-        if (document.getElementById('agreementId')) {
-            document.getElementById('agreementId').textContent = session.agreementId || 'TEST001';
+        // Elements from dashboard (2).html
+        const updateText = (id, value) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        };
+
+        updateText('partnerName', session.name);
+        updateText('partnerTier', (session.tier || 'Gold') + ' Partner');
+        updateText('activePrincipal', this.formatCurrency(session.principal));
+        updateText('monthlyReturns', this.formatCurrency(session.monthlyReturns));
+        updateText('agreementId', session.accessKey);
+        
+        const totalReturnsEl = document.getElementById('totalReturns');
+        if (totalReturnsEl) {
+            const months = this.monthsSince(session.startDate);
+            totalReturnsEl.textContent = this.formatCurrency(months * session.monthlyReturns);
         }
     }
 
     monthsSince(dateStr) {
+        if (!dateStr) return 0;
         const startDate = new Date(dateStr);
         const now = new Date();
-        return (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
+        return Math.max(0, (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth()));
     }
 
     formatCurrency(amount) {
-        if (!amount) return '₹0';
-        const num = parseInt(amount.toString().replace(/[^0-9]/g, ''));
+        const value = parseFloat(amount) || 0;
         return new Intl.NumberFormat('en-IN', {
             style: 'currency',
             currency: 'INR',
             maximumFractionDigits: 0
-        }).format(num);
+        }).format(value);
     }
 
-    showLoading(message = 'Processing...') {
-        // Simple loading indicator
-        const existing = document.getElementById('loadingOverlay');
-        if (existing) existing.remove();
-        
-        const overlay = document.createElement('div');
-        overlay.id = 'loadingOverlay';
-        overlay.innerHTML = `
-            <div style="position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:9999; display:flex; align-items:center; justify-content:center; color:white;">
-                <div style="text-align:center;">
-                    <div style="width:50px; height:50px; border:3px solid #f3f3f3; border-top:3px solid #3498db; border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 20px;"></div>
-                    <p>${message}</p>
-                </div>
-            </div>
-            <style>@keyframes spin {0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);}}</style>
-        `;
-        document.body.appendChild(overlay);
+    showLoading(message) {
+        let overlay = document.getElementById('loadingOverlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'loadingOverlay';
+            overlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; font-family:sans-serif;";
+            overlay.innerHTML = `
+                <div style="width:50px; height:50px; border:5px solid #f3f3f3; border-top:5px solid #d4af37; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:20px;"></div>
+                <p id="loadingMsg">${message}</p>
+                <style>@keyframes spin {0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);}}</style>
+            `;
+            document.body.appendChild(overlay);
+        } else {
+            document.getElementById('loadingMsg').textContent = message;
+            overlay.style.display = 'flex';
+        }
     }
 
     hideLoading() {
         const overlay = document.getElementById('loadingOverlay');
-        if (overlay) overlay.remove();
+        if (overlay) overlay.style.display = 'none';
     }
 
     showError(message) {
-        alert('Error: ' + message); // Simple alert for now
+        alert(message);
     }
 }
 
-// Initialize the application
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     window.omkarApp = new OmkarEnterprisesApp();
 });
 
-// Auto-format inputs
+// Auto-format for cleaner UX
 document.addEventListener('input', (e) => {
-    if (e.target.id === 'accessKey') {
-        e.target.value = e.target.value.toUpperCase();
-    }
-    
-    if (e.target.type === 'tel') {
-        e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
-    }
+    if (e.target.id === 'accessKey') e.target.value = e.target.value.toUpperCase();
+    if (e.target.type === 'tel') e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
 });

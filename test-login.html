@@ -1,62 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test Omkar Login</title>
+    <title>Omkar API Fixed Test</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background-color: #f0f2f5; }
-        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
-        h2 { color: #1e3a8a; margin-top: 0; }
-        input { padding: 12px; margin: 10px 0; width: 100%; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { padding: 12px; background: #1e3a8a; color: white; border: none; cursor: pointer; width: 100%; border-radius: 4px; font-weight: bold; }
-        button:hover { background: #172554; }
-        #result { margin-top: 20px; word-wrap: break-word; }
-        pre { background: #f8f9fa; padding: 15px; border-radius: 4px; border: 1px solid #eee; white-space: pre-wrap; }
-        .loading { color: #d4af37; font-weight: bold; }
+        body { font-family: 'Segoe UI', Arial; padding: 40px; background: #f4f7f6; }
+        .box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 450px; margin: auto; }
+        h2 { color: #1e3a8a; margin-top: 0; border-bottom: 2px solid #d4af37; padding-bottom: 10px; }
+        input { padding: 12px; margin: 10px 0; width: 100%; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { padding: 12px; background: #1e3a8a; color: white; border: none; cursor: pointer; width: 100%; border-radius: 5px; font-weight: bold; font-size: 16px; }
+        button:hover { background: #d4af37; color: #1e3a8a; }
+        #result { margin-top: 20px; }
+        pre { background: #2d2d2d; color: #61dafb; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 13px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Partner Portal Test</h2>
-    <p>Enter your credentials to test the secure connection.</p>
+<div class="box">
+    <h2>Secure API Test</h2>
+    <p>Testing connection to Omkar Investor Master...</p>
     
-    <input type="text" id="username" placeholder="Investor ID (e.g., TEST001)" value="TEST001">
+    <input type="text" id="username" placeholder="Investor ID" value="TEST001">
     <input type="text" id="mobile" placeholder="WhatsApp Number" value="9876543210">
-    <button onclick="testLogin()">Verify Secure Connection</button>
+    <button onclick="testLogin()">RUN SECURE TEST</button>
     
     <div id="result"></div>
 </div>
 
 <script>
 async function testLogin() {
-    // 1. YOUR CURRENT LIVE URL
+    // 1. USE YOUR LATEST URL (The one ending in ...vpTa5YM7Rb6w5r_f/exec)
     const API_URL = "https://script.google.com/macros/s/AKfycbxzHXj7vDtYHDnR_Lm_eFUVbL4dZm1w89BkFH2dxQS--ai6RdluvpTa5YM7Rb6w5r_f/exec";
     
     const investorId = document.getElementById('username').value.trim().toUpperCase();
-    const mobile = document.getElementById('mobile').value.trim();
+    const mobileNum = document.getElementById('mobile').value.trim();
     
     const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = '<p class="loading">Establishing secure tunnel...</p>';
+    resultDiv.innerHTML = '<p style="color: #d4af37;">Connecting to Google Vault...</p>';
     
-    // 2. THE FIX: Construct URL with parameters (Bypasses CORS)
-    const finalUrl = `${API_URL}?action=verifyLogin&accessKey=${encodeURIComponent(investorId)}&mobile=${encodeURIComponent(mobile)}`;
+    // 2. THE SECRET: Send data in the URL (GET) instead of the Body (POST)
+    // This removes the CORS "Preflight" block entirely.
+    const finalUrl = `${API_URL}?action=verifyLogin&accessKey=${encodeURIComponent(investorId)}&mobile=${encodeURIComponent(mobileNum)}`;
     
     try {
-        // 3. THE FIX: Using a simple GET request with no custom headers
+        // 3. Simple fetch (No headers, no POST)
         const response = await fetch(finalUrl);
-        
-        if (!response.ok) throw new Error('Network response was not ok');
-        
         const result = await response.json();
         
-        if (result.success) {
-            resultDiv.innerHTML = '<h3 style="color:green;">✅ Connection Successful</h3><pre>' + JSON.stringify(result, null, 2) + '</pre>';
+        if (result.success || result.FullName) {
+            resultDiv.innerHTML = '<h3 style="color:green;">✅ SUCCESS!</h3><pre>' + JSON.stringify(result, null, 2) + '</pre>';
         } else {
-            resultDiv.innerHTML = '<h3 style="color:red;">❌ Login Failed</h3><p>' + (result.error || 'Invalid credentials') + '</p>';
+            resultDiv.innerHTML = '<h3 style="color:red;">❌ LOGIN FAILED</h3><p>' + (result.error || 'Check details') + '</p>';
         }
     } catch (error) {
-        resultDiv.innerHTML = '<h3 style="color:red;">⚠️ CORS/Connection Error</h3><p>Please ensure your Google Script is deployed as <b>"Anyone"</b>.</p><pre>' + error + '</pre>';
-        console.error('Full Error:', error);
+        resultDiv.innerHTML = '<h3 style="color:red;">⚠️ STILL BLOCKED?</h3><p>Make sure you clicked <b>Deploy > New Deployment > Anyone</b> on your script.</p><pre>' + error + '</pre>';
     }
 }
 </script>

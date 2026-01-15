@@ -1,8 +1,8 @@
 // Omkar Enterprises Partner Authentication - FIXED VERSION
-const OMKAR_API_URL = "https://script.google.com/macros/s/AKfycbwqCk8hGn4sSfYvt86W7VwopHEE0KSYl-YQRxeByVuh1MPuIZQALqBvKVuaRJ95wTEW/exec";
+const OMKAR_API_URL = "https://script.google.com/macros/s/AKfycbxdbMQ-w3_ta76EPuUQxlKQnsOdpos8vPRl4jC4-7En7cWmn324Hwbydjt2RgG9alhf/exec";
 
 const CONFIG = {
-    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwqCk8hGn4sSfYvt86W7VwopHEE0KSYl-YQRxeByVuh1MPuIZQALqBvKVuaRJ95wTEW/exec', // ← REPLACE THIS
+    GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxdbMQ-w3_ta76EPuUQxlKQnsOdpos8vPRl4jC4-7En7cWmn324Hwbydjt2RgG9alhf/exec', // ← REPLACE THIS
     WHATSAPP_NUMBER: '917066393830',
     SUPPORT_NUMBER: '918169302861',
     COMPANY_NAME: 'Omkar Enterprises',

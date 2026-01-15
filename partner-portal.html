@@ -2062,37 +2062,56 @@
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
             
-            // Login form submission
-            const loginForm = document.getElementById('loginForm');
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const username = document.getElementById('username').value.trim();
-                    const password = document.getElementById('password').value.trim();
-                    
-                    if (username && password) {
-                        // Show loading state
-                        const submitBtn = loginForm.querySelector('button[type="submit"]');
-                        const originalText = submitBtn.innerHTML;
-                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
-                        submitBtn.disabled = true;
-                        
-                        // Simulate API call delay
-                        setTimeout(() => {
-                            // In a real implementation, this would connect to a backend
-                            alert('Login successful! Redirecting to partner dashboard...\n\nNote: This is a demo portal. In the live version, you would be redirected to your actual dashboard.');
-                            loginForm.reset();
-                            
-                            // Reset button state
-                            submitBtn.innerHTML = originalText;
-                            submitBtn.disabled = false;
-                        }, 1500);
-                    } else {
-                        alert('Please enter both Partner ID/Mobile and Password.');
-                    }
+            // // Login form submission
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+    loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+        
+        if (username && password) {
+            // Show loading
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('YOUR_DEPLOYED_URL_HERE', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        action: 'login',
+                        partnerId: username,
+                        password: password
+                    })
                 });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Login successful!');
+                    // Store data and redirect
+                    localStorage.setItem('partnerData', JSON.stringify(result.data.partnerData));
+                    localStorage.setItem('token', result.data.token);
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert('Login failed: ' + result.data);
+                }
+            } catch (error) {
+                alert('Network error. Please try again.');
+            } finally {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
+        } else {
+            alert('Please enter both Partner ID and Password.');
+        }
+    });
+}
             
             // Forgot password functionality
             const forgotPasswordLink = document.getElementById('forgotPassword');

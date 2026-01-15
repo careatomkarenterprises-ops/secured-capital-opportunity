@@ -1,36 +1,46 @@
 const CONFIG = {
     // PASTE YOUR NEWEST URL HERE
-    URL: 'https://script.google.com/macros/s/AKfycbw-bXhbA48UAHtOVa1XzKlPHFlkzpmA5jXulQ-LblCKrOdgAbGky-nkFm0BOIhehycY/exec'
+    URL: 'https://script.google.com/macros/s/AKfycbyVHc_VUcJ6SF2TVhO90eciaScsQX9seSobNSQWSUlx82Tt8MPd_vt-twwtnj2ewRHC/exec'
 };
 
 async function handleLogin(event) {
-    event.preventDefault();
+    if (event) event.preventDefault();
+    
     const key = document.getElementById('accessKey').value.trim().toUpperCase();
     const mobile = document.getElementById('loginMobile').value.trim();
 
+    console.log("Attempting secure login for:", key);
+
+    // We use a clean URL with no extra headers to bypass CORS Preflight checks
+    const finalUrl = `${CONFIG.URL}?action=verifyLogin&accessKey=${encodeURIComponent(key)}&mobile=${encodeURIComponent(mobile)}`;
+
     try {
-        // Step 1: Login
-        const response = await fetch(`${CONFIG.URL}?action=verifyLogin&accessKey=${key}&mobile=${mobile}`);
+        // We do NOT use 'mode: cors' or 'headers' here. 
+        // Keeping it simple prevents the "Preflight" block.
+        const response = await fetch(finalUrl);
         const result = await response.json();
 
         if (result.success) {
-            // Step 2: Get Data
-            const dataResp = await fetch(`${CONFIG.URL}?action=getPartner&accessKey=${key}`);
+            const dataUrl = `${CONFIG.URL}?action=getPartner&accessKey=${encodeURIComponent(key)}`;
+            const dataResp = await fetch(dataUrl);
             const partnerData = await dataResp.json();
 
-            // Save and Redirect
             localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
+            console.log("Login Success. Redirecting...");
             window.location.href = 'dashboard.html';
         } else {
-            alert("Error: " + (result.error || "Check ID and Mobile"));
+            alert("Credentials not found. Please check your ID and Mobile.");
         }
     } catch (e) {
-        alert("Server is updating. Please try again in 30 seconds.");
+        console.error("Connection error:", e);
+        alert("The secure server did not respond. Please refresh (Ctrl+F5) and try once more.");
     }
 }
 
-// Attach to form
+// Ensure the form is linked correctly
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('loginForm');
-    if(form) form.onsubmit = handleLogin;
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.onsubmit = handleLogin;
+    }
 });

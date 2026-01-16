@@ -2146,58 +2146,62 @@
         });
     </script>
 
-    <!-- Google Script Integration -->
-    <script>
-    async function handleLogin(event) {
-        if (event) event.preventDefault();
-        
-        const API_URL = "https://script.google.com/macros/s/AKfycbypbxaEja91MpZwTcGIGGoFvFndJ6CA0-a5R6kxNMdCCbtUbUQS1LOFmHqOvWJPdTHe/exec";
-        
-        const id = document.getElementById('username').value.trim().toUpperCase();
-        const mobile = document.getElementById('loginMobile').value.trim();
-        const loginBtn = document.querySelector('.connect-btn');
-        const originalText = loginBtn.innerHTML;
-
-        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
-
-        try {
-            const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
-            const result = await response.json();
-
-            if (result.success) {
-                const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${id}`);
-                const partnerData = await dataResp.json();
-                localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
-                window.location.href = 'dashboard.html';
-            } else {
-                alert("Login Failed: Please check your Investor ID and Mobile Number.");
-                loginBtn.innerHTML = originalText;
-            }
-        } catch (e) {
-            alert("Connection error. Please try again later.");
-            loginBtn.innerHTML = originalText;
-        }
+   <script>
+async function handleLogin(event) {
+    if (event) event.preventDefault();
+    
+    const API_URL = "https://script.google.com/macros/s/AKfycbypbxaEja91MpZwTcGIGGoFvFndJ6CA0-a5R6kxNMdCCbtUbUQS1LOFmHqOvWJPdTHe/exec";
+    
+    // Get values from inputs
+    const idField = document.getElementById('username');
+    const mobileField = document.getElementById('loginMobile');
+    
+    if (!idField || !mobileField) {
+        console.error("Missing input fields. Check your HTML IDs.");
+        return;
     }
 
-   // ... inside your handleLogin function in partner-portal.html
-if (result.success) {
-    // 1. Fetch the full partner profile
-    const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${id}`);
-    const partnerData = await dataResp.json();
-    
-    // 2. IMPORTANT: Save the data so the dashboard can find it
-    localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
-    
-    // 3. Move to dashboard
-    window.location.href = 'dashboard.html';
+    const id = idField.value.trim().toUpperCase();
+    const mobile = mobileField.value.trim();
+    const loginBtn = document.querySelector('.connect-btn');
+    const originalText = loginBtn ? loginBtn.innerHTML : "Login";
+
+    if (loginBtn) loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+
+    try {
+        // 1. Verify Login
+        const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${encodeURIComponent(id)}&mobile=${encodeURIComponent(mobile)}`);
+        const result = await response.json();
+
+        if (result.success) {
+            // 2. Fetch full partner profile
+            const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${encodeURIComponent(id)}`);
+            const partnerData = await dataResp.json();
+            
+            // 3. Save the data secretly in the browser
+            localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
+            
+            // 4. Move to dashboard
+            window.location.href = 'dashboard.html';
+        } else {
+            alert("Login Failed: Please check your Investor ID and Mobile Number.");
+            if (loginBtn) loginBtn.innerHTML = originalText;
+        }
+    } catch (e) {
+        console.error("Connection error:", e);
+        alert("Connection error. Please try again later.");
+        if (loginBtn) loginBtn.innerHTML = originalText;
+    }
 }
-        
-    // Attach to form
-    document.addEventListener('DOMContentLoaded', () => {
-        const loginForm = document.querySelector('form');
-        if (loginForm) loginForm.onsubmit = handleLogin;
-    });
-    </script>
+
+// Attach to form when page is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('form');
+    if (loginForm) {
+        loginForm.onsubmit = handleLogin;
+    }
+});
+</script>
 
 </body>
 </html>

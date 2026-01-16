@@ -1216,54 +1216,47 @@
     </a>
 
     <!-- Include the dashboard JavaScript -->
-<script src="js/dashboard.js"></script>
+'<script src="js/dashboard.js"></script>``. This stops the old code from kicking you out.
 
 <!-- Chart.js for graphs -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Google Script Integration - FIXED VERSION -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. Get the session data
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Give the browser a tiny moment to finish writing the data
+    setTimeout(() => {
         const rawData = localStorage.getItem('omkar_partner');
         
-        // 2. The Fix: If data exists, stay on page. If truly empty, redirect.
+        // 2. Only redirect if the data is TRULY missing
         if (!rawData || rawData === "undefined" || rawData === "null") {
-            console.log("No session found. Redirecting...");
-            window.location.href = 'partner-portal.html';
-            return; 
+            console.log("Access Denied: No session found.");
+            window.location.replace('partner-portal.html');
+            return;
         }
 
         try {
             const data = JSON.parse(rawData);
-            console.log("Welcome back, " + data.FullName);
+            console.log("Session Verified for:", data.FullName);
             
-            // 3. Map your data to your ORIGINAL IDs
-            // This won't touch your design, only the text inside
-            if(document.getElementById('partnerName')) {
-                document.getElementById('partnerName').textContent = data.FullName;
-            }
-            if(document.getElementById('activePrincipal')) {
-                document.getElementById('activePrincipal').textContent = '₹' + Number(data.PrincipalAmount).toLocaleString('en-IN');
-            }
+            // 3. Update the text in your existing design
+            const nameEl = document.getElementById('partnerName') || document.querySelector('.partner-welcome h1');
+            if (nameEl) nameEl.innerHTML = `Welcome, <span class="gold-text">${data.FullName}</span>`;
             
-            // Add logout functionality
-            const logoutBtn = document.getElementById('logoutBtn');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function() {
-                    if (confirm('Are you sure you want to logout?')) {
-                        localStorage.removeItem('omkar_partner');
-                        window.location.href = 'partner-portal.html';
-                    }
-                });
-            }
-            
+            // Map other fields to your existing labels
+            document.querySelectorAll('.stat-label').forEach(label => {
+                const val = label.nextElementSibling;
+                if (label.innerText.includes('PRINCIPAL')) val.innerText = '₹' + Number(data.PrincipalAmount).toLocaleString('en-IN');
+                if (label.innerText.includes('RETURNS')) val.innerText = '₹' + Number(data.FixedMonthlyReturn).toLocaleString('en-IN');
+            });
+
         } catch (e) {
-            localStorage.removeItem('omkar_partner');
-            window.location.href = 'partner-portal.html';
+            console.error("Session Error:", e);
+            window.location.replace('partner-portal.html');
         }
-    });
-    </script>
+    }, 100); // 100ms delay solves the "Instant Logout" timing issue
+});
+</script>
     
 </body>
 </html>

@@ -1216,45 +1216,43 @@
     </a>
 
     <!-- Include the dashboard JavaScript -->
-'<script src="js/dashboard.js"></script>``. This stops the old code from kicking you out.
+//<script src="js/dashboard.js"></script>://
 
 <!-- Chart.js for graphs -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Google Script Integration - FIXED VERSION -->
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Give the browser a tiny moment to finish writing the data
+    // 100ms delay stops the "Instant Logout" loop
     setTimeout(() => {
         const rawData = localStorage.getItem('omkar_partner');
         
-        // 2. Only redirect if the data is TRULY missing
         if (!rawData || rawData === "undefined" || rawData === "null") {
-            console.log("Access Denied: No session found.");
             window.location.replace('partner-portal.html');
             return;
         }
 
         try {
             const data = JSON.parse(rawData);
-            console.log("Session Verified for:", data.FullName);
             
-            // 3. Update the text in your existing design
-            const nameEl = document.getElementById('partnerName') || document.querySelector('.partner-welcome h1');
-            if (nameEl) nameEl.innerHTML = `Welcome, <span class="gold-text">${data.FullName}</span>`;
-            
-            // Map other fields to your existing labels
-            document.querySelectorAll('.stat-label').forEach(label => {
-                const val = label.nextElementSibling;
-                if (label.innerText.includes('PRINCIPAL')) val.innerText = '₹' + Number(data.PrincipalAmount).toLocaleString('en-IN');
-                if (label.innerText.includes('RETURNS')) val.innerText = '₹' + Number(data.FixedMonthlyReturn).toLocaleString('en-IN');
-            });
+            // Fill Name
+            const nameSlot = document.getElementById('partnerName');
+            if(nameSlot) nameSlot.textContent = data.FullName;
 
+            // Update Principal & Returns without touching layout
+            document.querySelectorAll('.stat-label').forEach(label => {
+                const valSlot = label.nextElementSibling;
+                if (label.innerText.includes('PRINCIPAL')) {
+                    valSlot.innerText = '₹' + Number(data.PrincipalAmount).toLocaleString('en-IN');
+                }
+                if (label.innerText.includes('RETURNS')) {
+                    valSlot.innerText = '₹' + Number(data.FixedMonthlyReturn).toLocaleString('en-IN');
+                }
+            });
         } catch (e) {
-            console.error("Session Error:", e);
             window.location.replace('partner-portal.html');
         }
-    }, 100); // 100ms delay solves the "Instant Logout" timing issue
+    }, 150); 
 });
 </script>
     

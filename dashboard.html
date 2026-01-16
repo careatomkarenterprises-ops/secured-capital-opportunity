@@ -1224,11 +1224,26 @@
     <!-- Google Script Integration -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const rawData = localStorage.getItem('omkar_partner');
-        if (!rawData) {
-            window.location.href = 'partner-portal.html';
-            return;
-        }
+    const rawData = localStorage.getItem('omkar_partner');
+    
+    // If no data is found, then and ONLY then redirect to login
+    if (!rawData || rawData === "undefined") {
+        console.log("No session found, redirecting to login...");
+        window.location.href = 'partner-portal.html';
+        return;
+    }
+
+    try {
+        const data = JSON.parse(rawData);
+        // Fill in your dashboard fields here
+        document.querySelector('.partner-welcome h1').innerHTML = `Welcome, <span class="gold-text">${data.FullName || 'Partner'}</span>`;
+        // ... rest of your mapping code
+    } catch (e) {
+        console.error("Data error:", e);
+        localStorage.removeItem('omkar_partner');
+        window.location.href = 'partner-portal.html';
+    }
+});
 
         const data = JSON.parse(rawData);
 

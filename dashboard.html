@@ -1221,32 +1221,23 @@
 <!-- Chart.js for graphs -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Google Script Integration -->
+    <!-- Google Script Integration - FIXED VERSION -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const rawData = localStorage.getItem('omkar_partner');
-    
-    // If no data is found, then and ONLY then redirect to login
-    if (!rawData || rawData === "undefined") {
-        console.log("No session found, redirecting to login...");
-        window.location.href = 'partner-portal.html';
-        return;
-    }
+        // 1. Check if data exists
+        const rawData = localStorage.getItem('omkar_partner');
+        
+        // 2. If no data, go back to login
+        if (!rawData || rawData === "undefined") {
+            window.location.href = 'partner-portal.html';
+            return;
+        }
 
-    try {
+        // 3. If data exists, parse it and STAY on the page
         const data = JSON.parse(rawData);
-        // Fill in your dashboard fields here
-        document.querySelector('.partner-welcome h1').innerHTML = `Welcome, <span class="gold-text">${data.FullName || 'Partner'}</span>`;
-        // ... rest of your mapping code
-    } catch (e) {
-        console.error("Data error:", e);
-        localStorage.removeItem('omkar_partner');
-        window.location.href = 'partner-portal.html';
-    }
-});
-
-        const data = JSON.parse(rawData);
-
+        console.log("Logged in as:", data.FullName);
+        
+        // Now fill your dashboard fields...
         // MAPPING TO YOUR DASHBOARD FIELDS
         // Update partner name
         if(document.getElementById('partnerName')) {
@@ -1344,7 +1335,7 @@
             const monthlyReturn = parseFloat(data.FixedMonthlyReturn) || 11000;
             const startDate = new Date(data.StartDate || '2021-01-15');
             const now = new Date();
-            const months = Math.floor((now - start) / (1000 * 60 * 60 * 24 * 30.44));
+            const months = Math.floor((now - startDate) / (1000 * 60 * 60 * 24 * 30.44));
             
             // Generate cumulative returns data
             const labels = [];

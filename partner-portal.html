@@ -2179,6 +2179,19 @@
         }
     }
 
+   // ... inside your handleLogin function in partner-portal.html
+if (result.success) {
+    // 1. Fetch the full partner profile
+    const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${id}`);
+    const partnerData = await dataResp.json();
+    
+    // 2. IMPORTANT: Save the data so the dashboard can find it
+    localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
+    
+    // 3. Move to dashboard
+    window.location.href = 'dashboard.html';
+}
+        
     // Attach to form
     document.addEventListener('DOMContentLoaded', () => {
         const loginForm = document.querySelector('form');

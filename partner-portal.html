@@ -1531,13 +1531,13 @@
                     
                     <form id="loginForm" style="margin-top: 40px;">
                         <div class="form-group">
-                            <label for="username">Partner ID / Mobile Number *</label>
-                            <input type="text" id="username" class="form-control" placeholder="Enter your Partner ID or Mobile Number" required>
+                            <label for="username">Partner ID / Investor ID *</label>
+                            <input type="text" id="username" class="form-control" placeholder="Enter your Partner ID or Investor ID" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="password">Password *</label>
-                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                            <label for="loginMobile">Registered Mobile Number *</label>
+                            <input type="tel" id="loginMobile" class="form-control" placeholder="Enter your registered mobile number" required>
                             <div style="text-align: right; margin-top: 8px;">
                                 <a href="#" id="forgotPassword" style="color: var(--gold-accent); font-size: 0.9rem; text-decoration: none; font-weight: 600;">Forgot Password?</a>
                             </div>
@@ -1994,7 +1994,7 @@
         <span>Portal Support</span>
     </a>
 
-    <!-- JavaScript -->
+    <!-- Original JavaScript -->
     <script>
         // Mobile Navigation Toggle - Matching Home Page
         document.addEventListener('DOMContentLoaded', function() {
@@ -2061,57 +2061,6 @@
             // Update time every second
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
-            
-            // // Login form submission
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    loginForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value.trim();
-        
-        if (username && password) {
-            // Show loading
-            const submitBtn = loginForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
-            submitBtn.disabled = true;
-            
-            try {
-                const response = await fetch('YOUR_DEPLOYED_URL_HERE', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        action: 'login',
-                        partnerId: username,
-                        password: password
-                    })
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    alert('Login successful!');
-                    // Store data and redirect
-                    localStorage.setItem('partnerData', JSON.stringify(result.data.partnerData));
-                    localStorage.setItem('token', result.data.token);
-                    window.location.href = 'dashboard.html';
-                } else {
-                    alert('Login failed: ' + result.data);
-                }
-            } catch (error) {
-                alert('Network error. Please try again.');
-            } finally {
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        } else {
-            alert('Please enter both Partner ID and Password.');
-        }
-    });
-}
             
             // Forgot password functionality
             const forgotPasswordLink = document.getElementById('forgotPassword');
@@ -2195,6 +2144,46 @@ if (loginForm) {
                 });
             });
         });
+    </script>
+
+    <!-- Google Script Integration -->
+    <script>
+    async function handleLogin(event) {
+        if (event) event.preventDefault();
+        
+        const API_URL = "https://script.google.com/macros/s/AKfycbypbxaEja91MpZwTcGIGGoFvFndJ6CA0-a5R6kxNMdCCbtUbUQS1LOFmHqOvWJPdTHe/exec";
+        
+        const id = document.getElementById('username').value.trim().toUpperCase();
+        const mobile = document.getElementById('loginMobile').value.trim();
+        const loginBtn = document.querySelector('.connect-btn');
+        const originalText = loginBtn.innerHTML;
+
+        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+
+        try {
+            const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
+            const result = await response.json();
+
+            if (result.success) {
+                const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${id}`);
+                const partnerData = await dataResp.json();
+                localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Login Failed: Please check your Investor ID and Mobile Number.");
+                loginBtn.innerHTML = originalText;
+            }
+        } catch (e) {
+            alert("Connection error. Please try again later.");
+            loginBtn.innerHTML = originalText;
+        }
+    }
+
+    // Attach to form
+    document.addEventListener('DOMContentLoaded', () => {
+        const loginForm = document.querySelector('form');
+        if (loginForm) loginForm.onsubmit = handleLogin;
+    });
     </script>
 
 </body>

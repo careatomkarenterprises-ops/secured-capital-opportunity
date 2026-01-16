@@ -1533,6 +1533,7 @@
                         <div class="form-group">
                             <label for="username">Partner ID / Investor ID *</label>
                             <input type="text" id="username" class="form-control" placeholder="Enter your Partner ID or Investor ID" required>
+                            <input type="text" id="loginMobile" name="mobile" autocomplete="tel" placeholder="Registered Mobile" required>
                         </div>
                         
                         <div class="form-group">
@@ -2146,55 +2147,50 @@
         });
     </script>
 
-   <script>
+  <script>
 async function handleLogin(event) {
     if (event) event.preventDefault();
     
+    // YOUR LIVE GOOGLE SCRIPT URL
     const API_URL = "https://script.google.com/macros/s/AKfycbypbxaEja91MpZwTcGIGGoFvFndJ6CA0-a5R6kxNMdCCbtUbUQS1LOFmHqOvWJPdTHe/exec";
     
-    // Get values from inputs
     const idField = document.getElementById('username');
     const mobileField = document.getElementById('loginMobile');
+    const loginBtn = document.querySelector('.connect-btn');
     
-    if (!idField || !mobileField) {
-        console.error("Missing input fields. Check your HTML IDs.");
-        return;
-    }
+    if (!idField || !mobileField) return;
 
     const id = idField.value.trim().toUpperCase();
     const mobile = mobileField.value.trim();
-    const loginBtn = document.querySelector('.connect-btn');
-    const originalText = loginBtn ? loginBtn.innerHTML : "Login";
+    const originalText = loginBtn.innerHTML;
 
-    if (loginBtn) loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+    loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
 
     try {
-        // 1. Verify Login
+        // Step 1: Verify Login
         const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${encodeURIComponent(id)}&mobile=${encodeURIComponent(mobile)}`);
         const result = await response.json();
 
         if (result.success) {
-            // 2. Fetch full partner profile
+            // Step 2: Fetch Profile Data
             const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${encodeURIComponent(id)}`);
             const partnerData = await dataResp.json();
             
-            // 3. Save the data secretly in the browser
+            // Step 3: Save and Redirect
             localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
-            
-            // 4. Move to dashboard
             window.location.href = 'dashboard.html';
         } else {
             alert("Login Failed: Please check your Investor ID and Mobile Number.");
-            if (loginBtn) loginBtn.innerHTML = originalText;
+            loginBtn.innerHTML = originalText;
         }
     } catch (e) {
-        console.error("Connection error:", e);
-        alert("Connection error. Please try again later.");
-        if (loginBtn) loginBtn.innerHTML = originalText;
+        console.error("Login Error:", e);
+        alert("Connection error. Please check your internet or try again later.");
+        loginBtn.innerHTML = originalText;
     }
 }
 
-// Attach to form when page is ready
+// Attach to form when page loads
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.querySelector('form');
     if (loginForm) {
@@ -2202,6 +2198,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
-
 </body>
 </html>

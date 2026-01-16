@@ -2159,46 +2159,44 @@
     </script>
 
     <!-- Google Script Integration - FIXED VERSION -->
-    <script>
-    async function handleLogin(event) {
-        if (event) event.preventDefault();
-        const API_URL = "https://script.google.com/macros/s/AKfycbypbxaEja91MpZwTcGIGGoFvFndJ6CA0-a5R6kxNMdCCbtUbUQS1LOFmHqOvWJPdTHe/exec";
-        
-        // Using your original IDs
-        const id = document.getElementById('username').value.trim().toUpperCase();
-        const mobile = document.getElementById('loginMobile').value.trim();
-        const loginBtn = document.querySelector('.connect-btn');
-        const originalText = loginBtn.innerHTML;
+  <script>
+async function handleLogin(event) {
+    if (event) event.preventDefault();
+    const API_URL = "https://script.google.com/macros/s/AKfycbypbxaEja91MpZwTcGIGGoFvFndJ6CA0-a5R6kxNMdCCbtUbUQS1LOFmHqOvWJPdTHe/exec";
+    
+    const id = document.getElementById('username').value.trim().toUpperCase();
+    const mobile = document.getElementById('loginMobile').value.trim();
+    const loginBtn = document.querySelector('.connect-btn');
+    const originalText = loginBtn.innerHTML;
 
-        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+    loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
 
-        try {
-            const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
-            const result = await response.json();
+    try {
+        const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
+        const result = await response.json();
 
-            if (result.success) {
-                const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${id}`);
-                const partnerData = await dataResp.json();
-                
-                // SAVE DATA
-                localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
-                
-                // 0.5 second delay to prevent the "Instant Logout" loop
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 500);
-            } else {
-                alert("Login Failed: Check Credentials");
-                loginBtn.innerHTML = originalText;
-            }
-        } catch (e) {
-            alert("Connection Error. Please refresh.");
+        if (result.success) {
+            const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${id}`);
+            const partnerData = await dataResp.json();
+            
+            // CLEAR OLD DATA FIRST
+            localStorage.clear(); 
+            // SAVE NEW DATA
+            localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
+            
+            // Redirect
+            window.location.href = 'dashboard.html';
+        } else {
+            alert("Login Failed: Check Credentials");
             loginBtn.innerHTML = originalText;
         }
+    } catch (e) {
+        alert("Connection Error. Please refresh.");
+        loginBtn.innerHTML = originalText;
     }
-    // Attach to your original form
-    document.querySelector('form').onsubmit = handleLogin;
-    </script>
+}
+document.getElementById('loginForm').onsubmit = handleLogin;
+</script>
 
 </body>
 </html>

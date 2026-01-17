@@ -1215,7 +1215,33 @@
         <span>Dashboard Support</span>
     </a>
 
-    <!-- Include th
+   <script>
+(function() {
+    // 1. Check for the data immediately
+    const sessionData = localStorage.getItem('omkar_partner');
+    
+    // 2. If data is found, STOP the redirect loop
+    if (sessionData && sessionData !== "undefined") {
+        console.log("Session verified. Staying on dashboard.");
+        
+        // This part fills your data without touching your design
+        window.onload = function() {
+            try {
+                const data = JSON.parse(sessionData);
+                if(document.getElementById('partnerName')) 
+                    document.getElementById('partnerName').textContent = data.FullName;
+                if(document.getElementById('activePrincipal')) 
+                    document.getElementById('activePrincipal').textContent = '₹' + Number(data.PrincipalAmount).toLocaleString('en-IN');
+            } catch(e) { console.error("Data error", e); }
+        };
+    } else {
+        // 3. Only redirect if it's TRULY empty
+        console.warn("No session. Redirecting to portal.");
+        window.location.href = 'partner-portal.html';
+    }
+})();
+</script>
+
 
 <!-- Chart.js for graphs -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

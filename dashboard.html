@@ -1317,14 +1317,31 @@
 <script>
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOlq85LdXP1UCXFx27BugiIXJQI-kMT7tYYsePuTzV6gpojhM2FQQxjkzooJxQj7OY/exec'; // Paste your Web App URL here
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const rawData = localStorage.getItem('omkar_partner');
-        const accessKey = localStorage.getItem('omkar_access_key');
-        
-        if (!rawData || !accessKey) {
+    // Replace the start of your script with this:
+document.addEventListener('DOMContentLoaded', function() {
+    const rawData = localStorage.getItem('omkar_partner');
+    
+    // Check if data exists and isn't just a string "undefined"
+    if (!rawData || rawData === "undefined" || rawData === "null") {
+        console.log("No session found, redirecting...");
+        window.location.replace('partner-portal.html');
+        return;
+    }
+
+    try {
+        const data = JSON.parse(rawData);
+        // If the data object is empty, redirect
+        if (Object.keys(data).length === 0) {
             window.location.replace('partner-portal.html');
             return;
         }
+        
+        updateUI(data); // Initial load from cache
+        fetchFreshData(localStorage.getItem('omkar_access_key')); // Live sync
+    } catch (e) {
+        window.location.replace('partner-portal.html');
+    }
+});
 
         // 1. Load basic data from LocalStorage immediately for speed
         const localData = JSON.parse(rawData);
@@ -1354,14 +1371,27 @@
         }
     }
 
-    function updateUI(data) {
-        // Mapping Google Sheet Headers to HTML IDs
-        if(data.FullName) document.getElementById('partnerName').textContent = data.FullName;
-        if(data.PrincipalAmount) document.getElementById('activePrincipal').textContent = '₹' + Number(data.PrincipalAmount).toLocaleString('en-IN');
-        if(data.FixedMonthlyReturn) document.getElementById('monthlyReturns').textContent = '₹' + Number(data.FixedMonthlyReturn).toLocaleString('en-IN');
-        // Add more mappings here based on your Google Sheet column names
+   function updateUI(data) {
+    // Replace the strings in quotes with your EXACT Google Sheet header names
+    const mapping = {
+        'partnerName': data['FullName'] || data['Name'],
+        'activePrincipal': data['PrincipalAmount'] || data['Investment'],
+        'monthlyReturns': data['FixedMonthlyReturn'] || data['MonthlyPayout'],
+        'agreementId': data['AgreementID'] || data['ID']
+    };
+
+    if (mapping.partnerName) {
+        document.getElementById('partnerName').textContent = mapping.partnerName;
+    }
+    
+    if (mapping.activePrincipal) {
+        document.getElementById('activePrincipal').textContent = '₹' + Number(mapping.activePrincipal).toLocaleString('en-IN');
     }
 
+    if (mapping.monthlyReturns) {
+        document.getElementById('monthlyReturns').textContent = '₹' + Number(mapping.monthlyReturns).toLocaleString('en-IN');
+    }
+}
     function updateTransactionList(transactions) {
         const listContainer = document.querySelector('.transaction-list');
         if (!transactions || transactions.length === 0) return;

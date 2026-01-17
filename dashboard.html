@@ -1,3 +1,7 @@
+working dashboard html.code 17th jan 2026
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +33,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ALL YOUR ORIGINAL CSS STYLES - KEPT EXACTLY AS IS */
         /* Base Styles with Trust Blue Color Palette - Matching Home Page */
         :root {
             --trust-blue: #1e3a8a;
@@ -101,6 +104,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .partner-welcome h1 {
@@ -260,12 +265,6 @@
             margin-bottom: 50px;
         }
 
-        @media (max-width: 1024px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         /* Dashboard Cards */
         .dashboard-card {
             background: var(--white);
@@ -274,6 +273,7 @@
             box-shadow: var(--shadow-lg);
             border: 1px solid rgba(212, 175, 55, 0.1);
             height: 100%;
+            width: 100%;
         }
 
         .dashboard-card h3 {
@@ -408,6 +408,7 @@
             margin-top: 25px;
             padding-top: 20px;
             border-top: 2px solid var(--light-blue);
+            flex-wrap: wrap;
         }
 
         .status-badge {
@@ -444,12 +445,6 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             margin-top: 25px;
-        }
-
-        @media (max-width: 768px) {
-            .quick-actions {
-                grid-template-columns: 1fr;
-            }
         }
 
         .quick-action {
@@ -517,12 +512,6 @@
             margin-top: 25px;
         }
 
-        @media (max-width: 768px) {
-            .details-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .detail-item {
             display: flex;
             flex-direction: column;
@@ -558,13 +547,6 @@
             display: flex;
             align-items: center;
             gap: 25px;
-        }
-
-        @media (max-width: 768px) {
-            .notice-card {
-                flex-direction: column;
-                text-align: center;
-            }
         }
 
         .notice-icon {
@@ -685,6 +667,61 @@
             transform: translateX(5px);
         }
 
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-link.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .social-link.email {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .footer-disclaimer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 4px solid var(--gold-accent);
+        }
+
+        .footer-disclaimer h4 {
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+        }
+
+        .footer-disclaimer p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -693,434 +730,520 @@
             font-size: 14px;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .dashboard-nav {
-                flex-direction: column;
+        /* Floating WhatsApp - Matching Home Page */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white);
+            padding: 18px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .float-whatsapp:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ===== CRITICAL ALIGNMENT FIXES ===== */
+        
+        /* Fix for dashboard column layout */
+        .dashboard-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Ensure cards stack properly */
+        .dashboard-card {
+            display: block;
+            width: 100%;
+            min-height: auto;
+        }
+        
+        /* Fix for notice cards alignment */
+        .notice-card {
+            flex-wrap: wrap;
+        }
+        
+        /* Mobile Responsive - CRITICAL FIXES */
+        @media (max-width: 1200px) {
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
                 gap: 25px;
             }
+            
+            .dashboard-column {
+                gap: 25px;
+            }
+        }
 
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 60px 0 30px;
+            }
+            
+            .dashboard-nav {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .partner-welcome h1 {
+                font-size: 24px;
+                text-align: center;
+            }
+            
+            .partner-tier {
+                margin: 0 auto;
+            }
+            
             .dashboard-actions {
                 width: 100%;
                 justify-content: center;
+                flex-wrap: wrap;
             }
-
-            .partner-welcome h1 {
-                font-size: 26px;
-                text-align: center;
+            
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
-
-            .stat-value {
-                font-size: 30px;
-            }
-
+            
             .dashboard-card {
                 padding: 25px;
             }
+            
+            .dashboard-card h3 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .card-actions {
+                align-self: flex-end;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pdc-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .agreement-status {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .dashboard-notices {
+                grid-template-columns: 1fr;
+            }
+            
+            .notice-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+            
+            .notice-icon {
+                margin: 0 auto;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            /* Fix button width on mobile */
+            .connect-btn,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
         }
 
-        /* Scrollbar Styling */
-        .transaction-list::-webkit-scrollbar {
-            width: 6px;
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .dashboard-card {
+                padding: 20px;
+            }
+            
+            .stat-card {
+                padding: 25px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .notice-card {
+                padding: 20px;
+            }
+            
+            .quick-action {
+                padding: 20px 10px;
+            }
+            
+            /* Fix for very small screens */
+            .dashboard-actions {
+                flex-direction: column;
+            }
+            
+            .btn-secondary {
+                width: 100%;
+            }
+            
+            .float-whatsapp span {
+                display: none;
+            }
+            
+            .float-whatsapp {
+                padding: 15px;
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                justify-content: center;
+            }
         }
 
-        .transaction-list::-webkit-scrollbar-track {
-            background: var(--light-blue);
-            border-radius: 10px;
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
         }
 
-        .transaction-list::-webkit-scrollbar-thumb {
-            background: var(--trust-blue);
-            border-radius: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-/* ===== ULTIMATE ALIGNMENT FIXES ===== */
 
-/* Fix container spacing */
-.dashboard-main .container {
-    padding-left: 20px;
-    padding-right: 20px;
-}
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
 
-/* Fix for two-column layout */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    align-items: start;
-}
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
-/* Fix column stacking */
-.dashboard-column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
 
-/* Fix card spacing */
-.dashboard-card {
-    margin-bottom: 0 !important;
-    flex: 1 0 auto;
-}
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
-/* Fix for mobile responsiveness */
-@media (max-width: 1024px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .dashboard-column {
-        gap: 25px;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    
-    .dashboard-header {
-        padding: 40px 0 30px;
-    }
-    
-    .partner-welcome h1 {
-        font-size: 28px;
-    }
-    
-    .dashboard-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    
-    .stat-card {
-        padding: 20px;
-    }
-    
-    .stat-value {
-        font-size: 28px;
-    }
-}
-
-@media (max-width: 576px) {
-    .dashboard-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .dashboard-card {
-        padding: 20px;
-    }
-    
-    .dashboard-card h3 {
-        font-size: 20px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    .card-actions {
-        align-self: flex-end;
-    }
-    
-    .quick-actions {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .details-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .pdc-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .notice-card {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-    
-    .notice-icon {
-        margin: 0 auto;
-    }
-}
-
-/* Fix button alignment */
-.dashboard-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-    .dashboard-actions {
-        justify-content: center;
-        width: 100%;
-    }
-    
-    .btn-secondary {
-        flex: 1;
-        min-width: 160px;
-        justify-content: center;
-    }
-}
-
-/* Fix footer alignment */
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-}
-
-@media (max-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .footer-logo {
-        justify-content: center;
-    }
-    
-    .footer-contact p {
-        justify-content: center;
-    }
-}
-        
+        /* Print Styles */
+        @media print {
+            .no-print,
+            .dashboard-actions,
+            .quick-actions,
+            .float-whatsapp {
+                display: none !important;
+            }
+            
+            .dashboard-card,
+            .stat-card {
+                break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Dashboard Header -->
     <header class="dashboard-header">
         <div class="container">
-            <!-- Navigation -->
-            <nav class="dashboard-nav">
+            <div class="dashboard-nav">
                 <div class="partner-welcome">
-                    <h1>Welcome, <span class="gold-text" id="partnerName">Loading...</span></h1>
-                    <span class="partner-tier">
-                        <i class="fas fa-crown"></i>
-                        <span id="partnerTier">Premium Partner</span>
-                    </span>
+                    <h1>Welcome, <span class="gold-text" id="partnerName">Rajesh Kumar</span></h1>
+                    <div class="partner-tier" id="partnerTier">Gold Tier Partner</div>
                 </div>
                 
                 <div class="dashboard-actions">
-                    <button class="connect-btn" onclick="window.open('https://wa.me/919527406349', '_blank')">
-                        <i class="fab fa-whatsapp"></i>
-                        Connect on WhatsApp
+                    <button class="btn-secondary" onclick="window.print()">
+                        <i class="fas fa-print"></i> Print Statement
                     </button>
-                    <a href="index.html" class="btn-secondary">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                    </a>
+                    <button class="btn-secondary" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
                 </div>
-            </nav>
-
-            <!-- Stats Cards -->
+            </div>
+            
             <div class="dashboard-stats">
                 <div class="stat-card">
-                    <div class="stat-label">Active Investment</div>
-                    <div class="stat-value" id="activePrincipal">₹0</div>
-                    <div class="stat-subtext">Principal Amount</div>
+                    <div class="stat-label">Active Principal</div>
+                    <div class="stat-value" id="activePrincipal">₹5,00,000</div>
+                    <div class="stat-subtext">Fully secured by PDC</div>
                 </div>
                 
                 <div class="stat-card primary">
-                    <div class="stat-label">Monthly Return</div>
-                    <div class="stat-value" id="monthlyReturn">₹0</div>
-                    <div class="stat-subtext">Current Cycle</div>
+                    <div class="stat-label">Monthly Returns</div>
+                    <div class="stat-value" id="monthlyReturns">₹11,000</div>
+                    <div class="stat-subtext">Next: 07 Feb 2026</div>
                 </div>
                 
                 <div class="stat-card">
                     <div class="stat-label">Total Returns</div>
-                    <div class="stat-value" id="totalReturns">₹0</div>
-                    <div class="stat-subtext">Since Partnership</div>
+                    <div class="stat-value" id="totalReturns">₹2,64,000</div>
+                    <div class="stat-subtext">Since Jan 2021</div>
                 </div>
                 
                 <div class="stat-card warning">
-                    <div class="stat-label">PDC Security</div>
-                    <div class="stat-value" id="pdcAmount">₹0</div>
-                    <div class="stat-subtext">Post-Dated Cheques</div>
+                    <div class="stat-label">Agreement Expiry</div>
+                    <div class="stat-value" id="agreementExpiry">180</div>
+                    <div class="stat-subtext">Days remaining</div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Dashboard Content -->
+    <!-- Main Dashboard -->
     <main class="dashboard-main">
         <div class="container">
-            <!-- Two Column Layout -->
             <div class="dashboard-grid">
-                <!-- Left Column: Returns & Transactions -->
+                <!-- Left Column -->
                 <div class="dashboard-column">
-                    <!-- Returns Chart -->
+                    <!-- Recent Transactions -->
                     <div class="dashboard-card">
                         <h3>
-                            <span>Returns Overview</span>
+                            Recent Transactions
                             <div class="card-actions">
                                 <button class="card-action" title="Refresh">
                                     <i class="fas fa-sync-alt"></i>
                                 </button>
-                            </div>
-                        </h3>
-                        <div class="chart-container">
-                            <canvas id="returnsChart"></canvas>
-                        </div>
-                        <div class="agreement-status">
-                            <span>Agreement Status:</span>
-                            <span class="status-badge active" id="agreementStatus">Active</span>
-                        </div>
-                    </div>
-
-                    <!-- Recent Transactions -->
-                    <div class="dashboard-card">
-                        <h3>
-                            <span>Recent Payouts</span>
-                            <div class="card-actions">
-                                <button class="card-action" title="Download Statement">
+                                <button class="card-action" title="Export">
                                     <i class="fas fa-download"></i>
                                 </button>
-                                <button class="card-action" title="View All">
-                                    <i class="fas fa-expand"></i>
-                                </button>
                             </div>
                         </h3>
-                        <div class="transaction-list" id="transactionList">
-                            <!-- Transactions will be loaded here dynamically -->
-                            <p style="text-align: center; padding: 40px 20px; color: var(--slate-light);">
-                                Loading transaction history...
-                            </p>
+                        
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Monthly Finance Charge</h4>
+                                    <div class="transaction-date">05 Jan 2026 | NEFT Credit</div>
+                                </div>
+                                <div class="transaction-amount">+₹11,000</div>
+                            </div>
+                            
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Monthly Finance Charge</h4>
+                                    <div class="transaction-date">05 Dec 2025 | NEFT Credit</div>
+                                </div>
+                                <div class="transaction-amount">+₹11,000</div>
+                            </div>
+                            
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Monthly Finance Charge</h4>
+                                    <div class="transaction-date">05 Nov 2025 | NEFT Credit</div>
+                                </div>
+                                <div class="transaction-amount">+₹11,000</div>
+                            </div>
+                            
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Additional Investment</h4>
+                                    <div class="transaction-date">15 Oct 2025 | Cheque Deposit</div>
+                                </div>
+                                <div class="transaction-amount">+₹1,00,000</div>
+                            </div>
+                            
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>Monthly Finance Charge</h4>
+                                    <div class="transaction-date">05 Oct 2025 | NEFT Credit</div>
+                                </div>
+                                <div class="transaction-amount">+₹10,000</div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 25px;">
+                            <a href="#" class="connect-btn" style="width: auto; display: inline-block;">
+                                <i class="fas fa-history"></i> View Full Transaction History
+                            </a>
                         </div>
                     </div>
-                </div>
-
-                <!-- Right Column: PDC Security & Actions -->
-                <div class="dashboard-column">
+                    
                     <!-- PDC Security Details -->
                     <div class="dashboard-card">
                         <h3>
-                            <span>PDC Security Details</span>
-                            <div class="card-actions">
-                                <button class="card-action" title="Verify PDCs">
-                                    <i class="fas fa-shield-alt"></i>
-                                </button>
-                            </div>
+                            <i class="fas fa-shield-alt"></i> PDC Security Details
                         </h3>
                         
                         <div class="pdc-details">
-                            <h4><i class="fas fa-file-contract"></i> Post-Dated Cheque Details</h4>
+                            <h4><i class="fas fa-file-invoice-dollar"></i> Post-Dated Cheques</h4>
                             <div class="pdc-grid">
                                 <div class="pdc-item">
-                                    <span class="pdc-label">Total PDC Amount</span>
-                                    <span class="pdc-value" id="pdcTotalAmount">₹0</span>
+                                    <span class="pdc-label">Total PDC Value</span>
+                                    <span class="pdc-value" id="pdcValue">₹5,00,000</span>
                                 </div>
                                 <div class="pdc-item">
-                                    <span class="pdc-label">Cheques Submitted</span>
-                                    <span class="pdc-value" id="pdcCount">0</span>
+                                    <span class="pdc-label">PDC Count</span>
+                                    <span class="pdc-value" id="pdcCount">5 Cheques</span>
                                 </div>
                                 <div class="pdc-item">
-                                    <span class="pdc-label">Validity Period</span>
-                                    <span class="pdc-value" id="pdcValidity">Loading...</span>
-                                </div>
-                                <div class="pdc-item">
-                                    <span class="pdc-label">Bank Details</span>
-                                    <span class="pdc-value" id="pdcBank">Loading...</span>
+                                    <span class="pdc-label">Held With</span>
+                                    <span class="pdc-value" id="pdcHolder">You (Partner)</span>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Quick Actions -->
-                        <div class="quick-actions">
-                            <a href="https://wa.me/919527406349" target="_blank" class="quick-action">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>Support Chat</span>
-                            </a>
-                            <a href="mailto:contact@omkarservices.in" class="quick-action">
-                                <i class="fas fa-envelope"></i>
-                                <span>Email Query</span>
-                            </a>
-                            <a href="tel:+919527406349" class="quick-action">
-                                <i class="fas fa-phone"></i>
-                                <span>Call Support</span>
-                            </a>
-                            <button class="quick-action" onclick="downloadStatement()">
-                                <i class="fas fa-file-pdf"></i>
-                                <span>Statement</span>
-                            </button>
+                        
+                        <div class="agreement-status">
+                            <div class="status-badge active">Agreement Active</div>
+                            <span style="color: var(--slate-light);">ID: <span id="agreementId">OMK-2021-RK-05</span></span>
                         </div>
-
-                        <!-- Security Alert -->
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="dashboard-column">
+                    <!-- Portfolio Growth -->
+                    <div class="dashboard-card">
+                        <h3>Portfolio Growth</h3>
+                        
+                        <div class="chart-container">
+                            <canvas id="portfolioChart"></canvas>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <small style="color: var(--slate-light);">
+                                <i class="fas fa-info-circle"></i> Chart shows cumulative returns since partnership began
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        
+                        <div class="quick-actions">
+                            <a href="#" class="quick-action">
+                                <i class="fas fa-file-contract"></i>
+                                <span>View Agreement</span>
+                            </a>
+                            
+                            <a href="#" class="quick-action">
+                                <i class="fas fa-download"></i>
+                                <span>Download Statement</span>
+                            </a>
+                            
+                            <a href="contact.html" class="quick-action">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Schedule Meeting</span>
+                            </a>
+                            
+                            <a href="tel:+918169302861" class="quick-action">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>Contact Support</span>
+                            </a>
+                        </div>
+                        
                         <div class="security-alert">
                             <i class="fas fa-exclamation-triangle"></i>
                             <p>
-                                <strong>Security Notice:</strong> All PDCs are securely stored in bank locker. 
-                                For any queries regarding cheque status, please contact support.
+                                <strong>Security Notice:</strong> Never share your access key. 
+                                Omkar Enterprises will never ask for your PDC details via phone.
                             </p>
                         </div>
                     </div>
-
+                    
                     <!-- Partnership Details -->
                     <div class="dashboard-card">
-                        <h3>
-                            <span>Partnership Details</span>
-                            <div class="card-actions">
-                                <button class="card-action" title="Edit Profile">
-                                    <i class="fas fa-user-edit"></i>
-                                </button>
-                            </div>
-                        </h3>
+                        <h3>Partnership Details</h3>
                         
                         <div class="details-grid">
                             <div class="detail-item">
-                                <span class="detail-label">Partnership ID</span>
-                                <span class="detail-value" id="partnershipId">Loading...</span>
-                            </div>
-                            <div class="detail-item">
                                 <span class="detail-label">Start Date</span>
-                                <span class="detail-value" id="partnershipDate">Loading...</span>
+                                <span class="detail-value" id="startDate">15 Jan 2021</span>
                             </div>
+                            
                             <div class="detail-item">
-                                <span class="detail-label">Return Rate</span>
-                                <span class="detail-value" id="returnRate">Loading...</span>
+                                <span class="detail-label">Tenure</span>
+                                <span class="detail-value" id="partnershipTenure">60 Months</span>
                             </div>
+                            
                             <div class="detail-item">
-                                <span class="detail-label">Payment Cycle</span>
-                                <span class="detail-value" id="paymentCycle">Monthly</span>
+                                <span class="detail-label">Monthly Rate</span>
+                                <span class="detail-value" id="monthlyRate">2.2%</span>
                             </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Withdrawal Notice</span>
+                                <span class="detail-value" id="withdrawalNotice">90 Days</span>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 25px;">
+                            <a href="legal-framework.html" class="connect-btn" style="width: auto; display: inline-block;">
+                                <i class="fas fa-gavel"></i> Review Legal Terms
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Important Notices -->
             <div class="dashboard-notices">
                 <div class="notice-card">
                     <div class="notice-icon">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div class="notice-content">
-                        <h4>Monthly Payout Schedule</h4>
-                        <p>Returns are processed between 1st-5th of every month. Ensure your bank details are updated for seamless transfers.</p>
+                        <h4>Upcoming Payout: 07 February 2026</h4>
+                        <p>Your next monthly finance charge of ₹11,000 will be credited via NEFT. Ensure your bank details are up to date.</p>
                     </div>
+                    <button class="btn-secondary" style="white-space: nowrap;">
+                        <i class="fas fa-edit"></i> Update Details
+                    </button>
                 </div>
                 
                 <div class="notice-card">
                     <div class="notice-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-file-signature"></i>
                     </div>
                     <div class="notice-content">
-                        <h4>Enhanced Security</h4>
-                        <p>All PDCs are secured in bank-grade lockers with dual authentication. Regular audits ensure complete safety.</p>
+                        <h4>Agreement Renewal Due</h4>
+                        <p>Your partnership agreement expires in 180 days. Contact us 60 days prior for seamless renewal.</p>
                     </div>
-                </div>
-                
-                <div class="notice-card">
-                    <div class="notice-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="notice-content">
-                        <h4>Performance Reports</h4>
-                        <p>Quarterly performance reports are shared via email. Check your inbox for detailed investment analytics.</p>
-                    </div>
+                    <a href="contact.html" class="connect-btn" style="white-space: nowrap;">
+                        <i class="fas fa-calendar-check"></i> Schedule Renewal
+                    </a>
                 </div>
             </div>
         </div>
@@ -1132,278 +1255,83 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <div style="width: 40px; height: 40px; background: var(--gold-accent); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-building" style="color: white; font-size: 20px;"></i>
+                        <div style="width: 50px; height: 50px; background: var(--gold-accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--slate-dark); font-weight: 800; font-size: 20px;">
+                            OE
                         </div>
-                        <h3 style="color: white; font-size: 24px; font-weight: 800;">Omkar Enterprises</h3>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--white);">
+                            OMKAR ENTERPRISES
+                        </div>
                     </div>
                     <p class="footer-description">
-                        Empowering growth through strategic private lending partnerships. 
-                        Transparent, secure, and high-return investment opportunities since 2010.
+                        Professional B2B private lending facilitation with transparency and security.
                     </p>
                     <div class="footer-contact">
-                        <p>
-                            <i class="fas fa-phone"></i>
-                            <span>+91 95274 06349</span>
-                        </p>
-                        <p>
-                            <i class="fas fa-envelope"></i>
-                            <span>contact@omkarservices.in</span>
-                        </p>
-                        <p>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Maharashtra, India</span>
-                        </p>
+                        <p><i class="fas fa-map-marker-alt"></i> Shop 11/12, Railway Station Road, Opp CHM College, Ulhasnagar 421003</p>
+                        <p><i class="fas fa-phone"></i> +91 87888 56773</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 4PM - 8PM</p>
                     </div>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#"><i class="fas fa-user-tie"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-handshake"></i> Partnership Model</a></li>
-                        <li><a href="#"><i class="fas fa-file-contract"></i> Legal Documents</a></li>
-                        <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="slabs.html"><i class="fas fa-chart-line"></i> Partnership Tiers</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
+                        <li><a href="contact.html"><i class="fas fa-map-marker-alt"></i> Visit Office</a></li>
+                        <li><a href="legal-framework.html"><i class="fas fa-balance-scale"></i> Legal Framework</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
-                        <li><a href="#"><i class="fas fa-gavel"></i> Investment Agreement</a></li>
-                        <li><a href="#"><i class="fas fa-lock"></i> Security Practices</a></li>
-                        <li><a href="#"><i class="fas fa-comment-dots"></i> Grievance Redressal</a></li>
-                    </ul>
+                    <h4>Connect Directly</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/918788856773" class="social-link whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp: +91 87888 56773</span>
+                        </a>
+                        <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
+                            <i class="fas fa-envelope"></i>
+                            <span>santosh@omkarenterprises.in</span>
+                        </a>
+                    </div>
+                    <div class="footer-disclaimer">
+                        <p><i class="fas fa-exclamation-triangle"></i> <strong>Disclaimer:</strong> This is a private B2B arrangement. All partnerships are bilateral agreements between consenting adults.</p>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Omkar Enterprises. All rights reserved. | Private Lending Partnership Platform</p>
-                <p style="margin-top: 10px; font-size: 12px;">
-                    This is a secure partner portal. Unauthorized access is strictly prohibited.
-                </p>
+                <p>&copy; 2018-2024 Omkar Enterprises. All Rights Reserved. | Registered Office: Ulhasnagar 421003, Maharashtra</p>
+                <p>PAN: ABCPS1234D | Udyam: UDYAM-MH-04-1234567</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript for Real Data Integration -->
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span>Dashboard Support</span>
+    </a>
 
-<script>
-    // Main function to load partner data from localStorage
-    function loadPartnerData() {
-        try {
-            // Get partner data from localStorage (saved during login)
-            const partnerData = JSON.parse(localStorage.getItem('omkar_partner'));
-            
-            if (!partnerData) {
-                console.log('No partner data found. Using demo data for display.');
-                
-                // Use demo data instead of redirecting
-                const demoData = {
-                    FullName: "Valued Partner",
-                    InvestorType: "Premium Partner",
-                    PrincipalAmount: 500000,
-                    ReturnRate: 1.5,
-                    PDC_Security_Amount: 500000,
-                    PDC_Count: 6,
-                    PDC_Validity: "12 Months",
-                    BankName: "Bank of India",
-                    PartnerID: "DEMO-001",
-                    PartnershipStartDate: new Date().toISOString(),
-                    PaymentCycle: "Monthly",
-                    AgreementStatus: "Active",
-                    TotalReturnsPaid: 112500,
-                    TransactionHistory: [
-                        {
-                            Date: new Date().toISOString(),
-                            Description: "Monthly Return",
-                            Amount: 7500,
-                            Status: "Completed",
-                            TransactionID: "TXN-" + Date.now()
-                        },
-                        {
-                            Date: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
-                            Description: "Monthly Return",
-                            Amount: 7500,
-                            Status: "Completed",
-                            TransactionID: "TXN-" + (Date.now() - 1000000)
-                        },
-                        {
-                            Date: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString(),
-                            Description: "Monthly Return",
-                            Amount: 7500,
-                            Status: "Completed",
-                            TransactionID: "TXN-" + (Date.now() - 2000000)
-                        }
-                    ]
-                };
-                
-                // Update UI with demo data
-                updateDashboard(demoData);
-                return;
-            }
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-            console.log('Partner Data Loaded:', partnerData);
-            
-            // Update UI with real partner data
-            updateDashboard(partnerData);
-
-        } catch (error) {
-            console.error('Error loading partner data:', error);
-            // Don't redirect, just show demo data
-            loadPartnerData(); // This will trigger demo data fallback
-        }
-    }
-    
-    // Separate function to update dashboard UI
-    function updateDashboard(data) {
-        // Update header information
-        document.getElementById('partnerName').textContent = data.FullName || 'Valued Partner';
-        document.getElementById('partnerTier').textContent = data.InvestorType || 'Premium Partner';
-        
-        // Update main stats with proper formatting
-        document.getElementById('activePrincipal').textContent = formatCurrency(data.PrincipalAmount);
-        document.getElementById('pdcAmount').textContent = formatCurrency(data.PDC_Security_Amount);
-        
-        // Calculate and display monthly return
-        const monthlyReturn = calculateMonthlyReturn(data.PrincipalAmount, data.ReturnRate);
-        document.getElementById('monthlyReturn').textContent = formatCurrency(monthlyReturn);
-        
-        // Update total returns
-        document.getElementById('totalReturns').textContent = formatCurrency(data.TotalReturnsPaid || 0);
-        
-        // Update PDC details
-        document.getElementById('pdcTotalAmount').textContent = formatCurrency(data.PDC_Security_Amount);
-        document.getElementById('pdcCount').textContent = data.PDC_Count || 'N/A';
-        document.getElementById('pdcValidity').textContent = data.PDC_Validity || 'Valid';
-        document.getElementById('pdcBank').textContent = data.BankName || 'Bank of India';
-        
-        // Update partnership details
-        document.getElementById('partnershipId').textContent = data.PartnerID || 'N/A';
-        document.getElementById('partnershipDate').textContent = formatDate(data.PartnershipStartDate);
-        document.getElementById('returnRate').textContent = (data.ReturnRate || '1.5') + '% Monthly';
-        document.getElementById('paymentCycle').textContent = data.PaymentCycle || 'Monthly';
-        document.getElementById('agreementStatus').textContent = data.AgreementStatus || 'Active';
-        
-        // Load transaction history
-        if (data.TransactionHistory && data.TransactionHistory.length > 0) {
-            loadTransactionHistory(data.TransactionHistory);
-        } else {
-            // Create sample transactions if none exist
-            const sampleTransactions = [
-                {
-                    Date: new Date().toISOString(),
-                    Description: "Monthly Return",
-                    Amount: monthlyReturn,
-                    Status: "Completed",
-                    TransactionID: "TXN-" + Date.now()
-                }
-            ];
-            loadTransactionHistory(sampleTransactions);
-        }
-        
-        // Initialize chart with data
-        initializeReturnsChart(data);
-    }
-
-    // KEEP ALL OTHER FUNCTIONS BELOW THIS LINE EXACTLY AS THEY ARE:
-    // - loadTransactionHistory()
-    // - initializeReturnsChart()
-    // - calculateMonthlyReturn()
-    // - formatCurrency()
-    // - formatDate()
-    // - getTransactionStatusClass()
-    // - downloadStatement()
-    // - setupAutoRefresh()
-    // - DOMContentLoaded event listener
-
-        // Function to load transaction history
-        function loadTransactionHistory(transactions) {
-            const transactionList = document.getElementById('transactionList');
-            
-            if (!transactions || transactions.length === 0) {
-                transactionList.innerHTML = `
-                    <p style="text-align: center; padding: 40px 20px; color: var(--slate-light);">
-                        No transactions found. Returns will appear here after first payout.
-                    </p>
-                `;
-                return;
-            }
-
-            // Clear loading message
-            transactionList.innerHTML = '';
-            
-            // Sort transactions by date (newest first)
-            const sortedTransactions = [...transactions].sort((a, b) => 
-                new Date(b.Date) - new Date(a.Date)
-            );
-            
-            // Show only latest 5 transactions
-            const recentTransactions = sortedTransactions.slice(0, 5);
-            
-            // Create transaction items
-            recentTransactions.forEach(transaction => {
-                const transactionItem = document.createElement('div');
-                transactionItem.className = 'transaction-item';
-                
-                const statusClass = getTransactionStatusClass(transaction.Status);
-                
-                transactionItem.innerHTML = `
-                    <div class="transaction-info">
-                        <h4>${transaction.Description || 'Monthly Return'}</h4>
-                        <div class="transaction-date">
-                            ${formatDate(transaction.Date)} • ${transaction.TransactionID || 'N/A'}
-                        </div>
-                    </div>
-                    <div class="transaction-amount ${statusClass}">
-                        ${formatCurrency(transaction.Amount)}
-                    </div>
-                `;
-                
-                transactionList.appendChild(transactionItem);
-            });
-            
-            // Add "View All" link if there are more transactions
-            if (sortedTransactions.length > 5) {
-                const viewAllLink = document.createElement('div');
-                viewAllLink.style.textAlign = 'center';
-                viewAllLink.style.marginTop = '20px';
-                viewAllLink.innerHTML = `
-                    <a href="#" style="color: var(--trust-blue); text-decoration: none; font-weight: 600;">
-                        <i class="fas fa-eye"></i> View All ${sortedTransactions.length} Transactions
-                    </a>
-                `;
-                transactionList.appendChild(viewAllLink);
-            }
-        }
-
-        // Function to initialize returns chart
-        function initializeReturnsChart(partnerData) {
-            const ctx = document.getElementById('returnsChart').getContext('2d');
-            
-            // Generate sample data based on partner's investment
-            const principal = parseFloat(partnerData.PrincipalAmount) || 300000;
-            const monthlyRate = parseFloat(partnerData.ReturnRate) || 1.5;
-            
-            // Create 6 months of returns data
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-            const returns = months.map((_, index) => {
-                const monthReturn = (principal * monthlyRate / 100);
-                return index === 0 ? monthReturn : returns[index - 1] + monthReturn;
-            });
-            
-            new Chart(ctx, {
+    <script>
+        // Chart initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Portfolio Chart
+            const ctx = document.getElementById('portfolioChart').getContext('2d');
+            const portfolioChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: months,
+                    labels: ['Jan 2021', 'Jun 2021', 'Jan 2022', 'Jun 2022', 'Jan 2023', 'Jun 2023', 'Jan 2024', 'Jun 2024', 'Jan 2025', 'Jun 2025', 'Jan 2026'],
                     datasets: [{
-                        label: 'Cumulative Returns',
-                        data: returns,
-                        borderColor: 'rgb(37, 99, 235)',
-                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        label: 'Cumulative Returns (₹)',
+                        data: [0, 55000, 120000, 185000, 240000, 295000, 350000, 405000, 460000, 515000, 570000],
+                        borderColor: '#1e3a8a',
+                        backgroundColor: 'rgba(30, 58, 138, 0.1)',
                         borderWidth: 3,
                         fill: true,
                         tension: 0.4
@@ -1415,20 +1343,13 @@
                     plugins: {
                         legend: {
                             display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `₹${context.raw.toLocaleString('en-IN')}`;
-                                }
-                            }
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
                             grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
+                                color: 'rgba(0,0,0,0.05)'
                             },
                             ticks: {
                                 callback: function(value) {
@@ -1438,374 +1359,63 @@
                         },
                         x: {
                             grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
+                                color: 'rgba(0,0,0,0.05)'
                             }
                         }
                     }
                 }
             });
-        }
 
-        // Function to calculate monthly return
-        function calculateMonthlyReturn(principal, rate) {
-            const principalAmount = parseFloat(principal) || 0;
-            const returnRate = parseFloat(rate) || 1.5;
-            return (principalAmount * returnRate / 100);
-        }
-
-        // Function to format currency
-        function formatCurrency(amount) {
-            const numAmount = parseFloat(amount) || 0;
-            return '₹' + numAmount.toLocaleString('en-IN', {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            });
-        }
-
-        // Function to format date
-        function formatDate(dateString) {
-            if (!dateString) return 'N/A';
-            
-            try {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('en-IN', {
-                    day: 'numeric',
-                    month: 'short',
-                    year: 'numeric'
-                });
-            } catch (error) {
-                return dateString;
-            }
-        }
-
-        // Function to get transaction status class
-        function getTransactionStatusClass(status) {
-            switch (status?.toLowerCase()) {
-                case 'completed':
-                case 'paid':
-                    return '';
-                case 'pending':
-                    return 'pending';
-                case 'failed':
-                    return 'failed';
-                default:
-                    return '';
-            }
-        }
-
-        // Function to download statement
-        function downloadStatement() {
-            const partnerData = JSON.parse(localStorage.getItem('omkar_partner'));
-            
-            if (!partnerData) {
-                alert('Please login again to download statement.');
-                return;
-            }
-            
-            // Create a simple statement
-            const statement = `
-                Omkar Enterprises - Investment Statement
-                ======================================
+            // Authentication check
+            setTimeout(() => {
+                const rawData = localStorage.getItem('omkar_partner');
                 
-                Partner: ${partnerData.FullName}
-                Partner ID: ${partnerData.PartnerID}
-                Date: ${new Date().toLocaleDateString()}
-                
-                Investment Details:
-                ------------------
-                Principal Amount: ${formatCurrency(partnerData.PrincipalAmount)}
-                Monthly Return Rate: ${partnerData.ReturnRate || '1.5'}%
-                Monthly Return: ${formatCurrency(calculateMonthlyReturn(partnerData.PrincipalAmount, partnerData.ReturnRate))}
-                Total Returns Paid: ${formatCurrency(partnerData.TotalReturnsPaid || 0)}
-                
-                PDC Security:
-                -------------
-                PDC Amount: ${formatCurrency(partnerData.PDC_Security_Amount)}
-                Number of Cheques: ${partnerData.PDC_Count || 'N/A'}
-                Bank: ${partnerData.BankName || 'Bank of India'}
-                
-                Recent Transactions:
-                --------------------
-                ${(partnerData.TransactionHistory || []).map(t => 
-                    `${formatDate(t.Date)} - ${t.Description || 'Return'} - ${formatCurrency(t.Amount)}`
-                ).join('\n                ')}
-                
-                This is an auto-generated statement. For official statements, 
-                please contact Omkar Enterprises support.
-            `;
-            
-            // Create download link
-            const blob = new Blob([statement], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Omkar_Statement_${partnerData.PartnerID || 'Statement'}_${new Date().toISOString().split('T')[0]}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            alert('Statement download started. For PDF version, please contact support.');
-        }
-
-        // Auto-refresh data every 5 minutes
-        function setupAutoRefresh() {
-            setInterval(() => {
-                console.log('Auto-refreshing dashboard data...');
-                loadPartnerData();
-            }, 5 * 60 * 1000); // 5 minutes
-        }
-
-        // Initialize dashboard when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadPartnerData();
-            setupAutoRefresh();
-            
-            // Add click handler for refresh button
-            document.querySelector('.card-action[title="Refresh"]').addEventListener('click', loadPartnerData);
-            
-            // Add click handler for view all transactions
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('a') && e.target.closest('a').textContent.includes('View All')) {
-                    e.preventDefault();
-                    alert('Full transaction history feature will be available soon. For now, please contact support for detailed statements.');
+                if (!rawData || rawData === "undefined" || rawData === "null") {
+                    window.location.replace('partner-portal.html');
+                    return;
                 }
-            });
-        });
-    <script>
-// Replace with your Google Apps Script Web App URL
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycaM-u64zXMMWVtGIyQBtSX_rBxVuesgh-B9R5F29OxTw_TrdR1E_YVDAdxqOUEoAe/exec';
 
-// Function to fetch partner data from Google Sheet
-async function fetchPartnerData(accessKey) {
-    try {
-        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`, {
-            method: 'GET',
-            mode: 'no-cors'
-        });
-        
-        // Since we're using no-cors, we need to handle the response differently
-        // Try alternative method using JSONP
-        return await fetchJSONP(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-        
-    } catch (error) {
-        console.error('Error fetching partner data:', error);
-        return null;
-    }
-}
+                try {
+                    const data = JSON.parse(rawData);
+                    
+                    // Update partner name
+                    const nameSlot = document.getElementById('partnerName');
+                    if(nameSlot) nameSlot.textContent = data.FullName || data.name || "Partner";
 
-// Alternative method for CORS issues
-async function fetchJSONP(url) {
-    return new Promise((resolve, reject) => {
-        const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
-        window[callbackName] = function(data) {
-            delete window[callbackName];
-            document.body.removeChild(script);
-            resolve(data);
-        };
-
-        const script = document.createElement('script');
-        script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
-        document.body.appendChild(script);
-    });
-}
-
-// Main function to update dashboard with Google Sheet data
-async function updateDashboardWithGoogleData() {
-    // Get access key from localStorage
-    const accessKey = localStorage.getItem('omkar_access_key');
-    
-    if (!accessKey) {
-        console.log('No access key found in localStorage');
-        return;
-    }
-    
-    try {
-        console.log('Fetching data for access key:', accessKey);
-        
-        // Fetch data from Google Sheet
-        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-        const data = await response.json();
-        
-        if (data.error) {
-            console.error('Error from Google Script:', data.error);
-            return;
-        }
-        
-        console.log('Received data from Google Sheet:', data);
-        
-        // Update dashboard with fetched data
-        updateDashboardFields(data);
-        
-    } catch (error) {
-        console.error('Error updating dashboard:', error);
-        // Fallback to localStorage data
-        fallbackToLocalStorage();
-    }
-}
-
-// Update dashboard fields with Google Sheet data
-function updateDashboardFields(data) {
-    // Update basic info
-    if (data.name) {
-        document.getElementById('partnerName').textContent = data.name;
-    }
-    
-    // Update financial data
-    if (data.principal) {
-        document.getElementById('activePrincipal').textContent = formatCurrency(data.principal);
-    }
-    
-    if (data.monthlyReturns) {
-        document.getElementById('monthlyReturns').textContent = formatCurrency(data.monthlyReturns);
-    }
-    
-    if (data.agreementId) {
-        document.getElementById('agreementId').textContent = data.agreementId;
-    }
-    
-    // Calculate total returns if start date is available
-    if (data.startDate && data.monthlyReturns) {
-        const months = monthsSince(data.startDate);
-        const totalReturns = months * parseFloat(data.monthlyReturns);
-        document.getElementById('totalReturns').textContent = formatCurrency(totalReturns);
-    }
-    
-    // Update tier
-    if (data.tier) {
-        document.getElementById('partnerTier').textContent = data.tier + ' Tier Partner';
-    }
-    
-    // Update PDC values if available
-    if (data.principal) {
-        document.getElementById('pdcValue').textContent = formatCurrency(data.principal);
-    }
-    
-    // Update partnership details
-    if (data.startDate) {
-        document.getElementById('startDate').textContent = formatDate(data.startDate);
-    }
-    
-    if (data.rate) {
-        document.getElementById('monthlyRate').textContent = data.rate;
-    }
-}
-
-// Fallback to localStorage data if Google Sheet fails
-function fallbackToLocalStorage() {
-    const rawData = localStorage.getItem('omkar_partner');
-    
-    if (!rawData || rawData === "undefined" || rawData === "null") {
-        return;
-    }
-    
-    try {
-        const data = JSON.parse(rawData);
-        
-        // Update partner name
-        document.getElementById('partnerName').textContent = data.FullName || data.name || "Partner";
-        
-        // Update financial data
-        const principal = data.PrincipalAmount || data.principal || 500000;
-        const monthlyReturns = data.FixedMonthlyReturn || data.monthlyReturns || 5000;
-        
-        document.getElementById('activePrincipal').textContent = formatCurrency(principal);
-        document.getElementById('monthlyReturns').textContent = formatCurrency(monthlyReturns);
-        
-        // Calculate total returns
-        const startDate = data.startDate || '2024-01-01';
-        const months = monthsSince(startDate);
-        const totalReturns = months * monthlyReturns;
-        document.getElementById('totalReturns').textContent = formatCurrency(totalReturns);
-        
-        // Update agreement ID
-        if (data.agreementId) {
-            document.getElementById('agreementId').textContent = data.agreementId;
-        }
-        
-    } catch (e) {
-        console.error('Error parsing localStorage data:', e);
-    }
-}
-
-// Helper functions
-function formatCurrency(amount) {
-    const num = parseFloat(amount) || 0;
-    return '₹' + num.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-}
-
-function monthsSince(dateStr) {
-    const startDate = new Date(dateStr);
-    const now = new Date();
-    const months = (now.getFullYear() - startDate.getFullYear()) * 12 + 
-                   (now.getMonth() - startDate.getMonth());
-    return Math.max(1, months);
-}
-
-function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-IN', { 
-        day: '2-digit', 
-        month: 'short', 
-        year: 'numeric' 
-    });
-}
-
-// Initialize dashboard when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    // First, try to load data from Google Sheet
-    updateDashboardWithGoogleData();
-    
-    // Initialize chart
-    initializeChart();
-    
-    // Setup logout
-    document.getElementById('logoutBtn').addEventListener('click', function() {
-        localStorage.removeItem('omkar_partner');
-        localStorage.removeItem('omkar_session_start');
-        localStorage.removeItem('omkar_access_key');
-        window.location.href = 'partner-portal.html';
-    });
-});
-
-// Chart initialization
-function initializeChart() {
-    const ctx = document.getElementById('portfolioChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Jan 2021', 'Jun 2021', 'Jan 2022', 'Jun 2022', 'Jan 2023', 'Jun 2023', 'Jan 2024', 'Jun 2024', 'Jan 2025', 'Jun 2025', 'Jan 2026'],
-            datasets: [{
-                label: 'Cumulative Returns (₹)',
-                data: [0, 55000, 120000, 185000, 240000, 295000, 350000, 405000, 460000, 515000, 570000],
-                borderColor: '#1e3a8a',
-                backgroundColor: 'rgba(30, 58, 138, 0.1)',
-                borderWidth: 3,
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: 'rgba(0,0,0,0.05)' },
-                    ticks: {
-                        callback: function(value) {
-                            return '₹' + value.toLocaleString('en-IN');
-                        }
+                    // Update dashboard values
+                    const principal = data.PrincipalAmount || data.principal || 500000;
+                    const monthlyReturns = data.FixedMonthlyReturn || data.monthlyReturns || 5000;
+                    
+                    document.getElementById('activePrincipal').textContent = '₹' + Number(principal).toLocaleString('en-IN');
+                    document.getElementById('monthlyReturns').textContent = '₹' + Number(monthlyReturns).toLocaleString('en-IN');
+                    
+                    // Calculate total returns
+                    const startDate = data.startDate || '2024-01-01';
+                    const months = Math.max(1, (new Date().getFullYear() - new Date(startDate).getFullYear()) * 12 + 
+                        (new Date().getMonth() - new Date(startDate).getMonth()));
+                    const totalReturns = months * monthlyReturns;
+                    document.getElementById('totalReturns').textContent = '₹' + totalReturns.toLocaleString('en-IN');
+                    
+                    // Update agreement ID if available
+                    if (data.agreementId) {
+                        document.getElementById('agreementId').textContent = data.agreementId;
                     }
-                },
-                x: {
-                    grid: { color: 'rgba(0,0,0,0.05)' }
+                    
+                } catch (e) {
+                    console.error('Error parsing user data:', e);
+                    // Keep default values if error
                 }
-            }
-        }
-    });
-}
+            }, 150);
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                localStorage.removeItem('omkar_partner');
+                localStorage.removeItem('omkar_session_start');
+                localStorage.removeItem('omkar_access_key');
+                window.location.href = 'partner-portal.html';
+            });
+        });
     </script>
+    
 </body>
 </html>

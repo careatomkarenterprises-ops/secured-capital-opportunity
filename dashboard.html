@@ -733,6 +733,161 @@
             background: var(--trust-blue);
             border-radius: 10px;
         }
+/* ===== ULTIMATE ALIGNMENT FIXES ===== */
+
+/* Fix container spacing */
+.dashboard-main .container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Fix for two-column layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Fix column stacking */
+.dashboard-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Fix card spacing */
+.dashboard-card {
+    margin-bottom: 0 !important;
+    flex: 1 0 auto;
+}
+
+/* Fix for mobile responsiveness */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .dashboard-column {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .dashboard-header {
+        padding: 40px 0 30px;
+    }
+    
+    .partner-welcome h1 {
+        font-size: 28px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-value {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-card {
+        padding: 20px;
+    }
+    
+    .dashboard-card h3 {
+        font-size: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .card-actions {
+        align-self: flex-end;
+    }
+    
+    .quick-actions {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pdc-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .notice-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .notice-icon {
+        margin: 0 auto;
+    }
+}
+
+/* Fix button alignment */
+.dashboard-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .dashboard-actions {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .btn-secondary {
+        flex: 1;
+        min-width: 160px;
+        justify-content: center;
+    }
+}
+
+/* Fix footer alignment */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    .footer-contact p {
+        justify-content: center;
+    }
+}
+        
     </style>
 </head>
 <body>
@@ -1417,6 +1572,240 @@
                 }
             });
         });
+    <script>
+// Replace with your Google Apps Script Web App URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycaM-u64zXMMWVtGIyQBtSX_rBxVuesgh-B9R5F29OxTw_TrdR1E_YVDAdxqOUEoAe/exec';
+
+// Function to fetch partner data from Google Sheet
+async function fetchPartnerData(accessKey) {
+    try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`, {
+            method: 'GET',
+            mode: 'no-cors'
+        });
+        
+        // Since we're using no-cors, we need to handle the response differently
+        // Try alternative method using JSONP
+        return await fetchJSONP(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+        
+    } catch (error) {
+        console.error('Error fetching partner data:', error);
+        return null;
+    }
+}
+
+// Alternative method for CORS issues
+async function fetchJSONP(url) {
+    return new Promise((resolve, reject) => {
+        const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+        window[callbackName] = function(data) {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            resolve(data);
+        };
+
+        const script = document.createElement('script');
+        script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
+        document.body.appendChild(script);
+    });
+}
+
+// Main function to update dashboard with Google Sheet data
+async function updateDashboardWithGoogleData() {
+    // Get access key from localStorage
+    const accessKey = localStorage.getItem('omkar_access_key');
+    
+    if (!accessKey) {
+        console.log('No access key found in localStorage');
+        return;
+    }
+    
+    try {
+        console.log('Fetching data for access key:', accessKey);
+        
+        // Fetch data from Google Sheet
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+        const data = await response.json();
+        
+        if (data.error) {
+            console.error('Error from Google Script:', data.error);
+            return;
+        }
+        
+        console.log('Received data from Google Sheet:', data);
+        
+        // Update dashboard with fetched data
+        updateDashboardFields(data);
+        
+    } catch (error) {
+        console.error('Error updating dashboard:', error);
+        // Fallback to localStorage data
+        fallbackToLocalStorage();
+    }
+}
+
+// Update dashboard fields with Google Sheet data
+function updateDashboardFields(data) {
+    // Update basic info
+    if (data.name) {
+        document.getElementById('partnerName').textContent = data.name;
+    }
+    
+    // Update financial data
+    if (data.principal) {
+        document.getElementById('activePrincipal').textContent = formatCurrency(data.principal);
+    }
+    
+    if (data.monthlyReturns) {
+        document.getElementById('monthlyReturns').textContent = formatCurrency(data.monthlyReturns);
+    }
+    
+    if (data.agreementId) {
+        document.getElementById('agreementId').textContent = data.agreementId;
+    }
+    
+    // Calculate total returns if start date is available
+    if (data.startDate && data.monthlyReturns) {
+        const months = monthsSince(data.startDate);
+        const totalReturns = months * parseFloat(data.monthlyReturns);
+        document.getElementById('totalReturns').textContent = formatCurrency(totalReturns);
+    }
+    
+    // Update tier
+    if (data.tier) {
+        document.getElementById('partnerTier').textContent = data.tier + ' Tier Partner';
+    }
+    
+    // Update PDC values if available
+    if (data.principal) {
+        document.getElementById('pdcValue').textContent = formatCurrency(data.principal);
+    }
+    
+    // Update partnership details
+    if (data.startDate) {
+        document.getElementById('startDate').textContent = formatDate(data.startDate);
+    }
+    
+    if (data.rate) {
+        document.getElementById('monthlyRate').textContent = data.rate;
+    }
+}
+
+// Fallback to localStorage data if Google Sheet fails
+function fallbackToLocalStorage() {
+    const rawData = localStorage.getItem('omkar_partner');
+    
+    if (!rawData || rawData === "undefined" || rawData === "null") {
+        return;
+    }
+    
+    try {
+        const data = JSON.parse(rawData);
+        
+        // Update partner name
+        document.getElementById('partnerName').textContent = data.FullName || data.name || "Partner";
+        
+        // Update financial data
+        const principal = data.PrincipalAmount || data.principal || 500000;
+        const monthlyReturns = data.FixedMonthlyReturn || data.monthlyReturns || 5000;
+        
+        document.getElementById('activePrincipal').textContent = formatCurrency(principal);
+        document.getElementById('monthlyReturns').textContent = formatCurrency(monthlyReturns);
+        
+        // Calculate total returns
+        const startDate = data.startDate || '2024-01-01';
+        const months = monthsSince(startDate);
+        const totalReturns = months * monthlyReturns;
+        document.getElementById('totalReturns').textContent = formatCurrency(totalReturns);
+        
+        // Update agreement ID
+        if (data.agreementId) {
+            document.getElementById('agreementId').textContent = data.agreementId;
+        }
+        
+    } catch (e) {
+        console.error('Error parsing localStorage data:', e);
+    }
+}
+
+// Helper functions
+function formatCurrency(amount) {
+    const num = parseFloat(amount) || 0;
+    return '₹' + num.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+}
+
+function monthsSince(dateStr) {
+    const startDate = new Date(dateStr);
+    const now = new Date();
+    const months = (now.getFullYear() - startDate.getFullYear()) * 12 + 
+                   (now.getMonth() - startDate.getMonth());
+    return Math.max(1, months);
+}
+
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-IN', { 
+        day: '2-digit', 
+        month: 'short', 
+        year: 'numeric' 
+    });
+}
+
+// Initialize dashboard when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // First, try to load data from Google Sheet
+    updateDashboardWithGoogleData();
+    
+    // Initialize chart
+    initializeChart();
+    
+    // Setup logout
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('omkar_partner');
+        localStorage.removeItem('omkar_session_start');
+        localStorage.removeItem('omkar_access_key');
+        window.location.href = 'partner-portal.html';
+    });
+});
+
+// Chart initialization
+function initializeChart() {
+    const ctx = document.getElementById('portfolioChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan 2021', 'Jun 2021', 'Jan 2022', 'Jun 2022', 'Jan 2023', 'Jun 2023', 'Jan 2024', 'Jun 2024', 'Jan 2025', 'Jun 2025', 'Jan 2026'],
+            datasets: [{
+                label: 'Cumulative Returns (₹)',
+                data: [0, 55000, 120000, 185000, 240000, 295000, 350000, 405000, 460000, 515000, 570000],
+                borderColor: '#1e3a8a',
+                backgroundColor: 'rgba(30, 58, 138, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(0,0,0,0.05)' },
+                    ticks: {
+                        callback: function(value) {
+                            return '₹' + value.toLocaleString('en-IN');
+                        }
+                    }
+                },
+                x: {
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                }
+            }
+        }
+    });
+}
     </script>
 </body>
 </html>

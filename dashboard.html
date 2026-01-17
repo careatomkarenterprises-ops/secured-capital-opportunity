@@ -1314,104 +1314,92 @@
     <!-- Chart.js for graphs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script>
-        // Chart initialization
-        document.addEventListener('DOMContentLoaded', function() {
-            // Portfolio Chart
-            const ctx = document.getElementById('portfolioChart').getContext('2d');
-            const portfolioChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan 2021', 'Jun 2021', 'Jan 2022', 'Jun 2022', 'Jan 2023', 'Jun 2023', 'Jan 2024', 'Jun 2024', 'Jan 2025', 'Jun 2025', 'Jan 2026'],
-                    datasets: [{
-                        label: 'Cumulative Returns (₹)',
-                        data: [0, 55000, 120000, 185000, 240000, 295000, 350000, 405000, 460000, 515000, 570000],
-                        borderColor: '#1e3a8a',
-                        backgroundColor: 'rgba(30, 58, 138, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(0,0,0,0.05)'
-                            },
-                            ticks: {
-                                callback: function(value) {
-                                    return '₹' + value.toLocaleString('en-IN');
-                                }
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: 'rgba(0,0,0,0.05)'
-                            }
-                        }
-                    }
-                }
-            });
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- 1. CONFIGURATION ---
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZY9xuOvY9uMwU4I40rUNjUCer-k6HrZEUl06q8eB8g5exIRNclGJbrfUJkzlOgae5/exec'
+        
+        // --- 2. INITIAL DATA LOAD ---
+        const userData = localStorage.getItem('omkar_partner');
+        const accessKey = localStorage.getItem('omkar_access_key');
 
-            // Authentication check
-            setTimeout(() => {
-                const rawData = localStorage.getItem('omkar_partner');
+        if (!userData || !accessKey) {
+            window.location.href = 'partner-portal.html';
+            return;
+        }
+
+        const data = JSON.parse(userData);
+
+        // --- 3. SYNC DASHBOARD FIELDS ---
+        // Header Info
+        document.getElementById('partnerName').textContent = data.FullName || "Valued Partner";
+        document.getElementById('partnerId').textContent = data.InvestorId || accessKey;
+        
+        // Principal Card
+        const principal = Number(data.PrincipalAmount || 0);
+        document.getElementById('activePrincipal').textContent = '₹' + principal.toLocaleString('en-IN');
+        document.getElementById('pdcStatus').textContent = "Secured: " + (data.PDC_Details || "Fully Secured");
+
+        // Monthly Returns Card
+        const monthly = Number(data.FixedMonthlyReturn || 0);
+        document.getElementById('monthlyReturns').textContent = '₹' + monthly.toLocaleString('en-IN');
+        if (data.NextPayoutDate) {
+            const nextDate = new Date(data.NextPayoutDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
+            document.getElementById('nextPayoutDate').textContent = 'Next: ' + nextDate;
+        }
+
+        // Total Returns Card
+        const total = Number(data.TotalReturnsPaid || 0);
+        document.getElementById('totalReturns').textContent = '₹' + total.toLocaleString('en-IN');
+        if (data.InvestmentDate) {
+            const start = new Date(data.InvestmentDate).toLocaleDateString('en-IN', {month:'short', year:'numeric'});
+            document.getElementById('totalReturnsSubtext').textContent = 'Since ' + start;
+        }
+
+        // Agreement Expiry Calculation
+        if (data.AgreementExpiryDate) {
+            const expiry = new Date(data.AgreementExpiryDate);
+            const diffDays = Math.ceil((expiry - new Date()) / (1000 * 60 * 60 * 24));
+            document.getElementById('expiryDays').textContent = diffDays > 0 ? diffDays : "0";
+        }
+
+        // --- 4. FETCH REAL TRANSACTION HISTORY ---
+        async function loadTransactions() {
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+                const txns = await response.json();
+                const container = document.getElementById('transactionList');
                 
-                if (!rawData || rawData === "undefined" || rawData === "null") {
-                    window.location.replace('partner-portal.html');
-                    return;
+                if (txns.length > 0) {
+                    container.innerHTML = ''; // Clear demo data
+                    txns.forEach(tx => {
+                        const date = new Date(tx.TransactionDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short'});
+                        const type = tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || "Return";
+                        
+                        container.innerHTML += `
+                            <div class="transaction-item">
+                                <div class="transaction-info">
+                                    <h4>${type}</h4>
+                                    <div class="transaction-date">${date} | ${tx.Status || 'Completed'}</div>
+                                </div>
+                                <div class="transaction-amount success">+₹${Number(tx.Amount).toLocaleString('en-IN')}</div>
+                            </div>`;
+                    });
                 }
+            } catch (err) {
+                console.error("Statement sync failed:", err);
+            }
+        }
 
-                try {
-                    const data = JSON.parse(rawData);
-                    
-                    // Update partner name
-                    const nameSlot = document.getElementById('partnerName');
-                    if(nameSlot) nameSlot.textContent = data.FullName || data.name || "Partner";
+        loadTransactions();
 
-                    // Update dashboard values
-                    const principal = data.PrincipalAmount || data.principal || 500000;
-                    const monthlyReturns = data.FixedMonthlyReturn || data.monthlyReturns || 5000;
-                    
-                    document.getElementById('activePrincipal').textContent = '₹' + Number(principal).toLocaleString('en-IN');
-                    document.getElementById('monthlyReturns').textContent = '₹' + Number(monthlyReturns).toLocaleString('en-IN');
-                    
-                    // Calculate total returns
-                    const startDate = data.startDate || '2024-01-01';
-                    const months = Math.max(1, (new Date().getFullYear() - new Date(startDate).getFullYear()) * 12 + 
-                        (new Date().getMonth() - new Date(startDate).getMonth()));
-                    const totalReturns = months * monthlyReturns;
-                    document.getElementById('totalReturns').textContent = '₹' + totalReturns.toLocaleString('en-IN');
-                    
-                    // Update agreement ID if available
-                    if (data.agreementId) {
-                        document.getElementById('agreementId').textContent = data.agreementId;
-                    }
-                    
-                } catch (e) {
-                    console.error('Error parsing user data:', e);
-                    // Keep default values if error
-                }
-            }, 150);
-
-            // Logout functionality
-            document.getElementById('logoutBtn').addEventListener('click', function() {
-                localStorage.removeItem('omkar_partner');
-                localStorage.removeItem('omkar_session_start');
-                localStorage.removeItem('omkar_access_key');
-                window.location.href = 'partner-portal.html';
-            });
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.clear();
+            window.location.href = 'partner-portal.html';
         });
-    </script>
+    });
+</script>
     
 </body>
 </html>

@@ -881,6 +881,43 @@
                 color: black !important;
             }
         }
+/* Mobile Optimization Fix */
+@media (max-width: 768px) {
+    /* Stack Stat Cards vertically */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    /* Make Charts/Graphs scrollable if too wide */
+    .chart-container {
+        height: 250px !important;
+        overflow-x: auto;
+    }
+
+    /* Adjust the Welcome Header font size */
+    .partner-welcome h1 {
+        font-size: 1.5rem !important;
+        padding: 0 15px;
+    }
+
+    /* Fix any overlapping navigation buttons */
+    .navbar-menu {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Ensure tables can be swiped left/right on small screens */
+    .transaction-table-container {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
     </style>
 </head>
 <body>

@@ -923,6 +923,43 @@
     }
 }
 
+/* --- DASHBOARD MOBILE REPAIR --- */
+@media screen and (max-width: 768px) {
+    /* Force the main dashboard containers to stack */
+    .dashboard-stats, 
+    .stats-grid, 
+    .hero-stats {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        padding: 10px !important;
+    }
+
+    /* Fix individual cards so they are 100% width on phones */
+    .stat-card, 
+    .dashboard-card, 
+    .trust-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 0 15px 0 !important;
+    }
+
+    /* Allow the payout table to scroll horizontally instead of stretching the page */
+    .dashboard-card {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Adjust the Welcome Header so it doesn't overlap the fixed navbar */
+    .hero, .dashboard-header {
+        padding-top: 120px !important; 
+    }
+
+    .hero-title {
+        font-size: 1.8rem !important;
+    }
+}
+
     </style>
 </head>
 <body>

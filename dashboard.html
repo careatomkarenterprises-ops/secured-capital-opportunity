@@ -1371,25 +1371,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-   function updateUI(data) {
-    // Replace the strings in quotes with your EXACT Google Sheet header names
-    const mapping = {
-        'partnerName': data['FullName'] || data['Name'],
-        'activePrincipal': data['PrincipalAmount'] || data['Investment'],
-        'monthlyReturns': data['FixedMonthlyReturn'] || data['MonthlyPayout'],
-        'agreementId': data['AgreementID'] || data['ID']
-    };
+  function updateUI(data) {
+    // We must use the EXACT case-sensitive names from your headers
+    const nameSlot = document.getElementById('partnerName');
+    if (nameSlot) nameSlot.textContent = data['FullName'] || "Partner";
 
-    if (mapping.partnerName) {
-        document.getElementById('partnerName').textContent = mapping.partnerName;
-    }
-    
-    if (mapping.activePrincipal) {
-        document.getElementById('activePrincipal').textContent = '₹' + Number(mapping.activePrincipal).toLocaleString('en-IN');
+    const principalSlot = document.getElementById('activePrincipal');
+    if (principalSlot) {
+        const amount = data['PrincipalAmount'] || 0;
+        principalSlot.textContent = '₹' + Number(amount).toLocaleString('en-IN');
     }
 
-    if (mapping.monthlyReturns) {
-        document.getElementById('monthlyReturns').textContent = '₹' + Number(mapping.monthlyReturns).toLocaleString('en-IN');
+    const returnsSlot = document.getElementById('monthlyReturns');
+    if (returnsSlot) {
+        const returns = data['FixedMonthlyReturn'] || 0;
+        returnsSlot.textContent = '₹' + Number(returns).toLocaleString('en-IN');
+    }
+
+    const totalReturnsSlot = document.getElementById('totalReturns');
+    if (totalReturnsSlot) {
+        const total = data['TotalReturnsPaid'] || 0;
+        totalReturnsSlot.textContent = '₹' + Number(total).toLocaleString('en-IN');
+    }
+
+    const expirySlot = document.getElementById('agreementExpiry');
+    if (expirySlot) {
+        // This displays the date from your 'AgreementExpiryDate' column
+        expirySlot.textContent = data['AgreementExpiryDate'] || 'N/A';
+        // If you want to show "Days Remaining", you would need a small date calculation here
     }
 }
     function updateTransactionList(transactions) {

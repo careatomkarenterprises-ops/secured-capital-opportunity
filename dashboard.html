@@ -1316,96 +1316,76 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // 1. CONFIGURATION
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZY9xuOvY9uMwU4I40rUNjUCer-k6HrZEUl06q8eB8g5exIRNclGJbrfUJkzlOgae5/exec";
+        // 1. UPDATE THIS URL to your latest "Anyone" deployment
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOlq85LdXP1UCXFx27BugiIXJQI-kMT7tYYsePuTzV6gpojhM2FQQxjkzooJxQj7OY/exec";
         
-        // 2. SESSION CHECK (Prevents "Kick Back")
         const userDataString = localStorage.getItem('omkar_partner');
-        if (!userDataString || userDataString === "null" || userDataString === "undefined") {
-            console.log("No session found, redirecting to login...");
-            window.location.replace('index.html'); // <--- MAKE SURE THIS IS YOUR LOGIN FILENAME
+        if (!userDataString) {
+            window.location.replace('index.html');
             return;
         }
 
         const data = JSON.parse(userDataString);
-        // Use InvestorId from the sheet data or the saved access key
+        // Use 'InvestorId' exactly as it appears in your CSV
         const accessKey = data.InvestorId || localStorage.getItem('omkar_access_key');
 
-        // 3. FILL DASHBOARD FIELDS WITH REAL DATA
+        // 2. FILL DASHBOARD FIELDS - Ensure these IDs exist in your HTML
         try {
-            if(document.getElementById('partnerName')) document.getElementById('partnerName').textContent = data.FullName || "Partner";
+            // Update Partner Name & ID
+            if(document.getElementById('partnerName')) document.getElementById('partnerName').textContent = data.FullName;
+            if(document.getElementById('partnerId')) document.getElementById('partnerId').textContent = accessKey;
             
-            // Principal & Returns from your Sheet headers
-            document.getElementById('activePrincipal').textContent = '₹' + Number(data.PrincipalAmount || 0).toLocaleString('en-IN');
-            document.getElementById('monthlyReturns').textContent = '₹' + Number(data.FixedMonthlyReturn || 0).toLocaleString('en-IN');
-            document.getElementById('totalReturns').textContent = '₹' + Number(data.TotalReturnsPaid || 0).toLocaleString('en-IN');
+            // Financials - Mapping to your CSV Column Names
+            if(document.getElementById('activePrincipal')) 
+                document.getElementById('activePrincipal').textContent = '₹' + Number(data.PrincipalAmount).toLocaleString('en-IN');
+            
+            if(document.getElementById('monthlyReturns')) 
+                document.getElementById('monthlyReturns').textContent = '₹' + Number(data.FixedMonthlyReturn).toLocaleString('en-IN');
+            
+            if(document.getElementById('totalReturns')) 
+                document.getElementById('totalReturns').textContent = '₹' + Number(data.TotalReturnsPaid || 0).toLocaleString('en-IN');
 
-            // Update Agreement & Days
-            if (data.AgreementExpiryDate) {
-                document.getElementById('agreementId').textContent = data.InvestorId;
-                const expiry = new Date(data.AgreementExpiryDate);
-                const diff = Math.ceil((expiry - new Date()) / (1000 * 60 * 60 * 24));
-                document.getElementById('agreementExpiry').textContent = diff > 0 ? diff : "0";
+            // Security & Dates
+            if(document.getElementById('pdcStatus')) 
+                document.getElementById('pdcStatus').textContent = "Secured by: " + (data.PDC_Details || "PDC");
+
+            if(document.getElementById('nextPayoutDate') && data.NextPayoutDate) {
+                const nxt = new Date(data.NextPayoutDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short'});
+                document.getElementById('nextPayoutDate').textContent = "Next: " + nxt;
             }
+
         } catch (err) {
-            console.error("Error populating fields:", err);
+            console.error("Mapping Error:", err);
         }
 
-        // 4. FETCH REAL TRANSACTIONS FROM GOOGLE SHEET
+        // 3. FETCH REAL TRANSACTIONS
         async function loadTransactions() {
-            const listContainer = document.querySelector('.transaction-list');
+            const list = document.getElementById('transactionList');
+            if(!list) return;
+
             try {
                 const res = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
                 const txns = await res.json();
                 
                 if (txns && txns.length > 0) {
-                    listContainer.innerHTML = ''; // Clear the demo/hardcoded items
+                    list.innerHTML = ''; // THIS REMOVES THE DEMO DATA
                     txns.forEach(tx => {
-                        const date = new Date(tx.TransactionDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
-                        const type = tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || 'Payout';
-                        
-                        listContainer.innerHTML += `
+                        const date = new Date(tx.TransactionDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short'});
+                        list.innerHTML += `
                             <div class="transaction-item">
                                 <div class="transaction-info">
-                                    <h4>${type}</h4>
+                                    <h4>${tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || 'Monthly Return'}</h4>
                                     <div class="transaction-date">${date} | ${tx.Status || 'Completed'}</div>
                                 </div>
                                 <div class="transaction-amount">+₹${Number(tx.Amount).toLocaleString('en-IN')}</div>
                             </div>`;
                     });
                 }
-            } catch (e) {
-                console.log("Error loading transactions from sheet.");
-            }
+            } catch (e) { console.log("Transaction load failed"); }
         }
 
         loadTransactions();
-
-        // 5. LOGOUT FUNCTION
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            localStorage.clear();
-            window.location.replace('index.html'); // <--- MATCH YOUR LOGIN FILENAME
-        });
-
-        // 6. INITIALIZE CHART (Kept your design)
-        const ctx = document.getElementById('portfolioChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Returns',
-                    data: [10000, 20000, 35000, 50000, 75000, 90000], // You can later make this dynamic too
-                    borderColor: '#1e3a8a',
-                    tension: 0.4,
-                    fill: true,
-                    backgroundColor: 'rgba(30, 58, 138, 0.1)'
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false }
-        });
     });
-</script>
-    
+</script>    
 </body>
 </html>

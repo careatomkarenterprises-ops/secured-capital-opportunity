@@ -1317,114 +1317,95 @@
 <script>
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOlq85LdXP1UCXFx27BugiIXJQI-kMT7tYYsePuTzV6gpojhM2FQQxjkzooJxQj7OY/exec'; // Paste your Web App URL here
 
-    // Replace the start of your script with this:
-document.addEventListener('DOMContentLoaded', function() {
-    const rawData = localStorage.getItem('omkar_partner');
-    
-    // Check if data exists and isn't just a string "undefined"
-    if (!rawData || rawData === "undefined" || rawData === "null") {
-        console.log("No session found, redirecting...");
-        window.location.replace('partner-portal.html');
-        return;
-    }
+    <script>
+    // 1. PASTE YOUR DEPLOYMENT URL HERE
+    const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'; 
 
-    try {
-        const data = JSON.parse(rawData);
-        // If the data object is empty, redirect
-        if (Object.keys(data).length === 0) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const rawData = localStorage.getItem('omkar_partner');
+        const accessKey = localStorage.getItem('omkar_access_key');
+        
+        // If no login data is found, go back to login page
+        if (!rawData || rawData === "undefined" || rawData === "null") {
             window.location.replace('partner-portal.html');
             return;
         }
-        
-        updateUI(data); // Initial load from cache
-        fetchFreshData(localStorage.getItem('omkar_access_key')); // Live sync
-    } catch (e) {
-        window.location.replace('partner-portal.html');
-    }
-});
 
-        // 1. Load basic data from LocalStorage immediately for speed
-        const localData = JSON.parse(rawData);
-        updateUI(localData);
-
-        // 2. Fetch fresh data and transaction history from Google Sheets
-        fetchFreshData(accessKey);
+        try {
+            const data = JSON.parse(rawData);
+            
+            // Step A: Load whatever we have from login immediately
+            updateUI(data);
+            
+            // Step B: Fetch "Live" data from Google Sheets to ensure it is fresh
+            if (accessKey) {
+                syncLiveSheetData(accessKey);
+            }
+        } catch (e) {
+            console.error("Session Error:", e);
+            window.location.replace('partner-portal.html');
+        }
     });
 
-    async function fetchFreshData(accessKey) {
+    async function syncLiveSheetData(accessKey) {
         try {
-            // Fetch Partner Data
-            const partnerRes = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-            const partnerData = await partnerRes.json();
-            if (partnerData) {
-                updateUI(partnerData);
-                localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
-            }
-
-            // Fetch Transaction History
-            const transRes = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
-            const transactions = await transRes.json();
-            updateTransactionList(transactions);
+            const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+            const freshData = await response.json();
             
+            if (freshData && !freshData.error) {
+                console.log("Live data synced from Sheet");
+                updateUI(freshData);
+                // Save the fresh data back to storage
+                localStorage.setItem('omkar_partner', JSON.stringify(freshData));
+            }
         } catch (error) {
-            console.error("Data sync failed:", error);
+            console.error("Sync Failed. Using cached data.", error);
         }
     }
 
-  function updateUI(data) {
-    // We must use the EXACT case-sensitive names from your headers
-    const nameSlot = document.getElementById('partnerName');
-    if (nameSlot) nameSlot.textContent = data['FullName'] || "Partner";
+    function updateUI(data) {
+        // MAPPING: Sheet Header Name -> HTML ID
+        
+        // Update Name
+        const nameVal = data['FullName'] || data['FullName '];
+        if(nameVal) document.getElementById('partnerName').textContent = nameVal;
 
-    const principalSlot = document.getElementById('activePrincipal');
-    if (principalSlot) {
-        const amount = data['PrincipalAmount'] || 0;
-        principalSlot.textContent = '₹' + Number(amount).toLocaleString('en-IN');
+        // Update Principal Amount
+        const principal = data['PrincipalAmount'];
+        if(principal) {
+            document.getElementById('activePrincipal').textContent = '₹' + Number(principal).toLocaleString('en-IN');
+        }
+
+        // Update Monthly Return
+        const monthly = data['FixedMonthlyReturn'];
+        if(monthly) {
+            document.getElementById('monthlyReturns').textContent = '₹' + Number(monthly).toLocaleString('en-IN');
+        }
+
+        // Update Total Returns Paid
+        const totalPaid = data['TotalReturnsPaid'];
+        if(totalPaid) {
+            document.getElementById('totalReturns').textContent = '₹' + Number(totalPaid).toLocaleString('en-IN');
+        }
+
+        // Update Agreement Expiry (Days Remaining)
+        const expiryDate = data['AgreementExpiryDate'];
+        if(expiryDate) {
+            const daysLeft = Math.ceil((new Date(expiryDate) - new Date()) / (1000 * 60 * 60 * 24));
+            document.getElementById('agreementExpiry').textContent = daysLeft > 0 ? daysLeft : "Expired";
+        }
+        
+        // Update Partnership Details Section
+        if(data['InvestmentDate']) document.getElementById('startDate').textContent = data['InvestmentDate'];
+        if(data['Rate']) document.getElementById('monthlyRate').textContent = data['Rate'] + '%';
     }
 
-    const returnsSlot = document.getElementById('monthlyReturns');
-    if (returnsSlot) {
-        const returns = data['FixedMonthlyReturn'] || 0;
-        returnsSlot.textContent = '₹' + Number(returns).toLocaleString('en-IN');
-    }
-
-    const totalReturnsSlot = document.getElementById('totalReturns');
-    if (totalReturnsSlot) {
-        const total = data['TotalReturnsPaid'] || 0;
-        totalReturnsSlot.textContent = '₹' + Number(total).toLocaleString('en-IN');
-    }
-
-    const expirySlot = document.getElementById('agreementExpiry');
-    if (expirySlot) {
-        // This displays the date from your 'AgreementExpiryDate' column
-        expirySlot.textContent = data['AgreementExpiryDate'] || 'N/A';
-        // If you want to show "Days Remaining", you would need a small date calculation here
-    }
-}
-    function updateTransactionList(transactions) {
-        const listContainer = document.querySelector('.transaction-list');
-        if (!transactions || transactions.length === 0) return;
-
-        listContainer.innerHTML = ''; // Clear static data
-        transactions.forEach(t => {
-            const item = `
-                <div class="transaction-item">
-                    <div class="transaction-info">
-                        <h4>${t.Description || 'Monthly Return'}</h4>
-                        <div class="transaction-date">${t.Date} | ${t.Type}</div>
-                    </div>
-                    <div class="transaction-amount">+₹${Number(t.Amount).toLocaleString('en-IN')}</div>
-                </div>`;
-            listContainer.innerHTML += item;
-        });
-    }
-
-    // Logout functionality
+    // Logout
     document.getElementById('logoutBtn').addEventListener('click', function() {
         localStorage.clear();
         window.location.href = 'partner-portal.html';
     });
-</script>    
+</script>
 </body>
 </html>
 

@@ -881,46 +881,53 @@
                 color: black !important;
             }
         }
-/* Mobile Optimization Fix */
+
+/* Mobile Optimization Fix - FINAL VERSION */
 @media (max-width: 768px) {
-    /* Stack Stat Cards vertically */
-    .stats-grid {
-        display: grid;
-        grid-template-columns: 1fr !important;
-        gap: 15px;
-        padding: 10px;
+    /* This fixes the alignment of your Stat Cards (Principal and Returns) */
+    .dashboard-stats, .stats-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Forces 1 card per row */
+        gap: 15px !important;
+        width: 100% !important;
+        padding: 10px 0 !important;
     }
 
-    /* Make Charts/Graphs scrollable if too wide */
+    /* This fixes the Graph height so it doesn't disappear on phones */
     .chart-container {
-        height: 250px !important;
-        overflow-x: auto;
+        height: 300px !important;
+        width: 100% !important;
+        position: relative;
     }
 
-    /* Adjust the Welcome Header font size */
+    /* This fixes the Title so it doesn't overlap with the Logo */
     .partner-welcome h1 {
-        font-size: 1.5rem !important;
-        padding: 0 15px;
-    }
-
-    /* Fix any overlapping navigation buttons */
-    .navbar-menu {
-        flex-direction: column;
+        font-size: 20px !important;
+        line-height: 1.4 !important;
         text-align: center;
+        margin-bottom: 20px;
     }
 
-    /* Ensure tables can be swiped left/right on small screens */
-    .transaction-table-container {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
+    /* This allows users to swipe left/right to see the full Payout Table */
+    .dashboard-card {
+        overflow-x: auto !important;
         -webkit-overflow-scrolling: touch;
+    }
+
+    /* Adjust the floating WhatsApp button for small screens */
+    .float-whatsapp {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 18px;
+        font-size: 14px;
     }
 }
 
     </style>
 </head>
 <body>
+
+
     <!-- Dashboard Header -->
     <header class="dashboard-header">
         <div class="container">

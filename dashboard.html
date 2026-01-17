@@ -1287,9 +1287,9 @@
                             <i class="fab fa-whatsapp"></i>
                             <span>WhatsApp: +91 87888 56773</span>
                         </a>
-                        <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
+                        <a href="mailto:santosh.s@omkarservices.in" class="social-link email">
                             <i class="fas fa-envelope"></i>
-                            <span>santosh@omkarenterprises.in</span>
+                            <span>santosh.s@omkarservices.in</span>
                         </a>
                     </div>
                     <div class="footer-disclaimer">
@@ -1316,87 +1316,71 @@
 
    <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // --- 1. CONFIGURATION ---
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZY9xuOvY9uMwU4I40rUNjUCer-k6HrZEUl06q8eB8g5exIRNclGJbrfUJkzlOgae5/exec'
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOlq85LdXP1UCXFx27BugiIXJQI-kMT7tYYsePuTzV6gpojhM2FQQxjkzooJxQj7OY/exec";
         
-        // --- 2. INITIAL DATA LOAD ---
-        const userData = localStorage.getItem('omkar_partner');
-        const accessKey = localStorage.getItem('omkar_access_key');
-
-        if (!userData || !accessKey) {
-            window.location.href = 'partner-portal.html';
+        // 1. SESSION CHECK - This prevents the "Kick Back" to login page
+        const userDataString = localStorage.getItem('omkar_partner');
+        if (!userDataString) {
+            console.log("No session found, redirecting...");
+            window.location.replace('index.html'); // Or your login page name
             return;
         }
 
-        const data = JSON.parse(userData);
+        const data = JSON.parse(userDataString);
+        const accessKey = data.InvestorId || localStorage.getItem('omkar_access_key');
 
-        // --- 3. SYNC DASHBOARD FIELDS ---
-        // Header Info
-        document.getElementById('partnerName').textContent = data.FullName || "Valued Partner";
-        document.getElementById('partnerId').textContent = data.InvestorId || accessKey;
-        
-        // Principal Card
-        const principal = Number(data.PrincipalAmount || 0);
-        document.getElementById('activePrincipal').textContent = '₹' + principal.toLocaleString('en-IN');
-        document.getElementById('pdcStatus').textContent = "Secured: " + (data.PDC_Details || "Fully Secured");
+        // 2. FILL DASHBOARD FIELDS
+        try {
+            document.getElementById('partnerName').textContent = data.FullName || "Partner";
+            document.getElementById('partnerId').textContent = accessKey;
+            
+            // Principal & Returns
+            document.getElementById('activePrincipal').textContent = '₹' + Number(data.PrincipalAmount || 0).toLocaleString('en-IN');
+            document.getElementById('monthlyReturns').textContent = '₹' + Number(data.FixedMonthlyReturn || 0).toLocaleString('en-IN');
+            document.getElementById('totalReturns').textContent = '₹' + Number(data.TotalReturnsPaid || 0).toLocaleString('en-IN');
 
-        // Monthly Returns Card
-        const monthly = Number(data.FixedMonthlyReturn || 0);
-        document.getElementById('monthlyReturns').textContent = '₹' + monthly.toLocaleString('en-IN');
-        if (data.NextPayoutDate) {
-            const nextDate = new Date(data.NextPayoutDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
-            document.getElementById('nextPayoutDate').textContent = 'Next: ' + nextDate;
+            // PDC & Dates
+            if(document.getElementById('pdcStatus')) document.getElementById('pdcStatus').textContent = "Secured: " + (data.PDC_Details || "Active");
+            
+            // Expiry Calculation
+            if (data.AgreementExpiryDate && document.getElementById('expiryDays')) {
+                const expiry = new Date(data.AgreementExpiryDate);
+                const diff = Math.ceil((expiry - new Date()) / (1000 * 60 * 60 * 24));
+                document.getElementById('expiryDays').textContent = diff > 0 ? diff : "0";
+            }
+        } catch (err) {
+            console.error("Error populating fields:", err);
         }
 
-        // Total Returns Card
-        const total = Number(data.TotalReturnsPaid || 0);
-        document.getElementById('totalReturns').textContent = '₹' + total.toLocaleString('en-IN');
-        if (data.InvestmentDate) {
-            const start = new Date(data.InvestmentDate).toLocaleDateString('en-IN', {month:'short', year:'numeric'});
-            document.getElementById('totalReturnsSubtext').textContent = 'Since ' + start;
-        }
-
-        // Agreement Expiry Calculation
-        if (data.AgreementExpiryDate) {
-            const expiry = new Date(data.AgreementExpiryDate);
-            const diffDays = Math.ceil((expiry - new Date()) / (1000 * 60 * 60 * 24));
-            document.getElementById('expiryDays').textContent = diffDays > 0 ? diffDays : "0";
-        }
-
-        // --- 4. FETCH REAL TRANSACTION HISTORY ---
+        // 3. LOAD TRANSACTIONS FROM SHEET
         async function loadTransactions() {
             try {
-                const response = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
-                const txns = await response.json();
-                const container = document.getElementById('transactionList');
-                
-                if (txns.length > 0) {
-                    container.innerHTML = ''; // Clear demo data
+                const res = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+                const txns = await res.json();
+                const list = document.getElementById('transactionList');
+                if (txns && txns.length > 0) {
+                    list.innerHTML = ''; // Clear demo items
                     txns.forEach(tx => {
                         const date = new Date(tx.TransactionDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short'});
-                        const type = tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || "Return";
-                        
-                        container.innerHTML += `
+                        list.innerHTML += `
                             <div class="transaction-item">
                                 <div class="transaction-info">
-                                    <h4>${type}</h4>
-                                    <div class="transaction-date">${date} | ${tx.Status || 'Completed'}</div>
+                                    <h4>${tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || 'Payout'}</h4>
+                                    <div class="transaction-date">${date} | ${tx.Status || 'Success'}</div>
                                 </div>
                                 <div class="transaction-amount success">+₹${Number(tx.Amount).toLocaleString('en-IN')}</div>
                             </div>`;
                     });
                 }
-            } catch (err) {
-                console.error("Statement sync failed:", err);
-            }
+            } catch (e) { console.log("Transaction load error"); }
         }
 
         loadTransactions();
 
         // Logout
-        document.getElementById('logoutBtn').addEventListener('click', function() {
+        document.getElementById('logoutBtn').addEventListener('click', () => {
             localStorage.clear();
-            window.location.href = 'partner-portal.html';
+            window.location.replace('index.html');
         });
     });
 </script>

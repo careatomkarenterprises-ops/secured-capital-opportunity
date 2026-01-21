@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>Santosh Shendkar | Founder of Omkar Enterprises | A Sister Concern of TRFSK Omkar Services Pvt Ltd</title>
+    <title>Santosh Shendkar | Founder & Managing Partner | Omkar Enterprises Private Lending</title>
     <link rel="icon" href="https://omkarservices.in/assets/favicon.ico" type="image/x-icon">
-    <meta name="description" content="Meet Santosh Shendkar, founder of Omkar Enterprises. 10+ years experience in private lending partnerships with 500+ satisfied partners and 100% payout record since 2015. Omkar Enterprises operates with the corporate framework and credibility of its parent company, TRFSK OMKAR SERVICES PRIVATE LIMITED.">
+    <meta name="description" content="Meet Santosh Shendkar, founder of Omkar Enterprises. 10+ years experience in private lending partnerships with 500+ satisfied partners and 100% payout record since 2015.">
     <meta name="keywords" content="Santosh Shendkar, Omkar Enterprises founder, private lending expert, investment specialist, Ulhasnagar, Maharashtra, secure monthly returns, 1% monthly returns, PDC security, private lending partnership">
     <meta name="author" content="Omkar Enterprises - Santosh Shendkar">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -64,11 +65,6 @@
               "addressCountry": "IN"
             }
           ],
-          "parentOrganization": {
-            "@type": "Corporation",
-            "name": "TRFSK OMKAR SERVICES PRIVATE LIMITED",
-            "leiCode": "U70200MH2023PTC407336"
-          },
           "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "5",
@@ -399,341 +395,812 @@
             transition: var(--transition);
         }
 
-        /* Hero Section - About Page Specific */
-        .hero-about {
-            padding: 80px 0 40px;
-            text-align: center;
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
         }
 
-        .hero-about h1 {
-            font-size: 3rem;
-            color: var(--trust-blue);
-            margin-bottom: 20px;
-            line-height: 1.2;
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
         }
 
-        .hero-about .subtitle {
-            font-size: 1.2rem;
-            color: var(--slate-light);
-            max-width: 800px;
-            margin: 0 auto 40px;
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* Main Content Area */
-        main {
-            padding: 40px 0 80px;
+        /* Mobile Responsive for Logo */
+        @media (max-width: 768px) {
+            .logo {
+                gap: 12px !important;
+            }
+            
+            .logo-image-container {
+                width: 45px !important;
+                height: 45px !important;
+            }
+            
+            .logo-main {
+                font-size: 18px !important;
+            }
+            
+            .logo-tagline {
+                font-size: 10px !important;
+            }
         }
 
-        /* Founder Profile Section */
-        .founder-profile {
+        @media (max-width: 480px) {
+            .logo {
+                gap: 10px !important;
+            }
+            
+            .logo-image-container {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            
+            .logo-main {
+                font-size: 16px !important;
+            }
+            
+            .logo-tagline {
+                font-size: 9px !important;
+                display: none !important;
+            }
+        }
+
+        /* Founder Hero Section - With Image */
+        .founder-hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
+        }
+
+        .founder-container {
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 40px;
-            align-items: start;
-            margin-bottom: 60px;
-            background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-md);
-        }
-
-        .founder-image {
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .founder-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .founder-content h2 {
-            color: var(--trust-blue);
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .founder-content .title {
-            color: var(--gold-accent);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .founder-content p {
-            margin-bottom: 20px;
-            color: var(--modern-slate);
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        /* Corporate Structure Section - NEW ADDITION */
-        .corporate-structure {
-            background: var(--light-blue);
-            border-left: 4px solid var(--gold-accent);
-            padding: 30px;
-            border-radius: var(--radius);
-            margin: 50px 0;
-        }
-
-        .corporate-structure h2 {
-            color: var(--trust-blue);
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-            display: flex;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
-            gap: 10px;
-        }
-
-        .corporate-structure p {
-            color: var(--modern-slate);
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        .corporate-structure .legal-id {
-            display: inline-block;
-            background: var(--white);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: var(--navy-blue);
-            border: 1px dashed var(--royal-blue);
-            margin-top: 10px;
-        }
-
-        /* Values Section */
-        .values-section {
-            margin: 60px 0;
-        }
-
-        .values-section h2 {
-            text-align: center;
-            color: var(--trust-blue);
-            font-size: 2.2rem;
-            margin-bottom: 40px;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .value-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border-top: 4px solid transparent;
-        }
-
-        .value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-top-color: var(--gold-accent);
-        }
-
-        .value-card i {
-            font-size: 2.5rem;
-            color: var(--trust-blue);
-            margin-bottom: 20px;
-        }
-
-        .value-card h3 {
-            color: var(--slate-dark);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-
-        .value-card p {
-            color: var(--slate-light);
-            line-height: 1.7;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            margin-top: 80px;
-        }
-
-        .faq-section h2 {
-            text-align: center;
-            color: var(--trust-blue);
-            font-size: 2.2rem;
-            margin-bottom: 40px;
-        }
-
-        .faq-container {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        .faq-item {
-            background: var(--white);
-            border-radius: var(--radius);
-            margin-bottom: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .faq-question {
-            padding: 20px 25px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--slate-dark);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-question:hover {
-            background: var(--gray-light);
-        }
-
-        .faq-answer {
-            padding: 0 25px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .faq-answer.active {
-            padding: 0 25px 20px;
-            max-height: 500px;
-        }
-
-        .faq-answer p {
-            color: var(--slate-light);
-            line-height: 1.7;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
-            color: var(--white);
-            padding: 60px 20px;
-            border-radius: var(--radius);
+        .founder-image {
             text-align: center;
-            margin-top: 80px;
+            position: relative;
         }
 
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .founder-photo-frame {
+            position: relative;
+            display: inline-block;
+            max-width: 400px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--gold-accent);
         }
 
-        .cta-section p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .btn-cta {
-            background: var(--gold-accent);
-            color: var(--trust-blue);
-            padding: 16px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+        .founder-photo {
+            width: 100%;
+            height: auto;
+            display: block;
             transition: var(--transition);
         }
 
-        .btn-cta:hover {
-            background: var(--gold-light);
-            transform: translateY(-3px);
+        .founder-photo-frame:hover .founder-photo {
+            transform: scale(1.02);
+        }
+
+        .photo-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+        }
+
+        .founder-content {
+            text-align: left;
+        }
+
+        .founder-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .founder-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--slate-dark);
+        }
+
+        .gold-text {
+            color: var(--gold-accent);
+        }
+
+        .founder-subtitle {
+            font-size: 20px;
+            color: var(--slate-light);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .founder-stats {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .founder-stat-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--light-blue);
+            min-width: 150px;
+        }
+
+        .founder-stat-number {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--trust-blue);
+            margin-bottom: 5px;
+        }
+
+        .founder-stat-label {
+            font-size: 14px;
+            color: var(--slate-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .vision-card {
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+            padding: 60px;
+            border-radius: 25px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold-accent) 50%, transparent 100%);
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--slate-dark);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--slate-light);
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+        }
+
+        .vision-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--white);
+            font-size: 32px;
+        }
+
+        .vision-quote {
+            font-style: italic;
+            font-size: 24px;
+            color: var(--slate-dark);
+            line-height: 1.6;
+            margin: 40px 0;
+            padding: 0 40px;
+            position: relative;
+        }
+
+        .vision-quote::before,
+        .vision-quote::after {
+            content: '"';
+            font-size: 80px;
+            color: var(--gold-light);
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .vision-quote::before {
+            left: 0;
+            top: -40px;
+        }
+
+        .vision-quote::after {
+            right: 0;
+            bottom: -60px;
+        }
+
+        .vision-author {
+            font-size: 18px;
+            color: var(--trust-blue);
+            font-weight: 700;
+            margin-top: 30px;
+        }
+
+        /* Journey Timeline Section */
+        .journey-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--gray-light) 0%, #f1f5f9 100%);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 60px auto 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gold-accent), #b7950b);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-year {
+            width: 60px;
+            height: 60px;
+            background: var(--gold-accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-right: 30px;
+            z-index: 1;
+            border: 3px solid var(--gray-light);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--light-blue);
+        }
+
+        .timeline-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--slate-dark);
+        }
+
+        .timeline-content p {
+            color: var(--slate-light);
+            line-height: 1.6;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .philosophy-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--light-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
         }
 
-        /* Footer */
-        footer {
-            background: var(--slate-dark);
-            color: var(--white);
-            padding: 60px 0 20px;
+        .philosophy-card:hover::before {
+            opacity: 1;
         }
 
-        .footer-container {
+        .philosophy-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--white);
+            font-size: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .philosophy-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--slate-dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .philosophy-card p {
+            color: var(--slate-light);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+
+
+        /* Commitment Section */
+        .commitment-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--gray-light) 0%, #f1f5f9 100%);
+        }
+
+        .commitment-card {
+            background: var(--white);
+            padding: 60px;
+            border-radius: 25px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--gold-accent);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .commitment-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--gold-accent), var(--trust-blue), var(--gold-accent));
+            border-radius: 27px;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .commitment-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--white);
+            font-size: 32px;
+        }
+
+        .commitment-text {
+            font-size: 18px;
+            color: var(--slate-dark);
+            line-height: 1.8;
+            margin: 40px 0;
+            font-style: italic;
+        }
+
+        .signature {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-blue);
+        }
+
+        .signature strong {
+            display: block;
+            font-size: 20px;
+            color: var(--trust-blue);
+            margin-bottom: 8px;
+        }
+
+        .signature span {
+            color: var(--slate-light);
+            font-size: 16px;
+        }
+
+        /* Connect Section */
+        .connect-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .connect-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill="rgba(255,255,255,0.05)" d="M0,0V100H1000V0ZM250,50L500,25L750,50L1000,25V0H0V25Z"/></svg>');
+            background-size: cover;
+        }
+
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .connect-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .connect-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .connect-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--white);
+            font-size: 28px;
+        }
+
+        .connect-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .connect-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Buttons - Matching Homepage */
+        .connect-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
+            color: var(--white);
+            padding: 18px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .connect-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 18px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Footer - IDENTICAL TO INDEX.HTML */
+        .footer {
+            background: var(--slate-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
             gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
             margin-bottom: 20px;
         }
 
-        .footer-logo img {
-            width: 40px;
-            height: 40px;
-        }
-
-        .footer-logo span {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+        .footer-contact-item i {
             color: var(--gold-accent);
+            margin-top: 4px;
+            font-size: 18px;
         }
 
-        .footer-column ul {
+        .footer-col h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gold-accent);
+            border-radius: 2px;
+        }
+
+        .footer-links {
             list-style: none;
         }
 
-        .footer-column ul li {
-            margin-bottom: 12px;
+        .footer-links li {
+            margin-bottom: 15px;
         }
 
-        .footer-column ul li a {
-            color: #cbd5e1;
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             transition: var(--transition);
+            padding: 5px 0;
         }
 
-        .footer-column ul li a:hover {
+        .footer-links a:hover {
             color: var(--gold-accent);
-            padding-left: 5px;
+            transform: translateX(5px);
         }
 
-        .copyright {
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-link.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .social-link.email {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .footer-disclaimer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 4px solid var(--gold-accent);
+        }
+
+        .footer-disclaimer h4 {
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+        }
+
+        .footer-disclaimer p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #475569;
-            color: #94a3b8;
-            font-size: 0.9rem;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
         }
 
-        /* Mobile Responsiveness */
+        /* Floating WhatsApp - IDENTICAL TO INDEX.HTML */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white);
+            padding: 18px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .float-whatsapp:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Mobile Responsive - IDENTICAL TO INDEX.HTML */
         @media (max-width: 992px) {
-            .founder-profile {
+            .founder-hero h1 {
+                font-size: 38px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .vision-card, .commitment-card {
+                padding: 40px;
+            }
+            
+            .vision-quote {
+                font-size: 20px;
+                padding: 0 20px;
+            }
+            
+            .founder-container {
                 grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .founder-image {
+                order: -1;
+            }
+            
+            .founder-content {
                 text-align: center;
             }
-
-            .founder-image {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .hero-about h1 {
-                font-size: 2.5rem;
+            
+            .founder-stats {
+                justify-content: center;
             }
         }
 
@@ -744,305 +1211,758 @@
 
             .nav-menu {
                 position: fixed;
-                top: 0;
+                top: 80px;
                 right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: var(--white);
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 box-shadow: var(--shadow-lg);
-                transition: var(--transition);
+                padding: 20px 0;
+                gap: 0;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
             }
 
             .nav-menu.active {
                 right: 0;
             }
 
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+            .nav-menu li {
+                width: 100%;
+                padding: 0;
             }
 
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
+            .nav-menu a {
+                justify-content: center;
+                padding: 20px;
+                border-bottom: 1px solid var(--gray-light);
             }
 
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
+            .founder-hero {
+                padding: 80px 0;
             }
-
-            .values-grid {
+            
+            .founder-hero h1 {
+                font-size: 32px;
+            }
+            
+            .founder-subtitle {
+                font-size: 18px;
+            }
+            
+            .founder-stats {
+                gap: 20px;
+            }
+            
+            .founder-stat-item {
+                min-width: calc(50% - 10px);
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .vision-card, .commitment-card {
+                padding: 30px;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-year {
+                width: 50px;
+                height: 50px;
+                font-size: 14px;
+                margin-right: 20px;
+            }
+            
+            .timeline-content {
+                padding: 20px;
+            }
+            
+            .philosophy-grid, .connect-grid {
                 grid-template-columns: 1fr;
             }
+        }
 
-            .hero-about h1 {
-                font-size: 2rem;
+        @media (max-width: 480px) {
+            .founder-hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .founder-stat-item {
+                min-width: 100%;
+            }
+            
+            .vision-quote {
+                font-size: 18px;
+                padding: 0 10px;
+            }
+            
+            .vision-quote::before,
+            .vision-quote::after {
+                font-size: 60px;
+            }
+            
+            .vision-quote::before {
+                top: -30px;
+            }
+            
+            .vision-quote::after {
+                bottom: -40px;
             }
         }
+
+        /* Animation Classes - IDENTICAL TO INDEX.HTML */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
     </style>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- System Status Bar -->
+    
+    <!-- System Status Bar - IDENTICAL TO HOME PAGE -->
     <div class="system-status">
         <div class="container">
             <div class="status-indicator">
                 <div class="status-dot"></div>
-                <span>System Status: All Services Operational • Live Payouts Processing • Last Updated: <span id="currentDateTime"></span></span>
+                <div class="status-text">System Status: <strong>All Services Operational</strong> • Live Payouts Processing • Last Updated: <span id="currentTime"></span></div>
             </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Sticky Navigation - IDENTICAL TO HOME PAGE -->
+    <nav class="navbar" id="navbar">
         <div class="container nav-container">
-            <a href="https://omkarservices.in" class="logo">
+            <!-- FIXED LOGO - IDENTICAL TO HOME PAGE -->
+            <a href="index.html" class="logo">
                 <div class="logo-image-container">
-                    <img src="https://omkarservices.in/assets/logo.svg" alt="Omkar Enterprises Logo" class="color-logo">
+                    <img src="assets/logo.png" alt="Omkar Enterprises Logo - Private Lending Partnership Since 2015" class="color-logo">
                 </div>
                 <div class="logo-text-container">
-                    <span class="logo-main">Omkar Enterprises</span>
-                    <span class="logo-tagline">Private Lending Partnership</span>
+                    <div class="logo-main">OMKAR ENTERPRISES</div>
+                    <div class="logo-tagline">Private Lending Partnership Since 2015</div>
                 </div>
             </a>
             
-            <button class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-
+            
             <ul class="nav-menu" id="navMenu">
-                <li><a href="https://omkarservices.in"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-rupee-sign"></i> Investment Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-file-contract"></i> Legal Framework</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
                 <li><a href="about.html" class="active"><i class="fas fa-user-tie"></i> About Founder</a></li>
-                <li><a href="https://omkarservices.in#calculator"><i class="fas fa-calculator"></i> ROI Calculator</a></li>
-                <li><a href="https://omkarservices.in#testimonials"><i class="fas fa-comment-dots"></i> Testimonials</a></li>
-                <li><a href="https://omkarservices.in#contact"><i class="fas fa-phone"></i> Contact</a></li>
-                <li class="nav-cta"><a href="https://wa.me/918169302861" class="btn-nav-login"><i class="fab fa-whatsapp"></i> Start Partnership</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login" rel="noopener noreferrer"><i class="fas fa-lock"></i> Partner Login</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero-about">
+    <!-- Founder Hero Section with Image -->
+    <section class="founder-hero">
         <div class="container">
-            <h1>Santosh Shendkar</h1>
-            <p class="subtitle">Founder & Managing Partner of Omkar Enterprises | 10+ Years in Private Lending | Trusted by 500+ Investment Partners Across India</p>
+            <div class="founder-container">
+                <div class="founder-image">
+                    <div class="founder-photo-frame">
+                        <img src="assets/founder.jpg" 
+                             alt="Santosh Shendkar - Founder & Managing Partner of Omkar Enterprises - Private Lending Expert with 10+ years experience in Ulhasnagar, Maharashtra"
+                             title="Santosh Shendkar - Founder of Omkar Enterprises"
+                             class="founder-photo"
+                             width="400"
+                             height="400">
+                        <div class="photo-badge">
+                            <i class="fas fa-user-tie"></i> Founder Since 2015
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="founder-content fade-in">
+                    <div class="founder-badge">
+                        <i class="fas fa-user-tie"></i>
+                        Founder & Managing Partner
+                    </div>
+                    <h1>Santosh <span class="gold-text">Shendkar</span></h1>
+                    <p class="founder-subtitle">Pioneering transparent private lending partnerships in Maharashtra since 2015. With 10+ years of expertise in financial management and a commitment to secure investments, I've built Omkar Enterprises on principles of trust, transparency, and consistent returns.</p>
+                    
+                    <div class="founder-stats">
+                        <div class="founder-stat-item">
+                            <div class="founder-stat-number">10+</div>
+                            <div class="founder-stat-label">Years Experience</div>
+                        </div>
+                        <div class="founder-stat-item">
+                            <div class="founder-stat-number">500+</div>
+                            <div class="founder-stat-label">Satisfied Partners</div>
+                        </div>
+                        <div class="founder-stat-item">
+                            <div class="founder-stat-number">100%</div>
+                            <div class="founder-stat-label">Payout Record</div>
+                        </div>
+                        <div class="founder-stat-item">
+                            <div class="founder-stat-number">₹50Cr+</div>
+                            <div class="founder-stat-label">Total Investments Managed</div>
+                        </div>
+                    </div>
+                    
+                    <a href="#connect" class="connect-btn">
+                        <i class="fas fa-handshake"></i> Connect with Santosh
+                    </a>
+                </div>
+            </div>
         </div>
-    </header>
+    </section>
 
-    <main class="container">
-        <!-- Founder Profile -->
-        <section class="founder-profile">
-            <div class="founder-image">
-                <img src="https://omkarservices.in/assets/founder.jpg" alt="Santosh Shendkar - Founder of Omkar Enterprises">
-            </div>
-            <div class="founder-content">
-                <h2>Santosh Shendkar</h2>
-                <span class="title">Founder & Managing Partner</span>
-                <p>With over a decade of experience in private lending and financial partnerships, Santosh Shendkar has established Omkar Enterprises as one of Maharashtra's most trusted private investment platforms. His journey began in 2015 with a simple vision: to create transparent, secure, and rewarding investment opportunities outside the volatile traditional markets.</p>
-                <p>Under Santosh's leadership, Omkar Enterprises has maintained a 100% payout record since inception, delivering consistent 1% monthly returns to over 500 satisfied partners. His hands-on approach ensures every investor receives personal attention, complete transparency, and the security of legally notarized agreements with PDC protection.</p>
-                <p>Santosh believes in the power of trust and relationship-based investing. "When you invest with Omkar Enterprises, you're not just a client - you're a partner in our growth journey," he says. This philosophy has created a community of investors who benefit from both financial returns and the peace of mind that comes from working with a founder who stands behind every commitment.</p>
-            </div>
-        </section>
-
-        <!-- Corporate Structure Section - NEW CONTENT -->
-        <section class="corporate-structure">
-            <h2><i class="fas fa-building-shield"></i> Corporate Governance & Structure</h2>
-            <p><strong>Omkar Enterprises</strong> is a trusted brand operating as a proprietorship under the strategic guidance and corporate framework of its sister concern, <strong>TRFSK OMKAR SERVICES PRIVATE LIMITED</strong>.</p>
-            <p>This unique structure allows us to combine the personalized approach and agility of a dedicated brand with the robust governance, legal compliance, and financial discipline of an incorporated entity. Our investors benefit from this dual-layer commitment to security and transparency.</p>
-            <div class="legal-id">CIN: U70200MH2023PTC407336</div>
-        </section>
-
-        <!-- Core Values -->
-        <section class="values-section">
-            <h2>Our Core Values</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Security First</h3>
-                    <p>Every investment is protected with Post-Dated Cheques (PDCs), legally notarized agreements, and multiple security layers. Your principal security is our top priority.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Consistent Returns</h3>
-                    <p>We specialize in delivering predictable 1% monthly returns regardless of market conditions. Our 100% payout record since 2015 speaks to our reliability.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Transparent Partnerships</h3>
-                    <p>No hidden clauses or confusing terms. We provide complete documentation and direct founder access to ensure complete transparency in every partnership.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="faq-section">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Is the 1% monthly return guaranteed with Omkar Enterprises?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, 1% monthly returns are contractually obligated in our notarized bilateral agreement under Indian Contract Act 1872. We provide Post-Dated Cheques (PDCs) for the entire investment period as security for these returns.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        How is my investment principal secured?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Your principal is secured through multiple layers: (1) Post-Dated Cheques (PDCs) issued for the full investment amount, (2) Legally notarized agreements, (3) PAN/Aadhar verification of all parties, (4) Regular financial audits and transparency, and (5) Direct access to founder Santosh Shendkar.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        What is the minimum investment amount?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We offer flexible investment tiers: Basic Tier (₹1-5 lakhs), Premium Tier (₹5-20 lakhs), VIP Tier (₹20-50 lakhs), and Enterprise Tier (₹50+ lakhs with custom terms). All tiers receive the same 1% monthly returns.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        How long has Omkar Enterprises been operating?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Omkar Enterprises has been operating since 2015 with a 100% payout record. We've served 500+ satisfied partners with consistent monthly returns throughout this period.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <h2>Ready to Start Your Investment Journey?</h2>
-            <p>Join 500+ satisfied partners who trust Omkar Enterprises for secure monthly returns. Experience financial growth with complete transparency and founder-level personal attention.</p>
-            <a href="https://wa.me/918169302861" class="btn-cta">
-                <i class="fab fa-whatsapp"></i> Start Your Partnership Today
-            </a>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
+    <!-- Vision Section -->
+    <section class="vision-section">
         <div class="container">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <div class="footer-logo">
-                        <img src="https://omkarservices.in/assets/logo.svg" alt="Omkar Enterprises">
-                        <span>Omkar Enterprises</span>
+            <div class="vision-card fade-in">
+                <div class="vision-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2 class="section-title">The <span class="gold-text">Vision</span></h2>
+                <p class="vision-quote">
+                    "My vision is to create a trustworthy platform where capital meets opportunity through transparent, secure, and mutually beneficial partnerships. At Omkar Enterprises, we don't just facilitate investments - we build lasting relationships based on trust, consistent performance, and shared success."
+                </p>
+                <div class="vision-author">- Santosh Shendkar</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="journey-section">
+        <div class="container">
+            <h2 class="section-title">Professional <span class="gold-text">Journey</span></h2>
+            <p class="section-subtitle">A decade of dedication to financial excellence and partner success</p>
+            
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-content">
+                        <h3>Founding Omkar Enterprises</h3>
+                        <p>Established Omkar Enterprises with a clear mission: to provide secure, transparent private lending partnerships for investors seeking consistent monthly returns with proper legal safeguards.</p>
                     </div>
-                    <p>Secure private lending partnerships with targeted 1% monthly returns since 2015.</p>
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: #94a3b8;">
-                        A sister concern of TRFSK OMKAR SERVICES PRIVATE LIMITED
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2017</div>
+                    <div class="timeline-content">
+                        <h3>Developing the PDC Security System</h3>
+                        <p>Created the proprietary Post Dated Cheque security system combined with notarized agreements, setting new standards for investment protection in private lending.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3>Expanding to Pune Operations</h3>
+                        <p>Successfully expanded operations to Pune, establishing a second office while maintaining the same high standards of service and security across both locations.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h3>500+ Partner Milestone</h3>
+                        <p>Reached the milestone of 500+ satisfied investment partners while maintaining a perfect 100% payout record for 60 consecutive months.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h3>Digital Transformation Initiative</h3>
+                        <p>Launched the digital partner portal to provide real-time access to investment statements, documents, and enhanced transparency for all partners.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="container">
+            <h2 class="section-title">Business <span class="gold-text">Philosophy</span></h2>
+            <p class="section-subtitle">Core principles that guide every partnership and decision at Omkar Enterprises</p>
+            
+            <div class="philosophy-grid">
+                <div class="philosophy-card fade-in">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security First Approach</h3>
+                    <p>Every partnership begins with protecting the principal through PDC security and legally notarized agreements. Your investment security is our foremost responsibility.</p>
+                </div>
+                
+                <div class="philosophy-card fade-in">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Transparency & Trust</h3>
+                    <p>Clear terms, regular updates, and open communication form the foundation of every partnership. No hidden clauses, no surprises - just honest relationships.</p>
+                </div>
+                
+                <div class="philosophy-card fade-in">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Consistent Performance</h3>
+                    <p>Delivering 1% monthly returns consistently for years has built unmatched trust. We believe in demonstrated performance, not just promises.</p>
+                </div>
+                
+                <div class="philosophy-card fade-in">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Personal Relationships</h3>
+                    <p>Beyond transactions, we focus on building long-term relationships. Our partners become part of our financial family with direct access to founder-level support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sister Concern Section -->
+    <section class="features-section" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 80px 0;">
+        <div class="container">
+            <div class="section-title" style="margin-bottom: 50px;">
+                <h2 style="font-size: 42px; color: #1e293b; margin-bottom: 15px;">Our <span style="background: linear-gradient(135deg, #d4af37 0%, #b7950b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Sister Concern</span></h2>
+                <p style="color: #64748b; font-size: 18px; max-width: 700px; margin: 0 auto;">Omkar Services & Solutions – Operational Since 2018</p>
+            </div>
+            
+            <!-- Main Card -->
+            <div class="calculator-container fade-in" style="margin-bottom: 50px; padding: 40px; border-radius: 15px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 15px; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 24px; margin-bottom: 20px;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 style="font-size: 24px; color: #1e293b; margin-bottom: 15px; font-weight: 700;">Strategic Partnership</h3>
+                    <p style="color: #64748b; line-height: 1.6; max-width: 800px; margin: 0 auto 20px; font-size: 16px;">
+                        Omkar Services & Solutions operates in synergy with Omkar Enterprises, sharing our core values of 
+                        <strong style="color: #1e3a8a;">transparency</strong>, <strong style="color: #1e3a8a;">trust</strong>, and 
+                        <strong style="color: #1e3a8a;">client-first approach</strong>.
+                    </p>
+                    <p style="color: #64748b; line-height: 1.6; max-width: 800px; margin: 0 auto; font-size: 16px;">
+                        While Omkar Enterprises specializes in private lending partnerships, our sister concern focuses on comprehensive business solutions, together creating a complete financial ecosystem.
                     </p>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="https://omkarservices.in">Home</a></li>
-                        <li><a href="about.html">About Founder</a></li>
-                        <li><a href="https://omkarservices.in#calculator">ROI Calculator</a></li>
-                        <li><a href="https://omkarservices.in#testimonials">Testimonials</a></li>
-                        <li><a href="https://omkarservices.in#contact">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Ulhasnagar Office: BK 673, Sai Baba Colony, Opp Rajaram Furniturewala, Ulhasnagar, Maharashtra 421002</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Pune Office: Office no 101, Rajas Society, Katraj-Kondhwa Road, Pune, Maharashtra 411046</li>
-                        <li><i class="fas fa-phone"></i> +91-81693-02861</li>
-                        <li><i class="fas fa-envelope"></i> contact@omkarservices.in</li>
-                    </ul>
+                
+                <!-- Stats -->
+                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 40px 0;">
+                    <div style="background: white; padding: 25px; border-radius: 12px; text-align: center; min-width: 160px; border: 2px solid #dbeafe; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <div style="font-size: 36px; font-weight: 800; color: #1e3a8a; margin-bottom: 5px;">6+</div>
+                        <div style="font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">Years</div>
+                    </div>
+                    <div style="background: white; padding: 25px; border-radius: 12px; text-align: center; min-width: 160px; border: 2px solid #dbeafe; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <div style="font-size: 36px; font-weight: 800; color: #1e3a8a; margin-bottom: 5px;">200+</div>
+                        <div style="font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">Clients</div>
+                    </div>
+                    <div style="background: white; padding: 25px; border-radius: 12px; text-align: center; min-width: 160px; border: 2px solid #dbeafe; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <div style="font-size: 36px; font-weight: 800; color: #1e3a8a; margin-bottom: 5px;">100%</div>
+                        <div style="font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">Satisfaction</div>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 Omkar Enterprises. All rights reserved. | Private Lending Partnership | This is not investment advice. Please consult your financial advisor before investing.</p>
+            
+            <!-- Services -->
+            <h3 style="text-align: center; color: #1e293b; font-size: 32px; margin: 50px 0 40px; font-weight: 700;">Core Services</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 20px;">
+                <div style="background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 24px;">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h4 style="font-size: 20px; color: #1e293b; margin-bottom: 15px; font-weight: 600;">Business Consultation</h4>
+                    <p style="color: #64748b; line-height: 1.6; font-size: 15px;">Strategic advisory for SMEs and startups focusing on sustainable growth and efficiency.</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 24px;">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h4 style="font-size: 20px; color: #1e293b; margin-bottom: 15px; font-weight: 600;">Financial Planning</h4>
+                    <p style="color: #64748b; line-height: 1.6; font-size: 15px;">Comprehensive wealth management and investment strategy formulation services.</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 24px;">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h4 style="font-size: 20px; color: #1e293b; margin-bottom: 15px; font-weight: 600;">Documentation Services</h4>
+                    <p style="color: #64748b; line-height: 1.6; font-size: 15px;">Professional support for business registrations and legal documentation.</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 24px;">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h4 style="font-size: 20px; color: #1e293b; margin-bottom: 15px; font-weight: 600;">Business Networking</h4>
+                    <p style="color: #64748b; line-height: 1.6; font-size: 15px;">Strategic connections and partnerships across industries in Maharashtra.</p>
+                </div>
+            </div>
+            
+            <!-- CTA -->
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="https://omkarservices.in" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #d4af37 0%, #b7950b 100%); color: white; padding: 16px 32px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);">
+                    <i class="fas fa-external-link-alt"></i> Visit Omkar Services & Solutions
+                </a>
+                <p style="color: #64748b; font-size: 14px; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-map-marker-alt"></i> Operating from Ulhasnagar & Pune
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commitment Section -->
+    <section class="commitment-section">
+        <div class="container">
+            <div class="commitment-card fade-in">
+                <div class="commitment-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h2 class="section-title">Personal <span class="gold-text">Commitment</span></h2>
+                <p class="commitment-text">
+                    "As the founder, I personally review every partnership agreement and ensure that our commitment to security and transparency is upheld in every transaction. My personal mobile number is available to all partners for direct communication. Your trust is my most valuable asset, and I am personally committed to protecting it through every partnership we create. I believe that true success comes not just from financial returns, but from building lasting relationships based on mutual respect and shared growth."
+                </p>
+                <div class="signature">
+                    <strong>Santosh Shendkar</strong>
+                    <span>Founder & Managing Partner, Omkar Enterprises</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section class="connect-section" id="connect">
+        <div class="container">
+            <h2 class="section-title">Connect with <span class="gold-text">Santosh</span></h2>
+            <p class="section-subtitle">Direct access for consultations and partnership discussions</p>
+            
+            <div class="connect-grid">
+                <div class="connect-card fade-in">
+                    <div class="connect-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Schedule Meeting</h3>
+                    <p>Book a personal consultation at our Ulhasnagar or Pune office. Discuss your investment goals and get personalized guidance directly from Santosh.</p>
+                    <a href="contact.html" class="connect-btn" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-calendar-alt"></i> Book Consultation
+                    </a>
+                </div>
+                
+                <div class="connect-card fade-in">
+                    <div class="connect-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Direct Call</h3>
+                    <p>Call directly for immediate assistance. Available during business hours for partnership discussions and investment queries.</p>
+                    <a href="tel:+918169302861" class="cta-btn-secondary" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-phone"></i> Call +91 8169 302 861
+                    </a>
+                </div>
+                
+                <div class="connect-card fade-in">
+                    <div class="connect-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Chat directly on WhatsApp for quick responses. Share documents and get instant clarifications on partnership opportunities.</p>
+                    <a href="https://wa.me/917066393830" class="connect-btn" style="width: 100%; justify-content: center;" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> Message on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - IDENTICAL TO HOME PAGE -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <!-- FIXED FOOTER LOGO - IDENTICAL TO HOME PAGE -->
+                    <div class="footer-logo">
+                        <div class="logo-image-container" style="background: transparent; border: 2px solid rgba(212, 175, 55, 0.3);">
+                            <img src="assets/logo.png" alt="Omkar Enterprises Logo - Trusted Private Lending Partnership Since 2015" class="color-logo">
+                        </div>
+                        <div class="logo-text-container">
+                            <div class="logo-main" style="color: #d4af37;">OMKAR ENTERPRISES</div>
+                            <div class="logo-tagline" style="color: rgba(255, 255, 255, 0.7);">Private Lending Partnership</div>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+    Since 2015, <strong>Omkar Enterprises</strong> has served as a premier 
+    <strong>private lending partnership</strong> in India, maintaining a 
+    <strong>100% payout record</strong> for our 500+ partners. We specialize in 
+    <strong>secured investments</strong> designed for those seeking 
+    <strong>reliable monthly returns</strong> and long-term capital growth. 
+    Operating under the Indian Partnership Act, we provide a stable 
+    <strong>alternative investment</strong> platform for the modern Indian investor.
+</p>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Investment Helpline:</strong><br>
+                                +91 8169 302 861 | +91 9226 393 837 | (Official Whatsapp) +91 7066 393 830
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email:</strong><br>
+                                care@omkarservices.in
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Ulhasnagar Office:</strong><br>
+                                BK 673, Sai Baba Colony, Opp Rajaram Furniturewala, Central Hospital Area, Ulhasnagar 421002, Maharashtra
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Pune Office:</strong><br>
+                                Office No 101, Rajas Society, Katraj-Kondhwa Road, Bibwewadi Annex, Katraj, Pune 411046
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                           <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="slabs.html"><i class="fas fa-chevron-right"></i> Investment Tiers & Plans</a></li>
+                        <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework & Security</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Partner Testimonials</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact & Location</a></li>
+                         <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal Documents</h4>
+                    <ul class="footer-links">
+                       <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                        <li><a href="/privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="risk-disclosure.html"><i class="fas fa-chevron-right"></i> Risk Disclosure</a></li>
+                        <li><a href="kyc-policy.html"><i class="fas fa-chevron-right"></i> KYC Policy</a></li>
+                        <li><a href="philosophy.html"><i class="fas fa-chevron-right"></i> Investment Philosophy</a></li>
+                        <li><a href="compliance.html"><i class="fas fa-chevron-right"></i> Compliance & Regulations</a></li>
+                        <li><a href="/grievance-redressal.html"><i class="fas fa-chevron-right"></i> Grievance Redressal</a></li>
+                        <li><a href="/assets/documents/partnership-agreement-sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Partnership Agreement Sample</a></li>
+                    </ul>
+
+                    
+                    <h4 style="margin-top: 30px;">Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/917066393830" class="social-link whatsapp" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp For Any Query</span>
+                        </a>
+                        <a href="mailto:santosh@omkarenterprises.in" class="social-link email">
+                            <i class="fas fa-envelope"></i>
+                            <span>@Email Us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-disclaimer">
+                <h4><i class="fas fa-exclamation-triangle"></i> Important Risk Disclosure & Disclaimer</h4>
+                <p><strong>Disclaimer:</strong> Past performance is not indicative of future results. The 1% monthly returns are contractual obligations under bilateral partnership agreements but are subject to the company's continued operational capability. All investments carry risks, including possible loss of principal.</p>
+                <p>Omkar Enterprises is not a SEBI registered investment advisor, bank, or NBFC. We operate as a private lending partnership firm under the Indian Contract Act, 1872. Investors should carefully consider their financial situation, consult with independent financial advisors, and read all documentation before making investment decisions.</p>
+                <p style="margin-top: 15px;"><a href="risk-disclosure.html" style="color: var(--gold-accent); text-decoration: none; font-weight: 600;"><i class="fas fa-file-alt"></i> Read Complete Risk Disclosure Document</a></p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2015-2024 Omkar Enterprises. All Rights Reserved. | Private Lending Partnership Firm</p>
+                <p><i class="fas fa-shield-alt"></i> Registered Office: Ulhasnagar, Maharashtra | Operations Office: Pune, Maharashtra</p>
+                <p class="footer-regulatory" style="margin-top: 10px; font-size: 12px; color: rgba(255, 255, 255, 0.4);">
+                    Compliant with Indian Contract Act, 1872 | All partnerships governed by bilateral agreements | PDC security system implemented
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Floating WhatsApp - IDENTICAL TO HOME PAGE -->
+    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat for More Info</span>
+    </a>
+
+    <!-- JavaScript - IDENTICAL TO HOME PAGE -->
     <script>
-        // Update current date and time
-        function updateDateTime() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: false
-            };
-            const formattedDate = now.toLocaleDateString('en-IN', options) + ' IST';
-            document.getElementById('currentDateTime').textContent = formattedDate;
-        }
-        
-        // Update time immediately and then every minute
-        updateDateTime();
-        setInterval(updateDateTime, 60000);
-        
-        // Mobile navigation toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (event) => {
-            if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
-        
-        // FAQ toggle functionality
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const isActive = answer.classList.contains('active');
-                
-                // Close all other answers
-                document.querySelectorAll('.faq-answer').forEach(item => {
-                    item.classList.remove('active');
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const navbar = document.getElementById('navbar');
+            
+            // Toggle mobile menu
+            if (hamburger) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('active');
+                    this.classList.toggle('active');
                 });
                 
-                // Toggle current answer
-                if (!isActive) {
-                    answer.classList.add('active');
-                }
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
                 
-                // Rotate arrow icon
-                const icon = question.querySelector('i');
-                if (isActive) {
-                    icon.style.transform = 'rotate(0deg)';
+                // Close menu when clicking on a link
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+            }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
                 } else {
-                    icon.style.transform = 'rotate(180deg)';
+                    navbar.classList.remove('scrolled');
                 }
             });
-        });
-        
-        // Sticky navbar on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            
+            // Update current time
+            function updateCurrentTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-IN', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    timeZone: 'Asia/Kolkata'
+                });
+                const dateString = now.toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    timeZone: 'Asia/Kolkata'
+                });
+                
+                const timeElement = document.getElementById('currentTime');
+                if (timeElement) {
+                    timeElement.textContent = `${dateString} ${timeString} IST`;
+                }
+            }
+            
+            // Update time every second
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation classes on scroll
+            function checkScroll() {
+                const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('animated');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Initial check
+            
+            // Privacy protection for partner portal
+            const partnerLinks = document.querySelectorAll('a[href*="partner-portal"]');
+            partnerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').includes('partner-portal')) {
+                        if (!confirm('You are about to access the secure partner portal. This area is for existing partners only. Press OK to continue or Cancel to return to homepage.')) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+            });
+            
+            // Add click tracking for Google Analytics
+            document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"], a[href^="https://wa.me/"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    const action = this.href.includes('tel:') ? 'phone_click' : 
+                                  this.href.includes('mailto:') ? 'email_click' : 'whatsapp_click';
+                    
+                    // Here you would send this data to Google Analytics
+                    console.log('CTA Click:', action, this.href);
+                });
+            });
+            
+            // Image loading optimization
+            const founderImage = document.querySelector('.founder-photo');
+            if (founderImage) {
+                founderImage.loading = 'eager';
+                founderImage.fetchPriority = 'high';
             }
         });
     </script>
+
 </body>
 </html>

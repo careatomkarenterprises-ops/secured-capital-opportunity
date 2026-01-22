@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRFSK OMKAR SERVICES PVT LTD | Business Lending Solutions</title>
+    
+    <!-- Add Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
+    
     <style>
         * {
             margin: 0;
@@ -711,8 +715,14 @@
             
             <div class="contact-form">
                 <h3 style="color: var(--primary); margin-bottom: 20px;">Loan Inquiry Form</h3>
-                <form id="loanForm" method="POST">
-                    <!-- We'll handle form submission with JavaScript -->
+                <!-- Formspree Form -->
+                <form id="loanForm" action="https://formspree.io/f/mreedeyd" method="POST">
+                    <!-- Hidden fields for email configuration -->
+                    <input type="hidden" name="_subject" value="New Loan Inquiry - TRFSK Omkar Services">
+                    <input type="hidden" name="_replyto" value="{{email}}">
+                    <input type="hidden" name="_cc" value="worksupoorts@gmail.com">
+                    <input type="hidden" name="_format" value="plain">
+                    <input type="hidden" name="_language" value="en">
                     
                     <div class="form-group">
                         <label for="name">Full Name *</label>
@@ -787,7 +797,7 @@
                     
                     <div class="form-group">
                         <label style="font-weight: normal; font-size: 14px;">
-                            <input type="checkbox" name="consent" required style="margin-right: 8px;">
+                            <input type="checkbox" name="consent" id="consent" required style="margin-right: 8px;">
                             I agree to receive communication from TRFSK Omkar Services regarding my loan inquiry
                         </label>
                     </div>
@@ -837,6 +847,14 @@
         </div>
     </footer>
 
+    <!-- Formspree Fallback and Additional Contact Options -->
+    <div style="display: none;">
+        <!-- This is a backup contact form that will be shown if JavaScript is disabled -->
+        <form id="fallbackForm" action="https://formspree.io/f/mreedeyd" method="POST">
+            <input type="hidden" name="_subject" value="Loan Inquiry - TRFSK Omkar Services">
+        </form>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('loanForm');
@@ -846,25 +864,24 @@
             const submitBtn = form.querySelector('button[type="submit"]');
             const loanAmountInput = document.getElementById('loanAmount');
             const annualTurnoverInput = document.getElementById('annualTurnover');
+            const consentCheckbox = document.getElementById('consent');
+            
+            // Fix for Formspree validation issues
+            const hiddenReplyTo = form.querySelector('input[name="_replyto"]');
             
             // Format number with Indian commas
             function formatIndianNumber(num) {
                 if (!num) return '';
-                // Remove all non-numeric characters
                 num = num.toString().replace(/[^\d]/g, '');
                 if (!num) return '';
                 
-                // Convert to number
                 const number = parseInt(num);
                 if (isNaN(number)) return '';
                 
-                // Format with Indian numbering system
+                if (number < 1000) return number.toString();
+                
                 const lastThree = number % 1000;
                 const otherNumbers = Math.floor(number / 1000);
-                if (otherNumbers === 0) {
-                    return number.toString();
-                }
-                
                 let formatted = lastThree.toString().padStart(3, '0');
                 let remaining = otherNumbers;
                 
@@ -874,11 +891,8 @@
                     remaining = Math.floor(remaining / 100);
                 }
                 
-                // Remove leading zeros
                 formatted = formatted.replace(/^0+/, '');
-                if (formatted.startsWith(',')) {
-                    formatted = formatted.substring(1);
-                }
+                if (formatted.startsWith(',')) formatted = formatted.substring(1);
                 
                 return formatted;
             }
@@ -926,9 +940,24 @@
                 }
             });
             
-            // Form submission handler
+            // Phone number validation
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                if (value.length > 10) value = value.substring(0, 10);
+                this.value = value;
+            });
+            
+            // Form submission handler with Formspree
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
+                
+                // Check consent
+                if (!consentCheckbox.checked) {
+                    alert('Please agree to receive communication by checking the consent box');
+                    consentCheckbox.focus();
+                    return;
+                }
                 
                 // Validate form
                 if (!form.checkValidity()) {
@@ -946,11 +975,17 @@
                 }
                 
                 // Validate phone number
-                const phone = document.getElementById('phone').value;
+                const phone = phoneInput.value;
                 if (!phone || phone.length !== 10 || !/^\d+$/.test(phone)) {
                     alert('Please enter a valid 10-digit mobile number');
-                    document.getElementById('phone').focus();
+                    phoneInput.focus();
                     return;
+                }
+                
+                // Update hidden _replyto field with actual email value
+                const emailField = document.getElementById('email');
+                if (hiddenReplyTo && emailField) {
+                    hiddenReplyTo.value = emailField.value;
                 }
                 
                 // Show loading state
@@ -963,86 +998,98 @@
                 formMessage.innerHTML = '';
                 
                 try {
-                    // Create email body
+                    // Create FormData object
                     const formData = new FormData(form);
+                    
+                    // Convert formatted amounts back to raw numbers
+                    formData.set('loanAmount', '₹' + formatIndianNumber(rawLoanAmount));
+                    
                     const rawAnnualTurnover = parseFormattedNumber(annualTurnoverInput.value);
+                    if (rawAnnualTurnover) {
+                        formData.set('annualTurnover', '₹' + formatIndianNumber(rawAnnualTurnover));
+                    }
                     
-                    const emailBody = `
-LOAN INQUIRY - TRFSK OMKAR SERVICES PVT LTD
-===========================================
-
-CONTACT INFORMATION:
---------------------
-Full Name: ${formData.get('name')}
-Business Name: ${formData.get('business')}
-Email Address: ${formData.get('email')}
-Mobile Number: ${formData.get('phone')}
-
-LOAN DETAILS:
--------------
-Required Loan Amount: ₹${formatIndianNumber(rawLoanAmount)}
-Loan Purpose: ${formData.get('purpose')}
-Business Type: ${formData.get('businessType')}
-Annual Turnover: ${rawAnnualTurnover ? '₹' + formatIndianNumber(rawAnnualTurnover) : 'Not specified'}
-Business Experience: ${formData.get('experience') || 'Not specified'} years
-
-ADDITIONAL DETAILS:
--------------------
-${formData.get('message') || 'No additional details provided'}
-
-SUBMISSION DETAILS:
--------------------
-Submitted: ${new Date().toLocaleString()}
-Source: TRFSK Lending Website
-Consent Given: Yes
-                    `;
+                    // Add timestamp
+                    formData.append('_date', new Date().toLocaleString());
+                    formData.append('_source', 'TRFSK Lending Website');
                     
-                    // Send email using mailto link
-                    const subject = `New Loan Inquiry - ${formData.get('name')} - ${formData.get('business')}`;
-                    const mailtoLink = `mailto:santosh.s@omkarservices.in,worksupoorts@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-                    
-                    // Show success message
-                    formMessage.innerHTML = 
-                        '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">' +
-                        '<h4 style="margin-top: 0; color: #155724;"><i class="fas fa-check-circle"></i> Form Prepared Successfully!</h4>' +
-                        '<p>Your loan inquiry has been prepared. Click the button below to send it via email:</p>' +
-                        '<a href="' + mailtoLink + '" class="cta-button" style="display: inline-block; margin: 10px 0;">' +
-                        '<i class="fas fa-paper-plane"></i> Send Inquiry Email</a>' +
-                        '<p><strong>Alternative Options:</strong></p>' +
-                        '<ol style="margin: 10px 0; padding-left: 20px;">' +
-                        '<li>Copy the details and email to <a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a></li>' +
-                        '<li>Call us directly at <strong>9226393837</strong></li>' +
-                        '<li>WhatsApp your inquiry to <strong>9226393837</strong></li>' +
-                        '</ol>' +
-                        '<p style="margin-bottom: 0; font-size: 12px;">Note: The email will open in your default email client.</p>' +
-                        '</div>';
-                    formMessage.style.display = 'block';
-                    
-                    // Reset form
-                    form.reset();
-                    
-                    // Scroll to message
-                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    // Log to console (for debugging)
-                    console.log('Form prepared successfully:', {
-                        name: formData.get('name'),
-                        business: formData.get('business'),
-                        email: formData.get('email'),
-                        amount: loanAmountNum
+                    // Send to Formspree
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
                     });
                     
-                } catch (error) {
-                    console.error('Form preparation error:', error);
+                    if (response.ok) {
+                        // Show success message
+                        formMessage.innerHTML = 
+                            '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">' +
+                            '<h4 style="margin-top: 0; color: #155724;"><i class="fas fa-check-circle"></i> Success!</h4>' +
+                            '<p>Thank you for your loan inquiry. We have received your details.</p>' +
+                            '<p><strong>What happens next:</strong></p>' +
+                            '<ol style="margin: 10px 0; padding-left: 20px;">' +
+                            '<li>You will receive a confirmation email shortly</li>' +
+                            '<li>Our financial advisor will review your application</li>' +
+                            '<li>We will contact you within 24-48 working hours</li>' +
+                            '</ol>' +
+                            '<p style="margin-bottom: 0;">For urgent inquiries, call us at <strong>9226393837</strong></p>' +
+                            '</div>';
+                        formMessage.style.display = 'block';
+                        
+                        // Reset form
+                        form.reset();
+                        
+                        // Scroll to message
+                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                    } else {
+                        const errorData = await response.json();
+                        console.error('Formspree error:', errorData);
+                        
+                        // Fallback to email method if Formspree fails
+                        const emailBody = `LOAN INQUIRY DETAILS:
+Name: ${formData.get('name')}
+Business: ${formData.get('business')}
+Email: ${formData.get('email')}
+Phone: ${formData.get('phone')}
+Loan Amount: ${formData.get('loanAmount')}
+Purpose: ${formData.get('purpose')}
+Business Type: ${formData.get('businessType')}
+Turnover: ${formData.get('annualTurnover') || 'Not specified'}
+Experience: ${formData.get('experience') || 'Not specified'} years
+Message: ${formData.get('message') || 'No additional details'}`;
+                        
+                        const mailtoLink = `mailto:santosh.s@omkarservices.in,worksupoorts@gmail.com?subject=Loan Inquiry - ${encodeURIComponent(formData.get('name'))}&body=${encodeURIComponent(emailBody)}`;
+                        
+                        formMessage.innerHTML = 
+                            '<div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; border: 1px solid #ffeaa7;">' +
+                            '<h4 style="margin-top: 0; color: #856404;"><i class="fas fa-info-circle"></i> Alternative Submission Method</h4>' +
+                            '<p>Click the button below to send your inquiry via email:</p>' +
+                            '<a href="' + mailtoLink + '" class="cta-button" style="display: inline-block; margin: 10px 0; background: var(--warning); color: var(--dark);">' +
+                            '<i class="fas fa-envelope"></i> Send via Email</a>' +
+                            '<p>Or contact us directly:</p>' +
+                            '<ul style="margin: 10px 0; padding-left: 20px;">' +
+                            '<li>Email: <a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a></li>' +
+                            '<li>Phone: <strong>9226393837</strong></li>' +
+                            '</ul>' +
+                            '</div>';
+                        formMessage.style.display = 'block';
+                    }
                     
-                    // Show error message
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    
+                    // Show error message with alternative options
                     formMessage.innerHTML = 
                         '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">' +
-                        '<h4 style="margin-top: 0; color: #721c24;"><i class="fas fa-exclamation-triangle"></i> Form Preparation Error</h4>' +
-                        '<p>There was an issue preparing your form. Please try one of these options:</p>' +
+                        '<h4 style="margin-top: 0; color: #721c24;"><i class="fas fa-exclamation-triangle"></i> Connection Error</h4>' +
+                        '<p>Unable to submit form. Please try one of these options:</p>' +
                         '<ul style="margin: 10px 0; padding-left: 20px;">' +
-                        '<li>Email us directly at <a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a> with your details</li>' +
-                        '<li>Call us at <strong>9226393837</strong> to submit your inquiry</li>' +
+                        '<li>Email us directly at <a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a></li>' +
+                        '<li>Call us at <strong>9226393837</strong></li>' +
                         '<li>WhatsApp your inquiry to <strong>9226393837</strong></li>' +
                         '</ul>' +
                         '</div>';
@@ -1059,14 +1106,6 @@ Consent Given: Yes
                 }
             });
             
-            // Phone number formatting
-            const phoneInput = document.getElementById('phone');
-            phoneInput.addEventListener('input', function() {
-                let value = this.value.replace(/\D/g, '');
-                if (value.length > 10) value = value.substring(0, 10);
-                this.value = value;
-            });
-            
             // Add input validation feedback
             const inputs = form.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
@@ -1081,10 +1120,54 @@ Consent Given: Yes
                 input.addEventListener('input', function() {
                     if (this.checkValidity()) {
                         this.style.borderColor = '#28a745';
+                    } else {
+                        this.style.borderColor = '#e63946';
                     }
                 });
             });
         });
     </script>
+    
+    <!-- Formspree Chat Widget - If you want it -->
+    <!-- 
+    <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+    <script>
+        window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+        formbutton("create", {
+            action: "https://formspree.io/f/mreedeyd",
+            title: "Need help with loans?",
+            fields: [
+                { 
+                    type: "email", 
+                    label: "Email:", 
+                    name: "email",
+                    required: true,
+                    placeholder: "your@email.com"
+                },
+                { 
+                    type: "text", 
+                    label: "Phone:", 
+                    name: "phone",
+                    placeholder: "Your phone number"
+                },
+                {
+                    type: "textarea",
+                    label: "Message:",
+                    name: "message",
+                    placeholder: "How can we help you?",
+                },
+                { type: "submit" }      
+            ],
+            styles: {
+                title: {
+                    backgroundColor: "#1a365d"
+                },
+                button: {
+                    backgroundColor: "#e63946"
+                }
+            }
+        });
+    </script>
+    -->
 </body>
 </html>

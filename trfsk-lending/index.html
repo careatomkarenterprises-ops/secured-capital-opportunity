@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GA_MEASUREMENT_ID');
+  
+  // Conversion tracking for form submissions
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('loanForm');
+    if (form) {
+      form.addEventListener('submit', function() {
+        gtag('event', 'conversion', {
+          'send_to': 'GA_MEASUREMENT_ID/conversion_tracking_id',
+          'value': 1.0,
+          'currency': 'INR'
+        });
+      });
+    }
+  });
+</script>
+    
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRFSK OMKAR SERVICES PVT LTD | Business Lending Solutions</title>

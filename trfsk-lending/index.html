@@ -749,7 +749,7 @@
                 </div>
                 <div class="info-item">
                     <div class="info-label">Secondary Email:</div>
-                    <div>worksupoorts@gmail.com</div>
+                    <div>trfskomkarservicespvtltd@gmail.com</div>
                 </div>
                 <div class="info-item">
                     <div class="info-label">Mobile Numbers:</div>
@@ -901,13 +901,23 @@
                         <input type="tel" id="phone" name="phone" class="form-control" required placeholder="10-digit mobile number">
                     </div>
                     
-                    <div class="form-group">
-                        <label for="loanAmount">Required Loan Amount (₹) *</label>
-                        <input type="number" id="loanAmount" name="loanAmount" class="form-control" required 
-                               min="500000" max="10000000" 
-                               placeholder="e.g., 5000000">
-                        <small style="color: #666;">Minimum: ₹5,00,000 | Maximum: ₹1,00,00,000</small>
-                    </div>
+  // REMOVE THESE LINES:
+loanAmountInput.addEventListener('focus', function() {
+    this.value = this.value.replace(/,/g, '');
+});
+
+loanAmountInput.addEventListener('blur', function() {
+    if (this.value) {
+        const num = parseInt(this.value.replace(/,/g, ''));
+        if (!isNaN(num)) {
+            this.value = num.toLocaleString('en-IN');
+        }
+    }
+});
+
+loanAmountInput.addEventListener('focus', function() {
+    this.value = this.value.replace(/,/g, '');
+});
                     
                     <div class="form-group">
                         <label for="purpose">Loan Purpose *</label>

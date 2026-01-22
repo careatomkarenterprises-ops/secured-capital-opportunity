@@ -1,0 +1,37 @@
+# robots.txt for TRFSK Omkar Services
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /search/
+
+# Sitemap location
+Sitemap: https://omkarservices.in/sitemap.xml
+Sitemap: https://omkarservices.in/sitemap-index.xml
+
+# Crawl delay for search engines
+Crawl-delay: 1
+
+# Google AdsBot
+User-agent: AdsBot-Google
+Allow: /
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /*.gif$
+
+# Bing Bot
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yandex Bot
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Apple Bot
+User-agent: Applebot
+Allow: /

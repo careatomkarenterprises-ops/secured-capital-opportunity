@@ -1411,6 +1411,56 @@
                 window.location.href = 'partner-portal.html';
             });
         });
+
+        // 1. ADD THIS AT THE TOP OF YOUR SCRIPT SECTION
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOlq85LdXP1UCXFx27BugiIXJQI-kMT7tYYsePuTzV6gpojhM2FQQxjkzooJxQj7OY/exec'; // Replace with your Google Script URL
+
+async function loadLiveDashboard() {
+    const accessKey = localStorage.getItem('omkar_access_key');
+    if (!accessKey) return;
+
+    try {
+        // Fetch Live Partner Data
+        const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+        const partner = await response.json();
+
+        if (partner) {
+            // Update the UI with live Google Sheet data
+            document.getElementById('partnerName').textContent = partner.FullName;
+            document.getElementById('activePrincipal').textContent = '₹' + Number(partner.PrincipalAmount).toLocaleString('en-IN');
+            document.getElementById('monthlyReturns').textContent = '₹' + Number(partner.FixedMonthlyReturn).toLocaleString('en-IN');
+            document.getElementById('partnershipTenure').textContent = partner.Tenure + " Months";
+        }
+
+        // Fetch Live Transactions
+        const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+        const transactions = await txResponse.json();
+        updateTransactionList(transactions);
+
+    } catch (e) {
+        console.error("Error loading live data:", e);
+    }
+}
+
+function updateTransactionList(data) {
+    const container = document.querySelector('.transaction-list');
+    container.innerHTML = ''; // Clear the hardcoded placeholders
+    
+    data.forEach(tx => {
+        container.innerHTML += `
+            <div class="transaction-item">
+                <div class="transaction-info">
+                    <h4>${tx.Type || 'Monthly Return'}</h4>
+                    <div class="transaction-date">${tx.Date} | ${tx.Method}</div>
+                </div>
+                <div class="transaction-amount">+₹${tx.Amount.toLocaleString('en-IN')}</div>
+            </div>`;
+    });
+}
+
+// 2. ADD THIS TO TRIGGER ON LOAD
+document.addEventListener('DOMContentLoaded', loadLiveDashboard);
+        
     </script>
     
 </body>

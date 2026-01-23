@@ -1315,8 +1315,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznvG8Bq3xZUZQCDUmeY4zVmi6KshcOr0josqEgRIy2wN1xIPhNgky0jJpgdZ4ncBOg/exec';
+// 1. YOUR SETTINGS
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznvG8Bq3xZUZQCDUmeY4zVmi6KshcOr0josqEgRIy2wN1xIPhNgky0jJpgdZ4ncBOg/exec';
 
 async function loadLiveDashboard() {
     const accessKey = localStorage.getItem('omkar_access_key');
@@ -1326,38 +1326,50 @@ async function loadLiveDashboard() {
     }
 
     try {
-        // 1. Fetch Investor Master Data
+        // FETCH DATA FROM GOOGLE SHEETS
         const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
         const partner = await response.json();
 
         if (partner) {
-            // Mapping from your specific Sheet Headers 
+            // Basic Info Mapping
             document.getElementById('partnerName').textContent = partner.FullName || "Partner";
             document.getElementById('activePrincipal').textContent = '₹' + Number(partner.PrincipalAmount || 0).toLocaleString('en-IN');
             document.getElementById('monthlyReturns').textContent = '₹' + Number(partner.FixedMonthlyReturn || 0).toLocaleString('en-IN');
             document.getElementById('totalReturns').textContent = '₹' + Number(partner.TotalReturnsPaid || 0).toLocaleString('en-IN');
             
-            // Security & Tenure
+            // PDC & Security Details
             document.getElementById('pdcValue').textContent = '₹' + Number(partner.PrincipalAmount || 0).toLocaleString('en-IN');
+            const pdcText = document.querySelector('.security-card p');
+            if(pdcText) pdcText.textContent = "Secured via Cheques: " + (partner.PDC_Details || "In Process");
+
+            // Agreement & Expiry Logic
             document.getElementById('agreementId').textContent = partner.InvestorId || "N/A";
-            document.getElementById('partnershipTenure').textContent = partner.Tenure ? partner.Tenure + " Months" : "Active";
             document.getElementById('startDate').textContent = partner.InvestmentDate || "N/A";
             document.getElementById('monthlyRate').textContent = (partner.MonthlyReturnsRate * 100).toFixed(1) + "%";
+            document.getElementById('partnershipTenure').textContent = partner.Tenure ? partner.Tenure + " Months" : "Active";
             
-            // Calculate Agreement Expiry Days
             if (partner.AgreementExpiryDate) {
                 const expiry = new Date(partner.AgreementExpiryDate);
                 const today = new Date();
-                const diff = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
-                document.getElementById('agreementExpiry').textContent = diff > 0 ? diff : "Expired";
+                const diffDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
+                const expiryEl = document.getElementById('agreementExpiry');
+                expiryEl.textContent = diffDays > 0 ? diffDays : "Due";
+                if(diffDays < 30) expiryEl.style.color = "#ff4444"; // Visual Alert
             }
 
-            // Update Tier based on investment
+            // Quick Actions Personalization
+            const waLink = document.querySelector('a[href*="wa.me"]');
+            if(waLink) waLink.href = `https://wa.me/918169302861?text=Hello, I am ${partner.FullName}, Investor ID ${partner.InvestorId}. I need assistance.`;
+
+            // Tier Update
             const tierLabel = document.getElementById('partnerTier');
-            tierLabel.textContent = (partner.PrincipalAmount >= 500000) ? "Platinum Tier Partner" : "Gold Tier Partner";
+            if(tierLabel) tierLabel.textContent = (partner.PrincipalAmount >= 500000) ? "Platinum Tier Partner" : "Gold Tier Partner";
+
+            // Trigger Growth Chart
+            updateGrowthChart(partner.PrincipalAmount, partner.TotalReturnsPaid);
         }
 
-        // 2. Fetch Transaction History 
+        // FETCH TRANSACTIONS
         const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
         const transactions = await txResponse.json();
         updateTransactionList(transactions);
@@ -1367,31 +1379,57 @@ async function loadLiveDashboard() {
     }
 }
 
+// FUNCTION: Update Growth Chart
+function updateGrowthChart(principal, totalReturns) {
+    const ctx = document.getElementById('portfolioChart');
+    if (!ctx || typeof Chart === 'undefined') return;
+
+    if (window.myDashboardChart) window.myDashboardChart.destroy();
+
+    window.myDashboardChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Initial Investment', 'Total Value'],
+            datasets: [{
+                label: 'Portfolio Growth',
+                data: [principal, (Number(principal) + Number(totalReturns))],
+                borderColor: '#c19b5e',
+                backgroundColor: 'rgba(193, 155, 94, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } }
+        }
+    });
+}
+
+// FUNCTION: Update Transactions
 function updateTransactionList(data) {
     const container = document.querySelector('.transaction-list');
     if (!data || data.length === 0) return;
     
-    container.innerHTML = ''; // Remove demo data
+    container.innerHTML = ''; // Delete static demo rows
     
     data.forEach(tx => {
-        // Mapping long header name from your Transaction_History sheet 
         const typeKey = "TransactionType (Monthly Return, Performance Bonus, Deposit)";
-        const type = tx[typeKey] || "Transaction";
-        const date = tx.TransactionDate || "N/A";
-        const method = tx["PaymentMethod (NEFT/IMPS/RTGS/CHEQUES"] || "Transfer";
+        const methodKey = "PaymentMethod (NEFT/IMPS/RTGS/CHEQUES";
         
         container.innerHTML += `
             <div class="transaction-item">
                 <div class="transaction-info">
-                    <h4>${type}</h4>
-                    <div class="transaction-date">${date} | ${method}</div>
+                    <h4>${tx[typeKey] || 'Monthly Return'}</h4>
+                    <div class="transaction-date">${tx.TransactionDate || 'N/A'} | ${tx[methodKey] || 'Bank'}</div>
                 </div>
                 <div class="transaction-amount">+₹${Number(tx.Amount).toLocaleString('en-IN')}</div>
             </div>`;
     });
 }
 
-// Start everything on load
+// Auto-load on page start
 document.addEventListener('DOMContentLoaded', loadLiveDashboard);
 
 // Logout handling
@@ -1399,7 +1437,7 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
     localStorage.clear();
     window.location.href = 'partner-portal.html';
 });
-    </script>
+</script>
     
 </body>
 </html>

@@ -2175,10 +2175,18 @@ async function handleLogin(event) {
         const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
         const result = await response.json();
 
-        if (result.success) {
-            const dataResp = await fetch(`${API_URL}?action=getPartner&accessKey=${id}`);
-            const partnerData = await dataResp.json();
-            
+        // Inside your login success logic:
+if (result.success) {
+    // 1. Save the key using the EXACT name the dashboard looks for
+    localStorage.setItem('omkar_access_key', result.data.InvestorId); 
+    
+    // 2. Save the full data object for backup
+    localStorage.setItem('omkar_partner', JSON.stringify(result.data));
+    
+    // 3. Redirect
+    window.location.href = 'dashboard.html';
+}
+        
             // CLEAR OLD DATA FIRST
             localStorage.clear(); 
             // SAVE NEW DATA

@@ -2159,10 +2159,12 @@
     </script>
 
     <!-- Google Script Integration - FIXED VERSION -->
-  <script>
+ <script>
 async function handleLogin(event) {
     if (event) event.preventDefault();
-    const API_URL = "https://script.google.com/macros/s/AKfycbypbxaEja91MpZwTcGIGGoFvFndJ6CA0-a5R6kxNMdCCbtUbUQS1LOFmHqOvWJPdTHe/exec";
+    
+    // Updated API URL from your message
+    const API_URL = "https://script.google.com/macros/s/AKfycbznvG8Bq3xZUZQCDUmeY4zVmi6KshcOr0josqEgRIy2wN1xIPhNgky0jJpgdZ4ncBOg/exec";
     
     const id = document.getElementById('username').value.trim().toUpperCase();
     const mobile = document.getElementById('loginMobile').value.trim();
@@ -2170,39 +2172,38 @@ async function handleLogin(event) {
     const originalText = loginBtn.innerHTML;
 
     loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+    loginBtn.disabled = true;
 
     try {
         const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
         const result = await response.json();
 
-        // Inside your login success logic:
-if (result.success) {
-    // 1. Save the key using the EXACT name the dashboard looks for
-    localStorage.setItem('omkar_access_key', result.data.InvestorId); 
-    
-    // 2. Save the full data object for backup
-    localStorage.setItem('omkar_partner', JSON.stringify(result.data));
-    
-    // 3. Redirect
-    window.location.href = 'dashboard.html';
-}
-        
-            // CLEAR OLD DATA FIRST
+        if (result.success && result.data) {
+            // 1. CLEAR OLD SESSION DATA
             localStorage.clear(); 
-            // SAVE NEW DATA
-            localStorage.setItem('omkar_partner', JSON.stringify(partnerData));
+
+            // 2. SAVE NEW SESSION DATA (Dashboard looks for these exact keys)
+            localStorage.setItem('omkar_access_key', result.data.InvestorId); 
+            localStorage.setItem('omkar_partner', JSON.stringify(result.data));
+            localStorage.setItem('omkar_session_start', new Date().getTime());
             
-            // Redirect
+            // 3. REDIRECT TO DASHBOARD
+            console.log("Login successful. Redirecting...");
             window.location.href = 'dashboard.html';
         } else {
-            alert("Login Failed: Check Credentials");
+            alert("Login Failed: " + (result.error || "Invalid Credentials"));
             loginBtn.innerHTML = originalText;
+            loginBtn.disabled = false;
         }
     } catch (e) {
-        alert("Connection Error. Please refresh.");
+        console.error("Login Error:", e);
+        alert("Connection Error. Please check your internet or API URL.");
         loginBtn.innerHTML = originalText;
+        loginBtn.disabled = false;
     }
 }
+
+// Attach the function to the form
 document.getElementById('loginForm').onsubmit = handleLogin;
 </script>
 

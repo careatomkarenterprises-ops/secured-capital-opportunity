@@ -978,6 +978,9 @@
             }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    
 </head>
 <body>
     <!-- Dashboard Header -->
@@ -1455,6 +1458,26 @@ function updateTransactionList(data) {
     });
 }
 
+        async function loadGuestDashboard() {
+    // Show a "Public Version" of the dashboard
+    document.getElementById('partnerName').textContent = "Welcome, Future Partner";
+    
+    // Showcase Past Performance (Hardcoded or pulled from a 'Stats' sheet)
+    document.getElementById('activePrincipal').textContent = "₹2.5 Cr+"; // Total AUM
+    document.getElementById('totalReturns').textContent = "₹45 Lakh+"; // Total Repayments
+    
+    // Hide private sections
+    document.querySelector('.security-card').style.opacity = '0.5';
+    document.querySelector('.security-card').innerHTML += '<div style="color:gold">Verify Identity to unlock PDC details</div>';
+    
+    // Show a specific "Risk Disclosure" popup for Guests
+    showRiskDisclosure();
+}
+
+function showRiskDisclosure() {
+    alert("Omkar Enterprises Legal Notice: By viewing this dashboard, you acknowledge that private lending involves market risks. Past performance does not guarantee future results.");
+}
+        
 // Auto-load on page start
 document.addEventListener('DOMContentLoaded', loadLiveDashboard);
 
@@ -1464,28 +1487,77 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
     window.location.href = 'partner-portal.html';
 });
 
-function downloadInvestorStatement(partner, transactions) {
-    let csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += `Investor Statement for ${partner.FullName}\n`;
-    csvContent += `Investor ID: ${partner.InvestorId}\n`;
-    csvContent += `Principal: ${partner.PrincipalAmount}\n\n`;
-    csvContent += "Date,Type,Amount,Method,Status\n";
+async function downloadInvestorStatement(partner, transactions) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-    transactions.forEach(tx => {
-        const type = tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || "Return";
-        const row = `${tx.TransactionDate},${type},${tx.Amount},${tx["PaymentMethod (NEFT/IMPS/RTGS/CHEQUES"]},${tx.Status}`;
-        csvContent += row + "\n";
+    // 1. HEADER & BRANDING
+    doc.setFontSize(22);
+    doc.setTextColor(193, 155, 94); // Your Golden Theme Color
+    doc.text("OMKAR ENTERPRISES", 105, 20, { align: "center" });
+    
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.text("Official Investment Statement | Private Lending Portfolio", 105, 27, { align: "center" });
+    doc.line(20, 32, 190, 32);
+
+    // 2. INVESTOR PROFILE
+    doc.setFontSize(12);
+    doc.setTextColor(0);
+    doc.text(`Investor: ${partner.FullName}`, 20, 45);
+    doc.text(`Investor ID: ${partner.InvestorId}`, 20, 52);
+    doc.text(`Statement Date: ${new Date().toLocaleDateString()}`, 140, 45);
+
+    // 3. EXECUTIVE SUMMARY BOX
+    doc.setFillColor(248, 245, 240);
+    doc.rect(20, 60, 170, 25, 'F');
+    doc.setFontSize(10);
+    doc.text("PRINCIPAL AMOUNT", 30, 70);
+    doc.text("TOTAL RETURNS PAID", 85, 70);
+    doc.text("CURRENT STATUS", 145, 70);
+    
+    doc.setFontSize(14);
+    doc.text(`Rs. ${partner.PrincipalAmount}`, 30, 78);
+    doc.text(`Rs. ${partner.TotalReturnsPaid}`, 85, 78);
+    doc.text(`${partner.AccountStatus}`, 145, 78);
+
+    // 4. TRANSACTION TABLE
+    doc.autoTable({
+        startY: 95,
+        head: [['Date', 'Transaction Type', 'Payment Method', 'Amount (INR)', 'Status']],
+        body: transactions.map(tx => [
+            tx.TransactionDate, 
+            tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || "Monthly Return",
+            tx["PaymentMethod (NEFT/IMPS/RTGS/CHEQUES"] || "Transfer",
+            `Rs. ${tx.Amount}`,
+            tx.Status
+        ]),
+        headStyles: { fillColor: [193, 155, 94] },
     });
 
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `Statement_${partner.InvestorId}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // 5. TERMS, CONDITIONS & POLICY (The "Trust" Section)
+    let finalY = doc.lastAutoTable.finalY + 15;
+    doc.setFontSize(11);
+    doc.text("Terms & Withdrawal Policy:", 20, finalY);
+    
+    doc.setFontSize(8);
+    doc.setTextColor(100);
+    const policies = [
+        "1. Withdrawal Policy: Principal withdrawal requires a 30-day prior written notice.",
+        "2. Security: This investment is secured via Post Dated Cheques (PDC) as per Agreement.",
+        "3. Payouts: Monthly returns are credited between the 1st and 5th of every month.",
+        "4. Benefits: You are currently on the 'Gold Tier' plan with fixed guaranteed returns.",
+        "5. Support: For queries, contact support@omkarservices.in or call +91 8169302861."
+    ];
+    doc.text(policies, 20, finalY + 7);
+
+    // 6. FOOTER
+    doc.setFontSize(9);
+    doc.text("This is a digitally generated document. No signature required.", 105, 285, { align: "center" });
+
+    // SAVE FILE
+    doc.save(`Omkar_Statement_${partner.InvestorId}.pdf`);
 }
-        
 </script>
     
 </body>

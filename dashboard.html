@@ -1331,6 +1331,32 @@ async function loadLiveDashboard() {
         const partner = await response.json();
 
         if (partner) {
+if (partner) {
+            // ... (keep your existing name/principal/returns code here) ...
+
+            // 1. FIXED: PDC Details sync
+            const pdcValEl = document.getElementById('pdcValue');
+            if(pdcValEl) pdcValEl.textContent = '₹' + Number(partner.PrincipalAmount || 0).toLocaleString('en-IN');
+            
+            const pdcText = document.querySelector('.security-card p');
+            if(pdcText) pdcText.textContent = "Secured via Cheques: " + (partner.PDC_Details || "Details being updated");
+
+            // 2. FIXED: Agreement View Link
+            // If you have a column 'AgreementURL', it uses that. Otherwise, it searches for a file named after the ID.
+            const viewAgreementBtn = document.querySelector('a[href*="agreement-view"]');
+            if(viewAgreementBtn) {
+                // Change this to your Google Drive folder link or specific column
+                viewAgreementBtn.href = partner.AgreementURL || "#"; 
+                viewAgreementBtn.target = "_blank";
+            }
+
+            // 3. FIXED: Statement Download Button
+            const downloadBtn = document.querySelector('.btn-outline'); // The "Download Statement" button
+            if(downloadBtn) {
+                downloadBtn.onclick = () => downloadInvestorStatement(partner, transactions);
+            }
+        }
+           
             // Basic Info Mapping
             document.getElementById('partnerName').textContent = partner.FullName || "Partner";
             document.getElementById('activePrincipal').textContent = '₹' + Number(partner.PrincipalAmount || 0).toLocaleString('en-IN');
@@ -1437,6 +1463,29 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
     localStorage.clear();
     window.location.href = 'partner-portal.html';
 });
+
+function downloadInvestorStatement(partner, transactions) {
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += `Investor Statement for ${partner.FullName}\n`;
+    csvContent += `Investor ID: ${partner.InvestorId}\n`;
+    csvContent += `Principal: ${partner.PrincipalAmount}\n\n`;
+    csvContent += "Date,Type,Amount,Method,Status\n";
+
+    transactions.forEach(tx => {
+        const type = tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || "Return";
+        const row = `${tx.TransactionDate},${type},${tx.Amount},${tx["PaymentMethod (NEFT/IMPS/RTGS/CHEQUES"]},${tx.Status}`;
+        csvContent += row + "\n";
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `Statement_${partner.InvestorId}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+        
 </script>
     
 </body>

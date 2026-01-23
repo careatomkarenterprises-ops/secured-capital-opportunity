@@ -1321,6 +1321,28 @@
 // 1. YOUR SETTINGS
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznvG8Bq3xZUZQCDUmeY4zVmi6KshcOr0josqEgRIy2wN1xIPhNgky0jJpgdZ4ncBOg/exec';
 
+const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+
+if (isGuest) {
+    // 1. SHOW PUBLIC PERFORMANCE DATA
+    document.getElementById('partnerName').textContent = "Omkar Performance Overview";
+    document.getElementById('activePrincipal').textContent = "₹2.85 Cr+"; // Your Total AUM
+    document.getElementById('totalReturns').textContent = "₹52 Lakh+"; // Your Total Payouts
+    
+    // 2. HIDE PRIVATE SECTIONS
+    document.querySelectorAll('.security-card').forEach(el => el.style.filter = 'blur(4px)');
+    
+    // 3. SHOW LEGAL SHIELD FOOTER
+    const footer = document.createElement('div');
+    footer.innerHTML = `
+        <div style="background: #fff3cd; padding: 20px; border: 1px solid #ffeeba; margin-top: 20px;">
+            <h4>Legal Disclaimer & Risk Disclosure</h4>
+            <p>You are viewing this data as a guest. All investments carry risk. 
+            Digital Consent Recorded: ${new Date().toLocaleString()}</p>
+        </div>`;
+    document.querySelector('.dashboard-container').appendChild(footer);
+}
+        
 async function loadLiveDashboard() {
     const accessKey = localStorage.getItem('omkar_access_key');
     if (!accessKey) {

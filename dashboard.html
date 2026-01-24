@@ -1970,6 +1970,96 @@ function renderInvestorUI(partner) {
         }, 5 * 60 * 1000);
     });
 
+        }); // This closes the DOMContentLoaded event
+
+    // ==================== QUICK TEST FUNCTION ====================
+    // Add this function to test your API
+    window.testApiConnection = function() {
+        const accessKey = localStorage.getItem('omkar_access_key') || 'OMK24250330';
+        
+        console.log("=== TESTING API CONNECTION ===");
+        console.log("Testing with access key:", accessKey);
+        console.log("API URL:", SCRIPT_URL);
+        
+        // Test getPartner
+        fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`)
+            .then(r => {
+                console.log("Response status:", r.status, r.statusText);
+                return r.json();
+            })
+            .then(data => {
+                console.log("✅ getPartner Response:", data);
+                console.log("Data type:", typeof data);
+                console.log("Is array?", Array.isArray(data));
+                console.log("Keys:", Object.keys(data));
+                
+                // Show all data in console
+                console.log("Full data object:");
+                for (const key in data) {
+                    console.log(`  ${key}:`, data[key]);
+                }
+                
+                // Check what format we got
+                if (data.InvestorId || data.PartnerID) {
+                    alert(`✅ API WORKING!\n\nFormat: Direct data\nInvestor: ${data.FullName || data.Name}\nAmount: ₹${data.PrincipalAmount || data.InvestmentAmount}\n\nCheck console (F12) for full response.`);
+                } else if (data.success && data.data) {
+                    alert(`✅ API WORKING!\n\nFormat: Wrapped data\nInvestor: ${data.data.FullName}\n\nCheck console (F12) for full response.`);
+                } else if (data.error) {
+                    alert(`⚠️ API Error\n\n${data.error}\n\nCheck console (F12) for details.`);
+                } else {
+                    alert(`❓ Unknown response format\n\nCheck console (F12) for details.`);
+                }
+            })
+            .catch(err => {
+                console.error("❌ API Test Error:", err);
+                alert("❌ API Connection Failed\n\nCheck console (F12 → Console tab) for error details.");
+            });
+    };
+
+    // Add a test button to the page
+    setTimeout(() => {
+        const testBtn = document.createElement('button');
+        testBtn.innerHTML = '🔧 Test API';
+        testBtn.title = 'Click to test API connection';
+        testBtn.style.cssText = `
+            position: fixed;
+            bottom: 150px;
+            right: 30px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 9999;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 2px solid #d4af37;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        `;
+        
+        // Add hover effect
+        testBtn.onmouseover = function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 6px 15px rgba(0,0,0,0.4)';
+        };
+        testBtn.onmouseout = function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+        };
+        
+        testBtn.onclick = window.testApiConnection;
+        document.body.appendChild(testBtn);
+        
+        console.log("🔧 API Test button added to page");
+    }, 2000);
+
+</script> <!-- This is the closing script tag -->
+    
     // ==================== DEBUG FUNCTION ====================
     // Add this back for debugging
     window.debugSession = function() {

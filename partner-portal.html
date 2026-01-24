@@ -2079,33 +2079,41 @@
             }
 
             // 3. GUEST LOGIN (THE OMKAR SHIELD)
-            const guestForm = document.getElementById('guestForm');
-            if (guestForm) {
-                guestForm.onsubmit = async function(e) {
-                    e.preventDefault();
-                    const guestBtn = document.getElementById('guestBtn');
-                    const name = document.getElementById('guestName').value;
-                    const email = document.getElementById('guestEmail').value;
-                    const mobile = document.getElementById('guestMobile').value;
+         <div class="guest-access-container" style="margin-top: 40px; text-align: center; border-top: 2px dashed #ddd; padding-top: 30px;">
+    <h3 style="color: #c19b5e;">New to Omkar Enterprises?</h3>
+    <p>Explore our 10-year growth track record and payout history.</p>
+    
+    <button type="button" id="showGuestFormBtn" class="connect-btn" style="background: #333; margin-bottom: 20px;">
+        <i class="fas fa-chart-line"></i> View Performance Dashboard
+    </button>
 
-                    guestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Securing Access...';
+    <div id="guestFormWrapper" style="display: none; background: #f9f9f9; padding: 25px; border-radius: 12px; border: 1px solid #eee; max-width: 450px; margin: 0 auto;">
+        <form id="guestForm">
+            <input type="text" id="guestName" placeholder="Full Name" required style="width: 100%; padding: 12px; margin-bottom: 10px;">
+            <input type="tel" id="guestMobile" placeholder="WhatsApp Number" required style="width: 100%; padding: 12px; margin-bottom: 10px;">
+            <input type="email" id="guestEmail" placeholder="Email Address" required style="width: 100%; padding: 12px; margin-bottom: 10px;">
+            
+            <div style="text-align: left; font-size: 13px; margin: 15px 0; border: 1px solid #ddd; padding: 10px; background: #fff;">
+                <input type="checkbox" id="consentCheck" required>
+                <label for="consentCheck">
+                    <strong>LEGAL CONSENT:</strong> I agree to the <a href="risk-disclosure.html" target="_blank">Risk Disclosure</a> and <a href="terms.html" target="_blank">Terms</a>. I understand this is a private partnership portal and past performance is not a guarantee of future returns.
+                </label>
+            </div>
+            
+            <button type="submit" id="guestBtn" class="connect-btn" style="width: 100%;">
+                Accept Terms & Enter Dashboard
+            </button>
+        </form>
+    </div>
+</div>
 
-                    try {
-                        const resp = await fetch(`${API_URL}?action=registerLead&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&mobile=${mobile}&source=Portal_Guest`);
-                        const res = await resp.json();
-                        
-                        localStorage.setItem('omkar_guest_mode', 'true');
-                        localStorage.setItem('omkar_access_key', 'GUEST_' + Date.now());
-                        window.location.href = 'dashboard.html';
-                    } catch (err) {
-                        // Fallback: Let them in even if lead-capture hits a snag
-                        localStorage.setItem('omkar_guest_mode', 'true');
-                        window.location.href = 'dashboard.html';
-                    }
-                };
-            }
-        });
-    </script>
+<script>
+    // Logic to show/hide the guest form
+    document.getElementById('showGuestFormBtn').onclick = function() {
+        this.style.display = 'none';
+        document.getElementById('guestFormWrapper').style.display = 'block';
+    };
+</script>
     
 </body>
 </html>

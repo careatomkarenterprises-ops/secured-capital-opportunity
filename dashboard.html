@@ -1341,58 +1341,8 @@
         window.location.replace('partner-portal.html');
         return;
     }
-
-    try {
-        // 3. HANDLE GUEST MODE FIRST (THE SHIELD)
-        if (isGuest) {
-            console.log("Omkar Shield: Guest Mode Active");
-            const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
-            const stats = await response.json();
-            renderGuestUI(stats);
-            return; // EXIT HERE so it doesn't try to load private partner data
-        }
-
-        // 4. HANDLE REAL INVESTOR (If not a guest)
-        console.log("Fetching Investor Data for:", accessKey);
-        const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-        // ... rest of your existing code ...
-        
-        try {
-            if (isGuest) {
-                const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
-                const stats = await response.json();
-                renderGuestUI(stats);
-                return;
-            }
-
-            const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-            if (!response.ok) throw new Error(`API Error: ${response.status}`);
-            const partner = await response.json();
-
-            if (partner) {
-                renderInvestorUI(partner);
-                
-                const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
-                currentTransactions = await txResponse.json();
-                updateTransactionList(currentTransactions);
-                
-                // Fixed: Selecting the "Download Statement" button by its class/text
-                const downloadBtn = document.querySelector('a[href*="#"].quick-action i.fa-download')?.parentElement;
-                if (downloadBtn) {
-                    downloadBtn.onclick = (e) => {
-                        e.preventDefault();
-                        downloadInvestorStatement(partner, currentTransactions);
-                    };
-                }
-            } else {
-                alert("No partner record found.");
-            }
-        } catch (e) {
-            console.error("Critical Sync Error:", e);
-            showErrorState();
-        }
-    }
-
+    // ... rest of the code ...
+}
     function renderInvestorUI(partner) {
         const formatCurrency = (num) => '₹' + Number(num || 0).toLocaleString('en-IN');
         document.getElementById('partnerName').textContent = partner.FullName || 'Partner';

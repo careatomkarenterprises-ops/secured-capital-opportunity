@@ -1361,14 +1361,26 @@
     }
 
     // ==================== MAIN DASHBOARD LOADER ====================
-    async function loadDashboard() {
-        console.log("Loading dashboard data...");
-        
-        const accessKey = localStorage.getItem('omkar_access_key');
-        const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
-        
-        console.log("Session:", { accessKey, isGuest });
-        
+   async function loadDashboard() {
+    const accessKey = localStorage.getItem('omkar_access_key');
+    if (!accessKey) {
+        window.location.href = 'partner-portal.html';
+        return;
+    }
+
+    try {
+        // Calls the 'getPartner' action in your Apps Script
+        const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+        const partnerData = await response.json();
+
+        if (partnerData) {
+            // This function should map the data to your HTML IDs (e.g., totalPrincipal, monthlyReturn)
+            updateDashboardUI(partnerData);
+        }
+    } catch (error) {
+        console.error("Error loading dashboard:", error);
+    }
+}        
         // Show loading state
         document.getElementById('partnerName').textContent = "Loading...";
         document.getElementById('partnerTier').textContent = "Please wait";

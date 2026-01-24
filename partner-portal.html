@@ -2182,52 +2182,65 @@
 
     <!-- Google Script Integration - FIXED VERSION -->
  <script>
+const API_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec"; // Ensure this ends in /exec
+
+// 1. REGULAR INVESTOR LOGIN
 async function handleLogin(event) {
-    if (event) event.preventDefault();
-    
-    // Updated API URL from your message
-    const API_URL = "https://script.google.com/macros/s/AKfycbyzK73WaiaJQoP4iLhD2fGPY2OsJGRnUuYs2esG77NQFePB3lcL6lpIj3iEqn4LGkF-/exec";
-    
+    event.preventDefault();
     const id = document.getElementById('username').value.trim().toUpperCase();
     const mobile = document.getElementById('loginMobile').value.trim();
     const loginBtn = document.querySelector('.connect-btn');
-    const originalText = loginBtn.innerHTML;
-
+    
     loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-    loginBtn.disabled = true;
 
     try {
         const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
         const result = await response.json();
 
-        if (result.success && result.data) {
-            // 1. CLEAR OLD SESSION DATA
-            localStorage.clear(); 
-
-            // 2. SAVE NEW SESSION DATA (Dashboard looks for these exact keys)
-            localStorage.setItem('omkar_access_key', result.data.InvestorId); 
-            localStorage.setItem('omkar_partner', JSON.stringify(result.data));
-            localStorage.setItem('omkar_session_start', new Date().getTime());
-            
-            // 3. REDIRECT TO DASHBOARD
-            console.log("Login successful. Redirecting...");
+        if (result.success) {
+            // Save data for the dashboard
+            localStorage.setItem('omkar_access_key', result.data.InvestorId);
+            localStorage.setItem('omkar_guest_mode', 'false');
             window.location.href = 'dashboard.html';
         } else {
-            alert("Login Failed: " + (result.error || "Invalid Credentials"));
-            loginBtn.innerHTML = originalText;
-            loginBtn.disabled = false;
+            alert("Login Failed: " + result.error);
+            loginBtn.innerHTML = 'Login to Portfolio';
         }
     } catch (e) {
-        console.error("Login Error:", e);
-        alert("Connection Error. Please check your internet or API URL.");
-        loginBtn.innerHTML = originalText;
-        loginBtn.disabled = false;
+        alert("Connection Error. Please check your internet.");
+        loginBtn.innerHTML = 'Login to Portfolio';
     }
 }
 
-// Attach the function to the form
-document.getElementById('loginForm').onsubmit = handleLogin;
-</script>
+// 2. GUEST LEAD & LEGAL CONSENT
+async function handleGuestLogin(event) {
+    event.preventDefault();
+    const guestBtn = document.getElementById('guestBtn');
+    
+    const guestData = {
+        name: document.getElementById('guestName').value,
+        mobile: document.getElementById('guestMobile').value,
+        email: document.getElementById('guestEmail').value
+    };
+
+    guestBtn.innerHTML = 'Recording Consent...';
+
+    try {
+        // This hits the 'registerLead' case in your GS code
+        const response = await fetch(`${API_URL}?action=registerLead&name=${encodeURIComponent(guestData.name)}&mobile=${guestData.mobile}&email=${encodeURIComponent(guestData.email)}`);
+        const result = await response.json();
+
+        if (result.success) {
+            localStorage.setItem('omkar_guest_mode', 'true');
+            localStorage.setItem('omkar_access_key', 'GUEST');
+            window.location.href = 'dashboard.html';
+        }
+    } catch (e) {
+        // Fallback: If registration fails but they accepted terms, let them see stats anyway
+        localStorage.setItem('omkar_guest_mode', 'true');
+        window.location.href = 'dashboard.html';
+    }
+}</script>
 
 </body>
 </html>

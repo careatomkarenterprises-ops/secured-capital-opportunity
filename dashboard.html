@@ -2085,6 +2085,52 @@ function renderInvestorUI(partner) {
     }, 1000);
 
 </script>
+
+    <!-- Add this right before </body> -->
+<script>
+// QUICK TEST FUNCTION - Add this at the very end
+(function() {
+    console.log("Adding API test button...");
     
+    // Create test button
+    const testBtn = document.createElement('button');
+    testBtn.innerHTML = '🔧 Test API Connection';
+    testBtn.style.cssText = `
+        position: fixed;
+        bottom: 150px;
+        right: 30px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 9999;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        border: 2px solid white;
+    `;
+    
+    testBtn.onclick = function() {
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
+        const accessKey = localStorage.getItem('omkar_access_key') || 'OMK24250330';
+        
+        console.log("Testing API...");
+        
+        fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`)
+            .then(r => r.json())
+            .then(data => {
+                console.log("API Response:", data);
+                alert("Check console (F12) for API response");
+            })
+            .catch(err => {
+                console.error("API Error:", err);
+                alert("API Error - Check console");
+            });
+    };
+    
+    document.body.appendChild(testBtn);
+})();
+</script>
 </body>
 </html>

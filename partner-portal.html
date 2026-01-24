@@ -2178,69 +2178,91 @@
         <button type="submit" class="connect-btn" style="background: #333;">View Performance Dashboard</button>
     </form>
 </div>
-    </script>
+                    
+<script>
+    // ===== 1. CONFIGURATION (Single Source of Truth) =====
+    const API_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
 
-    <!-- Google Script Integration - FIXED VERSION -->
- <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec"; // Ensure this ends in /exec
+    // ===== 2. REGULAR INVESTOR LOGIN =====
+    async function handleLogin(event) {
+        event.preventDefault();
+        const id = document.getElementById('username').value.trim().toUpperCase();
+        const mobile = document.getElementById('loginMobile').value.trim();
+        const loginBtn = document.querySelector('.connect-btn');
+        
+        const originalText = loginBtn.innerHTML;
+        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+        loginBtn.disabled = true;
 
-// 1. REGULAR INVESTOR LOGIN
-async function handleLogin(event) {
-    event.preventDefault();
-    const id = document.getElementById('username').value.trim().toUpperCase();
-    const mobile = document.getElementById('loginMobile').value.trim();
-    const loginBtn = document.querySelector('.connect-btn');
-    
-    loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+        try {
+            const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${encodeURIComponent(id)}&mobile=${encodeURIComponent(mobile)}`);
+            const result = await response.json();
 
-    try {
-        const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
-        const result = await response.json();
-
-        if (result.success) {
-            // Save data for the dashboard
-            localStorage.setItem('omkar_access_key', result.data.InvestorId);
-            localStorage.setItem('omkar_guest_mode', 'false');
-            window.location.href = 'dashboard.html';
-        } else {
-            alert("Login Failed: " + result.error);
-            loginBtn.innerHTML = 'Login to Portfolio';
+            if (result.success) {
+                // Save session details
+                localStorage.setItem('omkar_access_key', id);
+                localStorage.setItem('omkar_guest_mode', 'false');
+                localStorage.setItem('omkar_partner', JSON.stringify(result.data));
+                
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Login Failed: " + (result.error || "Invalid Credentials"));
+                loginBtn.innerHTML = originalText;
+                loginBtn.disabled = false;
+            }
+        } catch (e) {
+            console.error("Login Error:", e);
+            alert("Connection Error. Please check your internet or Google Script deployment.");
+            loginBtn.innerHTML = originalText;
+            loginBtn.disabled = false;
         }
-    } catch (e) {
-        alert("Connection Error. Please check your internet.");
-        loginBtn.innerHTML = 'Login to Portfolio';
     }
-}
 
-// 2. GUEST LEAD & LEGAL CONSENT
-async function handleGuestLogin(event) {
-    event.preventDefault();
-    const guestBtn = document.getElementById('guestBtn');
-    
-    const guestData = {
-        name: document.getElementById('guestName').value,
-        mobile: document.getElementById('guestMobile').value,
-        email: document.getElementById('guestEmail').value
-    };
+    // ===== 3. NEW INVESTOR GUEST ACCESS (Legal Shield) =====
+    async function handleGuestLogin(event) {
+        event.preventDefault();
+        const guestBtn = document.getElementById('guestBtn');
+        
+        const guestData = {
+            name: document.getElementById('guestName').value.trim(),
+            mobile: document.getElementById('guestMobile').value.trim(),
+            email: document.getElementById('guestEmail').value.trim()
+        };
 
-    guestBtn.innerHTML = 'Recording Consent...';
+        const originalText = guestBtn.innerHTML;
+        guestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Recording Consent...';
+        guestBtn.disabled = true;
 
-    try {
-        // This hits the 'registerLead' case in your GS code
-        const response = await fetch(`${API_URL}?action=registerLead&name=${encodeURIComponent(guestData.name)}&mobile=${guestData.mobile}&email=${encodeURIComponent(guestData.email)}`);
-        const result = await response.json();
+        try {
+            // Hits the 'registerLead' case in your GS v4.0 code
+            const queryParams = new URLSearchParams({
+                action: 'registerLead',
+                name: guestData.name,
+                mobile: guestData.mobile,
+                email: guestData.email,
+                source: 'Partner_Portal_Guest'
+            });
 
-        if (result.success) {
+            const response = await fetch(`${API_URL}?${queryParams.toString()}`);
+            const result = await response.json();
+
+            if (result.success) {
+                localStorage.setItem('omkar_guest_mode', 'true');
+                localStorage.setItem('omkar_access_key', 'GUEST_' + Date.now());
+                
+                alert("Legal Consent Recorded. Accessing Performance Dashboard...");
+                window.location.href = 'dashboard.html';
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (e) {
+            console.warn("Lead registration failed, but redirecting to dashboard:", e);
+            // Fallback: If your lead sheet is full/offline, still allow access since they clicked 'Accept'
             localStorage.setItem('omkar_guest_mode', 'true');
-            localStorage.setItem('omkar_access_key', 'GUEST');
+            localStorage.setItem('omkar_access_key', 'GUEST_OFFLINE');
             window.location.href = 'dashboard.html';
         }
-    } catch (e) {
-        // Fallback: If registration fails but they accepted terms, let them see stats anyway
-        localStorage.setItem('omkar_guest_mode', 'true');
-        window.location.href = 'dashboard.html';
     }
-}</script>
-
+</script>
 </body>
 </html>

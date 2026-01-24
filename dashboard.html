@@ -1318,16 +1318,15 @@
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-
 <script>
     // ============================================
-    // REAL-TIME DASHBOARD WITH GOOGLE SHEETS INTEGRATION
+    // REAL-TIME DASHBOARD - FIXED RESPONSE HANDLING
     // ============================================
 
     console.log("DASHBOARD INITIALIZED");
     
     // Your Google Apps Script URL
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyilFfDLhWqn-k6ifVGRf2J0WzBKvBn8oOkd7_j97PIBUoLI1qeTwsYaClPVQTA3ote/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
 
     // Store transactions
     let currentTransactions = [];
@@ -1361,26 +1360,21 @@
     }
 
     // ==================== MAIN DASHBOARD LOADER ====================
-   async function loadDashboard() {
-    const accessKey = localStorage.getItem('omkar_access_key');
-    if (!accessKey) {
-        window.location.href = 'partner-portal.html';
-        return;
-    }
-
-    try {
-        // Calls the 'getPartner' action in your Apps Script
-        const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-        const partnerData = await response.json();
-
-        if (partnerData) {
-            // This function should map the data to your HTML IDs (e.g., totalPrincipal, monthlyReturn)
-            updateDashboardUI(partnerData);
+    async function loadDashboard() {
+        console.log("Loading dashboard data...");
+        
+        const accessKey = localStorage.getItem('omkar_access_key');
+        const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+        
+        console.log("Session:", { accessKey, isGuest });
+        
+        // CRITICAL: If no session at all, redirect to portal
+        if (!accessKey && !isGuest) {
+            console.warn("No session found, redirecting to portal");
+            window.location.href = 'partner-portal.html';
+            return;
         }
-    } catch (error) {
-        console.error("Error loading dashboard:", error);
-    }
-}        
+        
         // Show loading state
         document.getElementById('partnerName').textContent = "Loading...";
         document.getElementById('partnerTier').textContent = "Please wait";
@@ -1414,8 +1408,11 @@
                 throw new Error(`HTTP ${response.status}`);
             }
             
-            const stats = await response.json();
-            console.log("Company stats:", stats);
+            const result = await response.json();
+            console.log("Company stats response:", result);
+            
+            // FIXED: Extract data from result
+            const stats = result.data || result;
             
             // Update UI with real data
             document.getElementById('partnerName').textContent = "Company Performance Overview";
@@ -1481,10 +1478,14 @@
                 throw new Error(`Partner API Error: ${partnerResponse.status}`);
             }
             
-            const partner = await partnerResponse.json();
-            console.log("Partner data:", partner);
+            const result = await partnerResponse.json();
+            console.log("Partner API response:", result);
             
-            if (partner && !partner.error) {
+            // FIXED: Check success and extract data
+            if (result.success && result.data) {
+                const partner = result.data;
+                console.log("Partner data extracted:", partner);
+                
                 // Render investor UI
                 renderInvestorUI(partner);
                 
@@ -1492,9 +1493,9 @@
                 try {
                     const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
                     if (txResponse.ok) {
-                        const transactions = await txResponse.json();
-                        if (transactions && transactions.length > 0) {
-                            updateTransactionList(transactions);
+                        const txResult = await txResponse.json();
+                        if (txResult.success && txResult.data && txResult.data.length > 0) {
+                            updateTransactionList(txResult.data);
                         } else {
                             showDefaultTransactions();
                         }
@@ -1508,8 +1509,8 @@
                 initChart(partner);
                 
             } else {
-                console.warn("Partner not found or error:", partner);
-                showInvestorNotFound();
+                console.warn("Partner not found or error:", result);
+                showInvestorNotFound(result.error || "Partner not found");
             }
             
         } catch (error) {
@@ -1520,23 +1521,23 @@
 
     // ==================== RENDER INVESTOR UI ====================
     function renderInvestorUI(partner) {
-        console.log("Rendering investor UI for:", partner.FullName);
+        console.log("Rendering investor UI for partner:", partner);
         
-        // Basic info
-        document.getElementById('partnerName').textContent = partner.FullName || 'Partner';
-        document.getElementById('partnerTier').textContent = getTier(partner.PrincipalAmount);
+        // Basic info - FIXED: Use correct property names
+        document.getElementById('partnerName').textContent = partner.FullName || partner.Name || 'Partner';
+        document.getElementById('partnerTier').textContent = getTier(partner.PrincipalAmount || partner.InvestmentAmount);
         
-        // Financial stats
-        document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount);
-        document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount);
-        document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn);
+        // Financial stats - FIXED: Handle different property names
+        document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount || partner.InvestmentAmount || 0);
+        document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount || partner.InvestmentAmount || 0);
+        document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn || partner.MonthlyReturn || 0);
         document.getElementById('totalReturns').textContent = formatCurrency(partner.TotalReturnsPaid || 0);
         
         // Agreement details
-        document.getElementById('startDate').textContent = formatDate(partner.InvestmentDate);
+        document.getElementById('startDate').textContent = formatDate(partner.InvestmentDate || partner.StartDate);
         
-        if (partner.AgreementExpiryDate) {
-            const expiryDate = new Date(partner.AgreementExpiryDate);
+        if (partner.AgreementExpiryDate || partner.ExpiryDate) {
+            const expiryDate = new Date(partner.AgreementExpiryDate || partner.ExpiryDate);
             const daysRemaining = Math.max(0, Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24)));
             const expiryEl = document.getElementById('agreementExpiry');
             expiryEl.textContent = daysRemaining;
@@ -1545,14 +1546,17 @@
         }
         
         // PDC details
-        if (partner.PDC_Details) {
-            const pdcCount = partner.PDC_Details.split(',').length;
+        if (partner.PDC_Details || partner.PDC || partner.ChequeDetails) {
+            const pdcDetails = partner.PDC_Details || partner.PDC || partner.ChequeDetails;
+            const pdcCount = pdcDetails.split(',').length;
             document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
+        } else {
+            document.getElementById('pdcCount').textContent = "Details not available";
         }
         
         // Partnership tenure
-        if (partner.InvestmentDate) {
-            const startDate = new Date(partner.InvestmentDate);
+        if (partner.InvestmentDate || partner.StartDate) {
+            const startDate = new Date(partner.InvestmentDate || partner.StartDate);
             const today = new Date();
             const months = (today.getFullYear() - startDate.getFullYear()) * 12 + 
                           (today.getMonth() - startDate.getMonth());
@@ -1560,8 +1564,16 @@
         }
         
         // Agreement ID
-        if (partner.AgreementID) {
-            document.getElementById('agreementId').textContent = partner.AgreementID;
+        if (partner.AgreementID || partner.ContractID) {
+            document.getElementById('agreementId').textContent = partner.AgreementID || partner.ContractID;
+        }
+        
+        // Monthly Rate
+        if (partner.PrincipalAmount || partner.InvestmentAmount) {
+            const principal = Number(partner.PrincipalAmount || partner.InvestmentAmount);
+            const monthlyReturn = Number(partner.FixedMonthlyReturn || partner.MonthlyReturn || 0);
+            const monthlyRate = principal > 0 ? ((monthlyReturn / principal) * 100).toFixed(1) : '0.0';
+            document.getElementById('monthlyRate').textContent = `${monthlyRate}%`;
         }
     }
 
@@ -1583,7 +1595,11 @@
         }
         
         // Sort by date (newest first)
-        transactions.sort((a, b) => new Date(b.TransactionDate) - new Date(a.TransactionDate));
+        transactions.sort((a, b) => {
+            const dateA = new Date(a.TransactionDate || a.Date || 0);
+            const dateB = new Date(b.TransactionDate || b.Date || 0);
+            return dateB - dateA;
+        });
         
         // Show last 10 transactions
         const recentTransactions = transactions.slice(0, 10);
@@ -1592,8 +1608,11 @@
             const transactionDiv = document.createElement('div');
             transactionDiv.className = 'transaction-item';
             
-            const type = tx['TransactionType (Monthly Return, Performance Bonus, Deposit)'] || 'Monthly Return';
-            const date = formatDate(tx.TransactionDate);
+            const type = tx['TransactionType (Monthly Return, Performance Bonus, Deposit)'] || 
+                        tx.TransactionType || 
+                        tx.Type || 
+                        'Monthly Return';
+            const date = formatDate(tx.TransactionDate || tx.Date);
             const amount = Number(tx.Amount || 0);
             const status = tx.Status || 'Completed';
             
@@ -1711,8 +1730,8 @@
         if (!ctx) return;
         
         // Create sample growth data based on principal
-        const principal = Number(partner.PrincipalAmount) || 500000;
-        const monthlyReturn = Number(partner.FixedMonthlyReturn) || (principal * 0.022);
+        const principal = Number(partner.PrincipalAmount || partner.InvestmentAmount) || 500000;
+        const monthlyReturn = Number(partner.FixedMonthlyReturn || partner.MonthlyReturn) || (principal * 0.022);
         
         // Generate 12 months of growth data
         const labels = [];
@@ -1804,7 +1823,7 @@
         }
     }
 
-    function showInvestorNotFound() {
+    function showInvestorNotFound(errorMessage) {
         document.getElementById('partnerName').textContent = "Account Not Found";
         document.getElementById('partnerTier').textContent = "Please Contact Support";
         document.getElementById('partnerTier').style.background = "rgba(239, 68, 68, 0.1)";
@@ -1822,7 +1841,7 @@
                     </div>
                     <div class="notice-content">
                         <h4>Account Access Issue</h4>
-                        <p>Your investor account was not found in our records. Please contact support to verify your credentials.</p>
+                        <p>${errorMessage || "Your investor account was not found in our records. Please contact support to verify your credentials."}</p>
                     </div>
                     <a href="tel:+918169302861" class="connect-btn" style="background: #ef4444;">
                         <i class="fas fa-phone-alt"></i> Call Support
@@ -1866,16 +1885,29 @@
         }, 5 * 60 * 1000);
     });
 
-    // ==================== EXPORT/PRINT FUNCTIONS ====================
-    // Add export functionality if needed
-    window.downloadStatement = function() {
-        const accessKey = localStorage.getItem('omkar_access_key');
-        if (accessKey && !accessKey.startsWith('GUEST_')) {
-            window.open(`${SCRIPT_URL}?action=exportStatement&accessKey=${accessKey}`, '_blank');
-        } else {
-            alert("Statement export available only for registered partners.");
-        }
+    // ==================== DEBUG FUNCTION ====================
+    // Add this back for debugging
+    window.debugSession = function() {
+        console.log("=== DEBUG SESSION ===");
+        console.log("Access Key:", localStorage.getItem('omkar_access_key'));
+        console.log("Guest Mode:", localStorage.getItem('omkar_guest_mode'));
+        console.log("All localStorage:", JSON.stringify(localStorage, null, 2));
+        
+        // Test API directly
+        fetch(`${SCRIPT_URL}?action=test`)
+            .then(r => r.json())
+            .then(data => console.log("API Test:", data))
+            .catch(err => console.error("API Error:", err));
     };
+
+    // Add debug button to page
+    setTimeout(() => {
+        const debugBtn = document.createElement('button');
+        debugBtn.innerHTML = '<i class="fas fa-bug"></i>';
+        debugBtn.style.cssText = 'position: fixed; bottom: 100px; right: 30px; background: #ff9900; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 9999;';
+        debugBtn.onclick = window.debugSession;
+        document.body.appendChild(debugBtn);
+    }, 1000);
 
 </script>
     

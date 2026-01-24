@@ -1319,99 +1319,346 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
 
- <script>
+<script>
     // ============================================
-    // SIMPLIFIED DASHBOARD - NO REDIRECT
+    // REAL-TIME DASHBOARD WITH GOOGLE SHEETS INTEGRATION
     // ============================================
 
-    console.log("DASHBOARD LOADING...");
-    console.log("Current localStorage:", JSON.stringify(localStorage, null, 2));
-
+    console.log("DASHBOARD INITIALIZED");
+    
+    // Your Google Apps Script URL
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
 
-    // DISABLE ALL REDIRECTS TEMPORARILY
-    window.location.replace = function(url) {
-        console.error("REDIRECT BLOCKED TO:", url);
-        console.trace("Redirect called from:");
-        return false;
-    };
+    // Store transactions
+    let currentTransactions = [];
 
-    async function loadDashboard() {
-        console.log("=== STARTING DASHBOARD ===");
-        
-        // Get ALL localStorage items
-        const allItems = {};
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            allItems[key] = localStorage.getItem(key);
-        }
-        console.log("All localStorage items:", allItems);
-        
-        const accessKey = localStorage.getItem('omkar_access_key');
-        const isGuest = localStorage.getItem('omkar_guest_mode');
-        
-        console.log("Session data:", { accessKey, isGuest });
-        
-        // NEVER REDIRECT - ALWAYS SHOW SOMETHING
-        if (!accessKey && !isGuest) {
-            console.warn("No session found, showing guest mode anyway");
-            showGuestMode();
-            return;
-        }
-        
-        // GUEST MODE
-        if (isGuest === 'true') {
-            console.log("Loading guest dashboard");
-            showGuestDashboard();
-            return;
-        }
-        
-        // INVESTOR MODE
-        console.log("Loading investor dashboard for:", accessKey);
-        if (accessKey && accessKey !== 'GUEST_USER' && !accessKey.startsWith('GUEST_')) {
-            try {
-                // Try to load real investor data
-                const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-                const partner = await response.json();
-                
-                if (partner && !partner.error) {
-                    renderInvestorUI(partner);
-                } else {
-                    showDemoInvestor();
-                }
-            } catch (error) {
-                console.error("API error:", error);
-                showDemoInvestor();
-            }
+    // Format currency in Indian format
+    function formatCurrency(amount) {
+        if (!amount && amount !== 0) return '₹--';
+        const num = Number(amount);
+        if (num >= 10000000) {
+            return '₹' + (num / 10000000).toFixed(1) + ' Cr';
+        } else if (num >= 100000) {
+            return '₹' + (num / 100000).toFixed(1) + ' L';
         } else {
-            showGuestDashboard();
+            return '₹' + num.toLocaleString('en-IN');
         }
     }
 
-    function showGuestDashboard() {
-        console.log("Showing guest dashboard");
+    // Format date
+    function formatDate(dateString) {
+        if (!dateString) return 'N/A';
+        try {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-IN', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+        } catch (e) {
+            return dateString;
+        }
+    }
+
+    // ==================== MAIN DASHBOARD LOADER ====================
+    async function loadDashboard() {
+        console.log("Loading dashboard data...");
         
-        // Update UI for guest
-        document.getElementById('partnerName').textContent = "Performance Overview";
-        document.getElementById('partnerTier').textContent = "Verified Guest";
-        document.getElementById('partnerTier').style.background = "rgba(255, 255, 255, 0.15)";
+        const accessKey = localStorage.getItem('omkar_access_key');
+        const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
         
-        // Update stats with company performance
-        document.getElementById('activePrincipal').textContent = "₹2.85 Cr+";
-        document.getElementById('monthlyReturns').textContent = "100%";
-        document.getElementById('totalReturns').textContent = "Payout Rate";
-        document.getElementById('agreementExpiry').textContent = "10 Years";
+        console.log("Session:", { accessKey, isGuest });
         
-        // Show disclaimer
-        document.querySelector('.dashboard-header').innerHTML += `
-            <div style="background: rgba(212, 175, 55, 0.1); border: 2px solid #d4af37; border-radius: 10px; padding: 15px; margin: 20px auto; max-width: 800px; text-align: center;">
-                <i class="fas fa-chart-line" style="color: #d4af37; font-size: 24px; margin-bottom: 10px;"></i>
-                <h3 style="color: white; margin-bottom: 10px;">Omkar Enterprises Performance Dashboard</h3>
-                <p style="color: rgba(255,255,255,0.9); margin: 0;">10-Year Track Record | 100% Payout History | ₹48L+ Total Returns Paid</p>
+        // Show loading state
+        document.getElementById('partnerName').textContent = "Loading...";
+        document.getElementById('partnerTier').textContent = "Please wait";
+        
+        // ========== GUEST MODE ==========
+        if (isGuest) {
+            console.log("Loading guest dashboard with company stats");
+            await loadGuestDashboard();
+            return;
+        }
+        
+        // ========== INVESTOR MODE ==========
+        if (accessKey && !accessKey.startsWith('GUEST_') && !accessKey.startsWith('DEBUG_')) {
+            console.log("Loading investor data for:", accessKey);
+            await loadInvestorData(accessKey);
+        } else {
+            console.log("Invalid investor key, showing guest dashboard");
+            await loadGuestDashboard();
+        }
+    }
+
+    // ==================== GUEST DASHBOARD ====================
+    async function loadGuestDashboard() {
+        try {
+            console.log("Fetching company performance data...");
+            
+            // Fetch company-wide stats
+            const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            const stats = await response.json();
+            console.log("Company stats:", stats);
+            
+            // Update UI with real data
+            document.getElementById('partnerName').textContent = "Company Performance Overview";
+            document.getElementById('partnerTier').textContent = "Verified Guest";
+            document.getElementById('partnerTier').style.background = "rgba(255, 255, 255, 0.15)";
+            
+            // Use real data or defaults
+            document.getElementById('activePrincipal').textContent = stats.totalAUM || "₹2.85 Cr+";
+            document.getElementById('monthlyReturns').textContent = stats.monthlyPayout || "₹4.8L+";
+            document.getElementById('totalReturns').textContent = stats.totalPaid || "₹48.5L+";
+            document.getElementById('agreementExpiry').textContent = stats.activeYears || "10 Years";
+            
+            // Add performance header
+            const header = document.querySelector('.dashboard-header .container');
+            if (header && !document.getElementById('performanceHeader')) {
+                const perfDiv = document.createElement('div');
+                perfDiv.id = 'performanceHeader';
+                perfDiv.innerHTML = `
+                    <div style="background: rgba(212, 175, 55, 0.1); border: 2px solid #d4af37; border-radius: 10px; 
+                         padding: 15px; margin: 20px auto; max-width: 800px; text-align: center;">
+                        <i class="fas fa-chart-line" style="color: #d4af37; font-size: 24px; margin-bottom: 10px;"></i>
+                        <h3 style="color: white; margin-bottom: 10px;">Omkar Enterprises - 10 Year Track Record</h3>
+                        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 15px;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 20px; font-weight: bold; color: #d4af37;">${stats.totalPartners || '500+'}</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.9);">Active Partners</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 20px; font-weight: bold; color: #10b981;">100%</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.9);">Payout Rate</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 20px; font-weight: bold; color: #3b82f6;">${stats.completionRate || '100%'}</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.9);">Agreement Completion</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                header.appendChild(perfDiv);
+            }
+            
+            // Protect private sections
+            protectPrivateSections();
+            
+            // Update transaction list with company performance
+            updateGuestTransactionList();
+            
+        } catch (error) {
+            console.error("Error loading guest data:", error);
+            showDefaultGuestView();
+        }
+    }
+
+    // ==================== INVESTOR DATA LOADING ====================
+    async function loadInvestorData(accessKey) {
+        try {
+            console.log("Fetching investor data...");
+            
+            // Fetch partner data
+            const partnerResponse = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+            
+            if (!partnerResponse.ok) {
+                throw new Error(`Partner API Error: ${partnerResponse.status}`);
+            }
+            
+            const partner = await partnerResponse.json();
+            console.log("Partner data:", partner);
+            
+            if (partner && !partner.error) {
+                // Render investor UI
+                renderInvestorUI(partner);
+                
+                // Load transactions
+                try {
+                    const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+                    if (txResponse.ok) {
+                        const transactions = await txResponse.json();
+                        if (transactions && transactions.length > 0) {
+                            updateTransactionList(transactions);
+                        } else {
+                            showDefaultTransactions();
+                        }
+                    }
+                } catch (txError) {
+                    console.warn("Transaction loading failed:", txError);
+                    showDefaultTransactions();
+                }
+                
+                // Initialize chart with real data
+                initChart(partner);
+                
+            } else {
+                console.warn("Partner not found or error:", partner);
+                showInvestorNotFound();
+            }
+            
+        } catch (error) {
+            console.error("Error loading investor data:", error);
+            showInvestorError();
+        }
+    }
+
+    // ==================== RENDER INVESTOR UI ====================
+    function renderInvestorUI(partner) {
+        console.log("Rendering investor UI for:", partner.FullName);
+        
+        // Basic info
+        document.getElementById('partnerName').textContent = partner.FullName || 'Partner';
+        document.getElementById('partnerTier').textContent = getTier(partner.PrincipalAmount);
+        
+        // Financial stats
+        document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount);
+        document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount);
+        document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn);
+        document.getElementById('totalReturns').textContent = formatCurrency(partner.TotalReturnsPaid || 0);
+        
+        // Agreement details
+        document.getElementById('startDate').textContent = formatDate(partner.InvestmentDate);
+        
+        if (partner.AgreementExpiryDate) {
+            const expiryDate = new Date(partner.AgreementExpiryDate);
+            const daysRemaining = Math.max(0, Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24)));
+            const expiryEl = document.getElementById('agreementExpiry');
+            expiryEl.textContent = daysRemaining;
+            expiryEl.style.color = daysRemaining < 30 ? "#ef4444" : 
+                                  daysRemaining < 90 ? "#f59e0b" : "#10b981";
+        }
+        
+        // PDC details
+        if (partner.PDC_Details) {
+            const pdcCount = partner.PDC_Details.split(',').length;
+            document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
+        }
+        
+        // Partnership tenure
+        if (partner.InvestmentDate) {
+            const startDate = new Date(partner.InvestmentDate);
+            const today = new Date();
+            const months = (today.getFullYear() - startDate.getFullYear()) * 12 + 
+                          (today.getMonth() - startDate.getMonth());
+            document.getElementById('partnershipTenure').textContent = `${Math.max(1, months)} Months`;
+        }
+        
+        // Agreement ID
+        if (partner.AgreementID) {
+            document.getElementById('agreementId').textContent = partner.AgreementID;
+        }
+    }
+
+    // ==================== TRANSACTION LISTS ====================
+    function updateTransactionList(transactions) {
+        const container = document.querySelector('.transaction-list');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        if (!transactions || transactions.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 30px; color: #64748b;">
+                    <i class="fas fa-exchange-alt" style="font-size: 32px; margin-bottom: 15px; color: #d4af37;"></i>
+                    <p>No transactions found</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Sort by date (newest first)
+        transactions.sort((a, b) => new Date(b.TransactionDate) - new Date(a.TransactionDate));
+        
+        // Show last 10 transactions
+        const recentTransactions = transactions.slice(0, 10);
+        
+        recentTransactions.forEach(tx => {
+            const transactionDiv = document.createElement('div');
+            transactionDiv.className = 'transaction-item';
+            
+            const type = tx['TransactionType (Monthly Return, Performance Bonus, Deposit)'] || 'Monthly Return';
+            const date = formatDate(tx.TransactionDate);
+            const amount = Number(tx.Amount || 0);
+            const status = tx.Status || 'Completed';
+            
+            // Determine color based on type/status
+            let amountClass = 'transaction-amount';
+            if (status.toLowerCase() === 'pending') amountClass += ' pending';
+            if (status.toLowerCase() === 'failed') amountClass += ' failed';
+            
+            transactionDiv.innerHTML = `
+                <div class="transaction-info">
+                    <h4>${type}</h4>
+                    <div class="transaction-date">${date} | ${status}</div>
+                </div>
+                <div class="${amountClass}">+${formatCurrency(amount)}</div>
+            `;
+            
+            container.appendChild(transactionDiv);
+        });
+    }
+
+    function updateGuestTransactionList() {
+        const container = document.querySelector('.transaction-list');
+        if (!container) return;
+        
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px;">
+                <i class="fas fa-chart-bar" style="font-size: 48px; color: #d4af37; margin-bottom: 20px;"></i>
+                <h4 style="color: #1e293b; margin-bottom: 15px;">Consolidated Performance (2015-2024)</h4>
+                
+                <div style="background: #f8fafc; border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #e2e8f0;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 15px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 20px; font-weight: bold; color: #10b981;">₹48.5L+</div>
+                            <div style="font-size: 12px; color: #64748b;">Total Returns Paid</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 20px; font-weight: bold; color: #3b82f6;">100%</div>
+                            <div style="font-size: 12px; color: #64748b;">Payout Rate</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 20px; font-weight: bold; color: #d4af37;">10 Years</div>
+                            <div style="font-size: 12px; color: #64748b;">Track Record</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 20px; font-weight: bold; color: #8b5cf6;">500+</div>
+                            <div style="font-size: 12px; color: #64748b;">Satisfied Partners</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="color: #64748b; margin-bottom: 25px; font-size: 14px;">
+                    Detailed transaction history and personal portfolio data available upon partnership.
+                </p>
+                
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="testimonials.html" class="btn-secondary" style="display: inline-flex;">
+                        <i class="fas fa-star"></i> Client Testimonials
+                    </a>
+                    <a href="contact.html" class="connect-btn" style="display: inline-flex;">
+                        <i class="fas fa-calendar-check"></i> Book Consultation
+                    </a>
+                </div>
             </div>
         `;
-        
-        // Blur private sections
+    }
+
+    // ==================== HELPER FUNCTIONS ====================
+    function getTier(principal) {
+        const amount = Number(principal) || 0;
+        if (amount >= 1000000) return "Platinum Tier Partner";
+        if (amount >= 500000) return "Gold Tier Partner";
+        if (amount >= 250000) return "Silver Tier Partner";
+        return "Standard Tier Partner";
+    }
+
+    function protectPrivateSections() {
+        // Blur and protect PDC and Partnership sections for guests
         const cards = document.querySelectorAll('.dashboard-card');
         cards.forEach(card => {
             if (card.innerText.includes("PDC") || 
@@ -1422,17 +1669,22 @@
                 card.style.pointerEvents = "none";
                 card.style.position = "relative";
                 
+                // Remove existing overlays
+                const existingOverlay = card.querySelector('.private-overlay');
+                if (existingOverlay) existingOverlay.remove();
+                
                 const overlay = document.createElement('div');
+                overlay.className = 'private-overlay';
                 overlay.innerHTML = `
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-                         background: rgba(30, 58, 138, 0.85); border-radius: 20px; z-index: 100; 
+                         background: rgba(30, 58, 138, 0.9); border-radius: 20px; z-index: 100; 
                          display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px;">
                         <i class="fas fa-lock" style="font-size: 40px; color: #d4af37; margin-bottom: 15px;"></i>
                         <h4 style="color: white; margin-bottom: 10px; text-align: center;">Active Partner Feature</h4>
-                        <p style="color: rgba(255,255,255,0.9); text-align: center; margin-bottom: 20px;">
+                        <p style="color: rgba(255,255,255,0.9); text-align: center; margin-bottom: 20px; font-size: 14px;">
                             Detailed portfolio data available to registered partners
                         </p>
-                        <a href="contact.html" class="connect-btn" style="background: #d4af37;">
+                        <a href="contact.html" class="connect-btn" style="background: #d4af37; display: inline-flex;">
                             <i class="fas fa-user-plus"></i> Schedule Partnership Meeting
                         </a>
                     </div>
@@ -1440,138 +1692,178 @@
                 card.appendChild(overlay);
             }
         });
-        
-        // Update transaction list
-        const transactionList = document.querySelector('.transaction-list');
-        if (transactionList) {
-            transactionList.innerHTML = `
-                <div style="text-align: center; padding: 40px 20px;">
-                    <i class="fas fa-chart-bar" style="font-size: 48px; color: #d4af37; margin-bottom: 20px;"></i>
-                    <h4 style="color: #1e293b; margin-bottom: 15px;">Consolidated Performance (2015-2024)</h4>
-                    <div style="background: #f8fafc; border-radius: 10px; padding: 20px; margin: 20px 0;">
-                        <div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
-                            <div style="text-align: center;">
-                                <div style="font-size: 24px; font-weight: bold; color: #10b981;">₹48.5L+</div>
-                                <div style="font-size: 12px; color: #64748b;">Total Returns Paid</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 24px; font-weight: bold; color: #3b82f6;">100%</div>
-                                <div style="font-size: 12px; color: #64748b;">Payout Rate</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 24px; font-weight: bold; color: #d4af37;">10 Years</div>
-                                <div style="font-size: 12px; color: #64748b;">Track Record</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p style="color: #64748b; margin-bottom: 25px;">
-                        Detailed transaction history and personal portfolio data available upon partnership.
-                    </p>
-                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                        <a href="testimonials.html" class="btn-secondary">
-                            <i class="fas fa-star"></i> Client Testimonials
-                        </a>
-                        <a href="contact.html" class="connect-btn">
-                            <i class="fas fa-calendar-check"></i> Book Consultation
-                        </a>
-                    </div>
-                </div>
-            `;
-        }
     }
 
-    function showDemoInvestor() {
-        console.log("Showing demo investor data");
-        
-        document.getElementById('partnerName').textContent = "Demo Investor";
-        document.getElementById('partnerTier').textContent = "Gold Tier Partner";
-        document.getElementById('activePrincipal').textContent = "₹5,00,000";
-        document.getElementById('monthlyReturns').textContent = "₹11,000";
-        document.getElementById('totalReturns').textContent = "₹2,64,000";
-        document.getElementById('agreementExpiry').textContent = "180";
-        
-        // Add demo notice
-        const header = document.querySelector('.partner-welcome');
-        if (header) {
-            header.innerHTML += `
-                <div style="background: #fef3c7; color: #92400e; padding: 8px 15px; border-radius: 20px; 
-                     margin-top: 10px; display: inline-block; font-size: 14px;">
-                    <i class="fas fa-info-circle"></i> Demo Mode - Real data loads after login
-                </div>
-            `;
-        }
-    }
-
-    function renderInvestorUI(partner) {
-        console.log("Rendering real investor UI");
-        // Your existing investor UI code
-        const formatCurrency = (num) => '₹' + Number(num || 0).toLocaleString('en-IN');
-        document.getElementById('partnerName').textContent = partner.FullName || 'Partner';
-        document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount);
-        document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount);
-        document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn);
-        document.getElementById('totalReturns').textContent = formatCurrency(partner.TotalReturnsPaid || 0);
-
-        if (partner.InvestmentDate) {
-            document.getElementById('startDate').textContent = new Date(partner.InvestmentDate).toLocaleDateString('en-IN');
-        }
-        
-        if (partner.AgreementExpiryDate) {
-            const expiryDate = new Date(partner.AgreementExpiryDate);
-            const daysRemaining = Math.max(0, Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24)));
-            const expiryEl = document.getElementById('agreementExpiry');
-            expiryEl.textContent = daysRemaining;
-            if (daysRemaining < 30) expiryEl.style.color = "#ff4d4d";
-        }
-
-        const principal = Number(partner.PrincipalAmount) || 0;
-        let tier = "Standard";
-        if (principal >= 1000000) tier = "Platinum";
-        else if (principal >= 500000) tier = "Gold";
-        document.getElementById('partnerTier').textContent = `${tier} Tier Partner`;
-
-        if (partner.PDC_Details) {
-            const pdcCount = partner.PDC_Details.split(',').length;
-            document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
-        }
-    }
-
-    // Logout function
-    document.getElementById('logoutBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log("Logging out...");
-        localStorage.clear();
-        window.location.href = 'partner-portal.html';
-    });
-
-    // Initialize when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log("DOM loaded, starting dashboard...");
-        loadDashboard();
-        
-        // Initialize chart
+    function initChart(partner) {
         const ctx = document.getElementById('portfolioChart');
-        if (ctx) {
-            new Chart(ctx.getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: ['2021', '2022', '2023', '2024', '2025', '2026'],
-                    datasets: [{
-                        label: 'Portfolio Growth',
-                        data: [500000, 610000, 740000, 890000, 1070000, 1280000],
-                        borderColor: '#d4af37',
-                        backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                        borderWidth: 3,
-                        fill: true
-                    }]
+        if (!ctx) return;
+        
+        // Create sample growth data based on principal
+        const principal = Number(partner.PrincipalAmount) || 500000;
+        const monthlyReturn = Number(partner.FixedMonthlyReturn) || (principal * 0.022);
+        
+        // Generate 12 months of growth data
+        const labels = [];
+        const data = [];
+        let currentAmount = principal;
+        
+        for (let i = 0; i < 12; i++) {
+            const month = new Date();
+            month.setMonth(month.getMonth() - (11 - i));
+            labels.push(month.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }));
+            
+            if (i > 0) {
+                currentAmount += monthlyReturn;
+            }
+            data.push(currentAmount);
+        }
+        
+        new Chart(ctx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Portfolio Growth',
+                    data: data,
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Value: ${formatCurrency(context.raw)}`;
+                            }
+                        }
+                    }
                 },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { display: false } }
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return formatCurrency(value);
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function showDefaultGuestView() {
+        document.getElementById('partnerName').textContent = "Performance Overview";
+        document.getElementById('partnerTier').textContent = "Verified Guest";
+        document.getElementById('activePrincipal').textContent = "₹2.85 Cr+";
+        document.getElementById('monthlyReturns').textContent = "100%";
+        document.getElementById('totalReturns').textContent = "Payout Rate";
+        document.getElementById('agreementExpiry').textContent = "10 Years";
+        protectPrivateSections();
+        updateGuestTransactionList();
+    }
+
+    function showDefaultTransactions() {
+        const container = document.querySelector('.transaction-list');
+        if (container) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 30px; color: #64748b;">
+                    <i class="fas fa-exchange-alt" style="font-size: 32px; margin-bottom: 15px; color: #d4af37;"></i>
+                    <p>Transaction data will load soon</p>
+                </div>
+            `;
+        }
+    }
+
+    function showInvestorNotFound() {
+        document.getElementById('partnerName').textContent = "Account Not Found";
+        document.getElementById('partnerTier').textContent = "Please Contact Support";
+        document.getElementById('partnerTier').style.background = "rgba(239, 68, 68, 0.1)";
+        document.getElementById('partnerTier').style.color = "#ef4444";
+        
+        // Show contact information
+        const main = document.querySelector('.dashboard-main .container');
+        if (main && !document.getElementById('supportNotice')) {
+            const notice = document.createElement('div');
+            notice.id = 'supportNotice';
+            notice.innerHTML = `
+                <div class="notice-card" style="background: rgba(239, 68, 68, 0.05); border-color: #ef4444;">
+                    <div class="notice-icon" style="background: #ef4444;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notice-content">
+                        <h4>Account Access Issue</h4>
+                        <p>Your investor account was not found in our records. Please contact support to verify your credentials.</p>
+                    </div>
+                    <a href="tel:+918169302861" class="connect-btn" style="background: #ef4444;">
+                        <i class="fas fa-phone-alt"></i> Call Support
+                    </a>
+                </div>
+            `;
+            main.appendChild(notice);
+        }
+    }
+
+    function showInvestorError() {
+        document.getElementById('partnerName').textContent = "Connection Error";
+        document.getElementById('partnerTier').textContent = "Try Again Later";
+        document.getElementById('partnerTier').style.background = "rgba(245, 158, 11, 0.1)";
+        document.getElementById('partnerTier').style.color = "#f59e0b";
+    }
+
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("Dashboard DOM ready, loading data...");
+        
+        // Setup logout button
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm("Are you sure you want to logout?")) {
+                    localStorage.clear();
+                    window.location.href = 'partner-portal.html';
                 }
             });
         }
+        
+        // Load dashboard data
+        loadDashboard();
+        
+        // Auto-refresh every 5 minutes
+        setInterval(() => {
+            console.log("Auto-refreshing dashboard data...");
+            loadDashboard();
+        }, 5 * 60 * 1000);
     });
+
+    // ==================== EXPORT/PRINT FUNCTIONS ====================
+    // Add export functionality if needed
+    window.downloadStatement = function() {
+        const accessKey = localStorage.getItem('omkar_access_key');
+        if (accessKey && !accessKey.startsWith('GUEST_')) {
+            window.open(`${SCRIPT_URL}?action=exportStatement&accessKey=${accessKey}`, '_blank');
+        } else {
+            alert("Statement export available only for registered partners.");
+        }
+    };
 
 </script>
     

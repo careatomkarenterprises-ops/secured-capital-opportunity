@@ -1327,162 +1327,187 @@
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec';
 
+// 1. CONFIGURATION - Ensure this matches your latest Deployment URL
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec"; 
+
+// Global variable to store transactions for the PDF generator
+let currentTransactions = [];
+
+/**
+ * MAIN LOAD FUNCTION
+ * Automatically handles Real Investors vs. Verified Guests
+ */
 async function loadLiveDashboard() {
     const accessKey = localStorage.getItem('omkar_access_key');
+    const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+
+    // Security Gate: Redirect if no session exists
     if (!accessKey) {
         window.location.replace('partner-portal.html');
         return;
     }
 
     try {
-        // Fetch Live Partner Data
-        console.log("Fetching data for:", accessKey);
+        // ===== CASE A: VERIFIED GUEST MODE (Legal Shield) =====
+        if (isGuest) {
+            console.log("Shield Active: Loading Performance Stats for Guest");
+            const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
+            const stats = await response.json();
+            
+            renderGuestUI(stats);
+            return; // Stop here for Guests
+        }
+
+        // ===== CASE B: REAL INVESTOR MODE =====
+        console.log("Syncing Data for Investor:", accessKey);
         const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
         
-        if (!response.ok) {
-            throw new Error(`API Error: ${response.status}`);
-        }
-        
+        if (!response.ok) throw new Error(`API Error: ${response.status}`);
         const partner = await response.json();
-        console.log("Partner data received:", partner);
 
         if (partner) {
-            // ===== 1. BASIC PARTNER INFO =====
-            document.getElementById('partnerName').textContent = partner.FullName || 'Partner';
-
-            // ===== 2. STATS CARDS =====
-            // Format currency helper
-            const formatCurrency = (num) => '₹' + Number(num || 0).toLocaleString('en-IN');
-
-            // Active Principal
-            if (partner.PrincipalAmount) {
-                document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount);
-                document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount);
-            }
-
-            // Monthly Returns
-            if (partner.FixedMonthlyReturn) {
-                document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn);
-            }
-
-            // Total Returns Paid
-            document.getElementById('totalReturns').textContent = formatCurrency(partner.TotalReturnsPaid || 0);
-
-            // Agreement Expiry (Calculate days remaining)
-            if (partner.AgreementExpiryDate) {
-                const expiryDate = new Date(partner.AgreementExpiryDate);
-                const today = new Date();
-                const daysRemaining = Math.max(0, Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24)));
-                document.getElementById('agreementExpiry').textContent = daysRemaining;
-            }
-
-            // ===== 3. PARTNERSHIP DETAILS =====
-            // Start Date
-            if (partner.InvestmentDate) {
-                const startDate = new Date(partner.InvestmentDate);
-                document.getElementById('startDate').textContent = startDate.toLocaleDateString('en-IN', {
-                    day: 'numeric',
-                    month: 'short',
-                    year: 'numeric'
-                });
-            }
-
-            // Tenure (Calculate from InvestmentDate to AgreementExpiryDate)
-            if (partner.InvestmentDate && partner.AgreementExpiryDate) {
-                const start = new Date(partner.InvestmentDate);
-                const end = new Date(partner.AgreementExpiryDate);
-                const tenureMonths = Math.round((end - start) / (1000 * 60 * 60 * 24 * 30.44));
-                document.getElementById('partnershipTenure').textContent = tenureMonths + " Months";
-            }
-
-            // Monthly Rate (Convert decimal to percentage)
-            if (partner.MonthlyReturnsRate) {
-                const rate = Number(partner.MonthlyReturnsRate) * 100;
-                document.getElementById('monthlyRate').textContent = rate.toFixed(1) + "%";
-            }
-
-            // Withdrawal Notice (Default 90 days)
-            document.getElementById('withdrawalNotice').textContent = "90 Days";
-
-            // ===== 4. PDC & AGREEMENT SECTION =====
-            // PDC Count
-            if (partner.PDC_Details) {
-                const pdcArray = partner.PDC_Details.split(',').filter(item => item.trim());
-                document.getElementById('pdcCount').textContent = pdcArray.length + " Cheque(s)";
-            }
-
-            // Agreement ID
-            document.getElementById('agreementId').textContent = partner.InvestorId || 'Not Set';
-
-            // ===== 5. PARTNER TIER =====
-            const principal = Number(partner.PrincipalAmount) || 0;
-            let tier = "Standard";
-            if (principal >= 1000000) tier = "Platinum";
-            else if (principal >= 500000) tier = "Gold";
-            else if (principal >= 200000) tier = "Silver";
-            document.getElementById('partnerTier').textContent = tier + " Tier Partner";
-
-            // ===== 6. TRANSACTIONS =====
+            renderInvestorUI(partner);
+            
+            // Fetch and Render Transactions
             const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
-            const transactions = await txResponse.json();
-            updateTransactionList(transactions);
-
+            currentTransactions = await txResponse.json();
+            updateTransactionList(currentTransactions);
+            
+            // Enable PDF Download Button
+            const downloadBtn = document.querySelector('.btn-outline');
+            if (downloadBtn) {
+                downloadBtn.onclick = () => downloadInvestorStatement(partner, currentTransactions);
+            }
         } else {
-            console.error("No partner data received");
+            alert("No partner record found. Please contact support.");
         }
 
     } catch (e) {
-        console.error("Error loading live data:", e);
-        // Fallback to localStorage data if API fails
-        const rawData = localStorage.getItem('omkar_partner');
-        if (rawData) {
-            try {
-                const data = JSON.parse(rawData);
-                document.getElementById('partnerName').textContent = data.FullName || "Partner";
-                if (data.PrincipalAmount) {
-                    document.getElementById('activePrincipal').textContent = '₹' + Number(data.PrincipalAmount).toLocaleString('en-IN');
-                }
-            } catch (parseError) {
-                console.error("Fallback data error:", parseError);
-            }
-        }
+        console.error("Critical Sync Error:", e);
+        showErrorState();
     }
 }
 
+/**
+ * UI RENDERER: REAL INVESTOR
+ */
+function renderInvestorUI(partner) {
+    const formatCurrency = (num) => '₹' + Number(num || 0).toLocaleString('en-IN');
+
+    // Header & Stats
+    document.getElementById('partnerName').textContent = partner.FullName || 'Partner';
+    document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount);
+    document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount);
+    document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn);
+    document.getElementById('totalReturns').textContent = formatCurrency(partner.TotalReturnsPaid || 0);
+
+    // Partnership Details
+    if (partner.InvestmentDate) {
+        document.getElementById('startDate').textContent = new Date(partner.InvestmentDate).toLocaleDateString('en-IN');
+    }
+    
+    // Agreement Expiry & Alerts
+    if (partner.AgreementExpiryDate) {
+        const expiryDate = new Date(partner.AgreementExpiryDate);
+        const daysRemaining = Math.max(0, Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24)));
+        const expiryEl = document.getElementById('agreementExpiry');
+        expiryEl.textContent = daysRemaining;
+        if (daysRemaining < 30) expiryEl.style.color = "#ff4d4d"; // Red alert
+    }
+
+    // Tier Logic
+    const principal = Number(partner.PrincipalAmount) || 0;
+    let tier = "Standard";
+    if (principal >= 1000000) tier = "Platinum";
+    else if (principal >= 500000) tier = "Gold";
+    document.getElementById('partnerTier').textContent = `${tier} Tier Partner`;
+
+    // Security Details (PDC)
+    if (partner.PDC_Details) {
+        const pdcCount = partner.PDC_Details.split(',').length;
+        document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
+    }
+
+    // Agreement Link Update
+    const viewBtn = document.querySelector('a[href*="agreement-view"]');
+    if (viewBtn && partner.AgreementURL) {
+        viewBtn.href = partner.AgreementURL;
+        viewBtn.target = "_blank";
+    }
+}
+
+/**
+ * UI RENDERER: GUEST (LEGAL SHIELD ACTIVE)
+ */
+function renderGuestUI(stats) {
+    document.getElementById('partnerName').textContent = "Performance Overview";
+    document.getElementById('activePrincipal').textContent = stats.totalAUM || "₹2.85 Cr+";
+    document.getElementById('totalReturns').textContent = "100% Payout Rate";
+    document.getElementById('partnerTier').textContent = "Verified Guest";
+    
+    // Hide/Blur Sensitive Sections
+    const blurElements = ['.security-card', '.partnership-info'];
+    blurElements.forEach(selector => {
+        const el = document.querySelector(selector);
+        if (el) {
+            el.style.filter = "blur(8px)";
+            el.style.pointerEvents = "none";
+            el.title = "Verification Required to View Details";
+        }
+    });
+
+    // Replace Transactions with Performance Notice
+    const container = document.querySelector('.transaction-list');
+    if (container) {
+        container.innerHTML = `
+            <div style="padding: 20px; text-align: center; color: #666;">
+                <i class="fas fa-lock" style="font-size: 24px; color: #c19b5e;"></i>
+                <p>Detailed transaction logs are visible to active partners only.</p>
+                <p style="font-size: 12px;">Legal Record: Consent captured on ${new Date().toLocaleDateString()}</p>
+            </div>`;
+    }
+}
+
+/**
+ * TRANSACTION TABLE RENDERER
+ */
 function updateTransactionList(data) {
     const container = document.querySelector('.transaction-list');
-    if (!container) {
-        console.error("Transaction list container not found");
-        return;
-    }
+    if (!container) return;
     
     container.innerHTML = '';
-    
     if (!data || data.length === 0) {
-        container.innerHTML = '<div class="transaction-item"><div class="transaction-info"><h4>No transactions found</h4><div class="transaction-date">Start your investment journey</div></div></div>';
+        container.innerHTML = '<div class="transaction-item"><h4>No Transactions Found</h4></div>';
         return;
     }
-    
+
     data.forEach(tx => {
-        const txType = tx['TransactionType (Monthly Return, Performance Bonus, Deposit)'] || tx.Type || 'Transaction';
-        const txDate = tx.TransactionDate ? new Date(tx.TransactionDate).toLocaleDateString('en-IN') : 'Date N/A';
-        const txMethod = tx['PaymentMethod (NEFT/IMPS/RTGS/CHEQUES'] || tx.Method || '';
+        const type = tx['TransactionType (Monthly Return, Performance Bonus, Deposit)'] || 'Monthly Return';
+        const date = tx.TransactionDate ? new Date(tx.TransactionDate).toLocaleDateString('en-IN') : 'N/A';
         const amount = Number(tx.Amount || 0);
-        const status = tx['Status (Completed/Pending)'] || 'completed';
         
         container.innerHTML += `
             <div class="transaction-item">
                 <div class="transaction-info">
-                    <h4>${txType}</h4>
-                    <div class="transaction-date">${txDate} | ${txMethod} | ${status}</div>
+                    <h4>${type}</h4>
+                    <div class="transaction-date">${date} | ${tx.Status || 'Completed'}</div>
                 </div>
-                <div class="transaction-amount ${status === 'pending' ? 'pending' : ''}">+₹${amount.toLocaleString('en-IN')}</div>
+                <div class="transaction-amount">+₹${amount.toLocaleString('en-IN')}</div>
             </div>`;
     });
 }
 
-// Trigger on load
+/**
+ * ERROR FALLBACK
+ */
+function showErrorState() {
+    document.getElementById('partnerName').textContent = "Sync Error";
+    alert("Unable to fetch live data. Please refresh or check your internet connection.");
+}
+
+// EXECUTE ON LOAD
 document.addEventListener('DOMContentLoaded', loadLiveDashboard);
-    
+            
+            
 </body>
 </html>

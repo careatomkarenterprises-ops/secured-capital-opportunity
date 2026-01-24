@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Dashboard | Omkar Enterprises</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Same design system but simplified */
+        :root {
+            --trust-blue: #1e3a8a;
+            --gold-accent: #d4af37;
+            --white: #ffffff;
+            --slate-dark: #1e293b;
+            --slate-light: #64748b;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .dashboard-title {
+            color: var(--trust-blue);
+            margin-bottom: 15px;
+        }
+        
+        .guest-notice {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--gold-accent);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--trust-blue);
+            margin-bottom: 10px;
+        }
+        
+        .performance-chart {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, #1e40af 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Omkar Enterprises Performance Dashboard</h1>
+            <p>Real-time performance statistics and growth metrics since 2015</p>
+        </div>
+        
+        <!-- Guest Notice -->
+        <div class="guest-notice">
+            <p><i class="fas fa-info-circle"></i> You're viewing public performance data. <a href="partner-portal.html" style="color: var(--trust-blue); font-weight: 600;">Login as an investor</a> to access your personal portfolio.</p>
+        </div>
+        
+        <!-- Performance Stats -->
+        <div class="stats-grid" id="performanceStats">
+            <!-- Loaded via API -->
+        </div>
+        
+        <!-- Performance Chart -->
+        <div class="performance-chart">
+            <h3><i class="fas fa-chart-line"></i> Performance History (Last 12 Months)</h3>
+            <canvas id="performanceChart" height="300"></canvas>
+        </div>
+        
+        <!-- Testimonials -->
+        <div class="performance-chart">
+            <h3><i class="fas fa-star"></i> What Our Partners Say</h3>
+            <div id="testimonials">
+                <!-- Load testimonials -->
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to Become an Investor?</h2>
+            <p>Join 500+ satisfied partners who trust Omkar Enterprises with their investments</p>
+            <a href="contact.html" class="btn-primary">
+                <i class="fas fa-user-plus"></i> Become an Investor
+            </a>
+        </div>
+    </div>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+    // ============================================
+    // PERFORMANCE DASHBOARD - GUEST ACCESS
+    // ============================================
+    
+    const API_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("Performance Dashboard Loading...");
+        
+        // Load performance data
+        loadPerformanceData();
+        
+        // Load testimonials
+        loadTestimonials();
+    });
+    
+    /**
+     * Load public performance data
+     */
+    async function loadPerformanceData() {
+        try {
+            const response = await fetch(`${API_URL}?action=getPerformance`);
+            const data = await response.json();
+            
+            if (data.success) {
+                updatePerformanceStats(data);
+                createPerformanceChart(data.performanceHistory);
+            }
+            
+        } catch (error) {
+            console.error("Error loading performance data:", error);
+            showDefaultStats();
+        }
+    }
+    
+    /**
+     * Update performance statistics
+     */
+    function updatePerformanceStats(data) {
+        const statsGrid = document.getElementById('performanceStats');
+        
+        if (!statsGrid) return;
+        
+        const stats = [
+            { label: 'Total Assets Under Management', value: data.summary.totalAUM || '₹2.85 Cr' },
+            { label: 'Active Investment Partners', value: data.summary.totalInvestors || '500+' },
+            { label: 'Average Monthly Return', value: data.summary.avgMonthlyReturn || '₹15,000' },
+            { label: 'Years of Excellence', value: data.summary.yearsOperating || '10+' }
+        ];
+        
+        statsGrid.innerHTML = stats.map(stat => `
+            <div class="stat-card">
+                <div class="stat-value">${stat.value}</div>
+                <div class="stat-label">${stat.label}</div>
+            </div>
+        `).join('');
+    }
+    
+    /**
+     * Create performance chart
+     */
+    function createPerformanceChart(history) {
+        if (!history || !history.length) return;
+        
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        const labels = history.map(item => item.Date || item.Month);
+        const data = history.map(item => {
+            // Extract numeric value
+            const value = item.TotalPayouts || item.Value || 0;
+            return typeof value === 'string' ? 
+                parseFloat(value.replace(/[₹,]/g, '')) || 0 : value;
+        });
+        
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Monthly Payouts',
+                    data: data,
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    borderWidth: 3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    }
+    
+    /**
+     * Load testimonials
+     */
+    function loadTestimonials() {
+        // You can load from API or hardcode
+        const testimonials = [
+            {
+                name: "Rajesh M.",
+                amount: "₹25 Lakhs",
+                text: "Consistent returns for 3 years. 100% payout accuracy."
+            },
+            {
+                name: "Ajay K.",
+                amount: "₹30 Lakhs",
+                text: "Professional partnership with transparent communication."
+            },
+            {
+                name: "Kirti P.",
+                amount: "₹5 Lakhs",
+                text: "Started small, now planning to increase investment."
+            }
+        ];
+        
+        const container = document.getElementById('testimonials');
+        if (container) {
+            container.innerHTML = testimonials.map(testimonial => `
+                <div style="background: #f8fafc; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #d4af37;">
+                    <p>"${testimonial.text}"</p>
+                    <p><strong>${testimonial.name}</strong> • Investment: ${testimonial.amount}</p>
+                </div>
+            `).join('');
+        }
+    }
+    
+    /**
+     * Show default stats if API fails
+     */
+    function showDefaultStats() {
+        const defaultStats = [
+            { label: 'Total Assets Under Management', value: '₹2.85 Cr' },
+            { label: 'Active Investment Partners', value: '500+' },
+            { label: 'Average Monthly Return', value: '₹15,000' },
+            { label: 'Years of Excellence', value: '10+' }
+        ];
+        
+        const statsGrid = document.getElementById('performanceStats');
+        if (statsGrid) {
+            statsGrid.innerHTML = defaultStats.map(stat => `
+                <div class="stat-card">
+                    <div class="stat-value">${stat.value}</div>
+                    <div class="stat-label">${stat.label}</div>
+                </div>
+            `).join('');
+        }
+    }
+    
+    </script>
+</body>
+</html>

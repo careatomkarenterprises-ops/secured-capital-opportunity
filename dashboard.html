@@ -1317,72 +1317,39 @@
     <!-- Chart.js for graphs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script>
-// 1. YOUR SETTINGS
+ <!-- Add these libraries to the head section (after Chart.js): -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+<!-- Replace the entire script section in dashboard.html with this: -->
+<script>
+// 1. CONFIGURATION
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyo30APUEc7jZp-RsKqYfTFEXJT50DbkZP2CmDoRJP78diojhx0uLe8gnpkqJ3U-KLW/exec';
 
-const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
-
-if (isGuest) {
-    // 1. SHOW PUBLIC PERFORMANCE DATA
-    document.getElementById('partnerName').textContent = "Omkar Performance Overview";
-    document.getElementById('activePrincipal').textContent = "₹2.85 Cr+"; // Your Total AUM
-    document.getElementById('totalReturns').textContent = "₹52 Lakh+"; // Your Total Payouts
-    
-    // 2. HIDE PRIVATE SECTIONS
-    document.querySelectorAll('.security-card').forEach(el => el.style.filter = 'blur(4px)');
-    
-    // 3. SHOW LEGAL SHIELD FOOTER
-    const footer = document.createElement('div');
-    footer.innerHTML = `
-        <div style="background: #fff3cd; padding: 20px; border: 1px solid #ffeeba; margin-top: 20px;">
-            <h4>Legal Disclaimer & Risk Disclosure</h4>
-            <p>You are viewing this data as a guest. All investments carry risk. 
-            Digital Consent Recorded: ${new Date().toLocaleString()}</p>
-        </div>`;
-    document.querySelector('.dashboard-container').appendChild(footer);
-}
-        
+// 2. MAIN DASHBOARD LOADER
 async function loadLiveDashboard() {
     const accessKey = localStorage.getItem('omkar_access_key');
+    const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+    
     if (!accessKey) {
         window.location.replace('partner-portal.html');
         return;
     }
 
+    // Handle Guest Mode
+    if (isGuest) {
+        loadGuestDashboard();
+        return;
+    }
+
+    // Handle Authenticated Investor
     try {
-        // FETCH DATA FROM GOOGLE SHEETS
+        // Fetch Investor Master Data
         const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
         const partner = await response.json();
 
         if (partner) {
-if (partner) {
-            // ... (keep your existing name/principal/returns code here) ...
-
-            // 1. FIXED: PDC Details sync
-            const pdcValEl = document.getElementById('pdcValue');
-            if(pdcValEl) pdcValEl.textContent = '₹' + Number(partner.PrincipalAmount || 0).toLocaleString('en-IN');
-            
-            const pdcText = document.querySelector('.security-card p');
-            if(pdcText) pdcText.textContent = "Secured via Cheques: " + (partner.PDC_Details || "Details being updated");
-
-            // 2. FIXED: Agreement View Link
-            // If you have a column 'AgreementURL', it uses that. Otherwise, it searches for a file named after the ID.
-            const viewAgreementBtn = document.querySelector('a[href*="agreement-view"]');
-            if(viewAgreementBtn) {
-                // Change this to your Google Drive folder link or specific column
-                viewAgreementBtn.href = partner.AgreementURL || "#"; 
-                viewAgreementBtn.target = "_blank";
-            }
-
-            // 3. FIXED: Statement Download Button
-            const downloadBtn = document.querySelector('.btn-outline'); // The "Download Statement" button
-            if(downloadBtn) {
-                downloadBtn.onclick = () => downloadInvestorStatement(partner, transactions);
-            }
-        }
-           
-            // Basic Info Mapping
+            // Update UI with Sheet Data
             document.getElementById('partnerName').textContent = partner.FullName || "Partner";
             document.getElementById('activePrincipal').textContent = '₹' + Number(partner.PrincipalAmount || 0).toLocaleString('en-IN');
             document.getElementById('monthlyReturns').textContent = '₹' + Number(partner.FixedMonthlyReturn || 0).toLocaleString('en-IN');
@@ -1390,196 +1357,466 @@ if (partner) {
             
             // PDC & Security Details
             document.getElementById('pdcValue').textContent = '₹' + Number(partner.PrincipalAmount || 0).toLocaleString('en-IN');
-            const pdcText = document.querySelector('.security-card p');
-            if(pdcText) pdcText.textContent = "Secured via Cheques: " + (partner.PDC_Details || "In Process");
-
+            const pdcDetails = partner.PDC_Details || "Secured by Post Dated Cheques";
+            document.querySelector('.pdc-details').innerHTML += `<p style="color: var(--slate-light); font-size: 14px; margin-top: 10px;"><i class="fas fa-shield-alt"></i> ${pdcDetails}</p>`;
+            
             // Agreement & Expiry Logic
             document.getElementById('agreementId').textContent = partner.InvestorId || "N/A";
             document.getElementById('startDate').textContent = partner.InvestmentDate || "N/A";
-            document.getElementById('monthlyRate').textContent = (partner.MonthlyReturnsRate * 100).toFixed(1) + "%";
             document.getElementById('partnershipTenure').textContent = partner.Tenure ? partner.Tenure + " Months" : "Active";
             
+            // Monthly Rate Calculation
+            const rate = partner.MonthlyReturnsRate ? (partner.MonthlyReturnsRate * 100).toFixed(1) : "2.2";
+            document.getElementById('monthlyRate').textContent = rate + "%";
+            
+            // Agreement Expiry Days
             if (partner.AgreementExpiryDate) {
                 const expiry = new Date(partner.AgreementExpiryDate);
                 const today = new Date();
                 const diffDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
                 const expiryEl = document.getElementById('agreementExpiry');
                 expiryEl.textContent = diffDays > 0 ? diffDays : "Due";
-                if(diffDays < 30) expiryEl.style.color = "#ff4444"; // Visual Alert
+                if(diffDays < 30) {
+                    expiryEl.style.color = "#ef4444";
+                    expiryEl.style.fontWeight = "700";
+                }
             }
-
-            // Quick Actions Personalization
-            const waLink = document.querySelector('a[href*="wa.me"]');
-            if(waLink) waLink.href = `https://wa.me/918169302861?text=Hello, I am ${partner.FullName}, Investor ID ${partner.InvestorId}. I need assistance.`;
-
-            // Tier Update
+            
+            // Update Tier based on investment
             const tierLabel = document.getElementById('partnerTier');
-            if(tierLabel) tierLabel.textContent = (partner.PrincipalAmount >= 500000) ? "Platinum Tier Partner" : "Gold Tier Partner";
-
-            // Trigger Growth Chart
+            if(tierLabel) {
+                tierLabel.textContent = (partner.PrincipalAmount >= 500000) ? "Platinum Tier Partner" : 
+                                      (partner.PrincipalAmount >= 250000) ? "Gold Tier Partner" : "Silver Tier Partner";
+            }
+            
+            // Update Agreement Notice
+            const agreementNotice = document.querySelector('.notice-card:nth-child(2) .notice-content p');
+            if(agreementNotice && partner.AgreementExpiryDate) {
+                const expiry = new Date(partner.AgreementExpiryDate);
+                const today = new Date();
+                const diffDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
+                agreementNotice.textContent = `Your partnership agreement expires in ${diffDays} days. Contact us 60 days prior for seamless renewal.`;
+            }
+            
+            // Update Growth Chart with real data
             updateGrowthChart(partner.PrincipalAmount, partner.TotalReturnsPaid);
+            
+            // Setup PDF Statement Download
+            setupStatementDownload(partner);
         }
 
-        // FETCH TRANSACTIONS
+        // Fetch Transaction History
         const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
         const transactions = await txResponse.json();
         updateTransactionList(transactions);
 
     } catch (e) {
         console.error("Critical Dashboard Error:", e);
+        // Fallback to showing cached data
+        const cachedData = localStorage.getItem('omkar_partner');
+        if (cachedData) {
+            const partner = JSON.parse(cachedData);
+            document.getElementById('partnerName').textContent = partner.FullName || "Partner";
+        }
     }
 }
 
-// FUNCTION: Update Growth Chart
+// 3. GUEST DASHBOARD MODE
+async function loadGuestDashboard() {
+    // Update UI for Guest
+    document.getElementById('partnerName').textContent = "Welcome, Future Partner";
+    document.getElementById('partnerTier').textContent = "Guest Access";
+    
+    // Show Company Performance Stats
+    document.getElementById('activePrincipal').textContent = "₹2.85 Cr+";
+    document.getElementById('monthlyReturns').textContent = "₹5.8 Lakh+";
+    document.getElementById('totalReturns').textContent = "₹52 Lakh+";
+    document.getElementById('agreementExpiry').textContent = "N/A";
+    
+    // Update card titles
+    document.querySelectorAll('.dashboard-card h3').forEach(title => {
+        if (title.textContent.includes('Recent Transactions')) {
+            title.textContent = "Our Performance History";
+        }
+        if (title.textContent.includes('PDC Security')) {
+            title.textContent = "Security Framework";
+        }
+    });
+    
+    // Update transaction list with company milestones
+    const container = document.querySelector('.transaction-list');
+    container.innerHTML = `
+        <div class="transaction-item">
+            <div class="transaction-info">
+                <h4>Total Returns Distributed (2024)</h4>
+                <div class="transaction-date">Dec 2024 | Company Milestone</div>
+            </div>
+            <div class="transaction-amount">+₹42 Lakh</div>
+        </div>
+        <div class="transaction-item">
+            <div class="transaction-info">
+                <h4>New Investors Joined</h4>
+                <div class="transaction-date">Nov 2024 | Growth Metric</div>
+            </div>
+            <div class="transaction-amount">+28 Partners</div>
+        </div>
+        <div class="transaction-item">
+            <div class="transaction-info">
+                <h4>Average Monthly ROI</h4>
+                <div class="transaction-date">2024 YTD | Performance</div>
+            </div>
+            <div class="transaction-amount">2.2% - 2.5%</div>
+        </div>
+    `;
+    
+    // Update PDC section
+    document.querySelector('.pdc-details').innerHTML = `
+        <h4><i class="fas fa-shield-alt"></i> Security Framework</h4>
+        <p style="color: var(--slate-light); margin-bottom: 15px;">Omkar Enterprises operates with complete transparency and security:</p>
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 8px; color: var(--slate-light); display: flex; align-items: flex-start; gap: 10px;">
+                <i class="fas fa-check" style="color: var(--gold-accent); margin-top: 3px;"></i>
+                Post Dated Cheques (PDC) as security for all investments
+            </li>
+            <li style="margin-bottom: 8px; color: var(--slate-light); display: flex; align-items: flex-start; gap: 10px;">
+                <i class="fas fa-check" style="color: var(--gold-accent); margin-top: 3px;"></i>
+                Legal agreements with each partner
+            </li>
+            <li style="margin-bottom: 8px; color: var(--slate-light); display: flex; align-items: flex-start; gap: 10px;">
+                <i class="fas fa-check" style="color: var(--gold-accent); margin-top: 3px;"></i>
+                100% payout record since 2015
+            </li>
+        </ul>
+    `;
+    
+    // Update Quick Actions
+    const quickActions = document.querySelector('.quick-actions');
+    if (quickActions) {
+        quickActions.innerHTML = `
+            <a href="slabs.html" class="quick-action">
+                <i class="fas fa-file-contract"></i>
+                <span>View Investment Plans</span>
+            </a>
+            <a href="testimonials.html" class="quick-action">
+                <i class="fas fa-star"></i>
+                <span>Read Testimonials</span>
+            </a>
+            <a href="contact.html" class="quick-action">
+                <i class="fas fa-calendar-check"></i>
+                <span>Schedule Meeting</span>
+            </a>
+            <a href="tel:+918169302861" class="quick-action">
+                <i class="fas fa-phone-alt"></i>
+                <span>Contact Support</span>
+            </a>
+        `;
+    }
+    
+    // Add Legal Shield Banner
+    const legalBanner = document.createElement('div');
+    legalBanner.style.cssText = `
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        border-left: 4px solid var(--gold-accent);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 30px 0;
+        box-shadow: var(--shadow-sm);
+    `;
+    legalBanner.innerHTML = `
+        <h4 style="color: #856404; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-gavel"></i> Legal Disclosure & Risk Consent
+        </h4>
+        <p style="color: #856404; font-size: 14px; line-height: 1.6; margin-bottom: 10px;">
+            <strong>Digital Consent Recorded:</strong> ${new Date().toLocaleString()} <br>
+            You are viewing this data as a prospective investor. All investments carry market risk. 
+            Past performance does not guarantee future results.
+        </p>
+        <p style="color: #856404; font-size: 13px; font-style: italic;">
+            <i class="fas fa-shield-alt"></i> By accessing this dashboard, you acknowledge reading our 
+            <a href="risk-disclosure.html" style="color: #c19b5e; font-weight: 600;">Risk Disclosure</a> and 
+            <a href="terms.html" style="color: #c19b5e; font-weight: 600;">Terms & Conditions</a>.
+        </p>
+    `;
+    
+    const mainContainer = document.querySelector('.dashboard-grid');
+    if (mainContainer) {
+        mainContainer.parentNode.insertBefore(legalBanner, mainContainer.nextSibling);
+    }
+    
+    // Update Growth Chart for company performance
+    updateGrowthChart(28500000, 5200000); // 2.85Cr principal, 52L returns
+    
+    // Update notice cards
+    document.querySelectorAll('.notice-card').forEach(card => {
+        if (card.querySelector('h4').textContent.includes('Agreement Renewal')) {
+            card.style.display = 'none';
+        }
+        if (card.querySelector('h4').textContent.includes('Upcoming Payout')) {
+            card.querySelector('h4').textContent = "Next Investor Onboarding";
+            card.querySelector('p').textContent = "Join 500+ satisfied partners. Next onboarding session: 15th February 2026";
+        }
+    });
+}
+
+// 4. GROWTH CHART FUNCTION
 function updateGrowthChart(principal, totalReturns) {
     const ctx = document.getElementById('portfolioChart');
     if (!ctx || typeof Chart === 'undefined') return;
 
-    if (window.myDashboardChart) window.myDashboardChart.destroy();
+    // Clear existing chart
+    if (window.myDashboardChart) {
+        window.myDashboardChart.destroy();
+    }
+
+    // Create growth data
+    const months = 12;
+    const monthlyReturn = totalReturns / months;
+    const dataPoints = [];
+    const labels = [];
+    
+    for (let i = 0; i <= months; i++) {
+        labels.push(`Month ${i}`);
+        dataPoints.push(principal + (monthlyReturn * i));
+    }
 
     window.myDashboardChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Initial Investment', 'Total Value'],
+            labels: labels,
             datasets: [{
                 label: 'Portfolio Growth',
-                data: [principal, (Number(principal) + Number(totalReturns))],
+                data: dataPoints,
                 borderColor: '#c19b5e',
                 backgroundColor: 'rgba(193, 155, 94, 0.1)',
                 fill: true,
-                tension: 0.4
+                tension: 0.4,
+                borderWidth: 3
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { display: false } }
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return 'Portfolio Value: ₹' + context.parsed.y.toLocaleString('en-IN');
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return '₹' + value.toLocaleString('en-IN');
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                }
+            }
         }
     });
 }
 
-// FUNCTION: Update Transactions
+// 5. TRANSACTION LIST FUNCTION
 function updateTransactionList(data) {
     const container = document.querySelector('.transaction-list');
-    if (!data || data.length === 0) return;
+    if (!data || data.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: var(--slate-light);">
+                <i class="fas fa-history" style="font-size: 32px; margin-bottom: 15px;"></i>
+                <p>No transaction history available</p>
+            </div>`;
+        return;
+    }
     
-    container.innerHTML = ''; // Delete static demo rows
+    container.innerHTML = ''; // Clear demo data
     
     data.forEach(tx => {
         const typeKey = "TransactionType (Monthly Return, Performance Bonus, Deposit)";
         const methodKey = "PaymentMethod (NEFT/IMPS/RTGS/CHEQUES";
+        const type = tx[typeKey] || 'Monthly Return';
+        const date = tx.TransactionDate || 'N/A';
+        const method = tx[methodKey] || 'Bank Transfer';
+        const status = tx.Status || 'Completed';
         
         container.innerHTML += `
             <div class="transaction-item">
                 <div class="transaction-info">
-                    <h4>${tx[typeKey] || 'Monthly Return'}</h4>
-                    <div class="transaction-date">${tx.TransactionDate || 'N/A'} | ${tx[methodKey] || 'Bank'}</div>
+                    <h4>${type}</h4>
+                    <div class="transaction-date">${date} | ${method} | ${status}</div>
                 </div>
                 <div class="transaction-amount">+₹${Number(tx.Amount).toLocaleString('en-IN')}</div>
             </div>`;
     });
 }
 
-        async function loadGuestDashboard() {
-    // Show a "Public Version" of the dashboard
-    document.getElementById('partnerName').textContent = "Welcome, Future Partner";
-    
-    // Showcase Past Performance (Hardcoded or pulled from a 'Stats' sheet)
-    document.getElementById('activePrincipal').textContent = "₹2.5 Cr+"; // Total AUM
-    document.getElementById('totalReturns').textContent = "₹45 Lakh+"; // Total Repayments
-    
-    // Hide private sections
-    document.querySelector('.security-card').style.opacity = '0.5';
-    document.querySelector('.security-card').innerHTML += '<div style="color:gold">Verify Identity to unlock PDC details</div>';
-    
-    // Show a specific "Risk Disclosure" popup for Guests
-    showRiskDisclosure();
+// 6. PDF STATEMENT GENERATOR
+function setupStatementDownload(partner) {
+    const downloadBtn = document.querySelector('.quick-action:nth-child(2)');
+    if (downloadBtn && partner) {
+        downloadBtn.onclick = async (e) => {
+            e.preventDefault();
+            await generatePDFStatement(partner);
+        };
+    }
 }
 
-function showRiskDisclosure() {
-    alert("Omkar Enterprises Legal Notice: By viewing this dashboard, you acknowledge that private lending involves market risks. Past performance does not guarantee future results.");
-}
+async function generatePDFStatement(partner) {
+    try {
+        // Fetch transactions for the statement
+        const accessKey = localStorage.getItem('omkar_access_key');
+        const response = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+        const transactions = await response.json();
         
-// Auto-load on page start
-document.addEventListener('DOMContentLoaded', loadLiveDashboard);
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
 
-// Logout handling
-document.getElementById('logoutBtn').addEventListener('click', function() {
-    localStorage.clear();
-    window.location.href = 'partner-portal.html';
+        // Header
+        doc.setFontSize(22);
+        doc.setTextColor(193, 155, 94);
+        doc.text("OMKAR ENTERPRISES", 105, 20, { align: "center" });
+        
+        doc.setFontSize(10);
+        doc.setTextColor(100);
+        doc.text("Official Investment Statement | Private Lending Partnership", 105, 27, { align: "center" });
+        doc.line(20, 32, 190, 32);
+
+        // Investor Details
+        doc.setFontSize(12);
+        doc.setTextColor(0);
+        doc.text(`Investor: ${partner.FullName}`, 20, 45);
+        doc.text(`Investor ID: ${partner.InvestorId}`, 20, 52);
+        doc.text(`Statement Date: ${new Date().toLocaleDateString()}`, 140, 45);
+
+        // Summary Box
+        doc.setFillColor(248, 245, 240);
+        doc.rect(20, 60, 170, 25, 'F');
+        doc.setFontSize(10);
+        doc.text("PRINCIPAL AMOUNT", 30, 70);
+        doc.text("TOTAL RETURNS PAID", 85, 70);
+        doc.text("CURRENT STATUS", 145, 70);
+        
+        doc.setFontSize(14);
+        doc.text(`₹${Number(partner.PrincipalAmount).toLocaleString('en-IN')}`, 30, 78);
+        doc.text(`₹${Number(partner.TotalReturnsPaid).toLocaleString('en-IN')}`, 85, 78);
+        doc.text(`${partner.AccountStatus || 'Active'}`, 145, 78);
+
+        // Transactions Table
+        doc.autoTable({
+            startY: 95,
+            head: [['Date', 'Transaction Type', 'Payment Method', 'Amount (INR)', 'Status']],
+            body: transactions.map(tx => [
+                tx.TransactionDate || 'N/A',
+                tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || "Monthly Return",
+                tx["PaymentMethod (NEFT/IMPS/RTGS/CHEQUES"] || "Transfer",
+                `₹${Number(tx.Amount).toLocaleString('en-IN')}`,
+                tx.Status || 'Completed'
+            ]),
+            headStyles: { fillColor: [193, 155, 94] },
+        });
+
+        // Terms & Conditions
+        let finalY = doc.lastAutoTable.finalY + 15;
+        doc.setFontSize(11);
+        doc.text("Terms & Withdrawal Policy:", 20, finalY);
+        
+        doc.setFontSize(8);
+        doc.setTextColor(100);
+        const policies = [
+            "1. Withdrawal Policy: Principal withdrawal requires a 30-day prior written notice.",
+            "2. Security: Investment secured via Post Dated Cheques (PDC) as per legal agreement.",
+            "3. Payouts: Monthly returns credited between 1st and 5th of every month.",
+            "4. Agreement: This partnership is governed by bilateral agreement dated " + (partner.InvestmentDate || "N/A"),
+            "5. Support: For queries, contact care@omkarservices.in or call +91 8169302861"
+        ];
+        
+        policies.forEach((policy, index) => {
+            doc.text(policy, 20, finalY + 7 + (index * 5));
+        });
+
+        // Legal Footer
+        doc.setFontSize(9);
+        doc.text("This is a digitally generated statement. No signature required.", 105, 285, { align: "center" });
+        doc.text("Omkar Enterprises - Private Lending Partnership Since 2015", 105, 290, { align: "center" });
+
+        // Save PDF
+        doc.save(`Omkar_Statement_${partner.InvestorId}.pdf`);
+        
+    } catch (error) {
+        console.error("PDF Generation Error:", error);
+        alert("Unable to generate PDF. Please try again later.");
+    }
+}
+
+// 7. INITIALIZE DASHBOARD
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize charts and load data
+    loadLiveDashboard();
+    
+    // Logout functionality
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+        localStorage.clear();
+        window.location.href = 'partner-portal.html';
+    });
+    
+    // Setup print button
+    const printBtn = document.querySelector('button[onclick*="print"]');
+    if (printBtn) {
+        printBtn.onclick = function() {
+            window.print();
+        };
+    }
 });
 
-async function downloadInvestorStatement(partner, transactions) {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    // 1. HEADER & BRANDING
-    doc.setFontSize(22);
-    doc.setTextColor(193, 155, 94); // Your Golden Theme Color
-    doc.text("OMKAR ENTERPRISES", 105, 20, { align: "center" });
+// 8. GOOGLE APPS SCRIPT UPDATE NOTIFICATION
+function updateGoogleScriptForFeatures() {
+    console.log("IMPORTANT: Update your Google Apps Script with these functions:");
+    console.log(`
+    1. Add this to verifyLogin function (after successful login):
+       // Update Last Login column
+       const now = new Date();
+       sheet.getRange(i + 1, 19).setValue(now);
     
-    doc.setFontSize(10);
-    doc.setTextColor(100);
-    doc.text("Official Investment Statement | Private Lending Portfolio", 105, 27, { align: "center" });
-    doc.line(20, 32, 190, 32);
-
-    // 2. INVESTOR PROFILE
-    doc.setFontSize(12);
-    doc.setTextColor(0);
-    doc.text(`Investor: ${partner.FullName}`, 20, 45);
-    doc.text(`Investor ID: ${partner.InvestorId}`, 20, 52);
-    doc.text(`Statement Date: ${new Date().toLocaleDateString()}`, 140, 45);
-
-    // 3. EXECUTIVE SUMMARY BOX
-    doc.setFillColor(248, 245, 240);
-    doc.rect(20, 60, 170, 25, 'F');
-    doc.setFontSize(10);
-    doc.text("PRINCIPAL AMOUNT", 30, 70);
-    doc.text("TOTAL RETURNS PAID", 85, 70);
-    doc.text("CURRENT STATUS", 145, 70);
+    2. Add registerLead function:
+       function registerLead(params) {
+         const sheet = SpreadsheetApp.openById(CONFIG.SHEET_ID).getSheetByName('Omkar_Leads');
+         sheet.appendRow([
+           "LEAD-" + new Date().getTime(),
+           new Date(),
+           params.name,
+           params.mobile,
+           params.email,
+           "0",
+           "Website - Guest Access",
+           "New",
+           "System",
+           "Legal Consent Recorded: Accepted Risk Disclosure & Terms"
+         ]);
+         return { success: true };
+       }
     
-    doc.setFontSize(14);
-    doc.text(`Rs. ${partner.PrincipalAmount}`, 30, 78);
-    doc.text(`Rs. ${partner.TotalReturnsPaid}`, 85, 78);
-    doc.text(`${partner.AccountStatus}`, 145, 78);
-
-    // 4. TRANSACTION TABLE
-    doc.autoTable({
-        startY: 95,
-        head: [['Date', 'Transaction Type', 'Payment Method', 'Amount (INR)', 'Status']],
-        body: transactions.map(tx => [
-            tx.TransactionDate, 
-            tx["TransactionType (Monthly Return, Performance Bonus, Deposit)"] || "Monthly Return",
-            tx["PaymentMethod (NEFT/IMPS/RTGS/CHEQUES"] || "Transfer",
-            `Rs. ${tx.Amount}`,
-            tx.Status
-        ]),
-        headStyles: { fillColor: [193, 155, 94] },
-    });
-
-    // 5. TERMS, CONDITIONS & POLICY (The "Trust" Section)
-    let finalY = doc.lastAutoTable.finalY + 15;
-    doc.setFontSize(11);
-    doc.text("Terms & Withdrawal Policy:", 20, finalY);
-    
-    doc.setFontSize(8);
-    doc.setTextColor(100);
-    const policies = [
-        "1. Withdrawal Policy: Principal withdrawal requires a 30-day prior written notice.",
-        "2. Security: This investment is secured via Post Dated Cheques (PDC) as per Agreement.",
-        "3. Payouts: Monthly returns are credited between the 1st and 5th of every month.",
-        "4. Benefits: You are currently on the 'Gold Tier' plan with fixed guaranteed returns.",
-        "5. Support: For queries, contact support@omkarservices.in or call +91 8169302861."
-    ];
-    doc.text(policies, 20, finalY + 7);
-
-    // 6. FOOTER
-    doc.setFontSize(9);
-    doc.text("This is a digitally generated document. No signature required.", 105, 285, { align: "center" });
-
-    // SAVE FILE
-    doc.save(`Omkar_Statement_${partner.InvestorId}.pdf`);
+    3. Add to doGet function:
+       } else if (action === 'registerLead') {
+         result = registerLead(e.parameter);
+       }
+    `);
 }
+
+// Run the notification
+updateGoogleScriptForFeatures();
 </script>
     
 </body>

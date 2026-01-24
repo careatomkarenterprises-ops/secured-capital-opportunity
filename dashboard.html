@@ -978,9 +978,6 @@
             }
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-    
 </head>
 <body>
     <!-- Dashboard Header -->
@@ -1314,22 +1311,15 @@
         <span>Dashboard Support</span>
     </a>
 
-    <!-- Chart.js for graphs -->
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-<script>
+    <script>
     // ============================================
-    // REAL-TIME DASHBOARD - FIXED RESPONSE HANDLING
+    // FIXED DASHBOARD SCRIPT - LOGIN ISSUES RESOLVED
     // ============================================
 
-    console.log("DASHBOARD INITIALIZED");
+    console.log("DASHBOARD INITIALIZED - FIXED VERSION");
     
     // Your Google Apps Script URL
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
-
-    // Store transactions
-    let currentTransactions = [];
 
     // Format currency in Indian format
     function formatCurrency(amount) {
@@ -1366,11 +1356,11 @@
         const accessKey = localStorage.getItem('omkar_access_key');
         const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
         
-        console.log("Session:", { accessKey, isGuest });
+        console.log("Session check:", { accessKey, isGuest });
         
-        // CRITICAL: If no session at all, redirect to portal
+        // CRITICAL FIX: Better session validation
         if (!accessKey && !isGuest) {
-            console.warn("No session found, redirecting to portal");
+            console.warn("No valid session found, redirecting to portal");
             window.location.href = 'partner-portal.html';
             return;
         }
@@ -1381,19 +1371,14 @@
         
         // ========== GUEST MODE ==========
         if (isGuest) {
-            console.log("Loading guest dashboard with company stats");
+            console.log("Loading guest dashboard");
             await loadGuestDashboard();
             return;
         }
         
         // ========== INVESTOR MODE ==========
-        if (accessKey && !accessKey.startsWith('GUEST_') && !accessKey.startsWith('DEBUG_')) {
-            console.log("Loading investor data for:", accessKey);
-            await loadInvestorData(accessKey);
-        } else {
-            console.log("Invalid investor key, showing guest dashboard");
-            await loadGuestDashboard();
-        }
+        console.log("Loading investor data for:", accessKey);
+        await loadInvestorData(accessKey);
     }
 
     // ==================== GUEST DASHBOARD ====================
@@ -1411,7 +1396,7 @@
             const result = await response.json();
             console.log("Company stats response:", result);
             
-            // FIXED: Extract data from result
+            // Extract data from result
             const stats = result.data || result;
             
             // Update UI with real data
@@ -1424,35 +1409,6 @@
             document.getElementById('monthlyReturns').textContent = stats.monthlyPayout || "₹4.8L+";
             document.getElementById('totalReturns').textContent = stats.totalPaid || "₹48.5L+";
             document.getElementById('agreementExpiry').textContent = stats.activeYears || "10 Years";
-            
-            // Add performance header
-            const header = document.querySelector('.dashboard-header .container');
-            if (header && !document.getElementById('performanceHeader')) {
-                const perfDiv = document.createElement('div');
-                perfDiv.id = 'performanceHeader';
-                perfDiv.innerHTML = `
-                    <div style="background: rgba(212, 175, 55, 0.1); border: 2px solid #d4af37; border-radius: 10px; 
-                         padding: 15px; margin: 20px auto; max-width: 800px; text-align: center;">
-                        <i class="fas fa-chart-line" style="color: #d4af37; font-size: 24px; margin-bottom: 10px;"></i>
-                        <h3 style="color: white; margin-bottom: 10px;">Omkar Enterprises - 10 Year Track Record</h3>
-                        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 15px;">
-                            <div style="text-align: center;">
-                                <div style="font-size: 20px; font-weight: bold; color: #d4af37;">${stats.totalPartners || '500+'}</div>
-                                <div style="font-size: 12px; color: rgba(255,255,255,0.9);">Active Partners</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 20px; font-weight: bold; color: #10b981;">100%</div>
-                                <div style="font-size: 12px; color: rgba(255,255,255,0.9);">Payout Rate</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 20px; font-weight: bold; color: #3b82f6;">${stats.completionRate || '100%'}</div>
-                                <div style="font-size: 12px; color: rgba(255,255,255,0.9);">Agreement Completion</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                header.appendChild(perfDiv);
-            }
             
             // Protect private sections
             protectPrivateSections();
@@ -1467,199 +1423,167 @@
     }
 
     // ==================== INVESTOR DATA LOADING ====================
-async function loadInvestorData(accessKey) {
-    try {
-        console.log("Fetching investor data for:", accessKey);
-        
-        // Fetch partner data
-        const partnerResponse = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-        
-        if (!partnerResponse.ok) {
-            throw new Error(`Partner API Error: ${partnerResponse.status}`);
-        }
-        
-        const result = await partnerResponse.json();
-        console.log("Raw API Response:", result);
-        
-        // FIX: Handle both response formats
-        let partner;
-        
-        // Format 1: Direct data (what you're getting)
-        if (result.InvestorId || result.PartnerID) {
-            partner = result;
-            console.log("Using direct data format");
-        }
-        // Format 2: Wrapped in success/data (expected format)
-        else if (result.success && result.data) {
-            partner = result.data;
-            console.log("Using wrapped data format");
-        }
-        // Format 3: Error response
-        else if (result.error) {
-            console.error("API returned error:", result);
-            showInvestorNotFound(result.error);
-            return;
-        }
-        // Unknown format
-        else {
-            console.error("Unknown response format:", result);
-            showInvestorNotFound("Invalid data format received");
-            return;
-        }
-        
-        console.log("Processed partner data:", partner);
-        
-        // Now render the UI
-        renderInvestorUI(partner);
-        
-        // Load transactions
+    async function loadInvestorData(accessKey) {
         try {
-            const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
-            if (txResponse.ok) {
-                const txResult = await txResponse.json();
-                
-                // Handle different transaction response formats
-                let transactions = [];
-                if (Array.isArray(txResult)) {
-                    transactions = txResult; // Direct array
-                } else if (txResult.success && Array.isArray(txResult.data)) {
-                    transactions = txResult.data; // Wrapped array
-                } else if (txResult.data && Array.isArray(txResult.data)) {
-                    transactions = txResult.data; // Another wrapped format
-                }
-                
-                if (transactions.length > 0) {
-                    updateTransactionList(transactions);
-                } else {
-                    showDefaultTransactions();
-                }
+            console.log("Fetching investor data for:", accessKey);
+            
+            // Fetch partner data
+            const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP Error: ${response.status}`);
             }
-        } catch (txError) {
-            console.warn("Transaction loading failed:", txError);
-            showDefaultTransactions();
+            
+            const result = await response.json();
+            console.log("API Response:", result);
+            
+            // CRITICAL FIX: Handle different response formats
+            let partnerData;
+            
+            // Format 1: Direct data object
+            if (result.InvestorId || result.PartnerID || result.FullName) {
+                partnerData = result;
+                console.log("Using direct data format");
+            }
+            // Format 2: Wrapped in success/data
+            else if (result.success && result.data) {
+                partnerData = result.data;
+                console.log("Using wrapped data format");
+            }
+            // Format 3: Error response
+            else if (result.error) {
+                console.error("API returned error:", result.error);
+                showInvestorNotFound(result.error);
+                return;
+            }
+            // Unknown format
+            else {
+                console.error("Unknown response format:", result);
+                showInvestorNotFound("Invalid data format received");
+                return;
+            }
+            
+            // Now render the UI with the partner data
+            renderInvestorUI(partnerData);
+            
+            // Load transactions
+            try {
+                const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+                if (txResponse.ok) {
+                    const txResult = await txResponse.json();
+                    
+                    let transactions = [];
+                    if (Array.isArray(txResult)) {
+                        transactions = txResult;
+                    } else if (txResult.success && Array.isArray(txResult.data)) {
+                        transactions = txResult.data;
+                    } else if (txResult.data && Array.isArray(txResult.data)) {
+                        transactions = txResult.data;
+                    }
+                    
+                    if (transactions.length > 0) {
+                        updateTransactionList(transactions);
+                    } else {
+                        showDefaultTransactions();
+                    }
+                }
+            } catch (txError) {
+                console.warn("Transaction loading failed:", txError);
+                showDefaultTransactions();
+            }
+            
+            // Initialize chart with real data
+            initChart(partnerData);
+            
+        } catch (error) {
+            console.error("Error loading investor data:", error);
+            showInvestorError(error.message);
         }
-        
-        // Initialize chart with real data
-        initChart(partner);
-        
-    } catch (error) {
-        console.error("Error loading investor data:", error);
-        showInvestorError();
     }
-}
+
     // ==================== RENDER INVESTOR UI ====================
-function renderInvestorUI(partner) {
-    console.log("Rendering investor UI with:", partner);
-    
-    // Extract data with multiple possible property names
-    const getValue = (obj, possibleKeys) => {
-        for (const key of possibleKeys) {
-            if (obj[key] !== undefined && obj[key] !== null && obj[key] !== '') {
-                return obj[key];
+    function renderInvestorUI(partner) {
+        console.log("Rendering investor UI with:", partner);
+        
+        // Helper to get value with multiple possible keys
+        const getValue = (obj, possibleKeys) => {
+            for (const key of possibleKeys) {
+                if (obj[key] !== undefined && obj[key] !== null && obj[key] !== '') {
+                    return obj[key];
+                }
             }
+            return '';
+        };
+        
+        // Get values with fallbacks
+        const fullName = getValue(partner, ['FullName', 'Name', 'InvestorName', 'ClientName']);
+        const principalAmount = getValue(partner, ['PrincipalAmount', 'InvestmentAmount', 'Amount', 'Principal']);
+        const monthlyReturn = getValue(partner, ['FixedMonthlyReturn', 'MonthlyReturn', 'MonthlyPayout', 'Return']);
+        const totalReturns = getValue(partner, ['TotalReturnsPaid', 'TotalReturns', 'ReturnsPaid', 'CumulativeReturns']);
+        const investmentDate = getValue(partner, ['InvestmentDate', 'StartDate', 'JoinDate', 'Date']);
+        const expiryDate = getValue(partner, ['AgreementExpiryDate', 'ExpiryDate', 'EndDate', 'MaturityDate']);
+        const pdcDetails = getValue(partner, ['PDC_Details', 'PDC', 'ChequeDetails', 'SecurityDetails']);
+        const agreementId = getValue(partner, ['AgreementID', 'ContractID', 'AgreementNumber']);
+        
+        // Basic info
+        document.getElementById('partnerName').textContent = fullName || 'Partner';
+        document.getElementById('partnerTier').textContent = getTier(principalAmount);
+        
+        // Financial stats
+        document.getElementById('activePrincipal').textContent = formatCurrency(principalAmount);
+        document.getElementById('pdcValue').textContent = formatCurrency(principalAmount);
+        document.getElementById('monthlyReturns').textContent = formatCurrency(monthlyReturn);
+        document.getElementById('totalReturns').textContent = formatCurrency(totalReturns);
+        
+        // Agreement details
+        document.getElementById('startDate').textContent = formatDate(investmentDate);
+        
+        if (expiryDate) {
+            const expiry = new Date(expiryDate);
+            const today = new Date();
+            const daysRemaining = Math.max(0, Math.ceil((expiry - today) / (1000 * 60 * 60 * 24)));
+            const expiryEl = document.getElementById('agreementExpiry');
+            expiryEl.textContent = daysRemaining;
+            expiryEl.style.color = daysRemaining < 30 ? "#ef4444" : 
+                                  daysRemaining < 90 ? "#f59e0b" : "#10b981";
         }
-        return '';
-    };
-    
-    // Get values with fallbacks for different column names
-    const fullName = getValue(partner, ['FullName', 'Name', 'InvestorName', 'ClientName']);
-    const principalAmount = getValue(partner, ['PrincipalAmount', 'InvestmentAmount', 'Amount', 'Principal']);
-    const monthlyReturn = getValue(partner, ['FixedMonthlyReturn', 'MonthlyReturn', 'MonthlyPayout', 'Return']);
-    const totalReturns = getValue(partner, ['TotalReturnsPaid', 'TotalReturns', 'ReturnsPaid', 'CumulativeReturns']);
-    const investmentDate = getValue(partner, ['InvestmentDate', 'StartDate', 'JoinDate', 'Date']);
-    const expiryDate = getValue(partner, ['AgreementExpiryDate', 'ExpiryDate', 'EndDate', 'MaturityDate']);
-    const pdcDetails = getValue(partner, ['PDC_Details', 'PDC', 'ChequeDetails', 'SecurityDetails']);
-    const agreementId = getValue(partner, ['AgreementID', 'ContractID', 'AgreementNumber']);
-    
-    // Basic info
-    document.getElementById('partnerName').textContent = fullName || 'Partner';
-    document.getElementById('partnerTier').textContent = getTier(principalAmount);
-    
-    // Financial stats
-    document.getElementById('activePrincipal').textContent = formatCurrency(principalAmount);
-    document.getElementById('pdcValue').textContent = formatCurrency(principalAmount);
-    document.getElementById('monthlyReturns').textContent = formatCurrency(monthlyReturn);
-    document.getElementById('totalReturns').textContent = formatCurrency(totalReturns);
-    
-    // Agreement details
-    document.getElementById('startDate').textContent = formatDate(investmentDate);
-    
-    if (expiryDate) {
-        const expiry = new Date(expiryDate);
-        const daysRemaining = Math.max(0, Math.ceil((expiry - new Date()) / (1000 * 60 * 60 * 24)));
-        const expiryEl = document.getElementById('agreementExpiry');
-        expiryEl.textContent = daysRemaining;
-        expiryEl.style.color = daysRemaining < 30 ? "#ef4444" : 
-                              daysRemaining < 90 ? "#f59e0b" : "#10b981";
-    }
-    
-    // PDC details
-    if (pdcDetails) {
-        // Try to count cheques
-        let pdcCount = 1;
-        if (typeof pdcDetails === 'string') {
-            if (pdcDetails.includes(',')) pdcCount = pdcDetails.split(',').length;
-            else if (pdcDetails.includes(';')) pdcCount = pdcDetails.split(';').length;
-        }
-        document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
-    }
-    
-    // Partnership tenure
-    if (investmentDate) {
-        const start = new Date(investmentDate);
-        const today = new Date();
-        const months = (today.getFullYear() - start.getFullYear()) * 12 + 
-                      (today.getMonth() - start.getMonth());
-        document.getElementById('partnershipTenure').textContent = `${Math.max(1, months)} Months`;
-    }
-    
-    // Agreement ID
-    if (agreementId) {
-        document.getElementById('agreementId').textContent = agreementId;
-    }
-    
-    // Monthly Rate (calculate from principal and monthly return)
-    if (principalAmount && monthlyReturn) {
-        const principal = Number(principalAmount);
-        const monthly = Number(monthlyReturn);
-        if (principal > 0) {
-            const rate = ((monthly / principal) * 100).toFixed(1);
-            document.getElementById('monthlyRate').textContent = `${rate}%`;
-        }
-    }
-    
-    console.log("UI rendered successfully for:", fullName);
-}        
+        
         // PDC details
-        if (partner.PDC_Details || partner.PDC || partner.ChequeDetails) {
-            const pdcDetails = partner.PDC_Details || partner.PDC || partner.ChequeDetails;
-            const pdcCount = pdcDetails.split(',').length;
+        if (pdcDetails) {
+            let pdcCount = 1;
+            if (typeof pdcDetails === 'string') {
+                if (pdcDetails.includes(',')) pdcCount = pdcDetails.split(',').length;
+                else if (pdcDetails.includes(';')) pdcCount = pdcDetails.split(';').length;
+            }
             document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
-        } else {
-            document.getElementById('pdcCount').textContent = "Details not available";
         }
         
         // Partnership tenure
-        if (partner.InvestmentDate || partner.StartDate) {
-            const startDate = new Date(partner.InvestmentDate || partner.StartDate);
+        if (investmentDate) {
+            const start = new Date(investmentDate);
             const today = new Date();
-            const months = (today.getFullYear() - startDate.getFullYear()) * 12 + 
-                          (today.getMonth() - startDate.getMonth());
+            const months = (today.getFullYear() - start.getFullYear()) * 12 + 
+                          (today.getMonth() - start.getMonth());
             document.getElementById('partnershipTenure').textContent = `${Math.max(1, months)} Months`;
         }
         
         // Agreement ID
-        if (partner.AgreementID || partner.ContractID) {
-            document.getElementById('agreementId').textContent = partner.AgreementID || partner.ContractID;
+        if (agreementId) {
+            document.getElementById('agreementId').textContent = agreementId;
         }
         
-        // Monthly Rate
-        if (partner.PrincipalAmount || partner.InvestmentAmount) {
-            const principal = Number(partner.PrincipalAmount || partner.InvestmentAmount);
-            const monthlyReturn = Number(partner.FixedMonthlyReturn || partner.MonthlyReturn || 0);
-            const monthlyRate = principal > 0 ? ((monthlyReturn / principal) * 100).toFixed(1) : '0.0';
-            document.getElementById('monthlyRate').textContent = `${monthlyRate}%`;
+        // Monthly Rate (calculate from principal and monthly return)
+        if (principalAmount && monthlyReturn) {
+            const principal = Number(principalAmount);
+            const monthly = Number(monthlyReturn);
+            if (principal > 0) {
+                const rate = ((monthly / principal) * 100).toFixed(1);
+                document.getElementById('monthlyRate').textContent = `${rate}%`;
+            }
         }
+        
+        console.log("UI rendered successfully for:", fullName);
+    }
 
     // ==================== TRANSACTION LISTS ====================
     function updateTransactionList(transactions) {
@@ -1685,7 +1609,7 @@ function renderInvestorUI(partner) {
             return dateB - dateA;
         });
         
-        // Show last 10 transactions
+        // Show last 5-10 transactions
         const recentTransactions = transactions.slice(0, 10);
         
         recentTransactions.forEach(tx => {
@@ -1936,11 +1860,13 @@ function renderInvestorUI(partner) {
         }
     }
 
-    function showInvestorError() {
+    function showInvestorError(errorMsg) {
         document.getElementById('partnerName').textContent = "Connection Error";
         document.getElementById('partnerTier').textContent = "Try Again Later";
         document.getElementById('partnerTier').style.background = "rgba(245, 158, 11, 0.1)";
         document.getElementById('partnerTier').style.color = "#f59e0b";
+        
+        console.error("Investor error:", errorMsg);
     }
 
     // ==================== INITIALIZATION ====================
@@ -1969,10 +1895,7 @@ function renderInvestorUI(partner) {
         }, 5 * 60 * 1000);
     });
 
-        }); // This closes the DOMContentLoaded event
-
-    // ==================== QUICK TEST FUNCTION ====================
-    // Add this function to test your API
+    // ==================== DEBUG FUNCTION ====================
     window.testApiConnection = function() {
         const accessKey = localStorage.getItem('omkar_access_key') || 'OMK24250330';
         
@@ -2057,79 +1980,6 @@ function renderInvestorUI(partner) {
         console.log("🔧 API Test button added to page");
     }, 2000);
 
-</script> <!-- This is the closing script tag -->
-    
-    // ==================== DEBUG FUNCTION ====================
-    // Add this back for debugging
-    window.debugSession = function() {
-        console.log("=== DEBUG SESSION ===");
-        console.log("Access Key:", localStorage.getItem('omkar_access_key'));
-        console.log("Guest Mode:", localStorage.getItem('omkar_guest_mode'));
-        console.log("All localStorage:", JSON.stringify(localStorage, null, 2));
-        
-        // Test API directly
-        fetch(`${SCRIPT_URL}?action=test`)
-            .then(r => r.json())
-            .then(data => console.log("API Test:", data))
-            .catch(err => console.error("API Error:", err));
-    };
-
-    // Add debug button to page
-    setTimeout(() => {
-        const debugBtn = document.createElement('button');
-        debugBtn.innerHTML = '<i class="fas fa-bug"></i>';
-        debugBtn.style.cssText = 'position: fixed; bottom: 100px; right: 30px; background: #ff9900; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 9999;';
-        debugBtn.onclick = window.debugSession;
-        document.body.appendChild(debugBtn);
-    }, 1000);
-
-</script>
-
-    <!-- Add this right before </body> -->
-<script>
-// QUICK TEST FUNCTION - Add this at the very end
-(function() {
-    console.log("Adding API test button...");
-    
-    // Create test button
-    const testBtn = document.createElement('button');
-    testBtn.innerHTML = '🔧 Test API Connection';
-    testBtn.style.cssText = `
-        position: fixed;
-        bottom: 150px;
-        right: 30px;
-        background: #3b82f6;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        z-index: 9999;
-        font-weight: bold;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        border: 2px solid white;
-    `;
-    
-    testBtn.onclick = function() {
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
-        const accessKey = localStorage.getItem('omkar_access_key') || 'OMK24250330';
-        
-        console.log("Testing API...");
-        
-        fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`)
-            .then(r => r.json())
-            .then(data => {
-                console.log("API Response:", data);
-                alert("Check console (F12) for API response");
-            })
-            .catch(err => {
-                console.error("API Error:", err);
-                alert("API Error - Check console");
-            });
-    };
-    
-    document.body.appendChild(testBtn);
-})();
-</script>
+    </script>
 </body>
 </html>

@@ -2033,111 +2033,88 @@
         </div>
     </div>
 
-    <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
+ <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // UI Toggle for Guest Form
-            const showBtn = document.getElementById('showGuestFormBtn');
-            const wrapper = document.getElementById('guestFormWrapper');
-            if (showBtn) {
-                showBtn.onclick = function() {
-                    showBtn.style.display = 'none';
-                    wrapper.style.display = 'block';
-                };
-            }
+    document.addEventListener('DOMContentLoaded', function() {
+        // UI Toggle for Guest Form
+        const showBtn = document.getElementById('showGuestFormBtn');
+        const wrapper = document.getElementById('guestFormWrapper');
+        if (showBtn) {
+            showBtn.onclick = function() {
+                showBtn.style.display = 'none';
+                wrapper.style.display = 'block';
+            };
+        }
 
-            // Real Investor Login
-            const loginForm = document.querySelector('.login-card form');
-            if (loginForm) {
-                loginForm.onsubmit = async function(e) {
-                    e.preventDefault();
-                    const id = document.getElementById('username').value.trim().toUpperCase();
-                    const mobile = document.getElementById('loginMobile').value.trim();
-                    const btn = e.target.querySelector('button');
-                    
-                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-                    
-                    try {
-                        const resp = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
-                        const res = await resp.json();
-                        if (res.success) {
-                            localStorage.setItem('omkar_access_key', id);
-                            localStorage.setItem('omkar_guest_mode', 'false');
-                            window.location.href = 'dashboard.html';
-                        } else {
-                            alert("Invalid Credentials. Please try again.");
-                            btn.innerHTML = 'Login to Portfolio';
-                        }
-                    } catch (err) {
-                        alert("Connection Error. Check internet.");
-                        btn.innerHTML = 'Login to Portfolio';
-                    }
-                };
-            }
-
-            // Guest Login (Omkar Shield)
-            const guestForm = document.getElementById('guestForm');
-            if (guestForm) {
-                guestForm.onsubmit = async function(e) {
-                    e.preventDefault();
-                    const guestBtn = document.getElementById('guestBtn');
-                    const name = document.getElementById('guestName').value;
-                    const email = document.getElementById('guestEmail').value;
-                    const mobile = document.getElementById('guestMobile').value;
-
-                    guestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Securing Access...';
-
-                    try {
-                        // Capture the lead in Google Sheets
-                        await fetch(`${API_URL}?action=registerLead&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&mobile=${mobile}&source=Portal_Guest`);
-                        
-                        // Set Session for Dashboard
-                        localStorage.setItem('omkar_guest_mode', 'true');
-                        localStorage.setItem('omkar_access_key', 'GUEST_USER');
+        // Real Investor Login - FIXED
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.onsubmit = async function(e) {
+                e.preventDefault();
+                const id = document.getElementById('username').value.trim().toUpperCase();
+                const mobile = document.getElementById('loginMobile').value.trim();
+                const btn = e.target.querySelector('button');
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+                
+                try {
+                    const resp = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
+                    const res = await resp.json();
+                    if (res.success) {
+                        localStorage.setItem('omkar_access_key', id);
+                        localStorage.setItem('omkar_guest_mode', 'false');
                         window.location.href = 'dashboard.html';
-                    } catch (err) {
-                        // Fallback: Let them in even if Sheets is slow
-                        localStorage.setItem('omkar_guest_mode', 'true');
-                        localStorage.setItem('omkar_access_key', 'GUEST_USER');
-                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert("Invalid Credentials. Please try again.");
+                        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Portal';
                     }
-                };
-            }
-        });
-        // TEST FUNCTION - Add this at the end of your script
-function testGuestLogin() {
-    console.log("=== TESTING GUEST LOGIN ===");
-    
-    // Clear old data
-    localStorage.clear();
-    
-    // Set guest mode
-    localStorage.setItem('omkar_guest_mode', 'true');
-    localStorage.setItem('omkar_access_key', 'GUEST_TEST');
-    
-    console.log("LocalStorage set:", {
-        guest: localStorage.getItem('omkar_guest_mode'),
-        access: localStorage.getItem('omkar_access_key')
+                } catch (err) {
+                    alert("Connection Error. Check internet.");
+                    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Portal';
+                }
+            };
+        }
+
+        // Guest Login (Omkar Shield) - FIXED
+        const guestForm = document.getElementById('guestForm');
+        if (guestForm) {
+            guestForm.onsubmit = async function(e) {
+                e.preventDefault();
+                const guestBtn = document.getElementById('guestBtn');
+                const name = document.getElementById('guestName').value;
+                const email = document.getElementById('guestEmail').value;
+                const mobile = document.getElementById('guestMobile').value;
+
+                guestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Securing Access...';
+
+                try {
+                    // Capture the lead in Google Sheets
+                    await fetch(`${API_URL}?action=registerLead&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&mobile=${mobile}&source=Portal_Guest`);
+                    
+                    // Set Session for Dashboard - FIXED: Clear old data first
+                    localStorage.clear();
+                    localStorage.setItem('omkar_guest_mode', 'true');
+                    localStorage.setItem('omkar_access_key', 'GUEST_USER_' + Date.now());
+                    
+                    console.log("Guest session set:", {
+                        guest: localStorage.getItem('omkar_guest_mode'),
+                        access: localStorage.getItem('omkar_access_key')
+                    });
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                } catch (err) {
+                    console.error("Guest form error:", err);
+                    // Fallback: Set session anyway
+                    localStorage.clear();
+                    localStorage.setItem('omkar_guest_mode', 'true');
+                    localStorage.setItem('omkar_access_key', 'GUEST_USER_FALLBACK');
+                    window.location.href = 'dashboard.html';
+                }
+            };
+        }
     });
-    
-    // Wait 2 seconds then redirect
-    setTimeout(function() {
-        console.log("Redirecting to dashboard...");
-        window.location.href = 'dashboard.html';
-    }, 2000);
-}
-
-// Add a test button to your portal page
-document.addEventListener('DOMContentLoaded', function() {
-    // Add a test button at the bottom
-    const testDiv = document.createElement('div');
-    testDiv.style.cssText = 'position: fixed; bottom: 100px; right: 30px; background: #ff9900; color: white; padding: 10px; border-radius: 5px; cursor: pointer; z-index: 1000;';
-    testDiv.innerHTML = 'TEST GUEST LOGIN';
-    testDiv.onclick = testGuestLogin;
-    document.body.appendChild(testDiv);
-});
-        
-    </script>
+</script>
 </body>
 </html>

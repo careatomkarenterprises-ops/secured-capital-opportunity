@@ -1315,199 +1315,156 @@
     </a>
 
     <!-- Chart.js for graphs -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
 
- <!-- Add these libraries to the head section (after Chart.js): -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script>
+    // ============================================
+    // LIVE DASHBOARD DATA FETCHING - CORRECTED
+    // ============================================
 
-// ============================================
-// LIVE DASHBOARD DATA FETCHING - FIXED VERSION
-// ============================================
+    // Single source of truth for your API
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec"; 
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec';
+    let currentTransactions = [];
 
-// 1. CONFIGURATION - Ensure this matches your latest Deployment URL
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec"; 
+    async function loadLiveDashboard() {
+        const accessKey = localStorage.getItem('omkar_access_key');
+        const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
 
-// Global variable to store transactions for the PDF generator
-let currentTransactions = [];
-
-/**
- * MAIN LOAD FUNCTION
- * Automatically handles Real Investors vs. Verified Guests
- */
-async function loadLiveDashboard() {
-    const accessKey = localStorage.getItem('omkar_access_key');
-    const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
-
-    // Security Gate: Redirect if no session exists
-    if (!accessKey) {
-        window.location.replace('partner-portal.html');
-        return;
-    }
-
-    try {
-        // ===== CASE A: VERIFIED GUEST MODE (Legal Shield) =====
-        if (isGuest) {
-            console.log("Shield Active: Loading Performance Stats for Guest");
-            const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
-            const stats = await response.json();
-            
-            renderGuestUI(stats);
-            return; // Stop here for Guests
+        if (!accessKey) {
+            window.location.replace('partner-portal.html');
+            return;
         }
 
-        // ===== CASE B: REAL INVESTOR MODE =====
-        console.log("Syncing Data for Investor:", accessKey);
-        const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-        
-        if (!response.ok) throw new Error(`API Error: ${response.status}`);
-        const partner = await response.json();
-
-        if (partner) {
-            renderInvestorUI(partner);
-            
-            // Fetch and Render Transactions
-            const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
-            currentTransactions = await txResponse.json();
-            updateTransactionList(currentTransactions);
-            
-            // Enable PDF Download Button
-            const downloadBtn = document.querySelector('.btn-outline');
-            if (downloadBtn) {
-                downloadBtn.onclick = () => downloadInvestorStatement(partner, currentTransactions);
+        try {
+            if (isGuest) {
+                const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
+                const stats = await response.json();
+                renderGuestUI(stats);
+                return;
             }
-        } else {
-            alert("No partner record found. Please contact support.");
+
+            const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+            if (!response.ok) throw new Error(`API Error: ${response.status}`);
+            const partner = await response.json();
+
+            if (partner) {
+                renderInvestorUI(partner);
+                
+                const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+                currentTransactions = await txResponse.json();
+                updateTransactionList(currentTransactions);
+                
+                // Fixed: Selecting the "Download Statement" button by its class/text
+                const downloadBtn = document.querySelector('a[href*="#"].quick-action i.fa-download')?.parentElement;
+                if (downloadBtn) {
+                    downloadBtn.onclick = (e) => {
+                        e.preventDefault();
+                        downloadInvestorStatement(partner, currentTransactions);
+                    };
+                }
+            } else {
+                alert("No partner record found.");
+            }
+        } catch (e) {
+            console.error("Critical Sync Error:", e);
+            showErrorState();
         }
-
-    } catch (e) {
-        console.error("Critical Sync Error:", e);
-        showErrorState();
-    }
-}
-
-/**
- * UI RENDERER: REAL INVESTOR
- */
-function renderInvestorUI(partner) {
-    const formatCurrency = (num) => '₹' + Number(num || 0).toLocaleString('en-IN');
-
-    // Header & Stats
-    document.getElementById('partnerName').textContent = partner.FullName || 'Partner';
-    document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount);
-    document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount);
-    document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn);
-    document.getElementById('totalReturns').textContent = formatCurrency(partner.TotalReturnsPaid || 0);
-
-    // Partnership Details
-    if (partner.InvestmentDate) {
-        document.getElementById('startDate').textContent = new Date(partner.InvestmentDate).toLocaleDateString('en-IN');
-    }
-    
-    // Agreement Expiry & Alerts
-    if (partner.AgreementExpiryDate) {
-        const expiryDate = new Date(partner.AgreementExpiryDate);
-        const daysRemaining = Math.max(0, Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24)));
-        const expiryEl = document.getElementById('agreementExpiry');
-        expiryEl.textContent = daysRemaining;
-        if (daysRemaining < 30) expiryEl.style.color = "#ff4d4d"; // Red alert
     }
 
-    // Tier Logic
-    const principal = Number(partner.PrincipalAmount) || 0;
-    let tier = "Standard";
-    if (principal >= 1000000) tier = "Platinum";
-    else if (principal >= 500000) tier = "Gold";
-    document.getElementById('partnerTier').textContent = `${tier} Tier Partner`;
+    function renderInvestorUI(partner) {
+        const formatCurrency = (num) => '₹' + Number(num || 0).toLocaleString('en-IN');
+        document.getElementById('partnerName').textContent = partner.FullName || 'Partner';
+        document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount);
+        document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount);
+        document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn);
+        document.getElementById('totalReturns').textContent = formatCurrency(partner.TotalReturnsPaid || 0);
 
-    // Security Details (PDC)
-    if (partner.PDC_Details) {
-        const pdcCount = partner.PDC_Details.split(',').length;
-        document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
-    }
-
-    // Agreement Link Update
-    const viewBtn = document.querySelector('a[href*="agreement-view"]');
-    if (viewBtn && partner.AgreementURL) {
-        viewBtn.href = partner.AgreementURL;
-        viewBtn.target = "_blank";
-    }
-}
-
-/**
- * UI RENDERER: GUEST (LEGAL SHIELD ACTIVE)
- */
-function renderGuestUI(stats) {
-    document.getElementById('partnerName').textContent = "Performance Overview";
-    document.getElementById('activePrincipal').textContent = stats.totalAUM || "₹2.85 Cr+";
-    document.getElementById('totalReturns').textContent = "100% Payout Rate";
-    document.getElementById('partnerTier').textContent = "Verified Guest";
-    
-    // Hide/Blur Sensitive Sections
-    const blurElements = ['.security-card', '.partnership-info'];
-    blurElements.forEach(selector => {
-        const el = document.querySelector(selector);
-        if (el) {
-            el.style.filter = "blur(8px)";
-            el.style.pointerEvents = "none";
-            el.title = "Verification Required to View Details";
+        if (partner.InvestmentDate) {
+            document.getElementById('startDate').textContent = new Date(partner.InvestmentDate).toLocaleDateString('en-IN');
         }
-    });
-
-    // Replace Transactions with Performance Notice
-    const container = document.querySelector('.transaction-list');
-    if (container) {
-        container.innerHTML = `
-            <div style="padding: 20px; text-align: center; color: #666;">
-                <i class="fas fa-lock" style="font-size: 24px; color: #c19b5e;"></i>
-                <p>Detailed transaction logs are visible to active partners only.</p>
-                <p style="font-size: 12px;">Legal Record: Consent captured on ${new Date().toLocaleDateString()}</p>
-            </div>`;
-    }
-}
-
-/**
- * TRANSACTION TABLE RENDERER
- */
-function updateTransactionList(data) {
-    const container = document.querySelector('.transaction-list');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    if (!data || data.length === 0) {
-        container.innerHTML = '<div class="transaction-item"><h4>No Transactions Found</h4></div>';
-        return;
-    }
-
-    data.forEach(tx => {
-        const type = tx['TransactionType (Monthly Return, Performance Bonus, Deposit)'] || 'Monthly Return';
-        const date = tx.TransactionDate ? new Date(tx.TransactionDate).toLocaleDateString('en-IN') : 'N/A';
-        const amount = Number(tx.Amount || 0);
         
-        container.innerHTML += `
-            <div class="transaction-item">
-                <div class="transaction-info">
-                    <h4>${type}</h4>
-                    <div class="transaction-date">${date} | ${tx.Status || 'Completed'}</div>
-                </div>
-                <div class="transaction-amount">+₹${amount.toLocaleString('en-IN')}</div>
+        if (partner.AgreementExpiryDate) {
+            const expiryDate = new Date(partner.AgreementExpiryDate);
+            const daysRemaining = Math.max(0, Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24)));
+            const expiryEl = document.getElementById('agreementExpiry');
+            expiryEl.textContent = daysRemaining;
+            if (daysRemaining < 30) expiryEl.style.color = "#ff4d4d";
+        }
+
+        const principal = Number(partner.PrincipalAmount) || 0;
+        let tier = "Standard";
+        if (principal >= 1000000) tier = "Platinum";
+        else if (principal >= 500000) tier = "Gold";
+        document.getElementById('partnerTier').textContent = `${tier} Tier Partner`;
+
+        if (partner.PDC_Details) {
+            const pdcCount = partner.PDC_Details.split(',').length;
+            document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
+        }
+    }
+
+    function renderGuestUI(stats) {
+        document.getElementById('partnerName').textContent = "Performance Overview";
+        document.getElementById('activePrincipal').textContent = stats.totalAUM || "₹2.85 Cr+";
+        document.getElementById('totalReturns').textContent = "100% Payout Rate";
+        document.getElementById('partnerTier').textContent = "Verified Guest";
+        
+        // Target specifically the PDC and Partnership cards
+        const dashboardCards = document.querySelectorAll('.dashboard-card');
+        dashboardCards.forEach(card => {
+            if (card.innerText.includes("PDC Security") || card.innerText.includes("Partnership Details")) {
+                card.style.filter = "blur(8px)";
+                card.style.pointerEvents = "none";
+            }
+        });
+
+        const container = document.querySelector('.transaction-list');
+        if (container) {
+            container.innerHTML = `<div style="padding: 20px; text-align: center; color: #666;">
+                <i class="fas fa-lock" style="font-size: 24px; color: #c19b5e;"></i>
+                <p>Transaction logs are private to active partners.</p>
             </div>`;
+        }
+    }
+
+    function updateTransactionList(data) {
+        const container = document.querySelector('.transaction-list');
+        if (!container) return;
+        container.innerHTML = '';
+        if (!data || data.length === 0) {
+            container.innerHTML = '<h4>No Transactions Found</h4>';
+            return;
+        }
+        data.forEach(tx => {
+            const type = tx['TransactionType (Monthly Return, Performance Bonus, Deposit)'] || 'Monthly Return';
+            const date = tx.TransactionDate ? new Date(tx.TransactionDate).toLocaleDateString('en-IN') : 'N/A';
+            const amount = Number(tx.Amount || 0);
+            container.innerHTML += `
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <h4>${type}</h4>
+                        <div class="transaction-date">${date} | ${tx.Status || 'Completed'}</div>
+                    </div>
+                    <div class="transaction-amount">+₹${amount.toLocaleString('en-IN')}</div>
+                </div>`;
+        });
+    }
+
+    function showErrorState() {
+        document.getElementById('partnerName').textContent = "Sync Error";
+    }
+
+    // Logout Functionality
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        localStorage.clear();
+        window.location.replace('partner-portal.html');
     });
-}
 
-/**
- * ERROR FALLBACK
- */
-function showErrorState() {
-    document.getElementById('partnerName').textContent = "Sync Error";
-    alert("Unable to fetch live data. Please refresh or check your internet connection.");
-}
-
-// EXECUTE ON LOAD
-document.addEventListener('DOMContentLoaded', loadLiveDashboard);
-            
-            
+    document.addEventListener('DOMContentLoaded', loadLiveDashboard);
+    </script>
+    
 </body>
 </html>

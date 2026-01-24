@@ -2005,54 +2005,54 @@
         <span>Portal Support</span>
     </a>
 
-    <div class="guest-login-box" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; max-width: 400px; margin-left: auto; margin-right: auto;">
-        <h3>Interested in Joining?</h3>
-        <p>View our 10-year performance track record.</p>
-        <form id="guestForm">
-            <input type="text" id="guestName" placeholder="Full Name" required style="width: 100%; margin-bottom: 10px; padding: 10px;">
-            <input type="email" id="guestEmail" placeholder="Email Address" required style="width: 100%; margin-bottom: 10px; padding: 10px;">
-            <input type="tel" id="guestMobile" placeholder="WhatsApp Number" required style="width: 100%; margin-bottom: 10px; padding: 10px;">
-            
-            <div class="legal-consent" style="font-size: 12px; margin: 15px 0; text-align: left;">
-                <input type="checkbox" id="consentCheck" required>
-                <label for="consentCheck">
-                    I have read and agree to the 
-                    <a href="risk-disclosure.html" target="_blank">Risk Disclosure</a> and 
-                    <a href="terms.html" target="_blank">Terms of Partnership</a>. 
-                    I understand that past performance is not a guarantee of future results.
-                </label>
-            </div>
-            
-            <button type="submit" id="guestBtn" class="connect-btn" style="background: #333; width: 100%; color: white; padding: 12px; border: none; cursor: pointer;">
-                View Performance Dashboard
-            </button>
-        </form>
+    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span>Portal Support</span>
+    </a>
+
+    <div class="guest-access-container" style="margin-top: 40px; text-align: center; border-top: 2px dashed #ddd; padding-top: 30px; padding-bottom: 50px;">
+        <h3 style="color: #c19b5e;">New to Omkar Enterprises?</h3>
+        <p>Explore our 10-year growth track record and payout history.</p>
+        
+        <button type="button" id="showGuestFormBtn" class="connect-btn" style="background: #333; margin-bottom: 20px; color: white; padding: 12px 25px; border: none; cursor: pointer; border-radius: 5px;">
+            <i class="fas fa-chart-line"></i> View Performance Dashboard
+        </button>
+
+        <div id="guestFormWrapper" style="display: none; background: #f9f9f9; padding: 25px; border-radius: 12px; border: 1px solid #eee; max-width: 450px; margin: 0 auto;">
+            <form id="guestForm">
+                <input type="text" id="guestName" placeholder="Full Name" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="tel" id="guestMobile" placeholder="WhatsApp Number" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="email" id="guestEmail" placeholder="Email Address" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                
+                <div style="text-align: left; font-size: 13px; margin: 15px 0; border: 1px solid #ddd; padding: 10px; background: #fff;">
+                    <input type="checkbox" id="consentCheck" required>
+                    <label for="consentCheck">
+                        <strong>LEGAL CONSENT:</strong> I agree to the <a href="risk-disclosure.html" target="_blank" style="color: #c19b5e;">Risk Disclosure</a> and <a href="terms.html" target="_blank" style="color: #c19b5e;">Terms</a>. I understand this is a private partnership portal and past performance is not a guarantee of future returns.
+                    </label>
+                </div>
+                
+                <button type="submit" id="guestBtn" class="connect-btn" style="width: 100%; background: #c19b5e; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                    Accept Terms & Enter Dashboard
+                </button>
+            </form>
+        </div>
     </div>
 
     <script>
-        // Global Configuration
         const API_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
 
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. UI HELPERS (Mobile Menu, Time, Scroll)
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('navMenu');
-            
-            if (hamburger) {
-                hamburger.onclick = () => {
-                    navMenu.classList.toggle('active');
-                    hamburger.classList.toggle('active');
+            // UI Toggle for Guest Form
+            const showBtn = document.getElementById('showGuestFormBtn');
+            const wrapper = document.getElementById('guestFormWrapper');
+            if (showBtn) {
+                showBtn.onclick = function() {
+                    showBtn.style.display = 'none';
+                    wrapper.style.display = 'block';
                 };
             }
 
-            function updateTime() {
-                const now = new Date();
-                const timeEl = document.getElementById('currentTime');
-                if (timeEl) timeEl.textContent = now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + " IST";
-            }
-            setInterval(updateTime, 1000);
-
-            // 2. REGULAR INVESTOR LOGIN
+            // Real Investor Login
             const loginForm = document.querySelector('.login-card form');
             if (loginForm) {
                 loginForm.onsubmit = async function(e) {
@@ -2071,49 +2071,45 @@
                             localStorage.setItem('omkar_guest_mode', 'false');
                             window.location.href = 'dashboard.html';
                         } else {
-                            alert("Error: " + res.error);
+                            alert("Invalid Credentials. Please try again.");
                             btn.innerHTML = 'Login to Portfolio';
                         }
-                    } catch (err) { alert("Connection Error"); btn.innerHTML = 'Login to Portfolio'; }
+                    } catch (err) {
+                        alert("Connection Error. Check internet.");
+                        btn.innerHTML = 'Login to Portfolio';
+                    }
                 };
             }
 
-            // 3. GUEST LOGIN (THE OMKAR SHIELD)
-         <div class="guest-access-container" style="margin-top: 40px; text-align: center; border-top: 2px dashed #ddd; padding-top: 30px;">
-    <h3 style="color: #c19b5e;">New to Omkar Enterprises?</h3>
-    <p>Explore our 10-year growth track record and payout history.</p>
-    
-    <button type="button" id="showGuestFormBtn" class="connect-btn" style="background: #333; margin-bottom: 20px;">
-        <i class="fas fa-chart-line"></i> View Performance Dashboard
-    </button>
+            // Guest Login (Omkar Shield)
+            const guestForm = document.getElementById('guestForm');
+            if (guestForm) {
+                guestForm.onsubmit = async function(e) {
+                    e.preventDefault();
+                    const guestBtn = document.getElementById('guestBtn');
+                    const name = document.getElementById('guestName').value;
+                    const email = document.getElementById('guestEmail').value;
+                    const mobile = document.getElementById('guestMobile').value;
 
-    <div id="guestFormWrapper" style="display: none; background: #f9f9f9; padding: 25px; border-radius: 12px; border: 1px solid #eee; max-width: 450px; margin: 0 auto;">
-        <form id="guestForm">
-            <input type="text" id="guestName" placeholder="Full Name" required style="width: 100%; padding: 12px; margin-bottom: 10px;">
-            <input type="tel" id="guestMobile" placeholder="WhatsApp Number" required style="width: 100%; padding: 12px; margin-bottom: 10px;">
-            <input type="email" id="guestEmail" placeholder="Email Address" required style="width: 100%; padding: 12px; margin-bottom: 10px;">
-            
-            <div style="text-align: left; font-size: 13px; margin: 15px 0; border: 1px solid #ddd; padding: 10px; background: #fff;">
-                <input type="checkbox" id="consentCheck" required>
-                <label for="consentCheck">
-                    <strong>LEGAL CONSENT:</strong> I agree to the <a href="risk-disclosure.html" target="_blank">Risk Disclosure</a> and <a href="terms.html" target="_blank">Terms</a>. I understand this is a private partnership portal and past performance is not a guarantee of future returns.
-                </label>
-            </div>
-            
-            <button type="submit" id="guestBtn" class="connect-btn" style="width: 100%;">
-                Accept Terms & Enter Dashboard
-            </button>
-        </form>
-    </div>
-</div>
+                    guestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Securing Access...';
 
-<script>
-    // Logic to show/hide the guest form
-    document.getElementById('showGuestFormBtn').onclick = function() {
-        this.style.display = 'none';
-        document.getElementById('guestFormWrapper').style.display = 'block';
-    };
-</script>
-    
+                    try {
+                        // Capture the lead in Google Sheets
+                        await fetch(`${API_URL}?action=registerLead&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&mobile=${mobile}&source=Portal_Guest`);
+                        
+                        // Set Session for Dashboard
+                        localStorage.setItem('omkar_guest_mode', 'true');
+                        localStorage.setItem('omkar_access_key', 'GUEST_USER');
+                        window.location.href = 'dashboard.html';
+                    } catch (err) {
+                        // Fallback: Let them in even if Sheets is slow
+                        localStorage.setItem('omkar_guest_mode', 'true');
+                        localStorage.setItem('omkar_access_key', 'GUEST_USER');
+                        window.location.href = 'dashboard.html';
+                    }
+                };
+            }
+        });
+    </script>
 </body>
 </html>

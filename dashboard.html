@@ -1320,15 +1320,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
 
     <script>
-
-        // Add at the very beginning of your script
-console.log("=== DASHBOARD LOADING ===");
-console.log("Access Key:", localStorage.getItem('omkar_access_key'));
-console.log("Guest Mode:", localStorage.getItem('omkar_guest_mode'));
-console.log("=== END DEBUG ===");
-        
-        // ============================================
-    // LIVE DASHBOARD DATA FETCHING - CORRECTED
+    // ============================================
+    // FIXED DASHBOARD CODE - NO REDIRECT ISSUE
     // ============================================
 
     // Single source of truth for your API
@@ -1336,21 +1329,90 @@ console.log("=== END DEBUG ===");
 
     let currentTransactions = [];
 
-   async function loadLiveDashboard() {
-    // 1. Get session status
-    const accessKey = localStorage.getItem('omkar_access_key');
-    const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+    // DEBUG: Check localStorage immediately
+    console.log("=== DASHBOARD LOADING ===");
+    console.log("Access Key:", localStorage.getItem('omkar_access_key'));
+    console.log("Guest Mode:", localStorage.getItem('omkar_guest_mode'));
+    console.log("=== DEBUG END ===");
 
-    // 2. UPDATED SECURITY GATE: 
-    // Only redirect if BOTH accessKey is missing AND it's NOT a guest session.
-    if (!accessKey && !isGuest) {
-        console.log("No session found. Redirecting to portal...");
-        window.location.replace('partner-portal.html');
-        return;
+    async function loadLiveDashboard() {
+        console.log("loadLiveDashboard() called");
+        
+        // 1. Get session status
+        const accessKey = localStorage.getItem('omkar_access_key');
+        const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+
+        console.log("Session check - Access Key:", accessKey, "Is Guest:", isGuest);
+
+        // 2. SECURITY GATE - FIXED
+        // Only redirect if BOTH accessKey is missing AND it's NOT a guest session.
+        if (!accessKey && !isGuest) {
+            console.warn("No session found. Redirecting to portal...");
+            // Add delay to see logs
+            setTimeout(() => {
+                window.location.replace('partner-portal.html');
+            }, 1000);
+            return;
+        }
+
+        // 3. HANDLE GUEST MODE FIRST
+        if (isGuest) {
+            console.log("Omkar Shield: Guest Mode Active");
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
+                const stats = await response.json();
+                renderGuestUI(stats);
+            } catch (error) {
+                console.error("Guest data error:", error);
+                renderGuestUI({});
+            }
+            return; // EXIT HERE - Don't load investor data
+        }
+
+        // 4. HANDLE REAL INVESTOR (If not a guest)
+        console.log("Fetching Investor Data for:", accessKey);
+        
+        // Check if it's a valid investor key (not guest)
+        if (!accessKey || accessKey === 'GUEST_USER' || accessKey === 'GUEST') {
+            console.log("Invalid investor key, treating as guest");
+            renderGuestUI({});
+            return;
+        }
+
+        try {
+            const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+            if (!response.ok) throw new Error(`API Error: ${response.status}`);
+            const partner = await response.json();
+
+            if (partner && !partner.error) {
+                renderInvestorUI(partner);
+                
+                const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+                currentTransactions = await txResponse.json();
+                updateTransactionList(currentTransactions);
+                
+                // Fixed: Selecting the "Download Statement" button
+                const downloadBtn = document.querySelector('a[href*="#"].quick-action i.fa-download')?.parentElement;
+                if (downloadBtn) {
+                    downloadBtn.onclick = (e) => {
+                        e.preventDefault();
+                        downloadInvestorStatement(partner, currentTransactions);
+                    };
+                }
+            } else {
+                console.error("No partner record found or error:", partner);
+                // If partner not found, show guest UI instead of redirecting
+                renderGuestUI({});
+            }
+        } catch (e) {
+            console.error("Critical Sync Error:", e);
+            // Don't redirect on error, just show error state
+            showErrorState();
+        }
     }
-    // ... rest of the code ...
-}
+
     function renderInvestorUI(partner) {
+        console.log("Rendering investor UI for:", partner.FullName);
         const formatCurrency = (num) => '₹' + Number(num || 0).toLocaleString('en-IN');
         document.getElementById('partnerName').textContent = partner.FullName || 'Partner';
         document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount);
@@ -1383,10 +1445,17 @@ console.log("=== END DEBUG ===");
     }
 
     function renderGuestUI(stats) {
+        console.log("Rendering guest UI");
         document.getElementById('partnerName').textContent = "Performance Overview";
-        document.getElementById('activePrincipal').textContent = stats.totalAUM || "₹2.85 Cr+";
-        document.getElementById('totalReturns').textContent = "100% Payout Rate";
         document.getElementById('partnerTier').textContent = "Verified Guest";
+        
+        // Update stats with real or demo data
+        if (stats.totalAUM) {
+            document.getElementById('activePrincipal').textContent = stats.totalAUM;
+        }
+        if (stats.payoutRate) {
+            document.getElementById('totalReturns').textContent = stats.payoutRate + " Payout Rate";
+        }
         
         // Target specifically the PDC and Partnership cards
         const dashboardCards = document.querySelectorAll('.dashboard-card');
@@ -1394,14 +1463,28 @@ console.log("=== END DEBUG ===");
             if (card.innerText.includes("PDC Security") || card.innerText.includes("Partnership Details")) {
                 card.style.filter = "blur(8px)";
                 card.style.pointerEvents = "none";
+                card.style.position = "relative";
+                card.innerHTML += `
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.9); padding: 20px; border-radius: 10px; text-align: center; z-index: 10; width: 80%;">
+                        <i class="fas fa-lock" style="font-size: 24px; color: var(--gold-accent); margin-bottom: 10px;"></i>
+                        <p style="color: var(--slate-dark); font-weight: 600;">Available to Active Partners Only</p>
+                        <a href="contact.html" class="connect-btn" style="margin-top: 15px; display: inline-block;">
+                            <i class="fas fa-user-plus"></i> Become a Partner
+                        </a>
+                    </div>
+                `;
             }
         });
 
         const container = document.querySelector('.transaction-list');
         if (container) {
-            container.innerHTML = `<div style="padding: 20px; text-align: center; color: #666;">
-                <i class="fas fa-lock" style="font-size: 24px; color: #c19b5e;"></i>
-                <p>Transaction logs are private to active partners.</p>
+            container.innerHTML = `<div style="padding: 40px 20px; text-align: center; color: #666;">
+                <i class="fas fa-chart-line" style="font-size: 48px; color: var(--gold-accent); margin-bottom: 20px;"></i>
+                <h4 style="color: var(--slate-dark); margin-bottom: 10px;">Omkar Enterprises Performance</h4>
+                <p style="margin-bottom: 20px;">Track record available to registered partners</p>
+                <a href="contact.html" class="connect-btn" style="display: inline-block;">
+                    <i class="fas fa-user-plus"></i> View Full Track Record
+                </a>
             </div>`;
         }
     }
@@ -1430,10 +1513,14 @@ console.log("=== END DEBUG ===");
     }
 
     function showErrorState() {
-        document.getElementById('partnerName').textContent = "Sync Error";
+        document.getElementById('partnerName').textContent = "Connection Error";
+        document.getElementById('partnerTier').textContent = "Please Try Again";
+        document.getElementById('activePrincipal').textContent = "₹--";
+        document.getElementById('monthlyReturns').textContent = "₹--";
+        document.getElementById('totalReturns').textContent = "₹--";
     }
 
-   // Logout Functionality - Clears everything
+    // Logout Functionality - Clears everything
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', (e) => {
@@ -1443,8 +1530,61 @@ console.log("=== END DEBUG ===");
             window.location.replace('partner-portal.html');
         });
     }
-       
-    document.addEventListener('DOMContentLoaded', loadLiveDashboard);
+
+    // Initialize portfolio chart
+    function initChart() {
+        const ctx = document.getElementById('portfolioChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan 2021', 'Jul 2021', 'Jan 2022', 'Jul 2022', 'Jan 2023', 'Jul 2023', 'Jan 2024', 'Jul 2024', 'Jan 2025', 'Jul 2025', 'Jan 2026'],
+                datasets: [{
+                    label: 'Portfolio Growth',
+                    data: [500000, 550000, 610000, 670000, 740000, 810000, 890000, 980000, 1070000, 1170000, 1280000],
+                    borderColor: 'rgba(212, 175, 55, 1)',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '₹' + (value/100000).toFixed(0) + 'L';
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Load everything when page is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM Content Loaded");
+        loadLiveDashboard();
+        initChart();
+    });
+
     </script>
     
 </body>

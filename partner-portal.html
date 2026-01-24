@@ -2105,6 +2105,39 @@
                 };
             }
         });
+        // TEST FUNCTION - Add this at the end of your script
+function testGuestLogin() {
+    console.log("=== TESTING GUEST LOGIN ===");
+    
+    // Clear old data
+    localStorage.clear();
+    
+    // Set guest mode
+    localStorage.setItem('omkar_guest_mode', 'true');
+    localStorage.setItem('omkar_access_key', 'GUEST_TEST');
+    
+    console.log("LocalStorage set:", {
+        guest: localStorage.getItem('omkar_guest_mode'),
+        access: localStorage.getItem('omkar_access_key')
+    });
+    
+    // Wait 2 seconds then redirect
+    setTimeout(function() {
+        console.log("Redirecting to dashboard...");
+        window.location.href = 'dashboard.html';
+    }, 2000);
+}
+
+// Add a test button to your portal page
+document.addEventListener('DOMContentLoaded', function() {
+    // Add a test button at the bottom
+    const testDiv = document.createElement('div');
+    testDiv.style.cssText = 'position: fixed; bottom: 100px; right: 30px; background: #ff9900; color: white; padding: 10px; border-radius: 5px; cursor: pointer; z-index: 1000;';
+    testDiv.innerHTML = 'TEST GUEST LOGIN';
+    testDiv.onclick = testGuestLogin;
+    document.body.appendChild(testDiv);
+});
+        
     </script>
 </body>
 </html>

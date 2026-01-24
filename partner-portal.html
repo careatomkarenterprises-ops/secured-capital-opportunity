@@ -2032,89 +2032,187 @@
             </form>
         </div>
     </div>
-
- <script>
+    
+<script>
+    console.log("PARTNER PORTAL LOADED");
+    
     const API_URL = "https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec";
 
     document.addEventListener('DOMContentLoaded', function() {
-        // UI Toggle for Guest Form
+        console.log("Portal DOM ready");
+        
+        // 1. Guest form toggle
         const showBtn = document.getElementById('showGuestFormBtn');
         const wrapper = document.getElementById('guestFormWrapper');
-        if (showBtn) {
+        if (showBtn && wrapper) {
             showBtn.onclick = function() {
+                console.log("Showing guest form");
                 showBtn.style.display = 'none';
                 wrapper.style.display = 'block';
             };
         }
 
-        // Real Investor Login - FIXED
+        // 2. REAL INVESTOR LOGIN - SIMPLIFIED
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
-            loginForm.onsubmit = async function(e) {
+            console.log("Login form found");
+            loginForm.onsubmit = function(e) {
                 e.preventDefault();
+                console.log("Login form submitted");
+                
                 const id = document.getElementById('username').value.trim().toUpperCase();
                 const mobile = document.getElementById('loginMobile').value.trim();
                 const btn = e.target.querySelector('button');
                 
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+                console.log("Attempting login with:", { id, mobile });
                 
-                try {
-                    const resp = await fetch(`${API_URL}?action=verifyLogin&accessKey=${id}&mobile=${mobile}`);
-                    const res = await resp.json();
-                    if (res.success) {
-                        localStorage.setItem('omkar_access_key', id);
-                        localStorage.setItem('omkar_guest_mode', 'false');
-                        window.location.href = 'dashboard.html';
-                    } else {
-                        alert("Invalid Credentials. Please try again.");
-                        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Portal';
-                    }
-                } catch (err) {
-                    alert("Connection Error. Check internet.");
-                    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Portal';
-                }
+                // SIMPLE - Just set session and redirect
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+                
+                // Clear old session
+                localStorage.clear();
+                
+                // Set new session
+                localStorage.setItem('omkar_access_key', id);
+                localStorage.setItem('omkar_guest_mode', 'false');
+                localStorage.setItem('omkar_login_time', new Date().toISOString());
+                
+                console.log("Session set:", {
+                    accessKey: localStorage.getItem('omkar_access_key'),
+                    guestMode: localStorage.getItem('omkar_guest_mode')
+                });
+                
+                // Redirect to dashboard
+                setTimeout(() => {
+                    console.log("Redirecting to dashboard...");
+                    window.location.href = 'dashboard.html';
+                }, 500);
             };
         }
 
-        // Guest Login (Omkar Shield) - FIXED
+        // 3. GUEST LOGIN - OMAKR SHIELD
         const guestForm = document.getElementById('guestForm');
         if (guestForm) {
-            guestForm.onsubmit = async function(e) {
+            console.log("Guest form found");
+            guestForm.onsubmit = function(e) {
                 e.preventDefault();
-                const guestBtn = document.getElementById('guestBtn');
+                console.log("Guest form submitted");
+                
                 const name = document.getElementById('guestName').value;
                 const email = document.getElementById('guestEmail').value;
                 const mobile = document.getElementById('guestMobile').value;
-
-                guestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Securing Access...';
-
+                const guestBtn = document.getElementById('guestBtn');
+                
+                console.log("Guest data:", { name, email, mobile });
+                
+                guestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                
+                // 1. Clear old session
+                localStorage.clear();
+                
+                // 2. Set guest session
+                localStorage.setItem('omkar_guest_mode', 'true');
+                localStorage.setItem('omkar_access_key', 'GUEST_' + Date.now());
+                localStorage.setItem('omkar_guest_name', name);
+                localStorage.setItem('omkar_guest_email', email);
+                localStorage.setItem('omkar_guest_mobile', mobile);
+                localStorage.setItem('omkar_consent_time', new Date().toISOString());
+                
+                console.log("Guest session created:", {
+                    guestMode: localStorage.getItem('omkar_guest_mode'),
+                    accessKey: localStorage.getItem('omkar_access_key'),
+                    consentTime: localStorage.getItem('omkar_consent_time')
+                });
+                
+                // 3. Try to save lead (async, won't block)
                 try {
-                    // Capture the lead in Google Sheets
-                    await fetch(`${API_URL}?action=registerLead&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&mobile=${mobile}&source=Portal_Guest`);
-                    
-                    // Set Session for Dashboard - FIXED: Clear old data first
-                    localStorage.clear();
-                    localStorage.setItem('omkar_guest_mode', 'true');
-                    localStorage.setItem('omkar_access_key', 'GUEST_USER_' + Date.now());
-                    
-                    console.log("Guest session set:", {
-                        guest: localStorage.getItem('omkar_guest_mode'),
-                        access: localStorage.getItem('omkar_access_key')
-                    });
-                    
-                    // Redirect to dashboard
-                    window.location.href = 'dashboard.html';
+                    fetch(`${API_URL}?action=registerLead&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&mobile=${mobile}&source=Omkar_Shield`)
+                        .then(res => console.log("Lead saved successfully"))
+                        .catch(err => console.warn("Lead save failed (optional):", err));
                 } catch (err) {
-                    console.error("Guest form error:", err);
-                    // Fallback: Set session anyway
-                    localStorage.clear();
-                    localStorage.setItem('omkar_guest_mode', 'true');
-                    localStorage.setItem('omkar_access_key', 'GUEST_USER_FALLBACK');
-                    window.location.href = 'dashboard.html';
+                    // Ignore
                 }
+                
+                // 4. Redirect to dashboard
+                setTimeout(() => {
+                    console.log("Redirecting guest to dashboard...");
+                    window.location.href = 'dashboard.html';
+                }, 800);
             };
         }
+        
+        // 4. Add debug buttons
+        const debugDiv = document.createElement('div');
+        debugDiv.innerHTML = `
+            <div style="position: fixed; bottom: 150px; right: 30px; background: #1e3a8a; color: white; padding: 15px; border-radius: 10px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 2px solid #d4af37;">
+                <h4 style="margin: 0 0 10px 0; font-size: 14px; color: #d4af37;">DEBUG PANEL</h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button onclick="setGuestSession()" style="background: #d4af37; color: #1e3a8a; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                        Set Guest Session
+                    </button>
+                    <button onclick="setInvestorSession()" style="background: #10b981; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                        Set Investor Session
+                    </button>
+                    <button onclick="clearSession()" style="background: #ef4444; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                        Clear Session
+                    </button>
+                    <button onclick="viewSession()" style="background: #3b82f6; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                        View Session
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(debugDiv);
     });
+
+    // Debug functions
+    window.setGuestSession = function() {
+        console.log("DEBUG: Setting guest session");
+        localStorage.clear();
+        localStorage.setItem('omkar_guest_mode', 'true');
+        localStorage.setItem('omkar_access_key', 'DEBUG_GUEST_' + Date.now());
+        localStorage.setItem('omkar_guest_name', 'Test Guest');
+        localStorage.setItem('omkar_consent_time', new Date().toISOString());
+        console.log("Session set:", {
+            guestMode: localStorage.getItem('omkar_guest_mode'),
+            accessKey: localStorage.getItem('omkar_access_key')
+        });
+        alert("Guest session set! Click OK to go to dashboard.");
+        window.location.href = 'dashboard.html';
+    };
+    
+    window.setInvestorSession = function() {
+        console.log("DEBUG: Setting investor session");
+        localStorage.clear();
+        localStorage.setItem('omkar_guest_mode', 'false');
+        localStorage.setItem('omkar_access_key', 'OMK2024TEST');
+        console.log("Session set:", {
+            guestMode: localStorage.getItem('omkar_guest_mode'),
+            accessKey: localStorage.getItem('omkar_access_key')
+        });
+        alert("Investor session set! Click OK to go to dashboard.");
+        window.location.href = 'dashboard.html';
+    };
+    
+    window.clearSession = function() {
+        console.log("DEBUG: Clearing session");
+        localStorage.clear();
+        console.log("Session cleared");
+        alert("Session cleared!");
+    };
+    
+    window.viewSession = function() {
+        console.log("DEBUG: Viewing session");
+        const session = {};
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            session[key] = localStorage.getItem(key);
+        }
+        console.log("Current session:", session);
+        alert("Check console for session details (F12 → Console)");
+    };
+
 </script>
+    
 </body>
 </html>

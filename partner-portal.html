@@ -2144,30 +2144,42 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbyilFfDLhWqn-k6ifVGRf2J0WzBKvBn8oOkd7_j97PIBUoLI1qeTwsYaClPVQTA3ote/exec'; // Replace with your actual Apps Script URL
 
 async function handleLogin(e) {
-    e.preventDefault();
-    const investorId = document.getElementById('investorId').value.trim();
-    const mobile = document.getElementById('mobileNumber').value.trim();
+        e.preventDefault();
+        
+        // Use the exact IDs from your HTML form
+        const investorId = document.getElementById('investorId').value.trim();
+        const mobile = document.getElementById('mobileNumber').value.trim();
 
-    try {
-        // Calls the 'verifyLogin' action in your Apps Script
-        const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${investorId}&mobile=${mobile}`);
-        const result = await response.json();
+        try {
+            // This is a FETCH request, not a <script src>
+            const response = await fetch(`${API_URL}?action=verifyLogin&accessKey=${investorId}&mobile=${mobile}`);
+            const text = await response.text();
+            
+            // Check if the response is actually JSON before parsing
+            if (text.startsWith('<')) {
+                console.error("API returned HTML instead of JSON. Check your Apps Script deployment.");
+                alert("Server Error: The API returned an invalid response.");
+                return;
+            }
 
-        if (result.success) {
-            // Save Investor ID for the dashboard to use
-            localStorage.setItem('omkar_access_key', investorId);
-            localStorage.setItem('omkar_partner_name', result.data.FullName);
-            window.location.href = 'dashboard.html';
-        } else {
-            alert(result.error || "Invalid credentials.");
+            const result = JSON.parse(text);
+            if (result.success) {
+                localStorage.setItem('omkar_access_key', investorId);
+                window.location.href = 'dashboard.html';
+            } else {
+                alert(result.error || "Login failed.");
+            }
+        } catch (error) {
+            console.error("Connection Error:", error);
         }
-    } catch (error) {
-        console.error("Login Error:", error);
-        alert("System unavailable. Please try again later.");
     }
-}
 
-// Attach the function to your login form
+    // Attach to your form ID
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+    }
+    // Attach the function to your login form
 document.getElementById('loginForm').addEventListener('submit', handleLogin);
 </script>        
 

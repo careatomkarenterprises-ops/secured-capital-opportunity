@@ -1467,84 +1467,169 @@
     }
 
     // ==================== INVESTOR DATA LOADING ====================
-    async function loadInvestorData(accessKey) {
+async function loadInvestorData(accessKey) {
+    try {
+        console.log("Fetching investor data for:", accessKey);
+        
+        // Fetch partner data
+        const partnerResponse = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+        
+        if (!partnerResponse.ok) {
+            throw new Error(`Partner API Error: ${partnerResponse.status}`);
+        }
+        
+        const result = await partnerResponse.json();
+        console.log("Raw API Response:", result);
+        
+        // FIX: Handle both response formats
+        let partner;
+        
+        // Format 1: Direct data (what you're getting)
+        if (result.InvestorId || result.PartnerID) {
+            partner = result;
+            console.log("Using direct data format");
+        }
+        // Format 2: Wrapped in success/data (expected format)
+        else if (result.success && result.data) {
+            partner = result.data;
+            console.log("Using wrapped data format");
+        }
+        // Format 3: Error response
+        else if (result.error) {
+            console.error("API returned error:", result);
+            showInvestorNotFound(result.error);
+            return;
+        }
+        // Unknown format
+        else {
+            console.error("Unknown response format:", result);
+            showInvestorNotFound("Invalid data format received");
+            return;
+        }
+        
+        console.log("Processed partner data:", partner);
+        
+        // Now render the UI
+        renderInvestorUI(partner);
+        
+        // Load transactions
         try {
-            console.log("Fetching investor data...");
-            
-            // Fetch partner data
-            const partnerResponse = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
-            
-            if (!partnerResponse.ok) {
-                throw new Error(`Partner API Error: ${partnerResponse.status}`);
-            }
-            
-            const result = await partnerResponse.json();
-            console.log("Partner API response:", result);
-            
-            // FIXED: Check success and extract data
-            if (result.success && result.data) {
-                const partner = result.data;
-                console.log("Partner data extracted:", partner);
+            const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
+            if (txResponse.ok) {
+                const txResult = await txResponse.json();
                 
-                // Render investor UI
-                renderInvestorUI(partner);
-                
-                // Load transactions
-                try {
-                    const txResponse = await fetch(`${SCRIPT_URL}?action=getTransactions&accessKey=${accessKey}`);
-                    if (txResponse.ok) {
-                        const txResult = await txResponse.json();
-                        if (txResult.success && txResult.data && txResult.data.length > 0) {
-                            updateTransactionList(txResult.data);
-                        } else {
-                            showDefaultTransactions();
-                        }
-                    }
-                } catch (txError) {
-                    console.warn("Transaction loading failed:", txError);
-                    showDefaultTransactions();
+                // Handle different transaction response formats
+                let transactions = [];
+                if (Array.isArray(txResult)) {
+                    transactions = txResult; // Direct array
+                } else if (txResult.success && Array.isArray(txResult.data)) {
+                    transactions = txResult.data; // Wrapped array
+                } else if (txResult.data && Array.isArray(txResult.data)) {
+                    transactions = txResult.data; // Another wrapped format
                 }
                 
-                // Initialize chart with real data
-                initChart(partner);
-                
-            } else {
-                console.warn("Partner not found or error:", result);
-                showInvestorNotFound(result.error || "Partner not found");
+                if (transactions.length > 0) {
+                    updateTransactionList(transactions);
+                } else {
+                    showDefaultTransactions();
+                }
             }
-            
-        } catch (error) {
-            console.error("Error loading investor data:", error);
-            showInvestorError();
+        } catch (txError) {
+            console.warn("Transaction loading failed:", txError);
+            showDefaultTransactions();
+        }
+        
+        // Initialize chart with real data
+        initChart(partner);
+        
+    } catch (error) {
+        console.error("Error loading investor data:", error);
+        showInvestorError();
+    }
+}
+    // ==================== RENDER INVESTOR UI ====================
+function renderInvestorUI(partner) {
+    console.log("Rendering investor UI with:", partner);
+    
+    // Extract data with multiple possible property names
+    const getValue = (obj, possibleKeys) => {
+        for (const key of possibleKeys) {
+            if (obj[key] !== undefined && obj[key] !== null && obj[key] !== '') {
+                return obj[key];
+            }
+        }
+        return '';
+    };
+    
+    // Get values with fallbacks for different column names
+    const fullName = getValue(partner, ['FullName', 'Name', 'InvestorName', 'ClientName']);
+    const principalAmount = getValue(partner, ['PrincipalAmount', 'InvestmentAmount', 'Amount', 'Principal']);
+    const monthlyReturn = getValue(partner, ['FixedMonthlyReturn', 'MonthlyReturn', 'MonthlyPayout', 'Return']);
+    const totalReturns = getValue(partner, ['TotalReturnsPaid', 'TotalReturns', 'ReturnsPaid', 'CumulativeReturns']);
+    const investmentDate = getValue(partner, ['InvestmentDate', 'StartDate', 'JoinDate', 'Date']);
+    const expiryDate = getValue(partner, ['AgreementExpiryDate', 'ExpiryDate', 'EndDate', 'MaturityDate']);
+    const pdcDetails = getValue(partner, ['PDC_Details', 'PDC', 'ChequeDetails', 'SecurityDetails']);
+    const agreementId = getValue(partner, ['AgreementID', 'ContractID', 'AgreementNumber']);
+    
+    // Basic info
+    document.getElementById('partnerName').textContent = fullName || 'Partner';
+    document.getElementById('partnerTier').textContent = getTier(principalAmount);
+    
+    // Financial stats
+    document.getElementById('activePrincipal').textContent = formatCurrency(principalAmount);
+    document.getElementById('pdcValue').textContent = formatCurrency(principalAmount);
+    document.getElementById('monthlyReturns').textContent = formatCurrency(monthlyReturn);
+    document.getElementById('totalReturns').textContent = formatCurrency(totalReturns);
+    
+    // Agreement details
+    document.getElementById('startDate').textContent = formatDate(investmentDate);
+    
+    if (expiryDate) {
+        const expiry = new Date(expiryDate);
+        const daysRemaining = Math.max(0, Math.ceil((expiry - new Date()) / (1000 * 60 * 60 * 24)));
+        const expiryEl = document.getElementById('agreementExpiry');
+        expiryEl.textContent = daysRemaining;
+        expiryEl.style.color = daysRemaining < 30 ? "#ef4444" : 
+                              daysRemaining < 90 ? "#f59e0b" : "#10b981";
+    }
+    
+    // PDC details
+    if (pdcDetails) {
+        // Try to count cheques
+        let pdcCount = 1;
+        if (typeof pdcDetails === 'string') {
+            if (pdcDetails.includes(',')) pdcCount = pdcDetails.split(',').length;
+            else if (pdcDetails.includes(';')) pdcCount = pdcDetails.split(';').length;
+        }
+        document.getElementById('pdcCount').textContent = `${pdcCount} Security Cheque(s)`;
+    }
+    
+    // Partnership tenure
+    if (investmentDate) {
+        const start = new Date(investmentDate);
+        const today = new Date();
+        const months = (today.getFullYear() - start.getFullYear()) * 12 + 
+                      (today.getMonth() - start.getMonth());
+        document.getElementById('partnershipTenure').textContent = `${Math.max(1, months)} Months`;
+    }
+    
+    // Agreement ID
+    if (agreementId) {
+        document.getElementById('agreementId').textContent = agreementId;
+    }
+    
+    // Monthly Rate (calculate from principal and monthly return)
+    if (principalAmount && monthlyReturn) {
+        const principal = Number(principalAmount);
+        const monthly = Number(monthlyReturn);
+        if (principal > 0) {
+            const rate = ((monthly / principal) * 100).toFixed(1);
+            document.getElementById('monthlyRate').textContent = `${rate}%`;
         }
     }
-
-    // ==================== RENDER INVESTOR UI ====================
-    function renderInvestorUI(partner) {
-        console.log("Rendering investor UI for partner:", partner);
-        
-        // Basic info - FIXED: Use correct property names
-        document.getElementById('partnerName').textContent = partner.FullName || partner.Name || 'Partner';
-        document.getElementById('partnerTier').textContent = getTier(partner.PrincipalAmount || partner.InvestmentAmount);
-        
-        // Financial stats - FIXED: Handle different property names
-        document.getElementById('activePrincipal').textContent = formatCurrency(partner.PrincipalAmount || partner.InvestmentAmount || 0);
-        document.getElementById('pdcValue').textContent = formatCurrency(partner.PrincipalAmount || partner.InvestmentAmount || 0);
-        document.getElementById('monthlyReturns').textContent = formatCurrency(partner.FixedMonthlyReturn || partner.MonthlyReturn || 0);
-        document.getElementById('totalReturns').textContent = formatCurrency(partner.TotalReturnsPaid || 0);
-        
-        // Agreement details
-        document.getElementById('startDate').textContent = formatDate(partner.InvestmentDate || partner.StartDate);
-        
-        if (partner.AgreementExpiryDate || partner.ExpiryDate) {
-            const expiryDate = new Date(partner.AgreementExpiryDate || partner.ExpiryDate);
-            const daysRemaining = Math.max(0, Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24)));
-            const expiryEl = document.getElementById('agreementExpiry');
-            expiryEl.textContent = daysRemaining;
-            expiryEl.style.color = daysRemaining < 30 ? "#ef4444" : 
-                                  daysRemaining < 90 ? "#f59e0b" : "#10b981";
-        }
-        
+    
+    console.log("UI rendered successfully for:", fullName);
+}        
         // PDC details
         if (partner.PDC_Details || partner.PDC || partner.ChequeDetails) {
             const pdcDetails = partner.PDC_Details || partner.PDC || partner.ChequeDetails;

@@ -1329,15 +1329,34 @@
 
     let currentTransactions = [];
 
-    async function loadLiveDashboard() {
-        const accessKey = localStorage.getItem('omkar_access_key');
-        const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+   async function loadLiveDashboard() {
+    // 1. Get session status
+    const accessKey = localStorage.getItem('omkar_access_key');
+    const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
 
-        if (!accessKey) {
-            window.location.replace('partner-portal.html');
-            return;
+    // 2. UPDATED SECURITY GATE: 
+    // Only redirect if BOTH accessKey is missing AND it's NOT a guest session.
+    if (!accessKey && !isGuest) {
+        console.log("No session found. Redirecting to portal...");
+        window.location.replace('partner-portal.html');
+        return;
+    }
+
+    try {
+        // 3. HANDLE GUEST MODE FIRST (THE SHIELD)
+        if (isGuest) {
+            console.log("Omkar Shield: Guest Mode Active");
+            const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
+            const stats = await response.json();
+            renderGuestUI(stats);
+            return; // EXIT HERE so it doesn't try to load private partner data
         }
 
+        // 4. HANDLE REAL INVESTOR (If not a guest)
+        console.log("Fetching Investor Data for:", accessKey);
+        const response = await fetch(`${SCRIPT_URL}?action=getPartner&accessKey=${accessKey}`);
+        // ... rest of your existing code ...
+        
         try {
             if (isGuest) {
                 const response = await fetch(`${SCRIPT_URL}?action=getPerformance`);
@@ -1457,12 +1476,17 @@
         document.getElementById('partnerName').textContent = "Sync Error";
     }
 
-    // Logout Functionality
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-        localStorage.clear();
-        window.location.replace('partner-portal.html');
-    });
-
+   // Logout Functionality - Clears everything
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.clear(); // Clears Access Key and Guest Mode
+            sessionStorage.clear();
+            window.location.replace('partner-portal.html');
+        });
+    }
+       
     document.addEventListener('DOMContentLoaded', loadLiveDashboard);
     </script>
     

@@ -1320,7 +1320,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
 
     <script>
-    // ============================================
+
+        // Add at the very beginning of your script
+console.log("=== DASHBOARD LOADING ===");
+console.log("Access Key:", localStorage.getItem('omkar_access_key'));
+console.log("Guest Mode:", localStorage.getItem('omkar_guest_mode'));
+console.log("=== END DEBUG ===");
+        
+        // ============================================
     // LIVE DASHBOARD DATA FETCHING - CORRECTED
     // ============================================
 

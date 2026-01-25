@@ -2853,8 +2853,8 @@ function saveLoginSession(accessKey, mobile, isGuest = false, userData = null) {
         
         debugBtn.onclick = function() {
             console.log("=== PORTAL DEBUG INFO ===");
-            console.log("Google Script URL:"https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec";
-            console.log("Local Storage:", { ...localStorage });
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec";
+            console.log("Google Script URL:", GOOGLE_SCRIPT_URL);            console.log("Local Storage:", { ...localStorage });
             console.log("Login Status:", {
                 hasAccessKey: !!localStorage.getItem('omkar_access_key'),
                 guestMode: localStorage.getItem('omkar_guest_mode'),

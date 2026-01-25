@@ -946,6 +946,52 @@ async function loadDashboard() {
     
     // Rest of your existing code...
 }
+
+        // Debug utility for session issues
+function debugSession() {
+    console.log("=== SESSION DEBUG INFO ===");
+    console.log("LocalStorage contents:", { ...localStorage });
+    console.log("SessionStorage contents:", { ...sessionStorage });
+    
+    const auth = checkAuth();
+    console.log("Current auth status:", auth);
+    
+    // Test Google Sheets connection
+    fetch(`${GOOGLE_SCRIPT_URL}?action=test`)
+        .then(r => r.text())
+        .then(data => console.log("Google Sheets test response:", data))
+        .catch(err => console.error("Google Sheets test error:", err));
+    
+    alert("Debug info logged to console. Press F12 to view.");
+}
+
+// Add debug button (remove in production)
+function addDebugButton() {
+    const debugBtn = document.createElement('button');
+    debugBtn.innerHTML = '🐛 Debug Session';
+    debugBtn.style.cssText = `
+        position: fixed;
+        bottom: 150px;
+        right: 30px;
+        background: #ff9900;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 9999;
+        font-size: 12px;
+        font-weight: bold;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    `;
+    
+    debugBtn.onclick = debugSession;
+    document.body.appendChild(debugBtn);
+}
+
+// Uncomment to add debug button
+// addDebugButton();
+    
     </script>
 </body>
 </html>

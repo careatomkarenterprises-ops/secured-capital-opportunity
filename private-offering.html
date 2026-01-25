@@ -86,6 +86,48 @@
         </div>
     </section>
 
+<section class="py-6 px-6 bg-amber-50 border-y border-amber-200">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+        <div class="flex items-center gap-3">
+            <div class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+            </div>
+            <p class="text-sm font-bold text-slate-800 uppercase tracking-tight">
+                Current Cycle Availability: <span id="slotCount" class="text-red-600 text-lg">5</span> Slots Remaining
+            </p>
+        </div>
+        <div class="text-xs text-slate-500 font-medium italic">
+            *4 investors viewing this deployment roadmap right now
+        </div>
+    </div>
+</section>
+
+<script>
+    // Logic to simulate real-time slot filling
+    const slotDisplay = document.getElementById('slotCount');
+    let currentSlots = 5;
+
+    function simulateSlotFilling() {
+        if (currentSlots > 1) {
+            // Random delay to simulate someone else filling details
+            const randomDelay = Math.floor(Math.random() * (120000 - 30000) + 30000); 
+            
+            setTimeout(() => {
+                currentSlots--;
+                slotDisplay.innerText = currentSlots;
+                slotDisplay.classList.add('scale-125', 'text-red-700');
+                setTimeout(() => slotDisplay.classList.remove('scale-125'), 500);
+                simulateSlotFilling();
+            }, randomDelay);
+        }
+    }
+
+    // Start simulation when page loads
+    window.addEventListener('load', simulateSlotFilling);
+</script>
+
+
     <section id="calculator" class="py-12 bg-slate-50 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="grid lg:grid-cols-3 gap-8 items-start">

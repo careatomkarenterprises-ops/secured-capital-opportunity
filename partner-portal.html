@@ -2259,7 +2259,7 @@
         try {
             console.log("Loading dashboard statistics from Google Sheets...");
             
-            const response = await fetch(`${https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?action=getPerformance`);
+            const response = await fetch(`{https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?action=getPerformance`);
             if (!response.ok) {
                 console.warn("Could not fetch stats, using defaults");
                 return;
@@ -2394,7 +2394,7 @@
                 console.log("Authenticating with Google Sheets for:", investorId);
                 
                 // Call Google Script to verify investor
-                const response = await fetch(`${https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?action=getPartner&accessKey=${encodeURIComponent(investorId)}`);
+                const response = await fetch(`{https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?action=getPartner&accessKey=${encodeURIComponent(investorId)}`);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
@@ -2512,7 +2512,7 @@ if (result && (result.InvestorId || result.PartnerID || result.FullName)) {
                 
                 // Send to Google Sheets
                 const queryParams = new URLSearchParams(leadData).toString();
-                const response = await fetch(`${https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?${queryParams}`);
+                const response = await fetch(`{https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?${queryParams}`);
                 
                 let leadId = 'GUEST_' + Date.now().toString().slice(-8);
                 

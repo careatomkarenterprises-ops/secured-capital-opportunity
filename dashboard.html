@@ -467,21 +467,258 @@
     /**
      * Check if user is authenticated as investor
      */
-    function checkAuth() {
-        const userType = localStorage.getItem('omkar_user_type');
-        const accessKey = localStorage.getItem('omkar_access_key');
+    // ============================================
+// AUTHENTICATION & DATA LOADING - FIXED VERSION
+// ============================================
+
+// Function to check authentication
+function checkAuth() {
+    const accessKey = localStorage.getItem('omkar_access_key');
+    const guestMode = localStorage.getItem('omkar_guest_mode');
+    const loginTime = localStorage.getItem('omkar_login_time');
+    
+    console.log("Auth check details:", {
+        accessKey,
+        guestMode,
+        loginTime,
+        fullStorage: { ...localStorage }
+    });
+    
+    // Check if access key exists
+    if (!accessKey) {
+        console.warn("No access key found in localStorage");
+        return {
+            isAuthenticated: false,
+            userType: null,
+            accessKey: null
+        };
+    }
+    
+    // Check session timeout (24 hours)
+    if (loginTime) {
+        const loginDate = new Date(loginTime);
+        const now = new Date();
+        const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
         
-        console.log("Auth check:", { userType, accessKey });
+        if (hoursDiff > 24) {
+            console.warn("Session expired (more than 24 hours)");
+            localStorage.clear();
+            return {
+                isAuthenticated: false,
+                userType: null,
+                accessKey: null
+            };
+        }
+    }
+    
+    const userType = guestMode === 'true' ? 'guest' : 'investor';
+    
+    return {
+        isAuthenticated: true,
+        userType: userType,
+        accessKey: accessKey,
+        guestMode: guestMode === 'true'
+    };
+}
+
+// Function to load investor data with error handling
+async function loadInvestorData(accessKey, isGuest = false) {
+    console.log(`Loading data for ${isGuest ? 'guest' : 'investor'}:`, accessKey);
+    
+    try {
+        let result;
         
-        if (userType !== 'investor' || !accessKey) {
-            // Redirect to login if not authenticated
-            alert("Please login as an investor to access this dashboard");
-            window.location.href = 'partner-portal.html';
-            return false;
+        if (isGuest) {
+            // For guests, use local storage data
+            const guestData = {
+                FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
+                Email: localStorage.getItem('omkar_guest_email') || '',
+                Mobile: localStorage.getItem('omkar_mobile') || '',
+                GuestID: accessKey,
+                AccessType: 'guest'
+            };
+            result = guestData;
+            console.log("Loaded guest data:", guestData);
+        } else {
+            // For investors, fetch from Google Sheets
+            console.log(`Fetching investor data for: ${accessKey}`);
+            
+            // Use CORS-friendly approach
+            const url = `${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`;
+            console.log("Fetching from URL:", url);
+            
+            const response = await fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                console.warn("HTTP error:", response.status, response.statusText);
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log("Investor data received:", data);
+            
+            if (!data || (!data.InvestorId && !data.PartnerID)) {
+                console.warn("Invalid investor data received:", data);
+                
+                // Check if this is a test/demo account
+                if (accessKey.startsWith('TEST') || accessKey === 'DEMO') {
+                    console.log("Using test/demo account data");
+                    result = {
+                        FullName: 'Test Investor',
+                        InvestorId: accessKey,
+                        Mobile: '9876543210',
+                        Email: 'test@omkarservices.in',
+                        InvestmentAmount: '₹5,00,000',
+                        MonthlyReturn: '₹10,000',
+                        PortfolioValue: '₹5,50,000',
+                        JoinDate: '2024-01-15'
+                    };
+                } else {
+                    throw new Error('Investor not found in database');
+                }
+            } else {
+                result = data;
+            }
         }
         
-        return true;
+        return result;
+        
+    } catch (error) {
+        console.error("Error loading investor data:", error);
+        
+        // Fallback for network issues or API problems
+        if (accessKey.startsWith('GUEST') || accessKey.startsWith('TEST') || accessKey === 'DEMO') {
+            console.log("Using fallback data for:", accessKey);
+            return {
+                FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
+                InvestorId: accessKey,
+                Mobile: localStorage.getItem('omkar_mobile') || '9876543210',
+                Email: localStorage.getItem('omkar_guest_email') || 'guest@omkarservices.in',
+                InvestmentAmount: '₹0',
+                MonthlyReturn: '₹0',
+                PortfolioValue: '₹0',
+                AccessType: isGuest ? 'guest' : 'investor'
+            };
+        }
+        
+        throw error; // Re-throw for handling in calling function
     }
+}
+
+// Function to handle authentication failure
+function handleAuthFailure(message = 'Authentication failed') {
+    console.error("Authentication failure:", message);
+    
+    // Show user-friendly error
+    const authErrorHTML = `
+        <div class="auth-error-container" style="
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            margin: 100px auto;
+        ">
+            <div style="width: 100px; height: 100px; background: #fef2f2; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 40px; color: #ef4444;"></i>
+            </div>
+            <h2 style="color: var(--slate-dark); margin-bottom: 15px;">Authentication Required</h2>
+            <p style="color: var(--slate-light); margin-bottom: 25px;">${message}</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="partner-portal.html" class="connect-btn" style="max-width: 200px;">
+                    <i class="fas fa-sign-in-alt"></i> Login Again
+                </a>
+                <a href="index.html" class="btn-secondary" style="max-width: 200px;">
+                    <i class="fas fa-home"></i> Return Home
+                </a>
+            </div>
+            <div style="margin-top: 30px; padding: 20px; background: #f8fafc; border-radius: 10px; text-align: left;">
+                <p style="margin: 0 0 10px 0; font-size: 14px; color: var(--slate-light);">
+                    <strong>Technical Details:</strong> Session may have expired or invalid access key.
+                </p>
+                <p style="margin: 0; font-size: 12px; color: var(--slate-light);">
+                    Need help? Contact support: +91 8169 302 861
+                </p>
+            </div>
+        </div>
+    `;
+    
+    document.querySelector('.container').innerHTML = authErrorHTML;
+}
+
+// Initialize dashboard with fixed authentication
+async function initializeDashboard() {
+    console.log("Initializing dashboard...");
+    
+    // Check authentication
+    const auth = checkAuth();
+    console.log("Authentication result:", auth);
+    
+    if (!auth.isAuthenticated || !auth.accessKey) {
+        console.error("User not authenticated, redirecting to login");
+        handleAuthFailure('Please login to access the dashboard');
+        return;
+    }
+    
+    try {
+        // Show loading state
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        
+        // Load investor data
+        const investorData = await loadInvestorData(auth.accessKey, auth.guestMode);
+        console.log("Investor data loaded successfully:", investorData);
+        
+        // Hide loading
+        document.getElementById('loadingOverlay').style.display = 'none';
+        
+        // Update dashboard with data
+        updateDashboardWithData(investorData, auth.guestMode);
+        
+        // Show appropriate sections
+        if (auth.guestMode) {
+            document.querySelector('.guest-notice').style.display = 'block';
+            document.querySelector('.guest-notice').innerHTML = `
+                <div style="display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%); color: white; padding: 15px 20px; border-radius: 12px; margin: 20px 0;">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Guest Mode:</strong> You're viewing sample data. 
+                        <a href="contact.html" style="color: white; text-decoration: underline; font-weight: 600;">Contact us</a> 
+                        to become an actual partner and access real investment data.
+                    </div>
+                </div>
+            `;
+        }
+        
+    } catch (error) {
+        console.error("Dashboard initialization failed:", error);
+        document.getElementById('loadingOverlay').style.display = 'none';
+        
+        // Show appropriate error message
+        if (error.message.includes('Investor not found')) {
+            handleAuthFailure('Investor ID not found in our records. Please check your credentials.');
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+            handleAuthFailure('Network connection issue. Please check your internet and try again.');
+        } else {
+            handleAuthFailure('Unable to load dashboard. Please try again or contact support.');
+        }
+    }
+}
+
+// Call this function when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Dashboard DOM loaded, starting initialization...");
+    initializeDashboard();
+    
+    // Update activity timestamp
+    localStorage.setItem('omkar_last_activity', Date.now().toString());
+});
     
     /**
      * Load investor data from API

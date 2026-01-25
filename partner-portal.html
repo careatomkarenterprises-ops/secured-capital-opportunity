@@ -2403,21 +2403,28 @@
                 const result = await response.json();
                 console.log("Google Sheets response:", result);
                 
-                // Check if investor exists
-                if (result && (result.InvestorId || result.PartnerID || result.FullName)) {
-                    // INVESTOR FOUND - Save session and redirect to dashboard
-                    saveLoginSession(investorId, mobile, false, result);
-                    
-                    // Show success modal
-                    showSuccessModal(result.FullName || 'Partner');
-                    
-                    // Redirect to dashboard after delay
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 2000);
-                    
-                } else {
-                    // INVESTOR NOT FOUND
+                // INVESTOR FOUND - Save session and redirect to dashboard
+if (saveLoginSession(investorId, mobile, false, result)) {
+    // Show success modal
+    showSuccessModal(result.FullName || 'Partner');
+    
+    // Redirect after delay with verification
+    setTimeout(() => {
+        console.log("Investor login successful, redirecting to dashboard...");
+        
+        // Set session markers
+        sessionStorage.setItem('dashboard_redirect_source', 'investor_login');
+        sessionStorage.setItem('login_timestamp', Date.now().toString());
+        
+        // Clear any previous errors
+        sessionStorage.removeItem('redirect_error');
+        
+        // Redirect
+        window.location.href = 'dashboard.html';
+    }, 2000);
+}
+                
+                // INVESTOR NOT FOUND
                     showLoading(false);
                     if (loginBtn) {
                         loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
@@ -2691,20 +2698,21 @@
         return true;
     }
 
-    /**
-     * Save login session to localStorage
-     */
-    function saveLoginSession(accessKey, mobile, isGuest = false, userData = null) {
-        // Clear old session
-        localStorage.clear();
-        
-        // Set new session
+   /**
+ * Save login session to localStorage - ENHANCED VERSION
+ */
+function saveLoginSession(accessKey, mobile, isGuest = false, userData = null) {
+    console.log("Saving login session for:", accessKey, "Guest:", isGuest);
+    
+    try {
+        // Save basic auth info
         localStorage.setItem('omkar_access_key', accessKey);
-        localStorage.setItem('omkar_guest_mode', isGuest.toString());
         localStorage.setItem('omkar_mobile', mobile);
+        localStorage.setItem('omkar_guest_mode', isGuest.toString());
         localStorage.setItem('omkar_login_time', new Date().toISOString());
         localStorage.setItem('omkar_last_activity', Date.now().toString());
         
+        // Save user data if available
         if (userData) {
             localStorage.setItem('omkar_user_data', JSON.stringify(userData));
         }
@@ -2715,14 +2723,63 @@
             localStorage.setItem('omkar_consent_time', new Date().toISOString());
         }
         
-        console.log("Session saved:", {
-            accessKey: localStorage.getItem('omkar_access_key'),
-            guestMode: localStorage.getItem('omkar_guest_mode'),
-            userData: userData ? 'Stored' : 'None'
-        });
+        // Add session validation marker
+        localStorage.setItem('omkar_session_valid', 'true');
+        
+        console.log("Session saved successfully. Full localStorage:", { ...localStorage });
+        
+        // Verify session was saved
+        const verifyKey = localStorage.getItem('omkar_access_key');
+        if (verifyKey !== accessKey) {
+            console.error("Session save verification failed!");
+            alert("Session save failed. Please try again.");
+            return false;
+        }
+        
+        return true;
+        
+    } catch (error) {
+        console.error("Error saving session:", error);
+        alert("Error saving login session. Please try again or contact support.");
+        return false;
     }
+}
 
-    /**
+/**
+ * Enhanced redirect to dashboard with session verification
+ */
+function redirectToDashboard(userName = 'Partner', delay = 2000) {
+    console.log("Preparing redirect to dashboard...");
+    
+    // Verify session was saved
+    const accessKey = localStorage.getItem('omkar_access_key');
+    if (!accessKey) {
+        console.error("No access key found for redirect!");
+        showLoginError('Session not saved. Please try logging in again.');
+        return;
+    }
+    
+    // Show success message
+    showSuccessModal(userName);
+    
+    // Redirect after delay
+    setTimeout(() => {
+        console.log("Redirecting to dashboard with key:", accessKey);
+        
+        // Add session marker for verification
+        sessionStorage.setItem('dashboard_redirect_source', 'partner-portal');
+        sessionStorage.setItem('redirect_timestamp', Date.now().toString());
+        
+        // Clear any existing redirect flags
+        sessionStorage.removeItem('redirect_error');
+        
+        // Perform redirect
+        window.location.href = 'dashboard.html';
+        
+    }, delay);
+}        
+        
+        /**
      * Logout function
      */
     function logout() {

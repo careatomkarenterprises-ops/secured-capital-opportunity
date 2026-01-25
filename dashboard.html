@@ -676,7 +676,39 @@
             window.location.href = 'partner-portal.html';
         }
     }
+
+        // In dashboard.html, update loadDashboard() function:
+
+async function loadDashboard() {
+    console.log("Loading dashboard data...");
     
+    const accessKey = localStorage.getItem('omkar_access_key');
+    const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+    const storedData = localStorage.getItem('omkar_user_data') || localStorage.getItem('omkar_dashboard_data');
+    
+    console.log("Session check:", { accessKey, isGuest, hasStoredData: !!storedData });
+    
+    // CRITICAL FIX: Use stored data if available
+    if (storedData) {
+        try {
+            const parsedData = JSON.parse(storedData);
+            console.log("Using stored data:", parsedData);
+            
+            // Render UI with stored data first
+            renderInvestorUI(parsedData);
+            
+            // Then try to fetch fresh data
+            if (accessKey && !isGuest) {
+                await loadInvestorData(accessKey);
+            }
+            return;
+        } catch (e) {
+            console.error("Error parsing stored data:", e);
+        }
+    }
+    
+    // Rest of your existing code...
+}
     </script>
 </body>
 </html>

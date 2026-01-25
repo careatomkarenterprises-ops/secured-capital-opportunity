@@ -2261,7 +2261,7 @@
         try {
             console.log("Loading dashboard statistics from Google Sheets...");
             
-            const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPerformance`);
+            const response = await fetch(`${https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?action=getPerformance`);
             if (!response.ok) {
                 console.warn("Could not fetch stats, using defaults");
                 return;
@@ -2396,7 +2396,7 @@
                 console.log("Authenticating with Google Sheets for:", investorId);
                 
                 // Call Google Script to verify investor
-                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${encodeURIComponent(investorId)}`);
+                const response = await fetch(`${https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?action=getPartner&accessKey=${encodeURIComponent(investorId)}`);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
@@ -2514,7 +2514,7 @@ if (result && (result.InvestorId || result.PartnerID || result.FullName)) {
                 
                 // Send to Google Sheets
                 const queryParams = new URLSearchParams(leadData).toString();
-                const response = await fetch(`${GOOGLE_SCRIPT_URL}?${queryParams}`);
+                const response = await fetch(`${https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?${queryParams}`);
                 
                 let leadId = 'GUEST_' + Date.now().toString().slice(-8);
                 
@@ -2686,36 +2686,51 @@ if (result && (result.InvestorId || result.PartnerID || result.FullName)) {
     }
 
     /**
-     * Save login session to localStorage
-     */
-    function saveLoginSession(accessKey, mobile, isGuest = false, userData = null) {
-        // Clear old session
-        localStorage.clear();
+    /**
+ * Save login session to localStorage
+ */
+function saveLoginSession(accessKey, mobile, isGuest = false, userData = null) {
+    // Clear old session
+    localStorage.clear();
+    
+    // Set new session
+    localStorage.setItem('omkar_access_key', accessKey);
+    localStorage.setItem('omkar_guest_mode', isGuest.toString());
+    localStorage.setItem('omkar_mobile', mobile);
+    localStorage.setItem('omkar_login_time', new Date().toISOString());
+    localStorage.setItem('omkar_last_activity', Date.now().toString());
+    
+    // Store user data if available
+    if (userData) {
+        // Store in multiple formats for compatibility
+        localStorage.setItem('omkar_user_data', JSON.stringify(userData));
         
-        // Set new session
-        localStorage.setItem('omkar_access_key', accessKey);
-        localStorage.setItem('omkar_guest_mode', isGuest.toString());
-        localStorage.setItem('omkar_mobile', mobile);
-        localStorage.setItem('omkar_login_time', new Date().toISOString());
-        localStorage.setItem('omkar_last_activity', Date.now().toString());
+        // Store individual fields for easy access
+        if (userData.FullName) localStorage.setItem('omkar_full_name', userData.FullName);
+        if (userData.InvestorId) localStorage.setItem('omkar_investor_id', userData.InvestorId);
+        if (userData.PartnerID) localStorage.setItem('omkar_partner_id', userData.PartnerID);
+        if (userData.PrincipalAmount) localStorage.setItem('omkar_principal', userData.PrincipalAmount);
+        if (userData.MonthlyReturn) localStorage.setItem('omkar_monthly_return', userData.MonthlyReturn);
         
-        if (userData) {
-            localStorage.setItem('omkar_user_data', JSON.stringify(userData));
-        }
-        
-        if (isGuest && userData) {
-            localStorage.setItem('omkar_guest_name', userData.FullName || '');
-            localStorage.setItem('omkar_guest_email', userData.Email || '');
-            localStorage.setItem('omkar_consent_time', new Date().toISOString());
-        }
-        
-        console.log("Session saved:", {
-            accessKey: localStorage.getItem('omkar_access_key'),
-            guestMode: localStorage.getItem('omkar_guest_mode'),
-            userData: userData ? 'Stored' : 'None'
-        });
+        // Also store as backup data for dashboard
+        const dashboardData = {
+            FullName: userData.FullName || 'Investor',
+            InvestorId: userData.InvestorId || accessKey,
+            PartnerID: userData.PartnerID || accessKey,
+            PrincipalAmount: userData.PrincipalAmount || '500000',
+            MonthlyReturn: userData.MonthlyReturn || '11000',
+            InvestmentDate: userData.InvestmentDate || '2021-01-15',
+            AgreementExpiryDate: userData.AgreementExpiryDate || '2026-07-25'
+        };
+        localStorage.setItem('omkar_dashboard_data', JSON.stringify(dashboardData));
     }
-
+    
+    console.log("Session saved:", {
+        accessKey: localStorage.getItem('omkar_access_key'),
+        guestMode: localStorage.getItem('omkar_guest_mode'),
+        hasUserData: !!userData
+    });
+}
     /**
      * Logout function
      */
@@ -2840,7 +2855,7 @@ if (result && (result.InvestorId || result.PartnerID || result.FullName)) {
         
         debugBtn.onclick = function() {
             console.log("=== PORTAL DEBUG INFO ===");
-            console.log("Google Script URL:", GOOGLE_SCRIPT_URL);
+            console.log("Google Script URL:", https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec);
             console.log("Local Storage:", { ...localStorage });
             console.log("Login Status:", {
                 hasAccessKey: !!localStorage.getItem('omkar_access_key'),
@@ -2849,7 +2864,7 @@ if (result && (result.InvestorId || result.PartnerID || result.FullName)) {
             });
             
             // Test Google Script connection
-            fetch(`${GOOGLE_SCRIPT_URL}?action=test`)
+            fetch(`${https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?action=test`)
                 .then(r => r.text())
                 .then(data => console.log("Google Script Test:", data))
                 .catch(err => console.error("Google Script Test Error:", err));

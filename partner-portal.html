@@ -2827,52 +2827,6 @@ function saveLoginSession(accessKey, mobile, isGuest = false, userData = null) {
         console.log(`Feature: ${features[feature] || feature}`);
     }
 
-    // ========== DEBUG FUNCTIONS ==========
-    
-    /**
-     * Add debug button for testing
-     */
-    function addDebugButton() {
-        const debugBtn = document.createElement('button');
-        debugBtn.innerHTML = '🐛 Debug Portal';
-        debugBtn.style.cssText = `
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: #ff9900;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 9999;
-            font-size: 12px;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        `;
-        
-        debugBtn.onclick = function() {
-            console.log("=== PORTAL DEBUG INFO ===");
-            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec";
-            console.log("Google Script URL:", GOOGLE_SCRIPT_URL);            console.log("Local Storage:", { ...localStorage });
-            console.log("Login Status:", {
-                hasAccessKey: !!localStorage.getItem('omkar_access_key'),
-                guestMode: localStorage.getItem('omkar_guest_mode'),
-                loginTime: localStorage.getItem('omkar_login_time')
-            });
-            
-            // Test Google Script connection
-            fetch(`${https://script.google.com/macros/s/AKfycbyxbswLBwYSTJ-vyelesAWbbW7DFSf6ZFUOikWb1eVzPWSnFP7Xpwq980iqp2qWqFrw/exec}?action=test`)
-                .then(r => r.text())
-                .then(data => console.log("Google Script Test:", data))
-                .catch(err => console.error("Google Script Test Error:", err));
-                
-            alert("Check browser console (F12) for debug info");
-        };
-        
-        document.body.appendChild(debugBtn);
-    }
-    
     // Uncomment to add debug button
     // addDebugButton();
 

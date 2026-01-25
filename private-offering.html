@@ -11,7 +11,7 @@
         .omkar-navy { background-color: #002147; }
         .omkar-gold { color: #c5a059; }
         .omkar-gold-bg { background-color: #c5a059; }
-        .card-shadow { box-shadow: 0 4px 25px rgba(0,0,0,0.1); }
+        .card-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1); }
         .gradient-gold { background: linear-gradient(135deg, #c5a059 0%, #e2c999 100%); }
     </style>
 </head>
@@ -20,116 +20,116 @@
     <nav class="omkar-navy p-4 sticky top-0 z-50 shadow-lg">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="text-white font-bold text-xl tracking-tighter uppercase">
-                OMKAR <span class="omkar-gold">ENTERPRISES</span>
+                OMKAR <span class="omkar-gold font-light">ENTERPRISES</span>
             </div>
-            <div class="hidden md:flex space-x-6 text-white text-sm">
-                <a href="https://omkarservices.in" class="hover:text-amber-400">Main Portal</a>
-                <span class="text-amber-500 font-bold underline">🔒 Private Partner Offering</span>
+            <div class="hidden md:flex items-center space-x-6 text-white text-xs">
+                <a href="https://omkarservices.in" class="hover:text-amber-400 transition-all">CORE WEBSITE</a>
+                <span class="bg-red-600 px-3 py-1 rounded-full font-bold animate-pulse uppercase">🔒 Private Access</span>
             </div>
         </div>
     </nav>
 
-    <header class="py-20 px-6 bg-slate-50 border-b">
+    <header class="py-16 px-6 bg-slate-50">
         <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6">
-                Protect Your Principal. <br><span class="omkar-gold">Document Your Growth.</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                Documented Capital Responsibility. <br><span class="omkar-gold">Reality Over Uncertainty.</span>
             </h1>
             <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
-                Move from "Market Speculation" to "Trade Reality." Secure fixed monthly returns with full capital responsibility taken on legal paper.
+                Secure your hard-earned capital with a 13-month trade-finance roadmap. While brokers gamble, we document. 
             </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="#process" class="bg-blue-900 text-white px-8 py-4 rounded-lg font-bold card-shadow hover:bg-blue-800 transition-all">View Process Roadmap</a>
-                <a href="#calculator" class="border-2 border-slate-300 px-8 py-4 rounded-lg font-bold hover:bg-slate-50 transition-all">ROI Calculator</a>
-            </div>
         </div>
     </header>
 
-    <section class="py-16 px-6 max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-12">The Reality Check</h2>
-        <div class="overflow-x-auto rounded-xl border">
-            <table class="w-full text-left">
-                <thead>
-                    <tr class="omkar-navy text-white text-sm">
-                        <th class="p-5">Strategic Feature</th>
-                        <th class="p-5">Traditional (MF/Stocks)</th>
-                        <th class="p-5 omkar-gold-bg text-blue-900">Omkar Deployment</th>
-                    </tr>
-                </thead>
-                <tbody class="text-sm">
-                    <tr class="border-b">
-                        <td class="p-5 font-bold">Capital Safety</td>
-                        <td class="p-5 text-red-500">❌ No Legal Guarantee</td>
-                        <td class="p-5 font-bold text-green-700">✅ Notarized Agreement + PDCs</td>
-                    </tr>
-                    <tr class="border-b bg-slate-50">
-                        <td class="p-5 font-bold">Responsibility</td>
-                        <td class="p-5">❌ Broker earns, you risk</td>
-                        <td class="p-5 font-bold">✅ Company takes Full Liability</td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="p-5 font-bold">Monthly Yield</td>
-                        <td class="p-5">❌ Variable / Uncertain</td>
-                        <td class="p-5 font-bold text-blue-900">✅ 2% - 2.5% FIXED Payout</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
     <section id="calculator" class="py-12 bg-white px-6">
-        <div class="max-w-3xl mx-auto bg-slate-50 border p-10 rounded-3xl">
-            <h2 class="text-2xl font-bold mb-8 text-center uppercase tracking-tight">Deployment Earning Projection</h2>
-            <div class="space-y-8">
-                <div>
-                    <label class="block text-sm font-bold mb-3 uppercase text-slate-500 tracking-widest">Enter Capital (₹)</label>
-                    <input type="number" id="capitalInput" value="100000" min="100000" max="200000" 
-                    class="w-full p-5 border-2 border-slate-200 rounded-2xl focus:border-amber-500 text-3xl font-bold outline-none">
-                    <p class="text-xs text-slate-400 mt-2 italic">Current allocation window: ₹1L to ₹2L per partner.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-6 bg-white rounded-2xl border-l-8 border-blue-900 shadow-sm">
-                        <span class="text-xs font-bold text-slate-400 uppercase">Monthly Cash Flow</span>
-                        <div class="text-3xl font-bold text-blue-900" id="monthlyResult">₹2,500</div>
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-bold text-slate-900 uppercase tracking-widest">Amortization & Payout Schedule</h2>
+                <div class="w-20 h-1 omkar-gold-bg mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-start">
+                <div class="lg:col-span-1 bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm h-fit">
+                    <label class="block text-sm font-bold mb-4 uppercase text-slate-500 tracking-tighter">Choose Deployment Bracket</label>
+                    <select id="bracketSelect" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-amber-500 text-lg font-bold outline-none bg-white cursor-pointer shadow-sm">
+                        <option value="30000">₹30,000 (1% Monthly ROI)</option>
+                        <option value="100000" selected>₹1,00,000 (2% Monthly ROI)</option>
+                        <option value="200000">₹2,00,000 (2.5% Monthly ROI)</option>
+                    </select>
+                    
+                    <div class="mt-8 space-y-4">
+                        <div class="p-5 bg-white rounded-2xl border-l-8 border-blue-900 shadow-sm">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Monthly Payout</span>
+                            <div class="text-3xl font-bold text-blue-900" id="monthlyVal">₹2,000</div>
+                        </div>
+                        <div class="p-5 bg-white rounded-2xl border-l-8 border-amber-500 shadow-sm">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Total Net Interest Payout</span>
+                            <div class="text-3xl font-bold text-amber-600" id="totalProfit">₹24,000</div>
+                        </div>
                     </div>
-                    <div class="p-6 bg-white rounded-2xl border-l-8 border-amber-500 shadow-sm">
-                        <span class="text-xs font-bold text-slate-400 uppercase">Total 13-Month Profit</span>
-                        <div class="text-3xl font-bold text-amber-600" id="totalResult">₹32,500</div>
+                </div>
+
+                <div class="lg:col-span-2 overflow-hidden bg-white border border-slate-200 rounded-3xl card-shadow">
+                    <div class="p-4 bg-slate-50 border-b flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Detailed Roadmap</span>
+                        <span class="text-xs font-bold omkar-gold uppercase">13-Month Tenure</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="omkar-navy text-white text-[10px] uppercase tracking-widest">
+                                    <th class="p-4">Month</th>
+                                    <th class="p-4 text-center">Interest Payment</th>
+                                    <th class="p-4 text-center">Capital Balance</th>
+                                    <th class="p-4 text-right">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody id="amortizationBody" class="text-sm">
+                                </tbody>
+                            <tfoot>
+                                <tr class="bg-slate-100 font-bold border-t-2 border-slate-200">
+                                    <td class="p-4 uppercase text-slate-500">Total Settlement</td>
+                                    <td class="p-4 text-center text-blue-900" id="footROI">₹24,000</td>
+                                    <td class="p-4 text-center text-green-700" id="footCap">₹1,00,000</td>
+                                    <td class="p-4 text-right text-xs uppercase text-slate-400">Roadmap Complete</td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="py-20 bg-slate-900 text-white px-6">
+    <section class="py-20 bg-slate-900 text-white px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16 omkar-gold">Strategic Onboarding Process</h2>
-            <div class="space-y-12">
-                <div class="flex gap-6 items-start">
-                    <div class="text-5xl font-bold text-slate-700">01</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-amber-400">KYC Verification</h4>
-                        <p class="text-slate-400 mt-2">Submit your basic Aadhar & PAN details via our secure WhatsApp link. We verify every partner to ensure deployment compliance.</p>
+            <h2 class="text-3xl font-bold text-center mb-16 omkar-gold">How We Finalize Your Security</h2>
+            <div class="space-y-10 relative">
+                <div class="flex gap-6 items-start relative z-10">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-xl">1</div>
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 w-full">
+                        <h4 class="text-lg font-bold text-blue-400">KYC Verification</h4>
+                        <p class="text-slate-400 mt-2 text-sm leading-relaxed">Submit your Aadhar and PAN details via our secure WhatsApp link. We verify every partner to maintain road map compliance.</p>
                     </div>
                 </div>
-                <div class="flex gap-6 items-start">
-                    <div class="text-5xl font-bold text-slate-700">02</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-amber-400">Review Draft Documentation</h4>
-                        <p class="text-slate-400 mt-2">We share a scanned copy of the Master Agreement and the Post-Dated Cheques (PDCs) mapped to your specific deployment amount.</p>
+                <div class="flex gap-6 items-start relative z-10">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-xl">2</div>
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 w-full">
+                        <h4 class="text-lg font-bold text-blue-400">Legal Review</h4>
+                        <p class="text-slate-400 mt-2 text-sm leading-relaxed">Review your custom Notarized Agreement draft and scanned copies of Post-Dated Cheques (PDCs) mapped to your deployment amount.</p>
                     </div>
                 </div>
-                <div class="flex gap-6 items-start">
-                    <div class="text-5xl font-bold text-slate-700">03</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-amber-400">Execution (Online/Offline)</h4>
-                        <p class="text-slate-400 mt-2">Finalize the notarized contract. You can opt for the Online FastTrack or visit our Pune HQ for a physical handshake and file handover.</p>
+                <div class="flex gap-6 items-start relative z-10">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-xl">3</div>
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 w-full">
+                        <h4 class="text-lg font-bold text-blue-400">Execution (Online/Offline)</h4>
+                        <p class="text-slate-400 mt-2 text-sm leading-relaxed">Visit our Pune HQ or use our FastTrack digital signing. Finalize the legal papers and receive your physical security bundle.</p>
                     </div>
                 </div>
-                <div class="flex gap-6 items-start border-t border-slate-800 pt-10">
-                    <div class="text-5xl font-bold text-green-600">04</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-green-400">Deployment & Payouts</h4>
-                        <p class="text-slate-400 mt-2">Your capital is deployed into active trade cycles. Your first fixed monthly return hits your account exactly 30 days from deployment.</p>
+                <div class="flex gap-6 items-start relative z-10">
+                    <div class="w-12 h-12 bg-green-600 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-xl text-white">4</div>
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-green-900 w-full shadow-lg">
+                        <h4 class="text-lg font-bold text-green-400">Deployment & Monthly Payouts</h4>
+                        <p class="text-slate-400 mt-2 text-sm leading-relaxed">Capital is deployed into trade cycles. Your fixed ROI payouts hit your account monthly, with full capital repayment in the 13th month.</p>
                     </div>
                 </div>
             </div>
@@ -137,46 +137,82 @@
     </section>
 
     <section class="py-24 px-6 text-center">
-        <div class="max-w-3xl mx-auto bg-white p-12 rounded-[3rem] card-shadow border-2 border-amber-100 relative">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-2 rounded-full text-xs font-bold animate-pulse">
-                FINAL SLOTS CLOSING SOON
-            </div>
-            <h2 class="text-3xl font-bold mb-6">Start Your FastTrack KYC</h2>
-            <p class="text-slate-600 mb-10 leading-relaxed">By clicking below, you initiate a private session with our deployment desk. Have your Aadhar and PAN ready for verification.</p>
+        <div class="max-w-2xl mx-auto bg-white p-12 rounded-[3rem] card-shadow border-2 border-amber-100 relative">
+            <h2 class="text-3xl font-bold mb-4">Start Your KYC Journey</h2>
+            <p class="text-slate-600 mb-10 leading-relaxed">Have your KYC documents ready. One of our desk managers will initiate your verification session immediately.</p>
             
-            <a href="https://wa.me/YOUR_PHONE_NUMBER?text=START_FASTTRACK_KYC" 
-               class="bg-green-600 text-white px-12 py-6 rounded-2xl font-bold text-xl hover:bg-green-700 transition-all shadow-xl inline-flex items-center">
-                🚀 Send KYC via WhatsApp
+            <a id="waButton" href="https://wa.me/YOUR_PHONE_NUMBER?text=HI_OMKAR_ENTERPRISES_I_WANT_TO_START_KYC" 
+               class="bg-green-600 hover:bg-green-700 text-white px-12 py-6 rounded-2xl font-bold text-xl inline-flex items-center transition-all card-shadow transform hover:scale-105">
+                📲 Submit KYC on WhatsApp
             </a>
 
-            <div class="mt-12 pt-8 border-t text-sm text-slate-400">
-                For detailed terms and corporate overview, visit our main portal: <br>
-                <a href="https://omkarservices.in" class="text-blue-600 font-bold hover:underline">https://omkarservices.in</a>
+            <div class="mt-12 pt-8 border-t">
+                <p class="text-xs text-slate-400 mb-4 uppercase font-bold tracking-widest">Standard Compliance Details</p>
+                <a href="https://omkarservices.in" target="_blank" class="text-blue-600 font-bold hover:underline">Refer to Core Portal: omkarservices.in</a>
             </div>
         </div>
     </section>
 
     <footer class="omkar-navy py-12 text-center text-slate-500 px-6">
-        <p class="text-[10px] tracking-widest uppercase mb-4">© 2026 Omkar Enterprises | Pune HQ | Private Deployment Model</p>
+        <p class="text-[10px] tracking-widest uppercase mb-4 font-bold">© 2026 Omkar Enterprises | Pune, Maharashtra | Private Trading Deployment</p>
+        <p class="text-[9px] max-w-lg mx-auto leading-relaxed">
+            Legal Note: This portal is for vetted partners only. All capital deployments are governed by individual notarized agreements and PDCs under Indian Contractual Law.
+        </p>
     </footer>
 
     <script>
-        const input = document.getElementById('capitalInput');
-        const monthly = document.getElementById('monthlyResult');
-        const total = document.getElementById('totalResult');
+        const bracketSelect = document.getElementById('bracketSelect');
+        const tableBody = document.getElementById('amortizationBody');
+        const monthlyVal = document.getElementById('monthlyVal');
+        const totalProfit = document.getElementById('totalProfit');
+        const footROI = document.getElementById('footROI');
+        const footCap = document.getElementById('footCap');
+        const waButton = document.getElementById('waButton');
 
-        input.addEventListener('input', (e) => {
-            let val = e.target.value;
-            if(val < 100000) {
-                monthly.innerText = "Min ₹1L";
-                total.innerText = "---";
-            } else {
-                let m = (val * 0.025).toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
-                let t = (val * 0.025 * 13).toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
-                monthly.innerText = m;
-                total.innerText = t;
+        function updateSchedule() {
+            const principal = parseInt(bracketSelect.value);
+            let rate = 0.02; // Default 1L
+            
+            if (principal === 30000) rate = 0.01;
+            else if (principal === 200000) rate = 0.025;
+
+            const monthlyROI = principal * rate;
+            const totalROI = monthlyROI * 12;
+
+            // Update UI Counters
+            monthlyVal.innerText = monthlyROI.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+            totalProfit.innerText = totalROI.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+            footROI.innerText = totalROI.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+            footCap.innerText = principal.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+
+            // Update WhatsApp Link
+            waButton.href = `https://wa.me/YOUR_PHONE_NUMBER?text=Hi%20Omkar%20Enterprises,%20I%20want%20to%20start%20FastTrack%20for%20the%20${principal.toLocaleString('en-IN')}%20bracket.`;
+
+            // Clear and Generate Table
+            let html = '';
+            for (let i = 1; i <= 13; i++) {
+                const isFinalMonth = i === 13;
+                const currentROI = isFinalMonth ? 0 : monthlyROI;
+                const currentCapRepay = isFinalMonth ? principal : 0;
+                const statusLabel = isFinalMonth ? 'Capital Repaid' : 'Interest Paid';
+
+                html += `
+                    <tr class="border-b ${isFinalMonth ? 'bg-amber-50 font-bold' : 'hover:bg-slate-50 transition-colors'}">
+                        <td class="p-4 text-slate-500 font-medium">Month ${i}</td>
+                        <td class="p-4 text-center text-blue-700">${currentROI > 0 ? currentROI.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }) : '--'}</td>
+                        <td class="p-4 text-center text-green-700">${currentCapRepay > 0 ? currentCapRepay.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }) : '--'}</td>
+                        <td class="p-4 text-right">
+                            <span class="px-2 py-1 text-[9px] rounded-full border border-slate-200 font-bold uppercase tracking-tighter">
+                                ${statusLabel}
+                            </span>
+                        </td>
+                    </tr>`;
             }
-        });
+            tableBody.innerHTML = html;
+        }
+
+        bracketSelect.addEventListener('change', updateSchedule);
+        window.onload = updateSchedule;
     </script>
 </body>
 </html>

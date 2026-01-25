@@ -2405,60 +2405,52 @@
                 const result = await response.json();
                 console.log("Google Sheets response:", result);
                 
-                // Check if investor exists
-                if (result && (result.InvestorId || result.PartnerID || result.FullName)) {
-                    // INVESTOR FOUND - Save session and redirect to dashboard
-                    saveLoginSession(investorId, mobile, false, result);
-                    
-                    // Show success modal
-                    showSuccessModal(result.FullName || 'Partner');
-                    
-                    // Redirect to dashboard after delay
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 2000);
-                    
-                } else {
-                    // INVESTOR NOT FOUND
-                    showLoading(false);
-                    if (loginBtn) {
-                        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
-                        loginBtn.disabled = false;
-                    }
-                    
-                    // Offer guest access
-                    const useGuest = confirm(`Investor ID "${investorId}" not found.\n\nWould you like to:\n1. Try again with correct ID\n2. View as guest\n3. Contact support`);
-                    
-                    if (useGuest) {
-                        // Show guest form
-                        document.getElementById('showGuestFormBtn').click();
-                    }
-                }
-                
-            } catch (error) {
-                console.error("Authentication error:", error);
-                showLoading(false);
-                
-                if (loginBtn) {
-                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
-                    loginBtn.disabled = false;
-                }
-                
-                // Fallback for testing/demo
-                if (investorId.startsWith('TEST') || investorId === 'DEMO') {
-                    console.log("Using test/demo access");
-                    saveLoginSession(investorId, mobile, false);
-                    
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1000);
-                } else {
-                    showLoginError('Connection error. Please try again or contact support.');
-                }
-            }
-        });
-    }
+                // In partner-portal.html, update the login success handler:
 
+if (result && (result.InvestorId || result.PartnerID || result.FullName)) {
+    // INVESTOR FOUND - Save session and redirect to dashboard
+    saveLoginSession(investorId, mobile, false, result);
+    
+    // Check if we have all required data
+    const investorData = result;
+    console.log("Investor data received:", investorData);
+    
+    // Store the full investor data for dashboard
+    localStorage.setItem('omkar_investor_data', JSON.stringify(investorData));
+    
+    // Show success modal
+    showSuccessModal(investorData.FullName || 'Partner');
+    
+    // Redirect to dashboard after delay
+    setTimeout(() => {
+        // Test if dashboard will load properly
+        testDashboardAccess(investorId, investorData);
+    }, 2000);
+    
+} else {
+    // INVESTOR NOT FOUND
+    showLoading(false);
+    if (loginBtn) {
+        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+        loginBtn.disabled = false;
+    }
+    
+    // Try different access key formats
+    const tryAlternative = confirm(`Investor "${investorId}" data format mismatch.\n\nWould you like to try with different ID format or continue as guest?`);
+    
+    if (tryAlternative) {
+        // Try with simplified ID
+        const simpleId = investorId.replace(/OMK|OE|TEST/i, '').trim();
+        if (simpleId && simpleId !== investorId) {
+            alert(`Trying with ID: ${simpleId}`);
+            usernameInput.value = simpleId;
+            document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+        } else {
+            // Show guest form
+            document.getElementById('showGuestFormBtn').click();
+        }
+    }
+}
     /**
      * Setup guest form with Google Sheets registration
      */

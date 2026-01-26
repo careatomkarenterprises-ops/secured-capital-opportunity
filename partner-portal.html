@@ -1771,11 +1771,6 @@
     <i class="fas fa-chart-line"></i> View Performance Dashboard
 </a>
 
-        <div id="guestFormWrapper" style="display: none; background: var(--white); padding: 30px; border-radius: 15px; box-shadow: var(--shadow-md); max-width: 500px; margin: 0 auto;">
-            <form id="guestForm">
-                <div class="form-group">
-                    <input type="text" id="guestName" class="form-control" placeholder="Full Name *" required>
-                </div>
                 
                 <div class="form-group">
                     <input type="tel" id="guestMobile" class="form-control" placeholder="WhatsApp Number *" required>
@@ -2442,13 +2437,18 @@ function saveGuestSession(investorId, mobile) {
 /**
  * Setup guest form with Google Sheets registration
  */
+/**
+ * Setup guest form - SIMPLIFIED VERSION
+ */
 function setupGuestForm() {
-    const showBtn = document.getElementById('showGuestFormBtn');
-    const guestForm = document.getElementById('guestForm');
-    const guestWrapper = document.getElementById('guestFormWrapper');
+    // Direct link now, no form needed
+    console.log("Guest access simplified - direct link to dashboard");
     
-    if (!showBtn || !guestForm || !guestWrapper) return;
-
+    // Keep the guest form handler removed
+    // When user clicks the "View Performance Dashboard" link,
+    // it will directly go to dashboard.html which will handle guest mode
+}
+    
     // Show guest form
     showBtn.addEventListener('click', function(e) {
         e.preventDefault();

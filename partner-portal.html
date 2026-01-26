@@ -2814,6 +2814,48 @@ loginForm.addEventListener('submit', async function(e) {
     // Uncomment to add debug button
     // addDebugButton();
 
-    </script>
+        /**
+     * LOGIN FUNCTION - Adds the missing logic
+     */
+    async function login() {
+        // Get the values from your input fields
+        const id = document.getElementById('investorId').value.trim();
+        const mobile = document.getElementById('mobileNumber').value.trim();
+        
+        // Basic validation
+        if(!id || !mobile) {
+            alert("Please enter both Investor ID and Mobile Number.");
+            return;
+        }
+
+        // Show loading state (Optional)
+        const loginBtn = document.querySelector('.connect-btn');
+        const originalText = loginBtn.innerHTML;
+        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+        loginBtn.disabled = true;
+
+        try {
+            // Send request to your Google Script
+            const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=verifyLogin&id=${id}&mobile=${mobile}`);
+            const result = await response.json();
+            
+            if (result.success) {
+                // Save the ID so the dashboard knows who is logged in
+                localStorage.setItem('omkar_access_key', id);
+                // Redirect to your dashboard file
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Login Failed: " + (result.message || "Invalid credentials"));
+            }
+        } catch (e) {
+            console.error("Connection Error:", e);
+            alert("Unable to connect to the server. Please check your internet.");
+        } finally {
+            // Restore button state
+            loginBtn.innerHTML = originalText;
+            loginBtn.disabled = false;
+        }
+    }
+</script>
 </body>
 </html>

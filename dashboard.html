@@ -500,500 +500,316 @@
         </main>
     </div>
     
-    <!-- JavaScript -->
-    <script>
-    // ============================================
-    // INVESTOR DASHBOARD - FIXED VERSION
-    // ============================================
+  <script>
+// ============================================
+// INVESTOR DASHBOARD - SIMPLE FIXED VERSION
+// ============================================
+
+const API_URL = 'https://script.google.com/macros/s/AKfycbxBGTIrI2dfOt94evYgyN4XxL9B9gZ4XPcB_QAzQnDmEIny6_G3ceX6xs6YqvEQIWON/exec';
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Dashboard loaded");
     
-    const API_URL = 'https://script.google.com/macros/s/AKfycbxBGTIrI2dfOt94evYgyN4XxL9B9gZ4XPcB_QAzQnDmEIny6_G3ceX6xs6YqvEQIWON/exec';
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log("Investor Dashboard Loading...");
-        console.log("API URL:", API_URL);
-        
-        // Check authentication
-        const auth = checkAuth();
-        
-        if (!auth.isAuthenticated) {
-            // Redirect to login if not authenticated
-            window.location.href = 'partner-portal.html';
-            return;
-        }
-        
-        // Show loading
-        document.getElementById('loadingOverlay').style.display = 'flex';
-        
-        // Load investor data
-        loadInvestorData();
-        
-        // Setup logout
-        document.getElementById('logoutBtn').addEventListener('click', logout);
-        
-        // Setup navigation active state
-        setupNavigation();
-    });
-    
-    /**
-     * Check if user is authenticated as investor
-     */
-    function checkAuth() {
-        const accessKey = localStorage.getItem('omkar_access_key');
-        const guestMode = localStorage.getItem('omkar_guest_mode') === 'true';
-        
-        console.log("Auth check:", { 
-            accessKey, 
-            guestMode,
-            localStorage: { ...localStorage } 
-        });
-        
-        // Check if access key exists
-        if (!accessKey) {
-            console.warn("No access key found - redirecting to login");
-            return { isAuthenticated: false };
-        }
-        
-        return {
-            isAuthenticated: true,
-            accessKey: accessKey,
-            guestMode: guestMode
-        };
+    // Check auth
+    const auth = checkAuth();
+    if (!auth.isAuthenticated) {
+        window.location.href = 'partner-portal.html';
+        return;
     }
     
-    /**
-     * Load investor data from API
-     */
-    async function loadInvestorData() {
-        try {
-            const accessKey = localStorage.getItem('omkar_access_key');
-            const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
-            
-            console.log("Fetching data for:", { accessKey, isGuest });
-            
-            if (isGuest) {
-                // Load guest data from localStorage
-                loadGuestData();
-                return;
-            }
-            
-            // 1. Get investor profile
-            console.log("Fetching profile from:", `${API_URL}?action=getPartner&accessKey=${accessKey}`);
-            const profileResponse = await fetch(`${API_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`);
-            
-            if (!profileResponse.ok) {
-                throw new Error(`API Error: ${profileResponse.status}`);
-            }
-            
-            const profileText = await profileResponse.text();
-            console.log("Profile response text:", profileText);
-            
-            let profileData;
-            try {
-                profileData = JSON.parse(profileText);
-            } catch (e) {
-                console.error("JSON parse error:", e);
-                // Try to fix common JSON issues
-                const fixedJson = profileText.replace(/'/g, '"');
-                profileData = JSON.parse(fixedJson);
-            }
-            
-            console.log("Profile data:", profileData);
-            
-            if (profileData && profileData.success !== false) {
-                updateDashboardUI(profileData);
-                
-                // Store data for offline use
-                localStorage.setItem('omkar_dashboard_data', JSON.stringify(profileData));
-                
-                // 2. Get transaction history
-                try {
-                    const historyResponse = await fetch(`${API_URL}?action=getTransactions&accessKey=${encodeURIComponent(accessKey)}`);
-                    if (historyResponse.ok) {
-                        const historyData = await historyResponse.json();
-                        if (historyData && Array.isArray(historyData)) {
-                            updateTransactionHistory(historyData);
-                        }
-                    }
-                } catch (historyError) {
-                    console.warn("Could not load transaction history:", historyError);
-                }
-                
-                // 3. Get KYC status
-                try {
-                    const kycResponse = await fetch(`${API_URL}?action=getKYCStatus&leadId=${encodeURIComponent(accessKey)}`);
-                    if (kycResponse.ok) {
-                        const kycData = await kycResponse.json();
-                        if (kycData) {
-                            updateKYCStatus(kycData);
-                        }
-                    }
-                } catch (kycError) {
-                    console.warn("Could not load KYC status:", kycError);
-                }
-                
-            } else {
-                // If API returns error, check for TEST/DEMO accounts
-                if (accessKey.startsWith('TEST') || accessKey === 'DEMO') {
-                    loadTestData(accessKey);
-                } else {
-                    showError("Investor not found. Please check your Investor ID.");
-                    // Show guest notice
-                    document.getElementById('guestNotice').style.display = 'flex';
-                }
-            }
-            
-        } catch (error) {
-            console.error("Error loading investor data:", error);
-            
-            // Try to load cached data
-            const cachedData = localStorage.getItem('omkar_dashboard_data');
-            if (cachedData) {
-                console.log("Using cached data due to network error");
-                const parsedData = JSON.parse(cachedData);
-                updateDashboardUI(parsedData);
-                showWarning("Showing cached data. Please check your internet connection.");
-            } else {
-                showError("Could not load dashboard data. Please try again.");
-            }
-            
-            // Show guest notice for network errors
-            document.getElementById('guestNotice').style.display = 'flex';
-            
-        } finally {
-            // Hide loading overlay
-            document.getElementById('loadingOverlay').style.display = 'none';
-        }
-    }
+    // Load data
+    loadDashboardData(auth.accessKey, auth.isGuest);
     
-    /**
-     * Load guest data from localStorage
-     */
-    function loadGuestData() {
-        console.log("Loading guest data");
-        
-        const guestData = {
-            FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
-            InvestorId: localStorage.getItem('omkar_access_key') || 'GUEST001',
-            PortfolioValue: '₹5,00,000',
-            MonthlyReturn: '₹10,000',
-            TotalReturns: '₹1,20,000',
-            AgreementExpiryDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            AccountStatus: 'Guest'
-        };
-        
-        updateDashboardUI(guestData);
-        document.getElementById('guestNotice').style.display = 'flex';
-        document.getElementById('loadingOverlay').style.display = 'none';
-        
-        // Add sample transactions for guest
-        addSampleTransactions();
-    }
-    
-    /**
-     * Load test data for TEST/DEMO accounts
-     */
-    function loadTestData(accessKey) {
-        console.log("Loading test data for:", accessKey);
-        
-        const testData = {
-            FullName: 'Test Investor',
-            InvestorId: accessKey,
-            PortfolioValue: '₹5,50,000',
-            MonthlyReturn: '₹11,000',
-            TotalReturns: '₹1,32,000',
-            AgreementExpiryDate: '2024-12-31',
-            AccountStatus: 'Active',
-            PrincipalAmount: 550000,
-            FixedMonthlyReturn: 11000,
-            TotalReturnsPaid: 132000
-        };
-        
-        updateDashboardUI(testData);
-        document.getElementById('guestNotice').style.display = 'flex';
-        document.getElementById('guestNotice').innerHTML = `
-            <i class="fas fa-info-circle"></i>
-            <div>
-                <strong>Test Mode:</strong> You're viewing test data. Contact support to activate real account.
-            </div>
-        `;
-        document.getElementById('loadingOverlay').style.display = 'none';
-        
-        // Add sample transactions for test account
-        addSampleTransactions();
-    }
-    
-    /**
-     * Update dashboard UI with investor data
-     */
-    function updateDashboardUI(data) {
-        console.log("Updating UI with data:", data);
-        
-        // Update investor info
-        document.getElementById('investorName').textContent = data.FullName || 'Investor';
-        document.getElementById('investorInfo').innerHTML = `
-            <div style="text-align: right;">
-                <strong>Investor ID:</strong> ${data.InvestorId || data.PartnerID || 'N/A'}<br>
-                <small>Account Status: <span class="status-active">${data.AccountStatus || 'Active'}</span></small>
-            </div>
-        `;
-        
-        // Update portfolio stats
-        document.getElementById('portfolioValue').textContent = formatCurrency(data.PortfolioValue || data.PrincipalAmount);
-        document.getElementById('monthlyReturn').textContent = formatCurrency(data.MonthlyReturn || data.FixedMonthlyReturn);
-        document.getElementById('totalReturns').textContent = formatCurrency(data.TotalReturns || data.TotalReturnsPaid);
-        
-        // Calculate days to expiry
-        if (data.AgreementExpiryDate) {
-            const expiryDate = new Date(data.AgreementExpiryDate);
-            const today = new Date();
-            const diffTime = expiryDate - today;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById('agreementDays').textContent = diffDays > 0 ? diffDays : 'Expired';
-        } else {
-            document.getElementById('agreementDays').textContent = 'N/A';
-        }
-        
-        // Update last login
-        const lastLogin = localStorage.getItem('omkar_login_time');
-        if (lastLogin) {
-            const date = new Date(lastLogin);
-            document.getElementById('lastLogin').textContent = date.toLocaleString('en-IN');
-        }
-    }
-    
-    /**
-     * Add sample transactions for guest/test accounts
-     */
-    function addSampleTransactions() {
-        const sampleTransactions = [
-            {
-                TransactionDate: new Date().toISOString().split('T')[0],
-                TransactionType: 'Monthly Return',
-                Amount: 10000,
-                Status: 'completed',
-                ReferenceNo: 'MONTH-001'
-            },
-            {
-                TransactionDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                TransactionType: 'Monthly Return',
-                Amount: 10000,
-                Status: 'completed',
-                ReferenceNo: 'MONTH-002'
-            },
-            {
-                TransactionDate: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                TransactionType: 'Monthly Return',
-                Amount: 10000,
-                Status: 'completed',
-                ReferenceNo: 'MONTH-003'
-            }
-        ];
-        
-        updateTransactionHistory(sampleTransactions);
-    }
-    
-    /**
-     * Update transaction history table
-     */
-    function updateTransactionHistory(transactions) {
-        const tbody = document.getElementById('transactionHistory');
-        const recentTbody = document.getElementById('recentTransactions');
-        
-        if (!tbody || !recentTbody) {
-            console.error("Transaction tables not found");
-            return;
-        }
-        
-        tbody.innerHTML = '';
-        recentTbody.innerHTML = '';
-        
-        if (!transactions || !Array.isArray(transactions) || transactions.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--slate-light);">No transactions found</td></tr>';
-            recentTbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--slate-light);">No recent transactions</td></tr>';
-            return;
-        }
-        
-        // Sort by date (newest first)
-        transactions.sort((a, b) => new Date(b.TransactionDate || b.Date) - new Date(a.TransactionDate || a.Date));
-        
-        // Show last 5 in recent transactions
-        const recent = transactions.slice(0, 5);
-        
-        recent.forEach(transaction => {
-            const date = new Date(transaction.TransactionDate || transaction.Date).toLocaleDateString('en-IN');
-            const amount = formatCurrency(transaction.Amount || transaction.PaymentAmount);
-            const status = transaction.Status || 'completed';
-            const type = transaction.TransactionType || transaction.Type || 'Monthly Return';
-            const reference = transaction.ReferenceNo || transaction.TransactionId || '-';
-            
-            const row = document.createElement('tr');
-            
-            row.innerHTML = `
-                <td>${date}</td>
-                <td>${type}</td>
-                <td>${amount}</td>
-                <td><span class="status-${status} status-badge">${status}</span></td>
-                <td>${reference}</td>
-            `;
-            
-            recentTbody.appendChild(row);
-        });
-        
-        // Add "View All" row
-        if (transactions.length > 5) {
-            const viewAllRow = document.createElement('tr');
-            viewAllRow.innerHTML = `
-                <td colspan="5" style="text-align: center;">
-                    <a href="#" style="color: var(--gold-accent); text-decoration: none;">
-                        View All ${transactions.length} Transactions →
-                    </a>
-                </td>
-            `;
-            recentTbody.appendChild(viewAllRow);
-        }
-    }
-    
-    /**
-     * Update KYC status
-     */
-    function updateKYCStatus(kycData) {
-        const kycStatusText = document.getElementById('kycStatusText');
-        const kycProgressFill = document.getElementById('kycProgressFill');
-        
-        if (!kycStatusText || !kycProgressFill) return;
-        
-        if (kycData && kycData.success !== false) {
-            const percentage = kycData.completionPercentage || kycData.percentage || 0;
-            kycProgressFill.style.width = percentage + '%';
-            
-            if (percentage === 100) {
-                kycStatusText.innerHTML = '<span class="status-active">✓ KYC Verified</span>';
-            } else if (percentage > 0) {
-                kycStatusText.textContent = `KYC ${percentage}% Complete`;
-            } else {
-                kycStatusText.innerHTML = '<span class="status-pending">KYC Not Started - Please upload documents</span>';
-            }
-        } else {
-            kycStatusText.innerHTML = '<span class="status-pending">KYC Status: Not Available</span>';
-        }
-    }
-    
-    /**
-     * Format currency
-     */
-    function formatCurrency(amount) {
-        if (!amount && amount !== 0) return '₹0';
-        const num = Number(amount);
-        if (isNaN(num)) return '₹0';
-        
-        if (num >= 10000000) return '₹' + (num / 10000000).toFixed(2) + ' Cr';
-        if (num >= 100000) return '₹' + (num / 100000).toFixed(1) + ' Lakhs';
-        return '₹' + num.toLocaleString('en-IN');
-    }
-    
-    /**
-     * Setup navigation active state
-     */
-    function setupNavigation() {
-        const currentPage = window.location.pathname.split('/').pop();
-        const menuItems = document.querySelectorAll('.sidebar-menu a');
-        
-        menuItems.forEach(item => {
-            const href = item.getAttribute('href');
-            if (href === currentPage || (href === '#' && currentPage === 'dashboard.html')) {
-                item.classList.add('active');
-            }
-        });
-    }
-    
-    /**
-     * Show error message
-     */
-    function showError(message) {
-        console.error("Dashboard Error:", message);
-        
-        const errorDiv = document.createElement('div');
-        errorDiv.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #ef4444;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-        `;
-        
-        errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
-        document.body.appendChild(errorDiv);
-        
-        setTimeout(() => {
-            errorDiv.remove();
-        }, 5000);
-    }
-    
-    /**
-     * Show warning message
-     */
-    function showWarning(message) {
-        console.warn("Dashboard Warning:", message);
-        
-        const warningDiv = document.createElement('div');
-        warningDiv.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #f59e0b;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-        `;
-        
-        warningDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
-        document.body.appendChild(warningDiv);
-        
-        setTimeout(() => {
-            warningDiv.remove();
-        }, 5000);
-    }
-    
-    /**
-     * Logout function
-     */
-    function logout() {
-        if (confirm("Are you sure you want to logout?")) {
-            // Show loading
-            document.getElementById('loadingOverlay').style.display = 'flex';
-            
-            // Clear storage
+    // Setup logout
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm("Logout?")) {
             localStorage.clear();
-            sessionStorage.clear();
-            
-            // Redirect to login
-            setTimeout(() => {
-                window.location.href = 'partner-portal.html';
-            }, 1000);
+            window.location.href = 'partner-portal.html';
         }
+    });
+});
+
+function checkAuth() {
+    const accessKey = localStorage.getItem('omkar_access_key');
+    const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+    
+    if (!accessKey) {
+        return { isAuthenticated: false };
     }
     
-    // Debug utility
-    window.debugDashboard = function() {
-        console.log('=== DASHBOARD DEBUG INFO ===');
-        console.log('API URL:', API_URL);
-        console.log('LocalStorage:', { ...localStorage });
-        console.log('Current auth:', checkAuth());
+    return {
+        isAuthenticated: true,
+        accessKey: accessKey,
+        isGuest: isGuest
+    };
+}
+
+async function loadDashboardData(accessKey, isGuest) {
+    console.log("Loading for:", { accessKey, isGuest });
+    
+    if (isGuest) {
+        showGuestData();
+        return;
+    }
+    
+    try {
+        // Try to fetch from API
+        const response = await fetchData(`${API_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`);
         
-        fetch(`${API_URL}?action=test`)
-            .then(r => r.text())
-            .then(data => console.log('API Test Response:', data))
-            .catch(err => console.error('API Test Error:', err));
+        if (response && response.success) {
+            // Success - update UI
+            updateDashboard(response.data);
+            
+            // Try to get transactions
+            try {
+                const txnResponse = await fetchData(`${API_URL}?action=getTransactions&accessKey=${encodeURIComponent(accessKey)}&limit=5`);
+                if (txnResponse && txnResponse.success) {
+                    updateTransactions(txnResponse.transactions);
+                }
+            } catch (e) {
+                console.log("No transactions:", e);
+            }
+            
+        } else {
+            // Check if test account
+            if (accessKey.startsWith('TEST') || accessKey === 'DEMO') {
+                showTestData(accessKey);
+            } else {
+                showError("Account not found");
+                showGuestData();
+            }
+        }
+        
+    } catch (error) {
+        console.error("Error:", error);
+        
+        // Check if test account
+        if (accessKey.startsWith('TEST') || accessKey === 'DEMO') {
+            showTestData(accessKey);
+        } else {
+            showGuestData();
+        }
+    }
+}
+
+// Safe fetch with CORS handling
+async function fetchData(url) {
+    try {
+        console.log("Fetching:", url);
+        const response = await fetch(url, {
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.warn("Fetch failed:", error);
+        
+        // Try alternative method
+        return await fetchWithJSONP(url);
+    }
+}
+
+// JSONP fallback
+function fetchWithJSONP(url) {
+    return new Promise((resolve) => {
+        const callbackName = 'callback_' + Date.now();
+        const script = document.createElement('script');
+        
+        window[callbackName] = function(data) {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            resolve(data);
+        };
+        
+        script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + callbackName;
+        script.onerror = function() {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            resolve(null);
+        };
+        
+        document.body.appendChild(script);
+        
+        // Timeout after 5 seconds
+        setTimeout(() => {
+            if (window[callbackName]) {
+                delete window[callbackName];
+                document.body.removeChild(script);
+                resolve(null);
+            }
+        }, 5000);
+    });
+}
+
+function updateDashboard(data) {
+    console.log("Updating with:", data);
+    
+    // Update name
+    const nameElement = document.getElementById('investorName');
+    if (nameElement && data.FullName) {
+        nameElement.textContent = data.FullName;
+    }
+    
+    // Update investor info
+    const infoElement = document.getElementById('investorInfo');
+    if (infoElement) {
+        infoElement.innerHTML = `
+            <div style="text-align: right;">
+                <strong>Investor ID:</strong> ${data.InvestorId || 'N/A'}<br>
+                <small>Status: <span style="color: green;">${data.AccountStatus || 'Active'}</span></small>
+            </div>
+        `;
+    }
+    
+    // Update stats
+    updateStat('portfolioValue', data.PrincipalAmount || data.PortfolioValue);
+    updateStat('monthlyReturn', data.FixedMonthlyReturn || data.MonthlyReturn);
+    updateStat('totalReturns', data.TotalReturnsPaid || data.TotalReturns);
+    
+    // Last login
+    const lastLogin = localStorage.getItem('omkar_login_time');
+    if (lastLogin) {
+        const dateElement = document.getElementById('lastLogin');
+        if (dateElement) {
+            dateElement.textContent = new Date(lastLogin).toLocaleString('en-IN');
+        }
+    }
+}
+
+function updateStat(elementId, value) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = formatCurrency(value);
+    }
+}
+
+function updateTransactions(transactions) {
+    if (!transactions || !Array.isArray(transactions)) return;
+    
+    const tbody = document.getElementById('recentTransactions');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+    
+    // Show last 3 transactions
+    transactions.slice(0, 3).forEach(txn => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${new Date(txn.TransactionDate || txn.Date).toLocaleDateString('en-IN')}</td>
+            <td>${txn.TransactionType || 'Return'}</td>
+            <td>${formatCurrency(txn.Amount)}</td>
+            <td><span class="status-active">${txn.Status || 'Completed'}</span></td>
+            <td>${txn.ReferenceNo || '-'}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+function showTestData(accessKey) {
+    const testData = {
+        'TEST001': {
+            FullName: 'Rajesh Malla',
+            InvestorId: 'TEST001',
+            PrincipalAmount: 250000,
+            FixedMonthlyReturn: 2500,
+            TotalReturnsPaid: 180000,
+            AccountStatus: 'Active'
+        },
+        'TEST002': {
+            FullName: 'Ajay Konjerla',
+            InvestorId: 'TEST002',
+            PrincipalAmount: 300000,
+            FixedMonthlyReturn: 3000,
+            TotalReturnsPaid: 175000,
+            AccountStatus: 'Active'
+        }
     };
     
-    </script>
+    const data = testData[accessKey] || {
+        FullName: 'Test Investor',
+        InvestorId: accessKey,
+        PrincipalAmount: 100000,
+        FixedMonthlyReturn: 1000,
+        TotalReturnsPaid: 50000,
+        AccountStatus: 'Active'
+    };
+    
+    updateDashboard(data);
+    
+    // Show test notice
+    const notice = document.getElementById('guestNotice');
+    if (notice) {
+        notice.style.display = 'flex';
+        notice.innerHTML = `
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>Test Mode:</strong> Viewing sample data for ${accessKey}
+            </div>
+        `;
+    }
+}
+
+function showGuestData() {
+    const guestData = {
+        FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
+        InvestorId: 'GUEST001',
+        PrincipalAmount: 500000,
+        FixedMonthlyReturn: 5000,
+        TotalReturnsPaid: 60000,
+        AccountStatus: 'Guest'
+    };
+    
+    updateDashboard(guestData);
+    
+    // Show guest notice
+    const notice = document.getElementById('guestNotice');
+    if (notice) {
+        notice.style.display = 'flex';
+    }
+    
+    // Add sample transactions
+    addSampleTransactions();
+}
+
+function addSampleTransactions() {
+    const sampleTxns = [
+        { TransactionDate: new Date().toISOString().split('T')[0], TransactionType: 'Monthly Return', Amount: 5000, Status: 'Completed', ReferenceNo: 'SAMPLE-001' },
+        { TransactionDate: new Date(Date.now() - 30*24*60*60*1000).toISOString().split('T')[0], TransactionType: 'Monthly Return', Amount: 5000, Status: 'Completed', ReferenceNo: 'SAMPLE-002' },
+        { TransactionDate: new Date(Date.now() - 60*24*60*60*1000).toISOString().split('T')[0], TransactionType: 'Monthly Return', Amount: 5000, Status: 'Completed', ReferenceNo: 'SAMPLE-003' }
+    ];
+    
+    updateTransactions(sampleTxns);
+}
+
+function formatCurrency(amount) {
+    if (!amount && amount !== 0) return '₹0';
+    const num = Number(amount);
+    if (isNaN(num)) return '₹0';
+    
+    if (num >= 10000000) return '₹' + (num / 10000000).toFixed(2) + ' Cr';
+    if (num >= 100000) return '₹' + (num / 100000).toFixed(1) + ' Lakhs';
+    return '₹' + num.toLocaleString('en-IN');
+}
+
+function showError(message) {
+    console.error("Error:", message);
+    alert("Error: " + message);
+}
+
+// Debug
+window.debugDashboard = function() {
+    console.log("Debug info:");
+    console.log("LocalStorage:", { ...localStorage });
+    console.log("API URL:", API_URL);
+};
+</script>
 </body>
 </html>

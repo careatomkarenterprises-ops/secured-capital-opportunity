@@ -471,28 +471,7 @@
 // AUTHENTICATION & DATA LOADING - FIXED VERSION
 // ============================================
 
-// Function to check authentication
 function checkAuth() {
-    const accessKey = localStorage.getItem('omkar_access_key');
-    const guestMode = localStorage.getItem('omkar_guest_mode');
-    const loginTime = localStorage.getItem('omkar_login_time');
-    
-    console.log("Auth check details:", {
-        accessKey,
-        guestMode,
-        loginTime,
-        fullStorage: { ...localStorage }
-    });
-    
-    // Check if access key exists
-    if (!accessKey) {
-        console.warn("No access key found in localStorage");
-        return {
-            isAuthenticated: false,
-            userType: null,
-            accessKey: null
-        };
-    }
     
     // Check session timeout (24 hours)
     if (loginTime) {
@@ -521,40 +500,110 @@ function checkAuth() {
     };
 }
 
-// Function to load investor data with error handling
-async function loadInvestorData(accessKey, isGuest = false) {
-    console.log(`Loading data for ${isGuest ? 'guest' : 'investor'}:`, accessKey);
-    
+async function loadInvestorData(accessKey, isGuest) {
     try {
-        let result;
+        console.log("Loading data for:", { accessKey, isGuest });
         
         if (isGuest) {
-            // For guests, use local storage data
-            const guestData = {
-                FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
-                Email: localStorage.getItem('omkar_guest_email') || '',
-                Mobile: localStorage.getItem('omkar_mobile') || '',
-                GuestID: accessKey,
-                AccessType: 'guest'
-            };
-            result = guestData;
-            console.log("Loaded guest data:", guestData);
-        } else {
-            // For investors, fetch from Google Sheets
-            console.log(`Fetching investor data for: ${accessKey}`);
+            // Load guest data
+            loadGuestData();
+            return;
+        }
+        
+        // For real investors, call Google Script
+        console.log("Fetching investor profile from API...");
+        
+        // Use getPartner action (which calls verifyLogin internally)
+        const response = await fetch(`${API_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log("API Result:", result);
+        
+        if (result.success === true && result.data) {
+            // Update UI with real data
+            updateDashboardUI(result.data);
             
-            // Use CORS-friendly approach
-            const url = `${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`;
-            console.log("Fetching from URL:", url);
+            // Store for offline use
+            localStorage.setItem('omkar_dashboard_data', JSON.stringify(result.data));
             
-            const response = await fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'application/json'
+            // Try to get transactions
+            try {
+                const txnResponse = await fetch(`${API_URL}?action=getTransactions&accessKey=${encodeURIComponent(accessKey)}&limit=10`);
+                if (txnResponse.ok) {
+                    const txnData = await txnResponse.json();
+                    if (txnData.success && txnData.transactions) {
+                        updateTransactionHistory(txnData.transactions);
+                    }
                 }
-            });
+            } catch (txnError) {
+                console.warn("Could not load transactions:", txnError);
+            }
             
+        } else {
+            // Investor not found - fallback to guest
+            console.warn("Investor not found, switching to guest mode");
+            localStorage.setItem('omkar_guest_mode', 'true');
+            loadGuestData();
+            
+            // Show notice
+            const guestNotice = document.getElementById('guestNotice');
+            if (guestNotice) {
+                guestNotice.style.display = 'flex';
+                guestNotice.innerHTML = `
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Guest Mode:</strong> Investor data not found. 
+                        <a href="contact.html" style="color: white; text-decoration: underline; font-weight: 600;">Contact us</a> 
+                        to access your actual portfolio.
+                    </div>
+                `;
+            }
+        }
+        
+    } catch (error) {
+        console.error("Error loading investor data:", error);
+        
+        // Try to load cached data
+        const cachedData = localStorage.getItem('omkar_dashboard_data');
+        if (cachedData) {
+            console.log("Using cached data");
+            const parsedData = JSON.parse(cachedData);
+            updateDashboardUI(parsedData);
+            
+            // Show warning
+            const welcomeBox = document.getElementById('welcomeBox');
+            if (welcomeBox) {
+                const warning = document.createElement('div');
+                warning.style.cssText = `
+                    background: #f59e0b;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    margin: 10px 0;
+                    font-size: 14px;
+                `;
+                warning.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Showing cached data. Internet connection may be unstable.';
+                welcomeBox.appendChild(warning);
+            }
+        } else {
+            // No cached data - switch to guest
+            console.log("No cached data, switching to guest mode");
+            localStorage.setItem('omkar_guest_mode', 'true');
+            loadGuestData();
+        }
+        
+    } finally {
+        // Hide loading overlay
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) {
+            loadingOverlay.style.display = 'none';
+        }
+    }
+}            
             if (!response.ok) {
                 console.warn("HTTP error:", response.status, response.statusText);
                 throw new Error(`HTTP error: ${response.status}`);
@@ -711,15 +760,45 @@ async function initializeDashboard() {
     }
 }
 
-// Call this function when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Dashboard DOM loaded, starting initialization...");
+    console.log("Investor Dashboard Loading...");
+    console.log("API URL:", API_URL);
+    
+    // Initialize dashboard
     initializeDashboard();
     
-    // Update activity timestamp
-    localStorage.setItem('omkar_last_activity', Date.now().toString());
+    // Setup logout
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout);
+    }
 });
+
+function initializeDashboard() {
+    console.log("Initializing dashboard...");
     
+    // Check authentication
+    const auth = checkAuth();
+    console.log("Authentication result:", auth);
+    
+    if (!auth.isAuthenticated) {
+        console.warn("Not authenticated, redirecting to login...");
+        window.location.href = 'partner-portal.html';
+        return;
+    }
+    
+    // Show loading overlay
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) {
+        loadingOverlay.style.display = 'flex';
+    }
+    
+    // Load investor data
+    loadInvestorData(auth.accessKey, auth.guestMode);
+    
+    // Setup navigation
+    setupNavigation();
+}
     /**
      * Load investor data from API
      */

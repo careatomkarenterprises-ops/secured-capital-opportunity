@@ -3,664 +3,998 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investor Dashboard | Omkar Enterprises | Portfolio Management</title>
-    
-    <!-- Add your existing head content here -->
-    
+    <title>Investor Dashboard | Omkar Enterprises</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Add loading overlay styles */
+        /* Your existing design system - KEEP EXACTLY THE SAME */
+        :root {
+            --trust-blue: #1e3a8a;
+            --navy-blue: #1e40af;
+            --royal-blue: #2563eb;
+            --gold-accent: #d4af37;
+            --white: #ffffff;
+            --slate-dark: #1e293b;
+            --slate-light: #64748b;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+        
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--slate-dark);
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-logo img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-menu a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-accent);
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 30px;
+        }
+        
+        /* Dashboard Cards */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .welcome-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--gold-accent);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--trust-blue);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: var(--slate-light);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .portfolio-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .portfolio-card h3 {
+            margin-bottom: 25px;
+            color: var(--slate-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--slate-dark);
+            font-weight: 600;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .data-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-active {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-green);
+        }
+        
+        .status-pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-orange);
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--trust-blue);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-green) 0%, #0da668 100%);
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 250px;
+            }
+            .main-content {
+                margin-left: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* KYC Status */
+        .kyc-status {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--gold-accent);
+        }
+        
+        .kyc-progress {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--gold-accent);
+            transition: width 0.3s ease;
+        }
+        
+        /* Loading Overlay */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             display: none;
         }
-
+        
         .spinner {
             width: 70px;
             height: 70px;
-            border: 5px solid rgba(212, 175, 55, 0.3);
+            border: 5px solid rgba(255,255,255,0.3);
             border-top: 5px solid var(--gold-accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
         
-        /* Add your existing dashboard styles here */
-        
-        /* Authentication Error Styles */
-        .auth-error-container {
-            text-align: center;
-            padding: 50px 20px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            max-width: 600px;
-            margin: 100px auto;
-        }
-        
+        /* Guest Notice */
         .guest-notice {
-            display: none;
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--radius);
             margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay (MUST BE ADDED) -->
+    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
     </div>
-
-    <!-- System Status Bar -->
-    <div class="system-status">
-        <div class="container">
-            <div class="status-indicator">
-                <div class="status-dot"></div>
-                <div class="status-text">Dashboard Status: <strong>Loading...</strong> • <span id="dashboardTime"></span></div>
+    
+    <!-- Investor Dashboard -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="assets/logo.png" alt="Omkar Enterprises">
+                <div>
+                    <h3>Investor Portal</h3>
+                    <small>Omkar Enterprises</small>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-image-container">
-                    <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
-                </div>
-                <div class="logo-text-container">
-                    <div class="logo-main">OMKAR ENTERPRISES</div>
-                    <div class="logo-tagline">Investor Dashboard</div>
-                </div>
-            </a>
             
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
                 <li><a href="portfolio.html"><i class="fas fa-chart-line"></i> Portfolio</a></li>
                 <li><a href="statements.html"><i class="fas fa-file-invoice-dollar"></i> Statements</a></li>
-                <li><a href="returns.html"><i class="fas fa-rupee-sign"></i> Returns</a></li>
+                <li><a href="transactions.html"><i class="fas fa-history"></i> Transaction History</a></li>
+                <li><a href="kyc.html"><i class="fas fa-user-check"></i> KYC Verification</a></li>
+                <li><a href="calculator.html"><i class="fas fa-calculator"></i> Return Calculator</a></li>
                 <li><a href="support.html"><i class="fas fa-headset"></i> Support</a></li>
-                <li class="nav-cta">
-                    <button onclick="logout()" class="btn-nav-login">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
-                </li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
-        </div>
-    </nav>
-
-    <!-- Dashboard Content Container -->
-    <div class="container" id="dashboardContainer">
-        <!-- Content will be loaded here dynamically -->
-        <div class="guest-notice"></div>
+        </aside>
         
-        <!-- Default dashboard content (shown while loading) -->
-        <div id="defaultDashboardContent" style="text-align: center; padding: 100px 20px;">
-            <div class="spinner" style="margin: 0 auto 30px;"></div>
-            <h2>Loading your dashboard...</h2>
-            <p>Please wait while we fetch your investment data.</p>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <!-- Your existing footer content -->
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-    // ============================================
-    // OMKAR ENTERPRISES INVESTOR DASHBOARD - FIXED
-    // ============================================
-
-    console.log("Investor Dashboard Loading...");
-
-    // Your Google Apps Script URL
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHwVsNmZ49MIBZkXt8tkJ-9x838W40F4nqtiiDN88nkRpBL24e8HW6Kjhpmweoow9j/exec';
-
-    // ========== CORE FUNCTIONS ==========
-
-    /**
-     * Function to check authentication
-     */
-    function checkAuth() {
-        const accessKey = localStorage.getItem('omkar_access_key');
-        const guestMode = localStorage.getItem('omkar_guest_mode');
-        const loginTime = localStorage.getItem('omkar_login_time');
-        
-        console.log("Auth check details:", {
-            accessKey,
-            guestMode,
-            loginTime,
-            fullStorage: { ...localStorage }
-        });
-        
-        // Check if access key exists
-        if (!accessKey) {
-            console.warn("No access key found in localStorage");
-            return {
-                isAuthenticated: false,
-                userType: null,
-                accessKey: null
-            };
-        }
-        
-        // Check session timeout (24 hours)
-        if (loginTime) {
-            const loginDate = new Date(loginTime);
-            const now = new Date();
-            const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <h1>Investor Dashboard</h1>
+                <div id="investorInfo"></div>
+            </div>
             
-            if (hoursDiff > 24) {
-                console.warn("Session expired (more than 24 hours)");
-                localStorage.clear();
-                return {
-                    isAuthenticated: false,
-                    userType: null,
-                    accessKey: null
-                };
-            }
-        }
-        
-        const userType = guestMode === 'true' ? 'guest' : 'investor';
-        
-        return {
-            isAuthenticated: true,
-            userType: userType,
-            accessKey: accessKey,
-            guestMode: guestMode === 'true'
-        };
-    }
-
-    /**
-     * Function to load investor data with error handling
-     */
-    async function loadInvestorData(accessKey, isGuest = false) {
-        console.log(`Loading data for ${isGuest ? 'guest' : 'investor'}:`, accessKey);
-        
-        try {
-            let result;
-            
-            if (isGuest) {
-                // For guests, use local storage data
-                const guestData = {
-                    FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
-                    Email: localStorage.getItem('omkar_guest_email') || '',
-                    Mobile: localStorage.getItem('omkar_mobile') || '',
-                    GuestID: accessKey,
-                    AccessType: 'guest'
-                };
-                result = guestData;
-                console.log("Loaded guest data:", guestData);
-            } else {
-                // For investors, fetch from Google Sheets
-                console.log(`Fetching investor data for: ${accessKey}`);
-                
-                // Use CORS-friendly approach
-                const url = `${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`;
-                console.log("Fetching from URL:", url);
-                
-                const response = await fetch(url, {
-                    method: 'GET',
-                    mode: 'cors',
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (!response.ok) {
-                    console.warn("HTTP error:", response.status, response.statusText);
-                    throw new Error(`HTTP error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                console.log("Investor data received:", data);
-                
-                if (!data || (!data.InvestorId && !data.PartnerID)) {
-                    console.warn("Invalid investor data received:", data);
-                    
-                    // Check if this is a test/demo account
-                    if (accessKey.startsWith('TEST') || accessKey === 'DEMO') {
-                        console.log("Using test/demo account data");
-                        result = {
-                            FullName: 'Test Investor',
-                            InvestorId: accessKey,
-                            Mobile: '9876543210',
-                            Email: 'test@omkarservices.in',
-                            InvestmentAmount: '₹5,00,000',
-                            MonthlyReturn: '₹10,000',
-                            PortfolioValue: '₹5,50,000',
-                            JoinDate: '2024-01-15'
-                        };
-                    } else {
-                        throw new Error('Investor not found in database');
-                    }
-                } else {
-                    result = data;
-                }
-            }
-            
-            return result;
-            
-        } catch (error) {
-            console.error("Error loading investor data:", error);
-            
-            // Fallback for network issues or API problems
-            if (accessKey.startsWith('GUEST') || accessKey.startsWith('TEST') || accessKey === 'DEMO') {
-                console.log("Using fallback data for:", accessKey);
-                return {
-                    FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
-                    InvestorId: accessKey,
-                    Mobile: localStorage.getItem('omkar_mobile') || '9876543210',
-                    Email: localStorage.getItem('omkar_guest_email') || 'guest@omkarservices.in',
-                    InvestmentAmount: '₹0',
-                    MonthlyReturn: '₹0',
-                    PortfolioValue: '₹0',
-                    AccessType: isGuest ? 'guest' : 'investor'
-                };
-            }
-            
-            throw error;
-        }
-    }
-
-    /**
-     * Function to handle authentication failure
-     */
-    function handleAuthFailure(message = 'Authentication failed') {
-        console.error("Authentication failure:", message);
-        
-        // Show user-friendly error
-        const authErrorHTML = `
-            <div class="auth-error-container">
-                <div style="width: 100px; height: 100px; background: #fef2f2; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 25px;">
-                    <i class="fas fa-exclamation-triangle" style="font-size: 40px; color: #ef4444;"></i>
-                </div>
-                <h2 style="color: var(--slate-dark); margin-bottom: 15px;">Authentication Required</h2>
-                <p style="color: var(--slate-light); margin-bottom: 25px;">${message}</p>
-                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                    <a href="partner-portal.html" class="connect-btn" style="max-width: 200px;">
-                        <i class="fas fa-sign-in-alt"></i> Login Again
-                    </a>
-                    <a href="index.html" class="btn-secondary" style="max-width: 200px;">
-                        <i class="fas fa-home"></i> Return Home
-                    </a>
-                </div>
-                <div style="margin-top: 30px; padding: 20px; background: #f8fafc; border-radius: 10px; text-align: left;">
-                    <p style="margin: 0 0 10px 0; font-size: 14px; color: var(--slate-light);">
-                        <strong>Technical Details:</strong> Session may have expired or invalid access key.
-                    </p>
-                    <p style="margin: 0; font-size: 12px; color: var(--slate-light);">
-                        Need help? Contact support: +91 8169 302 861
-                    </p>
+            <!-- Guest Notice (Hidden by default) -->
+            <div class="guest-notice" id="guestNotice">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Guest Mode:</strong> You're viewing sample data. 
+                    <a href="contact.html" style="color: white; text-decoration: underline; font-weight: 600;">Contact us</a> 
+                    to become an actual partner and access real investment data.
                 </div>
             </div>
-        `;
-        
-        document.getElementById('dashboardContainer').innerHTML = authErrorHTML;
-    }
-
-    /**
-     * Update dashboard with investor data
-     */
-    function updateDashboardWithData(investorData, isGuest = false) {
-        console.log("Updating dashboard with data:", investorData);
-        
-        // Hide default content
-        document.getElementById('defaultDashboardContent').style.display = 'none';
-        
-        // Create dashboard HTML
-        const dashboardHTML = `
-            <!-- Dashboard Hero -->
-            <section class="dashboard-hero" style="background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%); color: white; padding: 60px 0; border-radius: 20px; margin: 40px 0; position: relative; overflow: hidden;">
-                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 100\"><path fill=\"rgba(255,255,255,0.05)\" d=\"M0,0V100H1000V0ZM250,50L500,25L750,50L1000,25V0H0V25Z\"/></svg>'); background-size: cover;"></div>
-                <div style="position: relative; z-index: 1;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                        <div>
-                            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 10px 20px; border-radius: 30px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                                <i class="fas fa-user-circle"></i>
-                                <span>Welcome back, <strong>${investorData.FullName || 'Investor'}</strong></span>
-                            </div>
-                            <h1 style="font-size: 42px; font-weight: 800; margin-bottom: 10px; line-height: 1.2;">Investment Dashboard</h1>
-                            <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 0; font-size: 18px;">Investor ID: ${investorData.InvestorId || investorData.PartnerID || investorData.GuestID || 'N/A'}</p>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2); min-width: 200px;">
-                                <p style="margin: 0 0 5px 0; font-size: 14px; color: rgba(255, 255, 255, 0.8);">Account Status</p>
-                                <p style="margin: 0; font-size: 20px; font-weight: 700; color: var(--gold-accent);">${isGuest ? 'Guest Access' : 'Active Partner'}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Portfolio Stats -->
-            <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 40px 0;">
-                <div class="stat-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow-md); border: 1px solid var(--light-blue);">
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fas fa-rupee-sign"></i>
-                        </div>
-                        <div>
-                            <p style="margin: 0 0 5px 0; color: var(--slate-light); font-size: 14px;">Portfolio Value</p>
-                            <h3 style="margin: 0; color: var(--slate-dark); font-size: 24px; font-weight: 700;">${investorData.PortfolioValue || investorData.InvestmentAmount || '₹0'}</h3>
-                        </div>
-                    </div>
-                    <p style="margin: 0; color: var(--slate-light); font-size: 13px;"><i class="fas fa-arrow-up" style="color: var(--success-green);"></i> Current total investment value</p>
-                </div>
+            
+            <!-- Welcome Box -->
+            <div class="welcome-box" id="welcomeBox">
+                <h2>Welcome back, <span id="investorName">Investor</span>!</h2>
+                <p>Your last login was: <span id="lastLogin"></span></p>
                 
-                <div class="stat-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow-md); border: 1px solid var(--light-blue);">
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fas fa-chart-line"></i>
+                <!-- KYC Status -->
+                <div class="kyc-status" id="kycStatus">
+                    <h4><i class="fas fa-user-check"></i> KYC Verification Status</h4>
+                    <div class="kyc-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="kycProgressFill" style="width: 0%"></div>
                         </div>
-                        <div>
-                            <p style="margin: 0 0 5px 0; color: var(--slate-light); font-size: 14px;">Monthly Return</p>
-                            <h3 style="margin: 0; color: var(--slate-dark); font-size: 24px; font-weight: 700;">${investorData.MonthlyReturn || '₹0'}</h3>
-                        </div>
+                        <p id="kycStatusText">Loading KYC status...</p>
                     </div>
-                    <p style="margin: 0; color: var(--slate-light); font-size: 13px;"><i class="fas fa-calendar-alt"></i> Average monthly payout</p>
-                </div>
-                
-                <div class="stat-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow-md); border: 1px solid var(--light-blue);">
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--success-green) 0%, #0da668 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fas fa-percentage"></i>
-                        </div>
-                        <div>
-                            <p style="margin: 0 0 5px 0; color: var(--slate-light); font-size: 14px;">Annual Yield</p>
-                            <h3 style="margin: 0; color: var(--slate-dark); font-size: 24px; font-weight: 700;">${investorData.AnnualYield || '2.0%'}</h3>
-                        </div>
-                    </div>
-                    <p style="margin: 0; color: var(--slate-light); font-size: 13px;"><i class="fas fa-chart-pie"></i> Estimated annual return</p>
                 </div>
             </div>
-
-            <!-- Recent Activity -->
-            <section style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow-md); margin: 40px 0; border: 1px solid var(--light-blue);">
-                <h2 style="color: var(--slate-dark); margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
-                    <i class="fas fa-history"></i> Recent Activity
-                </h2>
-                
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse;">
+            
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="portfolioValue">₹0</div>
+                    <div class="stat-label">Portfolio Value</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="monthlyReturn">₹0</div>
+                    <div class="stat-label">Monthly Return</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalReturns">₹0</div>
+                    <div class="stat-label">Total Returns</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="agreementDays">0</div>
+                    <div class="stat-label">Days to Expiry</div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Section -->
+            <div class="portfolio-grid">
+                <!-- Investment Details -->
+                <div class="portfolio-card">
+                    <h3><i class="fas fa-chart-line"></i> Investment Overview</h3>
+                    <table class="data-table">
                         <thead>
-                            <tr style="background: var(--gray-light);">
-                                <th style="padding: 15px; text-align: left; color: var(--slate-dark); font-weight: 600; border-bottom: 2px solid var(--light-blue);">Date</th>
-                                <th style="padding: 15px; text-align: left; color: var(--slate-dark); font-weight: 600; border-bottom: 2px solid var(--light-blue);">Transaction</th>
-                                <th style="padding: 15px; text-align: left; color: var(--slate-dark); font-weight: 600; border-bottom: 2px solid var(--light-blue);">Amount</th>
-                                <th style="padding: 15px; text-align: left; color: var(--slate-dark); font-weight: 600; border-bottom: 2px solid var(--light-blue);">Status</th>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid var(--light-blue);">
-                                <td style="padding: 15px; color: var(--slate-dark);">${new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
-                                <td style="padding: 15px; color: var(--slate-dark);">Monthly Return Credit</td>
-                                <td style="padding: 15px; color: var(--slate-dark); font-weight: 600;">${investorData.MonthlyReturn || '₹0'}</td>
-                                <td style="padding: 15px;"><span style="background: rgba(16, 185, 129, 0.1); color: var(--success-green); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 600;">Completed</span></td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--light-blue);">
-                                <td style="padding: 15px; color: var(--slate-dark);">${new Date(Date.now() - 30*24*60*60*1000).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
-                                <td style="padding: 15px; color: var(--slate-dark);">Previous Return</td>
-                                <td style="padding: 15px; color: var(--slate-dark); font-weight: 600;">${investorData.MonthlyReturn || '₹0'}</td>
-                                <td style="padding: 15px;"><span style="background: rgba(16, 185, 129, 0.1); color: var(--success-green); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 600;">Completed</span></td>
-                            </tr>
+                        <tbody id="transactionHistory">
+                            <!-- Loaded via API -->
                         </tbody>
                     </table>
                 </div>
                 
-                <div style="margin-top: 30px; text-align: center;">
-                    <a href="statements.html" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-file-download"></i> View All Statements
-                    </a>
+                <!-- Quick Actions -->
+                <div class="portfolio-card">
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                    <div class="action-buttons">
+                        <a href="statements.html" class="action-btn btn-primary">
+                            <i class="fas fa-download"></i> Download Statement
+                        </a>
+                        <a href="calculator.html" class="action-btn btn-success">
+                            <i class="fas fa-calculator"></i> Calculate Returns
+                        </a>
+                        <a href="support.html" class="action-btn btn-gold">
+                            <i class="fas fa-headset"></i> Request Support
+                        </a>
+                        <a href="kyc.html" class="action-btn">
+                            <i class="fas fa-user-check"></i> Update KYC
+                        </a>
+                    </div>
+                    
+                    <!-- Pending Actions -->
+                    <div style="margin-top: 30px;">
+                        <h4><i class="fas fa-clock"></i> Pending Actions</h4>
+                        <ul id="pendingActions" style="margin-top: 15px; list-style: none;">
+                            <!-- Loaded via API -->
+                        </ul>
+                    </div>
                 </div>
-            </section>
-
-            <!-- Quick Actions -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0;">
-                <a href="portfolio.html" class="quick-action-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow-sm); text-decoration: none; color: var(--slate-dark); border: 2px solid transparent; transition: all 0.3s ease; text-align: center;">
-                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 24px;">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h4 style="margin: 0 0 10px 0; font-weight: 700;">Portfolio</h4>
-                    <p style="margin: 0; color: var(--slate-light); font-size: 14px;">View detailed portfolio</p>
-                </a>
-                
-                <a href="returns.html" class="quick-action-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow-sm); text-decoration: none; color: var(--slate-dark); border: 2px solid transparent; transition: all 0.3s ease; text-align: center;">
-                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 24px;">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h4 style="margin: 0 0 10px 0; font-weight: 700;">Returns</h4>
-                    <p style="margin: 0; color: var(--slate-light); font-size: 14px;">Calculate returns</p>
-                </a>
-                
-                <a href="support.html" class="quick-action-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow-sm); text-decoration: none; color: var(--slate-dark); border: 2px solid transparent; transition: all 0.3s ease; text-align: center;">
-                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--success-green) 0%, #0da668 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 24px;">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h4 style="margin: 0 0 10px 0; font-weight: 700;">Support</h4>
-                    <p style="margin: 0; color: var(--slate-light); font-size: 14px;">Get help</p>
-                </a>
-                
-                <button onclick="logout()" class="quick-action-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: all 0.3s ease; text-align: center; cursor: pointer; width: 100%;">
-                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 24px;">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </div>
-                    <h4 style="margin: 0 0 10px 0; font-weight: 700; color: var(--slate-dark);">Logout</h4>
-                    <p style="margin: 0; color: var(--slate-light); font-size: 14px;">End session</p>
-                </button>
             </div>
-        `;
-        
-        // Update the container
-        document.getElementById('dashboardContainer').innerHTML = dashboardHTML + document.getElementById('dashboardContainer').innerHTML;
-    }
-
-    /**
-     * Initialize dashboard
-     */
-    async function initializeDashboard() {
-        console.log("Initializing dashboard...");
+            
+            <!-- Recent Transactions -->
+            <div class="portfolio-card" style="margin-top: 30px;">
+                <h3><i class="fas fa-history"></i> Recent Transactions</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Reference</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentTransactions">
+                        <!-- Loaded via API -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+    // ============================================
+    // INVESTOR DASHBOARD - UPDATED WITH NEW API URL
+    // ============================================
+    
+    // UPDATED: Your new working Google Apps Script URL
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzad2VheJ9dqumTtkJKHXwWILKB4Of0CPMQgCVMn8Ib9lnj0ik8l3bBMwfzEdFxjfIc/exec';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("Investor Dashboard Loading...");
+        console.log("API URL:", API_URL);
         
         // Check authentication
         const auth = checkAuth();
-        console.log("Authentication result:", auth);
         
-        if (!auth.isAuthenticated || !auth.accessKey) {
-            console.error("User not authenticated, redirecting to login");
-            handleAuthFailure('Please login to access the dashboard');
+        if (!auth.isAuthenticated) {
+            // Redirect to login if not authenticated
+            window.location.href = 'partner-portal.html';
             return;
         }
         
+        // Show loading
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        
+        // Load investor data
+        loadInvestorData();
+        
+        // Setup logout
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+        
+        // Setup navigation active state
+        setupNavigation();
+    });
+    
+    /**
+     * Check if user is authenticated as investor
+     */
+    function checkAuth() {
+        const accessKey = localStorage.getItem('omkar_access_key');
+        const guestMode = localStorage.getItem('omkar_guest_mode') === 'true';
+        
+        console.log("Auth check:", { 
+            accessKey, 
+            guestMode,
+            localStorage: { ...localStorage } 
+        });
+        
+        // Check if access key exists
+        if (!accessKey) {
+            console.warn("No access key found - redirecting to login");
+            return { isAuthenticated: false };
+        }
+        
+        return {
+            isAuthenticated: true,
+            accessKey: accessKey,
+            guestMode: guestMode
+        };
+    }
+    
+    /**
+     * Load investor data from API
+     */
+    async function loadInvestorData() {
         try {
-            // Show loading state (safely)
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            if (loadingOverlay) {
-                loadingOverlay.style.display = 'flex';
+            const accessKey = localStorage.getItem('omkar_access_key');
+            const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+            
+            console.log("Fetching data for:", { accessKey, isGuest });
+            
+            if (isGuest) {
+                // Load guest data from localStorage
+                loadGuestData();
+                return;
+            }
+            
+            // 1. Get investor profile
+            console.log("Fetching profile from:", `${API_URL}?action=getPartner&accessKey=${accessKey}`);
+            const profileResponse = await fetch(`${API_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`);
+            
+            if (!profileResponse.ok) {
+                throw new Error(`API Error: ${profileResponse.status}`);
+            }
+            
+            const profileText = await profileResponse.text();
+            console.log("Profile response text:", profileText);
+            
+            let profileData;
+            try {
+                profileData = JSON.parse(profileText);
+            } catch (e) {
+                console.error("JSON parse error:", e);
+                // Try to fix common JSON issues
+                const fixedJson = profileText.replace(/'/g, '"');
+                profileData = JSON.parse(fixedJson);
+            }
+            
+            console.log("Profile data:", profileData);
+            
+            if (profileData && profileData.success !== false) {
+                updateDashboardUI(profileData);
+                
+                // Store data for offline use
+                localStorage.setItem('omkar_dashboard_data', JSON.stringify(profileData));
+                
+                // 2. Get transaction history
+                try {
+                    const historyResponse = await fetch(`${API_URL}?action=getTransactions&accessKey=${encodeURIComponent(accessKey)}`);
+                    if (historyResponse.ok) {
+                        const historyData = await historyResponse.json();
+                        if (historyData && Array.isArray(historyData)) {
+                            updateTransactionHistory(historyData);
+                        }
+                    }
+                } catch (historyError) {
+                    console.warn("Could not load transaction history:", historyError);
+                }
+                
+                // 3. Get KYC status
+                try {
+                    const kycResponse = await fetch(`${API_URL}?action=getKYCStatus&leadId=${encodeURIComponent(accessKey)}`);
+                    if (kycResponse.ok) {
+                        const kycData = await kycResponse.json();
+                        if (kycData) {
+                            updateKYCStatus(kycData);
+                        }
+                    }
+                } catch (kycError) {
+                    console.warn("Could not load KYC status:", kycError);
+                }
+                
             } else {
-                console.warn("Loading overlay not found, creating one...");
-                // Create loading overlay if it doesn't exist
-                const overlay = document.createElement('div');
-                overlay.className = 'loading-overlay';
-                overlay.id = 'loadingOverlay';
-                overlay.innerHTML = '<div class="spinner"></div>';
-                overlay.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: rgba(0, 0, 0, 0.8);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 9999;
-                `;
-                document.body.appendChild(overlay);
-            }
-            
-            // Load investor data
-            const investorData = await loadInvestorData(auth.accessKey, auth.guestMode);
-            console.log("Investor data loaded successfully:", investorData);
-            
-            // Hide loading
-            const overlay = document.getElementById('loadingOverlay');
-            if (overlay) {
-                overlay.style.display = 'none';
-            }
-            
-            // Update dashboard with data
-            updateDashboardWithData(investorData, auth.guestMode);
-            
-            // Show appropriate sections
-            if (auth.guestMode) {
-                const guestNotice = document.querySelector('.guest-notice');
-                if (guestNotice) {
-                    guestNotice.style.display = 'block';
-                    guestNotice.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%); color: white; padding: 15px 20px; border-radius: 12px; margin: 20px 0;">
-                            <i class="fas fa-info-circle"></i>
-                            <div>
-                                <strong>Guest Mode:</strong> You're viewing sample data. 
-                                <a href="contact.html" style="color: white; text-decoration: underline; font-weight: 600;">Contact us</a> 
-                                to become an actual partner and access real investment data.
-                            </div>
-                        </div>
-                    `;
+                // If API returns error, check for TEST/DEMO accounts
+                if (accessKey.startsWith('TEST') || accessKey === 'DEMO') {
+                    loadTestData(accessKey);
+                } else {
+                    showError("Investor not found. Please check your Investor ID.");
+                    // Show guest notice
+                    document.getElementById('guestNotice').style.display = 'flex';
                 }
             }
             
         } catch (error) {
-            console.error("Dashboard initialization failed:", error);
+            console.error("Error loading investor data:", error);
             
-            // Hide loading
-            const overlay = document.getElementById('loadingOverlay');
-            if (overlay) {
-                overlay.style.display = 'none';
-            }
-            
-            // Show appropriate error message
-            if (error.message.includes('Investor not found')) {
-                handleAuthFailure('Investor ID not found in our records. Please check your credentials.');
-            } else if (error.message.includes('network') || error.message.includes('fetch')) {
-                handleAuthFailure('Network connection issue. Please check your internet and try again.');
+            // Try to load cached data
+            const cachedData = localStorage.getItem('omkar_dashboard_data');
+            if (cachedData) {
+                console.log("Using cached data due to network error");
+                const parsedData = JSON.parse(cachedData);
+                updateDashboardUI(parsedData);
+                showWarning("Showing cached data. Please check your internet connection.");
             } else {
-                handleAuthFailure('Unable to load dashboard. Please try again or contact support.');
+                showError("Could not load dashboard data. Please try again.");
             }
+            
+            // Show guest notice for network errors
+            document.getElementById('guestNotice').style.display = 'flex';
+            
+        } finally {
+            // Hide loading overlay
+            document.getElementById('loadingOverlay').style.display = 'none';
         }
     }
-
+    
+    /**
+     * Load guest data from localStorage
+     */
+    function loadGuestData() {
+        console.log("Loading guest data");
+        
+        const guestData = {
+            FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
+            InvestorId: localStorage.getItem('omkar_access_key') || 'GUEST001',
+            PortfolioValue: '₹5,00,000',
+            MonthlyReturn: '₹10,000',
+            TotalReturns: '₹1,20,000',
+            AgreementExpiryDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            AccountStatus: 'Guest'
+        };
+        
+        updateDashboardUI(guestData);
+        document.getElementById('guestNotice').style.display = 'flex';
+        document.getElementById('loadingOverlay').style.display = 'none';
+        
+        // Add sample transactions for guest
+        addSampleTransactions();
+    }
+    
+    /**
+     * Load test data for TEST/DEMO accounts
+     */
+    function loadTestData(accessKey) {
+        console.log("Loading test data for:", accessKey);
+        
+        const testData = {
+            FullName: 'Test Investor',
+            InvestorId: accessKey,
+            PortfolioValue: '₹5,50,000',
+            MonthlyReturn: '₹11,000',
+            TotalReturns: '₹1,32,000',
+            AgreementExpiryDate: '2024-12-31',
+            AccountStatus: 'Active',
+            PrincipalAmount: 550000,
+            FixedMonthlyReturn: 11000,
+            TotalReturnsPaid: 132000
+        };
+        
+        updateDashboardUI(testData);
+        document.getElementById('guestNotice').style.display = 'flex';
+        document.getElementById('guestNotice').innerHTML = `
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>Test Mode:</strong> You're viewing test data. Contact support to activate real account.
+            </div>
+        `;
+        document.getElementById('loadingOverlay').style.display = 'none';
+        
+        // Add sample transactions for test account
+        addSampleTransactions();
+    }
+    
+    /**
+     * Update dashboard UI with investor data
+     */
+    function updateDashboardUI(data) {
+        console.log("Updating UI with data:", data);
+        
+        // Update investor info
+        document.getElementById('investorName').textContent = data.FullName || 'Investor';
+        document.getElementById('investorInfo').innerHTML = `
+            <div style="text-align: right;">
+                <strong>Investor ID:</strong> ${data.InvestorId || data.PartnerID || 'N/A'}<br>
+                <small>Account Status: <span class="status-active">${data.AccountStatus || 'Active'}</span></small>
+            </div>
+        `;
+        
+        // Update portfolio stats
+        document.getElementById('portfolioValue').textContent = formatCurrency(data.PortfolioValue || data.PrincipalAmount);
+        document.getElementById('monthlyReturn').textContent = formatCurrency(data.MonthlyReturn || data.FixedMonthlyReturn);
+        document.getElementById('totalReturns').textContent = formatCurrency(data.TotalReturns || data.TotalReturnsPaid);
+        
+        // Calculate days to expiry
+        if (data.AgreementExpiryDate) {
+            const expiryDate = new Date(data.AgreementExpiryDate);
+            const today = new Date();
+            const diffTime = expiryDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('agreementDays').textContent = diffDays > 0 ? diffDays : 'Expired';
+        } else {
+            document.getElementById('agreementDays').textContent = 'N/A';
+        }
+        
+        // Update last login
+        const lastLogin = localStorage.getItem('omkar_login_time');
+        if (lastLogin) {
+            const date = new Date(lastLogin);
+            document.getElementById('lastLogin').textContent = date.toLocaleString('en-IN');
+        }
+    }
+    
+    /**
+     * Add sample transactions for guest/test accounts
+     */
+    function addSampleTransactions() {
+        const sampleTransactions = [
+            {
+                TransactionDate: new Date().toISOString().split('T')[0],
+                TransactionType: 'Monthly Return',
+                Amount: 10000,
+                Status: 'completed',
+                ReferenceNo: 'MONTH-001'
+            },
+            {
+                TransactionDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                TransactionType: 'Monthly Return',
+                Amount: 10000,
+                Status: 'completed',
+                ReferenceNo: 'MONTH-002'
+            },
+            {
+                TransactionDate: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                TransactionType: 'Monthly Return',
+                Amount: 10000,
+                Status: 'completed',
+                ReferenceNo: 'MONTH-003'
+            }
+        ];
+        
+        updateTransactionHistory(sampleTransactions);
+    }
+    
+    /**
+     * Update transaction history table
+     */
+    function updateTransactionHistory(transactions) {
+        const tbody = document.getElementById('transactionHistory');
+        const recentTbody = document.getElementById('recentTransactions');
+        
+        if (!tbody || !recentTbody) {
+            console.error("Transaction tables not found");
+            return;
+        }
+        
+        tbody.innerHTML = '';
+        recentTbody.innerHTML = '';
+        
+        if (!transactions || !Array.isArray(transactions) || transactions.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--slate-light);">No transactions found</td></tr>';
+            recentTbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--slate-light);">No recent transactions</td></tr>';
+            return;
+        }
+        
+        // Sort by date (newest first)
+        transactions.sort((a, b) => new Date(b.TransactionDate || b.Date) - new Date(a.TransactionDate || a.Date));
+        
+        // Show last 5 in recent transactions
+        const recent = transactions.slice(0, 5);
+        
+        recent.forEach(transaction => {
+            const date = new Date(transaction.TransactionDate || transaction.Date).toLocaleDateString('en-IN');
+            const amount = formatCurrency(transaction.Amount || transaction.PaymentAmount);
+            const status = transaction.Status || 'completed';
+            const type = transaction.TransactionType || transaction.Type || 'Monthly Return';
+            const reference = transaction.ReferenceNo || transaction.TransactionId || '-';
+            
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td>${date}</td>
+                <td>${type}</td>
+                <td>${amount}</td>
+                <td><span class="status-${status} status-badge">${status}</span></td>
+                <td>${reference}</td>
+            `;
+            
+            recentTbody.appendChild(row);
+        });
+        
+        // Add "View All" row
+        if (transactions.length > 5) {
+            const viewAllRow = document.createElement('tr');
+            viewAllRow.innerHTML = `
+                <td colspan="5" style="text-align: center;">
+                    <a href="transactions.html" style="color: var(--gold-accent); text-decoration: none;">
+                        View All ${transactions.length} Transactions →
+                    </a>
+                </td>
+            `;
+            recentTbody.appendChild(viewAllRow);
+        }
+    }
+    
+    /**
+     * Update KYC status
+     */
+    function updateKYCStatus(kycData) {
+        const kycStatusText = document.getElementById('kycStatusText');
+        const kycProgressFill = document.getElementById('kycProgressFill');
+        
+        if (!kycStatusText || !kycProgressFill) return;
+        
+        if (kycData && kycData.success !== false) {
+            const percentage = kycData.completionPercentage || kycData.percentage || 0;
+            kycProgressFill.style.width = percentage + '%';
+            
+            if (percentage === 100) {
+                kycStatusText.innerHTML = '<span class="status-active">✓ KYC Verified</span>';
+            } else if (percentage > 0) {
+                kycStatusText.textContent = `KYC ${percentage}% Complete`;
+            } else {
+                kycStatusText.innerHTML = '<span class="status-pending">KYC Not Started - Please upload documents</span>';
+            }
+        } else {
+            kycStatusText.innerHTML = '<span class="status-pending">KYC Status: Not Available</span>';
+        }
+    }
+    
+    /**
+     * Format currency
+     */
+    function formatCurrency(amount) {
+        if (!amount && amount !== 0) return '₹0';
+        const num = Number(amount);
+        if (isNaN(num)) return '₹0';
+        
+        if (num >= 10000000) return '₹' + (num / 10000000).toFixed(2) + ' Cr';
+        if (num >= 100000) return '₹' + (num / 100000).toFixed(1) + ' Lakhs';
+        return '₹' + num.toLocaleString('en-IN');
+    }
+    
+    /**
+     * Setup navigation active state
+     */
+    function setupNavigation() {
+        const currentPage = window.location.pathname.split('/').pop();
+        const menuItems = document.querySelectorAll('.sidebar-menu a');
+        
+        menuItems.forEach(item => {
+            const href = item.getAttribute('href');
+            if (href === currentPage || (href === '#' && currentPage === 'dashboard.html')) {
+                item.classList.add('active');
+            }
+        });
+    }
+    
+    /**
+     * Show error message
+     */
+    function showError(message) {
+        console.error("Dashboard Error:", message);
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ef4444;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+        `;
+        
+        errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+        document.body.appendChild(errorDiv);
+        
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 5000);
+    }
+    
+    /**
+     * Show warning message
+     */
+    function showWarning(message) {
+        console.warn("Dashboard Warning:", message);
+        
+        const warningDiv = document.createElement('div');
+        warningDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #f59e0b;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+        `;
+        
+        warningDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
+        document.body.appendChild(warningDiv);
+        
+        setTimeout(() => {
+            warningDiv.remove();
+        }, 5000);
+    }
+    
     /**
      * Logout function
      */
     function logout() {
         if (confirm("Are you sure you want to logout?")) {
+            // Show loading
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            // Clear storage
             localStorage.clear();
             sessionStorage.clear();
-            window.location.href = 'partner-portal.html';
+            
+            // Redirect to login
+            setTimeout(() => {
+                window.location.href = 'partner-portal.html';
+            }, 1000);
         }
     }
-
-    /**
-     * Initialize time display
-     */
-    function updateDashboardTime() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('en-IN', { 
-            hour: '2-digit', 
-            minute: '2-digit',
-            timeZone: 'Asia/Kolkata'
-        });
-        const dateString = now.toLocaleDateString('en-IN', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric'
-        });
-        
-        const timeElement = document.getElementById('dashboardTime');
-        if (timeElement) {
-            timeElement.textContent = `${dateString} • ${timeString} IST`;
-        }
-    }
-
-    // ========== INITIALIZATION ==========
-
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log("Dashboard DOM loaded, starting initialization...");
-        
-        // Update time
-        updateDashboardTime();
-        setInterval(updateDashboardTime, 60000);
-        
-        // Initialize dashboard
-        initializeDashboard();
-        
-        // Update activity timestamp
-        localStorage.setItem('omkar_last_activity', Date.now().toString());
-        
-        // Setup navigation
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const navbar = document.getElementById('navbar');
-
-        if (hamburger && navMenu) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
-            });
-        }
-
-        // Navbar scroll effect
-        if (navbar) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-        }
-    });
-
+    
     // Debug utility
-    function debugSession() {
-        console.log("=== DASHBOARD DEBUG INFO ===");
-        console.log("LocalStorage:", { ...localStorage });
-        console.log("SessionStorage:", { ...sessionStorage });
-        console.log("Auth check:", checkAuth());
+    window.debugDashboard = function() {
+        console.log('=== DASHBOARD DEBUG INFO ===');
+        console.log('API URL:', API_URL);
+        console.log('LocalStorage:', { ...localStorage });
+        console.log('Current auth:', checkAuth());
         
-        fetch(`${GOOGLE_SCRIPT_URL}?action=test`)
+        fetch(`${API_URL}?action=test`)
             .then(r => r.text())
-            .then(data => console.log("Google Sheets test:", data))
-            .catch(err => console.error("Google Sheets error:", err));
-    }
-
+            .then(data => console.log('API Test Response:', data))
+            .catch(err => console.error('API Test Error:', err));
+    };
+    
     </script>
 </body>
 </html>

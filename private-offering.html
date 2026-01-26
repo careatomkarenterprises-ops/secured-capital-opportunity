@@ -196,6 +196,35 @@
 
         bracketSelect.addEventListener('change', updateSchedule);
         window.onload = () => { updateSchedule(); setTimeout(updateSlots, 10000); };
+
+// Function to log activity to your Google Sheet
+async function logActivity(actionType, details) {
+    const userIP = await fetch('https://api.ipify.org?format=json').then(res => res.json());
+    
+    // Replace with your office IP to avoid tracking yourself
+    if (userIP.ip === "YOUR_OFFICE_IP") return; 
+
+    fetch(`${API_URL}?action=logPortalActivity`, {
+        method: 'POST',
+        body: JSON.stringify({
+            ip: userIP.ip,
+            action: actionType,
+            details: details,
+            timestamp: new Date().toISOString()
+        })
+    });
+}
+
+// Track when someone changes the ROI Calculator Slab
+document.getElementById('bracketSelect').addEventListener('change', (e) => {
+    logActivity('Calculator_Check', `Checked Slab: ${e.target.value}`);
+});
+
+// Track when someone clicks the WhatsApp button
+document.getElementById('waButton').addEventListener('click', () => {
+    logActivity('WhatsApp_Click', 'Initiated Verification');
+});
+
     </script>
 </body>
 </html>

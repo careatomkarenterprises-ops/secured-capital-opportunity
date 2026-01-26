@@ -2322,99 +2322,99 @@
             });
         }
 
-        // Form submission
-        loginForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const investorId = usernameInput.value.trim().toUpperCase();
-            const mobile = mobileInput.value.trim();
-            
-            // Validation
-            if (!validateLoginForm(investorId, mobile)) {
-                return;
-            }
-            
-            // Show loading
-            showLoading(true);
-            if (loginBtn) {
-                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-                loginBtn.disabled = true;
-            }
-            
-            try {
-                console.log("Authenticating with Google Sheets for:", investorId);
-                
-                // Call Google Script to verify investor - Using verifyLogin endpoint
-                const url = `${GOOGLE_SCRIPT_URL}?action=verifyLogin&accessKey=${encodeURIComponent(investorId)}&mobile=${encodeURIComponent(mobile)}`;
-                console.log("API URL:", url);
-                
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error: ${response.status}`);
-                }
-                
-                const result = await response.json();
-                console.log("Google Sheets response:", result);
-                
-                // INVESTOR FOUND - Save session and redirect to dashboard
-                if (result.success === true && result.data) {
-                    // Save session
-                    saveLoginSession(investorId, mobile, false, result.data);
-                    
-                    // Show success modal
-                    showSuccessModal(result.data.FullName || 'Partner');
-                    
-                    // Redirect after delay with verification
-                    setTimeout(() => {
-                        console.log("Investor login successful, redirecting to dashboard...");
-                        window.location.href = 'dashboard.html';
-                    }, 2000);
-                } else {
-                    // INVESTOR NOT FOUND
-                    showLoading(false);
-                    if (loginBtn) {
-                        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
-                        loginBtn.disabled = false;
-                    }
-                    
-                    // Offer guest access or test account
-                    if (investorId.startsWith('TEST') || investorId === 'DEMO') {
-                        console.log("Using test/demo access");
-                        saveLoginSession(investorId, mobile, false);
-                        
-                        setTimeout(() => {
-                            window.location.href = 'dashboard.html';
-                        }, 1000);
-                    } else {
-                        showLoginError(`Investor ID "${investorId}" not found. Please check your Investor ID or try TEST001 with mobile 8169302861`);
-                    }
-                }
-                
-            } catch (error) {
-                console.error("Authentication error:", error);
-                showLoading(false);
-                
-                if (loginBtn) {
-                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
-                    loginBtn.disabled = false;
-                }
-                
-                // Fallback for testing/demo
-                if (investorId.startsWith('TEST') || investorId === 'DEMO') {
-                    console.log("Using test/demo access after error");
-                    saveLoginSession(investorId, mobile, false);
-                    
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1000);
-                } else {
-                    showLoginError('Connection error. Please try again or contact support.');
-                }
-            }
-        });
+        /// Form submission - SIMPLE VERSION
+loginForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const investorId = usernameInput.value.trim().toUpperCase();
+    const mobile = mobileInput.value.trim().replace(/\D/g, '');
+    
+    // Basic validation
+    if (!investorId || investorId.length < 4) {
+        alert('Please enter a valid Investor ID (minimum 4 characters)');
+        return;
     }
-
+    
+    if (!mobile || mobile.length !== 10) {
+        alert('Please enter a valid 10-digit mobile number');
+        return;
+    }
+    
+    // Show loading
+    showLoading(true);
+    loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+    loginBtn.disabled = true;
+    
+    // Save session - ALWAYS save even if API fails
+    localStorage.setItem('omkar_access_key', investorId);
+    localStorage.setItem('omkar_mobile', mobile);
+    localStorage.setItem('omkar_login_time', new Date().toISOString());
+    
+    // Check if it's a test account
+    if (investorId.startsWith('TEST') || investorId === 'DEMO') {
+        localStorage.setItem('omkar_guest_mode', 'false');
+        console.log("Test account detected:", investorId);
+        
+        // Redirect immediately
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 1000);
+        return;
+    }
+    
+    // For real accounts, try API
+    try {
+        const url = `${GOOGLE_SCRIPT_URL}?action=verifyLogin&accessKey=${encodeURIComponent(investorId)}&mobile=${encodeURIComponent(mobile)}`;
+        console.log("Trying API:", url);
+        
+        const response = await fetch(url);
+        
+        if (response.ok) {
+            const result = await response.json();
+            console.log("API Response:", result);
+            
+            if (result.success) {
+                // Success
+                localStorage.setItem('omkar_guest_mode', 'false');
+                if (result.data) {
+                    localStorage.setItem('omkar_user_data', JSON.stringify(result.data));
+                }
+                
+                showSuccessModal(investorId);
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+                
+            } else {
+                // API failed but still redirect (will show guest mode)
+                localStorage.setItem('omkar_guest_mode', 'true');
+                alert(`Note: ${result.error || 'Account not found'}\n\nYou'll enter in guest mode.`);
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            }
+        } else {
+            // HTTP error
+            throw new Error(`HTTP ${response.status}`);
+        }
+        
+    } catch (error) {
+        console.error("Login error:", error);
+        
+        // Network error - still redirect with guest mode
+        localStorage.setItem('omkar_guest_mode', 'true');
+        alert('Network error. Entering in guest mode.');
+        
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 1000);
+        
+    } finally {
+        showLoading(false);
+        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+        loginBtn.disabled = false;
+    }
+});
     /**
      * Setup guest form with Google Sheets registration
      */

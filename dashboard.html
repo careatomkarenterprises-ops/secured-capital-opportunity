@@ -6,7 +6,7 @@
     <title>Investor Dashboard | Omkar Enterprises</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Your existing design system - KEEP EXACTLY THE SAME */
+        /* Your existing design system */
         :root {
             --trust-blue: #1e3a8a;
             --navy-blue: #1e40af;
@@ -301,56 +301,9 @@
             background: var(--gold-accent);
             transition: width 0.3s ease;
         }
-        
-        /* Loading Overlay */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            display: none;
-        }
-        
-        .spinner {
-            width: 70px;
-            height: 70px;
-            border: 5px solid rgba(255,255,255,0.3);
-            border-top: 5px solid var(--gold-accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Guest Notice */
-        .guest-notice {
-            background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%);
-            color: white;
-            padding: 15px 25px;
-            border-radius: var(--radius);
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            display: none;
-        }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-    </div>
-    
     <!-- Investor Dashboard -->
     <div class="dashboard-container">
         <!-- Sidebar -->
@@ -365,13 +318,13 @@
             
             <ul class="sidebar-menu">
                 <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="portfolio.html"><i class="fas fa-chart-line"></i> Portfolio</a></li>
-                <li><a href="statements.html"><i class="fas fa-file-invoice-dollar"></i> Statements</a></li>
-                <li><a href="transactions.html"><i class="fas fa-history"></i> Transaction History</a></li>
-                <li><a href="kyc.html"><i class="fas fa-user-check"></i> KYC Verification</a></li>
-                <li><a href="calculator.html"><i class="fas fa-calculator"></i> Return Calculator</a></li>
-                <li><a href="support.html"><i class="fas fa-headset"></i> Support</a></li>
-                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-portfolio"></i> Portfolio</a></li>
+                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Statements</a></li>
+                <li><a href="#"><i class="fas fa-history"></i> Transaction History</a></li>
+                <li><a href="#"><i class="fas fa-user-check"></i> KYC Verification</a></li>
+                <li><a href="#"><i class="fas fa-calculator"></i> Return Calculator</a></li>
+                <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
                 <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </aside>
@@ -382,16 +335,6 @@
             <div class="dashboard-header">
                 <h1>Investor Dashboard</h1>
                 <div id="investorInfo"></div>
-            </div>
-            
-            <!-- Guest Notice (Hidden by default) -->
-            <div class="guest-notice" id="guestNotice">
-                <i class="fas fa-info-circle"></i>
-                <div>
-                    <strong>Guest Mode:</strong> You're viewing sample data. 
-                    <a href="contact.html" style="color: white; text-decoration: underline; font-weight: 600;">Contact us</a> 
-                    to become an actual partner and access real investment data.
-                </div>
             </div>
             
             <!-- Welcome Box -->
@@ -455,16 +398,16 @@
                 <div class="portfolio-card">
                     <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
                     <div class="action-buttons">
-                        <a href="statements.html" class="action-btn btn-primary">
+                        <a href="#" class="action-btn btn-primary">
                             <i class="fas fa-download"></i> Download Statement
                         </a>
-                        <a href="calculator.html" class="action-btn btn-success">
+                        <a href="#" class="action-btn btn-success">
                             <i class="fas fa-calculator"></i> Calculate Returns
                         </a>
-                        <a href="support.html" class="action-btn btn-gold">
+                        <a href="#" class="action-btn btn-gold">
                             <i class="fas fa-headset"></i> Request Support
                         </a>
-                        <a href="kyc.html" class="action-btn">
+                        <a href="#" class="action-btn">
                             <i class="fas fa-user-check"></i> Update KYC
                         </a>
                     </div>
@@ -503,63 +446,279 @@
     <!-- JavaScript -->
     <script>
     // ============================================
-    // INVESTOR DASHBOARD - UPDATED WITH NEW API URL
+    // INVESTOR DASHBOARD - FULL ACCESS
     // ============================================
     
-    // UPDATED: Your new working Google Apps Script URL
-    const API_URL = 'https://script.google.com/macros/s/AKfycbw-qSUoIe8RDbGqpZDwSH8gYgNt-Nns4i0wyqQ4c_qDlw-Dpf8WEkDeg8GxWpV8oPml/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbw-qSUoIe8RDbGqpZDwSH8gYgNt-Nns4i0wyqQ4c_qDlw-Dpf8WEkDeg8GxWpV8oPml/exec'; // Same as login page
     
     document.addEventListener('DOMContentLoaded', function() {
         console.log("Investor Dashboard Loading...");
-        console.log("API URL:", API_URL);
         
         // Check authentication
-        const auth = checkAuth();
-        
-        if (!auth.isAuthenticated) {
-            // Redirect to login if not authenticated
-            window.location.href = 'partner-portal.html';
-            return;
-        }
-        
-        // Show loading
-        document.getElementById('loadingOverlay').style.display = 'flex';
+        checkAuth();
         
         // Load investor data
         loadInvestorData();
         
         // Setup logout
         document.getElementById('logoutBtn').addEventListener('click', logout);
-        
-        // Setup navigation active state
-        setupNavigation();
     });
     
     /**
      * Check if user is authenticated as investor
      */
-    function checkAuth() {
-        const accessKey = localStorage.getItem('omkar_access_key');
-        const guestMode = localStorage.getItem('omkar_guest_mode') === 'true';
-        
-        console.log("Auth check:", { 
-            accessKey, 
-            guestMode,
-            localStorage: { ...localStorage } 
-        });
-        
-        // Check if access key exists
-        if (!accessKey) {
-            console.warn("No access key found - redirecting to login");
-            return { isAuthenticated: false };
-        }
-        
+    // ============================================
+// AUTHENTICATION & DATA LOADING - FIXED VERSION
+// ============================================
+
+// Function to check authentication
+function checkAuth() {
+    const accessKey = localStorage.getItem('omkar_access_key');
+    const guestMode = localStorage.getItem('omkar_guest_mode');
+    const loginTime = localStorage.getItem('omkar_login_time');
+    
+    console.log("Auth check details:", {
+        accessKey,
+        guestMode,
+        loginTime,
+        fullStorage: { ...localStorage }
+    });
+    
+    // Check if access key exists
+    if (!accessKey) {
+        console.warn("No access key found in localStorage");
         return {
-            isAuthenticated: true,
-            accessKey: accessKey,
-            guestMode: guestMode
+            isAuthenticated: false,
+            userType: null,
+            accessKey: null
         };
     }
+    
+    // Check session timeout (24 hours)
+    if (loginTime) {
+        const loginDate = new Date(loginTime);
+        const now = new Date();
+        const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
+        
+        if (hoursDiff > 24) {
+            console.warn("Session expired (more than 24 hours)");
+            localStorage.clear();
+            return {
+                isAuthenticated: false,
+                userType: null,
+                accessKey: null
+            };
+        }
+    }
+    
+    const userType = guestMode === 'true' ? 'guest' : 'investor';
+    
+    return {
+        isAuthenticated: true,
+        userType: userType,
+        accessKey: accessKey,
+        guestMode: guestMode === 'true'
+    };
+}
+
+// Function to load investor data with error handling
+async function loadInvestorData(accessKey, isGuest = false) {
+    console.log(`Loading data for ${isGuest ? 'guest' : 'investor'}:`, accessKey);
+    
+    try {
+        let result;
+        
+        if (isGuest) {
+            // For guests, use local storage data
+            const guestData = {
+                FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
+                Email: localStorage.getItem('omkar_guest_email') || '',
+                Mobile: localStorage.getItem('omkar_mobile') || '',
+                GuestID: accessKey,
+                AccessType: 'guest'
+            };
+            result = guestData;
+            console.log("Loaded guest data:", guestData);
+        } else {
+            // For investors, fetch from Google Sheets
+            console.log(`Fetching investor data for: ${accessKey}`);
+            
+            // Use CORS-friendly approach
+            const url = `${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`;
+            console.log("Fetching from URL:", url);
+            
+            const response = await fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                console.warn("HTTP error:", response.status, response.statusText);
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log("Investor data received:", data);
+            
+            if (!data || (!data.InvestorId && !data.PartnerID)) {
+                console.warn("Invalid investor data received:", data);
+                
+                // Check if this is a test/demo account
+                if (accessKey.startsWith('TEST') || accessKey === 'DEMO') {
+                    console.log("Using test/demo account data");
+                    result = {
+                        FullName: 'Test Investor',
+                        InvestorId: accessKey,
+                        Mobile: '9876543210',
+                        Email: 'test@omkarservices.in',
+                        InvestmentAmount: '₹5,00,000',
+                        MonthlyReturn: '₹10,000',
+                        PortfolioValue: '₹5,50,000',
+                        JoinDate: '2024-01-15'
+                    };
+                } else {
+                    throw new Error('Investor not found in database');
+                }
+            } else {
+                result = data;
+            }
+        }
+        
+        return result;
+        
+    } catch (error) {
+        console.error("Error loading investor data:", error);
+        
+        // Fallback for network issues or API problems
+        if (accessKey.startsWith('GUEST') || accessKey.startsWith('TEST') || accessKey === 'DEMO') {
+            console.log("Using fallback data for:", accessKey);
+            return {
+                FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
+                InvestorId: accessKey,
+                Mobile: localStorage.getItem('omkar_mobile') || '9876543210',
+                Email: localStorage.getItem('omkar_guest_email') || 'guest@omkarservices.in',
+                InvestmentAmount: '₹0',
+                MonthlyReturn: '₹0',
+                PortfolioValue: '₹0',
+                AccessType: isGuest ? 'guest' : 'investor'
+            };
+        }
+        
+        throw error; // Re-throw for handling in calling function
+    }
+}
+
+// Function to handle authentication failure
+function handleAuthFailure(message = 'Authentication failed') {
+    console.error("Authentication failure:", message);
+    
+    // Show user-friendly error
+    const authErrorHTML = `
+        <div class="auth-error-container" style="
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            margin: 100px auto;
+        ">
+            <div style="width: 100px; height: 100px; background: #fef2f2; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 40px; color: #ef4444;"></i>
+            </div>
+            <h2 style="color: var(--slate-dark); margin-bottom: 15px;">Authentication Required</h2>
+            <p style="color: var(--slate-light); margin-bottom: 25px;">${message}</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="partner-portal.html" class="connect-btn" style="max-width: 200px;">
+                    <i class="fas fa-sign-in-alt"></i> Login Again
+                </a>
+                <a href="index.html" class="btn-secondary" style="max-width: 200px;">
+                    <i class="fas fa-home"></i> Return Home
+                </a>
+            </div>
+            <div style="margin-top: 30px; padding: 20px; background: #f8fafc; border-radius: 10px; text-align: left;">
+                <p style="margin: 0 0 10px 0; font-size: 14px; color: var(--slate-light);">
+                    <strong>Technical Details:</strong> Session may have expired or invalid access key.
+                </p>
+                <p style="margin: 0; font-size: 12px; color: var(--slate-light);">
+                    Need help? Contact support: +91 8169 302 861
+                </p>
+            </div>
+        </div>
+    `;
+    
+    document.querySelector('.container').innerHTML = authErrorHTML;
+}
+
+// Initialize dashboard with fixed authentication
+async function initializeDashboard() {
+    console.log("Initializing dashboard...");
+    
+    // Check authentication
+    const auth = checkAuth();
+    console.log("Authentication result:", auth);
+    
+    if (!auth.isAuthenticated || !auth.accessKey) {
+        console.error("User not authenticated, redirecting to login");
+        handleAuthFailure('Please login to access the dashboard');
+        return;
+    }
+    
+    try {
+        // Show loading state
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        
+        // Load investor data
+        const investorData = await loadInvestorData(auth.accessKey, auth.guestMode);
+        console.log("Investor data loaded successfully:", investorData);
+        
+        // Hide loading
+        document.getElementById('loadingOverlay').style.display = 'none';
+        
+        // Update dashboard with data
+        updateDashboardWithData(investorData, auth.guestMode);
+        
+        // Show appropriate sections
+        if (auth.guestMode) {
+            document.querySelector('.guest-notice').style.display = 'block';
+            document.querySelector('.guest-notice').innerHTML = `
+                <div style="display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--gold-accent) 0%, #b7950b 100%); color: white; padding: 15px 20px; border-radius: 12px; margin: 20px 0;">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Guest Mode:</strong> You're viewing sample data. 
+                        <a href="contact.html" style="color: white; text-decoration: underline; font-weight: 600;">Contact us</a> 
+                        to become an actual partner and access real investment data.
+                    </div>
+                </div>
+            `;
+        }
+        
+    } catch (error) {
+        console.error("Dashboard initialization failed:", error);
+        document.getElementById('loadingOverlay').style.display = 'none';
+        
+        // Show appropriate error message
+        if (error.message.includes('Investor not found')) {
+            handleAuthFailure('Investor ID not found in our records. Please check your credentials.');
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+            handleAuthFailure('Network connection issue. Please check your internet and try again.');
+        } else {
+            handleAuthFailure('Unable to load dashboard. Please try again or contact support.');
+        }
+    }
+}
+
+// Call this function when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Dashboard DOM loaded, starting initialization...");
+    initializeDashboard();
+    
+    // Update activity timestamp
+    localStorage.setItem('omkar_last_activity', Date.now().toString());
+});
     
     /**
      * Load investor data from API
@@ -567,181 +726,54 @@
     async function loadInvestorData() {
         try {
             const accessKey = localStorage.getItem('omkar_access_key');
-            const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
-            
-            console.log("Fetching data for:", { accessKey, isGuest });
-            
-            if (isGuest) {
-                // Load guest data from localStorage
-                loadGuestData();
-                return;
-            }
             
             // 1. Get investor profile
-            console.log("Fetching profile from:", `${API_URL}?action=getPartner&accessKey=${accessKey}`);
-            const profileResponse = await fetch(`${API_URL}?action=getPartner&accessKey=${encodeURIComponent(accessKey)}`);
+            const profileResponse = await fetch(`${API_URL}?action=getPartner&accessKey=${accessKey}`);
+            const profileData = await profileResponse.json();
             
-            if (!profileResponse.ok) {
-                throw new Error(`API Error: ${profileResponse.status}`);
-            }
-            
-            const profileText = await profileResponse.text();
-            console.log("Profile response text:", profileText);
-            
-            let profileData;
-            try {
-                profileData = JSON.parse(profileText);
-            } catch (e) {
-                console.error("JSON parse error:", e);
-                // Try to fix common JSON issues
-                const fixedJson = profileText.replace(/'/g, '"');
-                profileData = JSON.parse(fixedJson);
-            }
-            
-            console.log("Profile data:", profileData);
-            
-            if (profileData && profileData.success !== false) {
+            if (profileData) {
                 updateDashboardUI(profileData);
-                
-                // Store data for offline use
-                localStorage.setItem('omkar_dashboard_data', JSON.stringify(profileData));
-                
-                // 2. Get transaction history
-                try {
-                    const historyResponse = await fetch(`${API_URL}?action=getTransactions&accessKey=${encodeURIComponent(accessKey)}`);
-                    if (historyResponse.ok) {
-                        const historyData = await historyResponse.json();
-                        if (historyData && Array.isArray(historyData)) {
-                            updateTransactionHistory(historyData);
-                        }
-                    }
-                } catch (historyError) {
-                    console.warn("Could not load transaction history:", historyError);
-                }
-                
-                // 3. Get KYC status
-                try {
-                    const kycResponse = await fetch(`${API_URL}?action=getKYCStatus&leadId=${encodeURIComponent(accessKey)}`);
-                    if (kycResponse.ok) {
-                        const kycData = await kycResponse.json();
-                        if (kycData) {
-                            updateKYCStatus(kycData);
-                        }
-                    }
-                } catch (kycError) {
-                    console.warn("Could not load KYC status:", kycError);
-                }
-                
-            } else {
-                // If API returns error, check for TEST/DEMO accounts
-                if (accessKey.startsWith('TEST') || accessKey === 'DEMO') {
-                    loadTestData(accessKey);
-                } else {
-                    showError("Investor not found. Please check your Investor ID.");
-                    // Show guest notice
-                    document.getElementById('guestNotice').style.display = 'flex';
-                }
+            }
+            
+            // 2. Get transaction history
+            const historyResponse = await fetch(`${API_URL}?action=getTransactions&accessKey=${accessKey}`);
+            const historyData = await historyResponse.json();
+            
+            if (historyData && Array.isArray(historyData)) {
+                updateTransactionHistory(historyData);
+            }
+            
+            // 3. Get KYC status
+            const kycResponse = await fetch(`${API_URL}?action=getKYCStatus&leadId=${accessKey}`);
+            const kycData = await kycResponse.json();
+            
+            if (kycData) {
+                updateKYCStatus(kycData);
             }
             
         } catch (error) {
             console.error("Error loading investor data:", error);
-            
-            // Try to load cached data
-            const cachedData = localStorage.getItem('omkar_dashboard_data');
-            if (cachedData) {
-                console.log("Using cached data due to network error");
-                const parsedData = JSON.parse(cachedData);
-                updateDashboardUI(parsedData);
-                showWarning("Showing cached data. Please check your internet connection.");
-            } else {
-                showError("Could not load dashboard data. Please try again.");
-            }
-            
-            // Show guest notice for network errors
-            document.getElementById('guestNotice').style.display = 'flex';
-            
-        } finally {
-            // Hide loading overlay
-            document.getElementById('loadingOverlay').style.display = 'none';
+            showError("Could not load dashboard data. Please try again.");
         }
-    }
-    
-    /**
-     * Load guest data from localStorage
-     */
-    function loadGuestData() {
-        console.log("Loading guest data");
-        
-        const guestData = {
-            FullName: localStorage.getItem('omkar_guest_name') || 'Guest User',
-            InvestorId: localStorage.getItem('omkar_access_key') || 'GUEST001',
-            PortfolioValue: '₹5,00,000',
-            MonthlyReturn: '₹10,000',
-            TotalReturns: '₹1,20,000',
-            AgreementExpiryDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            AccountStatus: 'Guest'
-        };
-        
-        updateDashboardUI(guestData);
-        document.getElementById('guestNotice').style.display = 'flex';
-        document.getElementById('loadingOverlay').style.display = 'none';
-        
-        // Add sample transactions for guest
-        addSampleTransactions();
-    }
-    
-    /**
-     * Load test data for TEST/DEMO accounts
-     */
-    function loadTestData(accessKey) {
-        console.log("Loading test data for:", accessKey);
-        
-        const testData = {
-            FullName: 'Test Investor',
-            InvestorId: accessKey,
-            PortfolioValue: '₹5,50,000',
-            MonthlyReturn: '₹11,000',
-            TotalReturns: '₹1,32,000',
-            AgreementExpiryDate: '2024-12-31',
-            AccountStatus: 'Active',
-            PrincipalAmount: 550000,
-            FixedMonthlyReturn: 11000,
-            TotalReturnsPaid: 132000
-        };
-        
-        updateDashboardUI(testData);
-        document.getElementById('guestNotice').style.display = 'flex';
-        document.getElementById('guestNotice').innerHTML = `
-            <i class="fas fa-info-circle"></i>
-            <div>
-                <strong>Test Mode:</strong> You're viewing test data. Contact support to activate real account.
-            </div>
-        `;
-        document.getElementById('loadingOverlay').style.display = 'none';
-        
-        // Add sample transactions for test account
-        addSampleTransactions();
     }
     
     /**
      * Update dashboard UI with investor data
      */
     function updateDashboardUI(data) {
-        console.log("Updating UI with data:", data);
-        
         // Update investor info
         document.getElementById('investorName').textContent = data.FullName || 'Investor';
         document.getElementById('investorInfo').innerHTML = `
             <div style="text-align: right;">
-                <strong>Investor ID:</strong> ${data.InvestorId || data.PartnerID || 'N/A'}<br>
+                <strong>Investor ID:</strong> ${data.InvestorId}<br>
                 <small>Account Status: <span class="status-active">${data.AccountStatus || 'Active'}</span></small>
             </div>
         `;
         
         // Update portfolio stats
-        document.getElementById('portfolioValue').textContent = formatCurrency(data.PortfolioValue || data.PrincipalAmount);
-        document.getElementById('monthlyReturn').textContent = formatCurrency(data.MonthlyReturn || data.FixedMonthlyReturn);
-        document.getElementById('totalReturns').textContent = formatCurrency(data.TotalReturns || data.TotalReturnsPaid);
+        document.getElementById('portfolioValue').textContent = formatCurrency(data.PrincipalAmount);
+        document.getElementById('monthlyReturn').textContent = formatCurrency(data.FixedMonthlyReturn);
+        document.getElementById('totalReturns').textContent = formatCurrency(data.TotalReturnsPaid);
         
         // Calculate days to expiry
         if (data.AgreementExpiryDate) {
@@ -750,8 +782,6 @@
             const diffTime = expiryDate - today;
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             document.getElementById('agreementDays').textContent = diffDays > 0 ? diffDays : 'Expired';
-        } else {
-            document.getElementById('agreementDays').textContent = 'N/A';
         }
         
         // Update last login
@@ -763,78 +793,34 @@
     }
     
     /**
-     * Add sample transactions for guest/test accounts
-     */
-    function addSampleTransactions() {
-        const sampleTransactions = [
-            {
-                TransactionDate: new Date().toISOString().split('T')[0],
-                TransactionType: 'Monthly Return',
-                Amount: 10000,
-                Status: 'completed',
-                ReferenceNo: 'MONTH-001'
-            },
-            {
-                TransactionDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                TransactionType: 'Monthly Return',
-                Amount: 10000,
-                Status: 'completed',
-                ReferenceNo: 'MONTH-002'
-            },
-            {
-                TransactionDate: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                TransactionType: 'Monthly Return',
-                Amount: 10000,
-                Status: 'completed',
-                ReferenceNo: 'MONTH-003'
-            }
-        ];
-        
-        updateTransactionHistory(sampleTransactions);
-    }
-    
-    /**
      * Update transaction history table
      */
     function updateTransactionHistory(transactions) {
         const tbody = document.getElementById('transactionHistory');
         const recentTbody = document.getElementById('recentTransactions');
         
-        if (!tbody || !recentTbody) {
-            console.error("Transaction tables not found");
-            return;
-        }
-        
         tbody.innerHTML = '';
         recentTbody.innerHTML = '';
         
-        if (!transactions || !Array.isArray(transactions) || transactions.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--slate-light);">No transactions found</td></tr>';
-            recentTbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--slate-light);">No recent transactions</td></tr>';
-            return;
-        }
-        
         // Sort by date (newest first)
-        transactions.sort((a, b) => new Date(b.TransactionDate || b.Date) - new Date(a.TransactionDate || a.Date));
+        transactions.sort((a, b) => new Date(b.TransactionDate) - new Date(a.TransactionDate));
         
         // Show last 5 in recent transactions
         const recent = transactions.slice(0, 5);
         
         recent.forEach(transaction => {
-            const date = new Date(transaction.TransactionDate || transaction.Date).toLocaleDateString('en-IN');
-            const amount = formatCurrency(transaction.Amount || transaction.PaymentAmount);
-            const status = transaction.Status || 'completed';
-            const type = transaction.TransactionType || transaction.Type || 'Monthly Return';
-            const reference = transaction.ReferenceNo || transaction.TransactionId || '-';
-            
             const row = document.createElement('tr');
+            
+            const date = new Date(transaction.TransactionDate).toLocaleDateString('en-IN');
+            const amount = formatCurrency(transaction.Amount);
+            const status = transaction.Status || 'completed';
             
             row.innerHTML = `
                 <td>${date}</td>
-                <td>${type}</td>
+                <td>${transaction.TransactionType || 'Monthly Return'}</td>
                 <td>${amount}</td>
                 <td><span class="status-${status} status-badge">${status}</span></td>
-                <td>${reference}</td>
+                <td>${transaction.ReferenceNo || '-'}</td>
             `;
             
             recentTbody.appendChild(row);
@@ -845,7 +831,7 @@
             const viewAllRow = document.createElement('tr');
             viewAllRow.innerHTML = `
                 <td colspan="5" style="text-align: center;">
-                    <a href="transactions.html" style="color: var(--gold-accent); text-decoration: none;">
+                    <a href="#" style="color: var(--gold-accent); text-decoration: none;">
                         View All ${transactions.length} Transactions →
                     </a>
                 </td>
@@ -861,16 +847,14 @@
         const kycStatusText = document.getElementById('kycStatusText');
         const kycProgressFill = document.getElementById('kycProgressFill');
         
-        if (!kycStatusText || !kycProgressFill) return;
-        
-        if (kycData && kycData.success !== false) {
-            const percentage = kycData.completionPercentage || kycData.percentage || 0;
+        if (kycData.success) {
+            const percentage = kycData.completionPercentage || 0;
             kycProgressFill.style.width = percentage + '%';
             
             if (percentage === 100) {
                 kycStatusText.innerHTML = '<span class="status-active">✓ KYC Verified</span>';
             } else if (percentage > 0) {
-                kycStatusText.textContent = `KYC ${percentage}% Complete`;
+                kycStatusText.textContent = `KYC ${percentage}% Complete - ${kycData.uploadedDocuments.length} documents uploaded`;
             } else {
                 kycStatusText.innerHTML = '<span class="status-pending">KYC Not Started - Please upload documents</span>';
             }
@@ -893,26 +877,10 @@
     }
     
     /**
-     * Setup navigation active state
-     */
-    function setupNavigation() {
-        const currentPage = window.location.pathname.split('/').pop();
-        const menuItems = document.querySelectorAll('.sidebar-menu a');
-        
-        menuItems.forEach(item => {
-            const href = item.getAttribute('href');
-            if (href === currentPage || (href === '#' && currentPage === 'dashboard.html')) {
-                item.classList.add('active');
-            }
-        });
-    }
-    
-    /**
      * Show error message
      */
     function showError(message) {
-        console.error("Dashboard Error:", message);
-        
+        // Create error notification
         const errorDiv = document.createElement('div');
         errorDiv.style.cssText = `
             position: fixed;
@@ -930,36 +898,9 @@
         errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
         document.body.appendChild(errorDiv);
         
+        // Remove after 5 seconds
         setTimeout(() => {
             errorDiv.remove();
-        }, 5000);
-    }
-    
-    /**
-     * Show warning message
-     */
-    function showWarning(message) {
-        console.warn("Dashboard Warning:", message);
-        
-        const warningDiv = document.createElement('div');
-        warningDiv.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #f59e0b;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-        `;
-        
-        warningDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
-        document.body.appendChild(warningDiv);
-        
-        setTimeout(() => {
-            warningDiv.remove();
         }, 5000);
     }
     
@@ -968,32 +909,88 @@
      */
     function logout() {
         if (confirm("Are you sure you want to logout?")) {
-            // Show loading
-            document.getElementById('loadingOverlay').style.display = 'flex';
-            
-            // Clear storage
             localStorage.clear();
-            sessionStorage.clear();
+            window.location.href = 'partner-portal.html';
+        }
+    }
+
+        // In dashboard.html, update loadDashboard() function:
+
+async function loadDashboard() {
+    console.log("Loading dashboard data...");
+    
+    const accessKey = localStorage.getItem('omkar_access_key');
+    const isGuest = localStorage.getItem('omkar_guest_mode') === 'true';
+    const storedData = localStorage.getItem('omkar_user_data') || localStorage.getItem('omkar_dashboard_data');
+    
+    console.log("Session check:", { accessKey, isGuest, hasStoredData: !!storedData });
+    
+    // CRITICAL FIX: Use stored data if available
+    if (storedData) {
+        try {
+            const parsedData = JSON.parse(storedData);
+            console.log("Using stored data:", parsedData);
             
-            // Redirect to login
-            setTimeout(() => {
-                window.location.href = 'partner-portal.html';
-            }, 1000);
+            // Render UI with stored data first
+            renderInvestorUI(parsedData);
+            
+            // Then try to fetch fresh data
+            if (accessKey && !isGuest) {
+                await loadInvestorData(accessKey);
+            }
+            return;
+        } catch (e) {
+            console.error("Error parsing stored data:", e);
         }
     }
     
-    // Debug utility
-    window.debugDashboard = function() {
-        console.log('=== DASHBOARD DEBUG INFO ===');
-        console.log('API URL:', API_URL);
-        console.log('LocalStorage:', { ...localStorage });
-        console.log('Current auth:', checkAuth());
-        
-        fetch(`${API_URL}?action=test`)
-            .then(r => r.text())
-            .then(data => console.log('API Test Response:', data))
-            .catch(err => console.error('API Test Error:', err));
-    };
+    // Rest of your existing code...
+}
+
+        // Debug utility for session issues
+function debugSession() {
+    console.log("=== SESSION DEBUG INFO ===");
+    console.log("LocalStorage contents:", { ...localStorage });
+    console.log("SessionStorage contents:", { ...sessionStorage });
+    
+    const auth = checkAuth();
+    console.log("Current auth status:", auth);
+    
+    // Test Google Sheets connection
+    fetch(`${GOOGLE_SCRIPT_URL}?action=test`)
+        .then(r => r.text())
+        .then(data => console.log("Google Sheets test response:", data))
+        .catch(err => console.error("Google Sheets test error:", err));
+    
+    alert("Debug info logged to console. Press F12 to view.");
+}
+
+// Add debug button (remove in production)
+function addDebugButton() {
+    const debugBtn = document.createElement('button');
+    debugBtn.innerHTML = '🐛 Debug Session';
+    debugBtn.style.cssText = `
+        position: fixed;
+        bottom: 150px;
+        right: 30px;
+        background: #ff9900;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 9999;
+        font-size: 12px;
+        font-weight: bold;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    `;
+    
+    debugBtn.onclick = debugSession;
+    document.body.appendChild(debugBtn);
+}
+
+// Uncomment to add debug button
+// addDebugButton();
     
     </script>
 </body>

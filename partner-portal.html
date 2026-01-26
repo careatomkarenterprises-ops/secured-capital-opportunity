@@ -2822,6 +2822,22 @@ window.login = async function() {
     }, 1000);
 };
 
+// Function to load Past Performance on the login page
+async function loadPublicPerformance() {
+    try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPerformance`);
+        const result = await response.json();
+        
+        if (result.success && result.summary) {
+            // Update your UI elements by ID
+            document.getElementById('displayTotalInvestors').textContent = result.summary.TotalInvestors; [cite: 3]
+            document.getElementById('displayTotalPayouts').textContent = result.summary.TotalPayouts; [cite: 3]
+            document.getElementById('displayAccuracy').textContent = (result.summary.PayoutAccuracy * 100) + "%"; [cite: 3]
+        }
+    } catch (error) {
+        console.error("Performance load failed:", error);
+    }
+}       
 // ========== DEBUG FUNCTIONS ==========
 
 /**

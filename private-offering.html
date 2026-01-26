@@ -3,173 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Deployment Portal | Omkar Enterprises</title>
+    <title>Republic Day Offering | Omkar Enterprises</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #ffffff; color: #1a202c; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: #1a202c; scroll-behavior: smooth; }
+        .republic-saffron { background-color: #FF9933; }
+        .republic-green { background-color: #138808; }
+        .republic-blue { color: #000080; } /* Ashoka Chakra Blue */
         .omkar-navy { background-color: #002147; }
         .omkar-gold { color: #c5a059; }
-        .omkar-gold-bg { background-color: #c5a059; }
         .card-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1); }
-        .gold-border { border: 2px solid #c5a059; }
+        .tricolor-gradient { background: linear-gradient(to bottom, #FF9933 0%, #FFFFFF 50%, #138808 100%); opacity: 0.05; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
     </style>
 </head>
 <body>
+    <div class="tricolor-gradient"></div>
 
-    <nav class="omkar-navy p-4 sticky top-0 z-50 shadow-lg">
+    <div class="republic-saffron text-white text-center py-2 text-[10px] font-bold uppercase tracking-[0.3em]">
+        Celebrating the 77th Republic Day of India 🇮🇳
+    </div>
+
+    <nav class="omkar-navy p-4 sticky top-0 z-50 shadow-lg border-b-4 border-white">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="text-white font-bold text-xl tracking-tighter uppercase">
                 OMKAR <span class="omkar-gold font-light">ENTERPRISES</span>
             </div>
-            <div class="hidden md:flex items-center space-x-6 text-white text-[10px] tracking-widest">
-                <a href="https://omkarservices.in" class="hover:text-amber-400 transition-all">OFFICIAL PORTAL</a>
-                <span class="bg-amber-600 px-3 py-1 rounded-full font-bold text-black uppercase">Private Partner Offering</span>
+            <div class="flex items-center space-x-4">
+                <span class="hidden md:inline bg-white text-blue-900 px-3 py-1 rounded-full font-bold text-[10px] uppercase">Financial Sovereignty Offering</span>
             </div>
         </div>
     </nav>
 
-    <header class="py-16 px-6 bg-slate-50 border-b">
-        <div class="max-w-4xl mx-auto text-center">
+    <header class="py-16 px-6 text-center border-b bg-white bg-opacity-80">
+        <div class="max-w-4xl mx-auto">
+            <div class="republic-blue text-5xl mb-4">☸️</div>
             <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-                Documented Capital Safety. <br><span class="omkar-gold">Responsibility Over Risk.</span>
+                Empowering Your <span class="republic-blue">Financial Freedom.</span>
             </h1>
-            <p class="text-lg text-slate-600 mb-6 max-w-2xl mx-auto leading-relaxed">
-                Most platforms offer "opportunities" where you take 100% of the risk. At <strong>Omkar Enterprises</strong>, we take the responsibility on paper, so you can enjoy the rewards.
+            <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                This Republic Day, choose the path of <strong class="republic-green text-white px-2">Documented Safety</strong>. Secure 10% Monthly ROI on the entry-level slab, backed by the strength of legal agreements.
             </p>
         </div>
     </header>
 
-    <section class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-2xl font-bold uppercase tracking-widest text-slate-800">Safety & Earnings Benchmark</h2>
-            <div class="w-20 h-1 omkar-gold-bg mx-auto mt-4"></div>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm opacity-80 hover:opacity-100 transition-all">
-                <h3 class="font-bold text-slate-500 mb-4 uppercase text-xs tracking-widest">Market/Mutual Funds</h3>
-                <div class="mb-6">
-                    <span class="text-3xl font-bold text-slate-400 italic">Uncertain</span>
-                </div>
-                <ul class="space-y-4 text-sm text-slate-600">
-                    <li class="flex items-start">❌ <span class="ml-2"><strong>Risk:</strong> 100% on Investor. No one is legally responsible for your loss.</span></li>
-                    <li class="flex items-start">❌ <span class="ml-2"><strong>Safety:</strong> Market-linked. Value can drop overnight.</span></li>
-                    <li class="flex items-start">❌ <span class="ml-2"><strong>Earnings:</strong> Zero guarantee of monthly cash flow.</span></li>
-                </ul>
+    <section class="py-4 px-6 bg-white border-y border-slate-200">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full republic-saffron opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 republic-saffron"></span>
+                </span>
+                <p class="text-xs font-bold uppercase text-slate-700">Republic Day Allocation: <span id="slotCount" class="text-red-600">5</span> Slots Left</p>
             </div>
-
-            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm opacity-80 hover:opacity-100 transition-all">
-                <h3 class="font-bold text-slate-500 mb-4 uppercase text-xs tracking-widest">Traditional Bank FD</h3>
-                <div class="mb-6">
-                    <span class="text-3xl font-bold text-slate-400">~7% <small class="text-xs">PA</small></span>
-                </div>
-                <ul class="space-y-4 text-sm text-slate-600">
-                    <li class="flex items-start">❌ <span class="ml-2"><strong>Risk:</strong> Inflation risk. Your money buys less every year.</span></li>
-                    <li class="flex items-start">❌ <span class="ml-2"><strong>Safety:</strong> Safe, but locked for years to get tiny returns.</span></li>
-                    <li class="flex items-start">❌ <span class="ml-2"><strong>Earnings:</strong> Barely beats rising costs of living.</span></li>
-                </ul>
-            </div>
-
-            <div class="omkar-navy p-8 rounded-3xl gold-border shadow-2xl transform md:-translate-y-4 relative">
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-blue-900 px-4 py-1 rounded-full font-bold text-[10px] uppercase tracking-tighter">Recommended Choice</div>
-                <h3 class="font-bold text-amber-500 mb-4 uppercase text-xs tracking-widest">Omkar Deployment</h3>
-                <div class="mb-6">
-                    <span class="text-3xl font-bold text-white">2% - 2.5% <small class="text-xs text-amber-200 uppercase">Monthly</small></span>
-                </div>
-                <ul class="space-y-4 text-sm text-blue-50">
-                    <li class="flex items-start">✅ <span class="ml-2"><strong>Risk:</strong> ZERO on Investor. Omkar takes full capital responsibility.</span></li>
-                    <li class="flex items-start">✅ <span class="ml-2"><strong>Safety:</strong> Backed by <strong>Notarized Agreement & PDCs.</strong></span></li>
-                    <li class="flex items-start">✅ <span class="ml-2"><strong>Earnings:</strong> Documented, fixed cash flow every 30 days.</span></li>
-                </ul>
-            </div>
+            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">Live from Pune, Maharashtra</div>
         </div>
     </section>
 
-<section class="py-6 px-6 bg-amber-50 border-y border-amber-200">
-    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-        <div class="flex items-center gap-3">
-            <div class="relative flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
-            </div>
-            <p class="text-sm font-bold text-slate-800 uppercase tracking-tight">
-                Current Cycle Availability: <span id="slotCount" class="text-red-600 text-lg">3</span> Slots Remaining
-            </p>
-        </div>
-        <div class="text-xs text-slate-500 font-medium italic">
-            *2 investors viewing this deployment roadmap right now
-        </div>
-    </div>
-</section>
-
-<script>
-    // Logic to simulate real-time slot filling
-    const slotDisplay = document.getElementById('slotCount');
-    let currentSlots = 4;
-
-    function simulateSlotFilling() {
-        if (currentSlots > 1) {
-            // Random delay to simulate someone else filling details
-            const randomDelay = Math.floor(Math.random() * (120000 - 30000) + 30000); 
-            
-            setTimeout(() => {
-                currentSlots--;
-                slotDisplay.innerText = currentSlots;
-                slotDisplay.classList.add('scale-125', 'text-red-700');
-                setTimeout(() => slotDisplay.classList.remove('scale-125'), 500);
-                simulateSlotFilling();
-            }, randomDelay);
-        }
-    }
-
-    // Start simulation when page loads
-    window.addEventListener('load', simulateSlotFilling);
-</script>
-
-
-    <section id="calculator" class="py-12 bg-slate-50 px-6">
+    <section id="calculator" class="py-12 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="grid lg:grid-cols-3 gap-8 items-start">
-                <div class="lg:col-span-1 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm h-fit">
-                    <label class="block text-sm font-bold mb-4 uppercase text-slate-500 tracking-tighter">Choose Deployment Bracket</label>
-                    <select id="bracketSelect" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-amber-500 text-lg font-bold outline-none bg-white cursor-pointer shadow-sm">
-                        <option value="30000">₹30,000 (1% Monthly ROI)</option>
-                        <option value="100000" selected>₹1,00,000 (2% Monthly ROI)</option>
+                
+                <div class="lg:col-span-1 bg-white p-8 rounded-3xl card-shadow border-t-8 border-[#FF9933]">
+                    <h3 class="font-bold text-slate-800 mb-6 uppercase text-xs tracking-widest">Select Republic Offering</h3>
+                    <select id="bracketSelect" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-blue-900 text-lg font-bold outline-none bg-white cursor-pointer mb-8">
+                        <option value="30000" selected>₹30,000 (10% Monthly ROI)</option>
+                        <option value="100000">₹1,00,000 (2% Monthly ROI)</option>
                         <option value="200000">₹2,00,000 (2.5% Monthly ROI)</option>
                     </select>
                     
-                    <div class="mt-8 space-y-4 text-center">
-                        <div class="p-5 bg-blue-50 rounded-2xl border-l-8 border-blue-900">
-                            <span class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Monthly Cash Flow</span>
-                            <div class="text-3xl font-bold text-blue-900" id="monthlyVal">₹2,000</div>
+                    <div class="space-y-4">
+                        <div class="p-6 bg-slate-50 rounded-2xl border-b-4 border-blue-900 text-center">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Monthly Cash Flow</span>
+                            <div class="text-3xl font-bold republic-blue" id="monthlyVal">₹3,000</div>
                         </div>
-                        <div class="p-5 bg-amber-50 rounded-2xl border-l-8 border-amber-500">
-                            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest">Total 13-Month Profit</span>
-                            <div class="text-3xl font-bold text-amber-600" id="totalProfit">₹24,000</div>
+                        <div class="p-6 bg-slate-50 rounded-2xl border-b-4 border-[#138808] text-center">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">12-Month Profit</span>
+                            <div class="text-3xl font-bold text-green-700" id="totalProfit">₹36,000</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-2 overflow-hidden bg-white border border-slate-200 rounded-3xl card-shadow">
+                <div class="lg:col-span-2 overflow-hidden bg-white rounded-3xl card-shadow border-t-8 border-slate-200">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
-                            <thead>
-                                <tr class="omkar-navy text-white text-[10px] uppercase tracking-widest">
-                                    <th class="p-4">Month</th>
-                                    <th class="p-4 text-center">ROI Payout</th>
-                                    <th class="p-4 text-center">Capital Balance</th>
-                                    <th class="p-4 text-right">Protection</th>
+                            <thead class="omkar-navy text-white text-[10px] uppercase tracking-widest">
+                                <tr>
+                                    <th class="p-5">Month</th>
+                                    <th class="p-5 text-center">Monthly Payout</th>
+                                    <th class="p-5 text-center">Capital Repayment</th>
+                                    <th class="p-5 text-right">Verification</th>
                                 </tr>
                             </thead>
                             <tbody id="amortizationBody" class="text-xs">
                                 </tbody>
-                            <tfoot>
-                                <tr class="bg-slate-100 font-bold border-t-2 border-slate-200">
-                                    <td class="p-4 uppercase text-slate-500">Total Settlement</td>
-                                    <td class="p-4 text-center text-blue-900" id="footROI">₹24,000</td>
-                                    <td class="p-4 text-center text-green-700" id="footCap">₹1,00,000</td>
-                                    <td class="p-4 text-right text-[10px] uppercase text-slate-400">Roadmap Complete</td>
+                            <tfoot class="bg-blue-50 font-bold border-t-2">
+                                <tr>
+                                    <td class="p-5 uppercase text-blue-900">Final Settlement</td>
+                                    <td class="p-5 text-center republic-blue" id="footROI">₹36,000</td>
+                                    <td class="p-5 text-center text-green-700" id="footCap">₹30,000</td>
+                                    <td class="p-5 text-right text-[10px] text-slate-400">Roadmap Confirmed</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -179,48 +112,28 @@
         </div>
     </section>
 
-    <section class="py-20 bg-slate-900 text-white px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-16 omkar-gold">How Your Security is Finalized</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
-                    <div class="text-blue-400 font-bold mb-2">Step 01: KYC</div>
-                    <p class="text-sm text-slate-400">Submit Aadhar/PAN. Every partner is vetted for trade compliance.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
-                    <div class="text-blue-400 font-bold mb-2">Step 02: Legal Draft</div>
-                    <p class="text-sm text-slate-400">Review your Notarized Agreement & scanned PDCs mapped to your capital.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
-                    <div class="text-blue-400 font-bold mb-2">Step 03: Execution</div>
-                    <p class="text-sm text-slate-400">Join via Online FastTrack or visit our Pune HQ for a physical handshake.</p>
-                </div>
-                <div class="bg-green-900 p-6 rounded-2xl border border-green-600">
-                    <div class="text-green-400 font-bold mb-2">Step 04: Payouts</div>
-                    <p class="text-sm text-slate-100">Capital is deployed. Monthly ROI begins in 30 days. Principal repaid in Month 13.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 text-center">
-        <div class="max-w-2xl mx-auto bg-white p-12 rounded-[3rem] card-shadow border-2 border-amber-100 relative">
-            <h2 class="text-3xl font-bold mb-6 italic">Secure Your Family's Future</h2>
-            <p class="text-slate-600 mb-10 leading-relaxed text-sm">Do not leave your hard-earned capital to the mercy of brokers. Take the documented path.</p>
+    <section class="py-20 px-6 text-center">
+        <div class="max-w-3xl mx-auto bg-white p-12 rounded-[3rem] card-shadow border-b-8 border-republic-green relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-full -mr-16 -mt-16 opacity-50"></div>
             
-            <a id="waButton" href="https://wa.me/YOUR_PHONE_NUMBER?text=START_FASTTRACK_KYC" 
-               class="bg-green-600 hover:bg-green-700 text-white px-12 py-6 rounded-2xl font-bold text-xl inline-flex items-center transition-all card-shadow">
-                📲 Submit KYC on WhatsApp
+            <h2 class="text-3xl font-bold mb-6 italic">Secure Your Independence</h2>
+            <p class="text-slate-600 mb-10 text-sm leading-relaxed">
+                Take the step towards a self-reliant future. This <strong>10% high-yield offering</strong> is strictly for Republic Day week partners. Submit your documents for OTP verification.
+            </p>
+            
+            <a id="waButton" href="#" class="bg-blue-900 hover:bg-black text-white px-12 py-6 rounded-2xl font-bold text-xl inline-flex items-center transition-all shadow-2xl">
+                🇮🇳 Verify & Claim My Slot
             </a>
 
-            <div class="mt-12 pt-8 border-t">
-                <a href="https://omkarservices.in" target="_blank" class="text-blue-600 font-bold text-xs hover:underline uppercase tracking-widest">For our terms and conditions please Visit Main Portal: omkarservices.in</a>
+            <div class="mt-8 text-[10px] text-slate-400 uppercase tracking-widest">
+                Verification required via Aadhar/PAN linked WhatsApp
             </div>
         </div>
     </section>
 
-    <footer class="omkar-navy py-12 text-center text-slate-500 px-6 border-t border-slate-800">
-        <p class="text-[9px] tracking-widest uppercase mb-4 font-bold italic">Private Portfolio Portal | Omkar Enterprises | Pune HQ</p>
+    <footer class="omkar-navy py-12 text-center text-slate-500 border-t border-slate-800">
+        <p class="text-[9px] tracking-widest uppercase mb-2">Jai Hind | Omkar Enterprises | Pune HQ</p>
+        <p class="text-[8px] opacity-50">Private Offering for Vetted Partners Only</p>
     </footer>
 
     <script>
@@ -234,9 +147,10 @@
 
         function updateSchedule() {
             const principal = parseInt(bracketSelect.value);
-            let rate = 0.02; // Default 1L
+            let rate = 0.02; // Default 2%
             
-            if (principal === 30000) rate = 0.01;
+            // Slab Logic Updated
+            if (principal === 30000) rate = 0.10; 
             else if (principal === 200000) rate = 0.025;
 
             const monthlyROI = principal * rate;
@@ -247,23 +161,22 @@
             footROI.innerText = totalROI.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
             footCap.innerText = principal.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
 
-            waButton.href = `https://wa.me/9226393837?text=Hi%20Omkar%20Enterprises,%20I%20am%20ready%20for%20the%20${principal.toLocaleString('en-IN')}%20deployment.%20How%20do%20I%20start%20KYC?`;
+            waButton.href = `https://wa.me/9226393837?text=Jai%20Hind%20Omkar%20Enterprises,%20I%20want%20to%20secure%20the%20Republic%20Day%20Slot%20for%20${principal.toLocaleString('en-IN')}%20at%20${rate*100}%25%20ROI.%20How%20do%20I%20verify?`;
 
             let html = '';
             for (let i = 1; i <= 13; i++) {
                 const isFinalMonth = i === 13;
                 const currentROI = isFinalMonth ? 0 : monthlyROI;
                 const currentCapRepay = isFinalMonth ? principal : 0;
-                const note = isFinalMonth ? 'PDC Encashment' : 'Fixed Monthly ROI';
 
                 html += `
-                    <tr class="border-b ${isFinalMonth ? 'bg-amber-50 font-bold' : ''}">
-                        <td class="p-4 text-slate-500">Month ${i}</td>
-                        <td class="p-4 text-center text-blue-700">${currentROI > 0 ? currentROI.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }) : '--'}</td>
-                        <td class="p-4 text-center text-green-700">${currentCapRepay > 0 ? currentCapRepay.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }) : '--'}</td>
-                        <td class="p-4 text-right">
+                    <tr class="border-b ${isFinalMonth ? 'bg-orange-50 font-bold' : ''}">
+                        <td class="p-5 text-slate-500">Month ${i}</td>
+                        <td class="p-5 text-center republic-blue">${currentROI > 0 ? currentROI.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }) : '--'}</td>
+                        <td class="p-5 text-center text-green-700">${currentCapRepay > 0 ? currentCapRepay.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }) : '--'}</td>
+                        <td class="p-5 text-right">
                             <span class="px-2 py-1 text-[8px] rounded border border-slate-200 uppercase font-bold text-slate-400">
-                                ${note}
+                                ${isFinalMonth ? 'PDC Settlement' : 'Documented ROI'}
                             </span>
                         </td>
                     </tr>`;
@@ -271,8 +184,18 @@
             tableBody.innerHTML = html;
         }
 
+        // Slot Simulator
+        let currentSlots = 5;
+        function updateSlots() {
+            if (currentSlots > 1) {
+                currentSlots--;
+                document.getElementById('slotCount').innerText = currentSlots;
+                setTimeout(updateSlots, 45000);
+            }
+        }
+
         bracketSelect.addEventListener('change', updateSchedule);
-        window.onload = updateSchedule;
+        window.onload = () => { updateSchedule(); setTimeout(updateSlots, 10000); };
     </script>
 </body>
 </html>

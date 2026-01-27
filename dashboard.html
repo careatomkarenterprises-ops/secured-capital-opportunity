@@ -443,33 +443,92 @@
         </main>
     </div>
     
-           /* Loading Overlay */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+    // ============================================
+// OMKAR DASHBOARD - SYNC LOGIC (VERSION 6.0)
+// ============================================
+
+// 1. CONFIGURATION - Use your verified URL
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzeUgS7cnrpP9Llgw4XiOpvxfatzDD3gbEnbhp4iV0uEKeqKjDeTCjZhp2ucW8U3kmr/exec";
+
+// 2. INITIALIZE ON LOAD
+document.addEventListener('DOMContentLoaded', () => {
+    const investorId = localStorage.getItem('omkar_access_key');
+    if (!investorId) {
+        alert("Session expired. Please login again.");
+        window.location.href = 'partner-portal.html';
+        return;
+    }
+    loadDashboardData(investorId);
+});
+
+// 3. FETCH DATA FROM GOOGLE SHEETS
+async function loadDashboardData(id) {
+    showLoading(true);
+    try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=${id}`);
+        const result = await response.json();
+
+        if (result.success) {
+            const data = result.data;
+            // Update UI with Sheet Data
+            document.getElementById('investorName').textContent = data.FullName || "Investor";
+            document.getElementById('principalAmount').textContent = '₹' + Number(data.PrincipalAmount || 0).toLocaleString('en-IN');
+            document.getElementById('monthlyReturn').textContent = '₹' + Number(data.FixedMonthlyReturn || 0).toLocaleString('en-IN');
+            document.getElementById('totalReturns').textContent = '₹' + Number(data.TotalReturnsPaid || 0).toLocaleString('en-IN');
+            
+            // Handle Days to Expiry (Simple Calculation)
+            if(data.AgreementExpiryDate) {
+                const expiry = new Date(data.AgreementExpiryDate);
+                const diff = Math.ceil((expiry - new Date()) / (1000 * 60 * 60 * 24));
+                document.getElementById('daysToExpiry').textContent = diff > 0 ? diff : "Expired";
+            }
+
+            // Load Transactions & KYC
+            loadTransactions(id);
+            loadKYCStatus(id);
         }
-        
-        .spinner {
-            width: 70px;
-            height: 70px;
-            border: 5px solid rgba(212, 175, 55, 0.3);
-            border-top: 5px solid var(--gold-accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    } catch (e) {
+        console.error("Dashboard Sync Failed:", e);
+    } finally {
+        showLoading(false);
+    }
+}
+
+// 4. LOAD TRANSACTIONS TABLE
+async function loadTransactions(id) {
+    const res = await fetch(`${GOOGLE_SCRIPT_URL}?action=getTransactions&accessKey=${id}`);
+    const data = await res.json();
+    const tableBody = document.getElementById('recentTransactions');
+    tableBody.innerHTML = '';
+
+    if (data.success && data.transactions.length > 0) {
+        data.transactions.forEach(tx => {
+            const row = `<tr>
+                <td>${tx.TransactionDate || '-'}</td>
+                <td>${tx.TransactionType || 'Monthly Return'}</td>
+                <td>₹${tx.Amount || 0}</td>
+                <td><span class="status-badge ${tx.Status === 'Completed' ? 'status-active' : 'status-pending'}">${tx.Status}</span></td>
+                <td>${tx.ReferenceNo || '-'}</td>
+            </tr>`;
+            tableBody.insertAdjacentHTML('beforeend', row);
+        });
+    } else {
+        tableBody.innerHTML = '<tr><td colspan="5">No transactions found.</td></tr>';
+    }
+}
+
+// 5. BUTTON ACTIONS
+function logout() {
+    localStorage.clear();
+    window.location.href = 'partner-portal.html';
+}
+
+function showLoading(show) {
+    document.querySelector('.loading-overlay').style.display = show ? 'flex' : 'none';
+}
+
+// Add these to your buttons in the HTML
+document.querySelector('.btn-logout').onclick = logout;
     
     </script>
 </body>

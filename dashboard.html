@@ -1070,6 +1070,23 @@ function addDebugButton() {
 
 // Uncomment to add debug button
 // addDebugButton();
+
+        async function submitKYCLink(documentType, fileUrl) {
+    const accessKey = localStorage.getItem('omkar_access_key');
+    const params = new URLSearchParams({
+        action: 'uploadKYC', // You will add this case to your Code.gs
+        accessKey: accessKey,
+        docType: documentType,
+        docUrl: fileUrl
+    });
+
+    const response = await fetch(`${API_URL}?${params.toString()}`, { method: 'POST' });
+    const result = await response.json();
+    if (result.success) {
+        alert("Document submitted for verification!");
+        loadInvestorData(); // Refresh the progress bar
+    }
+}
     
     </script>
 </body>

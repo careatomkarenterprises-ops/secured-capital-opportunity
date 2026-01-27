@@ -2527,7 +2527,7 @@ function setupGuestForm() {
             
             // Send to Google Sheets
             const queryParams = new URLSearchParams(leadData).toString();
-            const response = await fetch(`${GOOGLE_SCRIPT_URL}?${queryParams}`);
+            const response = await fetch(GOOGLE_SCRIPT_URL + '?' + queryParams);
             
             let leadId = 'GUEST_' + Date.now().toString().slice(-8);
             
@@ -2554,11 +2554,11 @@ function setupGuestForm() {
             saveLoginSession(leadId, cleanMobile, true, guestData);
             
             // Show success modal
-            document.getElementById('leadIdDisplay').textContent = `Welcome, ${name}! Your Lead ID: ${leadId}`;
+            document.getElementById('leadIdDisplay').textContent = 'Welcome, ' + name + '! Your Lead ID: ' + leadId;
             showSuccessModal(name);
             
             // Redirect to dashboard after delay
-            setTimeout(() => {
+            setTimeout(function() {
                 window.location.href = 'dashboard.html';
             }, 2000);
             
@@ -2584,7 +2584,7 @@ function setupGuestForm() {
             
             saveLoginSession(fallbackId, cleanMobile, true, guestData);
             
-            setTimeout(() => {
+            setTimeout(function() {
                 window.location.href = 'dashboard.html';
             }, 1000);
         }
@@ -2596,10 +2596,10 @@ function setupGuestForm() {
  */
 function setupEventListeners() {
     // Feature cards click handlers
-    document.querySelectorAll('.feature-card').forEach(card => {
+    document.querySelectorAll('.feature-card').forEach(function(card) {
         card.addEventListener('click', function() {
             const title = this.querySelector('h3').textContent;
-            console.log(`Feature clicked: ${title}`);
+            console.log('Feature clicked: ' + title);
         });
     });
     
@@ -2614,6 +2614,35 @@ function setupEventListeners() {
 }
 
 // ========== HELPER FUNCTIONS ==========
+
+/**
+ * Validate login form
+ */
+function validateLoginForm(investorId, mobile) {
+    const usernameError = document.getElementById('usernameError');
+    const mobileError = document.getElementById('mobileError');
+    
+    let isValid = true;
+    
+    if (!investorId) {
+        showError(usernameError, 'Partner ID is required');
+        isValid = false;
+    } else if (investorId.length < 4) {
+        showError(usernameError, 'Partner ID must be at least 4 characters');
+        isValid = false;
+    }
+    
+    const cleanMobile = mobile.replace(/\D/g, '');
+    if (!cleanMobile) {
+        showError(mobileError, 'Mobile number is required');
+        isValid = false;
+    } else if (cleanMobile.length !== 10) {
+        showError(mobileError, 'Mobile number must be 10 digits');
+        isValid = false;
+    }
+    
+    return isValid;
+}
 
 /**
  * Save login session to localStorage
@@ -2682,7 +2711,7 @@ function showSuccessModal(userName = 'Partner') {
     const modal = document.getElementById('successModal');
     if (modal) {
         modal.style.display = 'flex';
-        document.getElementById('leadIdDisplay').textContent = `Welcome, ${userName}!`;
+        document.getElementById('leadIdDisplay').textContent = 'Welcome, ' + userName + '!';
     }
 }
 
@@ -2709,7 +2738,7 @@ function hideError(element) {
  * Show login error alert
  */
 function showLoginError(message) {
-    alert(`❌ Login Failed\n\n${message}\n\nNeed assistance?\n📞 Call: +91 8169 302 861\n📱 WhatsApp: +91 7066 393 830`);
+    alert('❌ Login Failed\n\n' + message + '\n\nNeed assistance?\n📞 Call: +91 8169 302 861\n📱 WhatsApp: +91 7066 393 830');
 }
 
 /**
@@ -2723,7 +2752,7 @@ function showPasswordAssistance() {
  * Contact support function
  */
 function contactSupport(channel) {
-    console.log(`Contacting support via ${channel}`);
+    console.log('Contacting support via ' + channel);
     
     switch(channel) {
         case 'phone':
@@ -2749,7 +2778,7 @@ function showFeature(feature) {
         support: 'Support Center - Get help and assistance'
     };
     
-    console.log(`Feature: ${features[feature] || feature}`);
+    console.log('Feature: ' + (features[feature] || feature));
 }
 
 // ========== TEST LOGIN FUNCTION ==========
@@ -2785,7 +2814,7 @@ window.login = async function() {
     }
     
     // Redirect
-    setTimeout(() => {
+    setTimeout(function() {
         window.location.href = 'dashboard.html';
     }, 1000);
 };
@@ -2793,7 +2822,7 @@ window.login = async function() {
 // Function to load Past Performance on the login page
 async function loadPublicPerformance() {
     try {
-        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPerformance`);
+        const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getPerformance');
         const result = await response.json();
         
         if (result.success && result.summary) {
@@ -2817,17 +2846,46 @@ window.debugPortal = function() {
     console.log("Local Storage:", { ...localStorage });
     
     // Test Google Script connection
-    fetch(`${GOOGLE_SCRIPT_URL}?action=test`)
-        .then(r => r.text())
-        .then(data => console.log("Google Script Test:", data))
-        .catch(err => console.error("Google Script Test Error:", err));
+    fetch(GOOGLE_SCRIPT_URL + '?action=test')
+        .then(function(r) { return r.text(); })
+        .then(function(data) { console.log("Google Script Test:", data); })
+        .catch(function(err) { console.error("Google Script Test Error:", err); });
         
     // Test TEST001 investor
-    fetch(`${GOOGLE_SCRIPT_URL}?action=getPartner&accessKey=TEST001`)
-        .then(r => r.json())
-        .then(data => console.log("TEST001 Investor:", data))
-        .catch(err => console.error("TEST001 Test Error:", err));
+    fetch(GOOGLE_SCRIPT_URL + '?action=getPartner&accessKey=TEST001')
+        .then(function(r) { return r.json(); })
+        .then(function(data) { console.log("TEST001 Investor:", data); })
+        .catch(function(err) { console.error("TEST001 Test Error:", err); });
 };
+
+// Make sure GOOGLE_SCRIPT_URL is defined
+if (typeof GOOGLE_SCRIPT_URL === 'undefined') {
+    console.error("GOOGLE_SCRIPT_URL is not defined!");
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Omkar Enterprises Partner Portal - Final Initialization");
+    
+    // Initialize time display
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 60000);
+    
+    // Check if user is already logged in
+    checkLoginStatus();
+    
+    // Setup navigation
+    setupNavigation();
+    
+    // Setup forms
+    setupLoginForm();
+    setupGuestForm();
+    
+    // Setup event listeners
+    setupEventListeners();
+    
+    console.log("Partner portal initialized successfully");
+});
 
 </script>
 

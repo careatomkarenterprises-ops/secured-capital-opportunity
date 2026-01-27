@@ -2352,8 +2352,7 @@ loginForm.addEventListener('submit', async function(e) {
         console.log("Attempting login for:", investorId, mobile);
         
         // FIXED: Use the correct parameter names from your Google Script
-        const url = `${https://script.google.com/macros/s/AKfycbzeUgS7cnrpP9Llgw4XiOpvxfatzDD3gbEnbhp4iV0uEKeqKjDeTCjZhp2ucW8U3kmr/exec}?action=verifyLogin&accessKey=${encodeURIComponent(investorId)}&mobile=${encodeURIComponent(mobile)}`;
-        console.log("Calling API:", url);
+       const url = `https://script.google.com/macros/s/AKfycbzeUgS7cnrpP9Llgw4XiOpvxfatzDD3gbEnbhp4iV0uEKeqKjDeTCjZhp2ucW8U3kmr/exec?action=verifyLogin&accessKey=${encodeURIComponent(investorId)}&mobile=${encodeURIComponent(mobile)}`;
         
         const response = await fetch(url);
         

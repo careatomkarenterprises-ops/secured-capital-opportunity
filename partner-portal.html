@@ -1761,7 +1761,7 @@
         </div>
     </section>
 
-    <!-- Guest Access Section - FIXED VERSION -->
+    <!-- Guest Access Section - FIXED -->
     <div class="guest-access-container">
         <h3 style="color: var(--gold-accent); margin-bottom: 15px;">New to Omkar Enterprises?</h3>
         <p style="color: var(--slate-light); margin-bottom: 20px;">Explore our 10-year growth track record and payout history.</p>
@@ -1798,8 +1798,14 @@
                     </label>
                 </div>
                 
-                <button type="submit" id="guestBtn" class="connect-btn">
-                    <i class="fas fa-check-circle"></i> Accept Terms & Enter Dashboard
+<div class="guest-access-container">
+    <h3>New to Omkar Enterprises?</h3>
+    <p>Explore our 10-year growth track record and payout history.</p>
+    
+    <button type="button" id="journeyBtn" class="connect-btn">
+        <i class="fas fa-rocket"></i> Start Your Journey Now
+    </button>
+</div>
                 </button>
             </form>
         </div>
@@ -2326,110 +2332,109 @@ function setupLoginForm() {
         });
     }
 
-    // Form submission - FIXED VERSION
-    loginForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
+   // Form submission - FIXED VERSION
+loginForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const investorId = usernameInput.value.trim().toUpperCase();
+    const mobile = mobileInput.value.trim().replace(/\D/g, '');
+    
+    // Basic validation
+    if (!investorId || investorId.length < 4) {
+        alert('Please enter a valid Investor ID (minimum 4 characters)');
+        return;
+    }
+    
+    if (!mobile || mobile.length !== 10) {
+        alert('Please enter a valid 10-digit mobile number');
+        return;
+    }
+    
+    // Show loading
+    showLoading(true);
+    loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+    loginBtn.disabled = true;
+    
+    try {
+        console.log("Attempting login for:", investorId, mobile);
         
-        const investorId = usernameInput.value.trim().toUpperCase();
-        const mobile = mobileInput.value.trim().replace(/\D/g, '');
+        // FIXED: Use the correct parameter names from your Google Script
+        const url = `${GOOGLE_SCRIPT_URL}?action=verifyLogin&accessKey=${encodeURIComponent(investorId)}&mobile=${encodeURIComponent(mobile)}`;
+        console.log("Calling API:", url);
         
-        // Basic validation
-        if (!investorId || investorId.length < 4) {
-            alert('Please enter a valid Investor ID (minimum 4 characters)');
-            return;
-        }
+        const response = await fetch(url);
         
-        if (!mobile || mobile.length !== 10) {
-            alert('Please enter a valid 10-digit mobile number');
-            return;
-        }
-        
-        // Show loading
-        showLoading(true);
-        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
-        loginBtn.disabled = true;
-        
-        try {
-            console.log("Attempting login for:", investorId, mobile);
+        if (response.ok) {
+            const result = await response.json();
+            console.log("Login Response:", result);
             
-            // FIXED: Use the correct parameter names from your Google Script
-            const url = `${GOOGLE_SCRIPT_URL}?action=verifyLogin&accessKey=${encodeURIComponent(investorId)}&mobile=${encodeURIComponent(mobile)}`;
-            console.log("Calling API:", url);
-            
-            const response = await fetch(url);
-            
-            if (response.ok) {
-                const result = await response.json();
-                console.log("Login Response:", result);
+            if (result.success) {
+                // SUCCESS - Save session and redirect
+                localStorage.setItem('omkar_access_key', investorId);
+                localStorage.setItem('omkar_mobile', mobile);
+                localStorage.setItem('omkar_login_time', new Date().toISOString());
+                localStorage.setItem('omkar_guest_mode', 'false');
                 
-                if (result.success) {
-                    // SUCCESS - Save session and redirect
-                    localStorage.setItem('omkar_access_key', investorId);
-                    localStorage.setItem('omkar_mobile', mobile);
-                    localStorage.setItem('omkar_login_time', new Date().toISOString());
-                    localStorage.setItem('omkar_guest_mode', 'false');
-                    
-                    // Save any user data returned
-                    if (result.data) {
-                        localStorage.setItem('omkar_user_data', JSON.stringify(result.data));
-                    }
-                    
-                    console.log("Login successful, redirecting to dashboard...");
-                    
-                    // Show success modal briefly
-                    showSuccessModal(investorId);
-                    
-                    // Redirect to dashboard
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1500);
-                    
-                } else {
-                    // API returned error
-                    console.error("Login failed:", result.error);
-                    
-                    // Check if it's a "not found" error
-                    if (result.error && (result.error.includes('not found') || result.error.includes('No client'))) {
-                        // Offer guest mode
-                        if (confirm(`Account ${investorId} not found. Would you like to enter in guest mode to view sample data?`)) {
-                            saveGuestSession(investorId, mobile);
-                            setTimeout(() => {
-                                window.location.href = 'dashboard.html';
-                            }, 1000);
-                        } else {
-                            showLoading(false);
-                            loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
-                            loginBtn.disabled = false;
-                        }
+                // Save any user data returned
+                if (result.data) {
+                    localStorage.setItem('omkar_user_data', JSON.stringify(result.data));
+                }
+                
+                console.log("Login successful, redirecting to dashboard...");
+                
+                // Show success modal briefly
+                showSuccessModal(investorId);
+                
+                // Redirect to dashboard
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+                
+            } else {
+                // API returned error
+                console.error("Login failed:", result.error);
+                
+                // Check if it's a "not found" error
+                if (result.error && (result.error.includes('not found') || result.error.includes('No client'))) {
+                    // Offer guest mode
+                    if (confirm(`Account ${investorId} not found. Would you like to enter in guest mode to view sample data?`)) {
+                        saveGuestSession(investorId, mobile);
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1000);
                     } else {
-                        alert(`Login Failed: ${result.error || 'Unknown error'}`);
                         showLoading(false);
                         loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
                         loginBtn.disabled = false;
                     }
+                } else {
+                    alert(`Login Failed: ${result.error || 'Unknown error'}`);
+                    showLoading(false);
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+                    loginBtn.disabled = false;
                 }
-            } else {
-                // HTTP error
-                throw new Error(`HTTP ${response.status}`);
             }
-            
-        } catch (error) {
-            console.error("Network error:", error);
-            
-            // Network error - offer offline mode
-            if (confirm("Unable to connect to server. Enter in guest mode with sample data?")) {
-                saveGuestSession(investorId, mobile);
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 1000);
-            } else {
-                showLoading(false);
-                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
-                loginBtn.disabled = false;
-            }
+        } else {
+            // HTTP error
+            throw new Error(`HTTP ${response.status}`);
         }
-    });
-}
+        
+    } catch (error) {
+        console.error("Network error:", error);
+        
+        // Network error - offer offline mode
+        if (confirm("Unable to connect to server. Enter in guest mode with sample data?")) {
+            saveGuestSession(investorId, mobile);
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        } else {
+            showLoading(false);
+            loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+            loginBtn.disabled = false;
+        }
+    }
+});
 
 // Helper function for guest session
 function saveGuestSession(investorId, mobile) {
@@ -2453,7 +2458,10 @@ function setupGuestForm() {
     const guestWrapper = document.getElementById('guestFormWrapper');
     const guestForm = document.getElementById('guestForm');
     
-    if (!showBtn || !guestWrapper || !guestForm) return;
+    if (!showBtn || !guestWrapper || !guestForm) {
+        console.error("Guest form elements not found!");
+        return;
+    }
     
     // Show guest form when button clicked
     showBtn.addEventListener('click', function(e) {
@@ -2612,35 +2620,6 @@ function setupEventListeners() {
 }
 
 // ========== HELPER FUNCTIONS ==========
-
-/**
- * Validate login form
- */
-function validateLoginForm(investorId, mobile) {
-    const usernameError = document.getElementById('usernameError');
-    const mobileError = document.getElementById('mobileError');
-    
-    let isValid = true;
-    
-    if (!investorId) {
-        showError(usernameError, 'Partner ID is required');
-        isValid = false;
-    } else if (investorId.length < 4) {
-        showError(usernameError, 'Partner ID must be at least 4 characters');
-        isValid = false;
-    }
-    
-    const cleanMobile = mobile.replace(/\D/g, '');
-    if (!cleanMobile) {
-        showError(mobileError, 'Mobile number is required');
-        isValid = false;
-    } else if (cleanMobile.length !== 10) {
-        showError(mobileError, 'Mobile number must be 10 digits');
-        isValid = false;
-    }
-    
-    return isValid;
-}
 
 /**
  * Save login session to localStorage
@@ -2833,7 +2812,6 @@ async function loadPublicPerformance() {
         console.error("Performance load failed:", error);
     }
 }       
-
 // ========== DEBUG FUNCTIONS ==========
 
 /**
@@ -2857,36 +2835,25 @@ window.debugPortal = function() {
         .catch(err => console.error("TEST001 Test Error:", err));
 };
 
-// Uncomment to add debug button
-// window.addDebugButton = function() {
-//     const debugBtn = document.createElement('button');
-//     debugBtn.innerHTML = '🐛 Debug Portal';
-//     debugBtn.style.cssText = `
-//         position: fixed;
-//         bottom: 100px;
-//         right: 30px;
-//         background: #ff9900;
-//         color: white;
-//         border: none;
-//         padding: 10px 15px;
-//         border-radius: 5px;
-//         cursor: pointer;
-//         z-index: 9999;
-//         font-size: 12px;
-//         font-weight: bold;
-//         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-//     `;
+<script>
+document.getElementById('journeyBtn').addEventListener('click', function() {
+    // This finds the pop-up (modal) already in your code
+    const modal = document.querySelector('.success-modal');
     
-//     debugBtn.onclick = function() {
-//         debugPortal();
-//         alert("Check browser console (F12) for debug info");
-//     };
+    // This makes the pop-up visible
+    modal.style.display = 'flex';
     
-//     document.body.appendChild(debugBtn);
-// };
+    // This updates the text inside the pop-up to show it's for registration
+    document.querySelector('.modal-content h3').innerText = "Register Your Interest";
+    document.querySelector('.modal-content p').innerText = "To view our 10-year track record, please provide your contact details. Our team will verify and grant you guest access.";
+    
+    // This clears any old IDs so the visitor knows they need to register
+    const leadDisplay = document.querySelector('.lead-id-display');
+    if(leadDisplay) leadDisplay.style.display = 'none';
+});
+</script>
 
-// Uncomment to add debug button
-// addDebugButton();
+
 </script>
 
 </body>

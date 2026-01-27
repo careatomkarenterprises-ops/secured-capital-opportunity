@@ -1234,5 +1234,33 @@
     }
     
     </script>
+
+<script>
+// ================= SAFE FIXES FOR DASHBOARD (NO UI / CONTENT CHANGE) =================
+function showError(el, msg) {
+  if (!el) return;
+  el.innerText = msg;
+  el.style.display = 'block';
+}
+function hideError(el) {
+  if (!el) return;
+  el.style.display = 'none';
+}
+function showLoading(state) {
+  const overlay = document.getElementById('loadingOverlay');
+  if (!overlay) return;
+  overlay.style.display = state ? 'flex' : 'none';
+}
+function checkAuth() {
+  const key = localStorage.getItem('accessKey');
+  if (!key) {
+    window.location.href = 'partner-portal.html';
+  }
+  return key;
+}
+function setupEventListeners() {}
+function initDashboard() {}
+</script>
+
 </body>
 </html>

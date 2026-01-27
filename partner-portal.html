@@ -2442,7 +2442,16 @@ function saveGuestSession(investorId, mobile) {
         localStorage.setItem('omkar_guest_mode', 'false');
     }
 }
+<script>
+document.getElementById('showGuestFormBtn').addEventListener('click', function() {
+    const modal = document.getElementById('successModal');
+    if(modal) {
+        modal.style.display = 'flex';
+        modal.querySelector('h3').innerText = "Register Your Interest";
+        modal.querySelector('p').innerText = "Please provide your details to view our 10-year track record.";
+    }
+});
+</script>
 
-    </script>
 </body>
 </html>

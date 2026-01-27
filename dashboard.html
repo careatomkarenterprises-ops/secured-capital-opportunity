@@ -1087,6 +1087,20 @@ function addDebugButton() {
         loadInvestorData(); // Refresh the progress bar
     }
 }
+async function requestCapitalDeployment(amount) {
+    const accessKey = localStorage.getItem('omkar_access_key');
+    const response = await fetch(`${API_URL}`, {
+        method: 'POST',
+        body: JSON.stringify({
+            action: 'registerLead',
+            name: document.getElementById('investorName').textContent,
+            mobile: localStorage.getItem('omkar_mobile'),
+            amount: amount,
+            notes: "Existing Investor Capital Deployment Request" [cite: 4]
+        })
+    });
+    // Handle response...
+}
     
     </script>
 </body>

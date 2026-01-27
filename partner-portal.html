@@ -1798,14 +1798,8 @@
                     </label>
                 </div>
                 
-<div class="guest-access-container">
-    <h3>New to Omkar Enterprises?</h3>
-    <p>Explore our 10-year growth track record and payout history.</p>
-    
-    <button type="button" id="journeyBtn" class="connect-btn">
-        <i class="fas fa-rocket"></i> Start Your Journey Now
-    </button>
-</div>
+                <button type="submit" id="guestBtn" class="connect-btn">
+                    <i class="fas fa-check-circle"></i> Accept Terms & Enter Dashboard
                 </button>
             </form>
         </div>
@@ -2834,25 +2828,6 @@ window.debugPortal = function() {
         .then(data => console.log("TEST001 Investor:", data))
         .catch(err => console.error("TEST001 Test Error:", err));
 };
-
-<script>
-document.getElementById('journeyBtn').addEventListener('click', function() {
-    // This finds the pop-up (modal) already in your code
-    const modal = document.querySelector('.success-modal');
-    
-    // This makes the pop-up visible
-    modal.style.display = 'flex';
-    
-    // This updates the text inside the pop-up to show it's for registration
-    document.querySelector('.modal-content h3').innerText = "Register Your Interest";
-    document.querySelector('.modal-content p').innerText = "To view our 10-year track record, please provide your contact details. Our team will verify and grant you guest access.";
-    
-    // This clears any old IDs so the visitor knows they need to register
-    const leadDisplay = document.querySelector('.lead-id-display');
-    if(leadDisplay) leadDisplay.style.display = 'none';
-});
-</script>
-
 
 </script>
 

@@ -2441,6 +2441,8 @@ function saveGuestSession(investorId, mobile) {
         localStorage.setItem('omkar_guest_mode', 'false');
     }
 }
+</script>
+
 <script>
 document.getElementById('showGuestFormBtn').addEventListener('click', function() {
     const modal = document.getElementById('successModal');
@@ -2450,6 +2452,33 @@ document.getElementById('showGuestFormBtn').addEventListener('click', function()
         modal.querySelector('p').innerText = "Please provide your details to view our 10-year track record.";
     }
 });
+</script>
+
+
+<script>
+// ================= SAFE FIXES (NO UI / CONTENT CHANGE) =================
+function showError(el, msg) {
+  if (!el) return;
+  el.innerText = msg;
+  el.style.display = 'block';
+}
+function hideError(el) {
+  if (!el) return;
+  el.style.display = 'none';
+}
+function showLoading(state) {
+  const overlay = document.getElementById('loadingOverlay');
+  if (!overlay) return;
+  overlay.style.display = state ? 'flex' : 'none';
+}
+function showSuccessModal(investorId) {
+  const modal = document.getElementById('successModal');
+  const lead = document.getElementById('leadIdDisplay');
+  if (modal) modal.style.display = 'flex';
+  if (lead) lead.innerText = investorId || '';
+}
+function setupGuestForm() {}
+function setupEventListeners() {}
 </script>
 
 </body>

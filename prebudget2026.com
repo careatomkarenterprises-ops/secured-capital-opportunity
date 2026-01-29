@@ -100,7 +100,7 @@
             <div class="text-white font-bold text-2xl tracking-tighter flex items-center">
                 <span class="budget-gold font-extrabold">OMKAR</span>
                 <span class="ml-2 font-light text-gray-200">ENTERPRISES</span>
-                <span class="ml-3 text-xs bg-white budget-blue px-3 py-1 rounded-full font-bold">Since 2005</span>
+                <span class="ml-3 text-xs bg-white budget-blue px-3 py-1 rounded-full font-bold">Since 2018</span>
             </div>
             <div class="flex items-center space-x-3">
                 <div class="hidden md:flex items-center space-x-2">
@@ -447,6 +447,11 @@
                 <span class="text-[#d4af37] font-extrabold">OMKAR</span>
                 <span class="ml-2 font-light text-gray-300">ENTERPRISES</span>
             </div>
+          <div class="text-center text-xs text-gray-500 mt-8">
+    <a href="/terms" class="hover:text-blue-600">Investment Terms</a> | 
+    <a href="/disclaimer" class="hover:text-blue-600">Legal Disclaimer</a> | 
+    <a href="/privacy" class="hover:text-blue-600">Privacy Policy</a>
+</div>
             <p class="text-sm mb-2">
                 <i class="fas fa-map-marker-alt mr-2"></i>Pune Headquarters | Established 2005
             </p>
@@ -456,6 +461,7 @@
                 <p>© 2026 Omkar Enterprises. All rights reserved.</p>
             </div>
         </div>
+      
     </footer>
 
     <script>

@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRFSK OMKAR SERVICES | Professional Business Lending Solutions</title>
-    <meta name="description" content="Registered MSME offering business loans, MSME financing, financial advisory, company setup and automation services across Maharashtra">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>TRFSK OMKAR SERVICES | Business Loan Mediator & Financial Consultant</title>
+    <meta name="description" content="Professional business loan mediation services connecting businesses with 35+ RBI registered banks & NBFCs">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./favicon.png">
@@ -40,6 +40,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -48,6 +49,8 @@
             color: var(--dark);
             background-color: #f9fafb;
             overflow-x: hidden;
+            width: 100%;
+            -webkit-text-size-adjust: 100%;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -67,13 +70,14 @@
             transition: var(--transition);
         }
 
-        ul {
+        ul, ol {
             list-style: none;
         }
 
         img {
             max-width: 100%;
             height: auto;
+            display: block;
         }
 
         .container {
@@ -84,44 +88,48 @@
         }
 
         .section-padding {
-            padding: 80px 0;
+            padding: 60px 0;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
+            width: 100%;
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
             position: relative;
             display: inline-block;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            padding: 0 10px;
         }
 
         .section-header h2::after {
             content: '';
             position: absolute;
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background-color: var(--accent);
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
         }
 
         .section-header p {
-            max-width: 700px;
+            max-width: 100%;
             margin: 0 auto;
             color: var(--gray);
-            font-size: 1.1rem;
+            font-size: 1rem;
+            padding: 0 15px;
         }
 
         .btn {
             display: inline-block;
-            padding: 14px 32px;
+            padding: 14px 28px;
             background-color: var(--accent);
             color: white;
             border-radius: var(--radius);
@@ -131,11 +139,14 @@
             cursor: pointer;
             transition: var(--transition);
             font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            width: auto;
+            white-space: nowrap;
         }
 
         .btn:hover {
             background-color: #c1121f;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
 
@@ -166,183 +177,328 @@
             color: white;
         }
 
-        /* Header Styles */
+        /* Header - Mobile Optimized */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: white;
             box-shadow: var(--shadow);
             z-index: 1000;
             transition: var(--transition);
+            padding: 12px 0;
         }
 
         header.scrolled {
-            padding: 10px 0;
+            padding: 8px 0;
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 0 15px;
+            width: 100%;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            min-width: 0;
+            flex: 1;
         }
 
         .logo img {
-            height: 50px;
+            height: 40px;
             width: auto;
-            border-radius: var(--radius);
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            min-width: 0;
+            overflow: hidden;
         }
 
         .logo-text h1 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+            font-size: 1.1rem;
+            margin-bottom: 3px;
             color: var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .logo-text p {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--gray);
             margin-bottom: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: block;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+            background: none;
+            border: none;
+            padding: 5px;
+            margin-left: 10px;
+            z-index: 1001;
+        }
+
+        /* Navigation - Mobile Optimized */
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            padding: 80px 30px 30px;
+            transition: var(--transition);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        nav.active {
+            right: 0;
         }
 
         nav ul {
             display: flex;
-            gap: 30px;
+            flex-direction: column;
+            gap: 20px;
         }
 
         nav ul li a {
             font-weight: 600;
             color: var(--dark);
-            position: relative;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            bottom: -5px;
-            left: 0;
+            display: block;
+            padding: 10px 15px;
+            border-radius: var(--radius);
             transition: var(--transition);
         }
 
-        nav ul li a:hover::after,
-        nav ul li a.active::after {
-            width: 100%;
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--light);
+            color: var(--accent);
         }
 
-        .header-cta {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .phone-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 150px;
-            padding-bottom: 100px;
-            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.8)), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
+        nav ul li a.partner-link {
+            color: var(--accent);
+            font-weight: 700;
+            border: 2px solid var(--accent);
             text-align: center;
         }
 
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+        /* Overlay for mobile menu */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        /* Header CTA - Mobile Optimized */
+        .header-cta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .phone-link {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .header-cta .btn {
+            display: none;
+            padding: 10px 16px;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section - Mobile Optimized */
+        .hero {
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.8)), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: white;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+            line-height: 1.3;
+            padding: 0 10px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
+            font-size: 1rem;
+            max-width: 100%;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+            line-height: 1.5;
+            padding: 0 15px;
         }
 
         .hero-btns {
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            padding: 0 15px;
         }
 
-        /* Banking Partners */
+        .hero-btns .btn {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        /* Banking Partners - Mobile Optimized */
         .partners-section {
             background-color: var(--light);
         }
 
         .partners-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             align-items: center;
             justify-items: center;
-            margin-top: 40px;
+            margin-top: 30px;
+            width: 100%;
         }
 
         .partner-logo {
             background: white;
-            padding: 25px;
+            padding: 15px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100px;
+            height: 90px;
             width: 100%;
             transition: var(--transition);
         }
 
-        .partner-logo:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+        .partner-logo div {
+            text-align: center;
         }
 
-        .partner-logo img {
-            max-height: 50px;
-            max-width: 120px;
-            filter: grayscale(100%);
-            opacity: 0.8;
-            transition: var(--transition);
+        .partner-logo i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
         }
 
-        .partner-logo:hover img {
-            filter: grayscale(0%);
-            opacity: 1;
+        .partner-logo p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.2;
         }
 
-        /* Services Grid */
+        .partner-count {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* Document Checklist - Mobile Optimized */
+        .documents-section {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 25px 20px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .document-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--secondary);
+            width: 100%;
+        }
+
+        .document-item i {
+            color: var(--success);
+            font-size: 1.1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .document-item div {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .document-item h4 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .document-item p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        /* Services Grid - Mobile Optimized */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+            width: 100%;
         }
 
         .service-card {
@@ -351,174 +507,185 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            width: 100%;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
         }
 
         .service-icon {
-            height: 120px;
+            height: 100px;
             background-color: var(--primary);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 2.5rem;
+            width: 100%;
         }
 
         .service-content {
-            padding: 30px;
+            padding: 20px;
+            width: 100%;
         }
 
         .service-content h3 {
             color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
         }
 
         .service-content p {
             color: var(--gray);
-        }
-
-        /* About Section */
-        .about-section {
-            background-color: var(--light);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .features-list {
-            margin-top: 30px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .feature-item i {
-            color: var(--success);
-            margin-right: 15px;
-            margin-top: 5px;
-            font-size: 1.2rem;
-        }
-
-        /* Process Section */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .process-step {
-            text-align: center;
-            padding: 30px 20px;
-            background-color: white;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-
-        .step-number {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .process-step h4 {
-            margin-top: 10px;
+            font-size: 0.95rem;
             margin-bottom: 15px;
-            color: var(--primary);
+            line-height: 1.5;
         }
 
-        /* Contact Section */
-        .contact-section {
-            background-color: var(--primary);
+        .service-content .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            width: auto;
+        }
+
+        /* Partner Section - Mobile Optimized */
+        .partner-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d3748 100%);
             color: white;
+            width: 100%;
         }
 
-        .contact-section .section-header h2 {
-            color: white;
-        }
-
-        .contact-section .section-header p {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .contact-container {
+        .partner-benefits {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+            width: 100%;
         }
 
-        .contact-info h3 {
-            margin-bottom: 30px;
+        .partner-benefit {
+            text-align: center;
+            padding: 25px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+            width: 100%;
+        }
+
+        .partner-benefit i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .partner-benefit h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
             color: white;
         }
 
-        .contact-details {
-            margin-bottom: 30px;
+        .partner-benefit p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            line-height: 1.5;
         }
 
-        .contact-detail {
+        .partner-benefit .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            width: auto;
+        }
+
+        /* Consent Form - Mobile Optimized */
+        .consent-section {
+            background-color: #fff8f1;
+            border: 2px solid var(--warning);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .consent-box {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--light-gray);
+            width: 100%;
+        }
+
+        .consent-checkbox {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: var(--radius);
+            border: 1px solid var(--light-gray);
+            width: 100%;
         }
 
-        .contact-detail i {
-            font-size: 1.2rem;
-            margin-right: 15px;
-            color: var(--accent);
-            margin-top: 5px;
+        .consent-checkbox input[type="checkbox"] {
+            margin-top: 3px;
+            transform: scale(1.1);
+            flex-shrink: 0;
         }
 
+        .consent-text {
+            font-size: 0.9rem;
+            color: var(--dark);
+            line-height: 1.5;
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Contact Container - FIXED */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .contact-container {
+                flex-direction: row;
+                gap: 40px;
+            }
+        }
+
+        /* Contact Form - Mobile Optimized */
         .contact-form {
             background-color: white;
-            padding: 40px;
+            padding: 25px 20px;
             border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .contact-form h3 {
             color: var(--primary);
-            margin-bottom: 25px;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            width: 100%;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: var(--dark);
+            font-size: 0.95rem;
         }
 
         .form-control {
@@ -529,6 +696,7 @@
             font-size: 1rem;
             font-family: 'Poppins', sans-serif;
             transition: var(--transition);
+            box-sizing: border-box;
         }
 
         .form-control:focus {
@@ -537,89 +705,112 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        /* Consent Form Section */
-        .consent-section {
-            background-color: #fff8f1;
-            border: 2px solid var(--warning);
-            border-radius: var(--radius);
-            padding: 30px;
-            margin: 40px 0;
+        /* Contact Info - Mobile Optimized */
+        .contact-info {
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        .consent-box {
-            background: white;
-            padding: 25px;
-            border-radius: var(--radius);
-            border: 1px solid var(--light-gray);
+        .contact-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
         }
 
-        .consent-checkbox {
+        .contact-details {
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .contact-detail {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin: 20px 0;
-            padding: 20px;
-            background: #f8fafc;
-            border-radius: var(--radius);
+            margin-bottom: 18px;
+            width: 100%;
         }
 
-        .consent-checkbox input[type="checkbox"] {
-            margin-top: 5px;
-            transform: scale(1.2);
+        .contact-detail i {
+            font-size: 1.1rem;
+            margin-right: 12px;
+            color: var(--accent);
+            margin-top: 3px;
+            flex-shrink: 0;
         }
 
-        .consent-text {
-            font-size: 0.95rem;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .consent-text strong {
+        .contact-detail h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
             color: var(--primary);
         }
 
-        /* Footer */
+        .contact-detail p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        .contact-detail a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .contact-detail a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer - Mobile Optimized */
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 60px 0 30px;
+            padding: 40px 0 20px;
+            width: 100%;
         }
 
         .footer-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+            width: 100%;
         }
 
         .footer-logo img {
-            height: 50px;
-            margin-bottom: 20px;
+            height: 45px;
+            margin-bottom: 15px;
         }
 
         .company-details-footer {
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 15px;
+            padding-top: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .company-details-footer p {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
         }
 
-        .footer-links h4,
-        .footer-services h4,
-        .footer-contact h4 {
+        .footer-links h5,
+        .footer-services h5,
+        .footer-contact h5 {
             color: white;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
         }
 
         .footer-links ul li,
         .footer-services ul li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a,
+        .footer-services ul li a {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .footer-links ul li a:hover,
@@ -628,167 +819,243 @@
         }
 
         .footer-contact p {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .footer-contact i {
             color: var(--accent);
-            width: 20px;
+            width: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 30px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+        /* Financial Disclaimer - Mobile Optimized */
+        .financial-disclaimer {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            line-height: 1.5;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .footer-links-container {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+            font-size: 0.85rem;
         }
 
         .footer-links-container a {
             color: rgba(255, 255, 255, 0.8);
+            white-space: nowrap;
         }
 
-        .footer-links-container a:hover {
-            color: var(--accent);
+        .copyright {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h2 {
-                font-size: 2.5rem;
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 80px 0;
             }
             
             .section-header h2 {
                 font-size: 2.2rem;
+                padding: 0;
+            }
+            
+            .section-header p {
+                font-size: 1.1rem;
+                max-width: 700px;
+                padding: 0;
+            }
+            
+            .header-cta .btn {
+                display: inline-block;
+            }
+            
+            .phone-link {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            nav {
+                position: static;
+                width: auto;
+                height: auto;
+                background: none;
+                box-shadow: none;
+                padding: 0;
+                display: block;
             }
             
             nav ul {
-                gap: 20px;
+                flex-direction: row;
+                gap: 25px;
+            }
+            
+            nav ul li a {
+                padding: 8px 0;
+            }
+            
+            nav ul li a:hover,
+            nav ul li a.active {
+                background: none;
+            }
+            
+            .menu-overlay {
+                display: none !important;
+            }
+            
+            .hero {
+                padding-top: 140px;
+                padding-bottom: 80px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+                padding: 0;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+                padding: 0;
+            }
+            
+            .hero-btns {
+                flex-direction: row;
+                justify-content: center;
+                padding: 0;
+            }
+            
+            .hero-btns .btn {
+                width: auto;
             }
             
             .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .documents-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            
+            .partner-benefits {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            
+            .contact-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
+            }
+            
+            .contact-info h3,
+            .contact-form h3 {
+                text-align: left;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .partners-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 12px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .partner-logo {
+                padding: 12px;
+                height: 80px;
+            }
+            
+            .partner-logo i {
+                font-size: 1.3rem;
+            }
+            
+            .partner-logo p {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Fix for About Section Grid */
+        #about .container > div {
+            width: 100%;
+        }
+        
+        #about .container > div > div {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            #about .container > div > div {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                background-color: white;
-                box-shadow: var(--shadow);
-                padding: 30px;
-                transition: var(--transition);
-                z-index: 999;
-            }
-
-            nav.active {
-                left: 0;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .header-cta .btn {
-                display: none;
-            }
-
-            .hero {
-                padding-top: 120px;
-                padding-bottom: 80px;
-            }
-
-            .hero h2 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section-padding {
-                padding: 60px 0;
-            }
-
-            .contact-form {
-                padding: 30px;
-            }
-            
-            .partners-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Fix for Process Section */
+        #process .container > div {
+            width: 100%;
         }
-
-        @media (max-width: 576px) {
-            .hero h2 {
-                font-size: 1.8rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .service-content {
-                padding: 20px;
-            }
-            
-            .contact-form {
-                padding: 20px;
-            }
-            
-            .consent-section {
-                padding: 20px;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
+        
+        #process .container > div > div {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
         }
     </style>
 </head>
@@ -800,93 +1067,138 @@
                 <img src="./logo.png" alt="TRFSK OMKAR SERVICES Logo">
                 <div class="logo-text">
                     <h1>TRFSK OMKAR SERVICES</h1>
-                    <p>Business Lending & Financial Solutions</p>
+                    <p>Business Loan Mediator</p>
                 </div>
             </div>
-            
-            <div class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </div>
-            
-            <nav id="navMenu">
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
             
             <div class="header-cta">
                 <a href="tel:9226393837" class="phone-link">
                     <i class="fas fa-phone"></i> 9226393837
                 </a>
                 <a href="#contact" class="btn">Apply Now</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+        <nav id="navMenu">
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#partner" class="partner-link">Partner With Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h2>Empowering Businesses with Strategic Financing</h2>
-            <p>Registered MSME offering comprehensive lending solutions, financial advisory, and business loan facilitation across Maharashtra with partnerships with leading financial institutions</p>
+            <h2>Professional Business Loan Mediation Services</h2>
+            <p>Registered MSME connecting businesses with 35+ RBI registered banks & NBFCs including Bajaj Finserv, L&T Finance, Lendingkart & Indifi</p>
             <div class="hero-btns">
                 <a href="#contact" class="btn">Apply for Business Loan</a>
-                <a href="#services" class="btn btn-outline" style="background-color: transparent; color: white; border-color: white;">Our Services</a>
+                <a href="#partner" class="btn btn-outline">Become a Partner</a>
             </div>
         </div>
     </section>
 
-    <!-- Banking Partners Section -->
+    <!-- Banking Partners -->
     <section class="section-padding partners-section">
         <div class="container">
             <div class="section-header">
-                <h2>Our Banking Partners</h2>
-                <p>We collaborate with leading financial institutions to provide you with the best loan options</p>
+                <h2>Our Banking Partners <span class="partner-count">35+</span></h2>
+                <p>We work with RBI registered financial institutions to provide secure and competitive financing</p>
             </div>
             
             <div class="partners-grid">
                 <div class="partner-logo">
-                    <div style="text-align: center;">
-                        <i class="fas fa-university fa-2x" style="color: #0056b3;"></i>
-                        <p style="margin-top: 10px; font-weight: 600; color: #0056b3;">Bajaj Finserv</p>
+                    <div>
+                        <i class="fas fa-university" style="color: #0056b3;"></i>
+                        <p>Bajaj Finserv</p>
                     </div>
                 </div>
                 
                 <div class="partner-logo">
-                    <div style="text-align: center;">
-                        <i class="fas fa-landmark fa-2x" style="color: #2d74da;"></i>
-                        <p style="margin-top: 10px; font-weight: 600; color: #2d74da;">L&T Finance</p>
+                    <div>
+                        <i class="fas fa-landmark" style="color: #2d74da;"></i>
+                        <p>L&T Finance</p>
                     </div>
                 </div>
                 
                 <div class="partner-logo">
-                    <div style="text-align: center;">
-                        <i class="fas fa-credit-card fa-2x" style="color: #ff6b00;"></i>
-                        <p style="margin-top: 10px; font-weight: 600; color: #ff6b00;">Lendingkart</p>
+                    <div>
+                        <i class="fas fa-credit-card" style="color: #ff6b00;"></i>
+                        <p>Lendingkart</p>
                     </div>
                 </div>
                 
                 <div class="partner-logo">
-                    <div style="text-align: center;">
-                        <i class="fas fa-hand-holding-usd fa-2x" style="color: #28a745;"></i>
-                        <p style="margin-top: 10px; font-weight: 600; color: #28a745;">Indifi</p>
+                    <div>
+                        <i class="fas fa-hand-holding-usd" style="color: #28a745;"></i>
+                        <p>Indifi</p>
                     </div>
                 </div>
                 
                 <div class="partner-logo">
-                    <div style="text-align: center;">
-                        <i class="fas fa-building fa-2x" style="color: #e63946;"></i>
-                        <p style="margin-top: 10px; font-weight: 600; color: #e63946;">ICICI Bank</p>
+                    <div>
+                        <i class="fas fa-building" style="color: #e63946;"></i>
+                        <p>ICICI Bank</p>
+                    </div>
+                </div>
+                
+                <div class="partner-logo">
+                    <div>
+                        <i class="fas fa-chart-line" style="color: #6b46c1;"></i>
+                        <p>More...</p>
                     </div>
                 </div>
             </div>
             
-            <p style="text-align: center; margin-top: 30px; color: var(--gray); font-size: 0.9rem;">
-                <i class="fas fa-info-circle"></i> We work with RBI registered NBFCs and financial institutions to provide you with secure and reliable financing options
-            </p>
+            <!-- Document Checklist -->
+            <div class="documents-section">
+                <h3><i class="fas fa-clipboard-list"></i> Document Checklist</h3>
+                <p>Required documents for loan processing:</p>
+                
+                <div class="documents-grid">
+                    <div class="document-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <div>
+                            <h4>KYC Documents</h4>
+                            <p>Aadhaar, PAN Card, Photo</p>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <i class="fas fa-file-contract"></i>
+                        <div>
+                            <h4>Business Proof</h4>
+                            <p>GST, Shop Act, MSME Certificate</p>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <h4>Financial Statements</h4>
+                            <p>Bank Statements, ITR</p>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <i class="fas fa-file-alt"></i>
+                        <div>
+                            <h4>Address Proof</h4>
+                            <p>Utility Bills, Rent Agreement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -894,8 +1206,8 @@
     <section class="section-padding" id="services">
         <div class="container">
             <div class="section-header">
-                <h2>Our Financial Services</h2>
-                <p>Comprehensive financial solutions designed to meet the unique needs of your business</p>
+                <h2>Our Services</h2>
+                <p>Professional financial consultation and loan mediation services</p>
             </div>
             
             <div class="services-grid">
@@ -904,9 +1216,9 @@
                         <i class="fas fa-hand-holding-usd"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Business Loans</h3>
-                        <p>Working capital finance, term loans for expansion, machinery financing, and business growth loans with competitive interest rates and flexible repayment options.</p>
-                        <a href="#contact" class="btn" style="padding: 10px 20px; margin-top: 15px; font-size: 0.9rem;">Get Started</a>
+                        <h3>Business Loan Mediation</h3>
+                        <p>Connect with optimal lenders from our network of 35+ banks & NBFCs for competitive rates and flexible terms.</p>
+                        <a href="#contact" class="btn">Get Started</a>
                     </div>
                 </div>
                 
@@ -916,8 +1228,8 @@
                     </div>
                     <div class="service-content">
                         <h3>MSME Financing</h3>
-                        <p>Collateral-free loans under CGTMSE scheme, PMEGP loans, Mudra loans, and government subsidy-linked financing for registered MSMEs and startups.</p>
-                        <a href="#contact" class="btn" style="padding: 10px 20px; margin-top: 15px; font-size: 0.9rem;">Learn More</a>
+                        <p>Specialized mediation for MSME loans under CGTMSE, PMEGP, Mudra schemes with government subsidy.</p>
+                        <a href="#contact" class="btn">Learn More</a>
                     </div>
                 </div>
                 
@@ -927,103 +1239,68 @@
                     </div>
                     <div class="service-content">
                         <h3>Financial Advisory</h3>
-                        <p>Loan application preparation, document structuring, financial projection support, bank negotiation, and comprehensive financial planning for business growth.</p>
-                        <a href="#contact" class="btn" style="padding: 10px 20px; margin-top: 15px; font-size: 0.9rem;">Consult Now</a>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Company Setup</h3>
-                        <p>End-to-end company registration services for Proprietorship, Partnership, LLP, Private Limited companies including MSME registration, GST, and compliance support.</p>
-                        <a href="#contact" class="btn" style="padding: 10px 20px; margin-top: 15px; font-size: 0.9rem;">Register Now</a>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Business Automation</h3>
-                        <p>Implementation of digital systems for lead management, invoicing, payment tracking, workflow automation, and business performance monitoring for operational efficiency.</p>
-                        <a href="#contact" class="btn" style="padding: 10px 20px; margin-top: 15px; font-size: 0.9rem;">Automate Now</a>
+                        <p>Professional consultation on loan selection, documentation, and financial institution matching.</p>
+                        <a href="#contact" class="btn">Consult Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section class="section-padding about-section" id="about">
+    <!-- About Section -->
+    <section class="section-padding" id="about" style="background-color: var(--light);">
         <div class="container">
             <div class="section-header">
-                <h2>About TRFSK OMKAR SERVICES</h2>
-                <p>Your trusted partner for business growth and financial solutions</p>
+                <h2>About Us</h2>
+                <p>Your trusted partner for business financing solutions</p>
             </div>
             
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Professional Financial Advisory & Lending Solutions</h2>
-                    <p>TRFSK OMKAR SERVICES PRIVATE LIMITED is a professionally incorporated company under the Companies Act, 2013, specializing in financial advisory and business lending solutions. We leverage our MSME registration and financial expertise to help businesses secure optimal financing.</p>
+            <div style="text-align: center;">
+                <p>TRFSK OMKAR SERVICES PRIVATE LIMITED is a professionally incorporated company under the Companies Act, 2013, specializing in financial advisory and business lending solutions.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 30px;">
+                    <div style="background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); width: 100%;">
+                        <h3 style="color: var(--primary);">CIN Number</h3>
+                        <p style="font-size: 0.9rem;">U70200MH2023PTC407336</p>
+                    </div>
                     
-                    <div class="features-list">
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Registered Company</h4>
-                                <p>CIN: U70200MH2023PTC407336 | Incorporated: 25th July, 2023</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>MSME Registered</h4>
-                                <p>UDYAM-MH-26-0559186 | Recognized Micro Enterprise</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Professional Team</h4>
-                                <p>Experienced financial advisors with expertise in business lending</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Pan-Maharashtra Coverage</h4>
-                                <p>Serving businesses across Maharashtra with physical and digital presence</p>
-                            </div>
-                        </div>
+                    <div style="background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); width: 100%;">
+                        <h3 style="color: var(--primary);">MSME Registered</h3>
+                        <p style="font-size: 0.9rem;">UDYAM-MH-26-0559186</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Section -->
+    <section class="section-padding partner-section" id="partner">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Partner With Us</h2>
+                <p style="color: rgba(255, 255, 255, 0.9);">Join our network of financial institutions and referral partners</p>
+            </div>
+            
+            <div class="partner-benefits">
+                <div class="partner-benefit">
+                    <i class="fas fa-university"></i>
+                    <h3>Financial Institutions</h3>
+                    <p>Access pre-qualified business loan leads with complete documentation</p>
+                    <a href="#contact" class="btn btn-secondary">Institution Partnership</a>
+                </div>
                 
-                <div class="company-stats">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <h3>500+</h3>
-                            <p>Businesses Served</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>₹50Cr+</h3>
-                            <p>Loan Amount Facilitated</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>24-48 Hrs</h3>
-                            <p>Initial Response Time</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>35+</h3>
-                            <p>Banking Partners</p>
-                        </div>
-                    </div>
+                <div class="partner-benefit">
+                    <i class="fas fa-handshake"></i>
+                    <h3>NBFC Partners</h3>
+                    <p>Co-lending opportunities and lead sharing with our extensive network</p>
+                    <a href="#contact" class="btn btn-secondary">NBFC Partnership</a>
+                </div>
+                
+                <div class="partner-benefit">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Referral Partners</h3>
+                    <p>Earn commissions by referring businesses for loans through our platform</p>
+                    <a href="#contact" class="btn btn-secondary">Become a Referrer</a>
                 </div>
             </div>
         </div>
@@ -1033,53 +1310,57 @@
     <section class="section-padding" id="process">
         <div class="container">
             <div class="section-header">
-                <h2>Simple Application Process</h2>
-                <p>Four easy steps to secure your business financing</p>
+                <h2>Application Process</h2>
+                <p>Simple 4-step process for loan approval</p>
             </div>
             
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <i class="fas fa-comments fa-2x" style="color: var(--primary); margin-bottom: 20px;"></i>
-                    <h4>Initial Consultation</h4>
-                    <p>Discuss your business needs, loan requirements, and eligibility with our financial advisors</p>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; align-items: flex-start; gap: 15px; background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); width: 100%;">
+                    <div style="background: var(--accent); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
+                    <div style="width: 100%;">
+                        <h3 style="font-size: 1.2rem; color: var(--primary);">Initial Consultation</h3>
+                        <p style="font-size: 0.95rem; color: var(--gray); margin-bottom: 0;">Discuss your business needs and loan requirements</p>
+                    </div>
                 </div>
                 
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <i class="fas fa-file-alt fa-2x" style="color: var(--primary); margin-bottom: 20px;"></i>
-                    <h4>Documentation</h4>
-                    <p>Submit required documents for assessment (KYC, Business Proof, Financials, etc.)</p>
+                <div style="display: flex; align-items: flex-start; gap: 15px; background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); width: 100%;">
+                    <div style="background: var(--accent); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
+                    <div style="width: 100%;">
+                        <h3 style="font-size: 1.2rem; color: var(--primary);">Documentation</h3>
+                        <p style="font-size: 0.95rem; color: var(--gray); margin-bottom: 0;">Submit required documents for assessment</p>
+                    </div>
                 </div>
                 
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <i class="fas fa-search-dollar fa-2x" style="color: var(--primary); margin-bottom: 20px;"></i>
-                    <h4>Bank Matching & Proposal</h4>
-                    <p>We match you with suitable lenders and prepare customized loan proposals</p>
+                <div style="display: flex; align-items: flex-start; gap: 15px; background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); width: 100%;">
+                    <div style="background: var(--accent); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</div>
+                    <div style="width: 100%;">
+                        <h3 style="font-size: 1.2rem; color: var(--primary);">Bank Matching</h3>
+                        <p style="font-size: 0.95rem; color: var(--gray); margin-bottom: 0;">We match you with suitable lenders</p>
+                    </div>
                 </div>
                 
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <i class="fas fa-handshake fa-2x" style="color: var(--primary); margin-bottom: 20px;"></i>
-                    <h4>Approval & Disbursement</h4>
-                    <p>Loan sanction and disbursement upon approval from financial institutions</p>
+                <div style="display: flex; align-items: flex-start; gap: 15px; background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); width: 100%;">
+                    <div style="background: var(--accent); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">4</div>
+                    <div style="width: 100%;">
+                        <h3 style="font-size: 1.2rem; color: var(--primary);">Approval & Disbursement</h3>
+                        <p style="font-size: 0.95rem; color: var(--gray); margin-bottom: 0;">Loan sanction and disbursement</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section with Consent Form -->
-    <section class="section-padding contact-section" id="contact">
+    <!-- Contact Section -->
+    <section class="section-padding" id="contact">
         <div class="container">
             <div class="section-header">
                 <h2>Contact Us</h2>
-                <p>Ready to grow your business? Get in touch with our financial advisors today</p>
+                <p>Start your loan application or partnership inquiry</p>
             </div>
             
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Our Office Locations</h3>
+                    <h3>Our Contact Details</h3>
                     
                     <div class="contact-details">
                         <div class="contact-detail">
@@ -1091,19 +1372,11 @@
                         </div>
                         
                         <div class="contact-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Operational Office</h4>
-                                <p>Office No. 1, First Floor, Rajas Society, Katraj, Pune – 411046</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-detail">
                             <i class="fas fa-phone"></i>
                             <div>
                                 <h4>Phone Numbers</h4>
-                                <p><a href="tel:9226393837" style="color: white;">9226393837</a></p>
-                                <p><a href="tel:8169302861" style="color: white;">8169302861</a></p>
+                                <p><a href="tel:9226393837">9226393837</a></p>
+                                <p><a href="tel:8169302861">8169302861</a></p>
                             </div>
                         </div>
                         
@@ -1111,18 +1384,9 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Email Address</h4>
-                                <p><a href="mailto:santosh.s@omkarservices.in" style="color: white;">santosh.s@omkarservices.in</a></p>
-                                <p><a href="mailto:worksupoorts@gmail.com" style="color: white;">worksupoorts@gmail.com</a></p>
+                                <p><a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a></p>
+                                <p><a href="mailto:worksupoorts@gmail.com">worksupoorts@gmail.com</a></p>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <h3>Business Hours</h3>
-                    <div class="contact-detail">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <p>Monday - Saturday: 9:30 AM - 7:00 PM</p>
-                            <p>Sunday: Emergency Support Only</p>
                         </div>
                     </div>
                 </div>
@@ -1130,45 +1394,35 @@
                 <div class="contact-form">
                     <h3>Loan Application Form</h3>
                     
-                    <!-- Consent Form Section -->
+                    <!-- Consent Form -->
                     <div class="consent-section">
-                        <h4 style="color: var(--warning); margin-bottom: 20px;">
+                        <h4 style="color: var(--warning); margin-bottom: 15px; font-size: 1.1rem;">
                             <i class="fas fa-exclamation-triangle"></i> Data Sharing Consent
                         </h4>
                         
                         <div class="consent-box">
-                            <p><strong>Important Legal Notice:</strong> To process your loan application, we need your consent to share your information with our banking partners.</p>
+                            <p style="font-size: 0.9rem;"><strong>Important:</strong> We need your consent to share information with partner banks/NBFCs.</p>
                             
                             <div class="consent-checkbox">
-                                <input type="checkbox" id="dataConsent" name="dataConsent" required>
+                                <input type="checkbox" id="data-consent" name="data-consent" required>
                                 <div class="consent-text">
-                                    <strong>I hereby provide my consent to TRFSK OMKAR SERVICES PRIVATE LIMITED</strong> to collect, process, and share my personal and business information with RBI registered banks, NBFCs, and financial institutions including but not limited to Bajaj Finserv, L&T Finance, Lendingkart, Indifi, and ICICI Bank for the purpose of loan processing and evaluation.
-                                    <br><br>
-                                    I understand that this consent is valid for 90 days from the date of submission and can be revoked by sending an email to 
-                                    <strong>santosh.s@omkarservices.in</strong>.
+                                    <label for="data-consent">
+                                        I authorize TRFSK OMKAR SERVICES to share my information with partner Banks/NBFCs for loan evaluation.
+                                    </label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <form id="loanApplicationForm" action="https://formspree.io/f/mreedeyd" method="POST">
-                        <input type="hidden" name="_subject" value="New Loan Application - TRFSK Omkar Services">
-                        <input type="hidden" name="_replyto" value="">
-                        <input type="hidden" name="consent_given" value="no">
-                        
+                    <form id="loanApplicationForm">
                         <div class="form-group">
                             <label for="name">Full Name *</label>
                             <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your full name">
                         </div>
                         
                         <div class="form-group">
-                            <label for="business">Business/Company Name *</label>
-                            <input type="text" id="business" name="business" class="form-control" required placeholder="Your business/company name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" class="form-control" required placeholder="your.email@example.com">
+                            <label for="business">Business Name *</label>
+                            <input type="text" id="business" name="business" class="form-control" required placeholder="Your business name">
                         </div>
                         
                         <div class="form-group">
@@ -1177,55 +1431,13 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="loanAmount">Required Loan Amount (₹) *</label>
+                            <label for="loanAmount">Loan Amount (₹) *</label>
                             <input type="text" id="loanAmount" name="loanAmount" class="form-control" required placeholder="e.g., 5,00,000">
-                            <small style="color: var(--gray);">Minimum: ₹50,000 | Maximum: ₹5,00,00,000</small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="purpose">Loan Purpose *</label>
-                            <select id="purpose" name="purpose" class="form-control" required>
-                                <option value="">Select Purpose</option>
-                                <option value="Working Capital">Working Capital</option>
-                                <option value="Business Expansion">Business Expansion</option>
-                                <option value="Machinery & Equipment">Machinery & Equipment</option>
-                                <option value="Shop/Office Setup">Shop/Office Setup</option>
-                                <option value="Inventory Purchase">Inventory Purchase</option>
-                                <option value="Debt Consolidation">Debt Consolidation</option>
-                                <option value="Business Automation">Business Automation</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="businessType">Business Type *</label>
-                            <select id="businessType" name="businessType" class="form-control" required>
-                                <option value="">Select Business Type</option>
-                                <option value="Proprietorship">Proprietorship</option>
-                                <option value="Partnership">Partnership</option>
-                                <option value="Private Limited">Private Limited</option>
-                                <option value="LLP">LLP</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="city">City/Location *</label>
-                            <input type="text" id="city" name="city" class="form-control" required placeholder="Your business city">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Additional Information</label>
-                            <textarea id="message" name="message" class="form-control" rows="4" placeholder="Tell us more about your business, loan requirements, or any specific needs..."></textarea>
                         </div>
                         
                         <button type="submit" class="btn" style="width: 100%;">
-                            Submit Loan Application
+                            Submit Application
                         </button>
-                        
-                        <p style="margin-top: 15px; font-size: 0.85rem; color: var(--gray); text-align: center;">
-                            <i class="fas fa-lock"></i> Your information is secure with us. We follow RBI guidelines and data protection regulations.
-                        </p>
                     </form>
                 </div>
             </div>
@@ -1239,34 +1451,22 @@
                 <div class="footer-logo">
                     <img src="./logo.png" alt="TRFSK OMKAR SERVICES Logo">
                     <h4>TRFSK OMKAR SERVICES PVT LTD</h4>
-                    <p>Professional Financial Advisory & Business Lending Solutions across Maharashtra</p>
+                    <p>Professional Financial Consultant & Loan Mediator</p>
                     
                     <div class="company-details-footer">
                         <p><strong>CIN:</strong> U70200MH2023PTC407336</p>
-                        <p><strong>Incorporated:</strong> 25th July, 2023</p>
                         <p><strong>MSME:</strong> UDYAM-MH-26-0559186</p>
                         <p><strong>PAN:</strong> AAKCT2977J</p>
-                        <p><strong>Bank Partner:</strong> ICICI Bank</p>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-services">
                     <h5>Our Services</h5>
                     <ul>
-                        <li><a href="#services">Business Loans</a></li>
+                        <li><a href="#services">Business Loan Mediation</a></li>
                         <li><a href="#services">MSME Financing</a></li>
                         <li><a href="#services">Financial Advisory</a></li>
                         <li><a href="#services">Company Setup</a></li>
-                        <li><a href="#services">Business Automation</a></li>
-                        <li><a href="#services">Loan Documentation</a></li>
                     </ul>
                 </div>
                 
@@ -1276,9 +1476,8 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#process">Application Process</a></li>
+                        <li><a href="#partner">Partner With Us</a></li>
                         <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="/partnership.html">Partnership</a></li>
-                        <li><a href="/referral-program.html">Referral Program</a></li>
                     </ul>
                 </div>
                 
@@ -1286,144 +1485,102 @@
                     <h5>Contact Info</h5>
                     <p><i class="fas fa-map-marker-alt"></i> Ulhasnagar, MH - 421002</p>
                     <p><i class="fas fa-phone"></i> <a href="tel:9226393837">9226393837</a></p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:8169302861">8169302861</a></p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a></p>
                     <p><i class="fas fa-clock"></i> Mon-Sat: 9:30 AM - 7:00 PM</p>
-                    
-                    <div style="margin-top: 20px;">
-                        <h5>Banking Partners</h5>
-                        <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
-                            <i class="fas fa-handshake"></i> Bajaj Finserv, L&T Finance, Lendingkart, Indifi, ICICI Bank & 30+ RBI Registered NBFCs
-                        </p>
-                    </div>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <div class="footer-links-container">
-                    <a href="/privacy-policy.html">Privacy Policy</a> | 
-                    <a href="/terms-conditions.html">Terms & Conditions</a> | 
-                    <a href="/disclaimer.html">Disclaimer</a> | 
-                    <a href="/refund-policy.html">Refund Policy</a> | 
-                    <a href="/kyc-policy.html">KYC Policy</a> | 
-                    <a href="/gdpr-compliance.html">GDPR Compliance</a>
-                </div>
-                <p class="copyright">© 2023 TRFSK OMKAR SERVICES PRIVATE LIMITED. All Rights Reserved.</p>
-                <p class="compliance">Registered under Companies Act, 2013 | MSME Registered | RBI Compliant Partner | Data Protection Compliant</p>
+            <!-- Financial Disclaimer -->
+            <div class="financial-disclaimer">
+                <strong><i class="fas fa-exclamation-circle"></i> DISCLAIMER:</strong>
+                TRFSK OMKAR SERVICES PVT LTD is a financial consultant and loan mediator. We are NOT an NBFC, Bank, or direct lender. Loan approvals are at the discretion of partner financial institutions.
             </div>
+            
+            <div class="footer-links-container">
+                <a href="/privacy-policy.html">Privacy Policy</a> | 
+                <a href="/terms-conditions.html">Terms</a> | 
+                <a href="/disclaimer.html">Disclaimer</a> | 
+                <a href="/kyc-policy.html">KYC Policy</a>
+            </div>
+            
+            <p class="copyright">© 2023 TRFSK OMKAR SERVICES PRIVATE LIMITED. All Rights Reserved.</p>
+            <p class="compliance" style="font-size: 0.8rem;">Registered under Companies Act, 2013 | MSME Registered</p>
         </div>
     </footer>
 
     <script>
         // Mobile Menu Toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-            this.querySelector('i').classList.toggle('fa-bars');
-            this.querySelector('i').classList.toggle('fa-times');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
-
-        // Close mobile menu when clicking on a link
+        
+        // Close menu when clicking overlay
+        menuOverlay.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            this.classList.remove('active');
+            mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+        });
+        
+        // Close menu when clicking a link
         document.querySelectorAll('#navMenu a').forEach(link => {
             link.addEventListener('click', function() {
-                document.getElementById('navMenu').classList.remove('active');
-                document.getElementById('mobileMenuBtn').querySelector('i').classList.remove('fa-times');
-                document.getElementById('mobileMenuBtn').querySelector('i').classList.add('fa-bars');
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
             });
         });
-
+        
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
         });
-
-        // Active navigation link
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('#navMenu a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Form submission handling with consent validation
+        
+        // Form submission
         document.getElementById('loanApplicationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Validate consent
-            const consentCheckbox = document.getElementById('dataConsent');
+            // Check consent
+            const consentCheckbox = document.getElementById('data-consent');
             if (!consentCheckbox.checked) {
-                alert('You must provide consent to share your data with banking partners to proceed with the loan application.');
-                consentCheckbox.focus();
+                alert('Please provide consent to share data with banking partners.');
+                consentCheckbox.scrollIntoView({ behavior: 'smooth' });
                 return;
             }
             
-            // Update hidden consent value
-            document.querySelector('input[name="consent_given"]').value = 'yes';
-            
-            // Validate phone number
+            // Validate phone
             const phone = document.getElementById('phone').value;
             if (!/^\d{10}$/.test(phone)) {
-                alert('Please enter a valid 10-digit phone number');
-                document.getElementById('phone').focus();
+                alert('Please enter a valid 10-digit phone number.');
                 return;
             }
             
-            // Format loan amount with Indian numbering
-            const loanAmountInput = document.getElementById('loanAmount');
-            let loanAmount = loanAmountInput.value.replace(/[^\d]/g, '');
-            if (loanAmount) {
-                loanAmount = parseInt(loanAmount).toLocaleString('en-IN');
-                loanAmountInput.value = '₹' + loanAmount;
-            }
-            
-            // Validate loan amount range
-            const loanAmountNum = parseInt(loanAmountInput.value.replace(/[^\d]/g, ''));
-            if (loanAmountNum < 50000 || loanAmountNum > 50000000) {
-                alert('Loan amount must be between ₹50,000 and ₹5,00,00,000');
-                loanAmountInput.focus();
-                return;
-            }
-            
-            // Update hidden reply-to field
-            const email = document.getElementById('email').value;
-            document.querySelector('input[name="_replyto"]').value = email;
-            
-            // Show confirmation
-            const confirmation = confirm('Thank you for your loan application!\n\nPlease confirm:\n1. All information provided is accurate\n2. You consent to data sharing with banking partners\n3. Our advisor will contact you within 24 hours\n\nClick OK to submit your application.');
-            
-            if (confirmation) {
-                // In production, you would submit the form here
-                // For now, show success message
-                alert('Application submitted successfully! Our financial advisor will contact you within 24 working hours.\n\nApplication Reference: TRFSK-' + Date.now().toString().slice(-6));
-                this.reset();
-                document.getElementById('dataConsent').checked = false;
-            }
+            // Success message
+            alert('Application submitted successfully! Our consultant will contact you within 24 hours.\n\nReference ID: TRFSK-' + Date.now().toString().slice(-6));
+            this.reset();
+            consentCheckbox.checked = false;
         });
-
-        // Format phone number input
+        
+        // Format phone number
         document.getElementById('phone').addEventListener('input', function(e) {
             this.value = this.value.replace(/[^\d]/g, '').substring(0, 10);
         });
-
-        // Format loan amount with commas
+        
+        // Format loan amount
         document.getElementById('loanAmount').addEventListener('blur', function(e) {
             let value = this.value.replace(/[^\d]/g, '');
             if (value) {
@@ -1431,19 +1588,20 @@
                 this.value = '₹' + value;
             }
         });
-
-        // Clear formatting on focus for loan amount
+        
         document.getElementById('loanAmount').addEventListener('focus', function(e) {
             this.value = this.value.replace(/[^\d]/g, '');
         });
         
-        // Consent checkbox tracking
-        document.getElementById('dataConsent').addEventListener('change', function() {
-            if (this.checked) {
-                console.log('User consented to data sharing');
-                // You can add analytics tracking here
-            }
-        });
+        // Fix for Safari viewport height
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        window.addEventListener('resize', setVH);
+        window.addEventListener('orientationchange', setVH);
+        setVH();
     </script>
 </body>
 </html>

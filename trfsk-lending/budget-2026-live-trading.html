@@ -3,100 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budget 2026 Live Market Intel | TRFSK Omkar Services</title>
-    
+    <title>Budget 2026 Live Trading | TRFSK Omkar Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    
     <style>
-        :root { --primary: #1a365d; --accent: #e63946; --dark: #1e293b; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: #f0f2f5; }
-        header { background: white; padding: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .hero { background: var(--primary); color: white; padding: 40px 20px; text-align: center; }
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 20px; }
-        .btn { background: var(--accent); color: white; text-decoration: none; padding: 12px 20px; border-radius: 6px; font-weight: 600; display: inline-block; }
-        .live-dot { height: 10px; width: 10px; background-color: #ff0000; border-radius: 50%; display: inline-block; margin-right: 5px; animation: blink 1s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        :root { --primary: #1a365d; --accent: #e63946; }
+        body { font-family: sans-serif; margin: 0; background: #f4f7f9; }
+        header { background: white; padding: 15px; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
+        .hero { background: var(--primary); color: white; padding: 30px; text-align: center; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .btn { background: var(--accent); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .live-indicator { color: var(--accent); font-weight: bold; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="nav">
-        <div style="font-family: 'Montserrat'; color: var(--primary); font-size: 1.1rem;">TRFSK OMKAR SERVICES</div>
-        <a href="https://omkarservices.in" class="btn" style="font-size: 0.8rem; background: var(--primary);">BACK TO LENDING</a>
-    </div>
+    <div style="font-weight: bold; color: var(--primary);">TRFSK OMKAR SERVICES</div>
+    <a href="https://omkarservices.in" class="btn" style="font-size: 0.8rem;">LENDING SITE</a>
 </header>
 
-<section class="hero">
-    <div class="container">
-        <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;">
-            <span class="live-dot"></span> LIVE SPECIAL SESSION
-        </span>
-        <h1 style="font-family: 'Montserrat'; margin: 15px 0;">Budget 2026 Market Pulse</h1>
-    </div>
-</section>
+<div class="hero">
+    <div class="live-indicator">● LIVE BUDGET SESSION</div>
+    <h1>Market Intel 2026</h1>
+</div>
 
 <div class="container">
-    <div class="card" style="padding: 5px;">
+    <div class="card">
         <div class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-            {
-                "symbols": [
-                    {"proName": "NSE:NIFTY", "title": "Nifty 50"},
-                    {"proName": "NSE:BANKNIFTY", "title": "Bank Nifty"},
-                    {"proName": "MCX:GOLD1!", "title": "Gold"}
-                ],
-                "colorTheme": "light", "displayMode": "adaptive", "locale": "in"
-            }
+            { "symbols": [{"proName": "NSE:NIFTY", "title": "Nifty"}, {"proName": "NSE:BANKNIFTY", "title": "Bank Nifty"}], "colorTheme": "light", "locale": "in" }
             </script>
         </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr; gap: 20px;" id="main-grid">
-        <div class="card">
-            <h3 style="color: var(--primary);"><i class="fas fa-rss"></i> Live Budget Headlines</h3>
-            <div style="height: 500px;">
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                    {
-                        "feedMode": "all_symbols",
-                        "colorTheme": "light",
-                        "width": "100%",
-                        "height": 500,
-                        "locale": "in"
-                    }
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="card" style="text-align: center; border-top: 5px solid #fbbf24;">
-            <h3 style="color: var(--primary);">Business Loan Support</h3>
-            <p>Markets are volatile—ensure your business capital is secure. Connect with 35+ RBI Registered Banks.</p>
-            <a href="https://omkarservices.in#contact" class="btn" style="width: 200px; margin-bottom: 10px;">APPLY NOW</a>
-            <br>
-            <a href="tel:+91XXXXXXXXXX" style="color: var(--primary); font-weight: 600; text-decoration: none;">
-                <i class="fas fa-phone"></i> +91 XXXXX XXXXX
-            </a>
+    <div class="card">
+        <h3 style="margin-top:0;"><i class="fas fa-rss"></i> Live Budget Updates</h3>
+        <div class="tradingview-widget-container" style="height:500px;">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+            { "feedMode": "all_symbols", "colorTheme": "light", "width": "100%", "height": 500, "locale": "in" }
+            </script>
         </div>
     </div>
+
+    <div class="card" style="text-align: center; background: #eef2f7;">
+        <h3>Business Capital Opportunities</h3>
+        <p>Take advantage of the Budget announcements. Apply for a business loan today.</p>
+        <a href="https://omkarservices.in#contact" class="btn">APPLY NOW</a>
+    </div>
 </div>
-
-<footer style="text-align: center; padding: 40px; color: #666; font-size: 0.8rem;">
-    &copy; 2026 TRFSK Omkar Services | Secure Capital Opportunities
-</footer>
-
-<script>
-    // Simple fix for mobile grid
-    if(window.innerWidth > 768) {
-        document.getElementById('main-grid').style.gridTemplateColumns = '2fr 1fr';
-    }
-</script>
 
 </body>
 </html>

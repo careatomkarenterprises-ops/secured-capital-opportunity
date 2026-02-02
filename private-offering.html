@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Placement | Omkar Enterprises</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #04070a; color: #ffffff; }
+        .gold-gradient { background: linear-gradient(135deg, #c5a059 0%, #f1d592 50%, #c5a059 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .premium-border { border-left: 4px solid #c5a059; }
+        .text-gold { color: #c5a059; }
+        .btn-gold { background: #c5a059; color: #000; transition: all 0.3s ease; }
+        .btn-gold:hover { background: #f1d592; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3); }
+        tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-[#c5a059] text-black text-[10px] font-bold text-center py-2 uppercase tracking-[0.2em]">
+        Strictly Confidential | Private Partner Roadmap 2026
+    </div>
+
+    <nav class="p-6 border-b border-white/10 bg-black/50 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="font-bold text-2xl tracking-tighter">
+                OMKAR <span class="text-gold font-light">ENTERPRISES</span>
+            </div>
+            <div class="hidden md:block">
+                <span class="text-[10px] border border-gold px-4 py-2 rounded-full text-gold uppercase tracking-widest">Executive Access Only</span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-20 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                The <span class="text-gold italic font-light text-6xl">Prime</span> Capital Strategy.
+            </h1>
+            <p class="text-xl text-slate-400 mb-10 leading-relaxed">
+                An exclusive invitation to deploy capital into a high-growth roadmap. 
+                <br><span class="text-white font-semibold">Limited to 4 Slots: ₹2,00,000 deployment.</span>
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm uppercase tracking-widest font-bold">
+                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span> 15% Monthly ROI</span>
+                <span class="text-slate-600">|</span>
+                <span class="flex items-center gap-2 text-green-500 underline decoration-gold underline-offset-8">Triple Layer Security</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 px-6 bg-white/5">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-center text-2xl font-bold mb-12 uppercase tracking-widest text-gold">Why This Beats Standard Markets</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-card p-8 rounded-3xl opacity-60 grayscale">
+                    <h3 class="text-lg font-bold mb-4 uppercase">Typical Investment</h3>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex items-center gap-3">❌ 8-12% Annual Returns (Low Yield)</li>
+                        <li class="flex items-center gap-3">❌ Market Volatility / Risk of Loss</li>
+                        <li class="flex items-center gap-3">❌ No Direct Legal Protection (Equity)</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-8 rounded-3xl border-gold/50 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 gold-gradient text-black text-[10px] px-4 py-1 font-bold rounded-bl-xl uppercase">Our Roadmap</div>
+                    <h3 class="text-lg font-bold mb-4 uppercase text-gold">Omkar Strategic Partner</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-center gap-3">✅ 15% Monthly Net Interest (High Yield)</li>
+                        <li class="flex items-center gap-3">✅ Notarized ₹500 Stamp Agreement</li>
+                        <li class="flex items-center gap-3">✅ Legal Security via PDC (Cheque)</li>
+                        <li class="flex items-center gap-3">✅ Capital Recovery Insurance Layer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-12">
+                
+                <div class="lg:col-span-1 space-y-8">
+                    <div class="glass-card p-8 rounded-3xl premium-border">
+                        <label class="text-[10px] font-bold text-gold uppercase tracking-widest mb-4 block">Select Capital Deployment</label>
+                        <select id="slabSelect" class="w-full bg-transparent border-b-2 border-gold text-2xl font-bold p-2 outline-none cursor-pointer mb-8">
+                            <option value="200000" class="bg-black">₹2,00,000 Slot</option>
+                            <option value="100000" class="bg-black">₹1,00,000 Slot (2%)</option>
+                        </select>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Monthly Liquid Cashflow</p>
+                                <p class="text-4xl font-bold text-gold" id="monthlyVal">₹30,000</p>
+                            </div>
+                            <hr class="border-white/10">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="text-[10px] text-slate-500 uppercase font-bold text-green-500">Total Profit (12m)</p>
+                                    <p class="text-xl font-bold" id="totalProfit">₹3,60,000</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[10px] text-slate-500 uppercase font-bold">Capital Refund</p>
+                                    <p class="text-xl font-bold" id="refundVal">₹2,00,000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 text-xs text-slate-500 italic leading-relaxed">
+                        *Deployment is executed via Razorpay Business. Documentation (Notary/Stamp/PDC) is delivered within 15 working days at zero cost to the partner.
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 glass-card rounded-3xl overflow-hidden border border-white/5">
+                    <div class="p-6 border-b border-white/5 flex justify-between items-center">
+                        <h3 class="text-xs font-bold uppercase tracking-widest">Settlement Schedule</h3>
+                        <span class="text-[10px] bg-gold/10 text-gold px-3 py-1 rounded-full border border-gold/20">Roadmap ID: OMK-2026-X</span>
+                    </div>
+                    <div class="overflow-x-auto max-h-[500px] overflow-y-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-white/5 text-[9px] uppercase tracking-tighter text-slate-500">
+                                <tr>
+                                    <th class="p-4">Period</th>
+                                    <th class="p-4">Net ROI Payout</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4">Capital Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="amortBody" class="text-sm">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 text-center">
+        <div class="max-w-3xl mx-auto glass-card p-12 rounded-[4rem] border-t-2 border-gold relative overflow-hidden">
+            <h2 class="text-4xl font-bold mb-6">Build the Trust Foundation.</h2>
+            <p class="text-slate-400 mb-10">This 15% roadmap is a one-time onboarding benefit. Secure your slot, complete the KYC, and start your documented growth today.</p>
+            
+            <a id="waLink" href="#" class="btn-gold px-16 py-6 rounded-full font-black text-xl inline-block shadow-2xl">
+                SECURE MY SLOT 
+            </a>
+            
+            <p class="mt-8 text-[10px] text-slate-600 uppercase tracking-[0.3em]">Official Email Approval Required for Deployment</p>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center text-[10px] text-slate-600 uppercase tracking-widest">
+        Jai Hind | Omkar Enterprises | Pune HQ | Private Access Roadmap 2026
+    </footer>
+
+    <script>
+        const slabSelect = document.getElementById('slabSelect');
+        const amortBody = document.getElementById('amortBody');
+        const monthlyVal = document.getElementById('monthlyVal');
+        const totalProfit = document.getElementById('totalProfit');
+        const refundVal = document.getElementById('refundVal');
+        const waLink = document.getElementById('waLink');
+
+        function update() {
+            const principal = parseInt(slabSelect.value);
+            let rate = (principal === 200000) ? 0.15 : 0.02; // 15% for 2L, 2% for 1L
+            
+            const mROI = principal * rate;
+            const tProfit = mROI * 12;
+
+            monthlyVal.innerText = mROI.toLocaleString('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0});
+            totalProfit.innerText = tProfit.toLocaleString('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0});
+            refundVal.innerText = principal.toLocaleString('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0});
+
+            waLink.href = `https://wa.me/9226393837?text=I%20have%20reviewed%20the%20Private%20Roadmap.%20I%20want%20to%20secure%20the%20${principal.toLocaleString('en-IN')}%20slot.%20Please%20send%20official%20email%20approval.`;
+
+            let rows = "";
+            for(let i=1; i<=13; i++) {
+                const isFinal = (i === 13);
+                rows += `
+                    <tr class="${isFinal ? 'text-gold bg-gold/5 font-bold' : ''}">
+                        <td class="p-4 text-slate-500">Month ${i}</td>
+                        <td class="p-4 font-mono">${isFinal ? 'Settle' : mROI.toLocaleString('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0})}</td>
+                        <td class="p-4"><span class="text-[8px] border border-white/10 px-2 py-0.5 rounded uppercase font-bold">${isFinal ? 'CAPITAL REFUND' : 'FIXED INTEREST'}</span></td>
+                        <td class="p-4 text-right text-slate-600">${isFinal ? '₹0' : principal.toLocaleString('en-IN')}</td>
+                    </tr>
+                `;
+            }
+            amortBody.innerHTML = rows;
+        }
+
+        slabSelect.addEventListener('change', update);
+        window.onload = update;
+    </script>
+</body>
+</html>

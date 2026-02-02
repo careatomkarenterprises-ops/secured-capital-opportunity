@@ -3,132 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Placement | Omkar Enterprises</title>
+    <title>Private Allocation 2026 | Omkar Enterprises</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #04070a; color: #ffffff; }
-        .gold-gradient { background: linear-gradient(135deg, #c5a059 0%, #f1d592 50%, #c5a059 100%); }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .premium-border { border-left: 4px solid #c5a059; }
-        .text-gold { color: #c5a059; }
-        .btn-gold { background: #c5a059; color: #000; transition: all 0.3s ease; }
-        .btn-gold:hover { background: #f1d592; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3); }
-        tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+        body { font-family: 'Inter', sans-serif; background-color: #04070a; color: #ffffff; scroll-behavior: smooth; }
+        .gold-text { color: #c5a059; }
+        .gold-bg { background-color: #c5a059; }
+        .gold-border { border-color: #c5a059; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .premium-shadow { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #04070a; }
+        ::-webkit-scrollbar-thumb { background: #c5a059; border-radius: 10px; }
+
+        .btn-glow:hover { box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); transform: translateY(-2px); }
+        tr:nth-child(even) { background: rgba(197, 160, 89, 0.02); }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="bg-[#c5a059] text-black text-[10px] font-bold text-center py-2 uppercase tracking-[0.2em]">
-        Strictly Confidential | Private Partner Roadmap 2026
+    <div class="gold-bg text-black text-[9px] font-black text-center py-2 uppercase tracking-[0.3em] fixed w-full z-[60]">
+        Strictly Confidential | Private Partner Roadmap 2026 | Verified Access Only
     </div>
 
-    <nav class="p-6 border-b border-white/10 bg-black/50 sticky top-0 z-50">
+    <nav class="p-6 border-b border-white/10 bg-black/80 sticky top-[28px] z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="font-bold text-2xl tracking-tighter">
-                OMKAR <span class="text-gold font-light">ENTERPRISES</span>
+            <div class="font-bold text-xl tracking-tighter uppercase">
+                OMKAR <span class="gold-text font-light">ENTERPRISES</span>
             </div>
-            <div class="hidden md:block">
-                <span class="text-[10px] border border-gold px-4 py-2 rounded-full text-gold uppercase tracking-widest">Executive Access Only</span>
+            <div class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="#security" class="hover:text-gold">Security</a>
+                <a href="#calculator" class="hover:text-gold">Roadmap</a>
+                <a href="#onboarding" class="hover:text-gold">Onboarding</a>
             </div>
         </div>
     </nav>
 
-    <header class="py-20 px-6 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-                The <span class="text-gold italic font-light text-6xl">Prime</span> Capital Strategy.
-            </h1>
-            <p class="text-xl text-slate-400 mb-10 leading-relaxed">
-                An exclusive invitation to deploy capital into a high-growth roadmap. 
-                <br><span class="text-white font-semibold">Limited to 4 Slots: ₹2,00,000 deployment.</span>
+    <header class="pt-32 pb-20 px-6 text-center relative">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gold-600/10 rounded-full blur-[120px]"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 serif italic">The Sovereignty <span class="gold-text">Offering.</span></h1>
+            <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                A private invitation to deploy capital into a legally-secured, institutional-grade roadmap. 
+                <span class="text-white block mt-2">Limited to 4 Exclusive Slots | Managed Entry.</span>
             </p>
-            <div class="flex flex-wrap justify-center gap-4 text-sm uppercase tracking-widest font-bold">
-                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span> 15% Monthly ROI</span>
-                <span class="text-slate-600">|</span>
-                <span class="flex items-center gap-2 text-green-500 underline decoration-gold underline-offset-8">Triple Layer Security</span>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="glass-card px-6 py-3 rounded-full border-gold/30">
+                    <span class="text-gold font-bold">15%</span> <span class="text-[10px] uppercase tracking-widest ml-2">Monthly ROI</span>
+                </div>
+                <div class="glass-card px-6 py-3 rounded-full border-gold/30">
+                    <span class="text-gold font-bold">Triple</span> <span class="text-[10px] uppercase tracking-widest ml-2">Layer Protection</span>
+                </div>
             </div>
         </div>
     </header>
 
-    <section class="py-16 px-6 bg-white/5">
+    <section id="security" class="py-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-center text-2xl font-bold mb-12 uppercase tracking-widest text-gold">Why This Beats Standard Markets</h2>
+            <h2 class="text-center text-sm font-bold mb-16 uppercase tracking-[0.5em] text-slate-500">Capital Protection Framework</h2>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-card p-8 rounded-3xl opacity-60 grayscale">
-                    <h3 class="text-lg font-bold mb-4 uppercase">Typical Investment</h3>
+                <div class="glass-card p-10 rounded-[2rem] opacity-40 hover:opacity-100 transition-opacity">
+                    <h3 class="text-slate-500 text-xs font-bold uppercase mb-6 tracking-widest">Standard Market Entry</h3>
                     <ul class="space-y-4 text-sm text-slate-400">
-                        <li class="flex items-center gap-3">❌ 8-12% Annual Returns (Low Yield)</li>
-                        <li class="flex items-center gap-3">❌ Market Volatility / Risk of Loss</li>
-                        <li class="flex items-center gap-3">❌ No Direct Legal Protection (Equity)</li>
+                        <li class="flex items-center gap-3">✕ 8-10% Annual Returns (Low Yield)</li>
+                        <li class="flex items-center gap-3">✕ Exposure to Market Volatility</li>
+                        <li class="flex items-center gap-3">✕ No Direct Physical Collateral</li>
+                        <li class="flex items-center gap-3">✕ Unsecured Digital Contracts</li>
                     </ul>
                 </div>
-                <div class="glass-card p-8 rounded-3xl border-gold/50 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 gold-gradient text-black text-[10px] px-4 py-1 font-bold rounded-bl-xl uppercase">Our Roadmap</div>
-                    <h3 class="text-lg font-bold mb-4 uppercase text-gold">Omkar Strategic Partner</h3>
+                <div class="glass-card p-10 rounded-[2rem] border-gold/40 relative overflow-hidden premium-shadow">
+                    <div class="absolute top-0 right-0 gold-bg text-black text-[9px] px-4 py-1 font-black uppercase">Private Partner</div>
+                    <h3 class="gold-text text-xs font-bold uppercase mb-6 tracking-widest">Omkar Private Roadmap</h3>
                     <ul class="space-y-4 text-sm">
-                        <li class="flex items-center gap-3">✅ 15% Monthly Net Interest (High Yield)</li>
-                        <li class="flex items-center gap-3">✅ Notarized ₹500 Stamp Agreement</li>
-                        <li class="flex items-center gap-3">✅ Legal Security via PDC (Cheque)</li>
-                        <li class="flex items-center gap-3">✅ Capital Recovery Insurance Layer</li>
+                        <li class="flex items-center gap-3 font-semibold text-white">✓ 15% Net Interest Monthly (Fixed)</li>
+                        <li class="flex items-center gap-3">✓ Notarized ₹500 Stamp Paper Contract</li>
+                        <li class="flex items-center gap-3">✓ Legally Protected PDC (Security Cheque)</li>
+                        <li class="flex items-center gap-3">✓ Capital Recovery Insurance Layer</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-6">
+    <section id="calculator" class="py-20 px-6 bg-white/[0.01]">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-3 gap-12">
+            <div class="grid lg:grid-cols-3 gap-12 items-start">
                 
-                <div class="lg:col-span-1 space-y-8">
-                    <div class="glass-card p-8 rounded-3xl premium-border">
-                        <label class="text-[10px] font-bold text-gold uppercase tracking-widest mb-4 block">Select Capital Deployment</label>
-                        <select id="slabSelect" class="w-full bg-transparent border-b-2 border-gold text-2xl font-bold p-2 outline-none cursor-pointer mb-8">
-                            <option value="200000" class="bg-black">₹2,00,000 Slot</option>
-                            <option value="100000" class="bg-black">₹1,00,000 Slot (2%)</option>
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 gold-border">
+                        <h3 class="text-[10px] font-black text-gold uppercase tracking-[0.3em] mb-6">Select Deployment</h3>
+                        <select id="slab" class="w-full bg-transparent border-b border-white/20 text-2xl font-bold py-3 mb-8 outline-none cursor-pointer focus:border-gold transition-colors">
+                            <option value="200000" class="bg-black">₹2,00,000 Slot (Prime)</option>
+                            <option value="100000" class="bg-black">₹1,00,000 Slot (Trial)</option>
                         </select>
                         
-                        <div class="space-y-6">
+                        <div class="space-y-8">
                             <div>
-                                <p class="text-[10px] text-slate-500 uppercase font-bold">Monthly Liquid Cashflow</p>
-                                <p class="text-4xl font-bold text-gold" id="monthlyVal">₹30,000</p>
+                                <p class="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Monthly Liquid Interest</p>
+                                <p class="text-5xl font-bold gold-text" id="monthlyVal">₹30,000</p>
                             </div>
-                            <hr class="border-white/10">
-                            <div class="flex justify-between">
+                            <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p class="text-[10px] text-slate-500 uppercase font-bold text-green-500">Total Profit (12m)</p>
-                                    <p class="text-xl font-bold" id="totalProfit">₹3,60,000</p>
+                                    <p class="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">12M Net Profit</p>
+                                    <p class="text-xl font-bold text-green-500" id="totalProfit">₹3,60,000</p>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-[10px] text-slate-500 uppercase font-bold">Capital Refund</p>
+                                    <p class="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Capital Refund</p>
                                     <p class="text-xl font-bold" id="refundVal">₹2,00,000</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="p-6 text-xs text-slate-500 italic leading-relaxed">
-                        *Deployment is executed via Razorpay Business. Documentation (Notary/Stamp/PDC) is delivered within 15 working days at zero cost to the partner.
-                    </div>
                 </div>
 
-                <div class="lg:col-span-2 glass-card rounded-3xl overflow-hidden border border-white/5">
-                    <div class="p-6 border-b border-white/5 flex justify-between items-center">
-                        <h3 class="text-xs font-bold uppercase tracking-widest">Settlement Schedule</h3>
-                        <span class="text-[10px] bg-gold/10 text-gold px-3 py-1 rounded-full border border-gold/20">Roadmap ID: OMK-2026-X</span>
+                <div class="lg:col-span-2 glass-card rounded-[2.5rem] overflow-hidden">
+                    <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
+                        <h3 class="text-[10px] font-black uppercase tracking-widest">Formal Settlement Schedule</h3>
+                        <span class="text-[9px] border border-gold/40 text-gold px-3 py-1 rounded-full">Roadmap ID: OMK-2026-X</span>
                     </div>
-                    <div class="overflow-x-auto max-h-[500px] overflow-y-auto">
+                    <div class="overflow-x-auto max-h-[450px]">
                         <table class="w-full text-left">
-                            <thead class="bg-white/5 text-[9px] uppercase tracking-tighter text-slate-500">
+                            <thead class="text-[9px] uppercase text-slate-500 bg-black">
                                 <tr>
-                                    <th class="p-4">Period</th>
-                                    <th class="p-4">Net ROI Payout</th>
-                                    <th class="p-4">Status</th>
-                                    <th class="p-4">Capital Balance</th>
+                                    <th class="p-5">Period</th>
+                                    <th class="p-5">Interest Payout</th>
+                                    <th class="p-5">Security Status</th>
+                                    <th class="p-5 text-right">Capital Bal.</th>
                                 </tr>
                             </thead>
-                            <tbody id="amortBody" class="text-sm">
+                            <tbody id="scheduleBody" class="text-xs font-medium">
                                 </tbody>
                         </table>
                     </div>
@@ -137,61 +147,99 @@
         </div>
     </section>
 
-    <section class="py-24 px-6 text-center">
-        <div class="max-w-3xl mx-auto glass-card p-12 rounded-[4rem] border-t-2 border-gold relative overflow-hidden">
-            <h2 class="text-4xl font-bold mb-6">Build the Trust Foundation.</h2>
-            <p class="text-slate-400 mb-10">This 15% roadmap is a one-time onboarding benefit. Secure your slot, complete the KYC, and start your documented growth today.</p>
-            
-            <a id="waLink" href="#" class="btn-gold px-16 py-6 rounded-full font-black text-xl inline-block shadow-2xl">
-                SECURE MY SLOT 
-            </a>
-            
-            <p class="mt-8 text-[10px] text-slate-600 uppercase tracking-[0.3em]">Official Email Approval Required for Deployment</p>
+    <section id="onboarding" class="py-24 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-gold text-center text-[11px] font-black uppercase tracking-[0.5em] mb-16">Fastrack Onboarding (PAN India)</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-3xl border-t-2 border-white/5 relative">
+                    <div class="text-gold/20 text-6xl font-black absolute top-4 right-6 italic">01</div>
+                    <h4 class="font-bold text-white mb-3">KYC Vetting</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Share PAN & Aadhaar via Secure WhatsApp. Our legal team drafts your agreement within 2 hours.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl border-t-2 border-white/5 relative">
+                    <div class="text-gold/20 text-6xl font-black absolute top-4 right-6 italic">02</div>
+                    <h4 class="font-bold text-white mb-3">Capital Activation</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Deployment via verified Razorpay Business Gateway. Income generation starts from Day 2.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl border-t-2 gold-border relative">
+                    <div class="text-gold/20 text-6xl font-black absolute top-4 right-6 italic">03</div>
+                    <h4 class="font-bold text-white mb-3">Legal Kit</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Notarized Stamp Paper Contract & Security PDC delivered to your doorstep via courier.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="py-12 border-t border-white/5 text-center text-[10px] text-slate-600 uppercase tracking-widest">
-        Jai Hind | Omkar Enterprises | Pune HQ | Private Access Roadmap 2026
+    <section class="pb-32 px-6 text-center">
+        <div class="max-w-4xl mx-auto glass-card p-16 rounded-[4rem] border-t-2 gold-border premium-shadow relative overflow-hidden">
+            <h2 class="text-4xl font-bold mb-6 serif italic">Build the Foundation of <span class="gold-text">Trust.</span></h2>
+            <p class="text-slate-400 mb-12 max-w-xl mx-auto">This 15% roadmap is a one-time onboarding benefit for first-time partners. Click below to share KYC and claim your slot.</p>
+            
+            <a id="waButton" href="#" class="gold-bg btn-glow text-black px-12 py-6 rounded-2xl font-black text-xl inline-flex items-center gap-4 transition-all uppercase tracking-tighter">
+                Claim Slot & Share KYC 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+            
+            <div class="mt-10 flex flex-col items-center gap-2">
+                <span class="text-[9px] text-slate-500 uppercase tracking-[0.3em]">Official Verification Required via WhatsApp</span>
+                <div class="flex gap-2">
+                    <div class="w-1 h-1 rounded-full bg-green-500 animate-pulse"></div>
+                    <div class="w-1 h-1 rounded-full bg-green-500 animate-pulse delay-75"></div>
+                    <div class="w-1 h-1 rounded-full bg-green-500 animate-pulse delay-150"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-[9px] text-slate-600 uppercase tracking-[0.5em] mb-2">Jai Hind | Omkar Enterprises | Pune HQ</p>
+        <p class="text-[8px] text-slate-800 uppercase">Private Placement Memorandum - For Institutional Partners Only</p>
     </footer>
 
     <script>
-        const slabSelect = document.getElementById('slabSelect');
-        const amortBody = document.getElementById('amortBody');
+        const slab = document.getElementById('slab');
+        const scheduleBody = document.getElementById('scheduleBody');
         const monthlyVal = document.getElementById('monthlyVal');
         const totalProfit = document.getElementById('totalProfit');
         const refundVal = document.getElementById('refundVal');
-        const waLink = document.getElementById('waLink');
+        const waButton = document.getElementById('waButton');
 
-        function update() {
-            const principal = parseInt(slabSelect.value);
-            let rate = (principal === 200000) ? 0.15 : 0.02; // 15% for 2L, 2% for 1L
+        function updateUI() {
+            const principal = parseInt(slab.value);
+            // 15% for 2L, 12% for 1L
+            const rate = (principal === 200000) ? 0.15 : 0.12;
             
-            const mROI = principal * rate;
-            const tProfit = mROI * 12;
+            const monthlyROI = principal * rate;
+            const totalNetProfit = monthlyROI * 12;
 
-            monthlyVal.innerText = mROI.toLocaleString('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0});
-            totalProfit.innerText = tProfit.toLocaleString('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0});
-            refundVal.innerText = principal.toLocaleString('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0});
+            monthlyVal.innerText = monthlyROI.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
+            totalProfit.innerText = totalNetProfit.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
+            refundVal.innerText = principal.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
 
-            waLink.href = `https://wa.me/9226393837?text=I%20have%20reviewed%20the%20Private%20Roadmap.%20I%20want%20to%20secure%20the%20${principal.toLocaleString('en-IN')}%20slot.%20Please%20send%20official%20email%20approval.`;
+            // Update WhatsApp Link
+            waButton.href = `https://wa.me/9226393837?text=Jai%20Hind%20Omkar%20Enterprises,%20I%20have%20reviewed%20the%20Private%20Roadmap.%20I%20want%20to%20reserve%20the%20${principal.toLocaleString('en-IN')}%20slot.%20I%20am%20ready%20to%20share%20my%20KYC%20(PAN/Aadhaar)%20for%20vetting.`;
 
-            let rows = "";
-            for(let i=1; i<=13; i++) {
+            let tableHTML = "";
+            for (let i = 1; i <= 13; i++) {
                 const isFinal = (i === 13);
-                rows += `
-                    <tr class="${isFinal ? 'text-gold bg-gold/5 font-bold' : ''}">
-                        <td class="p-4 text-slate-500">Month ${i}</td>
-                        <td class="p-4 font-mono">${isFinal ? 'Settle' : mROI.toLocaleString('en-IN', {style:'currency', currency:'INR', maximumFractionDigits:0})}</td>
-                        <td class="p-4"><span class="text-[8px] border border-white/10 px-2 py-0.5 rounded uppercase font-bold">${isFinal ? 'CAPITAL REFUND' : 'FIXED INTEREST'}</span></td>
-                        <td class="p-4 text-right text-slate-600">${isFinal ? '₹0' : principal.toLocaleString('en-IN')}</td>
+                tableHTML += `
+                    <tr class="${isFinal ? 'bg-gold/10 text-gold font-black' : 'border-b border-white/5'}">
+                        <td class="p-5 text-slate-500">Month ${i}</td>
+                        <td class="p-5 font-mono">${isFinal ? '--' : monthlyROI.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
+                        <td class="p-5">
+                            <span class="text-[8px] border ${isFinal ? 'border-gold' : 'border-white/10'} px-2 py-0.5 rounded uppercase font-black">
+                                ${isFinal ? 'Capital Returned' : 'ROI Secured'}
+                            </span>
+                        </td>
+                        <td class="p-5 text-right text-slate-600">${isFinal ? '₹0' : principal.toLocaleString('en-IN')}</td>
                     </tr>
                 `;
             }
-            amortBody.innerHTML = rows;
+            scheduleBody.innerHTML = tableHTML;
         }
 
-        slabSelect.addEventListener('change', update);
-        window.onload = update;
+        slab.addEventListener('change', updateUI);
+        window.onload = updateUI;
     </script>
 </body>
 </html>

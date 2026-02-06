@@ -51,6 +51,10 @@
             filter: grayscale(1) opacity(0.6); 
             transition: 0.4s; 
             cursor: pointer; 
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
         }
         
         .doc-preview:hover { 
@@ -117,9 +121,106 @@
         .social-icon:hover {
             transform: translateY(-3px);
         }
+        
+        /* Document Thumbnail Fallback */
+        .doc-thumbnail-fallback {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(145deg, #1a1f2e, #0d1117);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .doc-thumbnail-fallback i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+        }
+        
+        /* PDF Viewer Modal */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .pdf-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            background: #0a0e14;
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+        }
+        
+        .pdf-modal-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .pdf-modal-body {
+            height: calc(100% - 80px);
+            padding: 20px;
+        }
+        
+        .pdf-modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .close-pdf {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff4444;
+            border: 1px solid #ff4444;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-pdf:hover {
+            background: rgba(255, 0, 0, 0.4);
+        }
     </style>
 </head>
 <body class="antialiased">
+
+    <!-- PDF Viewer Modal -->
+    <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h3 id="pdfTitle" class="text-xl font-bold gold-text">Document Viewer</h3>
+                <button onclick="closePDFViewer()" class="close-pdf">
+                    <i class="fas fa-times mr-2"></i> Close
+                </button>
+            </div>
+            <div class="pdf-modal-body">
+                <iframe id="pdfFrame" src=""></iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- Top Announcement Bar -->
     <div class="gold-bg text-black text-[9px] font-black text-center py-2 uppercase tracking-[0.3em] fixed w-full z-50">
@@ -139,7 +240,7 @@
             <div class="hidden md:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-300">
                 <a href="#vision" class="nav-link hover:text-gold transition">Our Vision</a>
                 <a href="#about" class="nav-link hover:text-gold transition">About Us</a>
-                <a href="#legal" class="nav-link hover:text-gold transition">Legal</a>
+                <a href="#documents" class="nav-link hover:text-gold transition">Company Documents</a>
                 <a href="#contact" class="nav-link hover:text-gold transition">Contact</a>
                 <a href="dashboard.html" class="px-4 py-2 border gold-border rounded text-gold hover:bg-gold hover:text-black transition duration-300">Investor Portal</a>
             </div>
@@ -155,7 +256,7 @@
             <div class="flex flex-col space-y-4 text-center">
                 <a href="#vision" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">Our Vision</a>
                 <a href="#about" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">About Us</a>
-                <a href="#legal" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">Legal</a>
+                <a href="#documents" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">Company Documents</a>
                 <a href="#contact" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">Contact</a>
                 <a href="dashboard.html" class="text-sm font-bold uppercase tracking-widest gold-text py-2 border gold-border rounded hover:bg-gold hover:text-black transition duration-300">Investor Portal</a>
             </div>
@@ -207,8 +308,8 @@
                 </div>
                 
                 <div>
-                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                         alt="Market Analysis" 
+                    <img src="assets/founder.jpg" 
+                         alt="Santosh Shendkar - Founder & Market Analyst" 
                          class="rounded-3xl w-full h-auto object-cover premium-shadow">
                 </div>
             </div>
@@ -247,70 +348,190 @@
 
     <div class="section-divider"></div>
 
-    <!-- Legal Section -->
-    <section id="legal" class="py-20 px-6 bg-white/[0.01]">
+    <!-- Documents Section -->
+    <section id="documents" class="py-20 px-6 bg-white/[0.01]">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold serif italic mb-6">Statutory <span class="gold-text">Registrations</span></h2>
+                <h2 class="text-3xl md:text-4xl font-bold serif italic mb-6">Official <span class="gold-text">Documents</span></h2>
                 <p class="text-slate-400 max-w-2xl mx-auto">
-                    Omkar Enterprises operates with complete transparency and full regulatory compliance. Below are our key statutory documents.
+                    Browse through our official registration documents and statutory compliances. Click on any document to view the full PDF.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- COI Card -->
-                <a href="assets/coi.pdf" target="_blank" class="glass-card p-6 rounded-3xl block hover:border-gold/50 transition group premium-shadow">
-                    <div class="bg-white/5 aspect-[4/3] rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                        <div class="text-center p-4">
-                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-file-contract text-black text-2xl"></i>
-                            </div>
-                            <img src="assets/documents/certificate-of-incorporation.jpg" class="doc-preview w-full h-48 object-cover rounded-xl" alt="COI Preview">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Certificate of Incorporation -->
+                <div class="glass-card p-6 rounded-3xl premium-shadow">
+                    <div onclick="openPDFViewer('Certificate of Incorporation', 'assets/documents/incorporation.pdf')" class="cursor-pointer">
+                        <img src="assets/documents/certificate-of-incorporation.jpg" 
+                             class="doc-preview mb-4" 
+                             alt="Certificate of Incorporation Preview"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"doc-thumbnail-fallback\"><i class=\"fas fa-file-contract\"></i><span class=\"text-sm\">Certificate of Incorporation</span></div>'">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">Certificate of Incorporation</h3>
+                        <p class="text-xs text-slate-400 mb-4">Ministry of Corporate Affairs - Official Registration</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500">Registrar of Companies</span>
+                            <span class="text-gold text-sm font-bold">
+                                <i class="fas fa-eye mr-1"></i> View PDF
+                            </span>
                         </div>
                     </div>
-                    <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">Certificate of Incorporation</h3>
-                    <p class="text-xs text-slate-400 mb-4">Registrar of Companies, Ministry of Corporate Affairs</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-gold opacity-0 group-hover:opacity-100 transition">Click to view PDF</span>
-                        <i class="fas fa-external-link-alt text-gold/50 group-hover:text-gold transition"></i>
-                    </div>
-                </a>
+                </div>
 
-                <!-- PAN Card -->
-                <a href="assets/pan.pdf" target="_blank" class="glass-card p-6 rounded-3xl block hover:border-gold/50 transition group premium-shadow">
-                    <div class="bg-white/5 aspect-[4/3] rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                        <div class="text-center p-4">
-                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-receipt text-black text-2xl"></i>
-                            </div>
-                            <img src="assets/pan.jpg" class="doc-preview w-full h-48 object-cover rounded-xl" alt="PAN Preview">
+                <!-- MOA (Memorandum of Association) -->
+                <div class="glass-card p-6 rounded-3xl premium-shadow">
+                    <div onclick="openPDFViewer('Memorandum of Association', 'assets/documents/MOA.pdf')" class="cursor-pointer">
+                        <div class="doc-thumbnail-fallback">
+                            <i class="fas fa-book"></i>
+                            <span class="text-sm">Memorandum of Association</span>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2 mt-4">Memorandum of Association</h3>
+                        <p class="text-xs text-slate-400 mb-4">Company Objectives & Business Activities</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500">Official MOA Document</span>
+                            <span class="text-gold text-sm font-bold">
+                                <i class="fas fa-eye mr-1"></i> View PDF
+                            </span>
                         </div>
                     </div>
-                    <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">Company PAN</h3>
-                    <p class="text-xs text-slate-400 mb-4">Permanent Account Number for Corporate Taxation</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-gold opacity-0 group-hover:opacity-100 transition">Click to view PDF</span>
-                        <i class="fas fa-external-link-alt text-gold/50 group-hover:text-gold transition"></i>
-                    </div>
-                </a>
+                </div>
 
-                <!-- MSME Card -->
-                <a href="assets/msme.pdf" target="_blank" class="glass-card p-6 rounded-3xl block hover:border-gold/50 transition group premium-shadow">
-                    <div class="bg-white/5 aspect-[4/3] rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                        <div class="text-center p-4">
-                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-building text-black text-2xl"></i>
-                            </div>
-                            <img src="assets/msme.jpg" class="doc-preview w-full h-48 object-cover rounded-xl" alt="MSME Preview">
+                <!-- AOA (Articles of Association) -->
+                <div class="glass-card p-6 rounded-3xl premium-shadow">
+                    <div onclick="openPDFViewer('Articles of Association', 'assets/documents/AOA.pdf')" class="cursor-pointer">
+                        <div class="doc-thumbnail-fallback">
+                            <i class="fas fa-gavel"></i>
+                            <span class="text-sm">Articles of Association</span>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2 mt-4">Articles of Association</h3>
+                        <p class="text-xs text-slate-400 mb-4">Internal Rules & Regulations</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500">Company By-laws</span>
+                            <span class="text-gold text-sm font-bold">
+                                <i class="fas fa-eye mr-1"></i> View PDF
+                            </span>
                         </div>
                     </div>
-                    <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">MSME Registration</h3>
-                    <p class="text-xs text-slate-400 mb-4">Udyam Registration, Government of India</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-gold opacity-0 group-hover:opacity-100 transition">Click to view PDF</span>
-                        <i class="fas fa-external-link-alt text-gold/50 group-hover:text-gold transition"></i>
+                </div>
+
+                <!-- Company PAN -->
+                <div class="glass-card p-6 rounded-3xl premium-shadow">
+                    <div onclick="openPDFViewer('Company PAN Card', 'assets/documents/e-TAN.pdf')" class="cursor-pointer">
+                        <img src="assets/documents/Company Pan.jpg" 
+                             class="doc-preview mb-4" 
+                             alt="Company PAN Preview"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"doc-thumbnail-fallback\"><i class=\"fas fa-receipt\"></i><span class=\"text-sm\">Company PAN Card</span></div>'">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">Company PAN Card</h3>
+                        <p class="text-xs text-slate-400 mb-4">Permanent Account Number</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500">Income Tax Department</span>
+                            <span class="text-gold text-sm font-bold">
+                                <i class="fas fa-eye mr-1"></i> View PDF
+                            </span>
+                        </div>
                     </div>
-                </a>
+                </div>
+
+                <!-- MSME Registration -->
+                <div class="glass-card p-6 rounded-3xl premium-shadow">
+                    <div onclick="openPDFViewer('MSME Registration', 'assets/documents/udyam addhar.pdf')" class="cursor-pointer">
+                        <img src="assets/documents/msme-registration.jpg" 
+                             class="doc-preview mb-4" 
+                             alt="MSME Registration Preview"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"doc-thumbnail-fallback\"><i class=\"fas fa-industry\"></i><span class=\"text-sm\">MSME Registration</span></div>'">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">MSME Registration</h3>
+                        <p class="text-xs text-slate-400 mb-4">Udyam Aadhaar Certificate</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500">Govt. of India MSME</span>
+                            <span class="text-gold text-sm font-bold">
+                                <i class="fas fa-eye mr-1"></i> View PDF
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MCA Registration -->
+                <div class="glass-card p-6 rounded-3xl premium-shadow">
+                    <div onclick="openPDFViewer('MCA Registration', 'assets/documents/ministry of corporate affairs.pdf')" class="cursor-pointer">
+                        <div class="doc-thumbnail-fallback">
+                            <i class="fas fa-landmark"></i>
+                            <span class="text-sm">MCA Registration</span>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2 mt-4">MCA Registration</h3>
+                        <p class="text-xs text-slate-400 mb-4">Ministry of Corporate Affairs</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500">Corporate Identity Number</span>
+                            <span class="text-gold text-sm font-bold">
+                                <i class="fas fa-eye mr-1"></i> View PDF
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Documents -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold serif italic mb-8 text-center gold-text">Additional Legal Documents</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Partnership Agreement -->
+                    <div class="glass-card p-6 rounded-3xl">
+                        <div onclick="openPDFViewer('Partnership Agreement', 'assets/documents/partnership-agreement-sample.pdf')" class="cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 gold-bg rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-handshake text-black"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Partnership Agreement</h4>
+                                    <p class="text-xs text-slate-400">Sample partnership framework</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PDC Security Agreement -->
+                    <div class="glass-card p-6 rounded-3xl">
+                        <div onclick="openPDFViewer('PDC Security Agreement', 'assets/documents/pdc-security-agreement.pdf')" class="cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 gold-bg rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-file-shield text-black"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">PDC Security Agreement</h4>
+                                    <p class="text-xs text-slate-400">Post-dated cheque security</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Disclosure -->
+                    <div class="glass-card p-6 rounded-3xl">
+                        <div onclick="openPDFViewer('Risk Disclosure Document', 'assets/documents/risk-disclosure-document.pdf')" class="cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 gold-bg rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-exclamation-triangle text-black"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Risk Disclosure Document</h4>
+                                    <p class="text-xs text-slate-400">Investment risk disclosures</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="glass-card p-6 rounded-3xl">
+                        <div onclick="openPDFViewer('Terms & Conditions', 'assets/documents/terms-conditions-annexure-b.pdf')" class="cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 gold-bg rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-file-signature text-black"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Terms & Conditions</h4>
+                                    <p class="text-xs text-slate-400">Service terms annexure</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="mt-16 glass-card p-8 rounded-3xl max-w-3xl mx-auto">
@@ -527,6 +748,41 @@
             icon.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
             });
+        });
+        
+        // PDF Viewer Functions
+        function openPDFViewer(title, pdfPath) {
+            const modal = document.getElementById('pdfModal');
+            const frame = document.getElementById('pdfFrame');
+            const pdfTitle = document.getElementById('pdfTitle');
+            
+            pdfTitle.textContent = title;
+            frame.src = pdfPath;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        function closePDFViewer() {
+            const modal = document.getElementById('pdfModal');
+            const frame = document.getElementById('pdfFrame');
+            
+            modal.style.display = 'none';
+            frame.src = '';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('pdfModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePDFViewer();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePDFViewer();
+            }
         });
     </script>
 </body>

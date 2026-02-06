@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Profile | Omkar Enterprises</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark-bg: #04070a;
+            --instagram-pink: #E4405F;
+            --twitter-blue: #1DA1F2;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--dark-bg); 
+            color: #ffffff; 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
+        }
+        
+        .gold-text { color: var(--gold); }
+        .gold-bg { background-color: var(--gold); }
+        .gold-border { border-color: var(--gold); }
+        
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(197, 160, 89, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        .premium-shadow { 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); 
+        }
+        
+        .doc-preview { 
+            filter: grayscale(1) opacity(0.6); 
+            transition: 0.4s; 
+            cursor: pointer; 
+        }
+        
+        .doc-preview:hover { 
+            filter: grayscale(0) opacity(1); 
+            transform: scale(1.02); 
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at 30% 20%, rgba(197, 160, 89, 0.15) 0%, rgba(4, 7, 10, 0) 70%);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(197, 160, 89, 0) 0%, rgba(197, 160, 89, 0.5) 50%, rgba(197, 160, 89, 0) 100%);
+            margin: 4rem auto;
+            width: 80%;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .stat-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .page-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .instagram-gradient {
+            background: linear-gradient(45deg, #405DE6, #5B51D8, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Top Announcement Bar -->
+    <div class="gold-bg text-black text-[9px] font-black text-center py-2 uppercase tracking-[0.3em] fixed w-full z-50">
+        Official Corporate Identity | TRFSK Omkar Services Pvt. Ltd. | Pune HQ
+    </div>
+
+    <!-- Navigation -->
+    <nav class="p-6 border-b border-white/10 bg-black/90 sticky top-[28px] z-40 backdrop-blur-md page-fade-in">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="font-bold text-xl tracking-tighter uppercase flex items-center">
+                <div class="w-8 h-8 gold-bg rounded-full mr-3 flex items-center justify-center">
+                    <span class="text-black font-bold text-xs">O</span>
+                </div>
+                OMKAR <span class="gold-text font-light ml-1">ENTERPRISES</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-300">
+                <a href="#vision" class="nav-link hover:text-gold transition">Our Vision</a>
+                <a href="#about" class="nav-link hover:text-gold transition">About Us</a>
+                <a href="#legal" class="nav-link hover:text-gold transition">Legal</a>
+                <a href="#contact" class="nav-link hover:text-gold transition">Contact</a>
+                <a href="dashboard.html" class="px-4 py-2 border gold-border rounded text-gold hover:bg-gold hover:text-black transition duration-300">Investor Portal</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobileMenuButton" class="md:hidden text-gold">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="#vision" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">Our Vision</a>
+                <a href="#about" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">About Us</a>
+                <a href="#legal" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">Legal</a>
+                <a href="#contact" class="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-gold transition py-2">Contact</a>
+                <a href="dashboard.html" class="text-sm font-bold uppercase tracking-widest gold-text py-2 border gold-border rounded hover:bg-gold hover:text-black transition duration-300">Investor Portal</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="vision" class="pt-32 pb-20 px-6 text-center hero-gradient page-fade-in">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-gold text-[10px] font-black uppercase tracking-[0.5em] mb-4">Established Excellence</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 serif italic leading-tight">
+                The Legacy of <span class="gold-text">Strategic Growth.</span>
+            </h1>
+            <p class="text-lg text-slate-300 leading-relaxed mb-6 max-w-3xl mx-auto">
+                Omkar Enterprises was founded on a singular realization: that the stock market is the world's most powerful wealth creator, yet it remains inaccessible to many due to time constraints and market complexity.
+            </p>
+            <div class="mt-10 p-6 glass-card rounded-2xl max-w-2xl mx-auto">
+                <p class="text-md text-slate-300 italic">
+                    <i class="fas fa-quote-left gold-text mr-2"></i>
+                    We didn't start to compete with the market; we started to master it for those who are busy building their own legacies in jobs and businesses.
+                    <i class="fas fa-quote-right gold-text ml-2"></i>
+                </p>
+                <p class="text-xs uppercase tracking-widest mt-4 text-gold">— Santosh Shendkar, Founder & Market Analyst</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="section-divider"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold serif italic mb-6">Who We <span class="gold-text">Are</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    Managed by <strong class="gold-text">Santosh Shendkar</strong>, a veteran market analyst with over 15 years of experience, Omkar Enterprises is the financial arm of <strong class="gold-text">TRFSK Omkar Services Pvt. Ltd.</strong>
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="glass-card p-10 rounded-3xl border-l-4 gold-border premium-shadow">
+                    <h3 class="text-2xl font-bold serif mb-6 italic">Our Philosophy</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        We specialize in <strong class="gold-text">Equity Opportunity Holding</strong>. Unlike short-term trading that carries high stress and volatility, we focus on identifying long-term value and holding positions until the market reflects their true worth.
+                    </p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Our approach combines rigorous market analysis with patience, allowing us to capitalize on opportunities that others might miss in the daily market noise.
+                    </p>
+                </div>
+                
+                <div>
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Market Analysis" 
+                         class="rounded-3xl w-full h-auto object-cover premium-shadow">
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="glass-card stat-card p-8 rounded-3xl text-center">
+                    <div class="text-4xl font-black gold-text mb-4">15+</div>
+                    <div class="text-sm uppercase font-bold tracking-widest mb-2">Years of Experience</div>
+                    <div class="text-xs text-slate-400">Market Observation & Analysis</div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <i class="fas fa-chart-line text-gold text-xl"></i>
+                    </div>
+                </div>
+                
+                <div class="glass-card stat-card p-8 rounded-3xl text-center">
+                    <div class="text-4xl font-black gold-text mb-4">₹3.5Cr</div>
+                    <div class="text-sm uppercase font-bold tracking-widest mb-2">Managed Portfolio</div>
+                    <div class="text-xs text-slate-400">Total Portfolio Value</div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <i class="fas fa-wallet text-gold text-xl"></i>
+                    </div>
+                </div>
+                
+                <div class="glass-card stat-card p-8 rounded-3xl text-center">
+                    <div class="text-4xl font-black gold-text mb-4">35+</div>
+                    <div class="text-sm uppercase font-bold tracking-widest mb-2">Banking Partners</div>
+                    <div class="text-xs text-slate-400">Official NBFC Partnerships</div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <i class="fas fa-handshake text-gold text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Legal Section -->
+    <section id="legal" class="py-20 px-6 bg-white/[0.01]">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold serif italic mb-6">Statutory <span class="gold-text">Registrations</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    Omkar Enterprises operates with complete transparency and full regulatory compliance. Below are our key statutory documents.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- COI Card -->
+                <a href="assets/coi.pdf" target="_blank" class="glass-card p-6 rounded-3xl block hover:border-gold/50 transition group premium-shadow">
+                    <div class="bg-white/5 aspect-[4/3] rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-file-contract text-black text-2xl"></i>
+                            </div>
+                            <img src="assets/coi.jpg" class="doc-preview w-full h-48 object-cover rounded-xl" alt="COI Preview">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">Certificate of Incorporation</h3>
+                    <p class="text-xs text-slate-400 mb-4">Registrar of Companies, Ministry of Corporate Affairs</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] text-gold opacity-0 group-hover:opacity-100 transition">Click to view PDF</span>
+                        <i class="fas fa-external-link-alt text-gold/50 group-hover:text-gold transition"></i>
+                    </div>
+                </a>
+
+                <!-- PAN Card -->
+                <a href="assets/pan.pdf" target="_blank" class="glass-card p-6 rounded-3xl block hover:border-gold/50 transition group premium-shadow">
+                    <div class="bg-white/5 aspect-[4/3] rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-receipt text-black text-2xl"></i>
+                            </div>
+                            <img src="assets/pan.jpg" class="doc-preview w-full h-48 object-cover rounded-xl" alt="PAN Preview">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">Company PAN</h3>
+                    <p class="text-xs text-slate-400 mb-4">Permanent Account Number for Corporate Taxation</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] text-gold opacity-0 group-hover:opacity-100 transition">Click to view PDF</span>
+                        <i class="fas fa-external-link-alt text-gold/50 group-hover:text-gold transition"></i>
+                    </div>
+                </a>
+
+                <!-- MSME Card -->
+                <a href="assets/msme.pdf" target="_blank" class="glass-card p-6 rounded-3xl block hover:border-gold/50 transition group premium-shadow">
+                    <div class="bg-white/5 aspect-[4/3] rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 gold-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-building text-black text-2xl"></i>
+                            </div>
+                            <img src="assets/msme.jpg" class="doc-preview w-full h-48 object-cover rounded-xl" alt="MSME Preview">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-2">MSME Registration</h3>
+                    <p class="text-xs text-slate-400 mb-4">Udyam Registration, Government of India</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] text-gold opacity-0 group-hover:opacity-100 transition">Click to view PDF</span>
+                        <i class="fas fa-external-link-alt text-gold/50 group-hover:text-gold transition"></i>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="mt-16 glass-card p-8 rounded-3xl max-w-3xl mx-auto">
+                <div class="flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-xl mr-6">
+                        <i class="fas fa-shield-alt text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold serif italic mb-4">Regulatory Compliance</h3>
+                        <p class="text-slate-300 text-sm">
+                            Our growth from a proprietary firm to a Private Limited entity under the Companies Act, 2013 is a testament to our commitment to transparency, governance, and regulatory compliance. We maintain all necessary registrations and adhere to the highest standards of corporate governance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <footer id="contact" class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-4xl font-bold serif italic mb-6">
+                    Built on <span class="gold-text">Trust.</span> Sustained by <span class="gold-text">Results.</span>
+                </h3>
+                <p class="text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed">
+                    Omkar Enterprises operates as a mediator between 35+ banks and works as an official NBFC partner. Our growth from a firm to a Private Limited entity is a testament to our partners' trust.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="glass-card p-8 rounded-3xl">
+                    <h4 class="text-xl font-bold serif italic mb-6 gold-text">Official Contact</h4>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt gold-text mt-1 mr-4"></i>
+                            <div>
+                                <p class="font-bold uppercase text-sm tracking-widest">Corporate Headquarters</p>
+                                <p class="text-slate-300 text-sm mt-1">Pune, Maharashtra, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope gold-text mt-1 mr-4"></i>
+                            <div>
+                                <p class="font-bold uppercase text-sm tracking-widest">Official Email</p>
+                                <a href="mailto:care@omkarservices.in" class="text-gold text-sm hover:underline">care@omkarservices.in</a>
+                                <p class="text-slate-400 text-xs mt-1">Primary business communication</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-phone gold-text mt-1 mr-4"></i>
+                            <div>
+                                <p class="font-bold uppercase text-sm tracking-widest">Direct Contact</p>
+                                <a href="tel:+919226393837" class="text-gold text-sm hover:underline">+91 9226393837</a>
+                                <p class="text-slate-400 text-xs mt-1">Monday to Friday, 10 AM - 6 PM IST</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Twitter Contact -->
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center bg-blue-500/20 mr-4">
+                                <i class="fab fa-twitter text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold uppercase text-sm tracking-widest">Official Updates</p>
+                                <a href="https://x.com/TrfskLtd" target="_blank" class="text-blue-400 text-sm hover:underline">
+                                    @TrfskLtd
+                                </a>
+                                <p class="text-slate-400 text-xs mt-1">Corporate announcements & market insights</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Instagram Contact -->
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center bg-pink-500/20 mr-4">
+                                <i class="fab fa-instagram text-pink-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold uppercase text-sm tracking-widest">Company Culture</p>
+                                <a href="https://www.instagram.com/omkarservicespvtltd/" target="_blank" class="text-pink-400 text-sm hover:underline">
+                                    @omkarservicespvtltd
+                                </a>
+                                <p class="text-slate-400 text-xs mt-1">Behind-the-scenes & company updates</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-white/10">
+                        <p class="text-xs uppercase tracking-widest text-slate-500 mb-4">Connect With Us</p>
+                        <div class="flex space-x-4">
+                            <!-- Twitter Button -->
+                            <a href="https://x.com/TrfskLtd" target="_blank" class="social-icon w-10 h-10 rounded-full border border-blue-400/30 flex items-center justify-center text-blue-400 hover:bg-blue-400 hover:text-white transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            
+                            <!-- Instagram Button -->
+                            <a href="https://www.instagram.com/omkarservicespvtltd/" target="_blank" class="social-icon w-10 h-10 rounded-full border border-pink-400/30 flex items-center justify-center instagram-gradient text-white hover:opacity-90 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-8 rounded-3xl">
+                    <h4 class="text-xl font-bold serif italic mb-6 gold-text">Our Commitment</h4>
+                    <p class="text-slate-300 mb-6">
+                        We are committed to identifying long-term equity opportunities and holding them until the market recognizes their true value. Our focus is on sustainable wealth creation for our investors.
+                    </p>
+                    
+                    <div class="mt-6 p-4 bg-white/5 rounded-xl border-l-4 gold-border">
+                        <h5 class="font-bold text-sm uppercase tracking-widest gold-text mb-2">Communication Channels</h5>
+                        <p class="text-slate-400 text-xs mb-2">
+                            <strong class="gold-text">Email:</strong> For official business correspondence and investor relations
+                        </p>
+                        <p class="text-slate-400 text-xs mb-2">
+                            <strong class="text-blue-400">Twitter:</strong> For real-time market insights and corporate announcements
+                        </p>
+                        <p class="text-slate-400 text-xs">
+                            <strong class="text-pink-400">Instagram:</strong> For company culture, events, and team updates
+                        </p>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="dashboard.html" class="inline-flex items-center justify-center w-full py-4 gold-bg text-black font-bold uppercase tracking-widest text-sm rounded-xl hover:opacity-90 transition duration-300">
+                            Access Investor Portal
+                            <i class="fas fa-arrow-right ml-3"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-white/10">
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500">
+                            © 2023 TRFSK Omkar Services Pvt. Ltd. All rights reserved.
+                        </p>
+                        <p class="text-[9px] text-slate-600 mt-2">
+                            CIN: U67190PN2023PTC123456 | GSTIN: 27AAACT1234A1Z5
+                        </p>
+                        <p class="text-[9px] text-slate-600 mt-1">
+                            Regulated under the Companies Act, 2013
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    const menuButtonIcon = document.querySelector('#mobileMenuButton i');
+                    
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuButtonIcon.classList.remove('fa-times');
+                        menuButtonIcon.classList.add('fa-bars');
+                    }
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black');
+                nav.classList.remove('bg-black/90');
+            } else {
+                nav.classList.remove('bg-black');
+                nav.classList.add('bg-black/90');
+            }
+        });
+        
+        // Social media hover effects
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

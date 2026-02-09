@@ -394,29 +394,33 @@
             gap: 8px;
         }
 
+        /* BUDGET IMAGE SECTION - UPDATED */
         .blog-hero-image {
             width: 100%;
             height: 400px;
-            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
             border-radius: var(--radius);
             margin: 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 120px;
             position: relative;
             overflow: hidden;
+            border: 3px solid var(--gold-accent);
+            box-shadow: var(--shadow-lg);
         }
 
-        .blog-hero-image::before {
+        .blog-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .blog-hero-image::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, transparent 100%);
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
         }
 
         .blog-content {
@@ -860,9 +864,10 @@
                 padding: 30px 20px;
             }
 
+            /* Mobile image adjustment */
             .blog-hero-image {
-                height: 250px;
-                font-size: 80px;
+                height: 300px;
+                margin: 30px 0;
             }
 
             .blog-content h2 {
@@ -882,6 +887,12 @@
                 width: 100%;
                 max-width: 300px;
                 justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-hero-image {
+                height: 250px;
             }
         }
 
@@ -978,8 +989,9 @@
                 </div>
             </div>
 
+            <!-- BUDGET IMAGE - UPDATED TO USE YOUR ACTUAL IMAGE -->
             <div class="blog-hero-image">
-                <i class="fas fa-file-invoice-dollar"></i>
+                <img src="assets/BUDGET 2026 WINNERS.png" alt="Budget 2026 Analysis: Education Policy Changes & Financial Impact | Omkar Enterprises">
             </div>
 
             <div class="blog-content">

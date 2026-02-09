@@ -1,48 +1,1296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G7YK2WKD6G');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educational Blog - Market Analysis & Investment Learning | Omkar Services</title>
-    <meta name="description" content="Free educational blog on market analysis, risk management, and financial concepts. Learn investing principles with Omkar Services expert insights.">
     
-    <!-- Use the same CSS from your other pages -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- SEO TAGS FOR BLOG PAGE -->
+    <title>Educational Blog | Market Analysis & Investment Insights | Omkar Enterprises</title>
+    <meta name="description" content="Free educational blog on financial markets, investment strategies, and market analysis. Learn about global inflation, budget impacts, and investment opportunities with Omkar Enterprises insights.">
+    <meta name="keywords" content="financial education blog, market analysis blog, investment learning, inflation education, budget analysis, financial markets education, investment strategies blog">
+    <meta name="author" content="Omkar Enterprises Educational Team">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://omkarservices.in/blog">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Educational Blog | Market Analysis & Investment Insights">
+    <meta property="og:description" content="Free educational articles on financial markets, investment strategies, and market trends. Learn with Omkar Enterprises.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://omkarservices.in/blog">
+    <meta property="og:image" content="https://omkarservices.in/assets/blog-og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Educational Blog | Omkar Enterprises">
+    <meta name="twitter:description" content="Free financial education articles on market analysis and investment strategies">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* IMPORTANT: Copy ALL CSS from your index.html here */
+        /* Since your index.html has inline CSS, I'll include the full CSS */
+        /* Base Styles with Trust Blue Color Palette */
+        :root {
+            --trust-blue: #1e3a8a;
+            --navy-blue: #1e40af;
+            --royal-blue: #2563eb;
+            --light-blue: #dbeafe;
+            --modern-slate: #334155;
+            --slate-dark: #1e293b;
+            --slate-light: #64748b;
+            --gold-accent: #d4af37;
+            --gold-light: #fef3c7;
+            --white: #ffffff;
+            --gray-light: #f8fafc;
+            --success-green: #10b981;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--modern-slate);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* System Status Bar */
+        .system-status {
+            background: linear-gradient(90deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-status::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success-green);
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--success-green);
+            animation: ripple 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* Sticky Navigation */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ===== LOGO STYLING ===== */
+        .logo {
+            display: flex !important;
+            align-items: center !important;
+            text-decoration: none !important;
+            gap: 15px !important;
+            padding: 5px 0 !important;
+        }
+
+        .logo-image-container {
+            width: 50px !important;
+            height: 50px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            background: #ffffff !important;
+            border: 2px solid #dbeafe !important;
+            padding: 5px !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            flex-shrink: 0 !important;
+        }
+
+        .logo-image-container:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            border-color: #d4af37 !important;
+        }
+
+        .logo-image-container img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+            display: block !important;
+        }
+
+        .color-logo {
+            filter: none !important;
+        }
+
+        .logo-text-container {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            gap: 3px !important;
+        }
+
+        .logo-main {
+            font-size: 20px !important;
+            font-weight: 800 !important;
+            color: #1e3a8a !important;
+            letter-spacing: -0.5px !important;
+            line-height: 1.1 !important;
+            white-space: nowrap !important;
+            display: block !important;
+        }
+
+        .logo-tagline {
+            font-size: 11px !important;
+            color: #64748b !important;
+            font-weight: 500 !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            letter-spacing: 0.5px !important;
+            display: block !important;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--modern-slate);
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold-accent);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--trust-blue);
+        }
+
+        .nav-cta .btn-nav-login {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+        }
+
+        .nav-cta .btn-nav-login:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold-accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--modern-slate);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* BLOG SPECIFIC STYLES */
+        .blog-hero {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill="rgba(255,255,255,0.05)" d="M0,0V100H1000V0ZM250,50L500,25L750,50L1000,25V0H0V25Z"/></svg>');
+            background-size: cover;
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .blog-hero-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .blog-grid-container {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--light-blue);
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold-accent);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, transparent 100%);
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .blog-date {
+            color: var(--gold-accent);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-category {
+            background: var(--light-blue);
+            color: var(--trust-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .blog-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--slate-dark);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .blog-card h3 a {
+            color: var(--slate-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .blog-card h3 a:hover {
+            color: var(--trust-blue);
+        }
+
+        .blog-excerpt {
+            color: var(--slate-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--trust-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--gold-accent);
+            gap: 12px;
+        }
+
+        .blog-sidebar {
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--gray-light);
+            border-radius: 20px;
+            border: 1px solid var(--light-blue);
+        }
+
+        .blog-sidebar h3 {
+            color: var(--slate-dark);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gold-light);
+        }
+
+        .blog-categories {
+            list-style: none;
+        }
+
+        .blog-categories li {
+            margin-bottom: 12px;
+        }
+
+        .blog-categories a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--slate-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .blog-categories a:hover {
+            background: var(--white);
+            color: var(--trust-blue);
+        }
+
+        .category-count {
+            background: var(--light-blue);
+            color: var(--trust-blue);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .blog-newsletter {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .blog-newsletter h4 {
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .blog-newsletter p {
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .newsletter-form button {
+            background: var(--gold-accent);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: #b7950b;
+        }
+
+        /* Mobile Responsive for Blog */
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 32px;
+            }
+            
+            .blog-hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-card h3 {
+                font-size: 20px;
+            }
+            
+            .blog-content {
+                padding: 20px;
+            }
+        }
+
+        /* Footer Styles - Copy from index.html */
+        .footer {
+            background: var(--slate-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gold-accent);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            padding: 5px 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-accent);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-link.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .social-link.email {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .footer-disclaimer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 4px solid var(--gold-accent);
+        }
+
+        .footer-disclaimer h4 {
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+        }
+
+        .footer-disclaimer p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* Floating WhatsApp */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white);
+            padding: 18px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .float-whatsapp:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: var(--shadow-lg);
+                padding: 20px 0;
+                gap: 0;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                padding: 0;
+            }
+
+            .nav-menu a {
+                justify-content: center;
+                padding: 20px;
+                border-bottom: 1px solid var(--gray-light);
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <!-- COPY THE EXACT SAME HEADER/NAVIGATION FROM INDEX.HTML -->
     
-    <main class="blog-listing-page">
+    <!-- System Status Bar -->
+    <div class="system-status">
         <div class="container">
-            <h1>📚 Educational Blog & Market Insights</h1>
-            <p class="subtitle">Free educational content for aspiring investors. Learn market concepts, risk management, and investment principles.</p>
-            
-            <div class="blog-grid">
-                <!-- Blog Post 1 -->
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="date">📅 February 08, 2026</span>
-                        <span class="category">Market Education</span>
-                    </div>
-                    <h2><a href="Global_Inflation&Interest_Rates.html">Educational Analysis: Global Inflation & Interest Rates</a></h2>
-                    <p class="excerpt">Learn how global inflation trends and interest rate policies affect financial markets. Comprehensive educational analysis for aspiring investors.</p>
-                    <a href="blog/Global_Inflation%26Interest_Rates.html" class="read-more">Read Full Analysis →</a>
-                </article>
-                
-                <!-- Blog Post 2 -->
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="date">📅 January 29, 2026</span>
-                        <span class="category">Budget Analysis</span>
-                    </div>
-                    <h2><a href="budget-2026.html">Budget 2026: 5 Education Changes That Will Change Your Financial Life</a></h2>
-                    <p class="excerpt">Expert analysis of Union Budget 2026 education reforms and financial opportunities. Understand how to capitalize on these changes.</p>
-                    <a href="blog/budget-2026.html" class="read-more">Read Full Analysis →</a>
-                </article>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <div class="status-text">System Status: <strong>All Services Operational</strong> • Latest Blog Updates • Last Updated: <span id="currentTime"></span></div>
             </div>
         </div>
-    </main>
-    
-    <!-- COPY THE EXACT SAME FOOTER FROM INDEX.HTML -->
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-image-container">
+                    <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
+                </div>
+                <div class="logo-text-container">
+                    <div class="logo-main">OMKAR ENTERPRISES</div>
+                    <div class="logo-tagline">Private Lending Partnership Since 2015</div>
+                </div>
+            </a>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- FIXED NAVIGATION - Blog link points to blog.html -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="slabs.html"><i class="fas fa-rupee-sign"></i> Investment Tiers</a></li>
+                <li><a href="legal-framework.html"><i class="fas fa-file-contract"></i> Legal Framework</a></li>
+                <li><a href="testimonials.html"><i class="fas fa-star"></i> Testimonials</a></li>
+                <li><a href="about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+                <li><a href="blog.html" class="active"><i class="fas fa-blog"></i> Blog</a></li>
+                <li class="nav-cta"><a href="partner-portal.html" class="btn-nav-login" rel="noopener noreferrer"><i class="fas fa-lock"></i> Partner Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container blog-hero-content">
+            <h1>Educational Blog & Market Insights</h1>
+            <p class="blog-hero-subtitle">Free educational content for aspiring investors. Learn market concepts, risk management, and investment principles with Omkar Enterprises.</p>
+            <div class="compliance-badges" style="display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap;">
+                <span class="badge" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);"><i class="fas fa-graduation-cap"></i> Educational Content Only</span>
+                <span class="badge" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);"><i class="fas fa-shield-alt"></i> Market Analysis</span>
+                <span class="badge" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);"><i class="fas fa-book"></i> Investment Learning</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Listing Section -->
+    <section class="blog-grid-container">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Blog Post 1: Global Inflation & Interest Rates -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> February 08, 2026
+                            </div>
+                            <div class="blog-category">Market Education</div>
+                        </div>
+                        <h3>
+                            <a href="blog/Global_Inflation&Interest_Rates.html">Educational Analysis: Global Inflation & Interest Rates</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Learn how global inflation trends and interest rate policies affect financial markets. Comprehensive educational analysis for aspiring investors to understand macroeconomic factors.
+                        </p>
+                        <a href="blog/Global_Inflation&Interest_Rates.html" class="read-more">
+                            Read Full Analysis <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2: Budget 2026 -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> January 29, 2026
+                            </div>
+                            <div class="blog-category">Budget Analysis</div>
+                        </div>
+                        <h3>
+                            <a href="blog/budget-2026.html">Budget 2026: 5 Education Changes That Will Change Your Financial Life</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Expert analysis of Union Budget 2026 education reforms and financial opportunities. Understand how to capitalize on these government changes for better investment planning.
+                        </p>
+                        <a href="blog/budget-2026.html" class="read-more">
+                            Read Full Analysis <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3: Coming Soon -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> Coming Soon
+                            </div>
+                            <div class="blog-category">Risk Management</div>
+                        </div>
+                        <h3>
+                            <a href="#">Understanding Investment Security: The PDC Protection System</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Learn how Post Dated Cheques provide security for investments. Educational guide on understanding PDC systems and how they protect investor interests in private lending.
+                        </p>
+                        <a href="#" class="read-more">
+                            Coming Soon <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4: Coming Soon -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> Coming Soon
+                            </div>
+                            <div class="blog-category">Portfolio Strategy</div>
+                        </div>
+                        <h3>
+                            <a href="#">Building a Diversified Investment Portfolio: Educational Guide</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Learn the principles of portfolio diversification for risk management. Educational guide on how to balance different investment types for optimal returns and security.
+                        </p>
+                        <a href="#" class="read-more">
+                            Coming Soon <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Blog Sidebar -->
+            <div class="blog-sidebar fade-in">
+                <h3><i class="fas fa-folder"></i> Blog Categories</h3>
+                <ul class="blog-categories">
+                    <li>
+                        <a href="#">
+                            <span>Market Education</span>
+                            <span class="category-count">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Investment Strategies</span>
+                            <span class="category-count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Risk Management</span>
+                            <span class="category-count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Legal Framework</span>
+                            <span class="category-count">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Financial Planning</span>
+                            <span class="category-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="blog-newsletter">
+                    <h4><i class="fas fa-newspaper"></i> Subscribe to Our Newsletter</h4>
+                    <p>Get educational articles, market insights, and investment tips directly in your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">Educational content only. No spam, ever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" style="background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%); color: white; padding: 80px 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">Want to Learn More About Investments?</h2>
+            <p style="font-size: 18px; opacity: 0.9; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Our educational blog provides insights into financial markets. For personalized investment discussions, connect with our team directly.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" style="background: var(--gold-accent); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-calendar-alt"></i> Schedule Consultation
+                </a>
+                <a href="index.html" style="background: rgba(255,255,255,0.1); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; border: 2px solid rgba(255,255,255,0.2);">
+                    <i class="fas fa-home"></i> Return to Home
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <div class="logo-image-container" style="background: transparent; border: 2px solid rgba(212, 175, 55, 0.3);">
+                            <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo">
+                        </div>
+                        <div class="logo-text-container">
+                            <div class="logo-main" style="color: #d4af37;">OMKAR ENTERPRISES</div>
+                            <div class="logo-tagline" style="color: rgba(255, 255, 255, 0.7);">Private Lending Partnership</div>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Since 2015, <strong>Omkar Enterprises</strong> has served as a premier 
+                        <strong>private lending partnership</strong> in India, maintaining a 
+                        <strong>100% payout record</strong> for our 500+ partners. We specialize in 
+                        <strong>secured investments</strong> designed for those seeking 
+                        <strong>reliable monthly returns</strong> and long-term capital growth.
+                    </p>
+                    
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Investment Helpline:</strong><br>
+                                +91 8169 302 861 | +91 9226 393 837
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email:</strong><br>
+                                care@omkarservices.in
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="slabs.html"><i class="fas fa-chevron-right"></i> Investment Tiers</a></li>
+                        <li><a href="legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework</a></li>
+                        <li><a href="testimonials.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Educational Blog</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Founder</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal & Compliance</h4>
+                    <ul class="footer-links">
+                        <li><a href="compliance.html"><i class="fas fa-chevron-right"></i> Compliance</a></li>
+                        <li><a href="risk-disclosure.html"><i class="fas fa-chevron-right"></i> Risk Disclosure</a></li>
+                        <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    </ul>
+                    
+                    <h4 style="margin-top: 30px;">Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/917066393830" class="social-link whatsapp" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp For Queries</span>
+                        </a>
+                        <a href="mailto:care@omkarservices.in" class="social-link email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email Us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-disclaimer">
+                <h4><i class="fas fa-exclamation-triangle"></i> Important Educational Disclaimer</h4>
+                <p><strong>Educational Content Only:</strong> This blog provides financial market education for learning purposes only. We are not registered with SEBI as research analysts or investment advisors. All content is strictly educational and should not be construed as investment advice.</p>
+                <p>Readers should consult with independent financial advisors and conduct their own research before making any investment decisions. Past performance is not indicative of future results.</p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2015-2024 Omkar Enterprises. All Rights Reserved. | Private Lending Partnership Firm</p>
+                <p><i class="fas fa-shield-alt"></i> Educational Blog | Market Analysis Content</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat for Investment Info</span>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const navbar = document.getElementById('navbar');
+            
+            // Toggle mobile menu
+            if (hamburger) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+                
+                // Close menu when clicking on a link
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+            }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Update current time
+            function updateCurrentTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-IN', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    timeZone: 'Asia/Kolkata'
+                });
+                const dateString = now.toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    timeZone: 'Asia/Kolkata'
+                });
+                
+                const timeElement = document.getElementById('currentTime');
+                if (timeElement) {
+                    timeElement.textContent = `${dateString} ${timeString} IST`;
+                }
+            }
+            
+            // Update time every second
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation classes on scroll
+            function checkScroll() {
+                const elements = document.querySelectorAll('.fade-in');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('animated');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Initial check
+            
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    
+                    // Simple validation
+                    if (email && email.includes('@')) {
+                        alert('Thank you for subscribing to our educational newsletter! You will receive updates on new articles.');
+                        this.reset();
+                    } else {
+                        alert('Please enter a valid email address.');
+                    }
+                });
+            }
+            
+            // Add active class to current page in navigation
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (linkHref === 'blog.html' && currentPage.includes('blog'))) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

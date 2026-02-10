@@ -2,248 +2,403 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>The Quiet Strength of Shared Dreams | Omkar Enterprises</title>
     
     <meta name="description" content="Discover why trading alone is losing the wealth transfer game. Learn how Omkar Enterprises harnesses collective strength to build secure, sustainable wealth.">
     
-    <!-- Self-hosted Tailwind CSS (No CDN issues) -->
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="The Quiet Strength of Shared Dreams | Omkar Enterprises">
+    <meta property="og:description" content="Stop fighting the market alone. Join a community where your capital creates an undeniable force.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=630&fit=crop">
+    <meta property="og:type" content="article">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-S07E1S6Z6E');
+    </script>
+    
     <style>
-        /* Critical CSS - Loads instantly */
-        :root {
-            --gold: #c5a059;
-            --dark-bg: #04070a;
-        }
-        
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
+        :root {
+            --gold: #c5a059;
+            --dark-bg: #04070a;
+            --text-light: #e0e0e0;
+            --text-muted: #888;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        p {
+            font-size: 18px;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
         }
         
         .gold-text {
             color: var(--gold);
         }
         
-        .bg-gold {
-            background-color: var(--gold);
+        /* Layout Containers */
+        .container {
+            width: 100%;
+            padding-left: 5%;
+            padding-right: 5%;
         }
         
-        .border-gold {
-            border-color: var(--gold);
+        @media (min-width: 768px) {
+            .container {
+                max-width: 750px;
+                margin: 0 auto;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
         }
         
-        /* Navigation */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1000px;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1200px;
+            }
+        }
+        
+        /* Navigation - Mobile First */
         nav {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px 0;
+            background: rgba(4, 7, 10, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            padding: 15px 5%;
         }
         
-        .nav-content {
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
         
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 1px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
         
         .cta-button {
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold) 0%, #d4b15e 100%);
             color: #000;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
             text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
         
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
+            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.3);
         }
         
         /* Hero Section */
         .hero {
-            padding: 100px 0;
+            padding: 60px 5% 40px;
             text-align: center;
-            position: relative;
         }
         
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 30px;
-            font-family: Georgia, 'Times New Roman', serif;
+        @media (min-width: 768px) {
+            .hero {
+                padding: 100px 20px 60px;
+            }
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .article-meta span {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: 24px;
+        }
+        
+        @media (min-width: 768px) {
+            h1 {
+                font-size: clamp(3rem, 6vw, 4.5rem);
+            }
         }
         
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: clamp(18px, 4vw, 24px);
             color: #ccc;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 40px;
+            line-height: 1.4;
         }
         
+        /* Images */
         .article-image {
             width: 100%;
-            max-width: 900px;
             height: auto;
-            border-radius: 20px;
-            margin: 40px auto;
+            border-radius: 16px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             display: block;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: -30px;
+            margin-bottom: 40px;
+            padding: 0 10px;
         }
         
         /* Content Sections */
-        .content-section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px;
+        .section {
+            padding: 50px 5%;
+        }
+        
+        @media (min-width: 768px) {
+            .section {
+                padding: 80px 20px;
+            }
         }
         
         h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
             margin-bottom: 30px;
-            font-family: Georgia, 'Times New Roman', serif;
         }
         
-        p {
-            font-size: 1.125rem;
-            margin-bottom: 20px;
-            color: #e0e0e0;
-        }
-        
+        /* Quote */
         .quote {
             border-left: 4px solid var(--gold);
-            padding-left: 30px;
+            padding-left: 20px;
             margin: 40px 0;
             font-style: italic;
-            font-size: 1.5rem;
+            font-size: clamp(20px, 4vw, 24px);
             color: #fff;
+            line-height: 1.4;
         }
         
+        @media (min-width: 768px) {
+            .quote {
+                padding-left: 30px;
+                margin: 60px 0;
+            }
+        }
+        
+        /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 20px;
             margin: 40px 0;
+        }
+        
+        @media (min-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         .stat-card {
             background: rgba(197, 160, 89, 0.05);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 25px;
+            border-radius: 12px;
             text-align: center;
             border: 1px solid rgba(197, 160, 89, 0.1);
         }
         
         .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            font-weight: 800;
             color: var(--gold);
             margin-bottom: 10px;
+            line-height: 1;
         }
         
+        /* Highlight Box */
         .highlight-box {
             background: linear-gradient(90deg, rgba(197, 160, 89, 0.1) 0%, transparent 100%);
             border-left: 4px solid var(--gold);
-            padding: 30px;
+            padding: 25px;
             margin: 40px 0;
-            border-radius: 0 15px 15px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        
+        .highlight-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+        
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
         }
         
         /* CTA Section */
         .cta-section {
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 30px;
-            padding: 60px;
+            border-radius: 24px;
+            padding: 40px 5%;
             text-align: center;
-            margin: 80px auto;
-            max-width: 900px;
+            margin: 60px 5%;
             border-top: 4px solid var(--gold);
         }
         
+        @media (min-width: 768px) {
+            .cta-section {
+                padding: 60px;
+                margin: 80px auto;
+                max-width: 800px;
+            }
+        }
+        
         .cta-section h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
             margin-bottom: 20px;
+        }
+        
+        .cta-subtitle {
+            font-size: clamp(18px, 4vw, 22px);
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta-button-large {
+            background: linear-gradient(135deg, var(--gold) 0%, #d4b15e 100%);
+            color: #000;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(197, 160, 89, 0.4);
         }
         
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px 5%;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #666;
-            font-size: 0.875rem;
+            color: var(--text-muted);
         }
         
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 0;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .cta-section {
-                padding: 40px 20px;
-                margin: 40px 20px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-content {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 10px;
         }
         
-        /* Fade-in Animation */
+        .footer-small {
+            font-size: 12px;
+            color: #555;
+        }
+        
+        /* Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeIn 1s ease forwards;
+            animation: fadeInUp 0.8s ease forwards;
         }
         
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -253,158 +408,225 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            /* Prevent horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better touch targets */
+            .cta-button, .cta-button-large {
+                min-height: 48px;
+                padding: 14px 28px;
+            }
+            
+            /* Reduce image margins on mobile */
+            .article-image {
+                margin: 30px 0;
+            }
+            
+            /* Adjust font sizes for mobile */
+            p {
+                font-size: 16px;
+            }
+            
+            /* Better spacing for mobile */
+            .section {
+                padding: 40px 5%;
+            }
+            
+            /* Stack article meta on mobile */
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+        
+        /* Safe Area Insets for Notch Phones */
+        @supports (padding: max(0px)) {
+            body, nav, .hero, .section {
+                padding-left: max(5%, env(safe-area-inset-left));
+                padding-right: max(5%, env(safe-area-inset-right));
+            }
+            
+            .hero {
+                padding-top: max(60px, env(safe-area-inset-top));
+            }
+        }
+        
+        /* Fix for iOS Safari 100vh issue */
+        .min-h-screen-ios {
+            min-height: -webkit-fill-available;
+        }
+        
+        html, body {
+            height: -webkit-fill-available;
+        }
     </style>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-S07E1S6Z6E');
-    </script>
 </head>
-<body>
+<body class="min-h-screen-ios">
     <!-- Navigation -->
     <nav>
-        <div class="nav-content">
+        <div class="nav-container">
             <div class="logo">OMKAR <span class="gold-text">ENTERPRISES</span></div>
             <a href="https://wa.me/9226393837?text=Jai%20Hind%20Omkar%20Enterprises.%20I%20read%20'The%20Quiet%20Strength%20of%20Shared%20Dreams'%20and%20want%20to%20learn%20more%20about%20collective%20investing.%20Please%20share%20details." 
-               class="cta-button">
-                <span style="font-size: 1.2em;">📱</span> Reply "SAFE"
+               class="cta-button"
+               target="_blank">
+                <span style="font-size: 1.2em;">💬</span> Reply "SAFE"
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero container">
-        <div class="fade-in">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; font-size: 0.875rem; color: #888;">
-                <span>FINANCIAL STRATEGY</span>
-                <span>10 MIN READ • PUBLISHED: APRIL 2024</span>
-            </div>
-            
-            <h1 class="fade-in">The Quiet Strength of <span class="gold-text">Shared Dreams</span></h1>
-            
-            <p class="hero-subtitle fade-in delay-1">
-                Why fighting the market alone is losing the wealth transfer game—and how collective capital creates an undeniable force.
-            </p>
+        <div class="article-meta">
+            <span>FINANCIAL STRATEGY</span>
+            <span>10 MIN READ • APRIL 2024</span>
         </div>
+        
+        <h1 class="fade-in">The Quiet Strength of <span class="gold-text">Shared Dreams</span></h1>
+        
+        <p class="hero-subtitle fade-in delay-1">
+            Why fighting the market alone is losing the wealth transfer game—and how collective capital creates an undeniable force.
+        </p>
         
         <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
              alt="Lone investor vs collective strength" 
-             class="article-image fade-in delay-2">
-        <p class="text-center" style="color: #888; font-size: 0.875rem; margin-top: -20px;">The market doesn't create wealth—it transfers it. Are you on the receiving end?</p>
+             class="article-image fade-in delay-2"
+             loading="lazy">
+        
+        <p class="image-caption">The market doesn't create wealth—it transfers it. Are you on the receiving end?</p>
     </section>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Introduction -->
-        <section class="content-section fade-in">
-            <p>For years, I sat across from brilliant people—doctors, teachers, small business owners, young professionals saving their first salary—who all shared the same, quiet anxiety. They'd show me their portfolio charts, point at the red numbers, and ask in hushed tones:</p>
-            
-            <div class="quote fade-in delay-1">
-                "What am I doing wrong?"
-            </div>
-            
-            <p>Their eyes carried a weight I recognized. It wasn't just about money. It was about sleepless nights wondering if a market dip would wipe out years of careful saving. It was the lonely feeling of watching a stock tumble, with no one to call but a broker who couldn't truly <em>feel</em> what that loss meant.</p>
-        </section>
+    <!-- Introduction -->
+    <section class="section container">
+        <p class="fade-in">For years, I sat across from brilliant people—doctors, teachers, small business owners, young professionals saving their first salary—who all shared the same, quiet anxiety. They'd show me their portfolio charts, point at the red numbers, and ask in hushed tones:</p>
+        
+        <div class="quote fade-in delay-1">
+            "What am I doing wrong?"
+        </div>
+        
+        <p class="fade-in delay-2">Their eyes carried a weight I recognized. It wasn't just about money. It was about sleepless nights wondering if a market dip would wipe out years of careful saving. It was the lonely feeling of watching a stock tumble, with no one to call but a broker who couldn't truly <em>feel</em> what that loss meant for a child's tuition, a parent's medical bill, or the simple dream of a secure home.</p>
+    </section>
 
-        <!-- The Problem -->
-        <section class="content-section fade-in">
-            <h2 class="gold-text">The Hard Truth: You're Not Just Competing Against The Market</h2>
-            
-            <img src="https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-                 alt="Institutional traders vs retail investor" 
-                 class="article-image">
-            
-            <p>Most retail investors believe success hinges on "being smarter" than the market. But what if the game isn't about intelligence as much as it is about <strong>capital weight</strong> and <strong>collective strategy</strong>?</p>
-            
-            <div class="highlight-box fade-in delay-1">
-                <h3 style="font-size: 1.5rem; margin-bottom: 15px;">The Institutional Advantage</h3>
-                <p>Large funds don't win because they're smarter. They win because they operate with <strong>immense capital</strong>, enabling them to weather volatility, access exclusive opportunities, and move markets in ways individual investors simply cannot.</p>
-            </div>
-        </section>
+    <!-- The Problem -->
+    <section class="section container">
+        <h2 class="gold-text fade-in">The Hard Truth: You're Not Just Competing Against The Market</h2>
+        
+        <img src="https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+             alt="Institutional traders vs retail investor" 
+             class="article-image fade-in delay-1"
+             loading="lazy">
+        
+        <p class="fade-in delay-2">Most retail investors believe success hinges on "being smarter" than the market, mastering complex charts, or predicting the next big trend. But what if the game isn't about intelligence as much as it is about <strong>capital weight</strong> and <strong>collective strategy</strong>?</p>
+        
+        <div class="highlight-box fade-in delay-3">
+            <h3>The Institutional Advantage</h3>
+            <p>Large funds don't win because they're smarter. They win because they operate with <strong>immense capital</strong>, enabling them to weather volatility, access exclusive opportunities, and move markets in ways individual investors simply cannot. Your single trade is a spec of dust in their hurricane.</p>
+        </div>
+    </section>
 
-        <!-- Statistics -->
-        <section class="content-section fade-in">
-            <h2>By The Numbers: The Wealth Transfer</h2>
-            
-            <div class="stats-grid">
-                <div class="stat-card fade-in">
-                    <div class="stat-number">80%</div>
-                    <p>of retail traders lose money in equity markets</p>
-                </div>
-                <div class="stat-card fade-in delay-1">
-                    <div class="stat-number">15:1</div>
-                    <p>Capital advantage of institutional vs retail investors</p>
-                </div>
-                <div class="stat-card fade-in delay-2">
-                    <div class="stat-number">92%</div>
-                    <p>of fund managers outperform retail over 10 years</p>
-                </div>
+    <!-- Statistics -->
+    <section class="section container">
+        <h2 class="fade-in">By The Numbers: The Wealth Transfer</h2>
+        
+        <div class="stats-grid">
+            <div class="stat-card fade-in">
+                <div class="stat-number">80%</div>
+                <p>of retail traders lose money in equity markets</p>
             </div>
-            
-            <p>Think about it: the stock market doesn't print money. It redistributes it. When you make a mistake, someone else benefits. Individual investors become the "liquidity" that fuels the profits of better-resourced players.</p>
-        </section>
+            <div class="stat-card fade-in delay-1">
+                <div class="stat-number">15:1</div>
+                <p>Capital advantage of institutional vs retail investors</p>
+            </div>
+            <div class="stat-card fade-in delay-2">
+                <div class="stat-number">92%</div>
+                <p>of fund managers outperform retail over 10 years</p>
+            </div>
+        </div>
+        
+        <p class="fade-in delay-3">Think about it: the stock market doesn't print money. It redistributes it. When you make a mistake, someone else benefits. And historically, those "mistakes" are disproportionately made by individual investors who lack the protective shield and offensive power of significant capital.</p>
+    </section>
 
-        <!-- The Solution -->
-        <section class="content-section fade-in">
-            <h2 class="gold-text">Introducing The Power of "Us"</h2>
-            
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-                 alt="People collaborating" 
-                 class="article-image">
-            
-            <p>This is precisely why we founded Omkar Enterprises. Our core mission is to level the playing field by harnessing <strong>The Power of Us</strong>.</p>
-            
-            <div class="quote fade-in delay-1">
-                "We are bringing potential capital together, pooling resources from forward-thinking investors like yourself."
+    <!-- The Solution -->
+    <section class="section container">
+        <h2 class="gold-text fade-in">Introducing The Power of "Us"</h2>
+        
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+             alt="People collaborating on financial strategy" 
+             class="article-image fade-in delay-1"
+             loading="lazy">
+        
+        <p class="fade-in delay-2">This is precisely why we founded Omkar Enterprises. We saw the pattern, understood the challenge, and decided to build a solution. Our core mission is to level the playing field by harnessing <strong>The Power of Us</strong>.</p>
+        
+        <div class="quote fade-in delay-3">
+            "We are bringing potential capital together, pooling resources from forward-thinking investors like yourself."
+        </div>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card fade-in">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Protection From Market Traps</h3>
+                <p>We build resilience against sudden shifts and predatory tactics that often catch individual investors off guard.</p>
             </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0;">
-                <div style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="font-size: 2rem; color: var(--gold); margin-bottom: 20px;">🛡️</div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Protection From Market Traps</h3>
-                    <p style="color: #ccc;">We build resilience against sudden shifts that catch individual investors off guard.</p>
-                </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="font-size: 2rem; color: var(--gold); margin-bottom: 20px;">🚪</div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Access Bigger Opportunities</h3>
-                    <p style="color: #ccc;">With collective strength, we tap into investments typically reserved for institutions.</p>
-                </div>
+            <div class="benefit-card fade-in delay-1">
+                <div class="benefit-icon">🚪</div>
+                <h3>Access Bigger Opportunities</h3>
+                <p>With collective strength, we can tap into higher-tier investments typically reserved for institutional players.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section fade-in">
-            <h2>Ready to Transform Your Financial Journey?</h2>
-            <p style="font-size: 1.25rem; color: #ccc; max-width: 600px; margin: 0 auto 40px;">
-                Stop fighting the market alone. Join a community where your capital, combined with others, creates an undeniable force.
-            </p>
-            
-            <a href="https://wa.me/9226393837?text=Jai%20Hind%20Omkar%20Enterprises.%20I%20just%20read%20'The%20Quiet%20Strength%20of%20Shared%20Dreams'.%20I%20want%20to%20learn%20more%20about%20joining%20the%20collective.%20Please%20share%20details." 
-               class="cta-button"
-               style="font-size: 1.2rem; padding: 15px 40px;">
-                <span style="font-size: 1.3em;">💬</span> Reply "SAFE" for Clarity
-            </a>
-            
-            <p style="margin-top: 30px; color: #888; font-size: 0.875rem;">One conversation could change everything</p>
-        </section>
-    </main>
+    <!-- Emotional Connection -->
+    <section class="section container">
+        <h2 class="fade-in">You Are Safe Here. You Are No Longer Alone.</h2>
+        
+        <div class="highlight-box fade-in delay-1">
+            <p>When we talk about <strong>"collective strength,"</strong> we're not just talking about pooled funds. We're talking about pooled <strong>hope</strong>. We're talking about creating a circle where your dream for your child's future is guarded by the same strategic resolve as another member's dream of a debt-free retirement.</p>
+        </div>
+        
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+             alt="Hands together forming a circle" 
+             class="article-image fade-in delay-2"
+             loading="lazy">
+        
+        <p class="fade-in delay-3">This journey began with a simple, human observation: that the deepest financial wounds aren't in the account statements, but in the quiet worry behind them. And the most powerful financial medicine isn't a secret stock tip—it's the profound, unshakeable strength of <strong>"We."</strong></p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section container fade-in">
+        <h2>Ready to Transform Your Financial Journey?</h2>
+        <p class="cta-subtitle">Stop fighting the market alone. Join a community where your capital, combined with others, creates an undeniable force.</p>
+        
+        <a href="https://wa.me/9226393837?text=Jai%20Hind%20Omkar%20Enterprises.%20I%20just%20read%20'The%20Quiet%20Strength%20of%20Shared%20Dreams'.%20I%20want%20to%20learn%20more%20about%20joining%20the%20collective.%20Please%20share%20details." 
+           class="cta-button-large"
+           target="_blank">
+            <span style="font-size: 1.3em;">💬</span> Reply "SAFE" for Clarity
+        </a>
+        
+        <p class="footer-small">One conversation could change everything</p>
+    </section>
 
     <!-- Footer -->
-    <footer>
-        <p style="margin-bottom: 10px;">Omkar Enterprises | Pune HQ</p>
-        <p style="font-size: 0.75rem; color: #555;">© 2024 Omkar Enterprises. All rights reserved.</p>
-        <p style="font-size: 0.75rem; color: #555; margin-top: 10px;">This content is for educational purposes only.</p>
+    <footer class="container">
+        <p class="footer-text">Omkar Enterprises | Pune HQ</p>
+        <p class="footer-small">© 2024 Omkar Enterprises. All rights reserved.</p>
+        <p class="footer-small">This content is for educational purposes only.</p>
     </footer>
 
-    <!-- Simple Animation Script -->
+    <!-- JavaScript -->
     <script>
-        // Simple fade-in on scroll
+        // Smooth scroll and animations
         document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
+            // Add intersection observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -413,23 +635,45 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, observerOptions);
             
-            fadeElements.forEach(el => {
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
                 el.style.animationPlayState = 'paused';
                 observer.observe(el);
             });
             
             // Track CTA clicks
-            document.querySelectorAll('.cta-button').forEach(button => {
+            document.querySelectorAll('.cta-button, .cta-button-large').forEach(button => {
                 button.addEventListener('click', function() {
                     gtag('event', 'generate_lead', {
                         'event_category': 'Blog',
-                        'event_label': 'Article CTA Click'
+                        'event_label': 'Article CTA Click',
+                        'transport_type': 'beacon'
                     });
                 });
             });
+            
+            // Fix for mobile viewport height
+            function setViewportHeight() {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            
+            setViewportHeight();
+            window.addEventListener('resize', setViewportHeight);
+            window.addEventListener('orientationchange', setViewportHeight);
         });
+        
+        // Prevent zoom on double-tap for mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>

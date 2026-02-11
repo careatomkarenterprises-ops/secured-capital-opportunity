@@ -233,93 +233,30 @@
         <p class="text-[10px] text-green-400 mt-4 font-bold">📱 Business WhatsApp: +91 70663 93830 · click-to-chat active · reply within 2min</p>
     </footer>
 
-    <script>
-        const slab = document.getElementById('slab');
-        const scheduleBody = document.getElementById('scheduleBody');
-        const monthlyVal = document.getElementById('monthlyVal');
-        const febPayoutVal = document.getElementById('febPayoutVal');
-        const totalProfit = document.getElementById('totalProfit');
-        const refundVal = document.getElementById('refundVal');
-        const waButton = document.getElementById('waButton');
+   <script>
+    function setupWhatsApp() {
+        // Recalculate your ROI logic
+        calculateTenX();
 
-        function calculateTenX() {
-            const principal = parseInt(slab.value);
-            
-            // 10% monthly for ALL SLABS
-            const monthlyRate = 0.10;  
-            const fullMonthlyPayout = principal * monthlyRate;
-            
-            // 30-DAY MONTH DIVISOR
-            const daysInMonthStandard = 30;
-            const dailyRatePayout = fullMonthlyPayout / daysInMonthStandard;
-            
-            // February 2026: 16 accrual days (12 Feb - 27 Feb)
-            const febDays = 16;  
-            const febPayout = Math.round(dailyRatePayout * febDays);
-            
-            // 12‑month total profit: Feb (16d) + 11 full months
-            const total12MonthsProfit = febPayout + (fullMonthlyPayout * 11);
-            
-            // Update UI
-            monthlyVal.innerText = fullMonthlyPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            febPayoutVal.innerText = febPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            totalProfit.innerText = total12MonthsProfit.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            refundVal.innerText = principal.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            
-            // --- DYNAMIC WHATSAPP LINK GENERATION ---
-            const whatsappNumber = "917066393830";
-            const msgBody = `Jai Hind Omkar Services, I want my money to never sleep. Lock 10% monthly ÷30 with ₹${principal.toLocaleString('en-IN')} (11 Feb bonus). I understand February pays 16 days (12–27 Feb) on 1st March. Agreement via Care@omkarservices.in -- KYC ready.`;
-            
-            // Use encodeURIComponent for 100% safety on live sites
-            waButton.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(msgBody)}`;
-            
-            // --- Build schedule ---
-            let tableHTML = "";
-            
-            // Row 1: February 16 days
-            tableHTML += `
-                <tr class="border-b border-white/5 text-gold font-medium">
-                    <td class="p-5 text-slate-300">1st March 2026</td>
-                    <td class="p-5 font-mono gold-text font-bold">${febPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
-                    <td class="p-5">
-                        <span class="text-[8px] border border-gold bg-gold/20 px-2 py-0.5 rounded uppercase font-black">16 DAYS · FEB</span>
-                    </td>
-                    <td class="p-5 text-right text-slate-600">${principal.toLocaleString('en-IN')}</td>
-                </tr>
-            `;
-            
-            const months = ["March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "January"];
-            for (let i = 0; i < months.length; i++) {
-                const monthName = months[i] + (months[i] === "January" ? " 2027" : " 2026");
-                tableHTML += `
-                    <tr class="border-b border-white/5">
-                        <td class="p-5 text-slate-400">1st ${monthName}</td>
-                        <td class="p-5 font-mono">${fullMonthlyPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
-                        <td class="p-5">
-                            <span class="text-[8px] border border-white/10 px-2 py-0.5 rounded uppercase font-black">30 DAYS</span>
-                        </td>
-                        <td class="p-5 text-right text-slate-600">${principal.toLocaleString('en-IN')}</td>
-                    </tr>
-                `;
-            }
-            
-            // Row 13: Capital Refund
-            tableHTML += `
-                <tr class="bg-gold/10 text-gold font-black">
-                    <td class="p-5">1st February 2027</td>
-                    <td class="p-5 font-mono">--</td>
-                    <td class="p-5">
-                        <span class="text-[8px] border border-gold px-2 py-0.5 rounded uppercase font-black">CAPITAL RETURNED</span>
-                    </td>
-                    <td class="p-5 text-right">₹0</td>
-                </tr>
-            `;
-            
-            scheduleBody.innerHTML = tableHTML;
-        }
+        const phone = "918446903233";
+        const message = encodeURIComponent("I want to start my 10X Bonus Journey. Please guide me.");
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
 
-        slab.addEventListener('change', calculateTenX);
-        window.onload = calculateTenX;
-    </script>
+        // Update all buttons with the 'whatsapp-link' class or specific IDs
+        const buttons = document.querySelectorAll('a[href*="wa.me"], .reserve-btn');
+        buttons.forEach(btn => {
+            btn.href = whatsappUrl;
+            btn.setAttribute('target', '_blank');
+            btn.setAttribute('rel', 'noopener noreferrer');
+        });
+    }
+
+    // This ensures it works even if other scripts (like Analytics) are loading
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupWhatsApp);
+    } else {
+        setupWhatsApp();
+    }
+</script>
 </body>
 </html>

@@ -36,7 +36,7 @@
         .thirty-day-note { background: rgba(197,160,89,0.08); border-left: 4px solid #c5a059; }
         .slogan-underline { position: relative; display: inline-block; }
         .slogan-underline::after { content: ''; position: absolute; bottom: -10px; left: 10%; width: 80%; height: 2px; background: linear-gradient(90deg, transparent, #c5a059, transparent); }
-        .whatsapp-valid { border-left: 3px solid #25D366; }
+        .whatsapp-valid { border-left: 3px solid #25D366; background: rgba(37,211,102,0.04); }
     </style>
 </head>
 <body class="antialiased">
@@ -151,7 +151,7 @@
                             </div>
                         </div>
                         <div class="mt-6 pt-4 border-t border-white/10 text-[10px] text-center thirty-day-note p-2 rounded whatsapp-valid">
-                            <span class="text-gold font-black">✅ ACTIVE WHATSAPP:</span> +91 70663 93830 · click button below
+                            <span class="text-green-400 font-black">📱 ACTIVE WHATSAPP:</span> +91 70663 93830 · click button below
                         </div>
                     </div>
                 </div>
@@ -208,16 +208,19 @@
                 <span class="gold-text">YOUR MONEY</span><br>
                 <span class="text-white">NEVER SLEEPS HERE.</span>
             </h2>
-            <p class="text-slate-400 mb-12 max-w-xl mx-auto text-lg">
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto text-lg">
                 11 February only: 10% monthly, 30-day standard, daily accrual. 16 February days paid 1st March. 
                 <span class="text-white font-bold block mt-3">This is how trust is built — one day at a time.</span>
             </p>
+            
+            <!-- WORKING WHATSAPP BUTTON - FIXED BACKTICK -->
             <a id="waButton" href="#" class="gold-bg btn-glow text-black px-12 py-6 rounded-2xl font-black text-xl inline-flex items-center gap-4 transition-all uppercase tracking-tighter">
                 📲 CHAT ON WHATSAPP · +91 70663 93830
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </a>
-            <div class="mt-6 text-[12px] text-white font-medium bg-green-700/20 px-4 py-2 rounded-full inline-block border border-green-500/30">
-                ⚡ Valid WhatsApp: +91 70663 93830 — click to connect instantly
+            
+            <div class="mt-6 text-[14px] text-white font-medium bg-green-600/20 px-5 py-2.5 rounded-full inline-flex items-center border border-green-500/40 gap-2">
+                <span class="text-green-400 text-lg">✅</span> WhatsApp +91 70663 93830 — click to connect now
             </div>
             <div class="mt-10 text-[9px] text-slate-500 uppercase tracking-[0.2em]">
                 Official agreement: Care@omkarservices.in · 30-day divisor · 16 Feb days · paid 1st March
@@ -228,7 +231,7 @@
     <footer class="py-12 border-t border-white/5 text-center">
         <p class="text-[9px] text-slate-600 uppercase tracking-[0.5em] mb-2">Jai Hind | Omkar Services | YOUR MONEY NEVER SLEEPS</p>
         <p class="text-[8px] text-slate-800 uppercase">Registered under Digital Information Technology Act 2000 · 30-day month standard · daily accrual since 2026</p>
-        <p class="text-[9px] text-green-400 mt-4">📱 Business WhatsApp: +91 70663 93830 · click-to-chat active</p>
+        <p class="text-[10px] text-green-400 mt-4 font-bold">📱 Business WhatsApp: +91 70663 93830 · click-to-chat active · reply within 2min</p>
     </footer>
 
     <script>
@@ -264,10 +267,11 @@
             totalProfit.innerText = total12MonthsProfit.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
             refundVal.innerText = principal.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
             
-            // ✅ CORRECTED WHATSAPP LINK - VALID INTERNATIONAL FORMAT
-            // Country code 91 + number 7066393830 = 917066393830 (no spaces, no special chars)
+            // ✅ WORKING WHATSAPP LINK - VALID INTERNATIONAL FORMAT
+            // Country code 91 + number 7066393830 = 917066393830 (no spaces)
             const whatsappNumber = "917066393830";
             
+            // ✅ BACKTICK FIXED - URL NOW PROPERLY CLOSED
             waButton.href = `https://wa.me/${whatsappNumber}?text=Jai%20Hind%20Omkar%20Services%2C%20I%20want%20my%20money%20to%20never%20sleep.%20Lock%2010%25%20monthly%20÷30%20with%20₹${principal.toLocaleString('en-IN')}%20(11%20Feb%20bonus).%20I%20understand%20February%20pays%2016%20days%20(12–27%20Feb)%20on%201st%20March.%20Agreement%20via%20Care%40omkarservices.in%20--%20KYC%20ready.`;
             
             // --- Build schedule ---

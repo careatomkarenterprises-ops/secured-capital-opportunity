@@ -37,6 +37,9 @@
         .slogan-underline { position: relative; display: inline-block; }
         .slogan-underline::after { content: ''; position: absolute; bottom: -10px; left: 10%; width: 80%; height: 2px; background: linear-gradient(90deg, transparent, #c5a059, transparent); }
         .whatsapp-valid { border-left: 3px solid #25D366; background: rgba(37,211,102,0.04); }
+        .clickable { position: relative; z-index: 10; }
+        .no-pointer-events { pointer-events: none; }
+        .pointer-events-auto { pointer-events: auto; }
     </style>
 </head>
 <body class="antialiased">
@@ -151,7 +154,7 @@
                             </div>
                         </div>
                         <div class="mt-6 pt-4 border-t border-white/10 text-[10px] text-center thirty-day-note p-2 rounded whatsapp-valid">
-                            <span class="text-green-400 font-black">📱 ACTIVE WHATSAPP:</span> +91 70663 93830 · click button below
+                            <span class="text-green-400 font-black">📱 ACTIVE WHATSAPP:</span> +91 70663 93830
                         </div>
                     </div>
                 </div>
@@ -201,27 +204,30 @@
         </div>
     </section>
 
+    <!-- ✅ WHATSAPP BUTTON - COMPLETELY OUTSIDE THE CARD, 100% CLICKABLE -->
+    <div class="max-w-4xl mx-auto px-6 text-center mb-8">
+        <a id="waButton" href="https://api.whatsapp.com/send?phone=917066393830&text=Jai%20Hind%20Omkar%20Services%2C%20I%20want%20my%20money%20to%20never%20sleep.%20Lock%2010%25%20monthly%20%C3%B730%20with%20%E2%82%B950%2C000%20(11%20Feb%20bonus).%20I%20understand%20February%20pays%2016%20days%20(12%E2%80%9327%20Feb)%20on%201st%20March.%20Agreement%20via%20Care%40omkarservices.in%20--%20KYC%20ready." class="gold-bg btn-glow text-black px-12 py-6 rounded-2xl font-black text-xl inline-flex items-center gap-4 transition-all uppercase tracking-tighter shadow-2xl">
+            📲 CHAT ON WHATSAPP · +91 70663 93830
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+        <div class="mt-4 text-[14px] text-white font-medium bg-green-600/20 px-5 py-2.5 rounded-full inline-flex items-center border border-green-500/40 gap-2">
+            <span class="text-green-400 text-lg">✅</span> WhatsApp +91 70663 93830 — reply within 2 minutes
+        </div>
+    </div>
+
+    <!-- ✅ CARD IS NOW PURELY VISUAL - NO BUTTON INSIDE -->
     <section class="pb-32 px-6 text-center">
         <div class="max-w-4xl mx-auto glass-card p-16 rounded-[4rem] border-t-2 gold-border tenx-glow relative overflow-hidden">
-            <div class="absolute -inset-10 bg-gold/5 blur-[100px] rounded-full"></div>
-            <h2 class="text-4xl font-bold mb-6 serif italic">
+            <div class="absolute -inset-10 bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
+            <h2 class="text-4xl font-bold mb-6 serif italic relative z-10">
                 <span class="gold-text">YOUR MONEY</span><br>
                 <span class="text-white">NEVER SLEEPS HERE.</span>
             </h2>
-            <p class="text-slate-400 mb-8 max-w-xl mx-auto text-lg">
+            <p class="text-slate-400 mb-6 max-w-xl mx-auto text-lg relative z-10">
                 11 February only: 10% monthly, 30-day standard, daily accrual. 16 February days paid 1st March. 
                 <span class="text-white font-bold block mt-3">This is how trust is built — one day at a time.</span>
             </p>
-            
-            <a id="waButton" href="#" target="_blank" class="gold-bg btn-glow text-black px-12 py-6 rounded-2xl font-black text-xl inline-flex items-center gap-4 transition-all uppercase tracking-tighter">
-                📲 CHAT ON WHATSAPP · +91 70663 93830
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-            </a>
-            
-            <div class="mt-6 text-[14px] text-white font-medium bg-green-600/20 px-5 py-2.5 rounded-full inline-flex items-center border border-green-500/40 gap-2">
-                <span class="text-green-400 text-lg">✅</span> WhatsApp +91 70663 93830 — click to connect now
-            </div>
-            <div class="mt-10 text-[9px] text-slate-500 uppercase tracking-[0.2em]">
+            <div class="mt-8 text-[10px] text-slate-500 uppercase tracking-[0.2em] relative z-10">
                 Official agreement: Care@omkarservices.in · 30-day divisor · 16 Feb days · paid 1st March
             </div>
         </div>
@@ -230,33 +236,101 @@
     <footer class="py-12 border-t border-white/5 text-center">
         <p class="text-[9px] text-slate-600 uppercase tracking-[0.5em] mb-2">Jai Hind | Omkar Services | YOUR MONEY NEVER SLEEPS</p>
         <p class="text-[8px] text-slate-800 uppercase">Registered under Digital Information Technology Act 2000 · 30-day month standard · daily accrual since 2026</p>
-        <p class="text-[10px] text-green-400 mt-4 font-bold">📱 Business WhatsApp: +91 70663 93830 · click-to-chat active · reply within 2min</p>
+        <p class="text-[10px] text-green-400 mt-4 font-bold">📱 Business WhatsApp: +91 70663 93830 · click-to-chat active</p>
     </footer>
 
-   <script>
-    function setupWhatsApp() {
-        // Recalculate your ROI logic
-        calculateTenX();
+    <script>
+        const slab = document.getElementById('slab');
+        const scheduleBody = document.getElementById('scheduleBody');
+        const monthlyVal = document.getElementById('monthlyVal');
+        const febPayoutVal = document.getElementById('febPayoutVal');
+        const totalProfit = document.getElementById('totalProfit');
+        const refundVal = document.getElementById('refundVal');
+        const waButton = document.getElementById('waButton');
 
-        const phone = "918446903233";
-        const message = encodeURIComponent("I want to start my 10X Bonus Journey. Please guide me.");
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
+        // ✅ FIXED: WhatsApp number - CORRECT INTERNATIONAL FORMAT
+        const whatsappNumber = "917066393830";
+        
+        // ✅ FIXED: Base URL without message - we'll append dynamically
+        const whatsappBaseUrl = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=";
 
-        // Update all buttons with the 'whatsapp-link' class or specific IDs
-        const buttons = document.querySelectorAll('a[href*="wa.me"], .reserve-btn');
-        buttons.forEach(btn => {
-            btn.href = whatsappUrl;
-            btn.setAttribute('target', '_blank');
-            btn.setAttribute('rel', 'noopener noreferrer');
-        });
-    }
+        function calculateTenX() {
+            const principal = parseInt(slab.value);
+            
+            // 10% monthly for ALL SLABS — 11 Feb bonus day
+            const monthlyRate = 0.10;  
+            const fullMonthlyPayout = principal * monthlyRate;
+            
+            // 30-DAY MONTH DIVISOR
+            const daysInMonthStandard = 30;
+            const dailyRatePayout = fullMonthlyPayout / daysInMonthStandard;
+            
+            // February 2026: 16 accrual days (12 Feb - 27 Feb)
+            const febDays = 16;  
+            const febPayout = Math.round(dailyRatePayout * febDays);
+            
+            // 12‑month total profit: Feb (16d) + 11 full months
+            const total12MonthsProfit = febPayout + (fullMonthlyPayout * 11);
+            
+            // Update UI
+            monthlyVal.innerText = fullMonthlyPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
+            febPayoutVal.innerText = febPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
+            totalProfit.innerText = total12MonthsProfit.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
+            refundVal.innerText = principal.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
+            
+            // ✅ FIXED: PROPER URL ENCODING - all special characters handled
+            const message = `Jai Hind Omkar Services, I want my money to never sleep. Lock 10% monthly ÷30 with ₹${principal.toLocaleString('en-IN')} (11 Feb bonus). I understand February pays 16 days (12–27 Feb) on 1st March. Agreement via Care@omkarservices.in -- KYC ready.`;
+            
+            // ✅ FIXED: Using encodeURIComponent() for perfect link generation
+            waButton.href = whatsappBaseUrl + encodeURIComponent(message);
+            
+            // --- Build schedule ---
+            let tableHTML = "";
+            
+            // Row 1: February 16 days
+            tableHTML += `
+                <tr class="border-b border-white/5 text-gold font-medium">
+                    <td class="p-5 text-slate-300">1st March 2026</td>
+                    <td class="p-5 font-mono gold-text font-bold">${febPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
+                    <td class="p-5">
+                        <span class="text-[8px] border border-gold bg-gold/20 px-2 py-0.5 rounded uppercase font-black">16 DAYS · FEB</span>
+                    </td>
+                    <td class="p-5 text-right text-slate-600">${principal.toLocaleString('en-IN')}</td>
+                </tr>
+            `;
+            
+            const months = ["March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "January"];
+            for (let i = 0; i < months.length; i++) {
+                const monthName = months[i] + (months[i] === "January" ? " 2027" : " 2026");
+                tableHTML += `
+                    <tr class="border-b border-white/5">
+                        <td class="p-5 text-slate-400">1st ${monthName}</td>
+                        <td class="p-5 font-mono">${fullMonthlyPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
+                        <td class="p-5">
+                            <span class="text-[8px] border border-white/10 px-2 py-0.5 rounded uppercase font-black">30 DAYS</span>
+                        </td>
+                        <td class="p-5 text-right text-slate-600">${principal.toLocaleString('en-IN')}</td>
+                    </tr>
+                `;
+            }
+            
+            // Row 13: Capital Refund
+            tableHTML += `
+                <tr class="bg-gold/10 text-gold font-black">
+                    <td class="p-5">1st February 2027</td>
+                    <td class="p-5 font-mono">--</td>
+                    <td class="p-5">
+                        <span class="text-[8px] border border-gold px-2 py-0.5 rounded uppercase font-black">CAPITAL RETURNED</span>
+                    </td>
+                    <td class="p-5 text-right">₹0</td>
+                </tr>
+            `;
+            
+            scheduleBody.innerHTML = tableHTML;
+        }
 
-    // This ensures it works even if other scripts (like Analytics) are loading
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupWhatsApp);
-    } else {
-        setupWhatsApp();
-    }
-</script>
+        slab.addEventListener('change', calculateTenX);
+        window.onload = calculateTenX;
+    </script>
 </body>
 </html>

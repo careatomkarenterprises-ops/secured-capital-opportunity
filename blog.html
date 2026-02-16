@@ -49,8 +49,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* IMPORTANT: Copy ALL CSS from your index.html here */
-        /* Since your index.html has inline CSS, I'll include the full CSS */
         /* Base Styles with Trust Blue Color Palette */
         :root {
             --trust-blue: #1e3a8a;
@@ -602,6 +600,245 @@
             background: #b7950b;
         }
 
+        /* ===== NEW: BLOG UPDATES TICKER SECTION ===== */
+        .blog-updates-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 60px 0;
+            border-top: 3px solid var(--gold-accent);
+            border-bottom: 3px solid var(--gold-accent);
+        }
+
+        .updates-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .updates-header h2 {
+            font-size: 32px;
+            color: var(--trust-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .updates-header h2 i {
+            color: var(--gold-accent);
+            animation: bellRing 2s infinite;
+        }
+
+        @keyframes bellRing {
+            0%, 100% { transform: rotate(0); }
+            10%, 30%, 50%, 70%, 90% { transform: rotate(10deg); }
+            20%, 40%, 60%, 80% { transform: rotate(-10deg); }
+        }
+
+        .updates-header p {
+            color: var(--slate-light);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .updates-ticker {
+            background: var(--white);
+            border-radius: 50px;
+            padding: 15px 25px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--light-blue);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-label {
+            background: var(--gold-accent);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+            z-index: 2;
+        }
+
+        .ticker-label i {
+            animation: pulse 2s infinite;
+        }
+
+        .ticker-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-scroll {
+            display: flex;
+            gap: 40px;
+            animation: scrollTicker 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--slate-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 15px;
+            background: var(--gray-light);
+            border-radius: 30px;
+        }
+
+        .ticker-item:hover {
+            background: var(--light-blue);
+            color: var(--trust-blue);
+            transform: scale(1.05);
+        }
+
+        .ticker-item i {
+            color: var(--gold-accent);
+            font-size: 12px;
+        }
+
+        .ticker-date {
+            color: var(--trust-blue);
+            font-weight: 600;
+            font-size: 12px;
+            background: var(--gold-light);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        @keyframes scrollTicker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .updates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .update-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid var(--light-blue);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .update-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--trust-blue), var(--gold-accent));
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .update-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .update-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold-accent);
+        }
+
+        .update-card .update-date {
+            color: var(--gold-accent);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .update-card h3 {
+            font-size: 18px;
+            color: var(--slate-dark);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .update-card h3 a {
+            color: var(--slate-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .update-card h3 a:hover {
+            color: var(--trust-blue);
+        }
+
+        .update-card .update-excerpt {
+            color: var(--slate-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .update-card .read-time {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--slate-light);
+            font-size: 12px;
+        }
+
+        .update-badge-new {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold-accent);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .updates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .updates-ticker {
+                flex-direction: column;
+                border-radius: 20px;
+                align-items: flex-start;
+            }
+            
+            .ticker-scroll {
+                animation: scrollTicker 20s linear infinite;
+            }
+        }
+
         /* Mobile Responsive for Blog */
         @media (max-width: 768px) {
             .blog-hero h1 {
@@ -625,7 +862,7 @@
             }
         }
 
-        /* Footer Styles - Copy from index.html */
+        /* Footer Styles */
         .footer {
             background: var(--slate-dark);
             color: var(--white);
@@ -870,7 +1107,6 @@
                 <span></span>
             </button>
             
-            <!-- FIXED NAVIGATION - Blog link points to blog.html -->
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="slabs.html"><i class="fas fa-rupee-sign"></i> Investment Tiers</a></li>
@@ -951,13 +1187,39 @@
                     </div>
                 </article>
 
-           <!-- Blog Post 3: New Blog Post - Master Rupee & Dollar -->
-<article class="blog-card fade-in">
-    <div class="blog-image" style="background: none; padding: 0;">
-        <img src="blog/assets/rupee-dollar-mastery-2026.png" 
-             alt="Master Rupee & Dollar Analysis 2026" 
-             style="width: 100%; height: 220px; object-fit: cover; display: block; border-radius: 20px 20px 0 0;">
-    </div>
+                <!-- Blog Post 3: RBI Strategies 2026 (NEW) -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image" style="background: none; padding: 0; height: 220px;">
+                        <img src="blog/assets/rbi-2026-market-guide-thumbnail.jpg" 
+                             alt="RBI Strategies for Indian Investors 2026 Guide" 
+                             style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 20px 20px 0 0;">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> February 17, 2026
+                            </div>
+                            <div class="blog-category">RBI & Market Analysis</div>
+                        </div>
+                        <h3>
+                            <a href="blog/rbi-strategies-indian-investors-2026-guide.html">RBI Strategies for Indian Investors 2026: Complete Educational Guide</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            RBI strategies decoded with proprietary data: retail holding period 5.2 months, 17% profitable traders, SIP paradox & Omkar framework for 2026.
+                        </p>
+                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="read-more">
+                            Read Full Guide <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4: Rupee Dollar Mastery -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image" style="background: none; padding: 0;">
+                        <img src="blog/assets/rupee-dollar-mastery-2026.png" 
+                             alt="Master Rupee & Dollar Analysis 2026" 
+                             style="width: 100%; height: 220px; object-fit: cover; display: block; border-radius: 20px 20px 0 0;">
+                    </div>
                     <div class="blog-content">
                         <div class="blog-meta">
                             <div class="blog-date">
@@ -977,7 +1239,7 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 4: Coming Soon -->
+                <!-- Blog Post 5: Coming Soon -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-chart-pie"></i>
@@ -1000,6 +1262,30 @@
                         </a>
                     </div>
                 </article>
+
+                <!-- Blog Post 6: Coming Soon -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> Coming Soon
+                            </div>
+                            <div class="blog-category">Risk Management</div>
+                        </div>
+                        <h3>
+                            <a href="#">Advanced Risk Management Strategies for Indian Investors</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Deep dive into portfolio protection, drawdown control, and risk-adjusted return optimization for long-term wealth creation in Indian markets.
+                        </p>
+                        <a href="#" class="read-more">
+                            Coming Soon <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
             </div>
 
             <!-- Blog Sidebar -->
@@ -1009,31 +1295,31 @@
                     <li>
                         <a href="#">
                             <span>Market Education</span>
-                            <span class="category-count">3</span>
+                            <span class="category-count">4</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <span>Investment Strategies</span>
-                            <span class="category-count">1</span>
+                            <span class="category-count">2</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <span>Risk Management</span>
-                            <span class="category-count">1</span>
+                            <span class="category-count">2</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <span>Currency Analysis</span>
-                            <span class="category-count">1</span>
+                            <span class="category-count">2</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <span>Financial Planning</span>
-                            <span class="category-count">1</span>
+                            <span class="category-count">2</span>
                         </a>
                     </li>
                 </ul>
@@ -1046,6 +1332,131 @@
                         <button type="submit">Subscribe</button>
                     </form>
                     <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">Educational content only. No spam, ever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEW: BLOG UPDATES TICKER SECTION (Placed before CTA) ===== -->
+    <section class="blog-updates-section">
+        <div class="container">
+            <div class="updates-header">
+                <h2>
+                    <i class="fas fa-bell"></i> Latest Blog Updates
+                    <i class="fas fa-bell"></i>
+                </h2>
+                <p>Stay informed with our most recent educational content and market analysis</p>
+            </div>
+
+            <!-- Scrolling Ticker -->
+            <div class="updates-ticker">
+                <span class="ticker-label">
+                    <i class="fas fa-bolt"></i> NEW
+                </span>
+                <div class="ticker-content">
+                    <div class="ticker-scroll">
+                        <!-- Ticker items (duplicated for seamless scroll) -->
+                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> RBI Strategies 2026 Guide
+                            <span class="ticker-date">Feb 17</span>
+                        </a>
+                        <a href="blog/rupee-dollar-mastery-2026.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> Rupee-Dollar Mastery
+                            <span class="ticker-date">Feb 10</span>
+                        </a>
+                        <a href="blog/Global_Inflation&Interest_Rates.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> Global Inflation Analysis
+                            <span class="ticker-date">Feb 08</span>
+                        </a>
+                        <a href="blog/budget-2026.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> Budget 2026 Education Changes
+                            <span class="ticker-date">Jan 29</span>
+                        </a>
+                        <!-- Duplicate for seamless loop -->
+                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> RBI Strategies 2026 Guide
+                            <span class="ticker-date">Feb 17</span>
+                        </a>
+                        <a href="blog/rupee-dollar-mastery-2026.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> Rupee-Dollar Mastery
+                            <span class="ticker-date">Feb 10</span>
+                        </a>
+                        <a href="blog/Global_Inflation&Interest_Rates.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> Global Inflation Analysis
+                            <span class="ticker-date">Feb 08</span>
+                        </a>
+                        <a href="blog/budget-2026.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> Budget 2026 Education Changes
+                            <span class="ticker-date">Jan 29</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Updates Grid -->
+            <div class="updates-grid">
+                <!-- Update 1: RBI Guide (Newest) -->
+                <div class="update-card">
+                    <div class="update-badge-new">NEW</div>
+                    <div class="update-date">
+                        <i class="fas fa-calendar-check"></i> February 17, 2026
+                    </div>
+                    <h3>
+                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html">
+                            RBI Strategies for Indian Investors 2026
+                        </a>
+                    </h3>
+                    <div class="update-excerpt">
+                        Retail holding period 5.2 months • 17% profitable traders • Omkar framework
+                    </div>
+                    <div class="read-time">
+                        <i class="fas fa-clock"></i> 12 min read
+                        <span style="margin-left: auto; color: var(--gold-accent);">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Update 2: Rupee Dollar -->
+                <div class="update-card">
+                    <div class="update-date">
+                        <i class="fas fa-calendar-check"></i> February 10, 2026
+                    </div>
+                    <h3>
+                        <a href="blog/rupee-dollar-mastery-2026.html">
+                            Master Rupee & Dollar Dynamics
+                        </a>
+                    </h3>
+                    <div class="update-excerpt">
+                        Institutional frameworks, USD/INR analysis, and risk management models
+                    </div>
+                    <div class="read-time">
+                        <i class="fas fa-clock"></i> 15 min read
+                        <span style="margin-left: auto; color: var(--gold-accent);">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Update 3: Global Inflation -->
+                <div class="update-card">
+                    <div class="update-date">
+                        <i class="fas fa-calendar-check"></i> February 08, 2026
+                    </div>
+                    <h3>
+                        <a href="blog/Global_Inflation&Interest_Rates.html">
+                            Global Inflation & Interest Rates
+                        </a>
+                    </h3>
+                    <div class="update-excerpt">
+                        Macroeconomic factors affecting financial markets and investment decisions
+                    </div>
+                    <div class="read-time">
+                        <i class="fas fa-clock"></i> 10 min read
+                        <span style="margin-left: auto; color: var(--gold-accent);">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

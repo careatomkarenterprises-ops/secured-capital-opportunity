@@ -14,8 +14,8 @@
     
     <!-- SEO TAGS FOR BLOG PAGE -->
     <title>Educational Blog | Market Analysis & Investment Insights | Omkar Enterprises</title>
-    <meta name="description" content="Free educational blog on financial markets, investment strategies, and market analysis. Learn about global inflation, budget impacts, and investment opportunities with Omkar Enterprises insights.">
-    <meta name="keywords" content="financial education blog, market analysis blog, investment learning, inflation education, budget analysis, financial markets education, investment strategies blog">
+    <meta name="description" content="Free educational blog on financial markets, investment strategies, and market analysis. Learn about RBI strategies 2026, global inflation, budget impacts, and investment opportunities with Omkar Enterprises insights.">
+    <meta name="keywords" content="financial education blog, market analysis blog, investment learning, RBI strategies 2026, inflation education, budget analysis, financial markets education, investment strategies blog">
     <meta name="author" content="Omkar Enterprises Educational Team">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
@@ -424,6 +424,13 @@
             overflow: hidden;
         }
 
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
         .blog-image::before {
             content: '';
             position: absolute;
@@ -432,6 +439,7 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, transparent 100%);
+            z-index: 1;
         }
 
         .blog-content {
@@ -600,7 +608,7 @@
             background: #b7950b;
         }
 
-        /* ===== NEW: BLOG UPDATES TICKER SECTION ===== */
+        /* BLOG UPDATES TICKER SECTION */
         .blog-updates-section {
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             padding: 60px 0;
@@ -823,43 +831,43 @@
             animation: pulse 2s infinite;
         }
 
-        @media (max-width: 768px) {
-            .updates-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .updates-ticker {
-                flex-direction: column;
-                border-radius: 20px;
-                align-items: flex-start;
-            }
-            
-            .ticker-scroll {
-                animation: scrollTicker 20s linear infinite;
-            }
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
         }
 
-        /* Mobile Responsive for Blog */
-        @media (max-width: 768px) {
-            .blog-hero h1 {
-                font-size: 32px;
-            }
-            
-            .blog-hero-subtitle {
-                font-size: 18px;
-            }
-            
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .blog-card h3 {
-                font-size: 20px;
-            }
-            
-            .blog-content {
-                padding: 20px;
-            }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: var(--gold-accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
         /* Footer Styles */
@@ -1062,6 +1070,28 @@
                 padding: 20px;
                 border-bottom: 1px solid var(--gray-light);
             }
+
+            .blog-hero h1 {
+                font-size: 32px;
+            }
+            
+            .blog-hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .updates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .updates-ticker {
+                flex-direction: column;
+                border-radius: 20px;
+                align-items: flex-start;
+            }
         }
 
         /* Animation Classes */
@@ -1073,6 +1103,16 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -1082,7 +1122,7 @@
         <div class="container">
             <div class="status-indicator">
                 <div class="status-dot"></div>
-                <div class="status-text">System Status: <strong>All Services Operational</strong> • Latest Blog Updates • Last Updated: <span id="currentTime"></span></div>
+                <div class="status-text">System Status: <strong>All Services Operational</strong> • Latest Blog: RBI Strategies 2026 Guide • Last Updated: <span id="currentTime"></span></div>
             </div>
         </div>
     </div>
@@ -1134,42 +1174,60 @@
     </section>
 
     <!-- Blog Listing Section -->
-<!-- Blog Listing Section in blog.html -->
-<section class="blog-grid-container">
-    <div class="container">
-        <div class="blog-grid">
-            
-            <!-- ===== NEW: RBI Strategies 2026 Guide (Place this FIRST) ===== -->
-            <article class="blog-card fade-in">
-                <div class="blog-image" style="background: none; padding: 0; height: 220px;">
-                    <img src="blog/assets/rbi-2026-market-guide-thumbnail.jpg" 
-                         alt="RBI Strategies for Indian Investors 2026 - Complete Educational Guide" 
-                         style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 20px 20px 0 0;">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <div class="blog-date">
-                            <i class="fas fa-calendar-alt"></i> February 17, 2026
-                        </div>
-                        <div class="blog-category">RBI & Market Analysis</div>
-                    </div>
-                    <h3>
-                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html">RBI Strategies for Indian Investors 2026: Complete Educational Guide</a>
-                    </h3>
-                    <p class="blog-excerpt">
-                        RBI strategies decoded with proprietary data: retail holding period drops to 5.2 months, only 17% traders profitable, SIP paradox & Omkar framework for 2026 market cycle.
-                    </p>
-                    <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="read-more">
-                        Read Full Guide <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </article>
-
-            <!-- Rest of your existing blog posts follow... -->
     <section class="blog-grid-container">
         <div class="container">
             <div class="blog-grid">
-                <!-- Blog Post 1: Global Inflation & Interest Rates -->
+                <!-- Blog Post 1: RBI Strategies 2026 (NEW - Placed First) -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">
+                        <img src="blog/assets/rbi-2026-market-guide-thumbnail.jpg" 
+                             alt="RBI Strategies for Indian Investors 2026 Guide">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> February 17, 2026
+                            </div>
+                            <div class="blog-category">RBI & Market Analysis</div>
+                        </div>
+                        <h3>
+                            <a href="blog/rbi-strategies-indian-investors-2026-guide.html">RBI Strategies for Indian Investors 2026: Complete Educational Guide</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            RBI strategies decoded with proprietary data: retail holding period drops to 5.2 months, only 17% traders profitable, SIP paradox & Omkar framework for 2026 market cycle. 10,542 investors analyzed.
+                        </p>
+                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="read-more">
+                            Read Full Guide <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2: Rupee Dollar Mastery -->
+                <article class="blog-card fade-in">
+                    <div class="blog-image">
+                        <img src="blog/assets/rupee-dollar-mastery-2026.png" 
+                             alt="Master Rupee & Dollar Analysis 2026">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> February 10, 2026
+                            </div>
+                            <div class="blog-category">Currency Education</div>
+                        </div>
+                        <h3>
+                            <a href="blog/rupee-dollar-mastery-2026.html">Master Rupee & Dollar Dynamics: Institutional Frameworks for 2026</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Advanced educational guide on USD/INR trading, institutional analysis models, and risk management frameworks. Learn how top funds analyze currency movements.
+                        </p>
+                        <a href="blog/rupee-dollar-mastery-2026.html" class="read-more">
+                            Read Full Guide <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3: Global Inflation & Interest Rates -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-chart-line"></i>
@@ -1193,12 +1251,11 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 2: Budget 2026 -->
+                <!-- Blog Post 4: Budget 2026 -->
                 <article class="blog-card fade-in">
-                    <div class="blog-image" style="background: none; padding: 0; height: 220px;">
+                    <div class="blog-image">
                         <img src="blog/assets/BUDGET 2026 WINNERS.png" 
-                             alt="Budget 2026 Analysis: Education Policy Changes Impact" 
-                             style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 20px 20px 0 0;">
+                             alt="Budget 2026 Analysis: Education Policy Changes Impact">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
@@ -1219,59 +1276,7 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 3: RBI Strategies 2026 (NEW) -->
-                <article class="blog-card fade-in">
-                    <div class="blog-image" style="background: none; padding: 0; height: 220px;">
-                        <img src="blog/assets/rbi-2026-market-guide-thumbnail.jpg" 
-                             alt="RBI Strategies for Indian Investors 2026 Guide" 
-                             style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 20px 20px 0 0;">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <div class="blog-date">
-                                <i class="fas fa-calendar-alt"></i> February 17, 2026
-                            </div>
-                            <div class="blog-category">RBI & Market Analysis</div>
-                        </div>
-                        <h3>
-                            <a href="blog/rbi-strategies-indian-investors-2026-guide.html">RBI Strategies for Indian Investors 2026: Complete Educational Guide</a>
-                        </h3>
-                        <p class="blog-excerpt">
-                            RBI strategies decoded with proprietary data: retail holding period 5.2 months, 17% profitable traders, SIP paradox & Omkar framework for 2026.
-                        </p>
-                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="read-more">
-                            Read Full Guide <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 4: Rupee Dollar Mastery -->
-                <article class="blog-card fade-in">
-                    <div class="blog-image" style="background: none; padding: 0;">
-                        <img src="blog/assets/rupee-dollar-mastery-2026.png" 
-                             alt="Master Rupee & Dollar Analysis 2026" 
-                             style="width: 100%; height: 220px; object-fit: cover; display: block; border-radius: 20px 20px 0 0;">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <div class="blog-date">
-                                <i class="fas fa-calendar-alt"></i> February 10, 2026
-                            </div>
-                            <div class="blog-category">Currency Education</div>
-                        </div>
-                        <h3>
-                            <a href="blog/rupee-dollar-mastery-2026.html">Master Rupee & Dollar Dynamics: Institutional Frameworks for 2026</a>
-                        </h3>
-                        <p class="blog-excerpt">
-                            Advanced educational guide on USD/INR trading, institutional analysis models, and risk management frameworks. Learn how top funds analyze currency movements.
-                        </p>
-                        <a href="blog/rupee-dollar-mastery-2026.html" class="read-more">
-                            Read Full Guide <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 5: Coming Soon -->
+                <!-- Blog Post 5: Coming Soon - Portfolio Strategy -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-chart-pie"></i>
@@ -1295,7 +1300,7 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 6: Coming Soon -->
+                <!-- Blog Post 6: Coming Soon - Risk Management -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-shield-alt"></i>
@@ -1326,32 +1331,38 @@
                 <ul class="blog-categories">
                     <li>
                         <a href="#">
-                            <span>Market Education</span>
-                            <span class="category-count">4</span>
+                            <span>RBI & Market Analysis</span>
+                            <span class="category-count">1</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span>Investment Strategies</span>
-                            <span class="category-count">2</span>
+                            <span>Currency Education</span>
+                            <span class="category-count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Market Education</span>
+                            <span class="category-count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Budget Analysis</span>
+                            <span class="category-count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Portfolio Strategy</span>
+                            <span class="category-count">1</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <span>Risk Management</span>
-                            <span class="category-count">2</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Currency Analysis</span>
-                            <span class="category-count">2</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Financial Planning</span>
-                            <span class="category-count">2</span>
+                            <span class="category-count">1</span>
                         </a>
                     </li>
                 </ul>
@@ -1369,7 +1380,7 @@
         </div>
     </section>
 
-    <!-- ===== NEW: BLOG UPDATES TICKER SECTION (Placed before CTA) ===== -->
+    <!-- BLOG UPDATES TICKER SECTION -->
     <section class="blog-updates-section">
         <div class="container">
             <div class="updates-header">
@@ -1387,7 +1398,7 @@
                 </span>
                 <div class="ticker-content">
                     <div class="ticker-scroll">
-                        <!-- Ticker items (duplicated for seamless scroll) -->
+                        <!-- Ticker items -->
                         <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="ticker-item">
                             <i class="fas fa-circle"></i> RBI Strategies 2026 Guide
                             <span class="ticker-date">Feb 17</span>
@@ -1495,17 +1506,17 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section" style="background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%); color: white; padding: 80px 0; text-align: center;">
+    <section class="cta-section">
         <div class="container">
             <h2 style="font-size: 36px; margin-bottom: 20px;">Want to Learn More About Investments?</h2>
             <p style="font-size: 18px; opacity: 0.9; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
                 Our educational blog provides insights into financial markets. For personalized investment discussions, connect with our team directly.
             </p>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="contact.html" style="background: var(--gold-accent); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px;">
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-button">
                     <i class="fas fa-calendar-alt"></i> Schedule Consultation
                 </a>
-                <a href="index.html" style="background: rgba(255,255,255,0.1); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; border: 2px solid rgba(255,255,255,0.2);">
+                <a href="index.html" class="cta-button secondary">
                     <i class="fas fa-home"></i> Return to Home
                 </a>
             </div>
@@ -1529,9 +1540,7 @@
                     <p class="footer-description">
                         Since 2015, <strong>Omkar Enterprises</strong> has served as a premier 
                         <strong>private lending partnership</strong> in India, maintaining a 
-                        <strong>100% payout record</strong> for our 500+ partners. We specialize in 
-                        <strong>secured investments</strong> designed for those seeking 
-                        <strong>reliable monthly returns</strong> and long-term capital growth.
+                        <strong>100% payout record</strong> for our 500+ partners.
                     </p>
                     
                     <div class="footer-contact">
@@ -1595,7 +1604,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2015-2024 Omkar Enterprises. All Rights Reserved. | Private Lending Partnership Firm</p>
+                <p>&copy; 2015-2026 Omkar Enterprises. All Rights Reserved. | Private Lending Partnership Firm</p>
                 <p><i class="fas fa-shield-alt"></i> Educational Blog | Market Analysis Content</p>
             </div>
         </div>
@@ -1674,40 +1683,6 @@
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
             
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Add animation classes on scroll
-            function checkScroll() {
-                const elements = document.querySelectorAll('.fade-in');
-                
-                elements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < window.innerHeight - elementVisible) {
-                        element.classList.add('animated');
-                    }
-                });
-            }
-            
-            window.addEventListener('scroll', checkScroll);
-            checkScroll(); // Initial check
-            
             // Newsletter form submission
             const newsletterForm = document.querySelector('.newsletter-form');
             if (newsletterForm) {
@@ -1715,7 +1690,6 @@
                     e.preventDefault();
                     const email = this.querySelector('input[type="email"]').value;
                     
-                    // Simple validation
                     if (email && email.includes('@')) {
                         alert('Thank you for subscribing to our educational newsletter! You will receive updates on new articles.');
                         this.reset();
@@ -1724,17 +1698,6 @@
                     }
                 });
             }
-            
-            // Add active class to current page in navigation
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                const linkHref = link.getAttribute('href');
-                if (linkHref === currentPage || (linkHref === 'blog.html' && currentPage.includes('blog'))) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
         });
     </script>
 

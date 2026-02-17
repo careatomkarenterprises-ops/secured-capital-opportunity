@@ -875,13 +875,45 @@
                 <h3>📥 FREE: The 17% Factor PDF Guide</h3>
                 <p style="font-size: 16px; margin-bottom: 20px;">Get the complete Omkar Framework + IPO Checklist 2026</p>
                 
-                <form class="email-form" onsubmit="event.preventDefault(); alert('Thank you! Check your email for the free guide.');">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">GET IT NOW</button>
-                </form>
-                <p style="font-size: 11px; margin-top: 15px;">We respect your privacy. Unsubscribe anytime.</p>
-            </div>
-
+                <form class="email-form" action="https://formspree.io/f/mlgnkpoo" method="POST">
+    <!-- FormSpree Configuration (Keep these) -->
+    <input type="hidden" name="_captcha" value="true"> <!-- Changed to "true" for better spam protection -->
+    <input type="hidden" name="_next" value="https://omkarservices.in/blog/thank-you.html">
+    <input type="hidden" name="_subject" value="🔥 New 17% Factor Guide Subscriber!">
+    
+    <!-- Optional: Name field -->
+    <input type="text" name="name" placeholder="Your name (optional)" 
+           style="width:100%; padding:15px; border-radius:50px; border:1px solid #ddd; margin-bottom:10px; font-size:16px;">
+    
+    <!-- Email field with proper wrapper for styling -->
+    <div style="display:flex; margin-bottom:15px;">
+        <input type="email" name="email" placeholder="Enter your email address" required
+               style="flex:1; padding:15px; border-radius:50px 0 0 50px; border:1px solid #ddd; border-right:none; font-size:16px;">
+        <button type="submit" 
+                style="background:#d4af37; color:#1e3a8a; border:none; border-radius:0 50px 50px 0; padding:0 30px; font-weight:bold; cursor:pointer; font-size:16px;">
+            GET IT NOW
+        </button>
+    </div>
+    
+    <!-- GDPR Compliance Checkbox (REQUIRED - NOT PRE-CHECKED) -->
+    <div style="margin:15px 0; text-align:left; font-size:14px; color:white;">
+        <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+            <input type="checkbox" name="consent" value="yes" required style="width:18px; height:18px; margin-top:2px;">
+            <span>I agree to receive educational emails about IPO strategies and accept the 
+                <a href="../privacy.html" style="color:#d4af37; text-decoration:underline;" target="_blank">Privacy Policy</a>
+            </span>
+        </label>
+    </div>
+    
+    <!-- Optional: Hidden field to track source -->
+    <input type="hidden" name="_gotcha" style="display:none !important">
+    <input type="hidden" name="source" value="17_percent_factor_blog">
+    
+    <!-- Small disclaimer -->
+    <p style="font-size:11px; margin-top:10px; opacity:0.8; color:white;">
+        🔒 We use FormSpree to securely process your email. No spam, unsubscribe anytime.
+    </p>
+</form>
             <!-- FAQ SECTION -->
             <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
             

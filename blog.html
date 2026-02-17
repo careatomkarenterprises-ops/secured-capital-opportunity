@@ -14,8 +14,8 @@
     
     <!-- SEO TAGS FOR BLOG PAGE -->
     <title>Educational Blog | Market Analysis & Investment Insights | Omkar Enterprises</title>
-    <meta name="description" content="Free educational blog on financial markets, investment strategies, and market analysis. Learn about RBI strategies 2026, global inflation, budget impacts, and investment opportunities with Omkar Enterprises insights.">
-    <meta name="keywords" content="financial education blog, market analysis blog, investment learning, RBI strategies 2026, inflation education, budget analysis, financial markets education, investment strategies blog">
+    <meta name="description" content="Free educational blog on financial markets, investment strategies, and market analysis. Learn about The 17% Factor IPO Strategies 2026, RBI strategies, global inflation, budget impacts, and more with Omkar Enterprises insights.">
+    <meta name="keywords" content="financial education blog, market analysis blog, investment learning, IPO strategies 2026, 17% factor IPO, RBI strategies 2026, inflation education, budget analysis, financial markets education, investment strategies blog">
     <meta name="author" content="Omkar Enterprises Educational Team">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
@@ -24,7 +24,7 @@
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Educational Blog | Market Analysis & Investment Insights">
-    <meta property="og:description" content="Free educational articles on financial markets, investment strategies, and market trends. Learn with Omkar Enterprises.">
+    <meta property="og:description" content="Free educational articles on financial markets, investment strategies, and market trends. New: The 17% Factor IPO Strategies 2026 Guide. Learn with Omkar Enterprises.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://omkarservices.in/blog">
     <meta property="og:image" content="https://omkarservices.in/blog/assets/blog-og-image.jpg">
@@ -32,7 +32,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Educational Blog | Omkar Enterprises">
-    <meta name="twitter:description" content="Free financial education articles on market analysis and investment strategies">
+    <meta name="twitter:description" content="Free financial education articles on market analysis and investment strategies. New IPO 2026 guide inside.">
     
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -63,6 +63,7 @@
             --white: #ffffff;
             --gray-light: #f8fafc;
             --success-green: #10b981;
+            --danger-red: #ef4444;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
@@ -512,6 +513,38 @@
             gap: 12px;
         }
 
+        .new-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--danger-red);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+            animation: pulse 2s infinite;
+        }
+
+        .trending-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gold-accent);
+            color: var(--trust-blue);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .blog-sidebar {
             margin-top: 40px;
             padding: 30px;
@@ -822,7 +855,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: var(--gold-accent);
+            background: var(--danger-red);
             color: var(--white);
             padding: 4px 12px;
             border-radius: 20px;
@@ -1122,7 +1155,7 @@
         <div class="container">
             <div class="status-indicator">
                 <div class="status-dot"></div>
-                <div class="status-text">System Status: <strong>All Services Operational</strong> • Latest Blog: RBI Strategies 2026 Guide • Last Updated: <span id="currentTime"></span></div>
+                <div class="status-text">System Status: <strong>All Services Operational</strong> • NEW: The 17% Factor IPO Strategies 2026 Guide • Last Updated: <span id="currentTime"></span></div>
             </div>
         </div>
     </div>
@@ -1174,43 +1207,45 @@
     </section>
 
     <!-- Blog Listing Section -->
-
     <section class="blog-grid-container">
         <div class="container">
             <div class="blog-grid">
-                <!-- 17-percent-factor-ipo-strategies-2026.html (NEW - Placed First) -->
+                <!-- BLOG POST 1: The 17% Factor IPO Strategies 2026 (NEW - Placed First) -->
                 <article class="blog-card fade-in">
+                    <div class="trending-badge">
+                        <i class="fas fa-fire"></i> TRENDING
+                    </div>
+                    <div class="new-badge">NEW</div>
                     <div class="blog-image">
-                        <img src="blog/assets/17-percent-factor-ipo-strategies-2026.png" 
-                             alt="17-percent-factor-ipo-strategies-2026.html">
+                        <img src="blog/assets/17-percent-factor-ipo-thumbnail.jpg" 
+                             alt="The 17% Factor IPO Strategies 2026 - Only 17% of traders profited in FY25" 
+                             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-chart-bar\'></i>';">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
                             <div class="blog-date">
                                 <i class="fas fa-calendar-alt"></i> February 17, 2026
                             </div>
-                            <div class="blog-category">RBI & Market Analysis</div>
+                            <div class="blog-category">IPO Strategies</div>
                         </div>
                         <h3>
-                            <a href="blog/17-percent-factor-ipo-strategies-2026.html">RBI Strategies for Indian Investors 2026: Complete Educational Guide</a>
+                            <a href="blog/17-percent-factor-ipo-strategies-2026.html">The 17% Factor: IPO Investing Strategies for Indian Investors – 2026 Educational Guide</a>
                         </h3>
                         <p class="blog-excerpt">
-                            RBI strategies decoded with proprietary data: retail holding period drops to 5.2 months, only 17% traders profitable, SIP paradox & Omkar framework for 2026 market cycle. 10,542 investors analyzed.
+                            Only 17% of traders profited in FY25. We analyzed 10,542 investors to reveal the Omkar Framework: Accumulation Intelligence, Risk-Adjusted Execution, and Exit Discipline. Take the 30-second quiz to check if you're in the 17% or 83%.
                         </p>
-                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="read-more">
+                        <a href="blog/17-percent-factor-ipo-strategies-2026.html" class="read-more">
                             Read Full Guide <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-    <section class="blog-grid-container">
-        <div class="container">
-            <div class="blog-grid">
-                <!-- Blog Post 1: RBI Strategies 2026 (NEW - Placed First) -->
+                <!-- Blog Post 2: RBI Strategies 2026 -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <img src="blog/assets/rbi-2026-market-guide-thumbnail.jpg" 
-                             alt="RBI Strategies for Indian Investors 2026 Guide">
+                             alt="RBI Strategies for Indian Investors 2026 Guide"
+                             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-university\'></i>';">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
@@ -1231,11 +1266,12 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 2: Rupee Dollar Mastery -->
+                <!-- Blog Post 3: Rupee Dollar Mastery -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <img src="blog/assets/rupee-dollar-mastery-2026.png" 
-                             alt="Master Rupee & Dollar Analysis 2026">
+                             alt="Master Rupee & Dollar Analysis 2026"
+                             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-dollar-sign\'></i>';">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
@@ -1256,7 +1292,7 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 3: Global Inflation & Interest Rates -->
+                <!-- Blog Post 4: Global Inflation & Interest Rates -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-chart-line"></i>
@@ -1280,11 +1316,12 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 4: Budget 2026 -->
+                <!-- Blog Post 5: Budget 2026 -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <img src="blog/assets/BUDGET 2026 WINNERS.png" 
-                             alt="Budget 2026 Analysis: Education Policy Changes Impact">
+                             alt="Budget 2026 Analysis: Education Policy Changes Impact"
+                             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-file-invoice\'></i>';">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
@@ -1305,7 +1342,7 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 5: Coming Soon - Portfolio Strategy -->
+                <!-- Blog Post 6: Coming Soon - Portfolio Strategy -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-chart-pie"></i>
@@ -1329,7 +1366,7 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 6: Coming Soon - Risk Management -->
+                <!-- Blog Post 7: Coming Soon - Risk Management -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-shield-alt"></i>
@@ -1358,6 +1395,12 @@
             <div class="blog-sidebar fade-in">
                 <h3><i class="fas fa-folder"></i> Blog Categories</h3>
                 <ul class="blog-categories">
+                    <li>
+                        <a href="#">
+                            <span>IPO Strategies</span>
+                            <span class="category-count">1</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="#">
                             <span>RBI & Market Analysis</span>
@@ -1427,7 +1470,11 @@
                 </span>
                 <div class="ticker-content">
                     <div class="ticker-scroll">
-                        <!-- Ticker items -->
+                        <!-- Ticker items - NEW IPO FIRST -->
+                        <a href="blog/17-percent-factor-ipo-strategies-2026.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> The 17% Factor IPO Guide 2026
+                            <span class="ticker-date">Feb 17</span>
+                        </a>
                         <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="ticker-item">
                             <i class="fas fa-circle"></i> RBI Strategies 2026 Guide
                             <span class="ticker-date">Feb 17</span>
@@ -1445,6 +1492,10 @@
                             <span class="ticker-date">Jan 29</span>
                         </a>
                         <!-- Duplicate for seamless loop -->
+                        <a href="blog/17-percent-factor-ipo-strategies-2026.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> The 17% Factor IPO Guide 2026
+                            <span class="ticker-date">Feb 17</span>
+                        </a>
                         <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="ticker-item">
                             <i class="fas fa-circle"></i> RBI Strategies 2026 Guide
                             <span class="ticker-date">Feb 17</span>
@@ -1467,9 +1518,30 @@
 
             <!-- Recent Updates Grid -->
             <div class="updates-grid">
-                <!-- Update 1: RBI Guide (Newest) -->
+                <!-- Update 1: IPO Guide (Newest) -->
                 <div class="update-card">
                     <div class="update-badge-new">NEW</div>
+                    <div class="update-date">
+                        <i class="fas fa-calendar-check"></i> February 17, 2026
+                    </div>
+                    <h3>
+                        <a href="blog/17-percent-factor-ipo-strategies-2026.html">
+                            The 17% Factor: IPO Investing Strategies 2026
+                        </a>
+                    </h3>
+                    <div class="update-excerpt">
+                        Only 17% profited in FY25 • 10,542 investors analyzed • Omkar framework • 30-sec quiz inside
+                    </div>
+                    <div class="read-time">
+                        <i class="fas fa-clock"></i> 12 min read
+                        <span style="margin-left: auto; color: var(--gold-accent);">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Update 2: RBI Guide -->
+                <div class="update-card">
                     <div class="update-date">
                         <i class="fas fa-calendar-check"></i> February 17, 2026
                     </div>
@@ -1489,7 +1561,7 @@
                     </div>
                 </div>
 
-                <!-- Update 2: Rupee Dollar -->
+                <!-- Update 3: Rupee Dollar -->
                 <div class="update-card">
                     <div class="update-date">
                         <i class="fas fa-calendar-check"></i> February 10, 2026
@@ -1504,27 +1576,6 @@
                     </div>
                     <div class="read-time">
                         <i class="fas fa-clock"></i> 15 min read
-                        <span style="margin-left: auto; color: var(--gold-accent);">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Update 3: Global Inflation -->
-                <div class="update-card">
-                    <div class="update-date">
-                        <i class="fas fa-calendar-check"></i> February 08, 2026
-                    </div>
-                    <h3>
-                        <a href="blog/Global_Inflation&Interest_Rates.html">
-                            Global Inflation & Interest Rates
-                        </a>
-                    </h3>
-                    <div class="update-excerpt">
-                        Macroeconomic factors affecting financial markets and investment decisions
-                    </div>
-                    <div class="read-time">
-                        <i class="fas fa-clock"></i> 10 min read
                         <span style="margin-left: auto; color: var(--gold-accent);">
                             <i class="fas fa-arrow-right"></i>
                         </span>

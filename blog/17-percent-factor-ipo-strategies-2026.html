@@ -59,7 +59,7 @@
             }
         },
         "datePublished": "2026-02-17",
-        "dateModified": "2026-02-17"
+        "dateModified": "2026-02-18"
     }
     </script>
     
@@ -349,6 +349,70 @@
             font-size: 16px;
         }
 
+        /* ===== INTERNAL LINKS SECTION - NEW ===== */
+        .related-posts {
+            background: var(--light-blue);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin: 40px 0 20px;
+            border: 2px solid var(--trust-blue);
+        }
+        
+        .related-posts h3 {
+            color: var(--trust-blue);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .related-links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .related-link-card {
+            background: white;
+            padding: 15px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--slate-dark);
+            transition: var(--transition);
+            border-left: 4px solid var(--gold-accent);
+            display: block;
+        }
+        
+        .related-link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-left-color: var(--trust-blue);
+        }
+        
+        .related-link-card i {
+            color: var(--trust-blue);
+            margin-right: 10px;
+        }
+        
+        .related-link-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .related-link-desc {
+            font-size: 14px;
+            color: var(--slate-light);
+        }
+        
+        @media (min-width: 768px) {
+            .related-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         /* ===== FRAMEWORK CARDS ===== */
         .framework-container {
             display: flex;
@@ -617,6 +681,10 @@
         }
 
         /* ===== FAQ SECTION ===== */
+        .faq-section {
+            margin-top: 40px;
+        }
+        
         .faq-item {
             margin-bottom: 25px;
             padding-bottom: 20px;
@@ -639,7 +707,48 @@
             font-size: 15px;
         }
 
-        /* ===== COMPLIANCE NOTICE - FULLY VISIBLE ===== */
+        /* ===== SOCIAL SHARE BUTTONS ===== */
+        .social-share {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        
+        .share-linkedin {
+            background: #0077b5;
+            color: white;
+        }
+        
+        .share-twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .share-facebook {
+            background: #4267B2;
+            color: white;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== COMPLIANCE NOTICE ===== */
         .compliance-notice {
             background: #fff8e6;
             border: 3px solid var(--gold-accent);
@@ -894,7 +1003,7 @@
         <div class="container nav-container">
             <a href="../index.html" class="logo">
                 <div class="logo-image-container">
-                    <img src="../assets/logo.png" alt="Omkar Enterprises" onerror="this.src='https://via.placeholder.com/45x45?text=OE'">
+                    <img src="../assets/logo.png" alt="Omkar Enterprises - Private Lending Partnership Since 2015" onerror="this.src='https://via.placeholder.com/45x45?text=OE'">
                 </div>
                 <div class="logo-text-container">
                     <div class="logo-main">OMKAR ENTERPRISES</div>
@@ -943,7 +1052,7 @@
 
             <!-- FEATURED IMAGE -->
             <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200" 
-                 alt="Stock market chart" 
+                 alt="Stock market chart showing 83% of IPO investors lost money in FY25 while only 17% profited - 10,542 investor study results" 
                  class="featured-image"
                  loading="lazy"
                  onerror="this.src='https://via.placeholder.com/800x400?text=Market+Chart'">
@@ -958,7 +1067,7 @@
             <p>Our proprietary study revealed a critical metric: the average retail holding period collapsed from <strong>11 months (2020) to 5.2 months (2025)</strong>. This 52% drop explains why most investors fail in IPOs – they treat listings like lottery tickets, not long-term wealth creators.</p>
 
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200" 
-                 alt="Data analytics dashboard" 
+                 alt="Data analytics dashboard showing investor behavior patterns and holding period analysis from 11 months to 5.2 months" 
                  class="featured-image"
                  loading="lazy"
                  onerror="this.src='https://via.placeholder.com/800x300?text=Data+Analytics'">
@@ -994,6 +1103,35 @@
                         <tr><td>Energy</td><td>+198%</td><td>19</td></tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- ===== NEW: INTERNAL LINKS SECTION ===== -->
+            <div class="related-posts">
+                <h3><i class="fas fa-link"></i> More Investment Insights from Omkar Enterprises</h3>
+                <div class="related-links-grid">
+                    <a href="rbi-strategies-indian-investors-2026.html" class="related-link-card">
+                        <div class="related-link-title"><i class="fas fa-arrow-right"></i> RBI Strategies for Indian Investors 2026</div>
+                        <div class="related-link-desc">Latest RBI policies decoded with proprietary retail data</div>
+                    </a>
+                    
+                    <a href="rupee-dollar-mastery-2026.html" class="related-link-card">
+                        <div class="related-link-title"><i class="fas fa-arrow-right"></i> Rupee-Dollar Mastery: Institutional Frameworks</div>
+                        <div class="related-link-desc">Advanced currency analysis for 2026</div>
+                    </a>
+                    
+                    <a href="Global_Inflation&Interest_Rates.html" class="related-link-card">
+                        <div class="related-link-title"><i class="fas fa-arrow-right"></i> Global Inflation & Interest Rates Analysis</div>
+                        <div class="related-link-desc">Educational analysis of global market dynamics</div>
+                    </a>
+                    
+                    <a href="budget-2026.html" class="related-link-card">
+                        <div class="related-link-title"><i class="fas fa-arrow-right"></i> Budget 2026 Analysis: 5 Key Changes</div>
+                        <div class="related-link-desc">How budget changes affect your investments</div>
+                    </a>
+                </div>
+                <p style="text-align: center; margin-top: 20px; margin-bottom: 0;">
+                    <a href="../blog.html" style="color: var(--trust-blue); font-weight: bold;">View All Insights →</a>
+                </p>
             </div>
 
             <!-- QUIZ SECTION -->
@@ -1050,6 +1188,19 @@
                 </div>
             </div>
 
+            <!-- SOCIAL SHARE BUTTONS -->
+            <div class="social-share">
+                <button onclick="shareOnLinkedIn()" class="share-btn share-linkedin">
+                    <i class="fab fa-linkedin"></i> Share on LinkedIn
+                </button>
+                <button onclick="shareOnTwitter()" class="share-btn share-twitter">
+                    <i class="fab fa-twitter"></i> Share on Twitter
+                </button>
+                <button onclick="shareOnFacebook()" class="share-btn share-facebook">
+                    <i class="fab fa-facebook"></i> Share on Facebook
+                </button>
+            </div>
+
             <!-- LEAD MAGNET WITH FORMSPREE -->
             <div class="lead-magnet">
                 <i class="fas fa-file-pdf" style="font-size: 40px; margin-bottom: 15px;"></i>
@@ -1083,24 +1234,26 @@
             </div>
 
             <!-- FAQ SECTION -->
-            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">Q: Is this guide suitable for IPO beginners?</div>
-                <div class="faq-answer">Yes. The Omkar Framework starts with fundamentals: how to read RHP, analyze anchor investors, and identify overvalued IPOs.</div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">Q: What's the "Margin of Safety" in IPOs?</div>
-                <div class="faq-answer">The gap between the issue price and the company's intrinsic value. Our framework teaches you to calculate this using sector PE ratios and growth projections.</div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">Q: Why do 90% of retail investors lose money in IPOs?</div>
-                <div class="faq-answer">Emotional bias (listing gain greed), reliance on social media tips, and complete ignorance of financial statements. Our data confirms this.</div>
+            <div class="faq-section">
+                <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: Is this guide suitable for IPO beginners?</div>
+                    <div class="faq-answer">Yes. The Omkar Framework starts with fundamentals: how to read RHP, analyze anchor investors, and identify overvalued IPOs.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: What's the "Margin of Safety" in IPOs?</div>
+                    <div class="faq-answer">The gap between the issue price and the company's intrinsic value. Our framework teaches you to calculate this using sector PE ratios and growth projections.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: Why do 90% of retail investors lose money in IPOs?</div>
+                    <div class="faq-answer">Emotional bias (listing gain greed), reliance on social media tips, and complete ignorance of financial statements. Our data confirms this.</div>
+                </div>
             </div>
 
-            <!-- COMPLIANCE NOTICE - FULLY VISIBLE -->
+            <!-- COMPLIANCE NOTICE -->
             <div class="compliance-notice">
                 <div class="compliance-header">
                     <div class="warning-icon">
@@ -1213,6 +1366,23 @@
                 'event_label': 'IPO_quiz',
                 'value': score
             });
+        }
+
+        // Social sharing functions
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent('https://omkarservices.in/blog/17-percent-factor-ipo-strategies-2026.html');
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+        }
+        
+        function shareOnTwitter() {
+            const url = encodeURIComponent('https://omkarservices.in/blog/17-percent-factor-ipo-strategies-2026.html');
+            const text = encodeURIComponent('Only 17% of IPO investors profited in FY25. Take the 30-sec quiz to check if you\'re in the winning 17%!');
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        }
+        
+        function shareOnFacebook() {
+            const url = encodeURIComponent('https://omkarservices.in/blog/17-percent-factor-ipo-strategies-2026.html');
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
         }
 
         // Smooth scroll for anchor links

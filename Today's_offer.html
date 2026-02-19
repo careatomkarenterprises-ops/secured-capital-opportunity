@@ -102,6 +102,10 @@
             background-color: #e5c255;
             transform: translateY(-2px);
         }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
         .btn-secondary {
             background-color: transparent;
             color: #9CA3AF;
@@ -276,6 +280,21 @@
         }
         .resume-banner:hover {
             background: #ffd96640;
+        }
+        .whatsapp-verify-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .whatsapp-verify-btn:hover {
+            background: #128C7E;
         }
     </style>
 </head>
@@ -497,7 +516,7 @@
                     </div>
                 </div>
 
-                <button id="nextStep1Btn" class="btn-primary">Save & Continue to Agreement</button>
+                <button onclick="handleStep1()" class="btn-primary">Save & Continue to Agreement</button>
             </div>
 
             <!-- Step 2: Agreement & Signature -->
@@ -527,7 +546,7 @@
                     <label class="form-label required">Digital Signature</label>
                     <canvas id="signatureCanvas" class="signature-canvas"></canvas>
                     <div class="flex gap-4 mt-4">
-                        <button id="clearSignatureBtn" class="btn-secondary" style="width: auto;">Clear</button>
+                        <button onclick="clearSignature()" class="btn-secondary" style="width: auto;">Clear</button>
                     </div>
                 </div>
 
@@ -539,12 +558,12 @@
                 </div>
 
                 <div class="flex gap-4">
-                    <button id="prevStep2Btn" class="btn-secondary">Back</button>
-                    <button id="nextStep2Btn" class="btn-primary">Sign & Continue</button>
+                    <button onclick="goToStep(1)" class="btn-secondary">Back</button>
+                    <button onclick="handleStep2()" class="btn-primary">Sign & Continue</button>
                 </div>
             </div>
 
-            <!-- Step 3: WhatsApp Verification (CLEAN VERSION) -->
+            <!-- Step 3: WhatsApp Verification -->
             <div id="step3Content" class="hidden">
                 <h3 class="text-xl font-bold mb-6">📱 WhatsApp Verification</h3>
                 
@@ -560,7 +579,7 @@
 
                     <div class="verification-code-box" id="displayVerificationCode">123456</div>
 
-                    <a id="whatsappVerifyLink" href="#" target="_blank" class="whatsapp-verify-btn w-full justify-center mb-4" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: white; padding: 12px; border-radius: 50px; text-decoration: none;">
+                    <a id="whatsappVerifyLink" href="#" target="_blank" class="whatsapp-verify-btn">
                         <img src="https://img.icons8.com/color/24/whatsapp--v1.png" alt="WhatsApp"> 
                         Send Code via WhatsApp
                     </a>
@@ -571,20 +590,20 @@
 
                     <div class="flex gap-2 mt-2">
                         <input type="text" id="verificationCode" class="form-input text-center text-2xl tracking-widest" maxlength="6" placeholder="123456">
-                        <button id="verifyCodeBtn" class="btn-primary" style="width: auto; padding: 12px 24px;">Verify</button>
+                        <button onclick="verifyCode()" class="btn-primary" style="width: auto; padding: 12px 24px;">Verify</button>
                     </div>
 
                     <p class="text-xs text-gray-400 mt-3 text-center">
-                        Didn't receive? <button id="resendCodeBtn" class="gold-text underline font-bold">Generate new code</button>
+                        Didn't receive? <button onclick="resendCode()" class="gold-text underline font-bold">Generate new code</button>
                     </p>
                 </div>
 
                 <div class="flex gap-4 mt-8">
-                    <button id="prevStep3Btn" class="btn-secondary">Back</button>
+                    <button onclick="goToStep(2)" class="btn-secondary">Back</button>
                 </div>
             </div>
 
-            <!-- Step 4: Payment Details (Shown AFTER verification) -->
+            <!-- Step 4: Payment Details -->
             <div id="step4Content" class="hidden">
                 <h3 class="text-xl font-bold mb-6">💰 Complete Your Investment</h3>
                 
@@ -627,10 +646,10 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <button id="copyUpiBtn" class="btn-secondary" onclick="copyUPI()">
+                    <button onclick="copyUPI()" class="btn-secondary">
                         📋 Copy UPI ID
                     </button>
-                    <button id="openUpiAppBtn" class="btn-secondary" onclick="openUpiApp()">
+                    <button onclick="openUpiApp()" class="btn-secondary">
                         📱 Pay via UPI
                     </button>
                 </div>
@@ -643,8 +662,8 @@
                 </div>
 
                 <div class="flex gap-4 mt-6">
-                    <button id="prevStep4Btn" class="btn-secondary">Back</button>
-                    <button id="confirmPaymentBtn" class="btn-primary">Confirm Payment</button>
+                    <button onclick="goToStep(3)" class="btn-secondary">Back</button>
+                    <button onclick="handlePayment()" class="btn-primary">Confirm Payment</button>
                 </div>
             </div>
 
@@ -722,12 +741,10 @@
         let signaturePad;
         let investorData = {};
         let verificationCode = "";
-        let paymentConfirmed = false;
 
         // ==================== INITIALIZATION ====================
         document.addEventListener('DOMContentLoaded', function() {
-            // Load saved draft
-            loadDraft();
+            console.log('Page loaded');
             
             // Initialize signature pad
             const canvas = document.getElementById('signatureCanvas');
@@ -736,15 +753,14 @@
                     backgroundColor: 'white',
                     penColor: 'black'
                 });
+                console.log('Signature pad initialized');
             }
             
             document.getElementById('dob').max = new Date().toISOString().split('T')[0];
-            document.getElementById('agreementDate').textContent = 
-                new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
             
             updateSlider();
             updateConfirmAmount();
-            checkResumeBanner();
+            loadDraft();
         });
 
         // ==================== DRAFT SYSTEM ====================
@@ -755,34 +771,36 @@
                 timestamp: new Date().toISOString()
             };
             localStorage.setItem('omkar_draft', JSON.stringify(draft));
+            console.log('Draft saved', draft);
         }
 
         function loadDraft() {
             const saved = localStorage.getItem('omkar_draft');
             if (saved) {
-                const draft = JSON.parse(saved);
-                // Check if draft is less than 24 hours old
-                const age = new Date() - new Date(draft.timestamp);
-                if (age < 24 * 60 * 60 * 1000) {
-                    investorData = draft.investorData || {};
-                    currentStep = draft.currentStep || 1;
-                } else {
-                    localStorage.removeItem('omkar_draft');
+                try {
+                    const draft = JSON.parse(saved);
+                    const age = new Date() - new Date(draft.timestamp);
+                    if (age < 24 * 60 * 60 * 1000) {
+                        investorData = draft.investorData || {};
+                        currentStep = draft.currentStep || 1;
+                        if (currentStep > 1 && currentStep < 5) {
+                            document.getElementById('resumeBanner').classList.remove('hidden');
+                        }
+                        console.log('Draft loaded', draft);
+                    } else {
+                        localStorage.removeItem('omkar_draft');
+                    }
+                } catch (e) {
+                    console.error('Error loading draft', e);
                 }
             }
         }
 
-        function checkResumeBanner() {
-            if (currentStep > 1 && currentStep < 5) {
-                document.getElementById('resumeBanner').classList.remove('hidden');
-            }
-        }
-
-        function resumeOnboarding() {
-            showStep(currentStep);
+        window.resumeOnboarding = function() {
+            goToStep(currentStep);
             document.getElementById('resumeBanner').classList.add('hidden');
             scrollToOnboarding();
-        }
+        };
 
         // ==================== SLIDER FUNCTIONS ====================
         const slider = document.getElementById('amountSlider');
@@ -821,7 +839,7 @@
             document.getElementById('onboarding-section').scrollIntoView({ behavior: 'smooth' });
         };
 
-        function showStep(step) {
+        window.goToStep = function(step) {
             currentStep = step;
             
             // Hide all steps
@@ -849,7 +867,7 @@
             }
             
             saveDraft();
-        }
+        };
 
         // ==================== UPDATE DISPLAYS ====================
         function updateConfirmAmount() {
@@ -861,14 +879,17 @@
             document.getElementById('confirmTotal').textContent = (monthly * 12).toLocaleString('en-IN');
             document.getElementById('paymentAmountDisplay').textContent = '₹' + amount.toLocaleString('en-IN');
             document.getElementById('confirmPaymentAmount').textContent = '₹' + amount.toLocaleString('en-IN');
-            document.getElementById('loanAmount').textContent = amount.toLocaleString('en-IN');
         }
+        document.getElementById('investmentAmountConfirm').addEventListener('change', updateConfirmAmount);
 
-        // ==================== STEP 1 ====================
-        document.getElementById('nextStep1Btn').addEventListener('click', function() {
+        // ==================== STEP 1 HANDLER ====================
+        window.handleStep1 = function() {
+            console.log('Step 1 clicked');
+            
             const required = ['fullName', 'email', 'whatsapp', 'panNumber', 'aadhaarNumber', 'dob', 'address', 'bankName', 'accountHolderName', 'accountNumber', 'ifscCode'];
             for (const field of required) {
-                if (!document.getElementById(field).value.trim()) {
+                const element = document.getElementById(field);
+                if (!element || !element.value.trim()) {
                     alert('Please fill all required fields');
                     return;
                 }
@@ -891,15 +912,16 @@
                 ifscCode: document.getElementById('ifscCode').value.toUpperCase()
             };
             
-            document.getElementById('lenderName').textContent = investorData.personal.fullName;
-            showStep(2);
-        });
+            console.log('Step 1 data saved', investorData);
+            goToStep(2);
+        };
 
-        // ==================== STEP 2 ====================
-        document.getElementById('investmentAmountConfirm').addEventListener('change', updateConfirmAmount);
-        document.getElementById('prevStep2Btn').addEventListener('click', () => showStep(1));
-        
-        document.getElementById('nextStep2Btn').addEventListener('click', function() {
+        // ==================== STEP 2 HANDLER ====================
+        window.clearSignature = function() {
+            signaturePad.clear();
+        };
+
+        window.handleStep2 = function() {
             if (!signaturePad || signaturePad.isEmpty()) {
                 alert('Please provide your signature');
                 return;
@@ -921,42 +943,47 @@
             document.getElementById('displayVerificationCode').textContent = verificationCode;
             
             // Create WhatsApp link
-            const verifyMessage = `Your Omkar verification code is: ${verificationCode}`;
             const phoneNumber = investorData.personal.whatsapp.replace(/\D/g, '');
+            const verifyMessage = `Your Omkar verification code is: ${verificationCode}`;
             document.getElementById('whatsappVerifyLink').href = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(verifyMessage)}`;
             
-            showStep(3);
-        });
+            console.log('Step 2 completed', investorData);
+            goToStep(3);
+        };
 
-        document.getElementById('clearSignatureBtn').addEventListener('click', () => signaturePad.clear());
-
-        // ==================== STEP 3 ====================
-        document.getElementById('prevStep3Btn').addEventListener('click', () => showStep(2));
-        
-        document.getElementById('verifyCodeBtn').addEventListener('click', function() {
+        // ==================== STEP 3 HANDLER ====================
+        window.verifyCode = function() {
             const enteredCode = document.getElementById('verificationCode').value;
             if (enteredCode === verificationCode) {
-                showStep(4);
+                goToStep(4);
             } else {
                 alert('Invalid verification code');
             }
-        });
-        
-        document.getElementById('resendCodeBtn').addEventListener('click', function() {
+        };
+
+        window.resendCode = function() {
             verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
             document.getElementById('displayVerificationCode').textContent = verificationCode;
             
-            const verifyMessage = `Your NEW Omkar verification code is: ${verificationCode}`;
             const phoneNumber = investorData.personal.whatsapp.replace(/\D/g, '');
+            const verifyMessage = `Your NEW Omkar verification code is: ${verificationCode}`;
             document.getElementById('whatsappVerifyLink').href = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(verifyMessage)}`;
             
             alert('New code generated! Click WhatsApp button to send.');
-        });
+        };
 
-        // ==================== STEP 4 ====================
-        document.getElementById('prevStep4Btn').addEventListener('click', () => showStep(3));
-        
-        document.getElementById('confirmPaymentBtn').addEventListener('click', async function() {
+        // ==================== STEP 4 HANDLER ====================
+        window.copyUPI = function() {
+            navigator.clipboard.writeText(CONFIG.company.upiId);
+            alert('UPI ID copied!');
+        };
+
+        window.openUpiApp = function() {
+            const upiUrl = `upi://pay?pa=${CONFIG.company.upiId}&pn=Omkar%20Enterprises&am=${investorData.investment.amount}&cu=INR`;
+            window.location.href = upiUrl;
+        };
+
+        window.handlePayment = async function() {
             if (!document.getElementById('confirmPayment').checked) {
                 alert('Please confirm payment initiation');
                 return;
@@ -967,13 +994,13 @@
             try {
                 // Generate Investor ID
                 const timestamp = Date.now().toString().slice(-6);
-                const initials = investorData.personal.fullName.split(' ').map(n => n[0]).join('').slice(0,3).toUpperCase();
+                const nameParts = investorData.personal.fullName.split(' ');
+                const initials = nameParts.map(n => n[0]).join('').slice(0,3).toUpperCase();
                 investorData.investorId = `OMK${initials}${timestamp}`;
                 
-                // Calculate monthly amount
                 const monthlyAmount = Math.round(investorData.investment.amount * 0.30);
                 
-                // Send email ONLY after payment confirmation
+                // Send email
                 const templateParams = {
                     to_email: investorData.personal.email,
                     to_name: investorData.personal.fullName,
@@ -996,31 +1023,20 @@
                 document.getElementById('finalEmailDisplay').textContent = investorData.personal.email;
                 
                 // WhatsApp confirmation
-                const confirmMsg = `✅ Payment confirmed! ID: ${investorData.investorId}`;
                 const phoneNumber = investorData.personal.whatsapp.replace(/\D/g, '');
+                const confirmMsg = `✅ Payment confirmed! ID: ${investorData.investorId}`;
                 window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(confirmMsg)}`, '_blank');
                 
-                // Clear draft after successful completion
+                // Clear draft
                 localStorage.removeItem('omkar_draft');
-                paymentConfirmed = true;
                 
-                showStep(5);
+                goToStep(5);
             } catch (error) {
+                console.error('Error:', error);
                 alert('Error confirming payment. Please contact us on WhatsApp.');
             } finally {
                 document.getElementById('loading').classList.add('hidden');
             }
-        });
-
-        // ==================== PAYMENT FUNCTIONS ====================
-        window.copyUPI = function() {
-            navigator.clipboard.writeText(CONFIG.company.upiId);
-            alert('UPI ID copied!');
-        };
-
-        window.openUpiApp = function() {
-            const upiUrl = `upi://pay?pa=${CONFIG.company.upiId}&pn=Omkar%20Enterprises&am=${investorData.investment.amount}&cu=INR`;
-            window.location.href = upiUrl;
         };
 
         window.downloadAgreement = function() {

@@ -197,18 +197,34 @@
 
                 document.getElementById('loading-overlay').style.display = 'flex';
 
+                // These names MUST match the {{names}} in your EmailJS Template
                 const params = {
                     user_name: document.getElementById('kyc_name').value,
                     user_email: document.getElementById('kyc_email').value,
                     user_phone: document.getElementById('kyc_phone').value,
                     amount: this.data.amount,
                     payout: this.data.payout,
-                    utr_ref: utr, // MATCHES {{utr_ref}} IN TEMPLATE
+                    utr_ref: utr, 
                     signature: document.getElementById('sig_input').value,
                     ip_address: document.getElementById('user_ip').innerText,
-                    time: document.getElementById('user_ts').innerText
+                    time: new Date().toLocaleString()
                 };
 
+                try {
+                    const res = await emailjs.send(CONFIG.email_service, CONFIG.email_template, params);
+                    if(res.status === 200) {
+                        document.getElementById('receipt_utr').innerText = utr;
+                        this.toStep(4);
+                        document.getElementById('calculator-box').style.display = 'none';
+                    }
+                } catch (err) {
+                    // This will tell us if the problem is the "To Email" address
+                    console.error("EmailJS Error:", err);
+                    alert("Sync Error: " + err.text);
+                } finally {
+                    document.getElementById('loading-overlay').style.display = 'none';
+                }
+            }
                 try {
                     await emailjs.send(CONFIG.email_service, CONFIG.email_template, params);
                     document.getElementById('receipt_utr').innerText = utr;

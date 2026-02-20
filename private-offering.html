@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Capital is FUEL · Earn from Day 1 | Omkar Enterprises</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Omkar Enterprises · 2% Monthly Returns · Secure Partnership</title>
     
     <meta name="robots" content="noindex, nofollow">
 
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,433 +16,572 @@
       gtag('config', 'G-S07E1S6Z6E');
     </script>
 
+    <!-- Essential Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #04070a; color: #ffffff; scroll-behavior: smooth; }
-        .gold-text { color: #c5a059; }
-        .gold-bg { background-color: #c5a059; }
-        .gold-border { border-color: #c5a059; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --gold: #c5a059;
+            --gold-dark: #a07e3e;
+            --dark: #04070a;
+            --darker: #020405;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: #ffffff;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        .gold-text { color: var(--gold); }
+        .gold-bg { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: #000; }
+        .gold-border { border-color: var(--gold); }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            padding: 2rem;
+        }
+        
         .premium-shadow { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
         .serif { font-family: 'Playfair Display', serif; }
+        
         ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #04070a; }
-        ::-webkit-scrollbar-thumb { background: #c5a059; border-radius: 10px; }
-        .btn-glow:hover { box-shadow: 0 0 25px rgba(197, 160, 89, 0.6); transform: translateY(-2px); }
-        tr:nth-child(even) { background: rgba(197, 160, 89, 0.02); }
-        .tier-glow { box-shadow: 0 0 45px rgba(197,160,89,0.4); border: 1px solid #c5a059; }
-        .feb-badge { background: linear-gradient(145deg, #c5a059 0%, #96712e 100%); color: black; font-weight: 900; }
-        .fuel-badge { background: #c5a059; color: #000; font-size: 10px; font-weight: 900; padding: 2px 16px; border-radius: 30px; letter-spacing: 2px; }
-        .formula-box { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem; border: 1px solid rgba(197,160,89,0.2); }
-        .roadmap-table th { background: rgba(197,160,89,0.1); }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+        
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .badge-new {
+            background: linear-gradient(145deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: black;
+            font-weight: 900;
+            padding: 0.5rem 2rem;
+            border-radius: 9999px;
+            display: inline-block;
+            letter-spacing: 2px;
+            font-size: 0.875rem;
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            color: white;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 10px 20px -5px rgba(197, 160, 89, 0.3);
+        }
+        
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 25px -5px rgba(197, 160, 89, 0.4); }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--gold); }
+        
+        .hidden { display: none !important; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1.2;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #9ca3af;
+        }
+        
+        .comparison-table {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .comparison-row:last-child { border-bottom: none; }
+        
+        .private-offer-card {
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.15), rgba(0, 0, 0, 0.4));
+            border: 2px solid var(--gold);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 640px) {
+            .glass-card { padding: 1.5rem; }
+            .stat-value { font-size: 2rem; }
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- TOP BANNER -->
-    <div class="feb-badge text-black text-[10px] font-black text-center py-2 uppercase tracking-[0.2em] fixed w-full z-[60] border-b border-black/30">
-        ⚡ YOUR CAPITAL = FUEL FOR A RUNNING BUSINESS · EARN FROM DAY 1 · 10% TRIAL SLOT LEFT ⚡
+    <!-- Top Banner - New Offer Announcement -->
+    <div class="badge-new text-center fixed w-full z-[60] border-b border-black/30" style="top: 0; border-radius: 0;">
+        ⚡ NEW: 2% MONTHLY RETURNS · 24% ANNUALIZED · PDC SECURED ⚡
     </div>
 
-    <nav class="p-6 border-b border-white/10 bg-black/80 sticky top-[36px] z-50 backdrop-blur-md">
+    <!-- Navigation -->
+    <nav class="p-6 border-b border-white/10 bg-black/80 sticky top-[46px] z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="font-bold text-xl tracking-tighter uppercase">
                 OMKAR <span class="gold-text font-light">ENTERPRISES</span>
             </div>
             <div class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="#fuel" class="hover:text-gold">YOUR CAPITAL IS FUEL</a>
-                <a href="#calculator" class="hover:text-gold">12-MONTH ROADMAP</a>
-                <a href="#onboarding" class="hover:text-gold">JOIN</a>
+                <a href="#offer" class="hover:text-gold">THE OFFER</a>
+                <a href="#calculator" class="hover:text-gold">CALCULATOR</a>
+                <a href="#onboarding" class="hover:text-gold">INVEST NOW</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO: FUEL CONCEPT -->
-    <header class="pt-32 pb-20 px-6 text-center relative" id="fuel">
+    <!-- Hero Section - New Opportunity Announcement -->
+    <header class="pt-32 pb-20 px-6 text-center relative" id="offer">
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
             <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gold-600/10 rounded-full blur-[150px]"></div>
         </div>
         <div class="max-w-4xl mx-auto relative z-10">
-            <span class="fuel-badge mb-6 inline-block">🚀 FUEL FOR A RUNNING ENGINE</span>
+            <span class="bg-red-600 text-white text-xs font-black px-4 py-2 rounded-full mb-6 inline-block">PREVIOUS OFFER CLOSED · NEW STRUCTURE LAUNCHED</span>
+            
             <h1 class="text-5xl md:text-7xl font-bold mb-8 serif italic">
-                <span class="gold-text">Your Capital is Fuel.</span><br>
-                <span class="text-white">Not a Startup.</span>
+                <span class="gold-text">2% MONTHLY</span><br>
+                <span class="text-white">GUARANTEED RETURNS</span>
             </h1>
-            <p class="text-xl text-slate-300 max-w-2xl mx-auto mb-8">
-                When you invest in a <span class="text-white font-bold">new business</span>, you wait months—sometimes years—for returns. Rent, salaries, licenses, inventory… all eat your capital before you see a single rupee.
+            
+            <p class="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
+                We are pleased to introduce our enhanced partnership structure — now offering 
+                <span class="text-white font-bold">2% per month (24% annualized)</span> with 
+                <span class="text-white font-bold">PDC-backed capital security</span>.
             </p>
-            <div class="glass-card p-8 rounded-3xl max-w-2xl mx-auto border-l-4 gold-border">
-                <p class="text-lg text-white font-bold mb-2">But Omkar Enterprises is different.</p>
-                <p class="text-slate-300">We are not a new business. We are an <span class="text-gold">already profitable, running enterprise with 15+ years of market presence.</span> Your capital doesn't "start" something—it adds <span class="text-white">fuel to an already moving engine.</span> That's why you earn from day one.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="glass-card px-6 py-3 rounded-full">
+                    <span class="text-gold font-bold">₹5,000</span> <span class="text-[10px] uppercase tracking-widest ml-2">Minimum</span>
+                </div>
+                <div class="glass-card px-6 py-3 rounded-full">
+                    <span class="text-gold font-bold">8-12 Months</span> <span class="text-[10px] uppercase tracking-widest ml-2">Blocking Period</span>
+                </div>
+                <div class="glass-card px-6 py-3 rounded-full">
+                    <span class="text-gold font-bold">24% p.a.</span> <span class="text-[10px] uppercase tracking-widest ml-2">Annualized</span>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- CAN YOU START A BUSINESS WITH 50K? -->
-    <section class="py-20 px-6 bg-white/[0.02]">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 serif">
-                <span class="gold-text">Can You Start a Business</span><br>
-                <span class="text-white">with ₹50,000?</span>
-            </h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-card p-8 rounded-3xl">
-                    <div class="text-4xl mb-4">🥤</div>
-                    <h3 class="font-bold text-xl mb-2">Chai Stall</h3>
-                    <p class="text-slate-400">Setup cost: ₹1.5–2.5 lakhs</p>
-                    <p class="text-xs text-slate-500 mt-2">First profit: 6–12 months</p>
+    <!-- Stats Section -->
+    <section class="py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="stats-grid">
+                <div class="stat-card glass-card">
+                    <div class="stat-value">2%</div>
+                    <div class="stat-label">Monthly Returns</div>
                 </div>
-                <div class="glass-card p-8 rounded-3xl">
-                    <div class="text-4xl mb-4">🛍️</div>
-                    <h3 class="font-bold text-xl mb-2">Small Retail Shop</h3>
-                    <p class="text-slate-400">Setup cost: ₹5–10 lakhs</p>
-                    <p class="text-xs text-slate-500 mt-2">First profit: 8–18 months</p>
+                <div class="stat-card glass-card">
+                    <div class="stat-value">24%</div>
+                    <div class="stat-label">Per Annum</div>
                 </div>
-                <div class="glass-card p-8 rounded-3xl">
-                    <div class="text-4xl mb-4">📦</div>
-                    <h3 class="font-bold text-xl mb-2">Online Reselling</h3>
-                    <p class="text-slate-400">Setup cost: ₹2–4 lakhs</p>
-                    <p class="text-xs text-slate-500 mt-2">First profit: 4–12 months</p>
+                <div class="stat-card glass-card">
+                    <div class="stat-value">8-12</div>
+                    <div class="stat-label">Months Term</div>
                 </div>
-                <div class="glass-card p-8 rounded-3xl gold-border">
-                    <div class="text-4xl mb-4">⛽</div>
-                    <h3 class="font-bold text-xl mb-2">Omkar Enterprises</h3>
-                    <p class="text-slate-400">Your ₹50,000 = Fuel</p>
-                    <p class="text-xs text-gold mt-2">First payout: 1–10 April 2026 (just 40 days)</p>
-                </div>
-            </div>
-            <p class="text-center text-slate-300 mt-10 text-lg">
-                With ₹50,000, you cannot start ANY business that generates meaningful monthly income. But here, your ₹50,000 joins a <span class="text-white font-bold">₹3.45Cr+ collective pool</span>—giving you institutional-level returns from day one.
-            </p>
-        </div>
-    </section>
-
-    <!-- HOW YOU EARN FROM DAY 1: DAILY CALCULATION -->
-    <section class="py-20 px-6">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 serif">
-                <span class="gold-text">How You Earn from Day 1</span><br>
-                <span class="text-white">The Daily Calculation</span>
-            </h2>
-            <div class="glass-card p-10 rounded-[2.5rem] tier-glow">
-                <div class="grid md:grid-cols-2 gap-10 items-center">
-                    <div>
-                        <div class="formula-box mb-6">
-                            <p class="text-sm text-slate-400 mb-2">📐 THE FORMULA</p>
-                            <p class="text-xl font-mono gold-text">(Principal × Monthly Rate) ÷ 30 × Days Accrued</p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-3">
-                                <span class="text-gold text-xl">1️⃣</span>
-                                <div>
-                                    <h4 class="font-bold text-white">We Divide Monthly Rate by 30</h4>
-                                    <p class="text-sm text-slate-400">10% monthly = 0.333% daily · 2% monthly = 0.0667% daily · etc.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-gold text-xl">2️⃣</span>
-                                <div>
-                                    <h4 class="font-bold text-white">Multiply by Days Your Capital is "Fuel"</h4>
-                                    <p class="text-sm text-slate-400">From the day after investment until month-end, we count EVERY single day.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-gold text-xl">3️⃣</span>
-                                <div>
-                                    <h4 class="font-bold text-white">That's Your Pro-Rata for the Month</h4>
-                                    <p class="text-sm text-slate-400">Paid in the 1–10 window of the following month.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl border-l-4 gold-border">
-                        <p class="text-sm text-slate-400 mb-4">📅 FOR INVESTMENT TODAY (18 FEB 2026)</p>
-                        <ul class="space-y-2 text-sm">
-                            <li class="flex justify-between"><span>Feb 19–28:</span> <span class="text-gold">10 days accrued</span></li>
-                            <li class="flex justify-between"><span>March 1–31:</span> <span class="text-gold">30 days accrued</span></li>
-                            <li class="flex justify-between border-t border-white/10 pt-2 mt-2"><span>Total Days for First Payout:</span> <span class="text-white font-bold">40 days</span></li>
-                            <li class="flex justify-between"><span>Daily Rate (10% tier):</span> <span class="text-white">₹166.67</span></li>
-                            <li class="flex justify-between"><span>First Payout (40 days):</span> <span class="text-gold font-bold">₹6,667</span></li>
-                        </ul>
-                        <p class="text-xs text-slate-500 mt-4">This is why you earn from day one. Your capital starts working the very next day—because the engine is already running.</p>
-                    </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-value">🛡️</div>
+                    <div class="stat-label">PDC Secured</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 12-MONTH REPAYMENT ROADMAP TABLE -->
-    <section id="calculator" class="py-20 px-6 bg-white/[0.01]">
-        <div class="max-w-7xl mx-auto">
+    <!-- Why This Opportunity Section -->
+    <section class="py-16 px-6 bg-white/[0.02]">
+        <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 serif">
-                <span class="gold-text">Your 12-Month</span><br>
-                <span class="text-white">Repayment Roadmap</span>
+                Why This <span class="gold-text">Opportunity?</span>
             </h2>
             
-            <div class="grid lg:grid-cols-3 gap-8 items-start">
-                <!-- Left: Tier Selector & Daily Breakdown -->
-                <div class="glass-card p-8 rounded-[2.5rem] border-l-4 gold-border tier-glow">
-                    <h3 class="text-[10px] font-black text-gold uppercase tracking-[0.3em] mb-6">⏳ CHOOSE YOUR TIER</h3>
-                    <select id="slab" class="w-full bg-transparent border-b border-white/20 text-2xl font-bold py-3 mb-6 outline-none cursor-pointer focus:border-gold transition-colors">
-                        <option value="50000" selected class="bg-black">₹50,000 — 10% monthly (TRIAL)</option>
-                        <option value="100000" class="bg-black">₹1,00,000 — 2% monthly</option>
-                        <option value="200000" class="bg-black">₹2,00,000 — 3% monthly</option>
-                        <option value="500000" class="bg-black">₹5,00,000 — 5% monthly</option>
+            <div class="glass-card p-8 md:p-12 mb-8">
+                <p class="text-lg text-slate-300 leading-relaxed mb-6">
+                    <span class="text-white font-bold">We are initially funding these payouts from our own pocket</span> to demonstrate our commitment to our private partners. This allows the firm to generate profits over the 8-12 month period while ensuring you receive consistent monthly rewards from day one.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-8">
+                    <div class="flex items-start gap-3">
+                        <span class="text-gold text-2xl">✓</span>
+                        <div>
+                            <h4 class="font-bold">1% Regular ROI</h4>
+                            <p class="text-sm text-slate-400">Base return on your capital</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-gold text-2xl">+</span>
+                        <div>
+                            <h4 class="font-bold">1% Additional Bonus</h4>
+                            <p class="text-sm text-slate-400">Enhanced for new structure</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-gold text-2xl">=</span>
+                        <div>
+                            <h4 class="font-bold">2% Total Monthly</h4>
+                            <p class="text-sm text-slate-400">24% annualized returns</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-gold text-2xl">🛡️</span>
+                        <div>
+                            <h4 class="font-bold">PDC Security</h4>
+                            <p class="text-sm text-slate-400">Post-dated cheque protection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 serif">
+                Calculate Your <span class="gold-text">Returns</span>
+            </h2>
+            
+            <div class="glass-card p-8">
+                <div class="max-w-xl mx-auto">
+                    <label class="text-sm text-gray-400 mb-2 block">Select Investment Amount (₹5,000 – ₹1,00,000)</label>
+                    <input type="range" id="amountSlider" min="5000" max="100000" step="1000" value="50000" class="w-full accent-[#c5a059] h-2 mb-6">
+                    <div class="text-center text-4xl font-bold gold-text mb-8" id="selectedAmount">₹50,000</div>
+                    
+                    <div class="bg-black/40 p-6 rounded-xl space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Monthly Payout (2%):</span>
+                            <span class="text-2xl font-bold gold-text" id="monthlyPayout">₹1,000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Annual Returns (24%):</span>
+                            <span class="text-2xl font-bold gold-text" id="annualPayout">₹12,000</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                            <span class="text-gray-400">Total Returns (12 months):</span>
+                            <span class="text-3xl font-bold gold-text" id="totalPayout">₹12,000</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-400">+ Capital Refund:</span>
+                            <span class="font-bold" id="capitalRefund">₹50,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison with Traditional Investments -->
+    <section class="py-16 px-6 bg-white/[0.02]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 serif">
+                Why Choose <span class="gold-text">Omkar?</span>
+            </h2>
+            
+            <div class="comparison-table glass-card">
+                <div class="comparison-row bg-white/5">
+                    <span class="font-bold">Investment Type</span>
+                    <span class="font-bold">Annual Returns</span>
+                    <span class="font-bold">Security</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Fixed Deposit</span>
+                    <span class="text-gray-400">6-7%</span>
+                    <span class="text-gray-400">Bank Secured</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Recurring Deposit</span>
+                    <span class="text-gray-400">6.5-7.5%</span>
+                    <span class="text-gray-400">Bank Secured</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Debt Mutual Funds</span>
+                    <span class="text-gray-400">7-9%</span>
+                    <span class="text-gray-400">Market Linked</span>
+                </div>
+                <div class="comparison-row gold-text font-bold">
+                    <span>Omkar Enterprises</span>
+                    <span>24%</span>
+                    <span>PDC + Notarized</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Range Cards -->
+    <section class="py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 text-center">
+                    <div class="text-3xl font-bold gold-text mb-2">₹5,000</div>
+                    <div class="text-sm text-gray-400 mb-4">Minimum Investment</div>
+                    <div class="text-xl font-bold mb-2">₹100<span class="text-sm text-gray-400">/month</span></div>
+                    <div class="text-sm">₹1,200 annual returns</div>
+                </div>
+                <div class="glass-card p-6 text-center gold-border border-2">
+                    <div class="text-3xl font-bold gold-text mb-2">₹50,000</div>
+                    <div class="text-sm text-gray-400 mb-4">Recommended</div>
+                    <div class="text-xl font-bold mb-2">₹1,000<span class="text-sm text-gray-400">/month</span></div>
+                    <div class="text-sm">₹12,000 annual returns</div>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <div class="text-3xl font-bold gold-text mb-2">₹1,00,000</div>
+                    <div class="text-sm text-gray-400 mb-4">Maximum</div>
+                    <div class="text-xl font-bold mb-2">₹2,000<span class="text-sm text-gray-400">/month</span></div>
+                    <div class="text-sm">₹24,000 annual returns</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Private Offering for >1 Lakh -->
+    <section class="py-16 px-6">
+        <div class="max-w-3xl mx-auto private-offer-card">
+            <h3 class="text-2xl md:text-3xl font-bold mb-4 gold-text">Need Higher Investment?</h3>
+            <p class="text-lg text-slate-300 mb-6">For investments above ₹1,00,000, we offer customized private partnership structures with enhanced benefits.</p>
+            <a href="#onboarding" class="btn-primary inline-block w-auto px-12" onclick="document.getElementById('onboarding').scrollIntoView({behavior: 'smooth'}); return false;">Contact Us for Private Offering</a>
+        </div>
+    </section>
+
+    <!-- Quick Registration -->
+    <section id="onboarding" class="py-16 px-6 bg-white/[0.02]">
+        <div class="max-w-2xl mx-auto glass-card">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 gold-text">✨ Start Your Investment</h2>
+            <p class="text-center text-sm text-slate-400 mb-8">Deploy capital and start earning 2% monthly returns</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <input type="text" id="register_name" class="form-input" placeholder="Full Name *">
+                </div>
+                <div>
+                    <input type="email" id="register_email" class="form-input" placeholder="Email Address *">
+                </div>
+                <div>
+                    <input type="tel" id="register_phone" class="form-input" placeholder="WhatsApp Number *">
+                </div>
+                <div>
+                    <select id="register_amount" class="form-input">
+                        <option value="5000">₹5,000</option>
+                        <option value="10000">₹10,000</option>
+                        <option value="25000">₹25,000</option>
+                        <option value="50000" selected>₹50,000</option>
+                        <option value="75000">₹75,000</option>
+                        <option value="100000">₹1,00,000</option>
+                        <option value="custom">> ₹1,00,000 (Private)</option>
                     </select>
-
-                    <!-- Daily Breakdown -->
-                    <div class="formula-box mb-6">
-                        <p class="text-xs text-slate-400 mb-2">📊 YOUR DAILY RATE</p>
-                        <p class="text-2xl font-bold gold-text" id="dailyRate">₹166.67</p>
-                        <p class="text-[10px] text-slate-500">(Monthly Rate ÷ 30 days)</p>
-                    </div>
-
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between p-3 glass-card rounded-xl">
-                            <span>📆 Feb 19–28 (10 days)</span>
-                            <span class="font-mono gold-text" id="febPart">₹1,667</span>
-                        </div>
-                        <div class="flex justify-between p-3 glass-card rounded-xl">
-                            <span>📅 March Full (30 days)</span>
-                            <span class="font-mono gold-text" id="marPart">₹5,000</span>
-                        </div>
-                        <div class="flex justify-between p-3 glass-card rounded-xl gold-border">
-                            <span class="font-bold">🎯 First Payout (1–10 April)</span>
-                            <span class="font-mono gold-text font-bold" id="firstPayoutVal">₹6,667</span>
-                        </div>
-                        <div class="flex justify-between p-3 glass-card rounded-xl">
-                            <span>📦 Monthly (May–March)</span>
-                            <span class="font-mono" id="monthlyVal">₹5,000</span>
-                        </div>
-                        <div class="flex justify-between p-3 glass-card rounded-xl">
-                            <span>💰 Total 12‑Month Profit</span>
-                            <span class="font-mono text-green-500 font-bold" id="totalProfit">₹61,667</span>
-                        </div>
-                        <div class="flex justify-between p-3 glass-card rounded-xl">
-                            <span>🏦 Capital Refund</span>
-                            <span class="font-mono" id="refundVal">₹50,000</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Full 12-Month Roadmap Table -->
-                <div class="lg:col-span-2 glass-card rounded-[2.5rem] overflow-hidden">
-                    <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
-                        <h3 class="text-[10px] font-black uppercase tracking-widest">📋 12-MONTH PAYOUT SCHEDULE</h3>
-                        <span class="text-[9px] border border-gold/40 text-gold px-3 py-1 rounded-full">MONTH WISE</span>
-                    </div>
-                    <div class="overflow-x-auto max-h-[500px]">
-                        <table class="w-full text-left">
-                            <thead class="text-[9px] uppercase text-slate-500 bg-black sticky top-0">
-                                <tr>
-                                    <th class="p-5">Payment Window</th>
-                                    <th class="p-5">Days Accrued</th>
-                                    <th class="p-5">Payout (INR)</th>
-                                    <th class="p-5 text-right">Cumulative</th>
-                                </tr>
-                            </thead>
-                            <tbody id="scheduleBody" class="text-xs font-medium"></tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
+            
+            <button onclick="handleRegistration()" class="btn-primary text-lg font-bold mb-4">
+                🚀 SUBMIT & CONTINUE
+            </button>
+            
+            <p class="text-xs text-center text-slate-500 mt-4">By submitting, you agree to receive the loan agreement via email</p>
         </div>
     </section>
 
-    <!-- WHY THIS WORKS: FUEL ANALOGY DEEP DIVE -->
-    <section class="py-20 px-6">
-        <div class="max-w-5xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="text-xl font-bold mb-4 gold-text">⛽ New Business = New Engine</h3>
-                    <ul class="space-y-3 text-slate-300">
-                        <li>• Takes months to build and start</li>
-                        <li>• High risk of failure</li>
-                        <li>• Your capital sits idle during setup</li>
-                        <li>• Returns only after breakeven</li>
-                        <li>• ₹50,000 is insufficient to start most businesses</li>
-                    </ul>
-                </div>
-                <div class="glass-card p-8 rounded-3xl gold-border">
-                    <h3 class="text-xl font-bold mb-4 gold-text">🚀 Omkar = Already Running Engine</h3>
-                    <ul class="space-y-3 text-slate-300">
-                        <li>✓ 15+ years of profitable operations</li>
-                        <li>✓ Zero risk of "setup failure"</li>
-                        <li>✓ Your capital starts working <span class="text-white font-bold">the next day</span></li>
-                        <li>✓ Returns from day one (daily accrual)</li>
-                        <li>✓ ₹50,000 joins a ₹3.45Cr+ collective pool → institutional power</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="glass-card p-8 rounded-3xl mt-8 text-center">
-                <p class="text-lg text-gold handwritten">"Your ₹50,000 isn't starting a business. It's fueling one that's already creating wealth every single day. That's why you earn from day one—and that's the quiet strength of shared dreams."</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="onboarding" class="py-24 px-6 bg-white/[0.02]">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="text-gold text-[11px] font-black uppercase tracking-[0.5em] mb-16">ADD FUEL TO THE ENGINE · 3 STEPS</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-3xl border-t-2 border-white/5 relative">
-                    <div class="text-gold/20 text-6xl font-black absolute top-4 right-6 italic">01</div>
-                    <h4 class="font-bold text-white mb-3">📄 SHARE DETAILS</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">Aadhaar, PAN, cancelled cheque. We draft your notarized loan agreement within 2h.</p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl border-t-2 border-white/5 relative">
-                    <div class="text-gold/20 text-6xl font-black absolute top-4 right-6 italic">02</div>
-                    <h4 class="font-bold text-white mb-3">⚖️ "I APPROVE"</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">Review, reply "I Agree". Agreement notarized, PDCs prepared. Courier dispatched.</p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl border-t-2 gold-border relative">
-                    <div class="text-gold/20 text-6xl font-black absolute top-4 right-6 italic">03</div>
-                    <h4 class="font-bold text-white mb-3">📬 1–10 APRIL PAYOUT</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">First payout (Feb 10d + March full). Then monthly. Capital at 13th month end.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHATSAPP BUTTON -->
-    <div class="max-w-4xl mx-auto px-6 text-center mb-8">
+    <!-- WhatsApp Button -->
+    <div class="max-w-4xl mx-auto px-6 text-center my-8">
         <a id="waButton" href="#" class="gold-bg btn-glow text-black px-12 py-6 rounded-2xl font-black text-xl inline-flex items-center gap-4 transition-all uppercase tracking-tighter shadow-2xl">
-            📲 ADD FUEL · +91 70663 93830
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            📲 CHAT ON WHATSAPP · +91 70663 93830
         </a>
         <div class="mt-4 text-[14px] text-white font-medium bg-green-600/20 px-5 py-2.5 rounded-full inline-flex items-center border border-green-500/40 gap-2">
-            <span class="text-green-400 text-lg">✅</span> 1 slot left at 10% · earn from day one
+            <span class="text-green-400 text-lg">✅</span> Active Support · Reply within 2 minutes
         </div>
     </div>
 
-    <!-- CLOSING CARD -->
-    <section class="pb-32 px-6 text-center">
-        <div class="max-w-4xl mx-auto glass-card p-16 rounded-[4rem] border-t-2 gold-border tier-glow relative overflow-hidden">
-            <div class="absolute -inset-10 bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
-            <h2 class="text-4xl font-bold mb-6 serif italic relative z-10">
-                <span class="gold-text">YOUR CAPITAL IS FUEL.</span><br>
-                <span class="text-white">NOT A STARTUP.</span>
-            </h2>
-            <p class="text-slate-400 mb-6 max-w-xl mx-auto text-lg relative z-10">
-                You earn from day one because you're fueling an engine that's already running. That's the quiet strength of shared dreams.
-            </p>
-            <div class="mt-8 text-[10px] text-slate-500 uppercase tracking-[0.2em] relative z-10">
-                📜 Notarized · PDC secured · 15 years experience · ₹3.45Cr+ deployed
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer class="py-12 border-t border-white/5 text-center">
-        <p class="text-[9px] text-slate-600 uppercase tracking-[0.5em] mb-2">Jai Hind | Omkar Enterprises | Fuel for Running Business</p>
-        <p class="text-[8px] text-slate-800 uppercase">Registered loan agreements · IT Act 2000 compliant · collective capital since 2012</p>
-        <p class="text-[10px] text-green-400 mt-4 font-bold">📱 WhatsApp: +91 70663 93830 · 50K:10% · 1L:2% · 2L:3% · 5L:5% · Earn from day 1</p>
+        <p class="text-[9px] text-slate-600 uppercase tracking-[0.5em] mb-2">Jai Hind | Omkar Enterprises | Secure Partnerships</p>
+        <p class="text-[8px] text-slate-800 uppercase">Registered loan agreements · IT Act 2000 compliant · PDC secured</p>
+        <p class="text-[10px] text-green-400 mt-4 font-bold">📱 Business WhatsApp: +91 70663 93830 · 2% Monthly Returns</p>
     </footer>
 
     <script>
-        const slab = document.getElementById('slab');
-        const scheduleBody = document.getElementById('scheduleBody');
-        const monthlyVal = document.getElementById('monthlyVal');
-        const firstPayoutVal = document.getElementById('firstPayoutVal');
-        const totalProfit = document.getElementById('totalProfit');
-        const refundVal = document.getElementById('refundVal');
-        const dailyRateSpan = document.getElementById('dailyRate');
-        const febPart = document.getElementById('febPart');
-        const marPart = document.getElementById('marPart');
+        // ==================== CONFIGURATION ====================
+        const CONFIG = {
+            company: {
+                name: "Omkar Enterprises",
+                email: "care@omkarservices.in",
+                whatsapp: "917066393830"
+            },
+            email: {
+                serviceId: "service_gpn4nxa",
+                templateId: "template_tgrvynm",
+                userId: "n45a20rU4_sBtNgdL"
+            }
+        };
+
+        // Initialize EmailJS
+        emailjs.init(CONFIG.email.userId);
+
+        // ==================== CALCULATOR ====================
+        const slider = document.getElementById('amountSlider');
+        const selectedAmount = document.getElementById('selectedAmount');
+        const monthlyPayout = document.getElementById('monthlyPayout');
+        const annualPayout = document.getElementById('annualPayout');
+        const totalPayout = document.getElementById('totalPayout');
+        const capitalRefund = document.getElementById('capitalRefund');
         const waButton = document.getElementById('waButton');
 
-        const whatsappNumber = "917066393830";
-        const whatsappBaseUrl = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=";
+        function updateCalculator() {
+            let amt = parseInt(slider.value);
+            let monthly = Math.round(amt * 0.02); // 2% monthly
+            let annual = monthly * 12; // 12 months
+            
+            selectedAmount.innerText = '₹' + amt.toLocaleString('en-IN');
+            monthlyPayout.innerText = '₹' + monthly.toLocaleString('en-IN');
+            annualPayout.innerText = '₹' + annual.toLocaleString('en-IN');
+            totalPayout.innerText = '₹' + annual.toLocaleString('en-IN');
+            capitalRefund.innerText = '₹' + amt.toLocaleString('en-IN');
 
-        function calculateTiered() {
-            const principal = parseInt(slab.value);
-            
-            // Tiered monthly rates
-            let monthlyRate = 0;
-            if (principal === 50000) monthlyRate = 0.10;      // 10%
-            else if (principal === 100000) monthlyRate = 0.02; // 2%
-            else if (principal === 200000) monthlyRate = 0.03; // 3%
-            else if (principal === 500000) monthlyRate = 0.05; // 5%
-            
-            const fullMonthlyPayout = principal * monthlyRate;
-            
-            // 30-DAY MONTH DIVISOR
-            const daysInMonthStandard = 30;
-            const dailyRatePayout = fullMonthlyPayout / daysInMonthStandard;
-            
-            // Today is 18 Feb 2026 → accrual starts 19 Feb
-            // Feb remaining days: 19 Feb - 28 Feb = 10 days
-            const febDays = 10;  
-            const febPayout = Math.round(dailyRatePayout * febDays);
-            
-            // March full month = fullMonthlyPayout
-            const marchPayout = fullMonthlyPayout;
-            
-            // First payout between 1–10 April = febPayout + marchPayout
-            const firstPayout = febPayout + marchPayout;
-            
-            // 12‑month total profit: firstPayout (covers Feb+Mar) + 11 more full monthly payouts (Apr, May, ... Feb)
-            const total12MonthsProfit = firstPayout + (fullMonthlyPayout * 11);
-            
-            // Update UI
-            monthlyVal.innerText = fullMonthlyPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            firstPayoutVal.innerText = firstPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            totalProfit.innerText = total12MonthsProfit.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            refundVal.innerText = principal.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            
-            // Daily rate and breakdown
-            dailyRateSpan.innerText = '₹' + dailyRatePayout.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            febPart.innerText = '₹' + febPayout.toLocaleString('en-IN');
-            marPart.innerText = fullMonthlyPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0});
-            
-            // WhatsApp message
-            const message = `Jai Hind Omkar Enterprises, I want to add fuel to the running engine. Lock ${principal === 50000 ? '10% TRIAL' : monthlyRate*100 + '% tier'} with ₹${principal.toLocaleString('en-IN')}. I understand first payout 1–10 April 2026 (Feb 10 days + March full), then 11 monthly, capital at 13th month end. Agreement via Care@omkarservices.in -- KYC ready.`;
-            waButton.href = whatsappBaseUrl + encodeURIComponent(message);
-            
-            // --- Build 12-month roadmap table with cumulative column ---
-            let tableHTML = "";
-            let cumulative = 0;
-            
-            // Row 1: 1–10 April 2026 (Feb 10d + March)
-            cumulative += firstPayout;
-            tableHTML += `
-                <tr class="border-b border-white/5 text-gold font-medium">
-                    <td class="p-5 text-slate-300">1–10 April 2026</td>
-                    <td class="p-5 text-slate-400">10 Feb + 30 Mar</td>
-                    <td class="p-5 font-mono gold-text font-bold">${firstPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
-                    <td class="p-5 text-right text-slate-400">${cumulative.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
-                </tr>
-            `;
-            
-            const months = ["May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March"];
-            for (let i = 0; i < months.length; i++) {
-                const yearSuffix = (months[i] === "January" || months[i] === "February" || months[i] === "March") ? " 2027" : " 2026";
-                cumulative += fullMonthlyPayout;
-                tableHTML += `
-                    <tr class="border-b border-white/5">
-                        <td class="p-5 text-slate-400">1–10 ${months[i]}${yearSuffix}</td>
-                        <td class="p-5 text-slate-500">30 days (full month)</td>
-                        <td class="p-5 font-mono">${fullMonthlyPayout.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
-                        <td class="p-5 text-right text-slate-400">${cumulative.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})}</td>
-                    </tr>
-                `;
-            }
-            
-            // Row 13: Capital Refund (31st March 2027)
-            tableHTML += `
-                <tr class="bg-gold/10 text-gold font-black">
-                    <td class="p-5">31st March 2027</td>
-                    <td class="p-5">--</td>
-                    <td class="p-5 font-mono">--</td>
-                    <td class="p-5 text-right text-gold">${cumulative.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})} + Capital</td>
-                </tr>
-            `;
-            
-            scheduleBody.innerHTML = tableHTML;
+            let message = `Hello Omkar Enterprises, I'm interested in the 2% monthly returns offer. I would like to invest ₹${amt.toLocaleString('en-IN')}. Please guide me through the onboarding process.`;
+            waButton.href = 'https://wa.me/' + CONFIG.company.whatsapp + '?text=' + encodeURIComponent(message);
         }
 
-        slab.addEventListener('change', calculateTiered);
-        window.onload = calculateTiered;
+        if (slider) {
+            slider.addEventListener('input', updateCalculator);
+            updateCalculator();
+        }
+
+        // ==================== REGISTRATION HANDLER ====================
+        window.handleRegistration = function() {
+            const name = document.getElementById('register_name').value.trim();
+            const email = document.getElementById('register_email').value.trim();
+            const phone = document.getElementById('register_phone').value.trim();
+            const amount = document.getElementById('register_amount').value;
+            
+            if (!name || !email || !phone) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Check if custom amount selected
+            if (amount === 'custom') {
+                // Open WhatsApp for private offering
+                const msg = `Hello Omkar Enterprises, I'm interested in a private partnership above ₹1,00,000. My name is ${name}. Please contact me.`;
+                window.open(`https://wa.me/${CONFIG.company.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+                return;
+            }
+            
+            // For standard amounts, redirect to onboarding (you can expand this)
+            const msg = `Hello Omkar Enterprises, I want to invest ₹${parseInt(amount).toLocaleString()} under the 2% monthly returns offer. My name is ${name}, email: ${email}, phone: ${phone}. Please share the agreement.`;
+            window.open(`https://wa.me/${CONFIG.company.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+            
+            // Show success message
+            alert('Thank you! Our team will contact you on WhatsApp within 2 minutes.');
+        };
+
+        // ==================== TIMER (Optional - can be removed if not needed) ====================
+        function startTimer() {
+            const updateTimer = () => {
+                const now = new Date();
+                const midnight = new Date(now);
+                midnight.setHours(23, 59, 59, 999);
+                
+                let diff = midnight - now;
+                if (diff < 0) diff = 0;
+                
+                const hours = Math.floor(diff / 3600000).toString().padStart(2, '0');
+                const minutes = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+                const seconds = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+                
+                const timerEl = document.getElementById('countdownTimer');
+                if (timerEl) timerEl.innerText = `${hours}:${minutes}:${seconds}`;
+            };
+            
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+        
+        // Start timer if element exists
+        if (document.getElementById('countdownTimer')) {
+            startTimer();
+        }
     </script>
 </body>
 </html>

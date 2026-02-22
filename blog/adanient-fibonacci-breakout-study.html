@@ -744,7 +744,130 @@
         border-bottom: 1px solid #f1f5f9;
     }
 }
-        
+
+/* Footer Styles - Updated */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--accent-gold);
+    border-radius: 2px;
+}
+
+.footer-description {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.footer-contact {
+    margin-top: 20px;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+}
+
+.footer-contact-item i {
+    width: 20px;
+    color: var(--accent-gold);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-gold);
+    transform: translateX(5px);
+}
+
+.footer-disclaimer {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    border-radius: 8px;
+    margin: 30px 0;
+    border-left: 4px solid var(--accent-gold);
+}
+
+.footer-disclaimer h4 {
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.footer-disclaimer p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+}
+
+.footer-bottom a {
+    color: var(--accent-gold);
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsive for Footer */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}        
     </style>
 </head>
 <body>
@@ -1056,27 +1179,86 @@
         </div>
     </div>
 
-    <!-- Footer - Clean, No CTAs, No Newsletter -->
-    <footer class="edu-footer">
-        <div class="container">
-            <div>
-                <div class="edu-footer-logo"><i class="fas fa-chart-line"></i> Omkar Enterprises</div>
-                <div class="edu-footer-copyright">© 2015-2026 • Educational Content Only</div>
+    <!-- Footer - Updated with Logo and Full Navigation -->
+<footer class="edu-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Footer Column 1 - Logo and About -->
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <div class="logo-image-container" style="background: transparent; border: 2px solid rgba(212, 175, 55, 0.3);">
+                        <img src="https://omkarservices.in/assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo" width="50" height="50" loading="lazy">
+                    </div>
+                    <div class="logo-text-container">
+                        <span class="logo-main" style="color: #d4af37;">OMKAR ENTERPRISES</span>
+                        <span class="logo-tagline" style="color: rgba(255, 255, 255, 0.7);">Education • Research • Advisory</span>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Since 2015, <strong>Omkar Enterprises</strong> has served as a premier 
+                    <strong>financial education and research</strong> platform, maintaining a 
+                    <strong>100% commitment</strong> to quality educational content for Indian investors.
+                </p>
+                
+                <div class="footer-contact">
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Contact:</strong><br>
+                            +91 8169 302 861 | +91 9226 393 837
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email:</strong><br>
+                            care@omkarservices.in
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="edu-footer-links">
-                <a href="../about.html">About</a>
-                <a href="../contact.html">Contact</a>
-                <a href="../privacy.html">Privacy</a>
-                <a href="../terms.html">Terms</a>
+            
+            <!-- Footer Column 2 - Quick Navigation -->
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="https://omkarservices.in"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="https://omkarservices.in/slabs.html"><i class="fas fa-chevron-right"></i> Investment Tiers</a></li>
+                    <li><a href="https://omkarservices.in/legal-framework.html"><i class="fas fa-chevron-right"></i> Legal Framework</a></li>
+                    <li><a href="https://omkarservices.in/testimonials.html"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                    <li><a href="https://omkarservices.in/blog.html"><i class="fas fa-chevron-right"></i> Educational Blog</a></li>
+                    <li><a href="https://omkarservices.in/about.html"><i class="fas fa-chevron-right"></i> About Founder</a></li>
+                    <li><a href="https://omkarservices.in/contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Footer Column 3 - Legal & Compliance -->
+            <div class="footer-col">
+                <h4>Legal & Compliance</h4>
+                <ul class="footer-links">
+                    <li><a href="https://omkarservices.in/compliance.html"><i class="fas fa-chevron-right"></i> Compliance</a></li>
+                    <li><a href="https://omkarservices.in/risk-disclosure.html"><i class="fas fa-chevron-right"></i> Risk Disclosure</a></li>
+                    <li><a href="https://omkarservices.in/terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                    <li><a href="https://omkarservices.in/privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                </ul>
             </div>
         </div>
-        <div class="container">
-            <div class="edu-compliance-note">
-                <i class="fas fa-scale-balanced"></i> SEBI Compliance: This is purely educational content. Omkar Enterprises is not SEBI registered. All examples are for learning purposes only. Always consult with qualified financial professionals and conduct your own research before making any investment decisions. The stock market involves risk of loss.
-            </div>
+        
+        <!-- Footer Disclaimer -->
+        <div class="footer-disclaimer">
+            <h4><i class="fas fa-exclamation-triangle"></i> Important Educational Disclaimer</h4>
+            <p><strong>Educational Content Only:</strong> This blog provides financial market education for learning purposes only. Omkar Enterprises is not registered with SEBI as research analysts or investment advisors. All content is strictly educational and should not be construed as investment advice.</p>
+            <p>Readers should consult with independent financial advisors and conduct their own research before making any investment decisions. Past performance is not indicative of future results.</p>
         </div>
-    </footer>
-
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2015-2026 Omkar Enterprises. All Rights Reserved. | Educational Content Only</p>
+            <p><i class="fas fa-shield-alt"></i> Market Education | Research Insights | <a href="mailto:care@omkarservices.in" style="color: #d4af37; text-decoration: none;">care@omkarservices.in</a></p>
+        </div>
+    </div>
+</footer>
+    
     <!-- JavaScript (Navigation Only) -->
     <!-- JavaScript for Navigation -->
 <script>

@@ -686,7 +686,7 @@
             margin: 30px 0;
         }
 
-        /* NEWSLETTER SECTION - UPDATED WITH YOUR EMAIL */
+        /* NEWSLETTER SECTION */
         .newsletter-section {
             background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
             color: var(--white);
@@ -788,19 +788,6 @@
 
         .newsletter-note a:hover {
             text-decoration: underline;
-        }
-
-        /* Success Message (hidden by default) */
-        .newsletter-success {
-            background: var(--success-green);
-            color: var(--white);
-            padding: 15px;
-            border-radius: 50px;
-            margin-top: 20px;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
 
         /* CTA Section */
@@ -1305,23 +1292,20 @@
             </div>
 
             <div class="blog-content">
-                <!-- NEWSLETTER SECTION - TOP OF CONTENT (High Visibility) -->
+                <!-- NEWSLETTER SECTION 1 - TOP (FIXED WITH YOUR ENDPOINT) -->
                 <div class="newsletter-section">
                     <h3><i class="fas fa-envelope-open-text"></i> Get Market Updates Directly</h3>
                     <p>Subscribe to receive our daily FII/DII analysis, global market cues, and sector insights before the market opens.</p>
                     
-                    <form class="newsletter-form" id="newsletterForm" action="https://formspree.io/f/your-form-id" method="POST">
-                        <input type="email" name="email" class="newsletter-input" placeholder="Your Email Address (e.g., name@example.com)" required>
+                    <form class="newsletter-form" action="https://formspree.io/f/myzdqkjq" method="POST">
+                        <input type="email" name="email" class="newsletter-input" placeholder="Your Email Address" required>
                         <input type="hidden" name="_subject" value="New Blog Subscriber - Global Market Nifty Guide">
                         <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
                         <button type="submit" class="newsletter-button">
                             <i class="fas fa-bell"></i> Subscribe Free
                         </button>
                     </form>
-                    
-                    <div class="newsletter-success" id="newsletterSuccess">
-                        <i class="fas fa-check-circle"></i> Thanks! You'll receive updates at <span id="subscribedEmail"></span>
-                    </div>
                     
                     <div class="newsletter-note">
                         <i class="fas fa-shield-alt"></i> Your email is safe with us. Read our <a href="../privacy.html">Privacy Policy</a>. 
@@ -1533,14 +1517,16 @@
                     </ul>
                 </div>
 
-                <!-- NEWSLETTER SECTION - MIDDLE (Another opportunity) -->
+                <!-- NEWSLETTER SECTION 2 - MIDDLE (FIXED WITH YOUR ENDPOINT) -->
                 <div class="newsletter-section">
                     <h3><i class="fas fa-chart-line"></i> Want Daily Market Insights?</h3>
                     <p>Join 10,000+ investors who receive our free morning market report with FII flows, global cues, and sector updates.</p>
                     
-                    <form class="newsletter-form" id="newsletterForm2" action="https://formspree.io/f/your-form-id" method="POST">
+                    <form class="newsletter-form" action="https://formspree.io/f/myzdqkjq" method="POST">
                         <input type="email" name="email" class="newsletter-input" placeholder="Enter your email for free updates" required>
                         <input type="hidden" name="_subject" value="New Subscriber - Mid Blog">
+                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
                         <button type="submit" class="newsletter-button">
                             <i class="fas fa-paper-plane"></i> Subscribe Now
                         </button>
@@ -1687,9 +1673,12 @@
                     <h4>Newsletter Signup</h4>
                     <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">Get daily market insights and educational content directly in your inbox.</p>
                     
-                    <form class="footer-newsletter" action="https://formspree.io/f/your-form-id" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                    <!-- NEWSLETTER SECTION 3 - FOOTER (FIXED WITH YOUR ENDPOINT) -->
+                    <form class="footer-newsletter" action="https://formspree.io/f/myzdqkjq" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
                         <input type="email" name="email" placeholder="Your Email Address" required style="padding: 12px; border-radius: 8px; border: none; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(212,175,55,0.3);">
                         <input type="hidden" name="_subject" value="Footer Newsletter Signup">
+                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
                         <button type="submit" style="background: var(--gold-accent); color: var(--trust-blue); border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition);">
                             <i class="fas fa-bell"></i> Subscribe Free
                         </button>
@@ -1730,7 +1719,7 @@
         <span>Chat for Educational Info</span>
     </a>
 
-    <!-- JavaScript -->
+    <!-- JavaScript (Navigation only - NO form interference) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger');
@@ -1804,9 +1793,8 @@
                 }
             });
             
-            <!-- NEWSLETTER SECTION - WORKING FOR YOUR NEW ENDPOINT -->
-
-    <!-- Demo: In production, replace Formspree with your actual email service -->
-    <!-- For now, forms will show success message without actual submission -->
+            // ✅ NO FORM HANDLING CODE - Forms submit naturally to Formspree!
+        });
+    </script>
 </body>
 </html>

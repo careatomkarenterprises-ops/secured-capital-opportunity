@@ -11,7 +11,7 @@
     </script>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
     <!-- PRIMARY SEO META TAGS -->
     <title>How Global Market Affects Nifty 2026: Complete Guide with Case Studies | Omkar Enterprises</title>
@@ -105,7 +105,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Omkar Enterprises Brand Colors */
+        /* MOBILE-FIRST DESIGN - Omkar Enterprises Brand Colors */
         :root {
             --trust-blue: #1e3a8a;
             --navy-blue: #1e40af;
@@ -123,6 +123,7 @@
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
             --radius: 12px;
+            --radius-sm: 8px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -138,118 +139,101 @@
             color: var(--modern-slate);
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             min-height: 100vh;
+            font-size: 16px;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
-        /* System Status Bar */
+        /* System Status Bar - Mobile Optimized */
         .system-status {
             background: linear-gradient(90deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
             color: var(--white);
-            padding: 10px 0;
-            font-size: 14px;
+            padding: 8px 0;
+            font-size: 12px;
             position: relative;
             overflow: hidden;
         }
 
-        .system-status::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        .system-status .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .status-indicator {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 2px 0;
         }
 
         .status-dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--success-green);
             animation: pulse 2s infinite;
             position: relative;
+            flex-shrink: 0;
         }
 
-        .status-dot::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border-radius: 50%;
-            border: 2px solid var(--success-green);
-            animation: ripple 2s infinite;
+        .status-text {
+            font-size: 12px;
+            white-space: nowrap;
         }
 
-        /* Sticky Navigation */
+        /* Sticky Navigation - Mobile First */
         .navbar {
             background: var(--white);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 15px 0;
+            padding: 10px 0;
             transition: var(--transition);
         }
 
         .navbar.scrolled {
-            padding: 10px 0;
-            box-shadow: var(--shadow-lg);
+            padding: 8px 0;
+            box-shadow: var(--shadow-md);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
-        /* Logo Styling */
+        /* Logo - Mobile Optimized */
         .logo {
             display: flex !important;
             align-items: center !important;
             text-decoration: none !important;
-            gap: 15px !important;
-            padding: 5px 0 !important;
+            gap: 10px !important;
+            padding: 3px 0 !important;
         }
 
         .logo-image-container {
-            width: 50px !important;
-            height: 50px !important;
+            width: 40px !important;
+            height: 40px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            border-radius: 10px !important;
+            border-radius: 8px !important;
             overflow: hidden !important;
             background: #ffffff !important;
-            border: 2px solid #dbeafe !important;
-            padding: 5px !important;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12) !important;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            border: 1px solid #dbeafe !important;
+            padding: 4px !important;
             flex-shrink: 0 !important;
-        }
-
-        .logo-image-container:hover {
-            transform: scale(1.05) !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
-            border-color: var(--gold-accent) !important;
         }
 
         .logo-image-container img {
@@ -263,127 +247,141 @@
             display: flex !important;
             flex-direction: column !important;
             justify-content: center !important;
-            gap: 3px !important;
+            gap: 2px !important;
         }
 
         .logo-main {
-            font-size: 20px !important;
+            font-size: 16px !important;
             font-weight: 800 !important;
             color: var(--trust-blue) !important;
-            letter-spacing: -0.5px !important;
+            letter-spacing: -0.3px !important;
             line-height: 1.1 !important;
             white-space: nowrap !important;
-            display: block !important;
         }
 
         .logo-tagline {
-            font-size: 11px !important;
+            font-size: 9px !important;
             color: var(--slate-light) !important;
             font-weight: 500 !important;
             line-height: 1.2 !important;
             white-space: nowrap !important;
-            letter-spacing: 0.5px !important;
-            display: block !important;
         }
 
-        .nav-menu {
+        /* Hamburger Menu - Mobile */
+        .hamburger {
             display: flex;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--modern-slate);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Navigation Menu - Mobile First */
+        .nav-menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            flex-direction: column;
             list-style: none;
-            gap: 30px;
-            align-items: center;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .nav-menu li {
+            width: 100%;
+            border-bottom: 1px solid var(--gray-light);
         }
 
         .nav-menu a {
             text-decoration: none;
             color: var(--modern-slate);
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold-accent);
+            gap: 10px;
+            padding: 15px 20px;
             transition: var(--transition);
         }
 
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
-            width: 100%;
+        .nav-menu a i {
+            width: 20px;
+            color: var(--gold-accent);
         }
 
-        .nav-menu a:hover,
         .nav-menu a.active {
             color: var(--trust-blue);
+            background: var(--light-blue);
         }
 
         .nav-cta .btn-nav-login {
             background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
             color: var(--white);
-            padding: 12px 28px;
+            padding: 12px 20px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-            border: 2px solid transparent;
+            gap: 8px;
+            margin: 10px 20px;
+            justify-content: center;
         }
 
-        .nav-cta .btn-nav-login:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--gold-accent);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--modern-slate);
-            border-radius: 2px;
-            transition: var(--transition);
-        }
-
-        /* Breadcrumb Navigation */
+        /* Breadcrumb - Mobile */
         .breadcrumb {
             background: var(--white);
-            padding: 20px 0;
-            margin: 20px 0;
-            border-radius: var(--radius);
+            padding: 12px 0;
+            margin: 15px 0;
+            border-radius: var(--radius-sm);
             box-shadow: var(--shadow-sm);
+            font-size: 13px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .breadcrumb .container {
+            display: flex;
+            gap: 5px;
         }
 
         .breadcrumb a {
             color: var(--slate-light);
             text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .breadcrumb a:hover {
-            color: var(--trust-blue);
         }
 
         .breadcrumb span {
@@ -391,64 +389,63 @@
             font-weight: 600;
         }
 
-        /* Blog Content */
+        /* Blog Content - Mobile First */
         .blog-article-container {
             background: var(--white);
             border-radius: var(--radius);
-            box-shadow: var(--shadow-md);
-            padding: 50px;
-            margin: 30px 0;
+            box-shadow: var(--shadow-sm);
+            padding: 20px;
+            margin: 20px 0;
         }
 
         .blog-header {
-            margin-bottom: 40px;
-            text-align: center;
+            margin-bottom: 25px;
+            text-align: left;
         }
 
         .blog-category {
             display: inline-block;
             background: var(--light-blue);
             color: var(--trust-blue);
-            padding: 8px 20px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 12px;
+            margin-bottom: 12px;
         }
 
         .blog-title {
-            font-size: 42px;
+            font-size: 24px;
             font-weight: 800;
             color: var(--slate-dark);
-            margin-bottom: 20px;
-            line-height: 1.2;
+            margin-bottom: 15px;
+            line-height: 1.3;
         }
 
         .blog-meta {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            color: var(--slate-light);
-            font-size: 14px;
             flex-wrap: wrap;
+            gap: 15px;
+            color: var(--slate-light);
+            font-size: 12px;
         }
 
         .blog-meta-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
         }
 
-        /* Blog Hero Image */
+        /* Hero Image - Mobile Optimized */
         .blog-hero-image {
             width: 100%;
-            height: 400px;
-            border-radius: var(--radius);
-            margin: 40px 0;
+            height: 200px;
+            border-radius: var(--radius-sm);
+            margin: 20px 0;
             position: relative;
             overflow: hidden;
-            border: 3px solid var(--gold-accent);
-            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--gold-accent);
+            box-shadow: var(--shadow-md);
         }
 
         .blog-hero-image img {
@@ -458,365 +455,245 @@
             display: block;
         }
 
-        .blog-hero-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
-        }
-
-        /* Blog Content Styling */
+        /* Content Styling - Mobile First */
         .blog-content {
-            font-size: 18px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.7;
         }
 
         .blog-content h2 {
             color: var(--slate-dark);
-            font-size: 32px;
-            margin: 50px 0 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--gold-light);
+            font-size: 22px;
+            margin: 35px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold-light);
         }
 
         .blog-content h3 {
             color: var(--trust-blue);
-            font-size: 24px;
-            margin: 40px 0 20px;
+            font-size: 18px;
+            margin: 25px 0 12px;
         }
 
         .blog-content p {
-            margin-bottom: 25px;
+            margin-bottom: 18px;
             color: var(--slate-dark);
         }
 
         .blog-content ul, .blog-content ol {
-            margin-left: 30px;
-            margin-bottom: 30px;
+            margin-left: 20px;
+            margin-bottom: 20px;
         }
 
         .blog-content li {
-            margin-bottom: 10px;
-            color: var(--slate-dark);
+            margin-bottom: 8px;
         }
 
-        /* Table Styling */
+        /* Stats Grid - Mobile First */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .stat-card {
+            background: var(--gray-light);
+            padding: 15px 10px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            border: 1px solid var(--light-blue);
+        }
+
+        .stat-card .number {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--trust-blue);
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 11px;
+            color: var(--slate-light);
+            font-weight: 500;
+        }
+
+        /* Table Container - Mobile First */
         .table-container {
             width: 100%;
             overflow-x: auto;
-            margin: 30px 0;
+            margin: 20px 0;
             border: 1px solid var(--light-blue);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
+            border-radius: var(--radius-sm);
+            -webkit-overflow-scrolling: touch;
         }
 
         .analysis-table {
             width: 100%;
-            min-width: 600px;
+            min-width: 500px;
             border-collapse: collapse;
             background: var(--white);
+            font-size: 13px;
         }
 
         .analysis-table th {
             background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
             color: var(--white);
-            padding: 16px;
+            padding: 10px;
             text-align: left;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 13px;
         }
 
         .analysis-table td {
-            padding: 16px;
+            padding: 10px;
             border-bottom: 1px solid var(--light-blue);
-            color: var(--slate-dark);
-            font-size: 15px;
-        }
-
-        .analysis-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .analysis-table tr:hover {
-            background: var(--gray-light);
-        }
-
-        .win {
-            color: var(--success-green);
-            font-weight: 700;
-        }
-
-        .negative {
-            color: #dc2626;
-            font-weight: 700;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-
-        .stat-card {
-            background: var(--gray-light);
-            padding: 25px;
-            border-radius: var(--radius);
-            text-align: center;
-            border: 1px solid var(--light-blue);
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .stat-card .number {
-            font-size: 42px;
-            font-weight: 800;
-            color: var(--trust-blue);
-            margin-bottom: 10px;
-        }
-
-        .stat-card .label {
-            font-size: 16px;
-            color: var(--slate-light);
-            font-weight: 500;
         }
 
         /* Case Study Box */
         .case-study {
             background: var(--white);
-            border-radius: var(--radius);
-            padding: 30px;
-            margin: 40px 0;
-            box-shadow: var(--shadow-md);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: var(--shadow-sm);
             border: 1px solid var(--light-blue);
             position: relative;
-            overflow: hidden;
-        }
-
-        .case-study::before {
-            content: "📊";
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 60px;
-            opacity: 0.1;
         }
 
         .case-study h4 {
-            font-size: 22px;
+            font-size: 18px;
             color: var(--trust-blue);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .case-study .highlight {
             background: var(--gold-light);
-            padding: 20px;
-            border-radius: var(--radius);
-            margin: 20px 0;
-            border-left: 4px solid var(--gold-accent);
+            padding: 15px;
+            border-radius: var(--radius-sm);
+            margin: 15px 0;
+            border-left: 3px solid var(--gold-accent);
+            font-size: 14px;
         }
 
         /* Expert Quote */
         .expert-quote {
             background: var(--slate-dark);
             color: var(--white);
-            padding: 40px;
-            border-radius: var(--radius);
-            margin: 40px 0;
-            position: relative;
-        }
-
-        .expert-quote::before {
-            content: """;
-            font-size: 120px;
-            position: absolute;
-            left: 20px;
-            top: -20px;
-            color: rgba(255,255,255,0.1);
-            font-family: serif;
+            padding: 25px;
+            border-radius: var(--radius-sm);
+            margin: 25px 0;
         }
 
         .expert-quote p {
             color: var(--light-blue);
-            font-size: 20px;
+            font-size: 16px;
             font-style: italic;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 15px;
         }
 
         .expert-quote .author {
             color: var(--gold-accent);
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
         }
 
         /* Key Points Box */
         .key-points {
             background: linear-gradient(135deg, #f0f9ff 0%, #e6f0ff 100%);
-            padding: 30px;
-            border-radius: var(--radius);
-            border-left: 4px solid var(--royal-blue);
-            margin: 30px 0;
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--royal-blue);
+            margin: 25px 0;
+        }
+
+        .key-points ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .key-points li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .key-points li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
         }
 
         /* Highlight Box */
         .highlight-box {
             background: linear-gradient(135deg, var(--gold-light) 0%, #fef9e7 100%);
-            border-left: 5px solid var(--gold-accent);
-            padding: 30px;
-            margin: 40px 0;
-            border-radius: 0 var(--radius) var(--radius) 0;
+            border-left: 4px solid var(--gold-accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 15px;
         }
 
-        /* Calculator Box */
-        .calculator-box {
-            background: linear-gradient(135deg, var(--light-blue) 0%, #eff6ff 100%);
-            border: 2px solid var(--royal-blue);
-            border-radius: var(--radius);
-            padding: 30px;
+        /* FAQ Section */
+        .faq-section {
+            background: var(--gray-light);
+            padding: 25px 20px;
+            border-radius: var(--radius-sm);
             margin: 30px 0;
         }
 
-        /* NEWSLETTER SECTION */
-        .newsletter-section {
-            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
-            color: var(--white);
-            padding: 60px 40px;
-            border-radius: var(--radius);
-            margin: 50px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        .faq-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-blue);
         }
 
-        .newsletter-section::before {
-            content: "📧";
-            position: absolute;
-            right: -20px;
-            bottom: -20px;
-            font-size: 150px;
-            opacity: 0.1;
-            transform: rotate(-10deg);
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
-        .newsletter-section h3 {
-            font-size: 32px;
-            margin-bottom: 15px;
-            color: var(--white);
-        }
-
-        .newsletter-section p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: var(--light-blue);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
+        .faq-item h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 16px 20px;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            outline: none;
-            transition: var(--transition);
-            box-shadow: var(--shadow-md);
-        }
-
-        .newsletter-input:focus {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .newsletter-button {
-            background: var(--gold-accent);
-            color: var(--trust-blue);
-            border: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow-md);
-            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            border: 2px solid transparent;
+            gap: 8px;
         }
 
-        .newsletter-button:hover {
-            background: transparent;
-            color: var(--white);
-            border-color: var(--gold-accent);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .newsletter-note {
+        .faq-item p {
             font-size: 14px;
-            color: var(--light-blue);
-            margin-top: 20px;
-            opacity: 0.8;
-        }
-
-        .newsletter-note a {
-            color: var(--gold-accent);
-            text-decoration: none;
-        }
-
-        .newsletter-note a:hover {
-            text-decoration: underline;
+            padding-left: 25px;
         }
 
         /* CTA Section */
         .cta-section {
             background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
             color: var(--white);
-            padding: 50px;
+            padding: 30px 20px;
             border-radius: var(--radius);
             text-align: center;
-            margin: 50px 0;
+            margin: 30px 0;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         .cta-button {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 14px;
             transition: var(--transition);
         }
 
@@ -830,177 +707,207 @@
             color: var(--white);
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            background: var(--gray-light);
-            padding: 40px;
+        /* NEWSLETTER SECTION - ONLY AT THE END */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 40px 25px;
             border-radius: var(--radius);
-            margin: 40px 0;
+            margin: 40px 0 20px;
+            text-align: center;
         }
 
-        .faq-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid var(--light-blue);
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .faq-item h3 {
-            color: var(--trust-blue);
-            font-size: 18px;
+        .newsletter-section h3 {
+            color: var(--white);
+            font-size: 24px;
             margin-bottom: 10px;
+        }
+
+        .newsletter-section p {
+            color: var(--light-blue);
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .consent-checkbox {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .faq-item p {
-            color: var(--slate-dark);
-            padding-left: 25px;
-        }
-
-        /* Related Articles */
-        .related-articles {
-            margin: 50px 0;
-        }
-
-        .related-articles h3 {
-            color: var(--slate-dark);
-            font-size: 28px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .related-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--light-blue);
-            transition: var(--transition);
-        }
-
-        .related-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--gold-accent);
-        }
-
-        .related-card h4 {
-            color: var(--trust-blue);
+            color: var(--light-blue);
+            font-size: 14px;
+            text-align: left;
             margin-bottom: 15px;
-            font-size: 18px;
         }
 
-        .related-card a {
+        .consent-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .consent-checkbox a {
+            color: var(--gold-accent);
+            text-decoration: none;
+        }
+
+        .newsletter-button {
+            background: var(--gold-accent);
             color: var(--trust-blue);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Back to Blog */
-        .back-to-blog {
-            background: var(--gray-light);
-            padding: 40px;
-            border-radius: var(--radius);
-            margin: 50px 0;
-            text-align: center;
-            border: 2px dashed var(--light-blue);
-        }
-
-        .back-to-blog a {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
-            color: var(--white);
-            padding: 15px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
             font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
             transition: var(--transition);
+            width: 100%;
         }
 
-        .back-to-blog a:hover {
-            transform: translateY(-3px);
+        .newsletter-button:hover {
+            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
+        }
+
+        .newsletter-note {
+            font-size: 12px;
+            color: var(--light-blue);
+            margin-top: 15px;
+            opacity: 0.8;
         }
 
         /* Compliance Notice */
         .compliance-notice {
             background: #fff8e6;
             border: 2px solid var(--gold-accent);
-            border-radius: var(--radius);
-            padding: 40px;
-            margin: 50px 0;
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin: 30px 0;
+            font-size: 13px;
         }
 
         .compliance-notice h3 {
-            color: #b45309;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            font-size: 16px;
+            margin-bottom: 15px;
         }
 
-        /* Footer */
+        /* Back to Blog */
+        .back-to-blog {
+            background: var(--gray-light);
+            padding: 25px;
+            border-radius: var(--radius-sm);
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .back-to-blog a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--trust-blue) 0%, var(--navy-blue) 100%);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Related Articles */
+        .related-articles {
+            margin: 40px 0;
+        }
+
+        .related-articles h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .related-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--light-blue);
+        }
+
+        .related-card h4 {
+            color: var(--trust-blue);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .related-card p {
+            font-size: 13px;
+            margin-bottom: 12px;
+            color: var(--slate-light);
+        }
+
+        .related-card a {
+            color: var(--trust-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Footer - Mobile First */
         .footer {
             background: var(--slate-dark);
             color: var(--white);
-            padding: 80px 0 30px;
-            margin-top: 80px;
+            padding: 50px 0 20px;
+            margin-top: 50px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 15px;
         }
 
         .footer-description {
             color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .footer-contact {
-            margin-top: 20px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         .footer-contact-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 12px;
             color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
         }
 
         .footer-contact-item i {
@@ -1009,12 +916,10 @@
         }
 
         .footer-col h4 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--white);
+            font-size: 18px;
+            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
 
         .footer-col h4::after {
@@ -1022,7 +927,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
             background: var(--gold-accent);
             border-radius: 2px;
@@ -1033,7 +938,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
@@ -1041,178 +946,142 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
-            transition: var(--transition);
-            padding: 5px 0;
+            gap: 8px;
+            font-size: 13px;
         }
 
         .footer-links a:hover {
             color: var(--gold-accent);
-            transform: translateX(5px);
         }
 
         .footer-disclaimer {
             background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 50px 0;
-            border-left: 4px solid var(--gold-accent);
-        }
-
-        .footer-disclaimer h4 {
-            color: var(--gold-accent);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 18px;
-        }
-
-        .footer-disclaimer p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            margin: 30px 0;
+            border-left: 3px solid var(--gold-accent);
+            font-size: 12px;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
+            font-size: 12px;
         }
 
-        /* Floating WhatsApp */
+        /* Floating WhatsApp - Mobile Optimized */
         .float-whatsapp {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: var(--white);
-            padding: 18px 25px;
+            padding: 12px 20px;
             border-radius: 50px;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             box-shadow: var(--shadow-lg);
             z-index: 999;
-            transition: var(--transition);
+            font-size: 13px;
             font-weight: 600;
         }
 
-        .float-whatsapp:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        .float-whatsapp i {
+            font-size: 18px;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
+        .float-whatsapp span {
+            display: none;
+        }
+
+        /* Tablet and Desktop */
+        @media (min-width: 768px) {
+            .float-whatsapp span {
+                display: inline;
+            }
+
             .hamburger {
-                display: flex;
+                display: none;
             }
 
             .nav-menu {
-                position: fixed;
-                top: 80px;
-                right: -100%;
-                flex-direction: column;
-                background: var(--white);
-                width: 100%;
-                text-align: center;
-                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: var(--shadow-lg);
-                padding: 20px 0;
-                gap: 0;
-                max-height: calc(100vh - 80px);
-                overflow-y: auto;
-            }
-
-            .nav-menu.active {
-                right: 0;
+                position: static;
+                max-height: none;
+                flex-direction: row;
+                background: transparent;
+                box-shadow: none;
+                overflow: visible;
+                display: flex;
+                gap: 20px;
             }
 
             .nav-menu li {
-                width: 100%;
-                padding: 0;
+                width: auto;
+                border-bottom: none;
             }
 
             .nav-menu a {
-                justify-content: center;
-                padding: 20px;
-                border-bottom: 1px solid var(--gray-light);
+                padding: 8px 0;
+                font-size: 14px;
+            }
+
+            .nav-cta .btn-nav-login {
+                margin: 0;
+                padding: 10px 20px;
             }
 
             .blog-title {
-                font-size: 32px;
-            }
-
-            .blog-article-container {
-                padding: 30px 20px;
+                font-size: 36px;
             }
 
             .blog-hero-image {
-                height: 300px;
-                margin: 30px 0;
-            }
-
-            .blog-content h2 {
-                font-size: 28px;
-            }
-
-            .blog-content h3 {
-                font-size: 22px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .newsletter-input, .newsletter-button {
-                width: 100%;
+                height: 350px;
             }
 
             .stats-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        @media (max-width: 480px) {
+        @media (min-width: 1024px) {
+            .blog-title {
+                font-size: 42px;
+            }
+
             .blog-hero-image {
-                height: 250px;
+                height: 400px;
             }
         }
 
-        /* Animation Classes */
+        /* Animations */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
 
-        @keyframes ripple {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
-        }
-
         .fade-in {
-            animation: fadeIn 1s ease-out;
+            animation: fadeIn 0.8s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .win { color: var(--success-green); font-weight: 700; }
+        .negative { color: #dc2626; font-weight: 700; }
     </style>
 </head>
 <body>
@@ -1221,7 +1090,7 @@
         <div class="container">
             <div class="status-indicator">
                 <div class="status-dot"></div>
-                <div class="status-text">System Status: <strong>Market Analysis Available</strong> • Last Updated: <span id="currentTime"></span></div>
+                <div class="status-text">System Status: <strong>Market Analysis Available</strong> • <span id="currentTime"></span></div>
             </div>
         </div>
     </div>
@@ -1236,7 +1105,7 @@
                 </div>
                 <div class="logo-text-container">
                     <div class="logo-main">OMKAR ENTERPRISES</div>
-                    <div class="logo-tagline">Private Lending Partnership Since 2015</div>
+                    <div class="logo-tagline">Private Lending Partnership</div>
                 </div>
             </a>
             
@@ -1255,7 +1124,7 @@
                 <li><a href="../about.html"><i class="fas fa-user-tie"></i> About Founder</a></li>
                 <li><a href="../contact.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
                 <li><a href="../blog.html" class="active"><i class="fas fa-blog"></i> Blog</a></li>
-                <li class="nav-cta"><a href="../partner-portal.html" class="btn-nav-login" rel="noopener noreferrer"><i class="fas fa-lock"></i> Partner Login</a></li>
+                <li class="nav-cta"><a href="../partner-portal.html" class="btn-nav-login"><i class="fas fa-lock"></i> Partner Login</a></li>
             </ul>
         </div>
     </nav>
@@ -1274,45 +1143,18 @@
                 <div class="blog-category">Market Analysis & Global Trends</div>
                 <h1 class="blog-title">How Global Market Affects Nifty 2026: Complete Guide with Case Studies</h1>
                 <div class="blog-meta">
-                    <div class="blog-meta-item">
-                        <i class="fas fa-calendar-alt"></i> February 22, 2026
-                    </div>
-                    <div class="blog-meta-item">
-                        <i class="fas fa-user-tie"></i> Omkar Enterprises Financial Analysis Team
-                    </div>
-                    <div class="blog-meta-item">
-                        <i class="fas fa-clock"></i> 15 min read
-                    </div>
+                    <div class="blog-meta-item"><i class="fas fa-calendar-alt"></i> February 22, 2026</div>
+                    <div class="blog-meta-item"><i class="fas fa-user-tie"></i> Omkar Enterprises</div>
+                    <div class="blog-meta-item"><i class="fas fa-clock"></i> 15 min read</div>
                 </div>
             </div>
 
-            <!-- Hero Image -->
+            <!-- Hero Image - Place your image at: assets/global-market-nifty.jpg -->
             <div class="blog-hero-image">
-                <img src="assets/global-market-nifty.jpg" alt="Global Market Impact on Nifty 2026 Analysis | Omkar Enterprises">
+                <img src="assets/global-market-nifty.jpg" alt="Global Market Impact on Nifty 2026">
             </div>
 
             <div class="blog-content">
-                <!-- NEWSLETTER SECTION 1 - TOP (FIXED WITH YOUR ENDPOINT) -->
-                <div class="newsletter-section">
-                    <h3><i class="fas fa-envelope-open-text"></i> Get Market Updates Directly</h3>
-                    <p>Subscribe to receive our daily FII/DII analysis, global market cues, and sector insights before the market opens.</p>
-                    
-                    <form class="newsletter-form" action="https://formspree.io/f/myzdqkjq" method="POST">
-                        <input type="email" name="email" class="newsletter-input" placeholder="Your Email Address" required>
-                        <input type="hidden" name="_subject" value="New Blog Subscriber - Global Market Nifty Guide">
-                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
-                        <input type="hidden" name="_captcha" value="false">
-                        <button type="submit" class="newsletter-button">
-                            <i class="fas fa-bell"></i> Subscribe Free
-                        </button>
-                    </form>
-                    
-                    <div class="newsletter-note">
-                        <i class="fas fa-shield-alt"></i> Your email is safe with us. Read our <a href="../privacy.html">Privacy Policy</a>. 
-                        You can unsubscribe anytime. For inquiries: <strong>care@omkarservices.in</strong>
-                    </div>
-                </div>
-
                 <div class="highlight-box">
                     <p><strong>Expert Analysis:</strong> With Trump's latest tariff announcement and Fed rate uncertainty, Indian investors are asking: <em>"How will global markets impact Nifty this week?"</em> This comprehensive guide breaks down every global factor with data, case studies, and actionable insights from our 15-year research.</p>
                 </div>
@@ -1329,7 +1171,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="number">5.2 mo</div>
-                        <div class="label">Avg retail holding period (2025)</div>
+                        <div class="label">Avg retail holding period</div>
                     </div>
                     <div class="stat-card">
                         <div class="number">17%</div>
@@ -1346,35 +1188,20 @@
                         <thead>
                             <tr>
                                 <th>Fed Action</th>
-                                <th>FII Flow Impact (Next 30 Days)</th>
+                                <th>FII Flow Impact</th>
                                 <th>Nifty Reaction</th>
-                                <th>Correlation</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><strong>Rate Hike (0.25%)</strong></td>
-                                <td class="negative">-$1.2B outflow avg</td>
+                                <td class="negative">-$1.2B outflow</td>
                                 <td class="negative">-2.3% avg</td>
-                                <td>78%</td>
                             </tr>
                             <tr>
                                 <td><strong>Rate Cut (0.25%)</strong></td>
-                                <td class="win">+$1.8B inflow avg</td>
+                                <td class="win">+$1.8B inflow</td>
                                 <td class="win">+3.1% avg</td>
-                                <td>82%</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Hawkish Commentary</strong></td>
-                                <td class="negative">-$0.8B outflow avg</td>
-                                <td class="negative">-1.5% avg</td>
-                                <td>71%</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Dovish Commentary</strong></td>
-                                <td class="win">+$1.1B inflow avg</td>
-                                <td class="win">+1.8% avg</td>
-                                <td>69%</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1382,96 +1209,67 @@
                 
                 <div class="case-study">
                     <h4>📂 Case Study: Fed's June 2025 Rate Cut</h4>
-                    <p>When the Fed cut rates by 25bps in June 2025, FIIs pumped <strong>₹15,300 Cr</strong> into Indian equities in just 15 sessions. Nifty surged from 22,500 to 24,800 – a <strong>10.2% rally</strong> driven entirely by foreign money.</p>
+                    <p>When the Fed cut rates by 25bps in June 2025, FIIs pumped <strong>₹15,300 Cr</strong> into Indian equities. Nifty surged from 22,500 to 24,800 – a <strong>10.2% rally</strong>.</p>
                     <div class="highlight">
-                        <strong>Key Lesson:</strong> Fed pivot = Instant FII inflows. Monitor Fed fund futures for early signals.
+                        <strong>Key Lesson:</strong> Fed pivot = Instant FII inflows.
                     </div>
                 </div>
 
                 <!-- Trump Tariffs Section -->
                 <h2>2️⃣ Trump Tariffs & Trade War Impact (2026 Analysis)</h2>
-                <p>With Trump's latest tariff announcement (February 21, 2026), Indian markets face sector-specific headwinds. Our analysis of historical tariff impacts reveals:</p>
                 
                 <div class="table-container">
                     <table class="analysis-table">
                         <thead>
                             <tr>
                                 <th>Sector</th>
-                                <th>Exposure to US</th>
+                                <th>Exposure</th>
                                 <th>Tariff Impact</th>
-                                <th>Key Stocks</th>
-                                <th>2026 Outlook</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><strong>IT</strong></td>
-                                <td>60% revenue from US</td>
-                                <td class="negative">High (uncertainty)</td>
-                                <td>TCS, INFY, HCLT</td>
-                                <td>Cautious</td>
+                                <td>60% US revenue</td>
+                                <td class="negative">High</td>
                             </tr>
                             <tr>
                                 <td><strong>Pharma</strong></td>
-                                <td>35% exports to US</td>
-                                <td class="negative">Medium (regulatory)</td>
-                                <td>SUNPHARMA, DRREDDY</td>
-                                <td>Watch FDA</td>
+                                <td>35% exports</td>
+                                <td class="negative">Medium</td>
                             </tr>
                             <tr>
                                 <td><strong>Auto</strong></td>
                                 <td>15% exports</td>
-                                <td class="win">Low (domestic focus)</td>
-                                <td>TATAMOTORS, M&M</td>
-                                <td>Stable</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Metals</strong></td>
-                                <td>25% exports</td>
-                                <td class="negative">High (tariffs)</td>
-                                <td>TATASTEEL, HINDALCO</td>
-                                <td>Volatile</td>
+                                <td class="win">Low</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 
                 <div class="expert-quote">
-                    <p>Trump's tariffs create short-term volatility, but Indian IT's diversified client base and essential nature of pharma exports provide resilience. The real impact is on sentiment and FII flows.</p>
-                    <div class="author">— Omkar Enterprises Research Team, Feb 2026</div>
+                    <p>Trump's tariffs create short-term volatility, but Indian IT's diversified client base provides resilience.</p>
+                    <div class="author">— Omkar Enterprises Research Team</div>
                 </div>
 
                 <!-- Crude Oil Section -->
                 <h2>3️⃣ Crude Oil: The Inflation Driver</h2>
-                <p>India imports <strong>85% of its crude oil</strong> requirements. Every $10/barrel rise in crude oil prices impacts:</p>
+                <p>India imports <strong>85% of its crude oil</strong> requirements. Every $10/barrel rise impacts:</p>
                 
-                <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
                     <div class="stat-card">
                         <div class="number">0.35%</div>
                         <div class="label">Inflation increase</div>
                     </div>
                     <div class="stat-card">
-                        <div class="number">0.25%</div>
-                        <div class="label">Current account deficit</div>
-                    </div>
-                    <div class="stat-card">
                         <div class="number">₹0.50</div>
                         <div class="label">Rupee depreciation</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="number">2-3%</div>
-                        <div class="label">Auto sector margin hit</div>
-                    </div>
-                </div>
-                
-                <div class="case-study">
-                    <h4>📂 Case Study: Crude at $90/barrel (Jan 2026)</h4>
-                    <p>When crude hit $90 in January 2026, auto stocks corrected 8-12%. Paint companies (Asian Paints, Berger) saw margin compression of 150-200bps. Tyre stocks (MRF, Apollo) underperformed Nifty by 15%.</p>
                 </div>
 
                 <!-- Dollar Index Section -->
                 <h2>4️⃣ Dollar Index (DXY) & FII Flows</h2>
-                <p>Our proprietary research shows an <strong>85% inverse correlation</strong> between DXY and FII flows into India.</p>
+                <p><strong>85% inverse correlation</strong> between DXY and FII flows.</p>
                 
                 <div class="table-container">
                     <table class="analysis-table">
@@ -1479,27 +1277,18 @@
                             <tr>
                                 <th>DXY Level</th>
                                 <th>FII Action</th>
-                                <th>Nifty Impact</th>
                                 <th>Probability</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>> 105</strong></td>
+                                <td>> 105</td>
                                 <td class="negative">Selling</td>
-                                <td class="negative">Bearish</td>
                                 <td>92%</td>
                             </tr>
                             <tr>
-                                <td><strong>103-105</strong></td>
-                                <td>Mixed</td>
-                                <td>Range-bound</td>
-                                <td>65%</td>
-                            </tr>
-                            <tr>
-                                <td><strong>< 103</strong></td>
+                                <td>< 103</td>
                                 <td class="win">Buying</td>
-                                <td class="win">Bullish</td>
                                 <td>88%</td>
                             </tr>
                         </tbody>
@@ -1508,33 +1297,13 @@
 
                 <!-- Key Points -->
                 <div class="key-points">
-                    <h2><i class="fas fa-check-circle"></i> How Omkar Enterprises Helps You Navigate Global Volatility</h2>
+                    <h2>📌 Key Takeaways</h2>
                     <ul>
-                        <li><strong>Daily Market Intelligence:</strong> Get our pre-market report with FII/DII data, DXY levels, and crude updates</li>
-                        <li><strong>Sector-Specific Analysis:</strong> Understand which sectors are vulnerable to global headwinds</li>
-                        <li><strong>Risk Management Framework:</strong> Learn to protect your portfolio during global uncertainty</li>
-                        <li><strong>Educational Resources:</strong> Free guides on global market correlations and trading psychology</li>
+                        <li><strong>Fed Policy:</strong> Rate cuts trigger FII inflows, boosting Nifty</li>
+                        <li><strong>Trump Tariffs:</strong> IT and Pharma most affected</li>
+                        <li><strong>Crude Oil:</strong> Every $10 rise = 0.35% inflation</li>
+                        <li><strong>DXY:</strong> Above 105 = FII selling, below 103 = FII buying</li>
                     </ul>
-                </div>
-
-                <!-- NEWSLETTER SECTION 2 - MIDDLE (FIXED WITH YOUR ENDPOINT) -->
-                <div class="newsletter-section">
-                    <h3><i class="fas fa-chart-line"></i> Want Daily Market Insights?</h3>
-                    <p>Join 10,000+ investors who receive our free morning market report with FII flows, global cues, and sector updates.</p>
-                    
-                    <form class="newsletter-form" action="https://formspree.io/f/myzdqkjq" method="POST">
-                        <input type="email" name="email" class="newsletter-input" placeholder="Enter your email for free updates" required>
-                        <input type="hidden" name="_subject" value="New Subscriber - Mid Blog">
-                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
-                        <input type="hidden" name="_captcha" value="false">
-                        <button type="submit" class="newsletter-button">
-                            <i class="fas fa-paper-plane"></i> Subscribe Now
-                        </button>
-                    </form>
-                    
-                    <div class="newsletter-note">
-                        <i class="fas fa-envelope"></i> Sent to your inbox daily at 8:00 AM IST. Unsubscribe anytime.
-                    </div>
                 </div>
 
                 <!-- FAQ Section -->
@@ -1543,32 +1312,27 @@
                 <div class="faq-section">
                     <div class="faq-item">
                         <h3><i class="fas fa-question-circle"></i> How do US Fed rate hikes affect Nifty?</h3>
-                        <p>US Fed rate hikes make US bonds more attractive, triggering FII outflows from emerging markets like India. Our data shows a 0.25% rate hike leads to average $1.2B FII outflow and 2.3% Nifty correction within 30 days.</p>
+                        <p>Rate hikes trigger FII outflows, causing 2-3% Nifty correction within 30 days.</p>
                     </div>
                     
                     <div class="faq-item">
-                        <h3><i class="fas fa-question-circle"></i> What is the impact of Trump tariffs on Indian IT sector?</h3>
-                        <p>Indian IT gets 60% revenue from US. Tariff announcements create uncertainty, causing 5-10% corrections. However, essential nature of IT services means long-term impact is limited. TCS, Infosys typically recover within 2-4 weeks.</p>
+                        <h3><i class="fas fa-question-circle"></i> What is the impact of Trump tariffs on IT?</h3>
+                        <p>Indian IT gets 60% revenue from US. Tariffs cause 5-10% corrections, but recovery within 2-4 weeks.</p>
                     </div>
                     
                     <div class="faq-item">
-                        <h3><i class="fas fa-question-circle"></i> How does crude oil price affect Indian markets?</h3>
-                        <p>India imports 85% crude. Rising oil increases inflation (0.35% per $10), widens current account deficit, weakens rupee, and negatively impacts auto, paints, tyres, and aviation sectors. Every $10 rise reduces Nifty EPS by 1.5%.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <h3><i class="fas fa-question-circle"></i> What is the correlation between Dollar Index (DXY) and Nifty?</h3>
-                        <p>85% inverse correlation. When DXY > 105, FIIs sell (92% probability). When DXY < 103, FIIs buy (88% probability). This is the single most reliable indicator for FII flows.</p>
+                        <h3><i class="fas fa-question-circle"></i> How does crude oil price affect markets?</h3>
+                        <p>Every $10 rise increases inflation by 0.35% and negatively impacts auto, paints, and tyre sectors.</p>
                     </div>
                 </div>
 
                 <!-- CTA Section -->
                 <div class="cta-section">
-                    <h3><i class="fas fa-rocket"></i> Need Personalized Market Analysis?</h3>
-                    <p>Our team provides educational guidance on navigating global market volatility and building resilient portfolios.</p>
+                    <h3>Need Personalized Market Analysis?</h3>
+                    <p>Get educational guidance on navigating global market volatility.</p>
                     
                     <div class="cta-buttons">
-                        <a href="https://wa.me/919226393837?text=Hi%20Omkar%20Enterprises,%20I%20read%20your%20Global%20Market%20Nifty%20guide.%20Can%20you%20help%20me%20understand%20current%20market%20dynamics?" class="cta-button whatsapp">
+                        <a href="https://wa.me/919226393837" class="cta-button whatsapp">
                             <i class="fab fa-whatsapp"></i> Chat on WhatsApp
                         </a>
                         
@@ -1578,16 +1342,43 @@
                     </div>
                 </div>
 
+                <!-- NEWSLETTER SECTION - ONLY ONE AT THE END -->
+                <div class="newsletter-section">
+                    <i class="fas fa-envelope-open-text" style="font-size: 40px; margin-bottom: 15px; color: var(--gold-accent);"></i>
+                    <h3>Get Market Updates Directly</h3>
+                    <p>Subscribe to receive our daily FII/DII analysis, global market cues, and sector insights before the market opens.</p>
+                    
+                    <form class="newsletter-form" action="https://formspree.io/f/mlgnkpoo" method="POST">
+                        <input type="hidden" name="_captcha" value="true">
+                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
+                        <input type="hidden" name="_subject" value="New Subscriber - Global Market Guide">
+                        <input type="hidden" name="source" value="global_market_nifty_blog">
+                        
+                        <input type="email" name="email" class="newsletter-input" placeholder="Your email address" required>
+                        
+                        <div class="consent-checkbox">
+                            <input type="checkbox" name="consent" value="yes" required>
+                            <span>I agree to receive educational emails and accept the <a href="../privacy.html" target="_blank">Privacy Policy</a></span>
+                        </div>
+                        
+                        <button type="submit" class="newsletter-button">
+                            <i class="fas fa-bell"></i> Subscribe Free
+                        </button>
+                        
+                        <p class="newsletter-note">
+                            🔒 We use FormSpree. No spam, unsubscribe anytime.
+                        </p>
+                    </form>
+                </div>
+
                 <!-- Compliance Notice -->
                 <div class="compliance-notice">
                     <h3><i class="fas fa-exclamation-triangle"></i> Important Legal Disclaimer</h3>
                     <p><strong>Educational Content Only:</strong> This blog provides financial market education for learning purposes only. Omkar Enterprises is not registered with SEBI as research analysts or investment advisors. All content is strictly educational and should not be construed as investment advice.</p>
-                    <p><strong>Risk Disclosure:</strong> Trading and investing in securities involves substantial risk of loss. Past performance does not guarantee future results. You could lose some or all of your capital. Readers should consult with independent financial advisors and conduct their own research before making any investment decisions.</p>
-                    <p><strong>Data Verification:</strong> All data sourced from SEBI, NSE, RBI, and Bloomberg. Analysis is for educational purposes only. For any queries, contact us at <strong>care@omkarservices.in</strong></p>
                 </div>
             </div>
 
-            <!-- Back to Blog Section -->
+            <!-- Back to Blog -->
             <div class="back-to-blog">
                 <a href="../blog.html">
                     <i class="fas fa-arrow-left"></i> Back to All Educational Articles
@@ -1596,22 +1387,22 @@
 
             <!-- Related Articles -->
             <div class="related-articles">
-                <h3><i class="fas fa-book-reader"></i> Continue Learning</h3>
+                <h3>Continue Learning</h3>
                 <div class="related-grid">
                     <div class="related-card">
                         <h4>FII/DII Data Analysis 2026</h4>
-                        <p>Understanding foreign and domestic institutional flows in Indian markets.</p>
-                        <a href="fii-dii-analysis.html">Read Guide <i class="fas fa-arrow-right"></i></a>
+                        <p>Understanding institutional flows in Indian markets.</p>
+                        <a href="#">Read Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="related-card">
                         <h4>Sector Rotation Strategies</h4>
                         <p>How to identify sector rotation during different market phases.</p>
-                        <a href="sector-rotation.html">Read Guide <i class="fas fa-arrow-right"></i></a>
+                        <a href="#">Read Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="related-card">
                         <h4>Risk Management Handbook</h4>
                         <p>Essential risk management principles for volatile markets.</p>
-                        <a href="risk-management.html">Read Guide <i class="fas fa-arrow-right"></i></a>
+                        <a href="#">Read Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1624,34 +1415,26 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <div class="logo-image-container" style="background: transparent; border: 2px solid rgba(212, 175, 55, 0.3);">
+                        <div class="logo-image-container" style="background: transparent; border-color: rgba(212,175,55,0.3);">
                             <img src="../assets/logo.png" alt="Omkar Enterprises Logo">
                         </div>
-                        <div class="logo-text-container">
+                        <div>
                             <div class="logo-main" style="color: #d4af37;">OMKAR ENTERPRISES</div>
-                            <div class="logo-tagline" style="color: rgba(255, 255, 255, 0.7);">Private Lending Partnership</div>
+                            <div class="logo-tagline" style="color: rgba(255,255,255,0.7);">Private Lending Partnership</div>
                         </div>
                     </div>
                     <p class="footer-description">
-                        Since 2015, <strong>Omkar Enterprises</strong> has served as a premier 
-                        <strong>private lending partnership</strong> in India, maintaining a 
-                        <strong>100% payout record</strong> for our 500+ partners.
+                        Since 2015, maintaining 100% payout record for our 500+ partners.
                     </p>
                     
                     <div class="footer-contact">
                         <div class="footer-contact-item">
                             <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>Investment Helpline:</strong><br>
-                                +91 8169 302 861 | +91 9226 393 837
-                            </div>
+                            <span>+91 8169 302 861 | +91 9226 393 837</span>
                         </div>
                         <div class="footer-contact-item">
                             <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email:</strong><br>
-                                care@omkarservices.in
-                            </div>
+                            <span>care@omkarservices.in</span>
                         </div>
                     </div>
                 </div>
@@ -1670,26 +1453,6 @@
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Newsletter Signup</h4>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">Get daily market insights and educational content directly in your inbox.</p>
-                    
-                    <!-- NEWSLETTER SECTION 3 - FOOTER (FIXED WITH YOUR ENDPOINT) -->
-                    <form class="footer-newsletter" action="https://formspree.io/f/myzdqkjq" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
-                        <input type="email" name="email" placeholder="Your Email Address" required style="padding: 12px; border-radius: 8px; border: none; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(212,175,55,0.3);">
-                        <input type="hidden" name="_subject" value="Footer Newsletter Signup">
-                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
-                        <input type="hidden" name="_captcha" value="false">
-                        <button type="submit" style="background: var(--gold-accent); color: var(--trust-blue); border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition);">
-                            <i class="fas fa-bell"></i> Subscribe Free
-                        </button>
-                    </form>
-                    
-                    <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 15px;">
-                        <i class="fas fa-shield-alt"></i> We respect your privacy. Unsubscribe anytime.
-                    </p>
-                </div>
-                
-                <div class="footer-col">
                     <h4>Legal & Compliance</h4>
                     <ul class="footer-links">
                         <li><a href="../compliance.html"><i class="fas fa-chevron-right"></i> Compliance</a></li>
@@ -1702,24 +1465,23 @@
             
             <div class="footer-disclaimer">
                 <h4><i class="fas fa-exclamation-triangle"></i> Important Educational Disclaimer</h4>
-                <p><strong>Educational Content Only:</strong> This blog provides financial market education for learning purposes only. Omkar Enterprises is not registered with SEBI as research analysts or investment advisors. All content is strictly educational and should not be construed as investment advice.</p>
-                <p>Readers should consult with independent financial advisors and conduct their own research before making any investment decisions. Past performance is not indicative of future results. For any queries, contact us at <strong>care@omkarservices.in</strong></p>
+                <p>This blog provides financial market education for learning purposes only. Omkar Enterprises is not registered with SEBI. All content is strictly educational and should not be construed as investment advice.</p>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2015-2026 Omkar Enterprises. All Rights Reserved. | Private Lending Partnership Firm</p>
-                <p><i class="fas fa-shield-alt"></i> Educational Content | Market Analysis Insights | <a href="mailto:care@omkarservices.in" style="color: var(--gold-accent); text-decoration: none;">care@omkarservices.in</a></p>
+                <p>&copy; 2015-2026 Omkar Enterprises. All Rights Reserved.</p>
+                <p style="margin-top: 5px;"><a href="mailto:care@omkarservices.in" style="color: #d4af37; text-decoration: none;">care@omkarservices.in</a></p>
             </div>
         </div>
     </footer>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/919226393837?text=Hi%20Omkar%20Enterprises,%20I%20read%20your%20Global%20Market%20Nifty%20guide.%20I'd%20like%20to%20learn%20more%20about%20your%20educational%20resources." class="float-whatsapp" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/919226393837" class="float-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
         <span>Chat for Educational Info</span>
     </a>
 
-    <!-- JavaScript (Navigation only - NO form interference) -->
+    <!-- JavaScript (Navigation Only - NO Form Interference) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger');
@@ -1734,7 +1496,6 @@
                     this.classList.toggle('active');
                 });
                 
-                // Close menu when clicking outside
                 document.addEventListener('click', function(e) {
                     if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                         navMenu.classList.remove('active');
@@ -1742,7 +1503,6 @@
                     }
                 });
                 
-                // Close menu when clicking on a link
                 navMenu.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', function() {
                         navMenu.classList.remove('active');
@@ -1784,16 +1544,13 @@
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
             
-            // Highlight current page in navigation
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            // Highlight current page
             document.querySelectorAll('.nav-menu a').forEach(link => {
                 const linkHref = link.getAttribute('href');
                 if (linkHref === '../blog.html' || linkHref === 'blog.html') {
                     link.classList.add('active');
                 }
             });
-            
-            // ✅ NO FORM HANDLING CODE - Forms submit naturally to Formspree!
         });
     </script>
 </body>

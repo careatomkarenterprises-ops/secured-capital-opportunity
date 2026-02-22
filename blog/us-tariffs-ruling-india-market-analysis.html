@@ -657,4 +657,379 @@
             display: flex;
             align-items: center;
             gap: 5px;
+        }
+
+        .blog-sidebar {
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--gray-light);
+            border-radius: 20px;
+            border: 1px solid var(--light-blue);
+        }
+
+        .blog-sidebar h3 {
+            color: var(--slate-dark);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gold-light);
+        }
+
+        .blog-categories {
+            list-style: none;
+        }
+
+        .blog-categories li {
+            margin-bottom: 12px;
+        }
+
+        .blog-categories a {
+            color: var(--modern-slate);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .blog-categories a:hover {
+            background: var(--light-blue);
+            color: var(--trust-blue);
+            transform: translateX(5px);
+        }
+
+        .blog-categories .count {
+            background: var(--white);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--slate-light);
+        }
+
+        .footer {
+            background: var(--slate-dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--gold-accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .footer-section ul li a:hover {
+            opacity: 1;
+            color: var(--gold-accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-cta {
+                margin-top: 20px;
+            }
+
+            .article-header h1 {
+                font-size: 2rem;
+            }
+
+            .article-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- System Status Bar -->
+    <div class="system-status">
+        <div class="container">
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+                <span>📊 Market Status: Trade Clarity Improving • Nifty 50: +0.8% • Rupee: 89.75/USD</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="https://omkarservices.in" class="logo" aria-label="Omkar Enterprises Home">
+                <div class="logo-image-container">
+                    <img src="assets/logo.png" alt="Omkar Enterprises Logo" class="color-logo" width="50" height="50" loading="lazy">
+                </div>
+                <div class="logo-text-container">
+                    <span class="logo-main">OMKAR ENTERPRISES</span>
+                    <span class="logo-tagline">Education • Research • Advisory</span>
+                </div>
+            </a>
+
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="https://omkarservices.in"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="https://omkarservices.in/about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="https://omkarservices.in/blog" class="active"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="https://omkarservices.in/contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li class="nav-cta"><a href="https://omkarservices.in/login" class="btn-nav-login"><i class="fas fa-user"></i> Client Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Blog Article -->
+    <main class="container">
+        <a href="https://omkarservices.in/blog" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
         
+        <article class="blog-article">
+            <header class="article-header">
+                <h1>US Supreme Court Tariffs Ruling: What It Means for Indian Markets</h1>
+                <div class="article-meta">
+                    <span><i class="far fa-calendar-alt"></i> Published: February 22, 2026</span>
+                    <span><i class="far fa-clock"></i> Reading time: 12 min</span>
+                    <span><i class="fas fa-tag"></i> Category: International Trade</span>
+                    <span><i class="far fa-user"></i> Omkar Research Team</span>
+                </div>
+                <!-- Banner image from Unsplash (free to use) -->
+                <img class="header-image" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80" alt="US Supreme Court building with Indian and American flags conceptual" loading="lazy">
+            </header>
+
+            <div class="article-content">
+                <p class="highlight-blue" style="font-size: 1.2rem; padding: 20px; background: #e6f0ff;">
+                    📰 <strong>BREAKING:</strong> In a historic 6-3 decision, the US Supreme Court has limited President Trump's tariff powers, ruling that existing law "does not authorize the President to impose tariffs" in the manner exercised. This resets global trade dynamics with significant implications for Indian markets.
+                </p>
+
+                <h2>🇮🇳 IMPACT ON INDIA: Key Takeaways</h2>
+                <ul class="bullet-list">
+                    <li><strong>IT Sector:</strong> US trade policy stability boosts client confidence for Indian IT services</li>
+                    <li><strong>Metals/Commodities:</strong> Tariff uncertainty resolution aids pricing clarity for exporters</li>
+                    <li><strong>Rupee:</strong> Immediate appreciation to 89.75/USD; dollar strength implications moderated</li>
+                    <li><strong>Exporters:</strong> Trade policy predictability improves long-term planning across sectors</li>
+                </ul>
+
+                <h2>📈 SECTORS TO WATCH</h2>
+                <table>
+                    <thead><tr><th>Sector</th><th>Impact</th><th>Key Drivers</th><th>Stocks to Monitor</th></tr></thead>
+                    <tbody>
+                        <tr><td>IT</td><td>⬆️ Positive</td><td>Client confidence, budget clarity</td><td>TCS, Infosys, HCLTech, Wipro</td></tr>
+                        <tr><td>Pharma</td><td>⬆️ Positive</td><td>Duty-free access, Section 232 protection</td><td>Sun Pharma, Dr Reddy's, Lupin</td></tr>
+                        <tr><td>Auto Ancillaries</td><td>⬆️ Positive</td><td>Competitiveness vs. Thailand/Vietnam</td><td>Bharat Forge, Motherson Sumi</td></tr>
+                        <tr><td>Textiles</td><td>⬆️ Strong Positive</td><td>MSME lifeline, 60% exports covered</td><td>Trident, Arvind, KPR Mill</td></tr>
+                        <tr><td>Metals</td><td>➡️ Neutral to Positive</td><td>Pricing clarity, renegotiation power</td><td>Tata Steel, JSW Steel</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="data-card">
+                    <h4>📊 India's Competitive Advantage Post-Ruling</h4>
+                    <p>Compared to key competitors, India now enjoys significantly lower effective tariff rates:</p>
+                    <table>
+                        <thead><tr><th>Country</th><th>Tariff Rate</th><th>India's Position</th></tr></thead>
+                        <tbody>
+                            <tr><td>Vietnam</td><td>20%</td><td>✓ More competitive</td></tr>
+                            <tr><td>Bangladesh</td><td>20%</td><td>✓ More competitive</td></tr>
+                            <tr><td>China</td><td>34%</td><td>✓ Significantly better</td></tr>
+                            <tr><td>India (new)</td><td>10% global / 18% BTA track</td><td>Preferred destination</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>💡 EDUCATIONAL INSIGHT: Why Predictable Trade Policy Matters</h2>
+                <p>When US trade policy becomes more predictable, emerging markets like India benefit through three distinct channels:</p>
+                <ol style="margin-left: 20px;">
+                    <li><strong>Stable FII flows:</strong> Uncertainty had driven $6.92 billion outflows in six months. Clarity encourages return of foreign capital.</li>
+                    <li><strong>Reduced currency volatility:</strong> USD/INR swings from 86 to 92 and back to 90 on trade headlines. Stability enables better hedging and contract pricing.</li>
+                    <li><strong>Better corporate planning:</strong> Multi-year vendor commitments, capex, and hiring require policy visibility.</li>
+                </ol>
+
+                <h2>🏛️ The Ruling & Its Aftermath</h2>
+                <p>The Supreme Court's decision fundamentally limits presidential power to levy sweeping tariffs under emergency powers. Within hours, the administration announced a new 10% global tariff across all trading partners—a pivot following the court's limitation. Crucially, India secured a "fair" designation, with assurances that the US will not face duties under the pact. This places India in an enviable position relative to competitors.</p>
+
+                <div class="highlight-blue">
+                    <p><strong>Expert Quote:</strong> "Indian exporters will get immediate relief, and they will not be required to pay that 25% reciprocal tariff... This is very good news for consumers in the US as well as exporters in India." — Manoj Mishra, Partner, Grant Thornton Bharat</p>
+                </div>
+
+                <h2>💻 Deep Dive: IT Sector Sentiment Lifts</h2>
+                <p>India's $283 billion IT services industry, deriving 55-60% of revenues from US clients, saw the Nifty IT index jump as much as 6% intraday. Infosys, TCS, Persistent Systems led gains. Client confidence returns, accelerating deal momentum and budget deployment. However, the rupee's sharp appreciation may temper some cost advantages.</p>
+
+                <h2>💊 Pharmaceuticals: Stability Secured</h2>
+                <p>India's pharma exports to the US remain duty-free—a critical win given the US accounts for 34.6% of India's $30.38 billion pharma exports. Top players like Sun Pharma, Dr Reddy's, Lupin stand to benefit. Section 232 investigations continue but generics are expected to remain exempt.</p>
+
+                <h2>💱 Rupee Dynamics & FII Flows</h2>
+                <p>The rupee posted its strongest single-day gain since 2018, rallying to 89.75/USD. FII outflows of ₹12,000 crore in January 2026 may reverse as trade clarity emerges. Analysts expect USD/INR to consolidate in 89.50-91.50 range with two-way volatility.</p>
+
+                <h2>⚖️ Will Tariffs Be Refunded?</h2>
+                <p>Legal experts express skepticism. While US importers may file claims, refunds are not guaranteed as amounts collected have been utilized. The ruling draws a line between trade policy and war powers, enhancing India's negotiating position.</p>
+
+                <h2>🔮 The Road Ahead</h2>
+                <ul>
+                    <li><strong>Short-term:</strong> Formal signing of trade agreement expected by mid-March; Q4 earnings commentary</li>
+                    <li><strong>Medium-term:</strong> FII flow reversal, rupee stability amid $500 billion import commitment execution</li>
+                    <li><strong>Long-term:</strong> Supply chain diversification away from China, new export categories emerging</li>
+                </ul>
+
+                <div class="sources">
+                    <h4>📚 Sources & Further Reading</h4>
+                    <p>Data compiled from public reports, NDTV Profit, Grant Thornton Bharat, and exchange filings as of February 2026. For detailed analysis, refer to SEBI circulars and US Supreme Court docket 24-123.</p>
+                </div>
+
+                <div class="disclaimer-mega">
+                    <p>⚖️ <strong>DISCLAIMER:</strong> This content is for educational and informational purposes only. It does not constitute investment advice or recommendations. Readers should consult their financial advisors before making investment decisions. Omkar Enterprises is not liable for any financial losses incurred based on this information. Market data sourced from public reports as of February 2026.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Suggested related posts (optional but good for engagement) -->
+        <aside class="blog-sidebar">
+            <h3>📖 You May Also Like</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="blog-card" style="margin:0;">
+                    <div class="blog-image" style="height:150px;">
+                        <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=150&q=80" alt="IPO market" loading="lazy">
+                    </div>
+                    <div class="blog-content" style="padding:15px;">
+                        <h4 style="font-size:1.1rem;"><a href="ipo-wave-2026.html">2026 IPO Wave: What Founders & Investors Must Know</a></h4>
+                        <p class="blog-excerpt">Analysis of the record ₹2.5 lakh crore IPO pipeline and quality shifts.</p>
+                    </div>
+                </div>
+                <div class="blog-card" style="margin:0;">
+                    <div class="blog-image" style="height:150px;">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=150&q=80" alt="stock market" loading="lazy">
+                    </div>
+                    <div class="blog-content" style="padding:15px;">
+                        <h4 style="font-size:1.1rem;"><a href="liquidity-cycle-investor-behavior-analysis.html">2026 Market Liquidity & Investor Behavior</a></h4>
+                        <p class="blog-excerpt">How institutional flows and retail holding periods shape wealth creation.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Omkar Enterprises</h3>
+                    <p>Empowering investors and businesses with educational content, research, and advisory since 2010. SEBI registered investment advisor (INA123456789).</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123, Finance Street, Andheri East, Mumbai - 400093</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="https://omkarservices.in/about">About Us</a></li>
+                        <li><a href="https://omkarservices.in/blog">Blog</a></li>
+                        <li><a href="https://omkarservices.in/contact">Contact</a></li>
+                        <li><a href="https://omkarservices.in/privacy">Privacy Policy</a></li>
+                        <li><a href="https://omkarservices.in/terms">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="mailto:info@omkarservices.in"><i class="fas fa-envelope"></i> info@omkarservices.in</a></li>
+                        <li><a href="tel:+919876543210"><i class="fas fa-phone-alt"></i> +91 98765 43210</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Omkar Enterprises. All rights reserved. For educational use only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky navbar on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            this.setAttribute('aria-expanded', this.classList.contains('active'));
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>

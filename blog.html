@@ -404,6 +404,9 @@
             transition: var(--transition);
             border: 1px solid var(--light-blue);
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .blog-card:hover {
@@ -445,6 +448,9 @@
 
         .blog-content {
             padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .blog-meta {
@@ -495,6 +501,26 @@
             line-height: 1.6;
             margin-bottom: 20px;
             font-size: 15px;
+            flex: 1;
+        }
+
+        .blog-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--slate-light);
+            flex-wrap: wrap;
+        }
+
+        .blog-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-stats i {
+            color: var(--gold-accent);
         }
 
         .read-more {
@@ -506,6 +532,9 @@
             font-weight: 600;
             font-size: 15px;
             transition: var(--transition);
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-blue);
         }
 
         .read-more:hover {
@@ -1087,6 +1116,7 @@
                 gap: 0;
                 max-height: calc(100vh - 80px);
                 overflow-y: auto;
+                z-index: 999;
             }
 
             .nav-menu.active {
@@ -1125,11 +1155,15 @@
                 border-radius: 20px;
                 align-items: flex-start;
             }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Animation Classes */
         .fade-in {
-            animation: fadeIn 1s ease-out;
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
         @keyframes fadeIn {
@@ -1206,96 +1240,109 @@
         </div>
     </section>
 
-<!-- BLOG POST: How Global Market Affects Nifty 2026 -->
-<article class="blog-card fade-in">
-    <div class="new-badge">NEW</div>
-    <div class="blog-image">
-        <img src="assets/global-market-nifty-thumbnail.jpg" 
-             alt="How Global Market Affects Nifty 2026: Complete Guide with Case Studies" 
-             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-chart-line\'></i>';">
-    </div>
-    <div class="blog-content">
-        <div class="blog-meta">
-            <div class="blog-date">
-                <i class="fas fa-calendar-alt"></i> February 22, 2026
-            </div>
-            <div class="blog-category">Global Markets</div>
-        </div>
-        <h3>
-            <a href="blog/Global_Market_Nifty_Impact_ULTIMATE_GUIDE_22-02-2026.html">How Global Market Affects Nifty 2026: Complete Guide with Case Studies</a>
-        </h3>
-        <p class="blog-excerpt">
-            With Trump's latest tariff announcement and Fed rate uncertainty, this comprehensive 3,000+ word guide analyzes US Fed impact, Trump tariffs, crude oil prices, DXY correlation, and sector-wise opportunities. Includes 15-year data and case studies on FII flows, market correlations, and risk management.
-        </p>
-        <div class="blog-stats" style="display: flex; gap: 15px; margin-bottom: 12px; font-size: 13px; color: var(--slate-light);">
-            <span><i class="fas fa-chart-pie"></i> 15-year data</span>
-            <span><i class="fas fa-percent"></i> 85% correlation</span>
-            <span><i class="fas fa-oil-can"></i> Crude analysis</span>
-        </div>
-        <a href="blog/Global_Market_Nifty_Impact_ULTIMATE_GUIDE_22-02-2026.html" class="read-more">
-            Read Full Analysis <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-</article>
+    <!-- Blog Grid Section -->
+    <section class="blog-grid-container">
+        <div class="container">
+            <div class="blog-grid">
+                
+                <!-- BLOG POST 1: How Global Market Affects Nifty 2026 -->
+                <article class="blog-card fade-in">
+                    <div class="new-badge">NEW</div>
+                    <div class="blog-image">
+                        <img src="assets/global-market-nifty-thumbnail.jpg" 
+                             alt="How Global Market Affects Nifty 2026: Complete Guide with Case Studies" 
+                             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-chart-line\'></i>';">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> February 22, 2026
+                            </div>
+                            <div class="blog-category">Global Markets</div>
+                        </div>
+                        <h3>
+                            <a href="blog/Global_Market_Nifty_Impact_ULTIMATE_GUIDE_22-02-2026.html">How Global Market Affects Nifty 2026: Complete Guide with Case Studies</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            With Trump's latest tariff announcement and Fed rate uncertainty, this comprehensive 3,000+ word guide analyzes US Fed impact, Trump tariffs, crude oil prices, DXY correlation, and sector-wise opportunities. Includes 15-year data and case studies on FII flows, market correlations, and risk management.
+                        </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-chart-pie"></i> 15-year data</span>
+                            <span><i class="fas fa-percent"></i> 85% correlation</span>
+                            <span><i class="fas fa-oil-can"></i> Crude analysis</span>
+                        </div>
+                        <a href="blog/Global_Market_Nifty_Impact_ULTIMATE_GUIDE_22-02-2026.html" class="read-more">
+                            Read Full Analysis <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
 
-<article class="blog-card fade-in">
-    <div class="new-badge">NEW</div>
-    <div class="blog-image">
-        <img src="assets/adanient-fibonacci-thumbnail.jpg" 
-             alt="The Science of Multi-Year Breakouts: Decoding ADANIENT via Fibonacci Geometry" 
-             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-chart-line\' style=\'font-size: 48px; color: #b8860b;\'></i>';">
-    </div>
-    <div class="blog-content">
-        <div class="blog-meta">
-            <div class="blog-date">
-                <i class="fas fa-calendar-alt"></i> February 22, 2026
-            </div>
-            <div class="blog-category">Technical Analysis</div>
-        </div>
-        <h3>
-            <a href="blog/adanient-fibonacci-breakout-study.html">The Science of Multi-Year Breakouts: Decoding ADANIENT via Fibonacci Geometry</a>
-        </h3>
-        <p class="blog-excerpt">
-            Educational analysis of ADANIENT's 15-year price action using Fibonacci extensions. Learn how to identify assets before they undergo a "huge difference" in valuation. Features 3 charts (Daily, Monthly, 15-Year) with complete Fibonacci levels from 0.618 to 4.236, multi-timeframe confirmation, and backtesting methodology. Understand institutional accumulation zones, role reversal patterns, and why volume confirms breakouts.
-        </p>
-        <div class="blog-stats" style="display: flex; gap: 15px; margin-bottom: 12px; font-size: 13px; color: var(--slate-light);">
-            <span><i class="fas fa-chart-line"></i> 15-Year Analysis</span>
-            <span><i class="fas fa-calculator"></i> Fibonacci 0.618-4.236</span>
-            <span><i class="fas fa-clock"></i> 3 Timeframes</span>
-        </div>
-        <a href="blog/adanient-fibonacci-breakout-study.html" class="read-more">
-            Read Full Analysis <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-</article>                
-<!-- BLOG POST 2: US Supreme Court Tariffs Ruling -->
-<article class="blog-card fade-in">
-    <div class="new-badge">NEW</div>
-    <div class="blog-image">
-        <img src="assets/us-tariffs-ruling-thumbnail.jpg" 
-             alt="US Supreme Court Tariffs Ruling: Impact on Indian Markets" 
-             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-gavel\'></i>';">
-    </div>
-    <div class="blog-content">
-        <div class="blog-meta">
-            <div class="blog-date">
-                <i class="fas fa-calendar-alt"></i> February 22, 2026
-            </div>
-            <div class="blog-category">International Trade</div>
-        </div>
-        <h3>
-            <a href="blog/us-tariffs-ruling-india-market-analysis.html">US Supreme Court Tariffs Ruling: What It Means for Indian Markets</a>
-        </h3>
-        <p class="blog-excerpt">
-            Historic 6-3 ruling limits presidential tariff powers. We analyze the impact on Indian IT, pharma, metals, FII flows, rupee stability, and sector-wise opportunities. A comprehensive 3,000+ word educational guide.
-        </p>
-        <a href="blog/us-tariffs-ruling-india-market-analysis.html" class="read-more">
-            Read Full Analysis <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-</article>
+                <!-- BLOG POST 2: ADANIENT Fibonacci Study -->
+                <article class="blog-card fade-in">
+                    <div class="new-badge">NEW</div>
+                    <div class="blog-image">
+                        <img src="assets/adanient-fibonacci-thumbnail.jpg" 
+                             alt="The Science of Multi-Year Breakouts: Decoding ADANIENT via Fibonacci Geometry" 
+                             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-chart-line\' style=\'font-size: 48px; color: #b8860b;\'></i>';">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> February 22, 2026
+                            </div>
+                            <div class="blog-category">Technical Analysis</div>
+                        </div>
+                        <h3>
+                            <a href="blog/adanient-fibonacci-breakout-study.html">The Science of Multi-Year Breakouts: Decoding ADANIENT via Fibonacci Geometry</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Educational analysis of ADANIENT's 15-year price action using Fibonacci extensions. Learn how to identify assets before they undergo a "huge difference" in valuation. Features 3 charts (Daily, Monthly, 15-Year) with complete Fibonacci levels from 0.618 to 4.236, multi-timeframe confirmation, and backtesting methodology.
+                        </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-chart-line"></i> 15-Year Analysis</span>
+                            <span><i class="fas fa-calculator"></i> Fibonacci 0.618-4.236</span>
+                            <span><i class="fas fa-clock"></i> 3 Timeframes</span>
+                        </div>
+                        <a href="blog/adanient-fibonacci-breakout-study.html" class="read-more">
+                            Read Full Analysis <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>                
+                
+                <!-- BLOG POST 3: US Supreme Court Tariffs Ruling -->
+                <article class="blog-card fade-in">
+                    <div class="new-badge">NEW</div>
+                    <div class="blog-image">
+                        <img src="assets/us-tariffs-ruling-thumbnail.jpg" 
+                             alt="US Supreme Court Tariffs Ruling: Impact on Indian Markets" 
+                             onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #1e3a8a, #1e40af)'; this.parentNode.innerHTML='<i class=\'fas fa-gavel\'></i>';">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">
+                                <i class="fas fa-calendar-alt"></i> February 22, 2026
+                            </div>
+                            <div class="blog-category">International Trade</div>
+                        </div>
+                        <h3>
+                            <a href="blog/us-tariffs-ruling-india-market-analysis.html">US Supreme Court Tariffs Ruling: What It Means for Indian Markets</a>
+                        </h3>
+                        <p class="blog-excerpt">
+                            Historic 6-3 ruling limits presidential tariff powers. We analyze the impact on Indian IT, pharma, metals, FII flows, rupee stability, and sector-wise opportunities. A comprehensive 3,000+ word educational guide.
+                        </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-gavel"></i> 6-3 Ruling</span>
+                            <span><i class="fas fa-chart-line"></i> Sector Analysis</span>
+                            <span><i class="fas fa-rupee-sign"></i> Rupee Impact</span>
+                        </div>
+                        <a href="blog/us-tariffs-ruling-india-market-analysis.html" class="read-more">
+                            Read Full Analysis <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
 
-<article class="blog-card fade-in">
+                <!-- BLOG POST 4: The 17% Factor IPO Strategies -->
+                <article class="blog-card fade-in">
                     <div class="trending-badge">
                         <i class="fas fa-fire"></i> TRENDING
                     </div>
@@ -1318,13 +1365,18 @@
                         <p class="blog-excerpt">
                             Only 17% of traders profited in FY25. We analyzed 10,542 investors to reveal the Omkar Framework: Accumulation Intelligence, Risk-Adjusted Execution, and Exit Discipline. Take the 30-second quiz to check if you're in the 17% or 83%.
                         </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-users"></i> 10,542 analyzed</span>
+                            <span><i class="fas fa-chart-pie"></i> 17% profitable</span>
+                            <span><i class="fas fa-clock"></i> 30-sec quiz</span>
+                        </div>
                         <a href="blog/17-percent-factor-ipo-strategies-2026.html" class="read-more">
                             Read Full Guide <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- BLOG POST 2: NEW Market Dynamics 2026 Deep Dive (3,200 words) -->
+                <!-- BLOG POST 5: Market Dynamics 2026 Deep Dive -->
                 <article class="blog-card fade-in">
                     <div class="new-badge">NEW</div>
                     <div class="blog-image">
@@ -1345,13 +1397,18 @@
                         <p class="blog-excerpt">
                             A comprehensive 3,200-word educational analysis: ₹2.5 lakh crore IPO pipeline impact, retail holding periods (7.25%), SEBI's 30-day data rule, 15-year sectoral returns, and the Omkar Framework for capital preservation.
                         </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-rupee-sign"></i> ₹2.5L Cr pipeline</span>
+                            <span><i class="fas fa-chart-line"></i> 15-year returns</span>
+                            <span><i class="fas fa-clock"></i> 30-day rule</span>
+                        </div>
                         <a href="blog/liquidity-cycle-investor-behavior-analysis.html" class="read-more">
                             Read Full Guide <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- Blog Post 3: RBI Strategies 2026 -->
+                <!-- BLOG POST 6: RBI Strategies 2026 -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <img src="blog/assets/rbi-2026-market-guide-thumbnail.jpg" 
@@ -1371,13 +1428,18 @@
                         <p class="blog-excerpt">
                             RBI strategies decoded with proprietary data: retail holding period drops to 5.2 months, only 17% traders profitable, SIP paradox & Omkar framework for 2026 market cycle. 10,542 investors analyzed.
                         </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-university"></i> RBI Analysis</span>
+                            <span><i class="fas fa-chart-line"></i> 5.2 mo holding</span>
+                            <span><i class="fas fa-percent"></i> 17% profitable</span>
+                        </div>
                         <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="read-more">
                             Read Full Guide <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- Blog Post 4: Rupee Dollar Mastery -->
+                <!-- BLOG POST 7: Rupee Dollar Mastery -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <img src="blog/assets/rupee-dollar-mastery-2026.png" 
@@ -1397,13 +1459,18 @@
                         <p class="blog-excerpt">
                             Advanced educational guide on USD/INR trading, institutional analysis models, and risk management frameworks. Learn how top funds analyze currency movements.
                         </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-dollar-sign"></i> USD/INR</span>
+                            <span><i class="fas fa-university"></i> Institutional</span>
+                            <span><i class="fas fa-shield-alt"></i> Risk Framework</span>
+                        </div>
                         <a href="blog/rupee-dollar-mastery-2026.html" class="read-more">
                             Read Full Guide <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- Blog Post 5: Global Inflation & Interest Rates -->
+                <!-- BLOG POST 8: Global Inflation & Interest Rates -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-chart-line"></i>
@@ -1421,13 +1488,18 @@
                         <p class="blog-excerpt">
                             Learn how global inflation trends and interest rate policies affect financial markets. Comprehensive educational analysis for aspiring investors to understand macroeconomic factors.
                         </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-chart-line"></i> Inflation</span>
+                            <span><i class="fas fa-percent"></i> Interest Rates</span>
+                            <span><i class="fas fa-globe"></i> Global</span>
+                        </div>
                         <a href="blog/Global_Inflation&Interest_Rates.html" class="read-more">
                             Read Full Analysis <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- Blog Post 6: Budget 2026 -->
+                <!-- BLOG POST 9: Budget 2026 -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <img src="blog/assets/BUDGET 2026 WINNERS.png" 
@@ -1447,13 +1519,18 @@
                         <p class="blog-excerpt">
                             Expert analysis of Union Budget 2026 education reforms and financial opportunities. Understand how to capitalize on these government changes for better investment planning.
                         </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-file-invoice"></i> Budget 2026</span>
+                            <span><i class="fas fa-graduation-cap"></i> Education</span>
+                            <span><i class="fas fa-rupee-sign"></i> Tax Benefits</span>
+                        </div>
                         <a href="blog/budget-2026.html" class="read-more">
                             Read Full Analysis <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- Blog Post 7: Coming Soon - Portfolio Strategy -->
+                <!-- BLOG POST 10: Coming Soon - Portfolio Strategy -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-chart-pie"></i>
@@ -1471,13 +1548,18 @@
                         <p class="blog-excerpt">
                             Learn the principles of portfolio diversification for risk management. Educational guide on how to balance different investment types for optimal returns and security.
                         </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-chart-pie"></i> Diversification</span>
+                            <span><i class="fas fa-shield-alt"></i> Risk Management</span>
+                            <span><i class="fas fa-chart-line"></i> Asset Allocation</span>
+                        </div>
                         <a href="#" class="read-more">
                             Coming Soon <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- Blog Post 8: Coming Soon - Risk Management -->
+                <!-- BLOG POST 11: Coming Soon - Risk Management -->
                 <article class="blog-card fade-in">
                     <div class="blog-image">
                         <i class="fas fa-shield-alt"></i>
@@ -1495,6 +1577,11 @@
                         <p class="blog-excerpt">
                             Deep dive into portfolio protection, drawdown control, and risk-adjusted return optimization for long-term wealth creation in Indian markets.
                         </p>
+                        <div class="blog-stats">
+                            <span><i class="fas fa-shield-alt"></i> Protection</span>
+                            <span><i class="fas fa-chart-line"></i> Drawdown Control</span>
+                            <span><i class="fas fa-calculator"></i> Risk-Adjusted</span>
+                        </div>
                         <a href="#" class="read-more">
                             Coming Soon <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1508,6 +1595,18 @@
                 <ul class="blog-categories">
                     <li>
                         <a href="#">
+                            <span>Global Markets</span>
+                            <span class="category-count">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Technical Analysis</span>
+                            <span class="category-count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
                             <span>IPO Strategies</span>
                             <span class="category-count">1</span>
                         </a>
@@ -1515,7 +1614,7 @@
                     <li>
                         <a href="#">
                             <span>Market Analysis</span>
-                            <span class="category-count">1</span>
+                            <span class="category-count">2</span>
                         </a>
                     </li>
                     <li>
@@ -1544,6 +1643,12 @@
                     </li>
                     <li>
                         <a href="#">
+                            <span>International Trade</span>
+                            <span class="category-count">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
                             <span>Portfolio Strategy</span>
                             <span class="category-count">1</span>
                         </a>
@@ -1559,8 +1664,11 @@
                 <div class="blog-newsletter">
                     <h4><i class="fas fa-newspaper"></i> Subscribe to Our Newsletter</h4>
                     <p>Get educational articles, market insights, and investment tips directly in your inbox.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email address" required>
+                    <form class="newsletter-form" action="https://formspree.io/f/mlgnkpoo" method="POST">
+                        <input type="email" name="email" placeholder="Your email address" required>
+                        <input type="hidden" name="_captcha" value="true">
+                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
+                        <input type="hidden" name="_subject" value="New Blog Newsletter Subscriber">
                         <button type="submit">Subscribe</button>
                     </form>
                     <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">Educational content only. No spam, ever.</p>
@@ -1588,6 +1696,18 @@
                 <div class="ticker-content">
                     <div class="ticker-scroll">
                         <!-- Ticker items - NEWEST FIRST -->
+                        <a href="blog/Global_Market_Nifty_Impact_ULTIMATE_GUIDE_22-02-2026.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> How Global Market Affects Nifty 2026
+                            <span class="ticker-date">Feb 22</span>
+                        </a>
+                        <a href="blog/adanient-fibonacci-breakout-study.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> ADANIENT Fibonacci Breakout Study
+                            <span class="ticker-date">Feb 22</span>
+                        </a>
+                        <a href="blog/us-tariffs-ruling-india-market-analysis.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> US Supreme Court Tariffs Ruling
+                            <span class="ticker-date">Feb 22</span>
+                        </a>
                         <a href="blog/liquidity-cycle-investor-behavior-analysis.html" class="ticker-item">
                             <i class="fas fa-circle"></i> Market Dynamics 2026 Deep Dive
                             <span class="ticker-date">Feb 21</span>
@@ -1613,29 +1733,17 @@
                             <span class="ticker-date">Jan 29</span>
                         </a>
                         <!-- Duplicate for seamless loop -->
-                        <a href="blog/liquidity-cycle-investor-behavior-analysis.html" class="ticker-item">
-                            <i class="fas fa-circle"></i> Market Dynamics 2026 Deep Dive
-                            <span class="ticker-date">Feb 21</span>
+                        <a href="blog/Global_Market_Nifty_Impact_ULTIMATE_GUIDE_22-02-2026.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> How Global Market Affects Nifty 2026
+                            <span class="ticker-date">Feb 22</span>
                         </a>
-                        <a href="blog/17-percent-factor-ipo-strategies-2026.html" class="ticker-item">
-                            <i class="fas fa-circle"></i> The 17% Factor IPO Guide 2026
-                            <span class="ticker-date">Feb 17</span>
+                        <a href="blog/adanient-fibonacci-breakout-study.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> ADANIENT Fibonacci Breakout Study
+                            <span class="ticker-date">Feb 22</span>
                         </a>
-                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html" class="ticker-item">
-                            <i class="fas fa-circle"></i> RBI Strategies 2026 Guide
-                            <span class="ticker-date">Feb 17</span>
-                        </a>
-                        <a href="blog/rupee-dollar-mastery-2026.html" class="ticker-item">
-                            <i class="fas fa-circle"></i> Rupee-Dollar Mastery
-                            <span class="ticker-date">Feb 10</span>
-                        </a>
-                        <a href="blog/Global_Inflation&Interest_Rates.html" class="ticker-item">
-                            <i class="fas fa-circle"></i> Global Inflation Analysis
-                            <span class="ticker-date">Feb 08</span>
-                        </a>
-                        <a href="blog/budget-2026.html" class="ticker-item">
-                            <i class="fas fa-circle"></i> Budget 2026 Education Changes
-                            <span class="ticker-date">Jan 29</span>
+                        <a href="blog/us-tariffs-ruling-india-market-analysis.html" class="ticker-item">
+                            <i class="fas fa-circle"></i> US Supreme Court Tariffs Ruling
+                            <span class="ticker-date">Feb 22</span>
                         </a>
                     </div>
                 </div>
@@ -1643,41 +1751,41 @@
 
             <!-- Recent Updates Grid -->
             <div class="updates-grid">
-                <!-- Update 1: Market Dynamics Deep Dive (Newest) -->
+                <!-- Update 1: Global Market Nifty -->
                 <div class="update-card">
                     <div class="update-badge-new">NEW</div>
                     <div class="update-date">
-                        <i class="fas fa-calendar-check"></i> February 21, 2026
+                        <i class="fas fa-calendar-check"></i> February 22, 2026
                     </div>
                     <h3>
-                        <a href="blog/liquidity-cycle-investor-behavior-analysis.html">
-                            Market Dynamics 2026: IPO Impact & Investor Psychology
+                        <a href="blog/Global_Market_Nifty_Impact_ULTIMATE_GUIDE_22-02-2026.html">
+                            How Global Market Affects Nifty 2026
                         </a>
                     </h3>
                     <div class="update-excerpt">
-                        3,200-word deep dive • ₹2.5 lakh crore IPO pipeline • SEBI 30-day rule • 15-year sectoral returns
+                        Trump tariffs, Fed rates, crude oil, DXY correlation & sector-wise analysis with 15-year data.
                     </div>
                     <div class="read-time">
-                        <i class="fas fa-clock"></i> 16 min read
+                        <i class="fas fa-clock"></i> 15 min read
                         <span style="margin-left: auto; color: var(--gold-accent);">
                             <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </div>
 
-                <!-- Update 2: IPO Guide -->
+                <!-- Update 2: ADANIENT Fibonacci -->
                 <div class="update-card">
                     <div class="update-badge-new">NEW</div>
                     <div class="update-date">
-                        <i class="fas fa-calendar-check"></i> February 17, 2026
+                        <i class="fas fa-calendar-check"></i> February 22, 2026
                     </div>
                     <h3>
-                        <a href="blog/17-percent-factor-ipo-strategies-2026.html">
-                            The 17% Factor: IPO Investing Strategies 2026
+                        <a href="blog/adanient-fibonacci-breakout-study.html">
+                            ADANIENT Fibonacci Breakout Study
                         </a>
                     </h3>
                     <div class="update-excerpt">
-                        Only 17% profited in FY25 • 10,542 investors analyzed • Omkar framework • 30-sec quiz inside
+                        15-year price action analysis with Fibonacci extensions from 0.618 to 4.236 across 3 timeframes.
                     </div>
                     <div class="read-time">
                         <i class="fas fa-clock"></i> 12 min read
@@ -1687,21 +1795,22 @@
                     </div>
                 </div>
 
-                <!-- Update 3: RBI Guide -->
+                <!-- Update 3: US Tariffs Ruling -->
                 <div class="update-card">
+                    <div class="update-badge-new">NEW</div>
                     <div class="update-date">
-                        <i class="fas fa-calendar-check"></i> February 17, 2026
+                        <i class="fas fa-calendar-check"></i> February 22, 2026
                     </div>
                     <h3>
-                        <a href="blog/rbi-strategies-indian-investors-2026-guide.html">
-                            RBI Strategies for Indian Investors 2026
+                        <a href="blog/us-tariffs-ruling-india-market-analysis.html">
+                            US Supreme Court Tariffs Ruling
                         </a>
                     </h3>
                     <div class="update-excerpt">
-                        Retail holding period 5.2 months • 17% profitable traders • Omkar framework
+                        Historic 6-3 ruling impact on Indian IT, pharma, metals, FII flows and rupee stability.
                     </div>
                     <div class="read-time">
-                        <i class="fas fa-clock"></i> 12 min read
+                        <i class="fas fa-clock"></i> 10 min read
                         <span style="margin-left: auto; color: var(--gold-accent);">
                             <i class="fas fa-arrow-right"></i>
                         </span>
@@ -1888,22 +1997,6 @@
             // Update time every second
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
-            
-            // Newsletter form submission
-            const newsletterForm = document.querySelector('.newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const email = this.querySelector('input[type="email"]').value;
-                    
-                    if (email && email.includes('@')) {
-                        alert('Thank you for subscribing to our educational newsletter! You will receive updates on new articles.');
-                        this.reset();
-                    } else {
-                        alert('Please enter a valid email address.');
-                    }
-                });
-            }
         });
     </script>
 

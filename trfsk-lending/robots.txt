@@ -1,8 +1,0 @@
-# robots.txt for TRFSK Omkar Services Lending Portal
-User-agent: *
-Allow: /
-Disallow: /private/
-Disallow: /admin/
-
-# Sitemap location (CRITICAL: Points to sitemap IN THIS FOLDER)
-Sitemap: https://omkarservices.in/trfsk-lending/sitemap.xml

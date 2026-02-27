@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omkar Enterprises | Private Loan Partnership · Series Alpha</title>
+    
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Private loan arrangement: ₹5,00,000 principal. 30% monthly interest (principal + interest). Once-in-lifetime opportunity. Two allocations remain.">
+
+    <!-- Google tag (gtag) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S07E1S6Z6E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-S07E1S6Z6E');
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #c5a059;
+            --primary-dark: #9e7e45;
+            --bg-dark: #0a0c0e;
+            --bg-card: #111315;
+            --border-subtle: rgba(197, 160, 89, 0.12);
+            --text-secondary: #8a8d94;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            scroll-behavior: smooth;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        
+        .serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+        
+        .gold { color: var(--primary); }
+        .gold-bg { background: var(--primary); color: #000; }
+        .gold-border { border-color: var(--primary); }
+        
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            border-color: rgba(197, 160, 89, 0.3);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.8);
+        }
+        
+        .card-premium {
+            background: linear-gradient(145deg, #111315 0%, #0e1012 100%);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -20px #000;
+        }
+        
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: rgba(197, 160, 89, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 2rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+        
+        .badge-critical {
+            background: rgba(220, 38, 38, 0.08);
+            border-color: rgba(220, 38, 38, 0.25);
+            color: #ef4444;
+        }
+        
+        .badge-definitive {
+            background: rgba(197, 160, 89, 0.12);
+            border-color: rgba(197, 160, 89, 0.35);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid transparent;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        /* Definitive statement styling */
+        .definitive-statement {
+            font-size: 1.1rem;
+            color: #b4b7be;
+            border-left: 2px solid var(--primary);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        /* Clause styling */
+        .clause {
+            border-left: 2px solid var(--primary);
+            padding: 1.25rem 1.5rem;
+            background: rgba(197, 160, 89, 0.02);
+            border-radius: 0 1rem 1rem 0;
+            font-size: 0.9rem;
+            color: #b4b7be;
+        }
+        
+        .clause strong {
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        /* Form elements */
+        .form-control {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 1rem;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background: #d4af6c;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px -8px rgba(197, 160, 89, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: #fff;
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(197, 160, 89, 0.1);
+        }
+        
+        .btn-wa {
+            background: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 1rem;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-wa:hover {
+            background: #128C7E;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px -8px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Stats */
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+        }
+        
+        /* Footer */
+        .footer-note {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #3a3c42;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.08);
+        }
+        
+        /* Floating contact */
+        .contact-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #1a1c20;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 50;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 10px 30px -10px #000;
+            transition: all 0.3s;
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+        }
+        
+        .contact-float:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BANNER - Critical information first -->
+    <div class="bg-black/95 text-center py-3 px-4 border-b border-[#c5a059]/20 fixed w-full z-50" style="backdrop-filter: blur(8px);">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-4 text-[0.65rem] md:text-[0.75rem] uppercase tracking-widest">
+            <span class="text-[#ef4444] font-medium">⚠️ ONCE-IN-A-LIFETIME INTEREST RATE</span>
+            <span class="text-[#8a8d94]">|</span>
+            <span class="text-[#c5a059]">FUTURE INTEREST @ 2-3% MONTHLY ONLY</span>
+            <span class="text-[#8a8d94]">|</span>
+            <span class="text-white">2 OF 2 ALLOCATIONS FOR THIS GROUP OF INVESTORS OTHERS FOR HNI ONLY</span>
+        </div>
+    </div>
+
+    <!-- FLOATING CONTACT - Subtle, professional -->
+    <a href="https://wa.me/917066393830?text=Regarding%20the%20Series%20Alpha%20loan%20partnership%20-%20I%20understand%20this%20is%20a%20once-in-lifetime%20rate." 
+       class="contact-float" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="gold">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.57 3.87 1.65 5.53L2 22l4.73-1.6c1.62.97 3.5 1.51 5.4 1.51 5.45 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/>
+        </svg>
+        <span class="hidden md:inline text-sm">Institutional Relations</span>
+        <span class="text-xs bg-black/40 px-2 py-1 rounded-full">+91 70663 93830</span>
+    </a>
+
+    <!-- NAVIGATION - Clean -->
+    <nav class="pt-20 pb-6 px-6 border-b border-[#c5a059]/10" style="background: #0a0c0e;">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <span class="text-2xl font-light tracking-tight">OMKAR<span class="gold font-medium">enterprises</span></span>
+                <span class="block text-[0.45rem] tracking-[0.3em] text-[#5a5d63] mt-1">PRIVATE LOAN ARRANGEMENTS · Estd. 2012</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#offering" class="nav-link">THE OFFERING</a>
+                <a href="#covenants" class="nav-link">COVENANTS</a>
+                <a href="#security" class="nav-link">SECURITY</a>
+                <a href="#definitive-terms" class="nav-link">DEFINITIVE TERMS</a>
+                <a href="#track-record" class="nav-link">TRACK RECORD</a>
+                <a href="#allocation" class="nav-link">ALLOCATION</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO - Absolute clarity on the once-in-lifetime nature -->
+    <section class="px-6 py-20" id="offering">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="badge badge-critical mb-6">🔴 SERIES ALPHA · INAUGURAL & FINAL AT THIS RATE</span>
+                <h1 class="text-5xl md:text-7xl font-light mb-6 leading-tight">
+                    <span class="serif gold">₹5,00,000</span><br>
+                    <span class="text-3xl md:text-4xl text-[#b4b7be]">30% per month · principal + interest</span>
+                </h1>
+                <p class="text-xl text-[#8a8d94] max-w-2xl mx-auto">
+                    A private loan arrangement. This specific interest rate is extended <span class="text-white">only once in your lifetime</span>. Future loans at 2-3% monthly interest only.
+                </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+                <div class="card p-6 text-center">
+                    <div class="stat-number">₹1.5 Lakhs</div>
+                    <div class="stat-label">Monthly Interest + Principal</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="stat-number">₹18 Lakhs</div>
+                    <div class="stat-label">TOTAL INTEREST PAID</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="stat-number">8 mo</div>
+                    <div class="stat-label">Lock-in Period</div>
+                </div>
+                <div class="card p-6 text-center border border-[#c5a059]/30">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">2 SLOTS ONLY</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEGAL COVENANTS - Your agreement terms -->
+    <section class="px-6 py-20 bg-[#0e1012]" id="covenants">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="badge mb-4">LOAN AGREEMENT · 30.09.2025</span>
+                <h2 class="text-4xl font-light mb-4">Executed Covenants</h2>
+                <p class="text-[#8a8d94] max-w-2xl mx-auto">As signed by Mrs. Narmadaben Parmar (Lender) and Mr. Santosh Shendkar (Borrower)</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="clause">
+                    <span class="text-xs gold tracking-wider mb-2 block">CLAUSE 2.3 · GRACE PERIOD</span>
+                    <strong>90-day repayment grace</strong> — "The Borrower reserves a grace period of up to ninety (90) days for repayment of the principal, during which no default shall be deemed to occur."
+                </div>
+                <div class="clause">
+                    <span class="text-xs gold tracking-wider mb-2 block">CLAUSE 2C · SECURITY</span>
+                    <strong>Post-dated cheques</strong> — "Post-dated cheques shall be enforceable only in the event of continuous non-payment for a period exceeding 90 days."
+                </div>
+                <div class="clause">
+                    <span class="text-xs gold tracking-wider mb-2 block">ANNEXURE B-10 · PENALTY</span>
+                    <strong>₹50 per day</strong> — "Delay beyond 30 days in guaranteed return of 2% attracts ₹50/day penalty."
+                </div>
+                <div class="clause">
+                    <span class="text-xs gold tracking-wider mb-2 block">ANNEXURE B-33 · ARBITRATION</span>
+                    <strong>Pune jurisdiction</strong> — "All disputes resolved by arbitration in Pune, Maharashtra."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURITY LAYERS -->
+    <section class="px-6 py-20" id="security">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="badge mb-4">MULTI-LAYER SECURITY</span>
+                <h2 class="text-4xl font-light mb-4">Capital Protection Stack</h2>
+                <p class="text-[#8a8d94]">Institutional-grade safeguards, contractually embedded</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card p-8">
+                    <div class="text-3xl mb-4 gold">⚖️</div>
+                    <h3 class="text-xl font-medium mb-3">First Lien Position</h3>
+                    <p class="text-[#8a8d94] text-sm">Notarized loan agreement under Indian Contract Act, 1872. Your claim stands prior to all unsecured obligations.</p>
+                </div>
+                <div class="card p-8 border-[#c5a059]/30">
+                    <div class="text-3xl mb-4 gold">📜</div>
+                    <h3 class="text-xl font-medium mb-3">Negotiable Instruments</h3>
+                    <p class="text-[#8a8d94] text-sm">Post-dated cheques for full principal. Section 138, NI Act protection. Enforceable only after 90-day continuous default.</p>
+                </div>
+                <div class="card p-8">
+                    <div class="text-3xl mb-4 gold">🛡️</div>
+                    <h3 class="text-xl font-medium mb-3">Life Cover Assignment</h3>
+                    <p class="text-[#8a8d94] text-sm">₹1 Crore life insurance assigned to partner capital. Section 38, Insurance Act protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEFINITIVE TERMS - ONCE IN A LIFETIME (Consolidated) -->
+    <section class="px-6 py-24 bg-[#0e1012]" id="definitive-terms">
+        <div class="max-w-4xl mx-auto">
+            <div class="card-premium p-12 md:p-16 relative overflow-hidden">
+                <!-- Background subtle pattern -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#c5a059]/5 to-transparent rounded-full blur-3xl"></div>
+
+                <div class="relative z-10">
+                    <span class="badge badge-critical mb-8">🔴 ONCE IN A LIFETIME · READ CAREFULLY</span>
+
+                    <h2 class="text-4xl md:text-5xl font-light mb-8 serif gold">The Definitive Stance</h2>
+
+                    <div class="space-y-6 text-[#b4b7be]">
+                        <p class="text-lg">
+                            This specific structure—<strong class="text-white">30% per month (inclusive of principal + interest)</strong>—is a strategic exception, extended <strong class="text-white">only once in your lifetime</strong>. It is not a baseline for future loan partnerships.
+                        </p>
+                        <p class="text-lg">
+                            After the completion of this 12-month cycle, any future capital deployment with Omkar Enterprises, whether next month or next year, will be governed by our standard loan agreement terms, attracting a <strong class="gold">monthly interest of 2% to 3%</strong> only. <span class="text-white">No further opportunity at this 30% monthly rate will be available to you.</span>
+                        </p>
+                        <div class="definitive-statement">
+                            <p class="text-lg">
+                                <span class="text-white font-medium">We value transparency over false commitments.</span> If this once-in-a-lifetime condition does not align with your financial planning, we respectfully suggest you do not proceed. After your term, you are free to take your principal and interest and exit, or continue at our standard rates—the choice is entirely yours, with no obligation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Allocation reminder -->
+                    <div class="mt-12 p-6 bg-black/40 rounded-2xl border border-[#c5a059]/20">
+                        <div class="flex items-center justify-between flex-wrap gap-4">
+                            <div>
+                                <span class="block text-xs gold mb-1">2 SLOTS ALLOCATIONS FOR GROUP OF 47 INTERESTED PRIVATE GROUP MEMBERS</span>
+                                <span class="text-3xl font-light">2 of 2</span>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-[#8a8d94] mb-1">LOAN AMOUNT (PRINCIPAL)</span>
+                                <span class="text-2xl font-light gold">₹5,00,000</span>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-[#8a8d94] mb-1">TOTAL INTEREST + PRINCIPAL</span>
+                                <span class="text-2xl font-light">₹18,00,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRACK RECORD - Verified Performance with Smart Note -->
+    <section class="px-6 py-20" id="track-record">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="badge mb-4">VERIFIED PERFORMANCE</span>
+                <h2 class="text-4xl md:text-5xl font-light mb-4">2 Year Repayment Track Record</h2>
+                <p class="text-[#8a8d94] max-w-2xl mx-auto">Consistent repayment history since 2023. Every interest obligation met.</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="card p-8 text-center">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label mt-2">Principal Repayment</div>
+                </div>
+                <div class="card p-8 text-center">
+                    <div class="stat-number">₹2.4Cr+</div>
+                    <div class="stat-label mt-2">Total Interest Paid</div>
+                </div>
+                <div class="card p-8 text-center">
+                    <div class="stat-number">56+ HNI</div>
+                    <div class="stat-label mt-2">Active Lending Partners</div>
+                </div>
+            </div>
+
+            <!-- Proof Links - Google Drive -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Year-wise Repayment -->
+                <a href="https://drive.google.com/drive/folders/1JHFmbbTiCwbDeKlQmE54glWBbtyDO2e2" 
+                   target="_blank" 
+                   class="card p-8 hover:border-[#c5a059]/40 transition-all group">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-4xl mb-3 gold">📊</div>
+                            <h3 class="text-xl font-medium mb-2">Year-wise Repayment History</h3>
+                            <p class="text-sm text-[#8a8d94]">Screenshots organized by financial year</p>
+                        </div>
+                        <span class="text-gold text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    </div>
+                </a>
+
+                <!-- Client-wise Repayment -->
+                <a href="https://drive.google.com/drive/folders/1M0V9zakkB7Ul0dp97hxsv8fXhZx7L0yd" 
+                   target="_blank" 
+                   class="card p-8 hover:border-[#c5a059]/40 transition-all group">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-4xl mb-3 gold">📂</div>
+                            <h3 class="text-xl font-medium mb-2">Client-wise Repayment Proof</h3>
+                            <p class="text-sm text-[#8a8d94]">Individual transaction screenshots</p>
+                        </div>
+                        <span class="text-gold text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Sample Agreement Link -->
+            <div class="text-center mt-12">
+                <a href="https://drive.google.com/file/d/1L2N73a6MUCARma8wZdUKNik1cQQGgXMy/view?usp=drivesdk" 
+                   target="_blank"
+                   class="inline-flex items-center gap-2 text-[#8a8d94] hover:text-gold transition-colors text-sm">
+                    <span>📄 View sample loan agreement (PDF)</span>
+                    <span>→</span>
+                </a>
+                <p class="text-[0.6rem] text-[#5a5d63] mt-2">Same format as signed with Mrs. Narmadaben Parmar</p>
+            </div>
+
+            <!-- Smart Note: Past Performance Disclosure -->
+            <div class="mt-10 p-5 bg-black/40 rounded-xl border border-[#c5a059]/10 max-w-2xl mx-auto text-center">
+                <p class="text-xs text-[#8a8d94] italic">
+                    📋 <span class="text-white">Note:</span> These repayment screenshots (up to full capital recovery) are provided solely as evidence of our historical consistency in honoring every loan obligation. 
+                    <strong class="text-[#c5a059]">Past performance is not a guarantee of future results.</strong> They serve to demonstrate our commitment to transparency and the security framework we maintain.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REPAYMENT SCHEDULE -->
+    <section class="px-6 py-20 bg-[#0e1012]">
+        <div class="max-w-4xl mx-auto">
+            <div class="card p-8">
+                <h3 class="text-2xl font-light mb-6 text-center">₹5,00,000 · 12 Month Schedule</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-[#c5a059]/20">
+                                <th class="text-left py-4 text-gold font-medium">Month</th>
+                                <th class="text-left py-4 text-gold font-medium">Interest + Principal</th>
+                                <th class="text-left py-4 text-gold font-medium">Cumulative</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="py-3">1-12</td><td>₹1,50,000</td><td>₹18,00,000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-[#5a5d63] mt-4 text-center">*90-day grace period applies (Clause 2.3)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMPLE ALLOCATION FORM - WITH WHATSAPP SHARE BUTTON -->
+    <section class="px-6 py-20" id="allocation">
+        <div class="max-w-2xl mx-auto">
+            <div class="card-premium p-10 md:p-14 relative">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 badge badge-critical px-6 py-2 whitespace-nowrap">
+                    2 OF 2 ALLOCATIONS REMAIN
+                </div>
+
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-light mb-3">Interested? Share Your Details</h2>
+                    <p class="text-sm text-[#8a8d94]">No lengthy forms. Just fill these 3 fields and click the WhatsApp button. Your details will be sent to us instantly.</p>
+                </div>
+
+                <div class="space-y-5">
+                    <input type="text" id="fullName" class="form-control" placeholder="Full name (as per PAN)">
+                    <input type="email" id="emailAddr" class="form-control" placeholder="Email address">
+                    <input type="tel" id="mobileNum" class="form-control" placeholder="WhatsApp number">
+                    
+                    <!-- Explicit acknowledgment checkbox -->
+                    <div class="p-4 bg-black/40 rounded-xl border border-[#c5a059]/10">
+                        <label class="flex items-start gap-3 text-sm text-[#b4b7be]">
+                            <input type="checkbox" id="ackCheckbox" class="mt-1 accent-[#c5a059]">
+                            <span>I confirm that I understand this is a <span class="text-white">once-in-lifetime interest rate</span>. Any future capital deployment with Omkar Enterprises will attract only the regular interest of 2-3% per month, and no further opportunity at this 30% rate will be available to me.</span>
+                        </label>
+                    </div>
+
+                    <!-- WhatsApp Share Button -->
+                    <button id="whatsappShareBtn" class="btn-wa mt-4">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.57 3.87 1.65 5.53L2 22l4.73-1.6c1.62.97 3.5 1.51 5.4 1.51 5.45 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/>
+                        </svg>
+                        <span>SHARE DETAILS ON WHATSAPP</span>
+                    </button>
+
+                    <p class="text-[0.55rem] text-[#5a5d63] text-center pt-2">
+                        By clicking the button, you confirm that you have read and understood the definitive terms above. Your details will be shared with us via WhatsApp for follow-up.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-note">
+        <div>OMKAR ENTERPRISES · PRIVATE LOAN ARRANGEMENTS</div>
+        <div class="mt-2 space-x-4">
+            <span>Registered: Bk 673, Sai Baba colony, Ulhasnagar 421003</span>
+            <span>·</span>
+            <span>Loan Agreement: 30.09.2025 (Narmadaben Parmar)</span>
+        </div>
+        <div class="mt-4 text-[0.45rem] text-[#3f4147]">
+            This is a private loan arrangement · Not a public deposit · No future commitments at this rate
+        </div>
+    </footer>
+
+    <!-- WhatsApp Share Script -->
+    <script>
+        document.getElementById('whatsappShareBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('emailAddr').value.trim();
+            const mobile = document.getElementById('mobileNum').value.trim();
+            const acknowledgment = document.getElementById('ackCheckbox').checked;
+            
+            // Validate fields
+            if (!fullName || !email || !mobile) {
+                alert('Please fill in all fields before sharing.');
+                return;
+            }
+            
+            if (!acknowledgment) {
+                alert('Please confirm that you understand this is a once-in-lifetime rate.');
+                return;
+            }
+            
+            // Validate email (simple)
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Validate mobile (simple Indian number check)
+            if (mobile.length < 10) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+            
+            // Construct WhatsApp message
+            const message = `🔔 *NEW ALLOCATION INTEREST - SERIES ALPHA*%0A%0A` +
+                `*Name:* ${fullName}%0A` +
+                `*Email:* ${email}%0A` +
+                `*WhatsApp:* ${mobile}%0A` +
+                `*Interested in:* ₹5,00,000 - Series Alpha (30% per month · once in lifetime)%0A%0A` +
+                `*Acknowledgment:* Confirmed - understands this is a once-in-lifetime rate. Future loans at 2-3% only.%0A%0A` +
+                `_Sent from private offering page_`;
+            
+            // Open WhatsApp with the message
+            const whatsappURL = `https://wa.me/917066393830?text=${message}`;
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>

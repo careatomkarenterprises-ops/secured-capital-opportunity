@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO TAGS -->
+    <title>Business Strategy Blog | TRFSK OMKAR SERVICES</title>
+    <meta name="description" content="Strategic insights for business growth, market positioning, and competitive advantage.">
+    <meta name="keywords" content="business strategy, growth strategy, market positioning, competitive advantage">
+    <link rel="canonical" href="https://omkarservices.in/blog/category/business-strategy.html">
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Same styles as other category pages */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1e293b; background: #f8fafc; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        .corporate-header {
+            background: #0f172a; color: white; padding: 12px 0; border-bottom: 3px solid #d4af37;
+            font-size: 13px;
+        }
+        .corporate-header .container {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+        }
+        .cin-block i, .contact-header i { color: #d4af37; margin-right: 6px; }
+        .contact-header a { color: white; text-decoration: none; margin: 0 10px; }
+        
+        .navbar {
+            background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 15px 0;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo img { height: 50px; width: auto; }
+        .logo-text h1 { font-size: 20px; font-weight: 700; color: #0f172a; }
+        .logo-text .tagline { font-size: 11px; color: #64748b; }
+        .nav-menu { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-menu a { text-decoration: none; color: #475569; font-weight: 500; }
+        .nav-menu a:hover, .nav-menu a.active { color: #d4af37; }
+        .hamburger { display: none; font-size: 24px; cursor: pointer; }
+        
+        .category-header {
+            background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 60px 0; text-align: center;
+        }
+        .category-header h1 { font-size: 42px; margin-bottom: 15px; }
+        .category-header h1 span { color: #d4af37; }
+        .breadcrumb a { color: #d4af37; text-decoration: none; }
+        .breadcrumb span { color: #94a3b8; margin: 0 8px; }
+        
+        .categories {
+            display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 40px 0;
+        }
+        .category-btn {
+            padding: 10px 25px; border: 1px solid #d4af37; border-radius: 30px; color: #d4af37;
+            text-decoration: none; transition: all 0.3s;
+        }
+        .category-btn:hover, .category-btn.active {
+            background: #d4af37; color: #0f172a;
+        }
+        
+        .blog-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin: 50px 0;
+        }
+        .blog-card {
+            background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0;
+            transition: all 0.3s; text-decoration: none; color: inherit;
+        }
+        .blog-card:hover {
+            transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .blog-image {
+            height: 200px; background: #f1f5f9; display: flex; align-items: center; justify-content: center;
+        }
+        .blog-content { padding: 25px; }
+        .blog-category {
+            color: #d4af37; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px;
+        }
+        .blog-card h3 { font-size: 20px; margin-bottom: 12px; color: #0f172a; }
+        .blog-excerpt { color: #475569; font-size: 14px; margin-bottom: 15px; }
+        .blog-meta { color: #64748b; font-size: 12px; display: flex; gap: 15px; }
+        
+        .footer {
+            background: #0f172a; color: white; padding: 60px 0 30px; margin-top: 60px;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;
+        }
+        .footer-col h4 { color: #d4af37; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        
+        .float-whatsapp {
+            position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
+            padding: 15px 25px; border-radius: 50px; text-decoration: none; display: flex;
+            align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 999;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-menu {
+                position: fixed; top: 70px; right: -100%; width: 100%; background: white;
+                flex-direction: column; padding: 40px; transition: right 0.3s;
+            }
+            .nav-menu.active { right: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Corporate Header -->
+    <div class="corporate-header">
+        <div class="container">
+            <div class="cin-block">
+                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong>
+            </div>
+            <div class="contact-header">
+                <i class="fas fa-phone-alt"></i> <a href="tel:+917066393830">+91 70663 93830</a>
+                <span>|</span>
+                <i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <img src="../../assets/logo.png" alt="TRFSK OMKAR SERVICES Logo">
+                <div class="logo-text">
+                    <h1>TRFSK OMKAR SERVICES</h1>
+                    <div class="tagline">PRIVATE LIMITED</div>
+                </div>
+            </a>
+            
+            <button class="hamburger" id="hamburger">☰</button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../services/corporate-advisory.html">Services</a></li>
+                <li><a href="../../technology/analytics-platform.html">Technology</a></li>
+                <li><a href="../index.html" class="active">Blog</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Category Header -->
+    <section class="category-header">
+        <div class="container">
+            <h1>Business <span>Strategy</span></h1>
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> <span>›</span>
+                <a href="../index.html">Blog</a> <span>›</span>
+                <span>Business Strategy</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <div class="container">
+        <div class="categories">
+            <a href="../index.html" class="category-btn">All</a>
+            <a href="corporate-advisory.html" class="category-btn">Corporate Advisory</a>
+            <a href="technology-analytics.html" class="category-btn">Technology</a>
+            <a href="compliance.html" class="category-btn">Compliance</a>
+            <a href="business-strategy.html" class="category-btn active">Business Strategy</a>
+        </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <section class="container">
+        <div class="blog-grid">
+            <!-- Post 1 -->
+            <a href="../post/business-succession-planning.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-sitemap" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Business Strategy</div>
+                    <h3>Business Succession Planning: A Strategic Guide</h3>
+                    <p class="blog-excerpt">Learn how to prepare your business for leadership transitions and ensure long-term stability.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> Feb 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Post 2 -->
+            <a href="../post/mergers-acquisitions-basics.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-chart-line" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Business Strategy</div>
+                    <h3>Mergers and Acquisitions: Basics for Business Owners</h3>
+                    <p class="blog-excerpt">An introductory guide to M&A processes, valuation, and integration strategies.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> Jan 28, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Post 3 -->
+            <a href="../post/market-entry-strategies.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-globe" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Business Strategy</div>
+                    <h3>Market Entry Strategies for Indian Businesses</h3>
+                    <p class="blog-excerpt">Approaches for entering new markets and expanding your business footprint.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> Jan 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>TRFSK OMKAR SERVICES</h4>
+                    <p style="opacity: 0.7;">Corporate advisory and technology solutions since 2023.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../../services/corporate-advisory.html">Services</a></li>
+                        <li><a href="../../technology/analytics-platform.html">Technology</a></li>
+                        <li><a href="../index.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../../privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="../../terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="../../cookie-policy.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>+91 70663 93830</li>
+                        <li>care@omkarservices.in</li>
+                        <li>Maharashtra, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED</p>
+                <p>CIN: U70200MH2023PTC407336</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat on WhatsApp</span>
+    </a>
+
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

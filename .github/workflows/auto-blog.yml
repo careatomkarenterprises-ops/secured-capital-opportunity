@@ -1,3 +1,4 @@
+# UPDATED: Added pull step to fix push conflicts - March 3, 2026
 name: Auto Blog Generator
 
 on:

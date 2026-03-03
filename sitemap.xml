@@ -17,6 +17,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://omkarservices.in/blog/post/process-automation-where-to-start.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://omkarservices.in/blog/post/business-succession-planning.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-03</lastmod>
@@ -30,12 +36,6 @@
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/corporate-governance-essentials.html</loc>
-    <priority>0.8</priority>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://omkarservices.in/blog/post/understanding-corporate-governance-in-2026.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-03</lastmod>
     <changefreq>monthly</changefreq>

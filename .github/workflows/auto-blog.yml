@@ -1,11 +1,10 @@
-# UPDATED: Added pull step to fix push conflicts - March 3, 2026
+# FINAL FIXED VERSION - Correct order of operations
 name: Auto Blog Generator
 
 on:
   schedule:
-    # Run daily at 2 AM IST (8:30 PM UTC previous day)
     - cron: '30 20 * * *'
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   generate-blog:
@@ -20,6 +19,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -30,18 +30,21 @@ jobs:
       run: |
         pip install python-slugify
         
+    - name: Pull latest changes FIRST
+      run: |
+        git pull origin main
+        
     - name: Generate blog posts
       run: |
         python main_runner.py
         
-    - name: Pull latest changes
-      run: |
-        git pull --rebase origin main
-        
-    - name: Commit and push changes
+    - name: Configure Git
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
+        
+    - name: Commit and push changes
+      run: |
         git add blog/ sitemap.xml index.html
         git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generated blog post [skip ci]"
         git push

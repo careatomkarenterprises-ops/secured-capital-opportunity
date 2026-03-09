@@ -19,10 +19,10 @@
     <meta name="robots" content="noindex, follow">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -52,7 +52,7 @@
         }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         
-        /* Logo styling - EXACT match with home page */
+        /* Logo styling */
         .logo { 
             display: flex; 
             align-items: center; 
@@ -123,7 +123,7 @@
             font-size: 18px; max-width: 600px; margin: 0 auto 30px; opacity: 0.9;
         }
         
-        /* Buttons - EXACT match with home page */
+        /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, #d4af37, #b8931c); color: #0f172a; padding: 16px 32px;
             border-radius: 30px; text-decoration: none; font-weight: 700; display: inline-block;
@@ -249,11 +249,11 @@
         </div>
     </div>
 
-    <!-- Navigation - FIXED LINKS -->
+    <!-- Navigation - WITH ABSOLUTE PATHS -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <img src="assets/logo.png" alt="TRFSK OMKAR SERVICES Logo">
+            <a href="/index.html" class="logo">
+                <img src="/assets/logo.png" alt="TRFSK OMKAR SERVICES Logo">
                 <div class="logo-text">
                     <h1>TRFSK OMKAR SERVICES</h1>
                     <div class="tagline">PRIVATE LIMITED</div>
@@ -263,11 +263,11 @@
             <button class="hamburger" id="hamburger">☰</button>
             
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services/corporate-advisory.html">Services</a></li>
-                <li><a href="technology/analytics-platform.html">Technology</a></li>
-                <li><a href="blog/index.html">Blog</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/services/corporate-advisory.html">Services</a></li>
+                <li><a href="/technology/analytics-platform.html">Technology</a></li>
+                <li><a href="/blog/index.html">Blog</a></li>
+                <li><a href="/index.html#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -281,7 +281,7 @@
             <h1>Page Not <span>Found</span></h1>
             <p>Sorry, the page you are looking for doesn't exist or has been moved. Please check the URL or navigate to one of our main sections below.</p>
             <div style="margin-top: 30px;">
-                <a href="index.html" class="btn-primary">
+                <a href="/index.html" class="btn-primary">
                     <i class="fas fa-home"></i> Go to Homepage
                 </a>
                 <a href="javascript:history.back()" class="btn-outline">
@@ -291,7 +291,7 @@
         </div>
     </section>
 
-    <!-- Quick Links Section -->
+    <!-- Quick Links Section - WITH ABSOLUTE PATHS -->
     <section class="quick-links">
         <div class="container">
             <div class="section-title">
@@ -300,25 +300,25 @@
             </div>
             
             <div class="links-grid">
-                <a href="services/corporate-advisory.html" class="link-card">
+                <a href="/services/corporate-advisory.html" class="link-card">
                     <i class="fas fa-handshake"></i>
                     <h3>Corporate Advisory</h3>
                     <p>Strategic business guidance and consulting</p>
                 </a>
                 
-                <a href="services/business-consulting.html" class="link-card">
+                <a href="/services/business-consulting.html" class="link-card">
                     <i class="fas fa-chart-line"></i>
                     <h3>Business Consulting</h3>
                     <p>Operational efficiency and strategy</p>
                 </a>
                 
-                <a href="technology/analytics-platform.html" class="link-card">
+                <a href="/technology/analytics-platform.html" class="link-card">
                     <i class="fas fa-chart-bar"></i>
                     <h3>Analytics Platform</h3>
                     <p>Data-driven insights and tools</p>
                 </a>
                 
-                <a href="blog/index.html" class="link-card">
+                <a href="/blog/index.html" class="link-card">
                     <i class="fas fa-blog"></i>
                     <h3>Our Blog</h3>
                     <p>Latest insights and articles</p>
@@ -351,7 +351,7 @@
         </div>
     </section>
 
-    <!-- Footer - WITH COMPLETE LEGAL DISCLAIMER -->
+    <!-- Footer - WITH ABSOLUTE PATHS -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -363,18 +363,18 @@
                 <div class="footer-col">
                     <h4>Sitemap</h4>
                     <ul>
-                        <li><a href="services/corporate-advisory.html">Advisory Services</a></li>
-                        <li><a href="technology/analytics-platform.html">Technology Hub</a></li>
-                        <li><a href="blog/index.html">Business Blog</a></li>
+                        <li><a href="/services/corporate-advisory.html">Advisory Services</a></li>
+                        <li><a href="/technology/analytics-platform.html">Technology Hub</a></li>
+                        <li><a href="/blog/index.html">Business Blog</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Legal & Compliance</h4>
                     <ul>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="/cookie-policy.html">Cookie Policy</a></li>
                     </ul>
                 </div>
                 
@@ -435,11 +435,13 @@
 
     <script>
         // Mobile menu toggle
-        document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('hamburger').addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             document.getElementById('navMenu').classList.toggle('active');
         });
 
-        // Close menu when clicking on a link (for mobile)
+        // Close menu when clicking on a link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', function() {
                 document.getElementById('navMenu').classList.remove('active');
@@ -451,9 +453,19 @@
             const navMenu = document.getElementById('navMenu');
             const hamburger = document.getElementById('hamburger');
             
-            if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
-                navMenu.classList.remove('active');
+            if (navMenu && hamburger) {
+                if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                    navMenu.classList.remove('active');
+                }
             }
+        });
+
+        // Prevent default on any links that might cause issues
+        document.querySelectorAll('a[href^="/"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Let the browser handle the navigation normally
+                // This is just to ensure nothing blocks it
+            });
         });
     </script>
 </body>

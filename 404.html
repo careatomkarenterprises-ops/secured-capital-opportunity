@@ -42,7 +42,9 @@
             display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
         }
         .cin-block i, .contact-header i { color: #d4af37; margin-right: 6px; }
+        .cin-block strong { color: #d4af37; }
         .contact-header a { color: white; text-decoration: none; margin: 0 10px; }
+        .contact-header span { color: #64748b; }
         
         /* Navigation */
         .navbar {
@@ -133,21 +135,6 @@
             color: #475569; font-size: 14px;
         }
         
-        /* Search Section */
-        .search-section {
-            padding: 60px 0; background: white; text-align: center;
-        }
-        .search-box {
-            max-width: 500px; margin: 30px auto 0;
-        }
-        .search-input {
-            width: 100%; padding: 18px 25px; border: 2px solid #e2e8f0; border-radius: 50px;
-            font-size: 16px; transition: all 0.3s;
-        }
-        .search-input:focus {
-            outline: none; border-color: #d4af37; box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
-        }
-        
         /* Contact Card */
         .contact-card {
             background: #f8fafc; border-radius: 16px; padding: 30px; max-width: 500px; margin: 0 auto;
@@ -201,6 +188,7 @@
             .error-number { font-size: 80px; }
             .error-hero h1 { font-size: 28px; }
             .btn-primary, .btn-outline { display: block; margin: 10px auto; max-width: 300px; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 480px) {
@@ -210,23 +198,22 @@
     </style>
 </head>
 <body>
-    <!-- Corporate Header -->
+    <!-- Corporate Header - MATCHES HOME PAGE EXACTLY -->
     <div class="corporate-header">
         <div class="container">
             <div class="cin-block">
-                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong>
+                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong> | 
+                <i class="fas fa-certificate"></i> MSME: <strong>UDYAM-MH-26-0559186</strong>
             </div>
             <div class="contact-header">
                 <i class="fas fa-phone-alt"></i> <a href="tel:+917066393830">+91 70663 93830</a>
-                <span>|</span>
-                <i class="fas fa-phone-alt"></i> <a href="tel:+917066393831">+91 70663 93831</a>
                 <span>|</span>
                 <i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
             </div>
         </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation - UPDATED WITH ALL CATEGORIES -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
@@ -304,7 +291,7 @@
         </div>
     </section>
 
-    <!-- Search Section (Optional - can be removed if you don't have search) -->
+    <!-- Contact Section -->
     <section class="search-section">
         <div class="container">
             <h3 style="font-size: 24px; color: #0f172a;">Can't find what you're looking for?</h3>
@@ -314,39 +301,40 @@
                 <i class="fas fa-phone-alt" style="font-size: 32px; color: #d4af37; margin-bottom: 15px;"></i>
                 <h4>Call or WhatsApp</h4>
                 <p style="margin: 10px 0;">
-                    <a href="tel:+917066393830">+91 70663 93830</a><br>
-                    <a href="tel:+917066393831">+91 70663 93831</a>
+                    <a href="tel:+917066393830">+91 70663 93830</a>
                 </p>
                 <h4 style="margin-top: 20px;">Email</h4>
                 <p>
-                    <a href="mailto:care@omkarservices.in">care@omkarservices.in</a><br>
-                    <a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a>
+                    <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
+                </p>
+                <h4 style="margin-top: 20px;">Registered Office</h4>
+                <p style="font-size: 13px; color: #475569;">
+                    House Opp Bk no. 684, Ulhasnagar, Thane - 421002
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - WITH COMPLETE LEGAL DISCLAIMER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>TRFSK OMKAR SERVICES</h4>
-                    <p style="opacity: 0.7;">Corporate advisory and technology solutions since 2023.</p>
+                    <p style="opacity: 0.7; line-height: 1.6;">Corporate advisory, management consultancy, and educational insights since 2023.</p>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="services/corporate-advisory.html">Services</a></li>
-                        <li><a href="technology/analytics-platform.html">Technology</a></li>
-                        <li><a href="blog/index.html">Blog</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="services/corporate-advisory.html">Advisory Services</a></li>
+                        <li><a href="technology/analytics-platform.html">Technology Hub</a></li>
+                        <li><a href="blog/index.html">Business Blog</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Legal</h4>
+                    <h4>Legal & Compliance</h4>
                     <ul>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="terms-of-service.html">Terms of Service</a></li>
@@ -363,10 +351,42 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- LEGAL DISCLAIMER SECTION - FULL COMPLIANCE -->
+            <div class="footer-disclaimer" style="margin: 30px 0; padding: 30px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; border-left: 4px solid #d4af37;">
+                <h4 style="color: #d4af37; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 18px;">
+                    <i class="fas fa-exclamation-triangle"></i> Important Legal & Regulatory Information
+                </h4>
+                
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 15px; line-height: 1.8;">
+                    <strong>TRFSK OMKAR SERVICES PRIVATE LIMITED</strong> (CIN: U70200MH2023PTC407336, MSME: UDYAM-MH-26-0559186) is a corporate advisory and management consultancy firm. We are NOT a SEBI-registered investment advisor, stock broker, portfolio manager, or investment company. We do NOT provide stock recommendations, trading calls, or investment advice.
+                </p>
+                
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 15px; line-height: 1.8;">
+                    <strong>Educational Content Only:</strong> All information on this website, including blog posts, articles, and resources, is for educational and informational purposes only. It should not be construed as investment advice, financial planning advice, or an offer to buy/sell any securities. Past performance discussed in case studies is not indicative of future results.
+                </p>
+                
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 15px; line-height: 1.8;">
+                    <strong>Private Advisory:</strong> Our consulting services are provided under private, confidential agreements between the company and its clients. Any discussion of capital deployment, partnership structuring, or business strategy is conducted solely within the context of these private advisory engagements.
+                </p>
+                
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 15px; line-height: 1.8;">
+                    <strong>No Public Solicitation:</strong> We do not solicit or accept public deposits. We do not offer investment schemes or guaranteed returns. Any consultation with our team does not constitute a professional relationship until formal agreements are executed.
+                </p>
+                
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 15px; line-height: 1.8;">
+                    <strong>Third-Party Links:</strong> Our website may contain links to external sites. We are not responsible for their content or practices. Users should conduct their own due diligence.
+                </p>
+                
+                <p style="margin-top: 15px; font-size: 12px; color: #94a3b8;">
+                    <i class="fas fa-gavel"></i> By using this website, you acknowledge and agree to this disclaimer. For specific legal or financial advice, consult qualified professionals. Registered Office: House Opp Bk no. 684, Ulhasnagar, Thane - 421002, Maharashtra.
+                </p>
+            </div>
+            <!-- END OF DISCLAIMER SECTION -->
             
             <div class="footer-bottom">
-                <p>© 2023-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED</p>
-                <p>CIN: U70200MH2023PTC407336</p>
+                <p>© 2023-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED. All Rights Reserved.</p>
+                <p style="margin-top: 8px; font-size: 11px;">CIN: U70200MH2023PTC407336 | MSME: UDYAM-MH-26-0559186</p>
             </div>
         </div>
     </footer>
@@ -382,9 +402,6 @@
         document.getElementById('hamburger').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
         });
-        
-        // Optional: Add search functionality if you have a search feature
-        // Currently just a placeholder for future enhancement
     </script>
 </body>
 </html>

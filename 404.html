@@ -27,7 +27,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom CSS (Same as main site) -->
+    <!-- Custom CSS (Exactly matching home page) -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1e293b; background: #ffffff; }
@@ -51,14 +51,51 @@
             background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 15px 0;
         }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo img { height: 50px; width: auto; }
-        .logo-text h1 { font-size: 20px; font-weight: 700; color: #0f172a; }
-        .logo-text .tagline { font-size: 11px; color: #64748b; }
-        .nav-menu { display: flex; list-style: none; gap: 30px; align-items: center; }
-        .nav-menu a { text-decoration: none; color: #475569; font-weight: 500; transition: color 0.3s; }
-        .nav-menu a:hover, .nav-menu a.active { color: #d4af37; }
-        .hamburger { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
+        
+        /* Logo styling - EXACT match with home page */
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            text-decoration: none; 
+        }
+        .logo img { 
+            height: 50px; 
+            width: auto; 
+        }
+        .logo-text h1 { 
+            font-size: 20px; 
+            font-weight: 700; 
+            color: #0f172a; 
+        }
+        .logo-text .tagline { 
+            font-size: 11px; 
+            color: #64748b; 
+        }
+        
+        .nav-menu { 
+            display: flex; 
+            list-style: none; 
+            gap: 30px; 
+            align-items: center; 
+        }
+        .nav-menu a { 
+            text-decoration: none; 
+            color: #475569; 
+            font-weight: 500; 
+            transition: color 0.3s; 
+        }
+        .nav-menu a:hover, .nav-menu a.active { 
+            color: #d4af37; 
+        }
+        .hamburger { 
+            display: none; 
+            background: none; 
+            border: none; 
+            font-size: 24px; 
+            cursor: pointer; 
+            color: #0f172a;
+        }
         
         /* 404 Hero Section */
         .error-hero {
@@ -86,7 +123,7 @@
             font-size: 18px; max-width: 600px; margin: 0 auto 30px; opacity: 0.9;
         }
         
-        /* Buttons */
+        /* Buttons - EXACT match with home page */
         .btn-primary {
             background: linear-gradient(135deg, #d4af37, #b8931c); color: #0f172a; padding: 16px 32px;
             border-radius: 30px; text-decoration: none; font-weight: 700; display: inline-block;
@@ -150,7 +187,7 @@
             text-decoration: underline;
         }
         
-        /* Footer */
+        /* Footer - EXACT match with home page */
         .footer {
             background: #0f172a; color: white; padding: 60px 0 30px;
         }
@@ -202,8 +239,7 @@
     <div class="corporate-header">
         <div class="container">
             <div class="cin-block">
-                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong> | 
-                <i class="fas fa-certificate"></i> MSME: <strong>UDYAM-MH-26-0559186</strong>
+                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong>
             </div>
             <div class="contact-header">
                 <i class="fas fa-phone-alt"></i> <a href="tel:+917066393830">+91 70663 93830</a>
@@ -213,7 +249,7 @@
         </div>
     </div>
 
-    <!-- Navigation - UPDATED WITH ALL CATEGORIES -->
+    <!-- Navigation - EXACT MATCH WITH HOME PAGE -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
@@ -231,7 +267,7 @@
                 <li><a href="services/corporate-advisory.html">Services</a></li>
                 <li><a href="technology/analytics-platform.html">Technology</a></li>
                 <li><a href="blog/index.html">Blog</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -292,7 +328,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="search-section">
+    <section class="search-section" style="padding: 60px 0; background: white; text-align: center;">
         <div class="container">
             <h3 style="font-size: 24px; color: #0f172a;">Can't find what you're looking for?</h3>
             <p style="color: #475569; margin-top: 10px;">Contact us directly and we'll help you find the right information</p>
@@ -315,17 +351,17 @@
         </div>
     </section>
 
-    <!-- Footer - WITH COMPLETE LEGAL DISCLAIMER -->
+    <!-- Footer - WITH COMPLETE LEGAL DISCLAIMER (EXACT MATCH WITH HOME PAGE) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>TRFSK OMKAR SERVICES</h4>
-                    <p style="opacity: 0.7; line-height: 1.6;">Corporate advisory, management consultancy, and educational insights since 2023.</p>
+                    <p style="opacity: 0.7; font-size: 14px;">Leading corporate advisory and technology-driven business consulting solutions since 2023.</p>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Quick Links</h4>
+                    <h4>Sitemap</h4>
                     <ul>
                         <li><a href="services/corporate-advisory.html">Advisory Services</a></li>
                         <li><a href="technology/analytics-platform.html">Technology Hub</a></li>
@@ -343,16 +379,17 @@
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> +91 70663 93830</li>
-                        <li><i class="fas fa-envelope"></i> care@omkarservices.in</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Maharashtra, India</li>
+                    <h4>Registered Office</h4>
+                    <ul style="font-size: 13px; opacity: 0.8;">
+                        <li><i class="fas fa-map-marker-alt" style="color:#d4af37"></i> House Opp Bk no. 684, Ulhasnagar,</li>
+                        <li>Maharashtra, Thane - 421002</li>
+                        <li><i class="fas fa-building" style="color:#d4af37"></i> CIN: U70200MH2023PTC407336</li>
+                        <li><i class="fas fa-certificate" style="color:#d4af37"></i> MSME: UDYAM-MH-26-0559186</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- LEGAL DISCLAIMER SECTION - FULL COMPLIANCE -->
+            <!-- IMPORTANT LEGAL DISCLAIMER SECTION (EXACT MATCH WITH HOME PAGE) -->
             <div class="footer-disclaimer" style="margin: 30px 0; padding: 30px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; border-left: 4px solid #d4af37;">
                 <h4 style="color: #d4af37; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 18px;">
                     <i class="fas fa-exclamation-triangle"></i> Important Legal & Regulatory Information
@@ -383,10 +420,9 @@
                 </p>
             </div>
             <!-- END OF DISCLAIMER SECTION -->
-            
+
             <div class="footer-bottom">
                 <p>© 2023-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED. All Rights Reserved.</p>
-                <p style="margin-top: 8px; font-size: 11px;">CIN: U70200MH2023PTC407336 | MSME: UDYAM-MH-26-0559186</p>
             </div>
         </div>
     </footer>
@@ -398,7 +434,6 @@
     </a>
 
     <script>
-        // Mobile menu toggle
         document.getElementById('hamburger').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
         });

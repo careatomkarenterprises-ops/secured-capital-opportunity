@@ -11,94 +11,160 @@
     <changefreq>daily</changefreq>
   </url>
   <url>
+    <loc>https://omkarservices.in/capital-deployment-model.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/documentation-process.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/transparency-compliance.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/about-founder.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/case-studies.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/faq.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/contact.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/services/corporate-advisory.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/services/business-consulting.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/services/partnership-structuring.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/services/compliance-advisory.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://omkarservices.in/blog/post/business-intelligence-tools-for-indian-smes.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/compliance-requirements-indian-businesses.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/erp-implementation-guide-for-manufacturing-companies.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/risk-management-in-capital-deployment.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/it-infrastructure-planning-for-growing-companies.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/process-automation-where-to-start.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/business-succession-planning.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/gst-return-compliance-complete-guide.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/understanding-partnership-structures-msme.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/competitive-analysis-framework-for-smes.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/corporate-governance-essentials.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/companies-act-amendments-you-need-to-know.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/technology-roi-measuring-what-matters.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/operational-efficiency-consulting-for-indian-businesses.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/what-is-structured-capital-deployment-complete-guide.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/Nifty_Futures_Technical_Analysis: Understanding_Fibonacci_Retracements_&_Market_Corrections.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/data-analytics-transforming-business-decisions.html</loc>
     <priority>0.8</priority>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://omkarservices.in/services/corporate-advisory.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://omkarservices.in/services/business-consulting.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://omkarservices.in/services/partnership-structuring.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://omkarservices.in/services/compliance-advisory.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://omkarservices.in/technology/analytics-platform.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -113,6 +179,16 @@
   </url>
   <url>
     <loc>https://omkarservices.in/cookie-policy.html</loc>
+    <priority>0.5</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/kyc-policy.html</loc>
+    <priority>0.5</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/risk-disclosure.html</loc>
     <priority>0.5</priority>
     <changefreq>yearly</changefreq>
   </url>

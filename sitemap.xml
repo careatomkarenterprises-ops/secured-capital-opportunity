@@ -66,6 +66,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://omkarservices.in/blog/post/understanding-portfolio-diversification-for-beginners.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://omkarservices.in/blog/post/business-intelligence-tools-for-indian-smes.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-10</lastmod>
@@ -84,7 +90,19 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://omkarservices.in/blog/post/complete-guide-to-capital-allocation.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://omkarservices.in/blog/post/erp-implementation-guide-for-manufacturing-companies.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/how-entrepreneurs-use-wealth-building-strategies.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>

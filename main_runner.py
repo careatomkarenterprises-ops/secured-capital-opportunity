@@ -1,135 +1,152 @@
 #!/usr/bin/env python3
 """
-Main runner for auto-blog generation
-Generates EDUCATIONAL content with proper disclaimers
+Advanced auto blog generator
+Generates educational financial articles automatically
 """
 
 import sys
 import os
-import json
 import random
 from datetime import datetime
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from file_manager import FileManager
 
-def load_topics():
-    """Load topics from JSON file"""
-    try:
-        with open('seo_topics.json', 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print("⚠️ seo_topics.json not found")
-        return {}
 
-def generate_educational_content(topic_data, category):
-    """Generate educational content with proper disclaimers"""
-    
-    title = topic_data['title']
-    description = topic_data['description']
-    
-    # Educational introduction
+# Topic generator (no manual topics needed)
+business_keywords = [
+    "business strategy",
+    "capital allocation",
+    "corporate growth planning",
+    "cash flow management",
+    "raising capital for business",
+    "business risk management",
+]
+
+investor_keywords = [
+    "long term investing",
+    "portfolio diversification",
+    "wealth building strategies",
+    "stock market investment planning",
+    "financial risk management",
+]
+
+question_patterns = [
+    "Complete Guide to {}",
+    "How Entrepreneurs Use {}",
+    "Common Mistakes in {}",
+    "Understanding {} for Beginners",
+    "Why {} Matters for Financial Growth"
+]
+
+
+def generate_topic():
+
+    category = random.choice(["business", "investor"])
+
+    if category == "business":
+        keyword = random.choice(business_keywords)
+        category_display = "Business Strategy"
+    else:
+        keyword = random.choice(investor_keywords)
+        category_display = "Investment Education"
+
+    pattern = random.choice(question_patterns)
+
+    title = pattern.format(keyword.title())
+
+    description = f"This educational guide explains key concepts behind {keyword} and how individuals or businesses can better understand these principles."
+
+    return title, description, category_display
+
+
+def generate_educational_content(title, description, category):
+
     intro = f"""
-    <h2>Introduction: Understanding {title}</h2>
+    <h2>Introduction</h2>
     <p>{description}</p>
-    
-    <p>This article provides general information for business owners and entrepreneurs. It is not intended as specific advice for any individual or company.</p>
-    
-    <div class="note" style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <p><strong>Key Concept:</strong> Understanding these principles helps business leaders make more informed decisions within their specific context.</p>
+
+    <p>This article provides general educational information intended to help readers better understand financial and business concepts.</p>
+
+    <div class="note" style="background:#f1f5f9;padding:20px;border-radius:8px;margin:20px 0;">
+    <strong>Educational Purpose:</strong> The information presented here is general in nature and should not be interpreted as financial or investment advice.
     </div>
     """
-    
-    # Main educational content
-    main_content = f"""
-    <h2>Core Concepts in {category}</h2>
-    <p>When exploring {title.lower()}, there are several fundamental concepts that business owners should understand:</p>
-    
-    <ul>
-        <li><strong>Context Matters:</strong> Every business situation is unique. What works for one company may not work for another.</li>
-        <li><strong>Professional Guidance:</strong> Complex business decisions should involve qualified professionals.</li>
-        <li><strong>Due Diligence:</strong> Always conduct thorough research before making business decisions.</li>
-        <li><strong>Documentation:</strong> Proper documentation protects all parties in business arrangements.</li>
-    </ul>
-    
-    <h2>Practical Considerations</h2>
-    <p>When applying these concepts, consider:</p>
-    <ul>
-        <li>Your specific business objectives and constraints</li>
-        <li>The regulatory environment applicable to your situation</li>
-        <li>Consultation with legal and financial professionals</li>
-        <li>Documentation of all material agreements</li>
-    </ul>
-    
-    <h2>Industry Perspectives</h2>
-    <p>Santosh Shendkar, founder of TRFSK OMKAR SERVICES, notes: "The most successful business owners take time to understand fundamental concepts while recognizing when to seek professional guidance. Education empowers better decisions, but implementation requires expertise."</p>
-    
-    <h2>Further Reading</h2>
-    <p>For more information, explore our other educational articles on business strategy, compliance, and capital structuring. Each article provides general information to help you better understand these complex topics.</p>
-    """
-    
-    # Conclusion (always educational, never promotional)
+
+    body = ""
+
+    sections = [
+        "Understanding the Core Concept",
+        "Why This Topic Matters",
+        "Key Principles and Frameworks",
+        "Practical Business Considerations",
+        "Common Mistakes People Make",
+        "Long Term Strategic Thinking"
+    ]
+
+    for section in sections:
+
+        body += f"""
+        <h2>{section}</h2>
+
+        <p>{title} is a topic that affects how individuals and organizations make financial decisions. Understanding the principles behind this concept helps people evaluate opportunities more carefully and avoid common mistakes.</p>
+
+        <p>Professionals in finance and business strategy often analyze historical patterns, economic conditions, and long term objectives when considering these decisions.</p>
+
+        <p>Developing a structured understanding of these ideas can help individuals and businesses improve their decision making processes and better manage risk.</p>
+        """ * 2
+
     conclusion = f"""
     <h2>Conclusion</h2>
-    <p>Understanding {title.lower()} is valuable for business owners and entrepreneurs. However, every business situation is unique, and general information should not replace professional advice tailored to your specific circumstances.</p>
-    
-    <p>We encourage readers to:</p>
-    <ul>
-        <li>Continue learning about business concepts through reputable sources</li>
-        <li>Consult with qualified professionals for specific situations</li>
-        <li>Maintain proper documentation for all business arrangements</li>
-        <li>Stay informed about regulatory requirements affecting their business</li>
-    </ul>
-    
-    <p>TRFSK OMKAR SERVICES provides corporate advisory and management consultancy services. Our team helps businesses navigate complex decisions through structured advisory engagements.</p>
+
+    <p>Understanding {title.lower()} can help individuals and business owners develop stronger financial awareness and better long term planning strategies.</p>
+
+    <p>However, every financial decision should be evaluated within its own context. Professional guidance may be necessary depending on the complexity of the situation.</p>
+
+    <p>Educational content like this is intended to improve awareness and understanding of important financial concepts.</p>
     """
-    
-    return intro + main_content + conclusion
+
+    return intro + body + conclusion
+
 
 def main():
-    """Main function to generate educational blog posts"""
-    
+
     fm = FileManager()
-    topics_db = load_topics()
-    
-    if not topics_db:
-        print("❌ No topics found. Exiting.")
-        return
-    
-    # Generate 3 articles per run (reduced from 5 for quality focus)
+
     articles_per_run = 3
-    
-    print(f"🚀 Generating {articles_per_run} educational articles...")
-    
+
+    print(f"🚀 Generating {articles_per_run} articles")
+
     for i in range(articles_per_run):
+
         try:
-            category_key = random.choice(list(topics_db.keys()))
-            category_display = category_key.replace('_', ' ').title()
-            
-            topic_data = random.choice(topics_db[category_key])
-            title = topic_data['title']
-            
-            print(f"📝 Generating article {i+1}: {title}")
-            
-            content = generate_educational_content(topic_data, category_display)
-            read_time = random.randint(4, 7)  # Shorter for educational content
-            
+
+            title, description, category = generate_topic()
+
+            print(f"📝 Creating article: {title}")
+
+            content = generate_educational_content(title, description, category)
+
+            read_time = random.randint(6, 9)
+
             slug = fm.save_blog_post(
                 title=title,
                 content=content,
-                category=category_display,
+                category=category,
                 read_time=read_time,
-                author_specialization=f"Business Advisory"
+                author_specialization="Business Advisory"
             )
-            
+
             print(f"✅ Generated: {slug}.html")
-            
+
         except Exception as e:
+
             print(f"⚠️ Error: {str(e)}")
-            continue
-    
+
     fm.generate_sitemap()
-    print(f"\n✅ Generated {articles_per_run} educational articles")
+
+    print("✅ Blog generation complete")
+
 
 if __name__ == "__main__":
     main()

@@ -66,12 +66,6 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://omkarservices.in/blog/post/understanding-portfolio-diversification-for-beginners.html</loc>
-    <priority>0.8</priority>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://omkarservices.in/blog/post/business-intelligence-tools-for-indian-smes.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-10</lastmod>
@@ -102,12 +96,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://omkarservices.in/blog/post/how-entrepreneurs-use-wealth-building-strategies.html</loc>
-    <priority>0.8</priority>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://omkarservices.in/blog/post/risk-management-in-capital-deployment.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-10</lastmod>
@@ -121,6 +109,12 @@
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/it-infrastructure-planning-for-growing-companies.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/common-mistakes-in-stock-market-investment-planning.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
@@ -180,7 +174,7 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://omkarservices.in/blog/post/what-is-structured-capital-deployment-complete-guide.html</loc>
+    <loc>https://omkarservices.in/blog/post/common-mistakes-in-asset-allocation-strategy.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
@@ -199,6 +193,12 @@
   </url>
   <url>
     <loc>https://omkarservices.in/blog/post/data-analytics-transforming-business-decisions.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://omkarservices.in/blog/post/complete-guide-to-portfolio-diversification.html</loc>
     <priority>0.8</priority>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>

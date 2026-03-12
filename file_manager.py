@@ -58,31 +58,6 @@ class FileManager:
         html_content = html_content.replace("{{AUTHOR_SPECIALIZATION}}", author_specialization)
         html_content = html_content.replace("{{CONTENT}}", content)
         
-        # Add lead generation CTA at the end if not present
-        if "FREE BUSINESS CONSULTATION" not in html_content:
-            lead_cta = """
-            <div style="margin-top: 50px; padding: 30px; background: #f8fafc; border-radius: 12px; border: 1px solid #d4af37;">
-                <h3 style="color: #0f172a; margin-bottom: 15px;">📞 FREE BUSINESS CONSULTATION</h3>
-                <p style="margin-bottom: 20px;">Speak directly with founder Santosh Shendkar about your business needs.</p>
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <div>
-                        <i class="fas fa-envelope" style="color: #d4af37;"></i> 
-                        <a href="mailto:consult@omkarservices.in" style="color: #0f172a; text-decoration: none;">consult@omkarservices.in</a>
-                    </div>
-                    <div>
-                        <i class="fas fa-phone" style="color: #d4af37;"></i> 
-                        <a href="tel:+917066393830" style="color: #0f172a; text-decoration: none;">+91 70663 93830</a>
-                    </div>
-                    <div>
-                        <i class="fab fa-whatsapp" style="color: #25D366;"></i> 
-                        <a href="https://wa.me/917066393830" style="color: #0f172a; text-decoration: none;">WhatsApp</a>
-                    </div>
-                </div>
-                <p style="margin-top: 15px; font-size: 12px; color: #64748b;">Initial consultation is complimentary and creates no obligation.</p>
-            </div>
-            """
-            html_content = html_content.replace("</article>", lead_cta + "\n</article>")
-        
         # Save the file
         with open(filename, "w", encoding="utf-8") as f:
             f.write(html_content)

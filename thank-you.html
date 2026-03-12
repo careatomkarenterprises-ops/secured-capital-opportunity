@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You – TRFSK OMKAR SERVICES</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .thank-you-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+        .logo {
+            margin-bottom: 30px;
+        }
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+        h1 {
+            color: #0f172a;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        h1 span {
+            color: #d4af37;
+        }
+        p {
+            color: #334155;
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .download-btn {
+            background: #d4af37;
+            color: #0f172a;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+            margin-bottom: 20px;
+        }
+        .download-btn:hover {
+            background: #b8931c;
+            transform: translateY(-2px);
+        }
+        .back-link {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .back-link:hover {
+            color: #d4af37;
+        }
+        .newsletter-message {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .resource-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .resource-link {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .resource-link:hover {
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-card">
+        <div class="logo">
+            <img src="/assets/logo.png" alt="TRFSK OMKAR SERVICES">
+        </div>
+
+        <!-- Dynamic content based on URL parameter -->
+        <div id="report-content">
+            <h1>Thank You <span>🙏</span></h1>
+            <p>Your report is ready for download. Click the button below to get your free 20‑page Economic Risk Report 2026.</p>
+            <a href="/assets/reports/economic-risk-report-2026.pdf" download class="download-btn">📥 Download Report Now</a>
+            <p style="font-size: 14px; color: #64748b;">If the download doesn't start, <a href="/assets/reports/economic-risk-report-2026.pdf" download>click here</a>.</p>
+        </div>
+
+        <div id="newsletter-content" class="hidden">
+            <h1>Subscription <span>Confirmed</span></h1>
+            <p>You're now subscribed to our Global Market Intelligence newsletter. You'll receive the next edition in your inbox.</p>
+            <div class="newsletter-message">
+                <p style="margin-bottom: 0;">In the meantime, explore our latest articles:</p>
+                <p><a href="/blog/index.html" style="color: #d4af37;">Visit Knowledge Hub →</a></p>
+            </div>
+        </div>
+
+        <!-- Secondary offer (always visible) -->
+        <div class="resource-links">
+            <a href="/blog/post/business-succession-planning.html" class="resource-link">📘 Business Succession Planning Guide</a>
+            <a href="/blog/post/complete-guide-to-capital-allocation.html" class="resource-link">📗 Capital Allocation Framework</a>
+            <a href="/blog/post/portfolio-diversification-strategies.html" class="resource-link">📙 Diversification Checklist</a>
+        </div>
+
+        <a href="/blog/index.html" class="back-link">← Back to Blog</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const downloadParam = urlParams.get('download');
+
+        const reportDiv = document.getElementById('report-content');
+        const newsletterDiv = document.getElementById('newsletter-content');
+
+        if (downloadParam === 'report') {
+            reportDiv.classList.remove('hidden');
+            newsletterDiv.classList.add('hidden');
+        } else if (downloadParam === 'newsletter') {
+            reportDiv.classList.add('hidden');
+            newsletterDiv.classList.remove('hidden');
+        } else {
+            // Default to report view
+            reportDiv.classList.remove('hidden');
+            newsletterDiv.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,49 +1,97 @@
 import random
+from datetime import datetime
 
-business_keywords = [
-    "business strategy",
-    "capital allocation",
-    "corporate growth",
-    "business risk management",
-    "financial planning for companies",
-    "raising capital for business",
-    "cash flow management",
-]
-
-investor_keywords = [
-    "personal finance planning",
-    "wealth building strategies",
-    "long term investing",
-    "stock market investment strategy",
-    "portfolio diversification",
-    "risk management in investing",
-]
-
-question_patterns = [
-    "How to improve {}",
-    "Why {} is important",
-    "Common mistakes in {}",
-    "Complete guide to {}",
-    "Best strategies for {}",
-]
-
+# Add seasonal topics based on current events
+def get_seasonal_topics():
+    month = datetime.now().month
+    
+    if month in [3, 4]:  # Financial year end
+        return [
+            "tax planning strategies before March 31",
+            "FY26 budget impact on investments",
+            "year-end portfolio rebalancing"
+        ]
+    elif month in [10, 11, 12]:  # Festive season
+        return [
+            "Diwali portfolio strategies",
+            "festive season market trends",
+            "Q3 earnings expectations"
+        ]
+    else:
+        return []
 
 def generate_topic():
-
-    category = random.choice(["business", "investor"])
-
-    if category == "business":
-        keyword = random.choice(business_keywords)
+    categories = {
+        "business": [
+            "capital allocation strategies",
+            "business growth frameworks",
+            "cash flow optimization",
+            "risk management systems",
+            "succession planning",
+            "corporate restructuring",
+            "merger & acquisition readiness",
+            "ESG compliance for SMEs",
+            "digital transformation roadmap"
+        ],
+        "investor": [
+            "portfolio diversification",
+            "asset allocation models",
+            "retirement planning",
+            "tax-efficient investing",
+            "market cycle analysis",
+            "sector rotation strategies",
+            "dividend growth investing",
+            "value investing principles",
+            "technical analysis basics"
+        ]
+    }
+    
+    # 70% chance of standard topic, 30% chance of seasonal
+    if random.random() < 0.3:
+        seasonal = get_seasonal_topics()
+        if seasonal:
+            category = "investor"  # seasonal tends to be investor-focused
+            keyword = random.choice(seasonal)
+            return {
+                "title": keyword.title(),
+                "description": f"As we approach {datetime.now().strftime('%B')}, understanding {keyword} becomes crucial for smart financial planning.",
+                "category": "Seasonal Insights"
+            }
+    
+    category = random.choice(list(categories.keys()))
+    keyword = random.choice(categories[category])
+    
+    # More varied title patterns
+    patterns = [
+        "{}: A Complete Guide",
+        "Understanding {}",
+        "{} Explained",
+        "The Art of {}",
+        "Mastering {}",
+        "{} Demystified",
+        "Your {} Roadmap",
+        "Essential {} Strategies",
+        "Why {} Matters in {}"
+    ]
+    
+    pattern = random.choice(patterns)
+    
+    if "{}" in pattern:
+        title = pattern.format(keyword.title())
     else:
-        keyword = random.choice(investor_keywords)
-
-    pattern = random.choice(question_patterns)
-
-    title = pattern.format(keyword.title())
-
-    description = f"Educational guide explaining {keyword} and practical strategies people should understand."
-
+        title = f"{keyword.title()}: A Practical Guide"
+    
+    descriptions = [
+        f"Discover proven {keyword} techniques used by successful professionals.",
+        f"A comprehensive look at {keyword} and how it applies to your financial journey.",
+        f"Everything you need to know about {keyword}, explained simply.",
+        f"Practical insights on {keyword} from years of market experience."
+    ]
+    
+    category_display = "Business Strategy" if category == "business" else "Investment Education"
+    
     return {
         "title": title,
-        "description": description
+        "description": random.choice(descriptions),
+        "category": category_display
     }

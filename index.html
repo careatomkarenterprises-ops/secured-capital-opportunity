@@ -1268,55 +1268,58 @@
     </section>
 
     <!-- Consultation Form Section -->
-    <section class="consultation-section" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Private <span>Capital Consultation</span></h2>
-                <p>Request confidential information about our structured capital partnership framework.</p>
-            </div>
-            
-            <div class="form-container">
-                <form id="investorForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" placeholder="Email Address" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <select required>
-                            <option value="" disabled selected>Investment Capacity</option>
-                            <option>₹1L – ₹5L</option>
-                            <option>₹5L – ₹10L</option>
-                            <option>₹10L – ₹25L</option>
-                            <option>₹25L+</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea placeholder="Optional Message" rows="4"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
-                        <i class="fas fa-lock"></i>
-                        Request Private Consultation
-                    </button>
-                    
-                    <p class="form-disclaimer">
-                        Information submitted here is used only for private consultation purposes. 
-                        We respect your privacy and do not share your data.
-                    </p>
-                </form>
-            </div>
+<section class="consultation-section" id="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>Private <span>Capital Consultation</span></h2>
+            <p>Request confidential information about our structured capital partnership framework.</p>
         </div>
-    </section>
-
+        
+        <div class="form-container">
+            <form data-formspree data-form-type="consultation">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                
+                <div class="form-group">
+                    <select name="capital_range" required>
+                        <option value="" disabled selected>Capital Range for Consultation</option>
+                        <option value="1L-5L">₹1L – ₹5L</option>
+                        <option value="5L-10L">₹5L – ₹10L</option>
+                        <option value="10L-25L">₹10L – ₹25L</option>
+                        <option value="25L+">₹25L+</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <textarea name="message" placeholder="Optional Message" rows="4"></textarea>
+                </div>
+                
+                <!-- Hidden fields for Formspree -->
+                <input type="hidden" name="_subject" value="New Consultation Request from Website">
+                <input type="hidden" name="_replyto" value="email">
+                
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                    <i class="fas fa-lock"></i>
+                    Request Private Consultation
+                </button>
+                
+                <p class="form-disclaimer">
+                    <i class="fas fa-info-circle"></i> This request is for private consultation only.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+    
     <!-- Contact Section -->
     <section class="contact-section">
         <div class="container">
@@ -1464,45 +1467,90 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Mobile Menu Toggle
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
+    <!-- Universal Form Handler for Formspree -->
+<script>
+    // Mobile Menu Toggle
+    document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('navMenu').classList.toggle('active');
+    });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const navMenu = document.getElementById('navMenu');
-            const hamburger = document.getElementById('hamburger');
-            
-            if (!navMenu.contains(event.target) && !hamburger.contains(event.target) && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-            }
-        });
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const navMenu = document.getElementById('navMenu');
+        const hamburger = document.getElementById('hamburger');
+        
+        if (!navMenu.contains(event.target) && !hamburger.contains(event.target) && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+        }
+    });
 
-        // Form Submission (replace with your Google Script URL)
-        const form = document.getElementById('investorForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
+    // Universal Form Handler for Formspree
+    (function() {
+        // Your Formspree endpoint
+        const FORMSPREE_URL = "https://formspree.io/f/mdkqpkqp";
+        
+        // Handle all forms with data-formspree attribute
+        document.querySelectorAll('form[data-formspree]').forEach(form => {
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
-                // Replace with your actual Google Apps Script URL
-                const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_URL_HERE";
+                // Get form type
+                const formType = this.getAttribute('data-form-type') || 'consultation';
                 
-                fetch(GOOGLE_SCRIPT_URL, {
-                    method: "POST",
-                    body: new FormData(form)
-                })
-                .then(response => {
-                    alert("Thank you. Our team will contact you shortly.");
-                    form.reset();
-                })
-                .catch(error => {
-                    alert("Submission failed. Please contact us via WhatsApp.");
-                });
+                // Get submit button
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                
+                // Show loading
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting...';
+                
+                // Track with Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', {
+                        'event_category': 'Form',
+                        'event_label': formType
+                    });
+                }
+                
+                try {
+                    // Create FormData
+                    const formData = new FormData(this);
+                    
+                    // Add page info
+                    formData.append('page_url', window.location.href);
+                    formData.append('page_title', document.title);
+                    
+                    // Submit to Formspree
+                    const response = await fetch(FORMSPREE_URL, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        // Success
+                        alert("✅ Thank you! Our team will contact you shortly.");
+                        this.reset();
+                    } else {
+                        // Error
+                        throw new Error('Submission failed');
+                    }
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("❌ Submission failed. Please WhatsApp us at +91 70663 93830");
+                } finally {
+                    // Restore button
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }
             });
-        }
-    </script>
+        });
+    })();
+</script>
+    
 </body>
 </html>

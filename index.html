@@ -238,6 +238,7 @@
                 <li><a href="technology/analytics-platform.html">Technology</a></li>
                 <li><a href="blog/index.html">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#investor">Investor</a></li>
             </ul>
         </div>
     </nav>
@@ -342,7 +343,49 @@
             </div>
         </div>
     </section>
+<section class="services" style="background:white;">
+<div class="container">
 
+<div class="section-title">
+<h2>Private <span>Capital Consultation</span></h2>
+<p>Request confidential information about our structured capital partnership framework.</p>
+</div>
+
+<div style="max-width:700px;margin:auto;background:#f8fafc;padding:40px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.05);">
+
+<form id="investorForm">
+
+<div style="display:grid;gap:20px;">
+
+<input type="text" placeholder="Full Name" required style="padding:14px;border:1px solid #e2e8f0;border-radius:8px;">
+
+<input type="email" placeholder="Email Address" required style="padding:14px;border:1px solid #e2e8f0;border-radius:8px;">
+
+<input type="tel" placeholder="Phone Number" required style="padding:14px;border:1px solid #e2e8f0;border-radius:8px;">
+
+<select required style="padding:14px;border:1px solid #e2e8f0;border-radius:8px;">
+<option value="">Investment Capacity</option>
+<option>₹1L – ₹5L</option>
+<option>₹5L – ₹10L</option>
+<option>₹10L – ₹25L</option>
+<option>₹25L+</option>
+</select>
+
+<textarea placeholder="Optional Message" rows="3" style="padding:14px;border:1px solid #e2e8f0;border-radius:8px;"></textarea>
+
+<button type="submit" class="btn-primary">Request Private Consultation</button>
+
+</div>
+
+</form>
+
+<p style="font-size:12px;margin-top:15px;color:#64748b;text-align:center;">
+Information submitted here is used only for private consultation purposes.
+</p>
+
+</div>
+</div>
+</section>
     <section class="services" style="background: #f8fafc;" id="contact">
         <div class="container">
             <div class="section-title">
@@ -466,5 +509,34 @@
             document.getElementById('navMenu').classList.toggle('active');
         });
     </script>
+    <script>
+const form = document.getElementById('investorForm');
+
+form.addEventListener('submit', function(e){
+e.preventDefault();
+
+fetch("YOUR_GOOGLE_SCRIPT_URL", {
+method: "POST",
+body: new FormData(form)
+})
+.then(response => alert("Thank you. Our team will contact you shortly."))
+.catch(error => alert("Submission failed. Please contact via WhatsApp."));
+});
+</script>
 </body>
 </html>
+
+<a href="#contact" style="
+position:fixed;
+bottom:100px;
+right:30px;
+background:#d4af37;
+color:#0f172a;
+padding:14px 20px;
+border-radius:40px;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+z-index:999;">
+Private Consultation
+</a>

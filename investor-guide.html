@@ -886,7 +886,6 @@
                 padding: 12px 16px;
                 font-size: 0.9rem;
                 gap: 8px;
-                /* Ensure it doesn't overlap with left button */
                 max-width: calc(50% - 25px);
                 white-space: nowrap;
             }
@@ -899,12 +898,6 @@
                 gap: 8px;
                 max-width: calc(50% - 25px);
                 white-space: nowrap;
-            }
-
-            /* For very small screens, adjust text */
-            .float-whatsapp span,
-            .float-consult span {
-                display: inline-block;
             }
         }
 
@@ -936,7 +929,6 @@
                 padding: 14px;
             }
 
-            /* Further adjust floating buttons for very small screens */
             .float-whatsapp,
             .float-consult {
                 padding: 10px 12px;
@@ -1085,7 +1077,7 @@
         </div>
     </section>
 
-    <!-- ===== LEAD FORM (COMPLIANT VERSION) ===== -->
+    <!-- ===== LEAD FORM (COMPLIANT VERSION WITH FORMSPREE) ===== -->
     <section class="section section-white">
         <div class="container">
             <div class="lead-box">
@@ -1099,13 +1091,17 @@
                     <p>TRFSK OMKAR SERVICES PRIVATE LIMITED is a corporate advisory and management consultancy firm. We are NOT registered with SEBI as an Investment Advisor, Portfolio Manager, or Alternative Investment Fund. We do NOT solicit or accept deposits from the public. This form is for educational inquiries only. No investment advice or offers will be made.</p>
                 </div>
                 
-                <form class="lead-form" id="educationalForm">
+                <!-- UPDATED FORM WITH FORMSPREE -->
+                <form data-formspree data-form-type="investor-guide" class="lead-form">
                     <input type="text" name="name" placeholder="Full Name" required>
                     <input type="email" name="email" placeholder="Email Address" required>
                     <input type="tel" name="phone" placeholder="Phone Number" required>
                     
-                    <!-- REMOVED investment range dropdown - replaced with educational textarea -->
                     <textarea name="message" placeholder="What topics interest you? (e.g., Corporate Advisory, Business Consulting, Market Analysis, Strategic Planning)" rows="4"></textarea>
+                    
+                    <!-- Hidden fields for Formspree -->
+                    <input type="hidden" name="_subject" value="New Educational Inquiry - Investor Guide">
+                    <input type="hidden" name="_replyto" value="email">
                     
                     <button type="submit">
                         <i class="fas fa-paper-plane"></i> Request Educational Materials
@@ -1215,7 +1211,7 @@
         </div>
     </footer>
 
-    <!-- ===== FLOATING BUTTONS - FIXED POSITIONING ===== -->
+    <!-- ===== FLOATING BUTTONS ===== -->
     <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank" rel="noopener">
         <i class="fab fa-whatsapp"></i>
         <span>Chat on WhatsApp</span>
@@ -1226,7 +1222,7 @@
         <span>Educational Inquiry</span>
     </a>
 
-    <!-- ===== SCRIPTS ===== -->
+    <!-- ===== UPDATED SCRIPTS WITH FORMSPREE ===== -->
     <script>
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -1255,49 +1251,69 @@
                 });
             }
 
-            // Educational Form Submission - WhatsApp Integration
-            const form = document.getElementById('educationalForm');
-            if (form) {
-                form.addEventListener('submit', function(e) {
+            // UNIVERSAL FORM HANDLER FOR FORMSPREE
+            const FORMSPREE_URL = "https://formspree.io/f/mdkqpkqp";
+            
+            // Handle all forms with data-formspree attribute
+            document.querySelectorAll('form[data-formspree]').forEach(form => {
+                form.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
-                    const name = form.querySelector('input[name="name"]').value.trim();
-                    const email = form.querySelector('input[name="email"]').value.trim();
-                    const phone = form.querySelector('input[name="phone"]').value.trim();
-                    const message = form.querySelector('textarea[name="message"]').value.trim();
+                    // Get form type
+                    const formType = this.getAttribute('data-form-type') || 'contact';
                     
-                    if (!name || !email || !phone) {
-                        alert('Please fill all required fields');
-                        return;
+                    // Get submit button
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    // Show loading
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting...';
+                    
+                    // Track with Google Analytics
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'Form',
+                            'event_label': formType
+                        });
                     }
-
-                    // Validate email format
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(email)) {
-                        alert('Please enter a valid email address');
-                        return;
+                    
+                    try {
+                        // Create FormData
+                        const formData = new FormData(this);
+                        
+                        // Add page info
+                        formData.append('page_url', window.location.href);
+                        formData.append('page_title', document.title);
+                        
+                        // Submit to Formspree
+                        const response = await fetch(FORMSPREE_URL, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            // Success
+                            alert("✅ Thank you! Our team will contact you shortly.");
+                            this.reset();
+                        } else {
+                            // Error
+                            throw new Error('Submission failed');
+                        }
+                        
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert("❌ Submission failed. Please try again or WhatsApp us at +91 70663 93830");
+                    } finally {
+                        // Restore button
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
                     }
-
-                    // Create WhatsApp message
-                    const msg = encodeURIComponent(
-                        `*EDUCATIONAL INQUIRY - Investor Guide*%0A%0A` +
-                        `*Name:* ${name}%0A` +
-                        `*Email:* ${email}%0A` +
-                        `*Phone:* ${phone}%0A` +
-                        `*Message:* ${message || 'No message provided'}%0A%0A` +
-                        `Submitted from: Investor Guide Educational Form`
-                    );
-                    
-                    // Open WhatsApp
-                    window.open(`https://wa.me/917066393830?text=${msg}`, '_blank');
-                    
-                    // Show success message
-                    alert('Thank you for your interest. Our team will respond with educational materials within 24 hours.');
-                    
-                    // Reset form
-                    form.reset();
                 });
-            }
+            });
 
             // Smooth scroll for consultation button
             const consultBtn = document.getElementById('consultButton');

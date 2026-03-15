@@ -1,395 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Omkar Enterprises · Structured Capital Deployment</title>
-    
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S07E1S6Z6E"></script>
+    <!-- Google Analytics (same property) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-S07E1S6Z6E');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G7YK2WKD6G');
     </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta: noindex for privacy, but matching corporate style -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Private Capital Program · TRFSK OMKAR SERVICES</title>
+    <meta name="description" content="Confidential structured deployment tiers for private partners. Not publicly listed.">
 
-    <!-- EmailJS, Razorpay, Tailwind, Fonts -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Font Awesome 6 & Inter font (same as main site) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    
+    <!-- Using same corporate styling, with addition of program cards & table -->
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        :root { --gold: #c5a059; --gold-dark: #a07e3e; --dark: #04070a; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a1929;
+            --primary: #0f2744;
+            --secondary: #1e3a5f;
+            --accent: #c6a23b;
+            --accent-light: #dbb957;
+            --accent-dark: #a8852c;
+            --gold: #c6a23b;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --text-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-light: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+            --shadow-gold: 0 5px 20px rgba(198, 162, 59, 0.15);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark); color:#fff; scroll-behavior:smooth;
+            font-family: "Inter", sans-serif;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: var(--bg-white);
         }
-        .gold-text { color: var(--gold); }
-        .gold-bg { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color:#000; }
-        .glass-card {
-            background: rgba(255,255,255,0.02); backdrop-filter:blur(12px);
-            border:1px solid rgba(255,255,255,0.08); border-radius:2rem; padding:2rem;
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
-        .serif { font-family: 'Playfair Display', serif; }
+
+        /* corporate header */
+        .corporate-header {
+            background: var(--primary-dark);
+            color: var(--text-white);
+            padding: 12px 0;
+            border-bottom: 3px solid var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .corporate-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .cin-block i, .contact-item i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+        .contact-separator { color: rgba(255,255,255,0.3); margin:0 8px; }
+
+        /* navigation */
+        .navbar {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        .logo-text h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.2;
+        }
+        .logo-text .tagline {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-menu a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+        .hamburger { display: none; background: none; border: none; font-size: 28px; }
+
+        /* private badge */
+        .private-badge {
+            background: #842029;
+            color: #f8d7da;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            border: 1px solid #e35d6a;
+        }
+
+        /* program cards */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 24px;
+            margin: 40px 0;
+        }
+        .tier-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+            position: relative;
+        }
+        .tier-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-6px);
+        }
+        .tier-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        .tier-rate {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin: 15px 0 10px;
+        }
+        .tier-rate small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+        .tier-desc {
+            color: var(--text-light);
+            border-top: 1px dashed var(--border-light);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        .bonus-chip {
+            background: linear-gradient(145deg, #1e4b3c, #0d2f24);
+            border: 1px solid #2e9c74;
+            color: #b2f0d0;
+            padding: 6px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .slot-warning {
+            background: #fff3cd;
+            border: 1px solid #ffe69c;
+            color: #856404;
+            padding: 12px 25px;
+            border-radius: 60px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* table */
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        th {
+            background: var(--primary-dark);
+            color: white;
+            padding: 16px 12px;
+            font-weight: 600;
+        }
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid var(--border-light);
+            text-align: center;
+        }
+        .highlight-row {
+            background: rgba(198,162,59,0.08);
+            font-weight: 600;
+        }
+
         .btn-primary {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color:#000; padding:1rem 2rem; border-radius:1rem; font-weight:700;
-            transition: all 0.3s; cursor:pointer; border:none; width:100%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: var(--primary-dark);
+            padding: 16px 36px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-gold);
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow:0 15px 25px -5px rgba(197,160,89,0.4); }
         .btn-secondary {
-            background: rgba(255,255,255,0.05); border:1px solid var(--gold); color:#fff;
-            padding:1rem 2rem; border-radius:1rem; font-weight:600; transition:all 0.3s;
+            background: transparent;
+            border: 2px solid var(--primary-dark);
+            color: var(--primary-dark);
+            padding: 16px 36px;
+            border-radius: 40px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
-        .btn-secondary:hover { background:rgba(197,160,89,0.2); }
-        .form-input {
-            background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
-            border-radius:1rem; padding:1rem 1.25rem; color:#fff; width:100%;
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-white);
         }
-        .form-input:focus { outline:none; border-color:var(--gold); }
-        .protocol-step {
-            display: flex; gap:1rem; align-items:center; margin-bottom:1.5rem;
+
+        .legal-footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 0 20px;
+            margin-top: 60px;
         }
-        .step-number {
-            width:2.5rem; height:2.5rem; border-radius:9999px; background:var(--gold); color:#000;
-            display:flex; align-items:center; justify-content:center; font-weight:800;
+
+        @media (max-width: 900px) {
+            .tier-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 20px; }
         }
-        .repayment-table {
-            width:100%; border-collapse: collapse;
-        }
-        .repayment-table th {
-            background: rgba(197,160,89,0.2); color:var(--gold); font-weight:600; padding:0.75rem;
-            border-bottom:2px solid var(--gold); text-align:center;
-        }
-        .repayment-table td {
-            padding:0.6rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); text-align:center;
-        }
-        .highlight-row { background: rgba(197,160,89,0.1); font-weight:600; }
-        .table-container { overflow-x: auto; }
-        @media (max-width:640px) { .glass-card { padding:1.5rem; } }
     </style>
 </head>
 <body>
 
-<!-- Official Email & Security Banner -->
-<div class="bg-black/90 text-gold text-center py-2 px-4 text-xs md:text-sm font-bold border-b border-gold/30 fixed top-0 w-full z-50">
-    ✦ OFFICIAL EMAIL: care@omkarservices.in ✦ RAZORPAY SECURE PAYMENTS ✦ AGREEMENT UNDER IT ACT 2000 ✦
+<!-- Corporate Header (exactly like main site) -->
+<div class="corporate-header">
+    <div class="container">
+        <div class="cin-block">
+            <i class="fas fa-building"></i>
+            <span>CIN: <strong>U70200MH2023PTC407336</strong></span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+            <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+917066393830">+91 70663 93830</a></div>
+            <span class="contact-separator">|</span>
+            <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a></div>
+        </div>
+    </div>
 </div>
 
-<!-- Navigation -->
-<nav class="p-6 border-b border-white/10 bg-black/80 sticky top-[38px] md:top-[40px] z-40 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <div class="font-bold text-xl tracking-tighter uppercase">OMKAR <span class="gold-text font-light">ENTERPRISES</span></div>
-        <div class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-            <a href="#programs" class="hover:text-gold">PROGRAMS</a>
-            <a href="#repayment" class="hover:text-gold">REPAYMENT</a>
-            <a href="#protocol" class="hover:text-gold">PROTOCOL</a>
-            <a href="#onboarding" class="hover:text-gold">ONBOARD</a>
-        </div>
+<!-- Navigation (same as main, with "Private" active) -->
+<nav class="navbar">
+    <div class="container nav-container">
+        <a href="#" class="logo">
+            <div class="logo-text">
+                <h1>TRFSK OMKAR SERVICES</h1>
+                <span class="tagline">PRIVATE LIMITED · PRIVATE OFFERING</span>
+            </div>
+        </a>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" class="active">Private Program</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </div>
 </nav>
 
-<!-- Hero with integrated trust message -->
-<section class="pt-28 pb-12 px-6 text-center" id="programs">
-    <div class="max-w-5xl mx-auto">
-        <span class="bg-green-600/20 text-green-400 border border-green-500/30 px-5 py-2 rounded-full text-sm font-bold mb-6 inline-block">
-            ✅ FULLY ONLINE · SYSTEMATIC · PROFESSIONALLY MANAGED
-        </span>
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 serif italic">
-            <span class="gold-text">Structured Capital</span><br>
-            <span class="text-white">Deployment Programs</span>
-        </h1>
-        <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Choose your program — all secured by formal loan agreement, PDC, and 
-            <span class="text-white font-bold">Razorpay payment gateway</span> for complete transparency.
-        </p>
-        <!-- two program cards inline -->
-        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-8">
-            <div class="glass-card border border-yellow-600/40">
-                <span class="bg-red-500/20 text-red-300 px-3 py-1 rounded-full text-xs font-bold">UNTIL FEB 28 2026</span>
-                <h2 class="text-3xl font-bold gold-text mt-3">Trial 10% / 15%</h2>
-                <p class="text-sm text-slate-300">₹25,000 – ₹50,000 · First-time investors</p>
-                <div class="mt-4 text-left space-y-1 text-sm">
-                    <p>🔸 Option A: 10% monthly + capital refund 13th month</p>
-                    <p>🔸 Option B: 15% monthly (capital included)</p>
-                </div>
-            </div>
-            <div class="glass-card border-2 border-gold">
-                <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-bold">STANDARD</span>
-                <h2 class="text-3xl font-bold gold-text mt-3">1% Monthly</h2>
-                <p class="text-sm text-slate-300">₹1,00,000 – ₹5,00,000 · 12 months</p>
-                <div class="mt-4 text-left space-y-1 text-sm">
-                    <p>🔹 Fixed 1% monthly interest</p>
-                    <p>🔹 Capital refund in 13th month</p>
-                </div>
-            </div>
+<!-- MAIN PRIVATE OFFERING CONTENT (unlisted, noindex) -->
+<section style="padding: 50px 0 20px;">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <span class="private-badge"><i class="fas fa-lock"></i> PRIVATE & CONFIDENTIAL · NOT PUBLIC</span>
+            <span class="bonus-chip"><i class="fas fa-bolt"></i> TODAY'S BONUS: +1% EXTRA PER MONTH (limited slots)</span>
         </div>
-    </div>
-</section>
-
-<!-- Our Structured Protocol (Systematic Online Onboarding) -->
-<section id="protocol" class="py-16 px-6 bg-white/[0.02]">
-    <div class="max-w-4xl mx-auto glass-card">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 serif gold-text">🔐 Our Structured Protocol</h2>
-        <p class="text-center text-slate-300 mb-10">Every interested partner follows the same systematic process — designed for complete safety and protection for both sides.</p>
         
-        <div class="protocol-step">
-            <div class="step-number">1</div>
-            <div><span class="font-bold gold-text">Secure Payment via Razorpay</span> — All payments processed through Razorpay payment gateway, ensuring complete security, transparency, and proper transaction record.</div>
-        </div>
-        <div class="protocol-step">
-            <div class="step-number">2</div>
-            <div><span class="font-bold gold-text">Official Agreement via Email</span> — Agreement officially approved and sent from <span class="font-mono text-gold">care@omkarservices.in</span>. Digital acceptance under IT Act 2000.</div>
-        </div>
-        <div class="protocol-step">
-            <div class="step-number">3</div>
-            <div><span class="font-bold gold-text">Legal Documentation & PDC</span> — Formal loan agreement printed on legal paper, PDC couriered within 5-7 working days.</div>
-        </div>
-        <div class="protocol-step">
-            <div class="step-number">4</div>
-            <div><span class="font-bold gold-text">Recorded Communication</span> — All communication through official email. Zero confusion in the future. Even in-person meetings require following the same protocol.</div>
-        </div>
-        <p class="text-center text-sm text-slate-400 mt-6">✔ Everything handled through a proper, structured, and disciplined protocol system.</p>
-    </div>
-</section>
-
-<!-- MONTH-WISE REPAYMENT TABLE (Integrated with both programs) -->
-<section id="repayment" class="py-16 px-6">
-    <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 serif"><span class="gold-text">Month-wise repayment</span> — exact cash flows</h2>
-        <p class="text-center text-slate-400 mb-8 max-w-2xl mx-auto">Select amount & option to view detailed monthly payouts and capital status.</p>
-
-        <!-- controls -->
-        <div class="flex flex-wrap justify-center gap-4 mb-10">
-            <div class="flex gap-2 flex-wrap justify-center">
-                <button class="px-4 py-2 rounded-full text-sm font-bold transition-all" id="amt25kBtn" onclick="setAmount(25000)" style="background:rgba(197,160,89,0.2); color:var(--gold); border:1px solid var(--gold);">₹25k trial</button>
-                <button class="px-4 py-2 rounded-full text-sm font-bold transition-all" id="amt50kBtn" onclick="setAmount(50000)" style="background:var(--gold); color:#000;">₹50k trial</button>
-                <button class="px-4 py-2 rounded-full text-sm font-bold transition-all" id="amt1LBtn" onclick="setAmount(100000)" style="background:rgba(255,255,255,0.1); color:#fff;">₹1L (1%)</button>
-                <button class="px-4 py-2 rounded-full text-sm font-bold transition-all" id="amt2LBtn" onclick="setAmount(200000)" style="background:rgba(255,255,255,0.1); color:#fff;">₹2L (1%)</button>
-                <button class="px-4 py-2 rounded-full text-sm font-bold transition-all" id="amt5LBtn" onclick="setAmount(500000)" style="background:rgba(255,255,255,0.1); color:#fff;">₹5L (1%)</button>
+        <h1 style="font-size: 2.8rem; font-weight: 700; margin: 40px 0 10px; color: var(--primary-dark);">Structured <span style="color: var(--accent);">Capital Deployment</span></h1>
+        <p style="font-size: 1.2rem; color: var(--text-light); max-width: 800px;">Private partnership tiers for accredited individuals. Each program includes formal agreement, PDC, and Razorpay settlement. <strong>Only 10 slots available at this structure.</strong></p>
+        
+        <!-- Tier cards (matching three programs) -->
+        <div class="tier-grid">
+            <div class="tier-card">
+                <span style="background: #e0f2fe; color: #0369a1; padding: 4px 16px; border-radius: 40px; font-size: 0.8rem; font-weight: 700;">TRIAL #1</span>
+                <div class="tier-name">₹10k – ₹25k</div>
+                <div class="tier-rate">10% <small>/month</small></div>
+                <div style="margin: 5px 0;">capital refund in 13th month</div>
+                <div class="tier-desc">
+                    <i class="fas fa-check-circle" style="color: var(--accent);"></i> 12 monthly payouts<br>
+                    <i class="fas fa-check-circle" style="color: var(--accent);"></i> Principal returned month 13
+                </div>
             </div>
-            <div class="flex gap-2">
-                <button class="px-4 py-2 rounded-full text-sm font-bold" id="optABtn" onclick="setOption('A')" style="background:var(--gold); color:#000;">Option A (10% + refund)</button>
-                <button class="px-4 py-2 rounded-full text-sm font-bold" id="optBBtn" onclick="setOption('B')" style="background:rgba(255,255,255,0.1); color:#fff;">Option B (15% no refund)</button>
+            <div class="tier-card">
+                <span style="background: #fef3c7; color: #92400e; padding: 4px 16px; border-radius: 40px; font-size: 0.8rem; font-weight: 700;">TRIAL #2</span>
+                <div class="tier-name">₹50k</div>
+                <div class="tier-rate">15% <small>/month</small></div>
+                <div style="margin: 5px 0;">capital refund in 13th month</div>
+                <div class="tier-desc">
+                    <i class="fas fa-check-circle" style="color: var(--accent);"></i> 12 monthly payouts<br>
+                    <i class="fas fa-check-circle" style="color: var(--accent);"></i> Principal returned month 13
+                </div>
             </div>
+            <div class="tier-card" style="border: 2px solid var(--accent);">
+                <span style="background: #fae8ff; color: #86198f; padding: 4px 16px; border-radius: 40px; font-size: 0.8rem; font-weight: 700;">TRIAL #3</span>
+                <div class="tier-name">₹1 Lakh</div>
+                <div class="tier-rate">18% <small>/month</small></div>
+                <div style="margin: 5px 0;">capital refund in 13th month</div>
+                <div class="tier-desc">
+                    <i class="fas fa-check-circle" style="color: var(--accent);"></i> 12 monthly payouts<br>
+                    <i class="fas fa-check-circle" style="color: var(--accent);"></i> Principal returned month 13
+                </div>
+            </div>
+        </div>
+
+        <!-- Bonus + slot warning -->
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; margin: 40px 0; background: #f0f9ff; padding: 20px 30px; border-radius: 60px;">
+            <div class="slot-warning"><i class="fas fa-hourglass-half"></i> ONLY 10 SLOTS · FIRST DEPLOY GET +1% EXTRA EVERY MONTH</div>
+            <div><span style="font-weight: 800; font-size: 1.5rem; color: var(--accent);">12%</span> <span style="color: var(--text-light);">additional annual return</span></div>
+        </div>
+
+        <!-- Interactive table with bonus toggle (same functionality) -->
+        <h2 style="font-size: 2rem; margin: 60px 0 20px;">Projected month-wise repayment</h2>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-bottom: 30px;">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button id="amt10kBtn" onclick="setAmount(10000)" style="background: rgba(198,162,59,0.2); border:1px solid var(--accent); color:var(--accent); padding:8px 20px; border-radius:40px; font-weight:600;">₹10k (10%)</button>
+                <button id="amt25kBtn" onclick="setAmount(25000)" style="background: rgba(198,162,59,0.2); border:1px solid var(--accent); color:var(--accent); padding:8px 20px; border-radius:40px;">₹25k (10%)</button>
+                <button id="amt50kBtn" onclick="setAmount(50000)" style="background: var(--accent); color:#000; border:1px solid var(--accent); padding:8px 20px; border-radius:40px; font-weight:600;">₹50k (15%)</button>
+                <button id="amt1LBtn" onclick="setAmount(100000)" style="background: rgba(198,162,59,0.2); border:1px solid var(--accent); color:var(--accent); padding:8px 20px; border-radius:40px;">₹1L (18%)</button>
+            </div>
+            <label style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-weight:600;">➕1% bonus active</span>
+                <input type="checkbox" id="bonusToggle" onchange="toggleBonus()" style="width:22px; height:22px; accent-color: var(--accent);">
+            </label>
         </div>
 
         <!-- dynamic table -->
-        <div class="glass-card p-6 md:p-8">
-            <div class="table-container">
-                <table class="repayment-table" id="repaymentTable">
+        <div class="table-container">
+            <table id="repaymentTable">
+                <thead><tr><th>Month</th><th>Payout (₹)</th><th>Cumulative (₹)</th><th>Capital status</th></tr></thead>
+                <tbody id="tableBody">
                     <!-- filled by js -->
-                </table>
+                </tbody>
+            </table>
+        </div>
+        <p style="color: var(--text-light);">*Capital always refunded in 13th month. Bonus applies for the first 10 slots.</p>
+
+        <!-- confidential onboarding form (matches corporate style) -->
+        <div style="background: var(--bg-light); border-radius: 40px; padding: 60px 40px; margin: 80px 0;" id="contact">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span class="private-badge" style="background:#0a1929; color:#c6a23b;">PRIVATE ONBOARDING</span>
+                <h2 style="font-size: 2.5rem; margin: 30px 0 10px;">Request access to program</h2>
+                <p style="color: var(--text-light);">After submission, our team will send the official agreement from <strong>care@omkarservices.in</strong> and Razorpay payment link.</p>
             </div>
-            <p class="text-xs text-slate-500 mt-4 text-center">*Guaranteed 1% monthly for standard plans. Trial options as selected. PDC secures all.</p>
+            
+            <div style="max-width: 600px; margin: 40px auto 0;">
+                <form id="privateForm">
+                    <div class="form-group"><input type="text" id="fullName" placeholder="Full name *" required></div>
+                    <div class="form-group"><input type="email" id="emailAddr" placeholder="Email address *" required></div>
+                    <div class="form-group"><input type="tel" id="mobileNum" placeholder="WhatsApp number *" required></div>
+                    <div class="form-group">
+                        <select id="programSelect">
+                            <option value="10000_10">₹10,000 Trial #1 (10% monthly)</option>
+                            <option value="25000_10">₹25,000 Trial #1 (10% monthly)</option>
+                            <option value="50000_15" selected>₹50,000 Trial #2 (15% monthly)</option>
+                            <option value="100000_18">₹1,00,000 Trial #3 (18% monthly)</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px; margin: 25px 0;">
+                        <input type="checkbox" id="applyBonusCheck" style="width:20px; height:20px;">
+                        <label for="applyBonusCheck" style="font-weight:500;">Apply +1% bonus (limited slots, today only)</label>
+                    </div>
+
+                    <button type="button" onclick="initiateRazorpay()" class="btn-primary" style="width:100%; justify-content:center; margin-bottom:20px;">
+                        <i class="fas fa-lock"></i> PROCEED VIA RAZORPAY
+                    </button>
+                    <button type="button" onclick="sendToWhatsApp()" class="btn-secondary" style="width:100%; justify-content:center;">
+                        <i class="fab fa-whatsapp"></i> SEND DETAILS VIA WHATSAPP
+                    </button>
+                </form>
+                <p style="font-size:0.8rem; color:var(--text-light); margin-top: 25px; text-align:center;">By proceeding you agree to our private protocol. All communications recorded.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Integrated Onboarding with Razorpay & Official Email -->
-<section id="onboarding" class="py-16 px-6 bg-white/[0.02]">
-    <div class="max-w-2xl mx-auto glass-card">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 gold-text">📲 Start Your Onboarding</h2>
-        <p class="text-center text-sm text-slate-400 mb-6">All payments via Razorpay. Agreement sent from <span class="font-mono text-gold">care@omkarservices.in</span></p>
-        
-        <div class="grid grid-cols-1 gap-4 mb-6">
-            <input type="text" id="fullName" class="form-input" placeholder="Full name *">
-            <input type="email" id="emailAddr" class="form-input" placeholder="Email *">
-            <input type="tel" id="mobileNum" class="form-input" placeholder="WhatsApp number *">
-            <select id="programSelect" class="form-input">
-                <option value="25000_A">₹25,000 - Option A (10% + refund 13th month)</option>
-                <option value="25000_B">₹25,000 - Option B (15% monthly)</option>
-                <option value="50000_A">₹50,000 - Option A (10% + refund)</option>
-                <option value="50000_B" selected>₹50,000 - Option B (15% monthly)</option>
-                <option value="100000">₹1,00,000 - Standard 1% monthly</option>
-                <option value="200000">₹2,00,000 - Standard 1% monthly</option>
-                <option value="300000">₹3,00,000 - Standard 1% monthly</option>
-                <option value="400000">₹4,00,000 - Standard 1% monthly</option>
-                <option value="500000">₹5,00,000 - Standard 1% monthly</option>
-            </select>
+<!-- Legal disclaimer (matching main site but condensed) -->
+<footer class="legal-footer">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+            <div>
+                <h4 style="color: var(--accent); margin-bottom: 20px;">TRFSK OMKAR SERVICES</h4>
+                <p style="color: rgba(255,255,255,0.7);">Corporate advisory & management consultancy. CIN: U70200MH2023PTC407336. This is a private offering document not for public distribution.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--accent);">Registered Office</h4>
+                <p style="color: rgba(255,255,255,0.7);">House Opp Bk no. 684, Ulhasnagar, Thane - 421002</p>
+            </div>
+            <div>
+                <h4 style="color: var(--accent);">Contact</h4>
+                <p style="color: rgba(255,255,255,0.7);">care@omkarservices.in · +91 70663 93830</p>
+            </div>
         </div>
-
-        <!-- Razorpay Payment Button (simulated) + WhatsApp registration -->
-        <button onclick="initiateRazorpay()" class="btn-primary text-lg font-bold mb-3 flex items-center justify-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">💳</svg>
-            PAY VIA RAZORPAY (SECURE)
-        </button>
-        
-        <button onclick="sendToWhatsApp()" class="btn-secondary w-full mb-4 font-bold flex items-center justify-center gap-2">
-            📲 OR SEND DETAILS VIA WHATSAPP
-        </button>
-        
-        <div class="bg-blue-900/20 p-4 rounded-xl border border-blue-500/30 text-sm">
-            <p class="text-blue-300 font-medium">⏱️ Post payment, you will receive:</p>
-            <ul class="text-slate-300 text-xs list-disc pl-5 mt-2">
-                <li>Formal loan agreement PDF from <span class="font-mono">care@omkarservices.in</span></li>
-                <li>PDC courier within 5-7 working days</li>
-                <li>Official receipt and transaction record</li>
-            </ul>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.8rem; color: rgba(255,255,255,0.5); text-align: center;">
+            <p><strong>Important:</strong> This is a private page for invited parties only. We are not a SEBI-registered investment advisor. All programs are structured as private advisory agreements. By accessing this page you confirm you are an accredited investor. © 2026 TRFSK OMKAR SERVICES PRIVATE LIMITED</p>
         </div>
-        
-        <p class="text-[10px] text-center text-slate-500 mt-4">By proceeding, you agree to our structured protocol. All communications recorded.</p>
     </div>
-</section>
-
-<!-- WhatsApp Support & Official Email Reminder -->
-<div class="max-w-4xl mx-auto px-6 text-center my-8">
-    <a id="floatingWA" href="#" class="gold-bg inline-block text-black px-8 py-4 rounded-2xl font-black text-xl shadow-2xl transition hover:scale-105">📲 CHAT SUPPORT · +91 70663 93830</a>
-    <div class="mt-3 text-sm text-slate-400">
-        ✦ Official Email: <span class="font-mono text-gold">care@omkarservices.in</span> ✦
-    </div>
-</div>
-
-<!-- Footer with agreement reference -->
-<footer class="py-8 border-t border-white/5 text-center text-[9px] text-slate-600 uppercase tracking-widest">
-    Omkar Enterprises · Loan agreement as per attached · Razorpay payments · IT Act 2000 · Feb 2026
 </footer>
 
+<!-- JavaScript (table + form handlers) -->
 <script>
-    emailjs.init("n45a20rU4_sBtNgdL");
-
-    // ---------- Repayment Table Generator ----------
+    // ---- repayment table logic (same as previous) ----
     let currentAmount = 50000;
-    let currentOption = 'B';  // default Option B
+    let bonusActive = false;
 
     function setAmount(amt) {
         currentAmount = amt;
-        // button styling (simplified – we just update active classes manually)
+        // update button styles
         document.querySelectorAll('[id^="amt"]').forEach(btn => {
-            btn.style.background = 'rgba(197,160,89,0.2)';
-            btn.style.color = 'var(--gold)';
+            btn.style.background = 'rgba(198,162,59,0.2)';
+            btn.style.color = 'var(--accent)';
         });
-        if(amt===25000) {
-            document.getElementById('amt25kBtn').style.background = 'var(--gold)';
-            document.getElementById('amt25kBtn').style.color = '#000';
-        } else if(amt===50000) {
-            document.getElementById('amt50kBtn').style.background = 'var(--gold)';
-            document.getElementById('amt50kBtn').style.color = '#000';
-        } else if(amt===100000) {
-            document.getElementById('amt1LBtn').style.background = 'var(--gold)';
-            document.getElementById('amt1LBtn').style.color = '#000';
-        } else if(amt===200000) {
-            document.getElementById('amt2LBtn').style.background = 'var(--gold)';
-            document.getElementById('amt2LBtn').style.color = '#000';
-        } else if(amt===500000) {
-            document.getElementById('amt5LBtn').style.background = 'var(--gold)';
-            document.getElementById('amt5LBtn').style.color = '#000';
-        }
+        if(amt===10000) document.getElementById('amt10kBtn').style.background = 'var(--accent)';
+        if(amt===25000) document.getElementById('amt25kBtn').style.background = 'var(--accent)';
+        if(amt===50000) document.getElementById('amt50kBtn').style.background = 'var(--accent)';
+        if(amt===100000) document.getElementById('amt1LBtn').style.background = 'var(--accent)';
         renderTable();
     }
 
-    function setOption(opt) {
-        currentOption = opt;
-        document.getElementById('optABtn').style.background = opt==='A' ? 'var(--gold)' : 'rgba(255,255,255,0.1)';
-        document.getElementById('optABtn').style.color = opt==='A' ? '#000' : '#fff';
-        document.getElementById('optBBtn').style.background = opt==='B' ? 'var(--gold)' : 'rgba(255,255,255,0.1)';
-        document.getElementById('optBBtn').style.color = opt==='B' ? '#000' : '#fff';
+    function toggleBonus() {
+        bonusActive = document.getElementById('bonusToggle').checked;
         renderTable();
+    }
+
+    function getBaseRate(amount) {
+        if (amount === 10000 || amount === 25000) return 0.10;
+        if (amount === 50000) return 0.15;
+        if (amount === 100000) return 0.18;
+        return 0.01;
     }
 
     function renderTable() {
-        const tbody = document.getElementById('repaymentTable');
-        let html = '<thead><tr><th>Month</th><th>Payout (₹)</th><th>Cumulative (₹)</th><th>Capital Status</th></tr></thead><tbody>';
-
-        let monthlyPayout = 0;
-        let finalNote = '';
-
-        if (currentAmount <= 50000) { // trial
-            if (currentOption === 'A') {
-                monthlyPayout = Math.round(currentAmount * 0.1);
-                finalNote = `Capital refund of ₹${currentAmount.toLocaleString()} at month 13`;
-            } else {
-                monthlyPayout = Math.round(currentAmount * 0.15);
-                finalNote = 'Capital remains yours (no refund)';
-            }
-        } else {
-            monthlyPayout = Math.round(currentAmount * 0.01); // 1% monthly
-            finalNote = `Capital refund of ₹${currentAmount.toLocaleString()} at month 13`;
-        }
-
+        const base = getBaseRate(currentAmount);
+        let applied = base + (bonusActive ? 0.01 : 0);
+        let monthly = Math.round(currentAmount * applied);
+        let tbody = document.getElementById('tableBody');
+        let html = '';
         let cumulative = 0;
-        for (let m = 1; m <= 12; m++) {
-            cumulative += monthlyPayout;
-            html += `<tr><td>${m}</td><td>₹${monthlyPayout.toLocaleString()}</td><td>₹${cumulative.toLocaleString()}</td><td>${m === 12 ? 'Term end' : 'Active'}</td></tr>`;
+        for (let m=1; m<=12; m++) {
+            cumulative += monthly;
+            html += `<tr><td>${m}</td><td>₹${monthly.toLocaleString()}</td><td>₹${cumulative.toLocaleString()}</td><td>Active</td></tr>`;
         }
-        // refund row
-        html += `<tr class="highlight-row"><td>13</td><td>—</td><td>—</td><td>💰 ${finalNote}</td></tr>`;
-
-        html += '</tbody>';
+        html += `<tr class="highlight-row"><td>13</td><td>—</td><td>—</td><td>💰 Capital refund of ₹${currentAmount.toLocaleString()}</td></tr>`;
         tbody.innerHTML = html;
     }
 
-    // ---------- Razorpay Integration (simulated but professional) ----------
+    // ---- onboarding functions ----
     window.initiateRazorpay = function() {
         const name = document.getElementById('fullName').value.trim();
         const email = document.getElementById('emailAddr').value.trim();
         const phone = document.getElementById('mobileNum').value.trim();
+        if (!name || !email || !phone) { alert('Please fill all fields'); return; }
         const program = document.getElementById('programSelect').value;
-
-        if (!name || !email || !phone) {
-            alert('Please fill all fields');
-            return;
-        }
-
-        // extract amount from program value
-        let amount = parseInt(program.split('_')[0]) || 50000;
+        let amount = 50000;
+        if (program.startsWith('10000')) amount = 10000;
+        else if (program.startsWith('25000')) amount = 25000;
+        else if (program.startsWith('50000')) amount = 50000;
+        else if (program.startsWith('100000')) amount = 100000;
+        const applyBonus = document.getElementById('applyBonusCheck').checked;
+        alert(`✅ Redirecting to Razorpay for ₹${amount.toLocaleString()}\nBonus applied: ${applyBonus ? 'YES' : 'NO'}\n\nIn live integration payment is processed.`);
         
-        // In a real integration, you would use your Razorpay key and create order.
-        // For this demo, we simulate a successful payment and then redirect to WhatsApp with payment info.
-        alert(`✅ Redirecting to Razorpay secure gateway for ₹${amount.toLocaleString()}\n\nIn live integration, payment would be processed here.`);
-
-        // After payment, send details via WhatsApp including payment confirmation
-        let message = `🔔 *PAYMENT INITIATED (RAZORPAY)*%0A%0A`;
-        message += `*Name:* ${name}%0A`;
-        message += `*Email:* ${email}%0A`;
-        message += `*Phone:* ${phone}%0A`;
-        message += `*Program:* ${program}%0A`;
-        message += `*Amount:* ₹${amount.toLocaleString()}%0A%0A`;
-        message += `*Payment simulation complete. Agreement will be sent from care@omkarservices.in*`;
-
-        window.open('https://wa.me/917066393830?text=' + message, '_blank');
-        alert('✓ Payment simulation complete. Our team will contact you with agreement from official email.');
+        let msg = `🔔 *PRIVATE PROGRAM REQUEST*%0A%0A`;
+        msg += `*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${phone}%0A*Program:* ${program}%0A*Bonus:* ${applyBonus ? 'YES' : 'NO'}%0A*Amount:* ₹${amount}`;
+        window.open('https://wa.me/917066393830?text=' + msg, '_blank');
     };
 
-    // WhatsApp registration (without payment)
     window.sendToWhatsApp = function() {
-        const name = document.getElementById('fullName').value.trim();
-        const email = document.getElementById('emailAddr').value.trim();
-        const phone = document.getElementById('mobileNum').value.trim();
+        const name = document.getElementById('fullName').value.trim() || '—';
+        const email = document.getElementById('emailAddr').value.trim() || '—';
+        const phone = document.getElementById('mobileNum').value.trim() || '—';
         const program = document.getElementById('programSelect').value;
-
-        if (!name || !email || !phone) {
-            alert('Please fill all fields');
-            return;
-        }
-        let amountText = program.includes('_') ? '₹' + program.split('_')[0] : '₹' + program;
-
-        let message = `🔔 *NEW LEAD (ONBOARDING)*%0A%0A`;
-        message += `*Name:* ${name}%0A`;
-        message += `*Email:* ${email}%0A`;
-        message += `*Phone:* ${phone}%0A`;
-        message += `*Program:* ${program}%0A`;
-        message += `*Amount:* ${amountText}%0A%0A`;
-        message += `*Please send agreement from care@omkarservices.in and PDC details.*`;
-
-        window.open('https://wa.me/917066393830?text=' + message, '_blank');
-        alert('✓ Details forwarded. You will receive agreement from official email within 4 hours.');
+        const applyBonus = document.getElementById('applyBonusCheck').checked;
+        let msg = `🔔 *PRIVATE ONBOARDING*%0A%0A Name: ${name}%0A Email: ${email}%0A Phone: ${phone}%0A Program: ${program}%0A Bonus: ${applyBonus?'YES':'NO'}%0A I agree to the private protocol.`;
+        window.open('https://wa.me/917066393830?text=' + msg, '_blank');
     };
 
-    // Floating WhatsApp
-    document.getElementById('floatingWA').href = 'https://wa.me/917066393830?text=' + encodeURIComponent('Hello, I want to start the structured onboarding for capital deployment.');
-
-    // Initialize
+    // initial render
     window.onload = function() {
         setAmount(50000);
-        setOption('B');
+        document.getElementById('bonusToggle').checked = false;
+        renderTable();
     };
+
+    // hamburger menu (simple toggle)
+    document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('navMenu').classList.toggle('active');
+    });
 </script>
+
+<!-- style for nav mobile (quick) -->
+<style>
+    @media (max-width:700px) {
+        .nav-menu { display: none; flex-direction: column; position: absolute; top:80px; left:0; width:100%; background:white; padding:20px; box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
+        .nav-menu.active { display: flex; }
+        .hamburger { display: block; }
+    }
+</style>
+
 </body>
 </html>

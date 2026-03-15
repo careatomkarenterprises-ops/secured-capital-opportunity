@@ -3,464 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Quiet Strength · 10% Trust-Builder Trial | Omkar Enterprises</title>
+    <title>The Collective · Omkar Enterprises (Private Offering)</title>
     
     <meta name="robots" content="noindex, nofollow">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-S07E1S6Z6E');
-    </script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome + Inter + Playfair -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #04070a; color: #ffffff; scroll-behavior: smooth; }
-        .gold-text { color: #c5a059; }
-        .gold-bg { background-color: #c5a059; }
-        .gold-border { border-color: #c5a059; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .premium-shadow { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
-        .serif { font-family: 'Playfair Display', serif; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #04070a; }
-        ::-webkit-scrollbar-thumb { background: #c5a059; border-radius: 10px; }
-        .btn-glow:hover { box-shadow: 0 0 25px rgba(197, 160, 89, 0.6); transform: translateY(-2px); }
-        tr:nth-child(even) { background: rgba(197, 160, 89, 0.02); }
-        .tier-glow { box-shadow: 0 0 45px rgba(197,160,89,0.4); border: 1px solid #c5a059; }
-        .feb-badge { background: linear-gradient(145deg, #c5a059 0%, #96712e 100%); color: black; font-weight: 900; }
-        .story-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; line-height: 1.6; color: #c5a059; }
-        .stat-badge { background: rgba(197, 160, 89, 0.1); border-radius: 30px; padding: 0.25rem 1rem; display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; border: 1px solid rgba(197,160,89,0.3); }
-        .handwritten { font-family: 'Playfair Display', serif; font-style: italic; }
-        .comparison-positive { color: #10b981; font-weight: 700; }
-        .comparison-negative { color: #ef4444; font-weight: 700; }
-        .whatsapp-glow:hover { box-shadow: 0 0 30px rgba(37, 211, 102, 0.4); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-dark: #0a1929;
+            --primary: #0f2744;
+            --accent: #c6a23b;
+            --gold: #c6a23b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --shadow-gold: 0 5px 20px rgba(198,162,59,0.15);
+        }
+        body { font-family: "Inter", sans-serif; line-height: 1.5; color: #1e293b; background: white; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        
+        /* Utility */
+        .gold-text { color: var(--gold); }
+        .stat-badge {
+            background: rgba(197,160,89,0.1);
+            border-radius: 30px;
+            padding: 0.25rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid rgba(197,160,89,0.3);
+            display: inline-block;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #a8852c);
+            color: #0a1929;
+            padding: 16px 36px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(198,162,59,0.4); }
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; z-index: 50;
+            background: #25D366; color: white; padding: 14px 28px;
+            border-radius: 60px; text-decoration: none; font-weight: 700;
+            box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+            display: flex; align-items: center; gap: 12px;
+        }
+        
+        /* FAQ Accordion Styles */
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-right: 40px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+        .faq-answer.active {
+            max-height: 300px;
+            margin-top: 15px;
+        }
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        .faq-icon.active {
+            transform: rotate(45deg);
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .whatsapp-float { padding: 12px 20px; font-size: 0.9rem; }
+            div[style*="display: grid"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- TOP BANNER - UPDATED WITH PAYOUT WINDOW -->
-    <div class="feb-badge text-black text-[10px] font-black text-center py-2 uppercase tracking-[0.2em] fixed w-full z-[60] border-b border-black/30">
-        ⚡ INVEST TODAY → FIRST PAYOUT 1–10 APRIL 2026 (FEB 10d + MARCH FULL) · 10% TRIAL SLOT LEFT ⚡
+<!-- Corporate Header -->
+<div style="background: #0a1929; color: white; padding: 12px 0; border-bottom: 3px solid #c6a23b;">
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+        <div><i class="fas fa-building" style="color: #c6a23b;"></i> CIN: <strong>U70200MH2023PTC407336</strong></div>
+        <div><i class="fas fa-phone-alt" style="color: #c6a23b;"></i> <a href="tel:+917066393830" style="color: white; text-decoration: none;">+91 70663 93830</a> | <i class="fas fa-envelope" style="color: #c6a23b;"></i> <a href="mailto:care@omkarservices.in" style="color: white; text-decoration: none;">care@omkarservices.in</a></div>
     </div>
+</div>
 
-    <!-- FLOATING WHATSAPP BUTTON - MATCHES YOUR IMAGE -->
-    <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I'm%20interested%20in%20the%2010%25%20trial%20(%C2%A350%2C000)%20-%20Please%20share%20more%20details" 
-       target="_blank" 
-       class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-5 py-3 rounded-full shadow-2xl whatsapp-glow transition-all duration-300 border-2 border-white/20">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.57 3.87 1.65 5.53L2 22l4.73-1.6c1.62.97 3.5 1.51 5.4 1.51 5.45 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.06 18.08c-1.64 0-3.25-.47-4.64-1.36l-.33-.2-2.84.96.96-2.77-.22-.35c-.96-1.44-1.48-3.12-1.48-4.85 0-4.73 3.85-8.58 8.58-8.58 4.73 0 8.58 3.85 8.58 8.58 0 4.74-3.85 8.59-8.58 8.59z"/>
-            <path d="M16.29 13.95c-.27-.14-1.57-.77-1.81-.86-.24-.09-.42-.14-.6.14-.18.28-.7.86-.86 1.04-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.72-1.34-1.6-1.5-1.87-.16-.28-.02-.43.12-.57.12-.13.27-.33.4-.5.13-.17.18-.28.27-.47.09-.19.05-.35-.02-.49-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.59-.47h-.5c-.18 0-.46.07-.7.33-.24.26-.92.9-.92 2.19 0 1.29.94 2.54 1.07 2.71.13.17 1.85 2.83 4.49 3.88.63.25 1.12.4 1.5.51.63.18 1.2.16 1.65.1.5-.07 1.57-.64 1.79-1.26.22-.62.22-1.15.16-1.26-.07-.11-.24-.18-.51-.32z"/>
-        </svg>
-        <span class="font-bold text-sm tracking-wider">CLAIM 10% TRIAL</span>
-        <span class="text-xs bg-black/30 px-2 py-1 rounded-full">+91 70663 93830</span>
-    </a>
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I%20visited%20The%20Collective%20page%20and%20want%20to%20discuss." class="whatsapp-float">
+    <i class="fab fa-whatsapp fa-lg"></i> <span>SECURE YOUR SLOT</span> <span style="background: rgba(0,0,0,0.3); padding: 3px 10px; border-radius: 40px;">+91 70663 93830</span>
+</a>
 
-    <nav class="p-6 border-b border-white/10 bg-black/80 sticky top-[36px] z-50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="font-bold text-xl tracking-tighter uppercase">
-                OMKAR <span class="gold-text font-light">ENTERPRISES</span>
-            </div>
-            <div class="hidden md:flex items-center space-x-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="#story" class="hover:text-gold">OUR STORY</a>
-                <a href="#calculator" class="hover:text-gold">YOUR ROADMAP</a>
-                <a href="#comparison" class="hover:text-gold">VS TRADITIONAL</a>
-                <a href="#onboarding" class="hover:text-gold">JOIN</a>
-            </div>
+<!-- ========== SECTION 1: HERO (Emotional Hook) ========== -->
+<section style="background: linear-gradient(135deg, #0a1929, #1e3a5f); color: white; padding: 80px 0;">
+    <div class="container" style="max-width: 900px; text-align: center;">
+        <span class="stat-badge" style="background: rgba(198,162,59,0.2); color: #dbb957; border-color: rgba(198,162,59,0.3); margin-bottom: 30px;">🔐 PRIVATE CASH-FLOW PARTNERSHIP</span>
+        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 25px;">Turn <span style="color: #c6a23b;">Dead Capital</span> Into a Second Monthly Salary</h1>
+        <p style="font-size: 1.3rem; opacity: 0.9; max-width: 700px; margin: 0 auto 35px;">
+            Your savings lose 7% every year to inflation. We help you deploy them securely, generating predictable monthly payouts—backed by legal collateral, not promises.
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="#faq-section" class="btn-primary" style="background: #c6a23b; color: #0a1929;">SEE HOW IT WORKS</a>
+            <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I%20want%20to%20see%20the%202%2B%20year%20payout%20proof." style="border: 2px solid white; color: white; padding: 16px 36px; border-radius: 40px; text-decoration: none; font-weight: 600;">REQUEST 2-YEAR PROOF</a>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- HERO SECTION – ORIGIN STORY -->
-    <header class="pt-32 pb-20 px-6 text-center relative" id="story">
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gold-600/10 rounded-full blur-[150px]"></div>
-        </div>
-        <div class="max-w-4xl mx-auto relative z-10">
-            <span class="stat-badge mb-6 inline-block">🇮🇳 THE IDEA · 2012 · MUMBAI</span>
-            <h1 class="text-5xl md:text-7xl font-bold mb-8 serif italic">
-                <span class="gold-text">The Quiet Strength</span><br>
-                <span class="text-white">of Shared Dreams.</span>
-            </h1>
-            <p class="story-quote text-xl max-w-2xl mx-auto mb-6">
-                "For years, I sat across from brilliant people—doctors, teachers, small business owners—who all shared the same quiet anxiety. They'd show me their portfolio charts, point at the red numbers, and ask in hushed tones: <span class="text-white">'What am I doing wrong?'</span>"
-            </p>
-            <p class="text-slate-300 text-lg max-w-2xl mx-auto">
-                That question became the seed of Omkar Enterprises. The deepest financial wounds aren't in account statements—they're in the quiet worry behind them.
-            </p>
-            
-            <!-- HERO SECTION WHATSAPP BUTTON -->
-            <div class="mt-10 flex justify-center">
-                <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I'm%20interested%20in%20the%2010%25%20trial%20(%C2%A350%2C000)%20-%20Please%20share%20more%20details" 
-                   target="_blank"
-                   class="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 btn-glow border-2 border-white/10">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.57 3.87 1.65 5.53L2 22l4.73-1.6c1.62.97 3.5 1.51 5.4 1.51 5.45 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.06 18.08c-1.64 0-3.25-.47-4.64-1.36l-.33-.2-2.84.96.96-2.77-.22-.35c-.96-1.44-1.48-3.12-1.48-4.85 0-4.73 3.85-8.58 8.58-8.58 4.73 0 8.58 3.85 8.58 8.58 0 4.74-3.85 8.59-8.58 8.59z"/>
-                        <path d="M16.29 13.95c-.27-.14-1.57-.77-1.81-.86-.24-.09-.42-.14-.6.14-.18.28-.7.86-.86 1.04-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.72-1.34-1.6-1.5-1.87-.16-.28-.02-.43.12-.57.12-.13.27-.33.4-.5.13-.17.18-.28.27-.47.09-.19.05-.35-.02-.49-.07-.14-.6-1.45-.82-1.99-.22-.53-.44-.46-.59-.47h-.5c-.18 0-.46.07-.7.33-.24.26-.92.9-.92 2.19 0 1.29.94 2.54 1.07 2.71.13.17 1.85 2.83 4.49 3.88.63.25 1.12.4 1.5.51.63.18 1.2.16 1.65.1.5-.07 1.57-.64 1.79-1.26.22-.62.22-1.15.16-1.26-.07-.11-.24-.18-.51-.32z"/>
-                    </svg>
-                    <span>CLAIM YOUR 10% TRIAL SLOT</span>
-                    <span class="text-sm bg-black/30 px-3 py-1 rounded-full">+91 70663 93830</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- THE PROBLEM SECTION -->
-    <section class="py-20 px-6 border-t border-white/5">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="stat-badge mb-4">THE HARD TRUTH</span>
-                    <h2 class="text-3xl font-bold mb-6 serif">You're not just competing against the market.</h2>
-                    <p class="text-slate-300 mb-6 leading-relaxed">
-                        Most retail investors believe success hinges on "being smarter" than the market. But what if the game isn't about intelligence as much as it is about <span class="text-white font-semibold">capital weight and collective strategy?</span>
-                    </p>
-                    <p class="text-slate-300 mb-6 leading-relaxed">
-                        Large funds don't win because they're smarter. They win because they operate with immense capital, enabling them to weather volatility, access exclusive opportunities, and move markets. <span class="text-gold">Your single trade is a spec of dust in their hurricane.</span>
-                    </p>
-                    <div class="glass-card p-6 rounded-xl border-l-4 gold-border mt-6">
-                        <p class="text-sm text-slate-400 italic">
-                            "The stock market doesn't print money. It redistributes it. When you make a mistake, someone else benefits. And historically, those 'mistakes' are disproportionately made by individual investors who lack the protective shield and offensive power of significant capital."
-                        </p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="glass-card p-6 text-center rounded-2xl">
-                        <div class="text-3xl font-black gold-text">80%</div>
-                        <div class="text-[10px] uppercase tracking-wider text-slate-400 mt-2">retail traders lose money</div>
-                    </div>
-                    <div class="glass-card p-6 text-center rounded-2xl">
-                        <div class="text-3xl font-black gold-text">15:1</div>
-                        <div class="text-[10px] uppercase tracking-wider text-slate-400 mt-2">institutional capital advantage</div>
-                    </div>
-                    <div class="glass-card p-6 text-center rounded-2xl col-span-2">
-                        <div class="text-3xl font-black gold-text">92%</div>
-                        <div class="text-[10px] uppercase tracking-wider text-slate-400 mt-2">fund managers outperform retail over 10 years</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- THE SOLUTION SECTION -->
-    <section class="py-20 px-6 bg-white/[0.02]">
-        <div class="max-w-5xl mx-auto text-center">
-            <span class="stat-badge mb-4">INTRODUCING</span>
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 serif">
-                The Power of <span class="gold-text">"Us"</span>
-            </h2>
-            <p class="text-xl text-slate-300 max-w-3xl mx-auto mb-12">
-                This is precisely why we founded Omkar Enterprises. We saw the pattern, understood the challenge, and decided to build a solution. Our core mission is to level the playing field by harnessing <span class="text-white font-bold">The Power of Us</span>.
-            </p>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-card p-8 rounded-3xl">
-                    <div class="text-4xl mb-4">🛡️</div>
-                    <h3 class="font-bold text-lg mb-2">Protection From Traps</h3>
-                    <p class="text-sm text-slate-400">We build resilience against sudden shifts and predatory tactics that often catch individual investors off guard.</p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl gold-border">
-                    <div class="text-4xl mb-4">🚪</div>
-                    <h3 class="font-bold text-lg mb-2">Access Bigger Opportunities</h3>
-                    <p class="text-sm text-slate-400">With collective strength, we can tap into higher-tier investments typically reserved for institutional players.</p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl">
-                    <div class="text-4xl mb-4">🤝</div>
-                    <h3 class="font-bold text-lg mb-2">Shared Dreams, Shared Strength</h3>
-                    <p class="text-sm text-slate-400">Pooled hope, pooled capital—creating a circle where your dreams are guarded by collective resolve.</p>
-                </div>
-            </div>
-            
-            <!-- WHATSAPP BUTTON IN SOLUTION SECTION -->
-            <div class="mt-12">
-                <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I%20want%20to%20learn%20more%20about%20The%20Power%20of%20Us" 
-                   target="_blank"
-                   class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 rounded-full font-bold transition-all duration-300 border border-white/20">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.57 3.87 1.65 5.53L2 22l4.73-1.6c1.62.97 3.5 1.51 5.4 1.51 5.45 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/>
-                    </svg>
-                    <span>Chat with us on WhatsApp</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- THE 10% TRIAL SECTION -->
-    <section class="py-24 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="glass-card p-12 md:p-16 rounded-[3rem] tier-glow relative overflow-hidden">
-                <div class="absolute top-0 right-0 feb-badge text-black px-8 py-2 text-sm font-black uppercase">1 SLOT LEFT · 50K ONLY</div>
-                <div class="relative z-10 max-w-3xl">
-                    <span class="stat-badge mb-4">WHY A 10% TRIAL?</span>
-                    <h2 class="text-4xl font-bold mb-6 serif">
-                        <span class="gold-text">Experience</span> the Collective, Firsthand.
-                    </h2>
-                    <p class="text-slate-300 text-lg mb-6 leading-relaxed">
-                        Our regular model (2-5% monthly) is built on a sustainable collective strategy. It's the engine that drives consistent returns for our investor community. So why offer a special <span class="text-white font-bold">10% for a ₹50,000 trial?</span>
-                    </p>
-                    <div class="space-y-6 mb-10">
-                        <div class="flex gap-4">
-                            <span class="text-gold text-2xl">1️⃣</span>
-                            <div>
-                                <h4 class="font-bold text-white">Demonstrate Trust, Instantly</h4>
-                                <p class="text-slate-400">We understand skepticism. This isn't about blind faith. It's about you experiencing—with a smaller amount—the punctuality, security (PDCs, notarized agreement), and process that every single investor relies on. <span class="text-gold">We want you to feel safe here, not just be told you are.</span></p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <span class="text-gold text-2xl">2️⃣</span>
-                            <div>
-                                <h4 class="font-bold text-white">Let You Feel the "Collective" Effect</h4>
-                                <p class="text-slate-400">By participating in this limited trial, your capital, even at this level, joins our pool. You get a tangible taste of how our strategic deployment—honed over 15 years—can work for you, without the pressure of a large commitment.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <span class="text-gold text-2xl">3️⃣</span>
-                            <div>
-                                <h4 class="font-bold text-white">Build a Foundation for a Larger Partnership</h4>
-                                <p class="text-slate-400">This ₹50k slot is a trial of us, by you. If the process, transparency, and returns meet your expectations, you can then confidently scale up within our regular, sustainable model—knowing exactly how we operate. <span class="text-white">It's the first step in a long-term alliance.</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl border-l-4 gold-border">
-                        <p class="handwritten text-gold text-lg">"This limited opportunity exists solely to let new partners like you validate our approach. After this, we return to our regular model—which is why this specific 10% slot is truly a one-time offer."</p>
-                    </div>
-                    
-                    <!-- WHATSAPP BUTTON IN TRIAL SECTION - MATCHES YOUR IMAGE EXACTLY -->
-                    <div class="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center">
-                        <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I%20want%20to%20CLAIM%20THE%2010%25%20TRIAL%20SLOT%20(%C2%A350%2C000)%20-%20Please%20guide%20me%20on%20the%20next%20steps" 
-                           target="_blank"
-                           class="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 btn-glow border-2 border-white/20 w-full sm:w-auto justify-center">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.57 3.87 1.65 5.53L2 22l4.73-1.6c1.62.97 3.5 1.51 5.4 1.51 5.45 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/>
-                            </svg>
-                            <span class="font-black tracking-wide">CLAIM 10% TRIAL SLOT</span>
-                        </a>
-                        <div class="text-gold font-mono text-sm bg-black/50 px-4 py-3 rounded-full border border-gold/30">
-                            +91 70663 93830
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CALCULATOR & MONTHLY ROADMAP + COMPARISON -->
-    <section id="calculator" class="py-20 px-6 bg-white/[0.01]">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
-                <!-- Left Column: Selector + Summary + Comparison -->
-                <div class="space-y-8">
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 gold-border tier-glow">
-                        <h3 class="text-[10px] font-black text-gold uppercase tracking-[0.3em] mb-6">⏳ CHOOSE YOUR TIER</h3>
-                        <select id="slab" class="w-full bg-transparent border-b border-white/20 text-2xl font-bold py-3 mb-6 outline-none cursor-pointer focus:border-gold transition-colors">
-                            <option value="50000" selected class="bg-black">₹50,000 — 10% monthly (TRIAL)</option>
-                            <option value="100000" class="bg-black">₹1,00,000 — 2% monthly</option>
-                            <option value="200000" class="bg-black">₹2,00,000 — 3% monthly</option>
-                            <option value="500000" class="bg-black">₹5,00,000 — 5% monthly</option>
-                        </select>
-                        
-                        <!-- Summary Cards -->
-                        <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div class="glass-card p-4 rounded-xl text-center">
-                                <div class="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">First Payout</div>
-                                <div class="text-2xl font-bold gold-text" id="firstPayoutVal">₹6,667</div>
-                                <div class="text-[8px] text-slate-500">1–10 April 2026</div>
-                            </div>
-                            <div class="glass-card p-4 rounded-xl text-center">
-                                <div class="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Monthly (May–Mar)</div>
-                                <div class="text-2xl font-bold gold-text" id="monthlyVal">₹5,000</div>
-                                <div class="text-[8px] text-slate-500">11 payments</div>
-                            </div>
-                            <div class="glass-card p-4 rounded-xl text-center col-span-2">
-                                <div class="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Total 12‑Month Profit</div>
-                                <div class="text-3xl font-bold text-green-500" id="totalProfit">₹61,667</div>
-                                <div class="text-[8px] text-slate-500">+ Capital refunded 31st March 2027</div>
-                            </div>
-                        </div>
-
-                        <!-- VS Traditional Investment Comparison -->
-                        <div id="comparison" class="mt-8 pt-6 border-t border-white/10">
-                            <h4 class="text-sm font-bold text-gold mb-4 flex items-center gap-2">
-                                <span>⚖️</span> Compare with Traditional Investments (₹<span id="comparePrincipal">50,000</span>)
-                            </h4>
-                            <div class="space-y-3 text-sm">
-                                <div class="flex justify-between items-center p-3 glass-card rounded-xl">
-                                    <span>🏦 Fixed Deposit (6.5% p.a.)</span>
-                                    <span class="font-mono" id="fdReturn">₹3,250</span>
-                                </div>
-                                <div class="flex justify-between items-center p-3 glass-card rounded-xl">
-                                    <span>📈 Recurring Deposit (7% p.a.)</span>
-                                    <span class="font-mono" id="rdReturn">₹3,500</span>
-                                </div>
-                                <div class="flex justify-between items-center p-3 glass-card rounded-xl gold-border">
-                                    <span class="text-gold font-bold">✨ Your Return with Omkar</span>
-                                    <span class="font-mono gold-text font-bold" id="yourReturn">₹61,667</span>
-                                </div>
-                                <div class="flex justify-between items-center p-3 glass-card rounded-xl mt-2">
-                                    <span class="text-white">🔒 Capital Risk?</span>
-                                    <span class="comparison-positive">Zero (PDC + Notary secured)</span>
-                                </div>
-                                <div class="flex justify-between items-center p-3 glass-card rounded-xl">
-                                    <span class="text-white">🏦 Traditional Capital Risk?</span>
-                                    <span class="comparison-negative">100% on their books</span>
-                                </div>
-                                <p class="text-[10px] text-slate-500 mt-4 italic">Traditional investments put your capital at risk on their balance sheets. With us, your principal is secured by post-dated cheques and a notarized loan agreement—your risk is zero.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Month-by-Month Roadmap -->
-                <div class="glass-card rounded-[2.5rem] overflow-hidden">
-                    <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
-                        <h3 class="text-[10px] font-black uppercase tracking-widest">📆 YOUR 12-MONTH PAYOUT ROADMAP</h3>
-                        <span class="text-[9px] border border-gold/40 text-gold px-3 py-1 rounded-full">1–10 OF EACH MONTH</span>
-                    </div>
-                    <div class="overflow-x-auto max-h-[500px]">
-                        <table class="w-full text-left">
-                            <thead class="text-[9px] uppercase text-slate-500 bg-black">
-                                <tr>
-                                    <th class="p-5">Payment Window</th>
-                                    <th class="p-5">Payout (INR)</th>
-                                    <th class="p-5">Period Covered</th>
-                                    <th class="p-5 text-right">Cumulative</th>
-                                </tr>
-                            </thead>
-                            <tbody id="scheduleBody" class="text-xs font-medium"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FINAL CALL TO ACTION SECTION -->
-    <section id="onboarding" class="py-20 px-6 border-t border-white/5">
-        <div class="max-w-4xl mx-auto text-center">
-            <span class="stat-badge mb-4">LAST CALL</span>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 serif">
-                One <span class="gold-text">10% Trial Slot</span> Remains
-            </h2>
-            <p class="text-xl text-slate-300 mb-8">
-                ₹50,000 · First payout 1–10 April 2026 · Capital secured with PDCs
-            </p>
-            
-            <!-- BIG WHATSAPP BUTTON - MATCHES YOUR IMAGE -->
-            <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I'm%20ready%20to%20claim%20the%20FINAL%2010%25%20TRIAL%20SLOT%20-%20Please%20share%20payment%20and%20agreement%20details" 
-               target="_blank"
-               class="inline-flex items-center gap-4 bg-[#25D366] hover:bg-[#128C7E] text-white px-10 py-5 rounded-full font-black text-xl transition-all duration-300 btn-glow border-2 border-white/20 mb-6">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.57 3.87 1.65 5.53L2 22l4.73-1.6c1.62.97 3.5 1.51 5.4 1.51 5.45 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/>
-                </svg>
-                <span>CLAIM VIA WHATSAPP → +91 70663 93830</span>
-            </a>
-            
-            <p class="text-gold text-sm">
-                ⏳ One investor only · First come, first served
+<!-- ========== SECTION 2: Q&A HERO (Kill Doubts First) ========== -->
+<section id="faq-section" style="padding: 60px 0; background: #0a1929; color: white;">
+    <div class="container" style="max-width: 900px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <span class="stat-badge" style="background: rgba(198,162,59,0.2); color: #dbb957;">📌 YOUR QUESTIONS ANSWERED</span>
+            <h2 style="font-size: 2.8rem; margin-top: 15px;">We <span class="gold-text">Prefer</span> You Ask</h2>
+            <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 20px auto 0;">
+                Every doubt addressed openly. No fine print. No hidden terms.
             </p>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-10 px-6 border-t border-white/5 text-center text-[10px] text-slate-600 uppercase tracking-widest">
-        Omkar Enterprises · Quiet Strength Since 2012 · Notary & PDC Protected
-    </footer>
-
-    <script>
-        const slab = document.getElementById('slab');
-        const scheduleBody = document.getElementById('scheduleBody');
         
-        const firstPayoutVal = document.getElementById('firstPayoutVal');
-        const monthlyVal = document.getElementById('monthlyVal');
-        const totalProfit = document.getElementById('totalProfit');
-        const comparePrincipal = document.getElementById('comparePrincipal');
-        const fdReturn = document.getElementById('fdReturn');
-        const rdReturn = document.getElementById('rdReturn');
-        const yourReturn = document.getElementById('yourReturn');
+        <div style="background: rgba(255,255,255,0.05); border-radius: 40px; padding: 40px;">
+            
+            <!-- FAQ 1: Legality -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-gavel" style="color: #c6a23b; margin-right: 12px;"></i> Is this legal? How do I know you're registered?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We are a fully registered Private Limited company under the Ministry of Corporate Affairs. CIN: <strong>U70200MH2023PTC407336</strong>. Our Certificate of Incorporation, PAN, MSME, and all Ministry filings are available for download in the Trust Stack section below. This is a legally structured private agreement between you and our Executive Director, notarized on ₹500 stamp paper.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 2: Principal Safety -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-shield-alt" style="color: #c6a23b; margin-right: 12px;"></i> What happens to my money if something goes wrong?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>From day one, you hold a Post-Dated Cheque (PDC) for your FULL principal amount. If we ever miss a payment or breach the agreement, you have the legal right to deposit that cheque. Your principal is never at risk—it's secured by the banking system itself.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 3: Payment Track Record -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-clock" style="color: #c6a23b; margin-right: 12px;"></i> How do I know you'll actually pay on time?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We have 2+ years of verifiable payout history—month by month, client by client. Every single payout has been made between the 1st and 10th of the month. No exceptions. We can share this proof with you privately on request.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 4: Early Withdrawal -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-hand-holding-usd" style="color: #c6a23b; margin-right: 12px;"></i> Can I withdraw my money before 12 months?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>This is a 13-month structured agreement (12 payouts + principal refund in month 13). Early withdrawals are not part of the standard terms. However, in genuine hardship cases, we evaluate on a case-by-case basis. The PDC security ensures your principal is always protected.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 5: High Trial Rates -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-rocket" style="color: #c6a23b; margin-right: 12px;"></i> Why do you pay 10-18% on trials? Is it too good to be true?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We call this our "Trust-Buying Budget." We deliberately pay higher on small trial amounts so you can verify our punctuality and process risk-free. Once trust is established, we transition to sustainable 5% monthly for larger capital (₹10L+). The high trial rate is our cost of earning your confidence.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 6: Agreement Partner -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-file-signature" style="color: #c6a23b; margin-right: 12px;"></i> Who do I sign the agreement with? The company or an individual?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You sign a notarized loan agreement on ₹500 stamp paper with our Executive Director personally. This makes the agreement personally enforceable while being backed by the corporate structure. You receive the original notarized copy.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 7: PDC Explanation -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-money-check-alt" style="color: #c6a23b; margin-right: 12px;"></i> What exactly is a PDC? How does it protect me?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>A Post-Dated Cheque (PDC) is a cheque dated for a future date. At the time of agreement, you receive a cheque from us for your FULL principal amount, dated 13 months later. You hold this cheque safely. If we honor the agreement, you return it. If we don't, you deposit it—the bank honors it, and your money is recovered.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 8: Tax Liability -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-file-invoice" style="color: #c6a23b; margin-right: 12px;"></i> Do I have to pay tax on these payouts?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, the interest income is taxable under "Income from Other Sources." We provide you with a yearly statement of payouts. TDS is not deducted as this is a private agreement; you are responsible for declaring it in your ITR. Consult your CA for exact treatment.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 9: Scaling Up -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-chart-line" style="color: #c6a23b; margin-right: 12px;"></i> What if I want to invest more after the trial?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>After successfully completing a trial, you're eligible for our Standard Tier (5% monthly for ₹10L+ deployments). Many of our current partners started with the ₹50k trial and scaled up after seeing 3-4 months of punctual payouts.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 10: Proof of Past Payouts -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-folder-open" style="color: #c6a23b; margin-right: 12px;"></i> Can I see proof of past payouts?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely. We maintain a private Google Drive folder with 2+ years of month-wise, client-wise payout records. To respect partner privacy, we share access only on request. Click the "REQUEST 2-YEAR PROOF" button above, and we'll grant you access immediately.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 11: Documents Received -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-copy" style="color: #c6a23b; margin-right: 12px;"></i> What documents will I receive?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You receive: (1) Original notarized agreement on ₹500 stamp paper, (2) Post-Dated Cheque for full principal, (3) PDC security agreement, (4) Terms & Conditions annexure, (5) Risk disclosure document, (6) Company registration copies. All documents are provided in physical and digital format.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 12: Process to Start -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span><i class="fas fa-play-circle" style="color: #c6a23b; margin-right: 12px;"></i> How do I start? What's the process?</span>
+                    <i class="fas fa-plus-circle faq-icon" style="color: #c6a23b; font-size: 1.2rem;"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Step 1: Fill the Slot Reservation form below. Step 2: We'll connect on WhatsApp within 2 hours. Step 3: We share the 2-year payout proof and draft agreement. Step 4: You choose your trial tier. Step 5: We arrange notarization and PDC delivery. Step 6: You deploy capital. Step 7: First payout hits your account 1st-10th next month.</p>
+                </div>
+            </div>
+            
+            <!-- Still Have Questions? -->
+            <div style="margin-top: 40px; text-align: center; background: rgba(198,162,59,0.1); padding: 25px; border-radius: 60px;">
+                <p style="font-size: 1.1rem;">
+                    <i class="fas fa-whatsapp" style="color: #25D366; margin-right: 10px;"></i>
+                    Still have questions? <a href="https://wa.me/917066393830" style="color: #c6a23b; font-weight: 700; text-decoration: none;">Message us directly on WhatsApp</a> — we reply within minutes.
+                </p>
+            </div>
+            
+        </div>
+    </div>
+</section>
 
-        function calculateTiered() {
-            let principal = parseInt(slab.value);
-            let rate = 0;
-            if (principal === 50000) rate = 0.10;
-            else if (principal === 100000) rate = 0.02;
-            else if (principal === 200000) rate = 0.03;
-            else if (principal === 500000) rate = 0.05;
+<!-- ========== SECTION 3: THE MODULE EXPLAINED (How Money is Made) ========== -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <span class="stat-badge">THE MECHANIC</span>
+            <h2 style="font-size: 2.8rem; margin-top: 15px;">How The <span class="gold-text">Collective</span> Generates Returns</h2>
+            <p style="max-width: 700px; margin: 20px auto; color: #64748b;">We are not gamblers. We are operators with 15+ years of institutional market experience.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+            <div style="background: #f8fafc; border-radius: 24px; padding: 35px; text-align: center;">
+                <div style="background: #c6a23b; width: 60px; height: 60px; border-radius: 60px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-weight: 800; font-size: 1.5rem; color: #0a1929;">1</div>
+                <h3 style="margin-bottom: 15px;">Pooled Capital</h3>
+                <p style="color: #64748b;">Your ₹50k joins others, becoming institutional weight—accessing opportunities retail traders can't.</p>
+            </div>
+            <div style="background: #f8fafc; border-radius: 24px; padding: 35px; text-align: center;">
+                <div style="background: #c6a23b; width: 60px; height: 60px; border-radius: 60px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-weight: 800; font-size: 1.5rem; color: #0a1929;">2</div>
+                <h3 style="margin-bottom: 15px;">Volume-Based Execution</h3>
+                <p style="color: #64748b;">We deploy using Volume Profiling—identifying liquidity gaps with 1:3 risk-reward ratios.</p>
+            </div>
+            <div style="background: #f8fafc; border-radius: 24px; padding: 35px; text-align: center;">
+                <div style="background: #c6a23b; width: 60px; height: 60px; border-radius: 60px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-weight: 800; font-size: 1.5rem; color: #0a1929;">3</div>
+                <h3 style="margin-bottom: 15px;">Fixed Payouts</h3>
+                <p style="color: #64748b;">Profits are distributed 1st–10th every month. Your principal is secured by PDC from day one.</p>
+            </div>
+        </div>
+        
+        <!-- The "Trial Logic" Explanation -->
+        <div style="margin-top: 50px; background: #0a1929; color: white; border-radius: 40px; padding: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+            <div style="max-width: 600px;">
+                <h3 style="color: #c6a23b; margin-bottom: 15px;">Why do we pay 10-18% on trials?</h3>
+                <p style="opacity: 0.9;">We call this our <strong>"Trust-Buying Budget."</strong> We pay higher on small amounts so you can verify our punctuality risk-free. Once trust is established, we transition to sustainable 5% monthly for larger capital (₹10L+).</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 20px 30px; border-radius: 60px; font-weight: 700;">2+ YEARS · 0% DEFAULTS</div>
+        </div>
+    </div>
+</section>
 
-            // Monthly payout
-            let monthly = principal * rate;
+<!-- ========== SECTION 4: THE TRUST STACK (Documents) ========== -->
+<section style="padding: 60px 0; background: #f8fafc;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <span class="stat-badge">⚖️ YOUR SAFETY LAYERS</span>
+            <h2 style="font-size: 2.5rem; margin-top: 15px;">More Collateral Than <span class="gold-text">Your Bank</span></h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+            <!-- Card 1: Company Registration -->
+            <div style="background: white; border-radius: 24px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; gap: 20px;">
+                <div style="font-size: 2.5rem; color: #c6a23b;">🏛️</div>
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 10px; font-size: 1.3rem;">Registered Private Limited</h3>
+                    <p style="color: #64748b; margin-bottom: 15px; font-size: 0.95rem;">
+                        CIN: <strong>U70200MH2023PTC407336</strong><br>
+                        MSME: <strong>UDYAM-MH-26-0559186</strong>
+                    </p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                        <a href="assets/documents/certificate-of-incorporation.jpg" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">COI</a>
+                        <a href="assets/documents/Company%20Pan.jpg" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">PAN</a>
+                        <a href="assets/documents/msme-registration.jpg" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">MSME</a>
+                    </div>
+                </div>
+            </div>
             
-            // First payout (Feb partial + March full)
-            let febPartial = monthly * (10/30); // ~10 days Feb
-            let marchFull = monthly;
-            let firstPayout = febPartial + marchFull; // ~₹6,667 for 50k
+            <!-- Card 2: Ministry Filings -->
+            <div style="background: white; border-radius: 24px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; gap: 20px;">
+                <div style="font-size: 2.5rem; color: #c6a23b;">📋</div>
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 10px; font-size: 1.3rem;">Ministry of Corporate Affairs</h3>
+                    <p style="color: #64748b; margin-bottom: 15px; font-size: 0.95rem;">Official government filings</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                        <a href="assets/documents/MOA.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">MOA</a>
+                        <a href="assets/documents/AOA.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">AOA</a>
+                        <a href="assets/documents/incorporation.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">Incorporation</a>
+                    </div>
+                </div>
+            </div>
             
-            // May through March (11 payments)
-            let remainingMonths = 11; // May 2026 - Mar 2027
-            let remainingTotal = monthly * remainingMonths;
+            <!-- Card 3: Legal Agreements -->
+            <div style="background: white; border-radius: 24px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; gap: 20px;">
+                <div style="font-size: 2.5rem; color: #c6a23b;">📜</div>
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 10px; font-size: 1.3rem;">Notarized Agreements</h3>
+                    <p style="color: #64748b; margin-bottom: 15px; font-size: 0.95rem;">Executed on ₹500 stamp paper</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                        <a href="assets/documents/partnership-agreement-sample.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">Sample Agreement</a>
+                        <a href="assets/documents/terms-conditions-annexure-b.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
             
-            let totalReturn = firstPayout + remainingTotal;
+            <!-- Card 4: PDC Security -->
+            <div style="background: white; border-radius: 24px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; gap: 20px;">
+                <div style="font-size: 2.5rem; color: #c6a23b;">🏦</div>
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 10px; font-size: 1.3rem;">PDC & Risk Disclosure</h3>
+                    <p style="color: #64748b; margin-bottom: 15px; font-size: 0.95rem;">Post-dated cheques for principal</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                        <a href="assets/documents/pdc-security-agreement.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">PDC Agreement</a>
+                        <a href="assets/documents/risk-disclosure-document.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
             
-            // Update summary
-            firstPayoutVal.innerText = '₹' + Math.round(firstPayout).toLocaleString('en-IN');
-            monthlyVal.innerText = '₹' + Math.round(monthly).toLocaleString('en-IN');
-            totalProfit.innerText = '₹' + Math.round(totalReturn).toLocaleString('en-IN');
+            <!-- Card 5: Tax Registrations -->
+            <div style="background: white; border-radius: 24px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; gap: 20px;">
+                <div style="font-size: 2.5rem; color: #c6a23b;">💰</div>
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 10px; font-size: 1.3rem;">Tax Registrations</h3>
+                    <p style="color: #64748b; margin-bottom: 15px; font-size: 0.95rem;">GST, PAN, TAN compliance</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                        <a href="assets/documents/e-TAN.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">e-TAN</a>
+                        <a href="assets/documents/udyam%20addhar.pdf" target="_blank" style="color: #c6a23b; text-decoration: none; font-size: 0.9rem;">Udyam Aadhaar</a>
+                    </div>
+                </div>
+            </div>
             
-            // Update comparison
-            comparePrincipal.innerText = principal.toLocaleString('en-IN');
-            let fd = principal * 0.065;
-            let rd = principal * 0.07;
-            fdReturn.innerText = '₹' + Math.round(fd).toLocaleString('en-IN');
-            rdReturn.innerText = '₹' + Math.round(rd).toLocaleString('en-IN');
-            yourReturn.innerText = '₹' + Math.round(totalReturn).toLocaleString('en-IN');
-            
-            // Build schedule table
-            let cumulative = 0;
-            let tableHTML = '';
-            
-            // Row 1: April 2026 (1-10 April)
-            cumulative += firstPayout;
-            tableHTML += `
-                <tr>
-                    <td class="p-5">1–10 April 2026</td>
-                    <td class="p-5 font-mono">${Math.round(firstPayout).toLocaleString('en-IN')}</td>
-                    <td class="p-5">Feb 20-28 + March full</td>
-                    <td class="p-5 text-right">${Math.round(cumulative).toLocaleString('en-IN')}</td>
-                </tr>
-            `;
-            
-            // Rows 2-12: May 2026 through March 2027
-            const months = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-            for (let i = 0; i < months.length; i++) {
-                cumulative += monthly;
-                let year = (i < 8) ? '2026' : '2027'; // May-Dec 2026, Jan-Mar 2027
-                tableHTML += `
-                    <tr>
-                        <td class="p-5">1–10 ${months[i]} ${year}</td>
-                        <td class="p-5 font-mono">${Math.round(monthly).toLocaleString('en-IN')}</td>
-                        <td class="p-5">Previous month</td>
-                        <td class="p-5 text-right">${Math.round(cumulative).toLocaleString('en-IN')}</td>
-                    </tr>
-                `;
-            }
-            
-            // Row 13: Capital Refund (31st March 2027)
-            tableHTML += `
-                <tr class="bg-gold/10 text-gold font-black">
-                    <td class="p-5">31st March 2027</td>
-                    <td class="p-5 font-mono">--</td>
-                    <td class="p-5">
-                        <span class="text-[8px] border border-gold px-2 py-0.5 rounded uppercase font-black">CAPITAL RETURNED</span>
-                    </td>
-                    <td class="p-5 text-right text-gold">${Math.round(cumulative).toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0})} + Capital</td>
-                </tr>
-            `;
-            
-            scheduleBody.innerHTML = tableHTML;
+            <!-- Card 6: Performance Proof -->
+            <div style="background: linear-gradient(145deg, #0a1929, #1e3a5f); color: white; border-radius: 24px; padding: 30px; display: flex; gap: 20px;">
+                <div style="font-size: 2.5rem; color: #c6a23b;">📊</div>
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 10px; color: #c6a23b;">2+ Years Payout History</h3>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 20px;">Month-wise records available on request.</p>
+                    <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I%20want%20to%20request%20access%20to%20the%202%2B%20year%20payout%20proof." 
+                       target="_blank"
+                       style="background: #25D366; color: white; padding: 12px 25px; border-radius: 40px; text-decoration: none; font-weight: 600; display: inline-block;">
+                        <i class="fab fa-whatsapp"></i> REQUEST PROOF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 5: TRIAL TIERS + PRO-RATA CALCULATOR ========== -->
+<!-- (Insert the pro-rata calculator from previous response here) -->
+
+<!-- ========== SECTION 6: SLOT RESERVATION FORM ========== -->
+<!-- (Insert the reservation form here) -->
+
+<!-- ========== SECTION 7: FINAL CTA ========== -->
+<!-- (Insert final CTA here) -->
+
+<!-- Footer -->
+<!-- (Insert footer here) -->
+
+<script>
+    // FAQ Toggle Function
+    function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('.faq-icon');
+        
+        // Toggle active class
+        answer.classList.toggle('active');
+        icon.classList.toggle('active');
+        
+        // Adjust max-height
+        if (answer.classList.contains('active')) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+            answer.style.maxHeight = '0';
         }
+    }
+    
+    // Pro-rata calculator functions from previous response
+    // (Insert all calculator JavaScript here)
+</script>
 
-        slab.addEventListener('change', calculateTiered);
-        window.onload = calculateTiered;
-    </script>
 </body>
 </html>

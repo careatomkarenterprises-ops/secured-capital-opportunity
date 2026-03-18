@@ -16,8 +16,8 @@
     <!-- Meta: noindex for privacy -->
     <meta name="robots" content="noindex, follow">
     
-    <title>Omkar Enterprises | 25% Monthly Returns · 8.33% Principal + 16.67% Interest | 2-Slot Exclusive</title>
-    <meta name="description" content="Exclusive 2-slot opportunity: 25% monthly returns (8.33% principal + 16.67% interest). Digital agreement under IT Act 2000 or notarized option available. PDC security under NI Act 1881.">
+    <title>Omkar Enterprises | ₹2,00,000 Opportunity · 25% Monthly or 16.62% Interest · 2 Slots Exclusive</title>
+    <meta name="description" content="Exclusive 2-slot opportunity: Deploy ₹2,00,000. Choose ₹50,000/month (Capital+Interest) OR ₹33,240/month + Capital back in 13th month. Digital/Notarized agreement. PDC security.">
     
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -694,29 +694,31 @@
             opacity: 0.9;
         }
         
-        /* Tier Cards */
-        .tier-grid {
+        /* Plan Cards - Two Options */
+        .plan-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
             margin: 30px 15px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
         
-        .tier-card {
+        .plan-card {
             background: white;
-            border: 2px solid var(--special-offer);
-            border-radius: 24px;
-            padding: 30px 20px;
+            border: 2px solid var(--border-light);
+            border-radius: 30px;
+            padding: 35px 25px;
             text-align: center;
-            transition: 0.3s;
+            transition: all 0.3s;
             position: relative;
-            box-shadow: 0 15px 35px rgba(220,38,38,0.15);
+            height: 100%;
         }
         
-        .special-badge {
+        .plan-card.featured {
+            border-color: var(--special-offer);
+            box-shadow: 0 15px 35px rgba(220,38,38,0.1);
+        }
+        
+        .plan-badge {
             position: absolute;
             top: -12px;
             left: 50%;
@@ -732,28 +734,34 @@
             box-shadow: 0 5px 15px rgba(220,38,38,0.3);
         }
         
-        .tier-amount {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 20px 0 8px;
-            color: var(--primary-dark);
+        .plan-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
         }
         
-        .tier-rate {
-            font-size: 3.2rem;
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .plan-amount {
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--special-offer);
-            line-height: 1;
-            margin: 10px 0;
+            line-height: 1.2;
+            margin: 15px 0 5px;
         }
         
-        .tier-rate small {
-            font-size: 1rem;
+        .plan-amount small {
+            font-size: 0.9rem;
             color: var(--text-light);
             font-weight: 400;
         }
         
-        .tier-period {
+        .plan-desc {
             color: var(--text-light);
             font-size: 0.9rem;
             margin-bottom: 20px;
@@ -761,29 +769,29 @@
             border-bottom: 1px dashed var(--border-light);
         }
         
-        .tier-features {
+        .plan-features {
             list-style: none;
             text-align: left;
-            margin-top: 15px;
+            margin: 20px 0;
         }
         
-        .tier-features li {
+        .plan-features li {
             margin-bottom: 12px;
-            color: var(--text-light);
-            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         
-        .tier-features i {
-            color: var(--special-offer);
+        .plan-features i {
+            color: var(--accent);
             font-size: 1rem;
             flex-shrink: 0;
         }
         
-        .tier-highlight {
-            background: rgba(220,38,38,0.05);
+        .plan-highlight {
+            background: rgba(198,162,59,0.1);
             padding: 12px;
             border-radius: 12px;
             margin-top: 15px;
@@ -868,7 +876,7 @@
         
         .calculator-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         
         .calculator-header h3 {
@@ -890,44 +898,30 @@
             gap: 5px;
         }
         
-        .calculator-controls {
+        .calculator-tabs {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 40px;
-        }
-        
-        .control-group {
-            display: flex;
-            align-items: center;
             gap: 10px;
+            margin: 20px 0 30px;
             flex-wrap: wrap;
-            justify-content: center;
         }
         
-        .control-group label {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .control-group select {
-            padding: 10px 20px;
+        .calc-tab {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 40px;
-            border: none;
-            font-family: 'Inter';
-            background: white;
-            min-width: 200px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
             font-size: 0.9rem;
         }
         
-        .control-group span {
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 600;
+        .calc-tab.active {
+            background: var(--accent);
+            color: var(--primary-dark);
+            border-color: var(--accent);
         }
         
         .calculator-summary {
@@ -975,7 +969,7 @@
         .payout-table table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px;
+            min-width: 650px;
             font-size: 0.85rem;
         }
         
@@ -1065,7 +1059,7 @@
             margin: 0;
         }
         
-        /* Social Grid - FIXED ALIGNMENT */
+        /* Social Grid */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -1439,12 +1433,20 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            .plan-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .doc-option-grid {
                 grid-template-columns: 1fr;
             }
             
             .trust-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -1606,8 +1608,8 @@
                 font-size: 1.5rem;
             }
             
-            .tier-rate {
-                font-size: 2.8rem;
+            .plan-amount {
+                font-size: 1.8rem;
             }
             
             .doc-option-card .price {
@@ -1651,11 +1653,11 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <img src="assets/logo.png" alt="Omkar Enterprises Logo" onerror="this.style.display='none'">
                 <div class="logo-text">
                     <h1>OMKAR ENTERPRISES</h1>
-                    <div class="tagline">PRIVATE LIMITED · 25% MONTHLY</div>
+                    <div class="tagline">PRIVATE LIMITED · ₹2,00,000 OPPORTUNITY</div>
                 </div>
             </a>
             
@@ -1663,18 +1665,18 @@
             
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#hero">Overview</a></li>
+                <li><a href="#plans">Plans</a></li>
+                <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#documents">Docs</a></li>
-                <li><a href="#offer">Offer</a></li>
-                <li><a href="#performance">Track Record</a></li>
-                <li><a href="#social">Connect</a></li>
+                <li><a href="#process">Process</a></li>
                 <li><span class="confidential-badge"><i class="fas fa-lock"></i> 2 SLOTS</span></li>
             </ul>
         </div>
     </nav>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I%20want%20to%20secure%20one%20of%20the%202%20exclusive%20slots%20with%2025%25%20monthly%20returns." class="float-whatsapp" target="_blank">
+    <a href="https://wa.me/917066393830?text=Hi%20Omkar%20Enterprises%2C%20I%20want%20to%20secure%20one%20of%20the%202%20exclusive%20slots%20for%20₹2%2C00%2C000%20opportunity." class="float-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
         <span>Secure Slot</span>
     </a>
@@ -1686,24 +1688,24 @@
             <div class="system-status">
                 <span class="status-badge">
                     <span class="pulse-dot"></span>
-                    <span>🟢 2 Exclusive Slots Available</span>
+                    <span>🟢 2 Exclusive Slots Available for ₹2,00,000</span>
                 </span>
             </div>
 
-            <span class="badge badge-special">⚡ 25% MONTHLY · 2 SLOTS ONLY</span>
+            <span class="badge badge-special">⚡ BY HNI REFERENCE ONLY · 2 SLOTS</span>
             
-            <h1>25% Monthly Returns: <span>8.33% Principal + 16.67% Interest</span></h1>
+            <h1>₹2,00,000 Opportunity: <span>Choose Your Plan</span></h1>
             
-            <p>Receive ₹12,500 every month for 12 months (₹4,167 principal + ₹8,333 interest). Total payout: ₹1,50,000.</p>
+            <p>Option 1: ₹50,000/month for 12 months (Capital + Interest) · Option 2: ₹33,240/month + Capital back in 13th month</p>
             
             <!-- Limited Edition Banner -->
             <div class="limited-banner">
-                <i class="fas fa-fire"></i> ONLY 2 SLOTS AVAILABLE
+                <i class="fas fa-fire"></i> ONLY 2 SLOTS AVAILABLE · FIRST COME, FIRST SERVED
                 <span class="slot-counter">2 REMAINING</span>
             </div>
             
             <div class="hero-buttons">
-                <a href="#offer" class="btn btn-special">View Structure</a>
+                <a href="#plans" class="btn btn-special">Compare Plans</a>
                 <a href="#documents" class="btn btn-outline">Verify Credentials</a>
             </div>
             
@@ -1715,44 +1717,234 @@
                 </div>
                 <div class="trust-badge">
                     <span class="trust-icon">⚖️</span>
-                    <span>Digital/Notarized</span>
+                    <span>Digital/Notarized Agreement</span>
                 </div>
                 <div class="trust-badge">
                     <span class="trust-icon">📅</span>
-                    <span>₹12,500/month</span>
+                    <span>11-Month Working Module</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== OVERVIEW SECTION ========== -->
-    <section class="section">
+    <!-- ========== PLANS SECTION ========== -->
+    <section class="section" id="plans">
         <div class="container">
             <div class="section-title">
-                <span class="badge">THE STRUCTURE</span>
-                <h2>25% Monthly: <span>Principal + Interest</span></h2>
-                <p>Your ₹50,000 returns ₹12,500/month for 12 months — total ₹1,50,000.</p>
+                <span class="badge">TWO EXCLUSIVE PLANS</span>
+                <h2>Choose Your <span>Payout Structure</span></h2>
+                <p>Both plans include legal agreement, PDC security, and complete documentation</p>
+            </div>
+            
+            <div class="plan-grid">
+                <!-- Plan 1: Cash Flow -->
+                <div class="plan-card featured">
+                    <div class="plan-badge">🔥 MOST POPULAR</div>
+                    <div class="plan-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <div class="plan-name">Cash Flow Plan</div>
+                    <div class="plan-amount">₹50,000 <small>/month</small></div>
+                    <div class="plan-desc">For 12 months · Capital + Interest combined</div>
+                    
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> <strong>Monthly Payout:</strong> ₹50,000</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Total Payout:</strong> ₹6,00,000 (12 months)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Capital Refund:</strong> Included in monthly payouts</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Interest Rate:</strong> 25% monthly (blended)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>PDC Security:</strong> For ₹2,00,000</li>
+                    </ul>
+                    
+                    <div class="plan-highlight">
+                        <i class="fas fa-star"></i> Ideal for monthly cash flow needs
+                    </div>
+                </div>
+                
+                <!-- Plan 2: Interest Only -->
+                <div class="plan-card">
+                    <div class="plan-icon"><i class="fas fa-coins"></i></div>
+                    <div class="plan-name">Interest Only Plan</div>
+                    <div class="plan-amount">₹33,240 <small>/month</small></div>
+                    <div class="plan-desc">12 months interest + Full capital in 13th month</div>
+                    
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> <strong>Monthly Interest:</strong> ₹33,240 (16.62%)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Total Interest:</strong> ₹3,98,880 (12 months)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Capital Refund:</strong> ₹2,00,000 in 13th month</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Total Received:</strong> ₹5,98,880</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>PDC Security:</strong> For ₹2,00,000</li>
+                    </ul>
+                    
+                    <div class="plan-highlight">
+                        <i class="fas fa-star"></i> Ideal for capital preservation + interest
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Document Options -->
+            <div style="margin: 30px 15px;">
+                <h3 style="text-align: center; margin-bottom: 20px;">Choose Your <span class="gold-text">Documentation</span></h3>
+                
+                <div class="doc-option-grid">
+                    <div class="doc-option-card">
+                        <h4><i class="fas fa-envelope"></i> Digital Agreement</h4>
+                        <div class="price">₹2,00,000</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Under IT Act 2000</li>
+                            <li><i class="fas fa-check"></i> Email delivery</li>
+                            <li><i class="fas fa-check"></i> PDC included</li>
+                            <li><i class="fas fa-check"></i> Digital approval</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="doc-option-card">
+                        <h4><i class="fas fa-file-pdf"></i> Notarized Agreement</h4>
+                        <div class="price">₹2,04,999</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> ₹500 stamp paper</li>
+                            <li><i class="fas fa-check"></i> Physical + courier</li>
+                            <li><i class="fas fa-check"></i> Original PDC</li>
+                            <li><i class="fas fa-check"></i> Notarized copy</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: #fef3c7; border-left: 4px solid var(--accent); padding: 15px; border-radius: 8px;">
+                    <p style="margin: 0; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle" style="color: var(--accent);"></i>
+                        Both options include PDC security under NI Act 1881, Section 138. Documents couriered for signature.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CALCULATOR SECTION ========== -->
+    <section class="section" id="calculator" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-title">
+                <span class="badge">📊 PAYOUT CALCULATOR</span>
+                <h2>12-Month <span>Payout Schedule</span></h2>
+                <p>Based on capital transfer on March 18th (earns from March 19th onwards)</p>
+            </div>
+            
+            <div class="calculator-section">
+                <div class="calculator-header">
+                    <h3>₹2,00,000 <span>Deployment</span></h3>
+                    <p id="calculatorDescription">
+                        <i class="fas fa-calendar-alt" style="color: var(--accent);"></i>
+                        <span id="dynamicPayoutDescription">Loading payout schedule...</span>
+                    </p>
+                </div>
+                
+                <div class="calculator-tabs">
+                    <div class="calc-tab active" onclick="switchCalculatorTab('cashflow')" id="tab-cashflow">Cash Flow Plan (₹50k/month)</div>
+                    <div class="calc-tab" onclick="switchCalculatorTab('interest')" id="tab-interest">Interest Only Plan (₹33,240/month)</div>
+                </div>
+                
+                <div class="calculator-summary">
+                    <div class="summary-card">
+                        <div class="summary-label">First Payout</div>
+                        <div class="summary-value" id="firstPayoutDisplay">₹0</div>
+                        <div class="summary-note" id="firstPayoutDateDisplay">1st-10th April (13 days)</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Regular Monthly</div>
+                        <div class="summary-value" id="regularMonthlyDisplay">₹50,000</div>
+                        <div class="summary-note" id="regularMonthlyNote">Months 2-12</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Total Payout</div>
+                        <div class="summary-value" id="totalPayoutDisplay">₹6,00,000</div>
+                        <div class="summary-note" id="totalPayoutNote">12 months</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">13th Month</div>
+                        <div class="summary-value" id="thirteenthMonthDisplay">-</div>
+                        <div class="summary-note" id="thirteenthMonthNote">Capital refund</div>
+                    </div>
+                </div>
+                
+                <div class="payout-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Payout Period</th>
+                                <th style="text-align: right;">Principal</th>
+                                <th style="text-align: right;">Interest</th>
+                                <th style="text-align: right;">Total</th>
+                                <th style="text-align: right;">Cumulative</th>
+                            </tr>
+                        </thead>
+                        <tbody id="payoutTable"></tbody>
+                    </table>
+                </div>
+                
+                <div class="prorated-note" id="calculatorNote">
+                    <i class="fas fa-info-circle"></i>
+                    <div id="dynamicNoteText">Loading payout details...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROCESS FLOW SECTION ========== -->
+    <section class="section" id="process">
+        <div class="container">
+            <div class="section-title">
+                <span class="badge badge-success">STEP-BY-STEP PROCESS</span>
+                <h2>Complete <span>Documentation Flow</span></h2>
+                <p>From initial approval to notarized agreement delivery</p>
             </div>
             
             <div class="grid-3">
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-coins"></i></div>
-                    <h3>Principal (8.33%)</h3>
-                    <p style="font-size: 1.3rem; font-weight: 700; color: var(--special-offer);">₹4,167<span style="font-size: 0.8rem;">/mo</span></p>
-                    <p>Capital returned monthly</p>
+                    <div class="card-icon"><i class="fas fa-envelope-open-text"></i></div>
+                    <h3>1. Initial Approval</h3>
+                    <p>You receive confirmation from our official email ID after expressing interest.</p>
                 </div>
+                
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-percent"></i></div>
-                    <h3>Interest (16.67%)</h3>
-                    <p style="font-size: 1.3rem; font-weight: 700; color: var(--special-offer);">₹8,333<span style="font-size: 0.8rem;">/mo</span></p>
-                    <p>Net interest monthly</p>
+                    <div class="card-icon"><i class="fas fa-rupee-sign"></i></div>
+                    <h3>2. Capital Transfer</h3>
+                    <p>Transfer ₹2,00,000 (or ₹2,04,999 for notarized) after email confirmation.</p>
                 </div>
+                
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-hand-holding-usd"></i></div>
-                    <h3>Total Monthly</h3>
-                    <p style="font-size: 1.3rem; font-weight: 700; color: var(--special-offer);">₹12,500<span style="font-size: 0.8rem;">/mo</span></p>
-                    <p>₹1,50,000 total payout</p>
+                    <div class="card-icon"><i class="fas fa-file-signature"></i></div>
+                    <h3>3. Draft Agreement</h3>
+                    <p>Agreement on ₹500 stamp paper prepared + PDC for ₹2,00,000.</p>
                 </div>
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-truck"></i></div>
+                    <h3>4. Courier for Signature</h3>
+                    <p>Documents dispatched to your address for signing via our courier partner.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-stamp"></i></div>
+                    <h3>5. Notarization</h3>
+                    <p>After receiving signed copy, we complete notarization of final agreement.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-check-double"></i></div>
+                    <h3>6. Final Delivery</h3>
+                    <p>Notarized copy delivered within 15 working days after your digital approval.</p>
+                </div>
+            </div>
+            
+            <!-- PDC Return Policy -->
+            <div style="margin-top: 30px; padding: 20px; background: white; border-radius: 16px; border: 1px solid var(--border-light);">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <i class="fas fa-money-check-alt" style="color: var(--accent);"></i>
+                    PDC Return Policy
+                </h3>
+                <p>After 12 payouts are completed, your PDC cheque will be destroyed. We will either:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Share a clear image of the destroyed cheque, OR</li>
+                    <li>Collect it back via courier at our expense</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -1761,9 +1953,8 @@
     <section class="faq-section" id="faq">
         <div class="container">
             <div style="text-align: center; margin-bottom: 30px;">
-                <span class="badge" style="background: rgba(198,162,59,0.2); color: #dbb957;">📌 FAQ</span>
-                <h2 style="font-size: 2rem; margin-top: 10px; color: white;">We <span class="gold-text">Prefer</span> You Ask</h2>
-                <p style="color: rgba(255,255,255,0.7);">No fine print. No hidden terms.</p>
+                <span class="badge" style="background: rgba(198,162,59,0.2); color: #dbb957;">📌 FREQUENTLY ASKED</span>
+                <h2 style="font-size: 2rem; margin-top: 10px; color: white;">Your <span class="gold-text">Questions</span> Answered</h2>
             </div>
             
             <div class="faq-container">
@@ -1771,28 +1962,23 @@
                 <!-- FAQ 1 -->
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span><i class="fas fa-calculator"></i> How does 25% monthly work?</span>
+                        <span><i class="fas fa-calculator"></i> How does the first payout work for March?</span>
                         <i class="fas fa-plus-circle faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Your ₹50,000 returns ₹12,500 every month for 12 months:</p>
-                        <ul style="margin-left: 20px; margin-top: 5px;">
-                            <li>Principal: ₹4,167 (8.33%)</li>
-                            <li>Interest: ₹8,333 (16.67%)</li>
-                        </ul>
-                        <p>Total: ₹1,50,000 (₹50,000 principal + ₹1,00,000 interest)</p>
+                        <p>If capital is transferred on <strong>March 18th</strong>, earnings start from <strong>March 19th</strong>. You receive a <strong>pro-rated payout for 13 days (March 19-31)</strong> on 1st-10th April. This is approximately 42% of the monthly payout (13/31 days). Then, from April onwards, you receive full monthly payouts (credited between 1st-10th of each month) for the remaining 11 months.</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 2 -->
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span><i class="fas fa-file-signature"></i> Document options?</span>
+                        <span><i class="fas fa-file-signature"></i> What are the document options?</span>
                         <i class="fas fa-plus-circle faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>Digital (IT Act 2000):</strong> ₹50,000 - Email agreement</p>
-                        <p><strong>Notarized:</strong> ₹54,999 - Physical documents + courier</p>
+                        <p><strong>Digital (IT Act 2000):</strong> ₹2,00,000 - Email agreement, digital approval.</p>
+                        <p><strong>Notarized:</strong> ₹2,04,999 - ₹500 stamp paper, physical documents couriered, notarized copy delivered.</p>
                         <p>Both include PDC security under NI Act 1881.</p>
                     </div>
                 </div>
@@ -1800,23 +1986,22 @@
                 <!-- FAQ 3 -->
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span><i class="fas fa-shield-alt"></i> Principal security?</span>
+                        <span><i class="fas fa-shield-alt"></i> How is my capital secured?</span>
                         <i class="fas fa-plus-circle faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>You receive a Post-Dated Cheque (PDC) for full ₹50,000 under NI Act 1881, Section 138. Deposit if payment missed.</p>
+                        <p>You receive a Post-Dated Cheque (PDC) for the full ₹2,00,000 under NI Act 1881, Section 138. In case of payment default, the cheque can be deposited. The agreement is legally enforceable.</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 4 -->
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span><i class="fas fa-money-bill-wave"></i> Total transfer?</span>
+                        <span><i class="fas fa-clock"></i> When are payouts credited?</span>
                         <i class="fas fa-plus-circle faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>Digital:</strong> ₹50,000</p>
-                        <p><strong>Notarized:</strong> ₹54,999 (₹50k + ₹4,999 fees)</p>
+                        <p>All payouts are credited between <strong>1st and 10th of each month</strong>. The first payout (pro-rated for March) is credited in April. Subsequent payouts are credited by the 10th of each month.</p>
                     </div>
                 </div>
                 
@@ -1827,25 +2012,25 @@
                         <i class="fas fa-plus-circle faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Based on reserve fund availability and market opportunities. Only 2 slots for this 25% monthly structure.</p>
+                        <p>This is an exclusive opportunity based on reserve fund availability. Only 2 slots are open for private investors through HNI references.</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 6 -->
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span><i class="fas fa-play-circle"></i> Process to start?</span>
+                        <span><i class="fas fa-play-circle"></i> What is the complete process?</span>
                         <i class="fas fa-plus-circle faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>1. Review docs → 2. Choose preference → 3. Fill form → 4. WhatsApp connect → 5. Receive agreement → 6. Transfer → 7. Get PDC → 8. First payout 1st-10th next month</p>
+                        <p>1. Drafting Agreement after your kyc documents shared → 2. Your approval needed on formal Agreement → 3. Post approval transfer capital → 4. We Couriered for signature + pdc cheque → 5. Signed copy received → 6. Notarization → 7. Final copy delivered within 15 working days after your digital approval.</p>
                     </div>
                 </div>
                 
                 <div class="faq-whatsapp-box">
                     <p>
                         <i class="fas fa-whatsapp" style="color: #25D366;"></i>
-                        Questions? <a href="https://wa.me/917066393830">Message on WhatsApp</a>
+                        Still have questions? <a href="https://wa.me/917066393830">Message us on WhatsApp</a>
                     </p>
                 </div>
                 
@@ -1854,10 +2039,10 @@
     </section>
 
     <!-- ========== DOCUMENTS SECTION ========== -->
-    <section class="section" id="documents" style="background: var(--bg-light);">
+    <section class="section" id="documents">
         <div class="container">
             <div class="section-title">
-                <span class="badge badge-success">STEP 1: VERIFY</span>
+                <span class="badge badge-success">VERIFY & TRUST</span>
                 <h2>Company <span>Documents</span></h2>
                 <p>All registrations with Ministry of Corporate Affairs</p>
             </div>
@@ -1921,205 +2106,13 @@
         </div>
     </section>
 
-    <!-- ========== OFFER SECTION ========== -->
-    <section class="section" id="offer">
+    <!-- ========== SOCIAL MEDIA SECTION ========== -->
+    <section class="section" id="social" style="background: var(--bg-light);">
         <div class="container">
             <div class="section-title">
-                <span class="badge badge-special">🔥 2 SLOTS ONLY</span>
-                <h2>25% Monthly: <span>₹12,500/month</span></h2>
-                <p>2 exclusive slots based on reserve fund availability</p>
-            </div>
-            
-            <div class="tier-grid">
-                <div class="tier-card">
-                    <div class="special-badge">🔥 ONLY 2 SLOTS 🔥</div>
-                    <div class="tier-amount">₹50,000</div>
-                    <div class="tier-rate">25% <small>monthly</small></div>
-                    <div class="tier-period">12 months · 8.33% Principal + 16.67% Interest</div>
-                    
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check-circle"></i> Monthly Principal: <strong>₹4,167</strong></li>
-                        <li><i class="fas fa-check-circle"></i> Monthly Interest: <strong>₹8,333</strong></li>
-                        <li><i class="fas fa-check-circle"></i> Total Monthly: <strong>₹12,500</strong></li>
-                        <li><i class="fas fa-check-circle"></i> Total Payout: <strong>₹1,50,000</strong></li>
-                        <li><i class="fas fa-check-circle"></i> PDC Security (NI Act 1881)</li>
-                        <li><i class="fas fa-check-circle"></i> Digital or Notarized option</li>
-                    </ul>
-                    
-                    <div class="tier-highlight">
-                        <i class="fas fa-star"></i> ₹12,500 every month for 12 months
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Document Options -->
-            <div style="margin: 30px 15px;">
-                <h3 style="text-align: center; margin-bottom: 20px;">Choose Your <span class="gold-text">Documentation</span></h3>
-                
-                <div class="doc-option-grid">
-                    <div class="doc-option-card">
-                        <h4><i class="fas fa-envelope"></i> Digital</h4>
-                        <div class="price">₹50,000</div>
-                        <ul>
-                            <li><i class="fas fa-check"></i> IT Act 2000</li>
-                            <li><i class="fas fa-check"></i> Email delivery</li>
-                            <li><i class="fas fa-check"></i> PDC included</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="doc-option-card">
-                        <h4><i class="fas fa-file-pdf"></i> Notarized</h4>
-                        <div class="price">₹54,999</div>
-                        <ul>
-                            <li><i class="fas fa-check"></i> ₹500 stamp paper</li>
-                            <li><i class="fas fa-check"></i> Physical + courier</li>
-                            <li><i class="fas fa-check"></i> Original PDC</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div style="background: #fef3c7; border-left: 4px solid var(--accent); padding: 15px; border-radius: 8px;">
-                    <p style="margin: 0; font-size: 0.9rem;">
-                        <i class="fas fa-info-circle" style="color: var(--accent);"></i>
-                        Both options include PDC security under NI Act 1881, Section 138.
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Calculator -->
-            <div class="calculator-section">
-                <div class="calculator-header">
-                    <h3>📊 <span>₹12,500</span> Monthly Schedule</h3>
-                    <p id="calculatorDescription">
-                        <i class="fas fa-clock" style="color: var(--accent);"></i>
-                        <span id="dynamicPayoutDescription">Loading...</span>
-                    </p>
-                </div>
-                
-                <div class="calculator-controls">
-                    <div class="control-group">
-                        <span style="color: var(--accent);">₹50,000 - 25% Monthly</span>
-                    </div>
-                </div>
-                
-                <div class="calculator-summary">
-                    <div class="summary-card">
-                        <div class="summary-label">First Payout</div>
-                        <div class="summary-value" id="firstPayoutDisplay">₹0</div>
-                        <div class="summary-note" id="firstPayoutDateDisplay">-</div>
-                    </div>
-                    <div class="summary-card">
-                        <div class="summary-label">Monthly</div>
-                        <div class="summary-value">₹12,500</div>
-                        <div class="summary-note">₹4,167+₹8,333</div>
-                    </div>
-                    <div class="summary-card">
-                        <div class="summary-label">Total</div>
-                        <div class="summary-value" id="totalEarningsDisplay">₹1,50,000</div>
-                        <div class="summary-note">Principal+Interest</div>
-                    </div>
-                    <div class="summary-card">
-                        <div class="summary-label">Net Interest</div>
-                        <div class="summary-value">₹1,00,000</div>
-                        <div class="summary-note">200% annual</div>
-                    </div>
-                </div>
-                
-                <div class="payout-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Month</th>
-                                <th>Date</th>
-                                <th style="text-align: right;">Principal</th>
-                                <th style="text-align: right;">Interest</th>
-                                <th style="text-align: right;">Total</th>
-                                <th style="text-align: right;">Remaining</th>
-                            </tr>
-                        </thead>
-                        <tbody id="payoutTable"></tbody>
-                    </table>
-                </div>
-                
-                <div class="prorated-note" id="calculatorNote">
-                    <i class="fas fa-calculator"></i>
-                    <div id="dynamicNoteText">Loading...</div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin: 30px 0;">
-                <a href="#reservation" class="btn-special-large" style="max-width: 400px; margin: 0 auto; text-decoration: none;">
-                    <i class="fas fa-lock"></i> SECURE ONE OF 2 SLOTS
-                </a>
-                <p style="margin-top: 10px; color: var(--special-offer); font-weight: 600;">
-                    Only 2 slots remaining · First come, first served
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== PERFORMANCE SECTION ========== -->
-    <section class="section" id="performance" style="background: var(--bg-light);">
-        <div class="container">
-            <div class="section-title">
-                <span class="badge badge-success">STEP 3: TRACK RECORD</span>
-                <h2>2+ Years <span>Consistent Payouts</span></h2>
-                <p>Every monthly obligation met. No exceptions.</p>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">₹2.4Cr+</div>
-                    <div class="stat-label">Interest Paid</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">56+</div>
-                    <div class="stat-label">Partners</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">24+</div>
-                    <div class="stat-label">Months</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">On-Time</div>
-                </div>
-            </div>
-            
-            <div class="proof-grid">
-                <a href="https://drive.google.com/drive/folders/1JHFmbbTiCwbDeKlQmE54glWBbtyDO2e2" target="_blank" class="proof-card">
-                    <div class="proof-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <div class="proof-content">
-                        <h4>Year-wise History</h4>
-                        <p>Month-wise screenshots</p>
-                    </div>
-                </a>
-                
-                <a href="https://drive.google.com/drive/folders/1M0V9zakkB7Ul0dp97hxsv8fXhZx7L0yd" target="_blank" class="proof-card">
-                    <div class="proof-icon"><i class="fas fa-users"></i></div>
-                    <div class="proof-content">
-                        <h4>Client-wise Proof</h4>
-                        <p>50+ partner transactions</p>
-                    </div>
-                </a>
-            </div>
-            
-            <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 12px; border: 1px solid var(--border-light);">
-                <p style="font-size: 0.85rem; color: var(--text-light);">
-                    <i class="fas fa-info-circle" style="color: var(--accent);"></i>
-                    Past performance is not a guarantee of future results.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== SOCIAL MEDIA SECTION - FIXED ALIGNMENT ========== -->
-    <section class="section" id="social">
-        <div class="container">
-            <div class="section-title">
-                <span class="badge">STEP 4: CONNECT</span>
+                <span class="badge">CONNECT WITH US</span>
                 <h2>Follow, Verify, <span>Engage</span></h2>
-                <p>Official channels — SEBI compliant</p>
+                <p>Official channels — transparent communication</p>
             </div>
             
             <div class="social-grid">
@@ -2155,20 +2148,20 @@
             </div>
             
             <div style="margin-top: 20px; text-align: center; font-size: 0.75rem; color: var(--text-light);">
-                <p><i class="fas fa-shield-alt" style="color: var(--accent);"></i> Not SEBI-registered · Educational content only</p>
+                <p><i class="fas fa-shield-alt" style="color: var(--accent);"></i> Educational content only · Not SEBI-registered</p>
             </div>
         </div>
     </section>
 
     <!-- ========== RESERVATION FORM ========== -->
-    <section style="padding: 50px 0; background: var(--bg-light);" id="reservation">
+    <section style="padding: 50px 0;" id="reservation">
         <div class="container">
             <div style="text-align: center; margin-bottom: 30px;">
-                <span class="badge" style="background: #dc2626; color: white;">🔒 STEP 5: RESERVE</span>
-                <h2 style="font-size: 2rem; margin-top: 10px;">Secure One of <span class="gold-text">2 Slots</span></h2>
-                <p>We'll send payout proof & draft agreement from official email</p>
+                <span class="badge" style="background: #dc2626; color: white;">🔒 SECURE YOUR SLOT</span>
+                <h2 style="font-size: 2rem; margin-top: 10px;">Only <span class="gold-text">2 Slots</span> Available</h2>
+                <p>First come, first served · Reference-based opportunity</p>
                 <div style="background: #dc2626; color: white; padding: 10px; border-radius: 60px; max-width: 250px; margin: 15px auto; font-weight: 700;">
-                    <i class="fas fa-fire"></i> ONLY 2 SLOTS
+                    <i class="fas fa-fire"></i> 2 SLOTS REMAINING
                 </div>
             </div>
 
@@ -2184,31 +2177,45 @@
                 </div>
                 
                 <div class="form-group">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Select Your Plan:</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="planPreference" value="cashflow" checked> 
+                            <span>Cash Flow: ₹50,000/month (12 months)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="planPreference" value="interest"> 
+                            <span>Interest Only: ₹33,240/month + ₹2L in 13th month</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
                     <label style="display: block; margin-bottom: 8px; font-weight: 600;">Document Preference:</label>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="docPreference" value="digital" checked> 
-                            <span>Digital - ₹50,000</span>
+                            <span>Digital - ₹2,00,000</span>
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="docPreference" value="notarized"> 
-                            <span>Notarized - ₹54,999</span>
+                            <span>Notarized - ₹2,04,999</span>
                         </label>
                     </div>
                 </div>
                 
                 <div style="margin-bottom:20px;">
                     <input type="checkbox" id="confirmTerms" style="width:18px; height:18px; vertical-align: middle;" required>
-                    <label for="confirmTerms" style="font-size: 0.9rem; margin-left: 8px;">I understand: 8.33% principal (₹4,167) + 16.67% interest (₹8,333) monthly. Total ₹1,50,000.</label>
+                    <label for="confirmTerms" style="font-size: 0.9rem; margin-left: 8px;">I understand the plan structure and terms.</label>
                 </div>
                 
                 <div style="margin-bottom:25px;">
                     <input type="checkbox" id="confirmPDC" style="width:18px; height:18px; vertical-align: middle;" required>
-                    <label for="confirmPDC" style="font-size: 0.9rem; margin-left: 8px;">I understand PDC security under NI Act 1881, Section 138.</label>
+                    <label for="confirmPDC" style="font-size: 0.9rem; margin-left: 8px;">I understand PDC security under NI Act 1881.</label>
                 </div>
                 
                 <button type="button" onclick="submitReservation()" class="btn-special-large">
-                    <i class="fas fa-lock"></i> SECURE MY SLOT
+                    <i class="fas fa-lock"></i> SECURE MY SLOT NOW
                 </button>
                 <p style="text-align: center; margin-top: 12px; font-size: 0.8rem;">
                     <i class="fas fa-clock"></i> Response from care@omkarservices.in within 2 hours
@@ -2221,9 +2228,9 @@
     <section class="container">
         <div class="cta-section">
             <h2>Only <span>2 Slots</span> Available</h2>
-            <p>₹12,500 every month for 12 months · Total ₹1,50,000</p>
+            <p>Choose ₹50,000/month OR ₹33,240/month + ₹2,00,000 Capital Back · 12 Months</p>
             <a href="#reservation" class="btn btn-special" style="padding: 16px 40px; text-decoration: none;">
-                <i class="fas fa-fire"></i> SECURE YOUR SLOT
+                <i class="fas fa-fire"></i> SECURE YOUR ₹2,00,000 SLOT
             </a>
         </div>
     </section>
@@ -2240,9 +2247,10 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="zero-risk-capital-deployment.html">Standard Rates</a></li>
-                        <li><a href="private-offering%20(1).html">Private Offering</a></li>
-                        <li><a href="TheCollectiveStrength%20(1).html">The Collective</a></li>
+                        <li><a href="#plans">Plans</a></li>
+                        <li><a href="#calculator">Calculator</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#documents">Documents</a></li>
                     </ul>
                 </div>
                 
@@ -2299,144 +2307,197 @@
             answer.style.maxHeight = answer.classList.contains('active') ? answer.scrollHeight + 'px' : '0';
         }
 
-        // Calculator
+        // Calculator state
+        let currentPlan = 'cashflow'; // 'cashflow' or 'interest'
+        
+        // Get pro-rated first payout (13 days from March 19-31)
         function getProratedInfo() {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = today.getMonth();
-            const day = today.getDate();
+            // Today is March 18th, earnings start from March 19th
+            const daysInMarch = 31;
+            const startDay = 19; // Earnings start from March 19
+            const daysRemaining = daysInMarch - startDay + 1; // 31-19+1 = 13 days
             
-            const currentDateStr = today.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-            
-            let firstPayoutMonth, firstPayoutYear, firstPayoutMonthName, daysRemaining = 0, proratedPercentage = 0, payoutType = '';
-            
-            if (day >= 1 && day <= 6) {
-                firstPayoutMonth = month + 1;
-                firstPayoutYear = year;
-                if (firstPayoutMonth > 11) { firstPayoutMonth = 0; firstPayoutYear++; }
-                firstPayoutMonthName = monthNames[firstPayoutMonth];
-                proratedPercentage = 1;
-                payoutType = 'full_next_month';
-            }
-            else if (day >= 7 && day <= 25) {
-                daysRemaining = daysInMonth - day + 1;
-                proratedPercentage = daysRemaining / daysInMonth;
-                firstPayoutMonth = month;
-                firstPayoutYear = year;
-                firstPayoutMonthName = monthNames[firstPayoutMonth];
-                payoutType = 'prorated_current';
-            }
-            else {
-                daysRemaining = daysInMonth - day + 1;
-                firstPayoutMonth = month + 1;
-                firstPayoutYear = year;
-                if (firstPayoutMonth > 11) { firstPayoutMonth = 0; firstPayoutYear++; }
-                firstPayoutMonthName = monthNames[firstPayoutMonth];
-                proratedPercentage = 1;
-                payoutType = 'carry_forward';
-            }
+            // Calculate pro-rated percentage
+            const proratedPercentage = daysRemaining / daysInMarch; // 13/31 = 41.94%
             
             return {
-                currentDate: currentDateStr,
-                currentDay: day,
+                currentDay: 18,
+                startDay: startDay,
                 daysRemaining: daysRemaining,
                 proratedPercentage: proratedPercentage,
-                firstPayoutMonth: firstPayoutMonth,
-                firstPayoutYear: firstPayoutYear,
-                firstPayoutMonthName: firstPayoutMonthName,
-                monthNames: monthNames,
-                payoutType: payoutType
+                monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December']
             };
         }
         
         function generatePayoutTable() {
             const prorata = getProratedInfo();
-            const principal = 50000;
-            const monthlyPrincipal = Math.round(principal / 12);
-            const monthlyInterest = Math.round(principal * 0.1667);
-            const fullMonthlyPayout = monthlyPrincipal + monthlyInterest;
             
-            let firstPayout, payoutDescription;
+            // Plan values
+            const cashflowMonthly = 50000;
+            const interestMonthly = 33240;
             
-            if (prorata.payoutType === 'full_next_month') {
-                firstPayout = fullMonthlyPayout;
-                payoutDescription = `Full payout (deployed 1st-6th)`;
-            } 
-            else if (prorata.payoutType === 'prorated_current') {
-                firstPayout = Math.round(fullMonthlyPayout * prorata.proratedPercentage);
-                payoutDescription = `${prorata.daysRemaining} days prorated`;
-            }
-            else {
-                firstPayout = fullMonthlyPayout;
-                payoutDescription = `Full + ${prorata.daysRemaining} pending days`;
-            }
+            // Calculate principal and interest components for cash flow plan
+            // For ₹2,00,000 over 12 months: Principal per month = ₹16,667, Interest = ₹33,333
+            const cashflowPrincipal = Math.round(200000 / 12); // ₹16,667 per month
+            const cashflowInterest = cashflowMonthly - cashflowPrincipal; // ₹33,333 per month
             
-            document.getElementById('dynamicPayoutDescription').innerHTML = 
-                `<strong>${prorata.currentDate}:</strong> ${payoutDescription}`;
+            // Interest only plan: full amount is interest, principal returned in 13th month
+            const interestOnlyInterest = interestMonthly;
             
+            // First payout (pro-rated for 13 days)
+            const cashflowFirstPayout = Math.round(cashflowMonthly * prorata.proratedPercentage);
+            const interestFirstPayout = Math.round(interestMonthly * prorata.proratedPercentage);
+            
+            // Update display based on current plan
+            updateCalculatorDisplay(currentPlan, cashflowMonthly, interestMonthly, cashflowFirstPayout, interestFirstPayout, cashflowPrincipal, cashflowInterest, interestOnlyInterest, prorata);
+        }
+        
+        function updateCalculatorDisplay(plan, cashflowMonthly, interestMonthly, cashflowFirstPayout, interestFirstPayout, cashflowPrincipal, cashflowInterest, interestOnlyInterest, prorata) {
+            
+            const isCashflow = (plan === 'cashflow');
+            const monthlyAmount = isCashflow ? cashflowMonthly : interestMonthly;
+            const firstPayout = isCashflow ? cashflowFirstPayout : interestFirstPayout;
+            const totalPayout = isCashflow ? (cashflowMonthly * 12) : (interestMonthly * 12);
+            
+            // Summary cards
             document.getElementById('firstPayoutDisplay').innerHTML = `₹${firstPayout.toLocaleString()}`;
-            document.getElementById('firstPayoutDateDisplay').innerHTML = `1-10 ${prorata.firstPayoutMonthName} ${prorata.firstPayoutYear}`;
+            document.getElementById('firstPayoutDateDisplay').innerHTML = `1st-10th April (${prorata.daysRemaining} days)`;
+            document.getElementById('regularMonthlyDisplay').innerHTML = `₹${monthlyAmount.toLocaleString()}`;
+            document.getElementById('regularMonthlyNote').innerHTML = 'Months 2-12';
+            document.getElementById('totalPayoutDisplay').innerHTML = `₹${totalPayout.toLocaleString()}`;
             
-            let html = '', remainingPrincipal = principal, totalReceived = 0;
-            let startMonth = prorata.firstPayoutMonth;
-            let startYear = prorata.firstPayoutYear;
+            if (isCashflow) {
+                document.getElementById('totalPayoutNote').innerHTML = '12 months (capital+interest)';
+                document.getElementById('thirteenthMonthDisplay').innerHTML = '-';
+                document.getElementById('thirteenthMonthNote').innerHTML = 'No 13th month';
+            } else {
+                document.getElementById('totalPayoutNote').innerHTML = '12 months interest only';
+                document.getElementById('thirteenthMonthDisplay').innerHTML = '₹2,00,000';
+                document.getElementById('thirteenthMonthNote').innerHTML = 'Capital refund in 13th month';
+            }
             
-            for (let i = 0; i < 12; i++) {
-                let currentMonth = startMonth + i;
-                let currentYear = startYear;
-                while (currentMonth > 11) { currentMonth -= 12; currentYear++; }
+            // Generate table
+            let html = '';
+            let cumulative = 0;
+            let remainingPrincipal = 200000;
+            
+            // Month 1 (pro-rated - April payout for March earnings)
+            cumulative += firstPayout;
+            if (isCashflow) {
+                // For cash flow, first payout includes both principal and interest pro-rated
+                const principalPortion = Math.round(cashflowPrincipal * prorata.proratedPercentage);
+                const interestPortion = firstPayout - principalPortion;
+                remainingPrincipal -= principalPortion;
                 
-                const monthName = prorata.monthNames[currentMonth];
-                const monthlyTotal = (i === 0) ? firstPayout : fullMonthlyPayout;
-                const monthlyPrincipalPortion = (i === 0) ? 
-                    Math.round(monthlyTotal * (monthlyPrincipal / fullMonthlyPayout)) : monthlyPrincipal;
-                const monthlyInterestPortion = monthlyTotal - monthlyPrincipalPortion;
+                html += `<tr style="background: rgba(198,162,59,0.1);">
+                    <td><strong>Month 1</strong> <span style="color: var(--accent);">(pro-rated)</span></td>
+                    <td>1st-10th April 2026 <br><small>(for ${prorata.daysRemaining} days: Mar 19-31)</small></td>
+                    <td style="text-align: right;">₹${principalPortion.toLocaleString()}</td>
+                    <td style="text-align: right;">₹${interestPortion.toLocaleString()}</td>
+                    <td style="text-align: right; font-weight: 600; color: #dc2626;">₹${firstPayout.toLocaleString()}</td>
+                    <td style="text-align: right;">₹${cumulative.toLocaleString()}</td>
+                </tr>`;
+            } else {
+                // For interest only, first payout is only interest (pro-rated)
+                html += `<tr style="background: rgba(198,162,59,0.1);">
+                    <td><strong>Month 1</strong> <span style="color: var(--accent);">(pro-rated)</span></td>
+                    <td>1st-10th April 2026 <br><small>(for ${prorata.daysRemaining} days: Mar 19-31)</small></td>
+                    <td style="text-align: right;">₹0</td>
+                    <td style="text-align: right;">₹${firstPayout.toLocaleString()}</td>
+                    <td style="text-align: right; font-weight: 600; color: #dc2626;">₹${firstPayout.toLocaleString()}</td>
+                    <td style="text-align: right;">₹${cumulative.toLocaleString()}</td>
+                </tr>`;
+            }
+            
+            // Months 2-12 (full payouts - May 2026 to March 2026)
+            const months = ['May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March'];
+            const years = ['2026', '2026', '2026', '2026', '2026', '2026', '2026', '2026', '2027', '2027', '2027'];
+            
+            for (let i = 0; i < 11; i++) {
+                cumulative += monthlyAmount;
                 
-                remainingPrincipal -= monthlyPrincipalPortion;
-                totalReceived += monthlyTotal;
-                
-                html += `<tr>
-                    <td>Month ${i + 1}</td>
-                    <td>1-10 ${monthName} ${currentYear}</td>
-                    <td style="text-align: right;">₹${monthlyPrincipalPortion.toLocaleString()}</td>
-                    <td style="text-align: right;">₹${monthlyInterestPortion.toLocaleString()}</td>
-                    <td style="text-align: right; font-weight: 600; color: #dc2626;">₹${monthlyTotal.toLocaleString()}</td>
-                    <td style="text-align: right;">₹${Math.max(0, remainingPrincipal).toLocaleString()}</td>
+                if (isCashflow) {
+                    remainingPrincipal -= cashflowPrincipal;
+                    html += `<tr>
+                        <td>Month ${i + 2}</td>
+                        <td>1st-10th ${months[i]} ${years[i]}</td>
+                        <td style="text-align: right;">₹${cashflowPrincipal.toLocaleString()}</td>
+                        <td style="text-align: right;">₹${cashflowInterest.toLocaleString()}</td>
+                        <td style="text-align: right; font-weight: 600; color: #dc2626;">₹${monthlyAmount.toLocaleString()}</td>
+                        <td style="text-align: right;">₹${cumulative.toLocaleString()}</td>
+                    </tr>`;
+                } else {
+                    html += `<tr>
+                        <td>Month ${i + 2}</td>
+                        <td>1st-10th ${months[i]} ${years[i]}</td>
+                        <td style="text-align: right;">₹0</td>
+                        <td style="text-align: right;">₹${monthlyAmount.toLocaleString()}</td>
+                        <td style="text-align: right; font-weight: 600; color: #dc2626;">₹${monthlyAmount.toLocaleString()}</td>
+                        <td style="text-align: right;">₹${cumulative.toLocaleString()}</td>
+                    </tr>`;
+                }
+            }
+            
+            // Add 13th month row for interest only plan (April 2027 - capital refund)
+            if (!isCashflow) {
+                cumulative += 200000;
+                html += `<tr style="background: rgba(220,38,38,0.1); font-weight: 600;">
+                    <td><strong>Month 13</strong></td>
+                    <td>1st-10th April 2027 <br><small>(Capital Refund)</small></td>
+                    <td style="text-align: right; color: #10b981;">₹2,00,000</td>
+                    <td style="text-align: right;">₹0</td>
+                    <td style="text-align: right; color: #10b981;">₹2,00,000</td>
+                    <td style="text-align: right;">₹${cumulative.toLocaleString()}</td>
                 </tr>`;
             }
             
             document.getElementById('payoutTable').innerHTML = html;
-            document.getElementById('totalEarningsDisplay').innerHTML = `₹${totalReceived.toLocaleString()}`;
             
+            // Update note
+            const percentageDisplay = Math.round(prorata.proratedPercentage * 100);
             let noteText = '';
-            if (prorata.payoutType === 'full_next_month') {
-                noteText = `📌 First full ₹${firstPayout} payout on 1-10 ${prorata.firstPayoutMonthName} ${prorata.firstPayoutYear}.`;
-            } else if (prorata.payoutType === 'prorated_current') {
-                noteText = `📌 First ₹${firstPayout} covers ${prorata.daysRemaining} days on 1-10 ${prorata.firstPayoutMonthName}. Full ₹12,500 from next month.`;
+            
+            if (isCashflow) {
+                noteText = `📌 Capital transfer on March 18th earns from March 19th. First pro-rated payout of ₹${cashflowFirstPayout.toLocaleString()} (${percentageDisplay}% of monthly) for ${prorata.daysRemaining} days (Mar 19-31) credited 1st-10th April. Full ₹50,000 payouts from Months 2-12 (May 2026 - March 2026) credited 1st-10th each month. Total received: ₹${(cashflowMonthly * 12).toLocaleString()}.`;
             } else {
-                noteText = `📌 ${prorata.daysRemaining} pending days added to first ₹${firstPayout} on 1-10 ${prorata.firstPayoutMonthName}.`;
+                noteText = `📌 Capital transfer on March 18th earns from March 19th. First pro-rated interest payout of ₹${interestFirstPayout.toLocaleString()} (${percentageDisplay}% of monthly) for ${prorata.daysRemaining} days (Mar 19-31) credited 1st-10th April. Full ₹33,240 interest payouts from Months 2-12 (May 2026 - March 2026) + ₹2,00,000 capital refund in 13th month (April 2026). Total received: ₹${(interestMonthly * 12 + 200000).toLocaleString()}.`;
             }
+            
             document.getElementById('dynamicNoteText').innerHTML = noteText;
+            document.getElementById('dynamicPayoutDescription').innerHTML = `Based on capital transfer on March 18th · First payout: 1st-10th April (${prorata.daysRemaining} days pro-rated)`;
+            
+            // Update tab active states
+            document.getElementById('tab-cashflow').classList.toggle('active', isCashflow);
+            document.getElementById('tab-interest').classList.toggle('active', !isCashflow);
         }
         
-        window.onload = generatePayoutTable;
+        function switchCalculatorTab(plan) {
+            currentPlan = plan;
+            generatePayoutTable();
+        }
+        
+        window.onload = function() {
+            generatePayoutTable();
+        };
 
         // Reservation form
         function submitReservation() {
             const name = document.getElementById('fullName').value.trim();
             const phone = document.getElementById('whatsappNumber').value.trim();
             const email = document.getElementById('emailAddress').value.trim();
-            const docPreference = document.querySelector('input[name="docPreference"]:checked').value;
-            const docText = docPreference === 'digital' ? 'Digital (₹50k)' : 'Notarized (₹54,999)';
+            
+            const planPreference = document.querySelector('input[name="planPreference"]:checked');
+            const planText = planPreference ? (planPreference.value === 'cashflow' ? 'Cash Flow (₹50k/month)' : 'Interest Only (₹33,240/month + Capital)') : 'Not selected';
+            
+            const docPreference = document.querySelector('input[name="docPreference"]:checked');
+            const docText = docPreference ? (docPreference.value === 'digital' ? 'Digital (₹2,00,000)' : 'Notarized (₹2,04,999)') : 'Not selected';
             
             if (!name || !phone || !email) { 
                 alert('Please fill all fields.'); 
                 return; 
             }
             if (!document.getElementById('confirmTerms').checked) {
-                alert('Please confirm the structure.');
+                alert('Please confirm the plan structure.');
                 return;
             }
             if (!document.getElementById('confirmPDC').checked) {
@@ -2444,9 +2505,9 @@
                 return;
             }
             
-            const msg = `🔔 *2-SLOT RESERVATION*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Email:* ${email}%0A*Docs:* ${docText}%0A%0A*25% Monthly:* ₹12,500 × 12 = ₹1,50,000%0A*PDC:* NI Act 1881`;
-            window.open(`https://wa.me/917066393830?text=${msg}`, '_blank');
-            alert('Thank you! We will reply from care@omkarservices.in within 2 hours.');
+            const msg = `🔔 *₹2,00,000 SLOT RESERVATION*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Email:* ${email}%0A*Plan:* ${planText}%0A*Docs:* ${docText}%0A%0A*2 Slots Only* - First come, first served`;
+            window.open(`https://wa.me/919226393837?text=${msg}`, '_blank');
+            alert('Thank you! We will reply from care@omkarservices.in within 2 hours with initial approval.');
         }
     </script>
 </body>

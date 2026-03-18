@@ -85,43 +85,75 @@
             display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
         }
         .service-card {
-            background: white; padding: 40px 30px; border-radius: 16px; border: 1px solid #e2e8f0;
-            transition: all 0.3s; text-decoration: none; color: inherit;
+            background: white; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0;
+            transition: all 0.3s; text-decoration: none; color: inherit; display: flex; flex-direction: column;
+            height: 100%;
         }
         .service-card:hover {
             transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        .service-card h3 { font-size: 22px; margin-bottom: 15px; color: #0f172a; }
-        .service-card p { color: #475569; margin-bottom: 20px; }
-        .service-card a { color: #d4af37; text-decoration: none; font-weight: 600; }
-        .service-card a:hover { text-decoration: underline; }
-        
-        .blog-meta { color: #64748b; font-size: 12px; margin-top: 15px; }
+        .service-card .blog-badge {
+            background: #d4af37; color: #0f172a; padding: 4px 12px; border-radius: 20px; font-size: 11px; 
+            font-weight: 600; display: inline-block; margin-bottom: 15px; align-self: flex-start;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .service-card h3 { 
+            font-size: 20px; margin-bottom: 15px; color: #0f172a; line-height: 1.4;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+            font-weight: 600;
+        }
+        .service-card p { 
+            color: #475569; margin-bottom: 20px; font-size: 14px; line-height: 1.6;
+            display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+        }
+        .blog-meta { 
+            color: #64748b; font-size: 12px; margin-top: auto; margin-bottom: 15px;
+            display: flex; gap: 15px; flex-wrap: wrap;
+        }
+        .blog-meta i { color: #d4af37; margin-right: 4px; }
+        .read-more { 
+            color: #d4af37; font-weight: 600; font-size: 14px; text-decoration: none;
+            display: inline-block; transition: transform 0.3s;
+        }
+        .service-card:hover .read-more { transform: translateX(5px); }
         
         .footer {
-            background: #0f172a; color: white; padding: 60px 0 30px;
+            background: #0f172a; color: white; padding: 60px 0 30px; margin-top: 60px;
         }
         .footer-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;
         }
-        .footer-col h4 { color: #d4af37; margin-bottom: 20px; }
+        .footer-col h4 { color: #d4af37; margin-bottom: 20px; font-size: 16px; }
         .footer-col ul { list-style: none; }
-        .footer-col a { color: white; text-decoration: none; opacity: 0.8; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+        .footer-col a:hover { opacity: 1; color: #d4af37; }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        
+        .footer-disclaimer {
+            margin: 30px 0; padding: 30px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; border-left: 4px solid #d4af37;
+        }
         
         .float-whatsapp {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
             padding: 15px 25px; border-radius: 50px; text-decoration: none; display: flex;
             align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 999;
+            transition: transform 0.3s;
         }
+        .float-whatsapp:hover { transform: translateY(-5px); background: #128C7E; }
         
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .nav-menu {
                 position: fixed; top: 70px; right: -100%; width: 100%; background: white;
-                flex-direction: column; padding: 40px; transition: right 0.3s;
+                flex-direction: column; padding: 40px; transition: right 0.3s; z-index: 999;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             }
             .nav-menu.active { right: 0; }
+            .services-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 32px; }
+            .float-whatsapp span { display: none; }
+            .float-whatsapp { padding: 15px; border-radius: 50px; }
         }
     </style>
 </head>
@@ -172,7 +204,7 @@
         </div>
     </section>
 
-    <!-- Categories - UPDATED WITH NEW CATEGORIES -->
+    <!-- Categories -->
     <div class="container">
         <div class="categories">
             <a href="index.html" class="category-btn active">All</a>
@@ -185,7 +217,7 @@
         </div>
     </div>
 
-    <!-- Blog Grid - UPDATED WITH ALL YOUR LATEST POSTS -->
+    <!-- Blog Grid - ALL BLOGS PROPERLY ALIGNED WITH ORIGINAL DESIGN -->
     <section class="blog-section">
         <div class="container">
             <div class="section-title">
@@ -195,483 +227,734 @@
             
             <div class="services-grid">
 
-            
-            <!-- NEW: Geopolitical Risk & Portfolio Strategies Blog (March 18, 2026) -->
-            <a href="post/geopolitical-risk-portfolio-strategies-india-2026.html" class="blog-card">
-                <div class="blog-card-content">
-                    <div class="blog-category">GEOPOLITICAL RISK · PORTFOLIO STRATEGY</div>
+                <!-- 1. Geopolitical Risk & Portfolio Strategies (March 18, 2026) -->
+                <a href="post/geopolitical-risk-portfolio-strategies-india-2026.html" class="service-card">
+                    <span class="blog-badge">GEOPOLITICAL RISK · PORTFOLIO STRATEGY</span>
                     <h3>Geopolitical Risk 2026: Smart Portfolio Strategies for Indian Investors</h3>
                     <p>Educational analysis of FII outflows (₹1.07 lakh crore), Sensex volatility (11.4%), crude oil impact, and barbell portfolio approaches. Learn about diversification, gold hedging, and risk management concepts in uncertain times.</p>
-                    <div class="blog-meta-wrapper">
-                        <span class="blog-date"><i class="far fa-calendar-alt"></i> March 18, 2026</span>
-                        <span class="blog-read-time"><i class="far fa-clock"></i> 9 min read</span>
-                        <span class="blog-category-tag">Educational</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 18, 2026</span>
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <span style="color: #d4af37;">Educational</span>
                     </div>
                     <span class="read-more">Read Full Analysis →</span>
-                </div>
-            </a>
-           
-          
+                </a>
 
-<!-- NEW: Bandhan Bank Crash Analysis (March 16, 2026) -->
-<a href="/blog/post/bandhan-bank-crash-analysis-fibonacci-footprints.html" class="service-card">
-    <span style="background: #d4af37; color: #0f172a; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block; margin-bottom: 15px;">📊 LATEST ANALYSIS</span>
-    <h3>10% Crash Overnight? Decoding the "Footprints" Left in Bandhan Bank Before the Fall</h3>
-    <p>At 12:36 PM, Bandhan Bank futures locked at 10% lower circuit. But the charts whispered the secret while news channels were still reading scripts. A masterclass in smart money footprints – Fibonacci, volume analysis, and liquidity concepts explained.</p>
-    <div class="blog-meta">March 16, 2026 • Technical Analysis</div>
-    <span style="color: #d4af37;">Read Full Analysis →</span>
-</a>
-
- <!-- NEW: Geopolitical Risk & Portfolio Strategies Blog (March 18, 2026) -->
-            <a href="post/geopolitical-risk-portfolio-strategies-india-2026.html" class="blog-card">
-                <div class="blog-card-content">
-                    <div class="blog-category">GEOPOLITICAL RISK · PORTFOLIO STRATEGY</div>
-                    <h3>Geopolitical Risk 2026: Smart Portfolio Strategies for Indian Investors</h3>
-                    <p>Educational analysis of FII outflows (₹1.07 lakh crore), Sensex volatility (11.4%), crude oil impact, and barbell portfolio approaches. Learn about diversification, gold hedging, and risk management concepts in uncertain times.</p>
-                    <div class="blog-meta-wrapper">
-                        <span class="blog-date"><i class="far fa-calendar-alt"></i> March 18, 2026</span>
-                        <span class="blog-read-time"><i class="far fa-clock"></i> 9 min read</span>
-                        <span class="blog-category-tag">Educational</span>
+                <!-- 2. Bandhan Bank Crash Analysis (March 16, 2026) -->
+                <a href="post/bandhan-bank-crash-analysis-fibonacci-footprints.html" class="service-card">
+                    <span class="blog-badge">📊 LATEST ANALYSIS · TECHNICAL</span>
+                    <h3>10% Crash Overnight? Decoding the "Footprints" Left in Bandhan Bank Before the Fall</h3>
+                    <p>At 12:36 PM, Bandhan Bank futures locked at 10% lower circuit. But the charts whispered the secret while news channels were still reading scripts. A masterclass in smart money footprints – Fibonacci, volume analysis, and liquidity concepts explained.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 16, 2026</span>
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <span style="color: #d4af37;">Technical Analysis</span>
                     </div>
                     <span class="read-more">Read Full Analysis →</span>
-                </div>
-            </a>
+                </a>
 
+                <!-- 3. India Oil Reserves Analysis (March 14, 2026) -->
+                <a href="post/india-oil-reserves-war-energy-security.html" class="service-card">
+                    <span class="blog-badge">ENERGY SECURITY · STRATEGIC</span>
+                    <h3>India's Oil Reserves During War: Complete Analysis of Strategic Petroleum Reserves, Import Diversification & Energy Security</h3>
+                    <p>In-depth analysis of India's oil reserves during geopolitical conflicts. Strategic Petroleum Reserve capacity: 5.33M tonnes. Current reserves: 250M+ barrels covering 7-8 weeks. Import diversification to 40+ countries. Expert analysis with latest data.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 14, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span style="color: #d4af37;">Energy Economics</span>
+                    </div>
+                    <span class="read-more">Read Full Analysis →</span>
+                </a>
 
-<!-- NEW: Why Retail Traders Lose -->
-            <a href="post/why-retail-traders-lose-truth.html" class="service-card">
-                <h3>Why Retail Traders Lose: The Truth About Market Events, Institutional Money, and a Smarter Path</h3>
-                <p>An honest look at why 9 out of 10 traders lose money, how institutions really operate, and what to do instead. No trading tips. No false promises. Just reality.</p>
-                <div class="blog-meta">March 14, 2026 • Trading Psychology</div>
-                <span style="color: #d4af37;">Read More →</span>
-            </a>
-                
-     <!-- NEW: India Oil Reserves Analysis -->
-            <a href="post/india-oil-reserves-war-energy-security.html" class="service-card">
-                <h3>India's Oil Reserves During War: Complete Analysis of Strategic Petroleum Reserves, Import Diversification & Energy Security</h3>
-                <p>In-depth analysis of India's oil reserves during geopolitical conflicts. Strategic Petroleum Reserve capacity: 5.33M tonnes. Current reserves: 250M+ barrels covering 7-8 weeks. Import diversification to 40 countries. Expert analysis with latest data.</p>
-                <div class="blog-meta">March 14, 2026 • Energy Economics</div>
-                <span style="color: #d4af37;">Read More →</span>
-            </a>
-                
-         <!-- NEW: Global Conflict & Indian Economy -->
-            <a href="post/global-conflict-indian-economy-diversification-2026.html" class="service-card">
-                <h3>Global Conflict & Indian Economy: Income Diversification Strategies 2026</h3>
-                <p>How global wars impact the Indian economy, household budgets, and financial markets. Learn income diversification strategies and download free economic report 2026.</p>
-                <div class="blog-meta">March 11, 2026 • Global Economy</div>
-                <span style="color: #d4af37;">Read More →</span>
-            </a>
+                <!-- 4. Why Retail Traders Lose (March 14, 2026) -->
+                <a href="post/why-retail-traders-lose-truth.html" class="service-card">
+                    <span class="blog-badge">TRADING PSYCHOLOGY</span>
+                    <h3>Why Retail Traders Lose: The Truth About Market Events, Institutional Money, and a Smarter Path</h3>
+                    <p>An honest look at why 9 out of 10 traders lose money, how institutions really operate, and what to do instead. No trading tips. No false promises. Just reality.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 14, 2026</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <span style="color: #d4af37;">Trading Psychology</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
+                </a>
 
-                
-                <!-- Nifty Futures Technical Analysis -->
+                <!-- 5. Global Conflict & Indian Economy (March 11, 2026) -->
+                <a href="post/global-conflict-indian-economy-diversification-2026.html" class="service-card">
+                    <span class="blog-badge">GLOBAL ECONOMY</span>
+                    <h3>Global Conflict & Indian Economy: Income Diversification Strategies 2026</h3>
+                    <p>How global wars impact the Indian economy, household budgets, and financial markets. Learn income diversification strategies and download free economic report 2026.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 11, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Global Economy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
+                </a>
+
+                <!-- 6. Nifty Futures Technical Analysis (March 09, 2026) -->
                 <a href="post/Nifty_Futures_Technical_Analysis:%20Understanding_Fibonacci_Retracements_%26_Market_Corrections.html" class="service-card">
+                    <span class="blog-badge">STOCK MARKET · TECHNICAL</span>
                     <h3>Nifty Futures Technical Analysis: Understanding Fibonacci Retracements & Market Corrections</h3>
                     <p>Educational insights on technical analysis, Fibonacci retracements, and understanding market corrections for informed decision-making.</p>
-                    <div class="blog-meta">March 09, 2026 • Stock Market</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 09, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span style="color: #d4af37;">Stock Market</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- What Is Structured Capital Deployment -->
+
+                <!-- 7. Structured Capital Deployment (March 09, 2026) -->
                 <a href="post/what-is-structured-capital-deployment-complete-guide.html" class="service-card">
+                    <span class="blog-badge">CAPITAL DEPLOYMENT</span>
                     <h3>What Is Structured Capital Deployment: Complete Guide</h3>
                     <p>Comprehensive guide to understanding structured capital deployment, how it works, and its applications for businesses and investors.</p>
-                    <div class="blog-meta">March 09, 2026 • Capital Deployment</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 09, 2026</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <span style="color: #d4af37;">Capital Deployment</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- IT Infrastructure Planning -->
-                <a href="post/it-infrastructure-planning-for-growing-companies.html" class="service-card">
-                    <h3>IT Infrastructure Planning for Growing Companies</h3>
-                    <p>Strategic guide to planning IT infrastructure for growing companies, including scalability, security, and cost considerations.</p>
-                    <div class="blog-meta">March 09, 2026 • Technology</div>
-                    <span style="color: #d4af37;">Read More →</span>
-                </a>
-                
-                <!-- Risk Management in Capital Deployment -->
-                <a href="post/risk-management-in-capital-deployment.html" class="service-card">
-                    <h3>Risk Management in Capital Deployment</h3>
-                    <p>Understanding risk management principles in capital deployment, including assessment frameworks and mitigation strategies.</p>
-                    <div class="blog-meta">March 09, 2026 • Capital Deployment</div>
-                    <span style="color: #d4af37;">Read More →</span>
-                </a>
-                
-                <!-- ERP Implementation Guide -->
+
+                <!-- 8. ERP Implementation Guide (March 09, 2026) -->
                 <a href="post/erp-implementation-guide-for-manufacturing-companies.html" class="service-card">
+                    <span class="blog-badge">TECHNOLOGY · ERP</span>
                     <h3>ERP Implementation Guide for Manufacturing Companies</h3>
                     <p>Step-by-step guide to ERP implementation for manufacturing companies, from planning to execution and post-implementation optimization.</p>
-                    <div class="blog-meta">March 09, 2026 • Technology</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 09, 2026</span>
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <span style="color: #d4af37;">Technology</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- Operational Efficiency Consulting -->
+
+                <!-- 9. IT Infrastructure Planning (March 09, 2026) -->
+                <a href="post/it-infrastructure-planning-for-growing-companies.html" class="service-card">
+                    <span class="blog-badge">TECHNOLOGY · INFRASTRUCTURE</span>
+                    <h3>IT Infrastructure Planning for Growing Companies</h3>
+                    <p>Strategic guide to planning IT infrastructure for growing companies, including scalability, security, and cost considerations.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 09, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Technology</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
+                </a>
+
+                <!-- 10. Risk Management in Capital Deployment (March 09, 2026) -->
+                <a href="post/risk-management-in-capital-deployment.html" class="service-card">
+                    <span class="blog-badge">CAPITAL DEPLOYMENT · RISK</span>
+                    <h3>Risk Management in Capital Deployment</h3>
+                    <p>Understanding risk management principles in capital deployment, including assessment frameworks and mitigation strategies.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 09, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Capital Deployment</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
+                </a>
+
+                <!-- 11. Operational Efficiency Consulting (March 09, 2026) -->
                 <a href="post/operational-efficiency-consulting-for-indian-businesses.html" class="service-card">
+                    <span class="blog-badge">BUSINESS STRATEGY · OPERATIONS</span>
                     <h3>Operational Efficiency Consulting for Indian Businesses</h3>
                     <p>How operational efficiency consulting helps Indian businesses reduce costs, improve productivity, and enhance competitiveness.</p>
-                    <div class="blog-meta">March 09, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 09, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- Companies Act Amendments -->
+
+                <!-- 12. Companies Act Amendments (March 08, 2026) -->
                 <a href="post/companies-act-amendments-you-need-to-know.html" class="service-card">
+                    <span class="blog-badge">COMPLIANCE · LEGAL</span>
                     <h3>Companies Act Amendments You Need to Know</h3>
                     <p>Latest amendments to the Companies Act affecting Indian businesses. Key changes and compliance implications explained.</p>
-                    <div class="blog-meta">March 08, 2026 • Compliance</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 08, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Compliance</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- Business Intelligence Tools -->
+
+                <!-- 13. Business Intelligence Tools (March 06, 2026) -->
                 <a href="post/business-intelligence-tools-for-indian-smes.html" class="service-card">
+                    <span class="blog-badge">TECHNOLOGY · BI</span>
                     <h3>Business Intelligence Tools for Indian SMEs</h3>
                     <p>Guide to business intelligence tools suitable for Indian SMEs. Affordable BI solutions and implementation strategies.</p>
-                    <div class="blog-meta">March 06, 2026 • Technology</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 06, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Technology</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- Competitive Analysis Framework -->
+
+                <!-- 14. Competitive Analysis Framework (March 05, 2026) -->
                 <a href="post/competitive-analysis-framework-for-smes.html" class="service-card">
+                    <span class="blog-badge">BUSINESS STRATEGY · ANALYSIS</span>
                     <h3>Competitive Analysis Framework for SMEs</h3>
                     <p>Practical competitive analysis frameworks for small and medium enterprises. Tools and techniques for understanding your competition.</p>
-                    <div class="blog-meta">March 05, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 05, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- GST Return Compliance -->
+
+                <!-- 15. GST Return Compliance (March 04, 2026) -->
                 <a href="post/gst-return-compliance-complete-guide.html" class="service-card">
+                    <span class="blog-badge">COMPLIANCE · GST</span>
                     <h3>GST Return Compliance: Complete Guide</h3>
                     <p>Complete guide to GST return filing for Indian businesses. Forms, deadlines, and common mistakes to avoid.</p>
-                    <div class="blog-meta">March 04, 2026 • Compliance</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 04, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span style="color: #d4af37;">Compliance</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- Process Automation -->
+
+                <!-- 16. Process Automation (March 03, 2026) -->
                 <a href="post/process-automation-where-to-start.html" class="service-card">
+                    <span class="blog-badge">TECHNOLOGY · AUTOMATION</span>
                     <h3>Process Automation: Where to Start</h3>
                     <p>Guide to getting started with process automation in business. Identifying opportunities, tools, and implementation.</p>
-                    <div class="blog-meta">March 03, 2026 • Technology</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 03, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Technology</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                <!-- Technology ROI -->
+
+                <!-- 17. Technology ROI (March 03, 2026) -->
                 <a href="post/technology-roi-measuring-what-matters.html" class="service-card">
+                    <span class="blog-badge">TECHNOLOGY · ROI</span>
                     <h3>Technology ROI: Measuring What Matters</h3>
                     <p>How to measure return on investment for technology projects. Metrics, frameworks, and reporting.</p>
-                    <div class="blog-meta">March 03, 2026 • Technology</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 03, 2026</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                        <span style="color: #d4af37;">Technology</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 18. Business Compliance Strategies (March 10, 2026) -->
                 <a href="post/business-compliance-strategies-for-growing-companies.html" class="service-card">
+                    <span class="blog-badge">COMPLIANCE · STRATEGY</span>
                     <h3>Business Compliance Strategies for Growing Companies</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Compliance Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on compliance frameworks for expanding businesses.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Compliance Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 19. Business Consulting Frameworks (March 10, 2026) -->
                 <a href="post/business-consulting-frameworks-for-operational-improvement.html" class="service-card">
+                    <span class="blog-badge">CONSULTING · OPERATIONS</span>
                     <h3>Business Consulting Frameworks for Operational Improvement</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Business Consulting</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on proven consulting frameworks.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Business Consulting</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 20. How Businesses Evaluate Capital Deployment (March 10, 2026) -->
                 <a href="post/how-businesses-evaluate-capital-deployment-decisions.html" class="service-card">
+                    <span class="blog-badge">CAPITAL · STRATEGY</span>
                     <h3>How Businesses Evaluate Capital Deployment Decisions</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Capital Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on capital allocation frameworks.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span style="color: #d4af37;">Capital Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-        
-                
+
+                <!-- 21. Complete Guide to Portfolio Diversification (March 10, 2026) -->
                 <a href="post/complete-guide-to-portfolio-diversification.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · DIVERSIFICATION</span>
                     <h3>Complete Guide to Portfolio Diversification</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on building diversified investment portfolios.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 22. Common Mistakes in Stock Market Investment (March 10, 2026) -->
                 <a href="post/common-mistakes-in-stock-market-investment-planning.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · MISTAKES</span>
                     <h3>Common Mistakes in Stock Market Investment Planning</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on avoiding common pitfalls.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 23. Common Mistakes in Asset Allocation (March 10, 2026) -->
                 <a href="post/common-mistakes-in-asset-allocation-strategy.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · ALLOCATION</span>
                     <h3>Common Mistakes in Asset Allocation Strategy</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on optimizing asset allocation.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 24. Understanding Stock Market Investment for Beginners (March 10, 2026) -->
                 <a href="post/understanding-stock-market-investment-planning-for-beginners.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · BEGINNERS</span>
                     <h3>Understanding Stock Market Investment Planning for Beginners</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis for new investors.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 25. Understanding Capital Allocation for Beginners (March 10, 2026) -->
                 <a href="post/understanding-capital-allocation-for-beginners.html" class="service-card">
+                    <span class="blog-badge">BUSINESS · CAPITAL</span>
                     <h3>Understanding Capital Allocation for Beginners</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on capital allocation fundamentals.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 26. Why Wealth Building Strategies Matter (March 10, 2026) -->
                 <a href="post/why-wealth-building-strategies-matters-in-modern-investing.html" class="service-card">
+                    <span class="blog-badge">WEALTH · STRATEGY</span>
                     <h3>Why Wealth Building Strategies Matters in Modern Investing</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 10, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on long-term wealth creation.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 10, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 27. How Cash Flow Management Shapes Success (March 11, 2026) -->
                 <a href="post/how-cash-flow-management-shapes-long-term-financial-success.html" class="service-card">
+                    <span class="blog-badge">FINANCE · CASH FLOW</span>
                     <h3>How Cash Flow Management Shapes Long Term Financial Success</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 11, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on cash flow optimization.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 11, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 28. Common Mistakes in Business Risk Management (March 11, 2026) -->
                 <a href="post/common-mistakes-in-business-risk-management.html" class="service-card">
+                    <span class="blog-badge">RISK · MANAGEMENT</span>
                     <h3>Common Mistakes in Business Risk Management</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 11, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on risk mitigation.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 11, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 29. Common Mistakes in Corporate Financial Planning (March 11, 2026) -->
                 <a href="post/common-mistakes-in-corporate-financial-planning.html" class="service-card">
+                    <span class="blog-badge">FINANCE · PLANNING</span>
                     <h3>Common Mistakes in Corporate Financial Planning</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 11, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on corporate finance.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 11, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 30. Understanding Raising Capital for Beginners (March 12, 2026) -->
                 <a href="post/understanding-raising-capital-for-business-for-beginners.html" class="service-card">
+                    <span class="blog-badge">CAPITAL · FUNDRAISING</span>
                     <h3>Understanding Raising Capital For Business for Beginners</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on fundraising fundamentals.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 31. Complete Guide to Wealth Building Strategies (March 12, 2026) -->
                 <a href="post/complete-guide-to-wealth-building-strategies.html" class="service-card">
+                    <span class="blog-badge">WEALTH · GUIDE</span>
                     <h3>Complete Guide to Wealth Building Strategies</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on comprehensive wealth creation.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 32. How Asset Allocation Shapes Success (March 12, 2026) -->
                 <a href="post/how-asset-allocation-strategy-shapes-long-term-financial-success.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · ALLOCATION</span>
                     <h3>How Asset Allocation Strategy Shapes Long Term Financial Success</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on strategic asset allocation.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 33. Why Value Investing Principles Matter Today (March 12, 2026) -->
                 <a href="post/why-value-investing-principles-matters-today.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · VALUE</span>
                     <h3>Why Value Investing Principles Matters Today</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on value investing.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 34. The Art of Long Term Wealth Building (March 12, 2026) -->
                 <a href="post/the-art-of-long-term-wealth-building.html" class="service-card">
+                    <span class="blog-badge">WEALTH · LONG-TERM</span>
                     <h3>The Art of Long Term Wealth Building</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on sustainable wealth creation.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 35. The Art of Last Minute Investment Strategies (March 12, 2026) -->
                 <a href="post/the-art-of-last-minute-investment-strategies.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · SEASONAL</span>
                     <h3>The Art of Last Minute Investment Strategies</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Seasonal Planning</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on year-end planning.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                        <span style="color: #d4af37;">Seasonal Planning</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 36. Understanding Portfolio Diversification Methods (March 12, 2026) -->
                 <a href="post/understanding-portfolio-diversification-methods-for-beginners.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · DIVERSIFICATION</span>
                     <h3>Understanding Portfolio Diversification Methods for Beginners</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on diversification techniques.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 37. Understanding Market Cycle Analysis for Beginners (March 12, 2026) -->
                 <a href="post/understanding-market-cycle-analysis-for-beginners.html" class="service-card">
+                    <span class="blog-badge">MARKET · CYCLES</span>
                     <h3>Understanding Market Cycle Analysis for Beginners</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on market cycles.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 38. Complete Guide to Market Cycle Analysis (March 12, 2026) -->
                 <a href="post/complete-guide-to-market-cycle-analysis.html" class="service-card">
+                    <span class="blog-badge">MARKET · COMPLETE GUIDE</span>
                     <h3>Complete Guide to Market Cycle Analysis</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 12, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on comprehensive market analysis.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 12, 2026</span>
+                        <span><i class="far fa-clock"></i> 9 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 39. How Dividend Growth Investing Shapes Success (March 13, 2026) -->
                 <a href="post/how-dividend-growth-investing-shapes-financial-success.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · DIVIDENDS</span>
                     <h3>How Dividend Growth Investing Shapes Financial Success</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 13, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on dividend strategies.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 13, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 40. Mastering Stock Market Analysis Techniques (March 13, 2026) -->
                 <a href="post/mastering-stock-market-analysis-techniques.html" class="service-card">
+                    <span class="blog-badge">MARKET · ANALYSIS</span>
                     <h3>Mastering Stock Market Analysis Techniques</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 13, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on advanced analysis methods.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 13, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 41. Mastering Tax Planning Before March 31 (March 13, 2026) -->
                 <a href="post/mastering-tax-planning-before-march-31.html" class="service-card">
+                    <span class="blog-badge">TAX · PLANNING</span>
                     <h3>Mastering Tax Planning Before March 31</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 13, 2026 • Seasonal Planning</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on year-end tax strategies.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 13, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Seasonal Planning</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 42. Beyond Basics: Business Risk Management (March 13, 2026) -->
                 <a href="post/beyond-basics-business-risk-management-approaches.html" class="service-card">
+                    <span class="blog-badge">RISK · ADVANCED</span>
                     <h3>Beyond Basics: Business Risk Management Approaches</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 13, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on advanced risk frameworks.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 13, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 43. The Art of Asset Allocation Models (March 13, 2026) -->
                 <a href="post/the-art-of-asset-allocation-models.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · MODELS</span>
                     <h3>The Art of Asset Allocation Models</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 13, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on allocation frameworks.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 13, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 44. Understanding Business Growth Frameworks (March 13, 2026) -->
                 <a href="post/understanding-business-growth-frameworks-for-beginners.html" class="service-card">
+                    <span class="blog-badge">BUSINESS · GROWTH</span>
                     <h3>Understanding Business Growth Frameworks for Beginners</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 13, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on scaling businesses.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 13, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 45. Essential Tax Planning Before March 31 (March 14, 2026) -->
                 <a href="post/essential-tax-planning-before-march-31-strategies.html" class="service-card">
+                    <span class="blog-badge">TAX · ESSENTIALS</span>
                     <h3>Essential Tax Planning Before March 31 Strategies</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 14, 2026 • Seasonal Planning</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on essential tax approaches.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 14, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Seasonal Planning</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 46. Common Mistakes in Year-End Portfolio Review (March 14, 2026) -->
                 <a href="post/common-mistakes-in-financial-year-end-portfolio-review.html" class="service-card">
+                    <span class="blog-badge">PORTFOLIO · MISTAKES</span>
                     <h3>Common Mistakes in Financial Year End Portfolio Review</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 14, 2026 • Seasonal Planning</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on year-end reviews.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 14, 2026</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                        <span style="color: #d4af37;">Seasonal Planning</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 47. Essential Corporate Financial Planning (March 14, 2026) -->
                 <a href="post/essential-corporate-financial-planning-systems-strategies.html" class="service-card">
+                    <span class="blog-badge">CORPORATE · FINANCE</span>
                     <h3>Essential Corporate Financial Planning Systems Strategies</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 14, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on corporate finance.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 14, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 48. How Year-End Portfolio Review Shapes Success (March 15, 2026) -->
                 <a href="post/how-financial-year-end-portfolio-review-shapes-financial-success.html" class="service-card">
+                    <span class="blog-badge">PORTFOLIO · REVIEW</span>
                     <h3>How Financial Year End Portfolio Review Shapes Financial Success</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 15, 2026 • Seasonal Planning</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on review benefits.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 15, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Seasonal Planning</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 49. Beyond Basics: Year-End Portfolio Review (March 15, 2026) -->
                 <a href="post/beyond-basics-financial-year-end-portfolio-review.html" class="service-card">
+                    <span class="blog-badge">PORTFOLIO · ADVANCED</span>
                     <h3>Beyond Basics: Financial Year End Portfolio Review</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 15, 2026 • Seasonal Planning</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on advanced review techniques.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 15, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Seasonal Planning</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 50. Understanding Value Investing Principles (March 15, 2026) -->
                 <a href="post/understanding-value-investing-principles-for-beginners.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · VALUE</span>
                     <h3>Understanding Value Investing Principles for Beginners</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 15, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on value fundamentals.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 15, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 51. Why Last Minute Investment Strategies Matter (March 16, 2026) -->
                 <a href="post/why-last-minute-investment-strategies-matters-today.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · URGENT</span>
                     <h3>Why Last Minute Investment Strategies Matters Today</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 16, 2026 • Seasonal Planning</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on time-sensitive planning.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 16, 2026</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                        <span style="color: #d4af37;">Seasonal Planning</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 52. The Art of Business Risk Management (March 16, 2026) -->
                 <a href="post/the-art-of-business-risk-management-approaches.html" class="service-card">
+                    <span class="blog-badge">RISK · ART</span>
                     <h3>The Art of Business Risk Management Approaches</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 16, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on mastering risk.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 16, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 53. Common Mistakes in Tax Planning (March 16, 2026) -->
                 <a href="post/common-mistakes-in-tax-planning-before-march-31.html" class="service-card">
+                    <span class="blog-badge">TAX · MISTAKES</span>
                     <h3>Common Mistakes in Tax Planning Before March 31</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 16, 2026 • Seasonal Planning</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on tax errors to avoid.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 16, 2026</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                        <span style="color: #d4af37;">Seasonal Planning</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 54. Common Mistakes in Value Investing (March 17, 2026) -->
                 <a href="post/common-mistakes-in-value-investing-principles.html" class="service-card">
+                    <span class="blog-badge">INVESTMENT · MISTAKES</span>
                     <h3>Common Mistakes in Value Investing Principles</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 17, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on value pitfalls.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 17, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 55. Long Term Wealth Building: A Practical Approach (March 17, 2026) -->
                 <a href="post/long-term-wealth-building-a-practical-approach.html" class="service-card">
+                    <span class="blog-badge">WEALTH · PRACTICAL</span>
                     <h3>Long Term Wealth Building: A Practical Approach</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 17, 2026 • Investment Education</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on actionable wealth strategies.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 17, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                        <span style="color: #d4af37;">Investment Education</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
-                
+
+                <!-- 56. How Strategic Financial Forecasting Shapes Success (March 17, 2026) -->
                 <a href="post/how-strategic-financial-forecasting-shapes-financial-success.html" class="service-card">
+                    <span class="blog-badge">FINANCE · FORECASTING</span>
                     <h3>How Strategic Financial Forecasting Shapes Financial Success</h3>
-                    <p>Educational insights and structured advisory analysis.</p>
-                    <div class="blog-meta">March 17, 2026 • Business Strategy</div>
-                    <span style="color: #d4af37;">Read More →</span>
+                    <p>Educational insights and structured advisory analysis on forecasting benefits.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 17, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                        <span style="color: #d4af37;">Business Strategy</span>
+                    </div>
+                    <span class="read-more">Read More →</span>
                 </a>
-                
+
                 <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
                 <!-- Future automated posts will appear here -->
             </div>
@@ -708,15 +991,16 @@
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>+91 70663 93830</li>
-                        <li>care@omkarservices.in</li>
-                        <li>Maharashtra, India</li>
+                        <li><i class="fas fa-phone" style="color: #d4af37; width: 20px;"></i> +91 70663 93830</li>
+                        <li><i class="fas fa-phone" style="color: #d4af37; width: 20px;"></i> +91 81693 02861</li>
+                        <li><i class="fas fa-envelope" style="color: #d4af37; width: 20px;"></i> care@omkarservices.in</li>
+                        <li><i class="fas fa-map-marker-alt" style="color: #d4af37; width: 20px;"></i> Maharashtra, India</li>
                     </ul>
                 </div>
             </div>
 
             <!-- LEGAL DISCLAIMER SECTION -->
-            <div class="footer-disclaimer" style="margin: 30px 0; padding: 30px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; border-left: 4px solid #d4af37;">
+            <div class="footer-disclaimer">
                 <h4 style="color: #d4af37; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 18px;">
                     <i class="fas fa-exclamation-triangle"></i> Important Legal & Regulatory Information
                 </h4>

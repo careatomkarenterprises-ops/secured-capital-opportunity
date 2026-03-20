@@ -12,73 +12,9 @@ from datetime import datetime
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from file_manager import FileManager
-from topic_generator import generate_topic, get_seasonal_topics
+from topic_generator import generate_topic, reset_topic_tracker
 from article_generator import generate_educational_content
 from market_report_generator import generate_market_report_file
-import json
-
-# ============================================
-# ENHANCED TOPIC GENERATION
-# ============================================
-
-def generate_market_update():
-    """Generate daily market update with real data"""
-    today = datetime.now().strftime("%B %d, %Y")
-    return {
-        "title": f"Daily Market Wrap: {today} - Educational Analysis",
-        "content": "Market analysis content will be generated separately",
-        "category": "Market Education"
-    }
-
-def generate_trending_topic():
-    """Generate trending topic based on current events"""
-    
-    # Get current month for seasonal topics
-    current_month = datetime.now().month
-    
-    # Trending topics based on time of year
-    if current_month == 3:  # March - Financial year end
-        topics = [
-            {
-                "title": "Tax Planning Before March 31: Complete Educational Guide",
-                "category": "Seasonal Planning",
-                "keywords": ["tax planning", "financial year end", "investment deadlines"]
-            },
-            {
-                "title": "FY26 Budget Impact: Sector-wise Educational Analysis",
-                "category": "Budget Analysis",
-                "keywords": ["budget 2026", "tax changes", "economic policy"]
-            }
-        ]
-    elif current_month in [10, 11, 12]:  # Q3 results season
-        topics = [
-            {
-                "title": "Q3 Earnings Season: What Investors Should Know",
-                "category": "Market Analysis",
-                "keywords": ["earnings", "corporate results", "profit analysis"]
-            },
-            {
-                "title": "Festive Season Market Trends: Historical Perspective",
-                "category": "Market Education",
-                "keywords": ["diwali investing", "seasonal trends", "market patterns"]
-            }
-        ]
-    else:
-        # Generic trending topics
-        topics = [
-            {
-                "title": "Why Retail Investors Lose Money: Educational Analysis",
-                "category": "Trading Psychology",
-                "keywords": ["trading mistakes", "investor psychology", "risk management"]
-            },
-            {
-                "title": "FII vs DII: Understanding Institutional Flows",
-                "category": "Market Education",
-                "keywords": ["fii data", "dii activity", "institutional investors"]
-            }
-        ]
-    
-    return random.choice(topics)
 
 # ============================================
 # MAIN RUNNER
@@ -86,6 +22,9 @@ def generate_trending_topic():
 
 def main():
     """Main function to generate all blog content"""
+    
+    # RESET TOPIC TRACKER AT START
+    reset_topic_tracker()
     
     print("=" * 50)
     print("🚀 AUTO BLOG GENERATOR STARTING")
@@ -106,12 +45,13 @@ def main():
     
     print(f"📊 Generating {total_articles} articles today:")
     print(f"   • {educational_articles} Educational articles")
-    print(f"   • {trending_articles} Trending topic articles")
+    print(f"   • {trending_articles} Trending topic article")
     if generate_market:
         print(f"   • 1 Daily Market Report")
     print()
     
     articles_generated = 0
+    unique_titles = set()  # Track titles in this run
     
     # Generate educational articles
     for i in range(educational_articles):
@@ -120,8 +60,17 @@ def main():
             
             topic = generate_topic()
             
+            # Extra safety - ensure title is unique in this run
+            original_title = topic['title']
+            counter = 1
+            while original_title in unique_titles and counter < 5:
+                original_title = f"{topic['title']} - Part {counter}"
+                counter += 1
+            
+            unique_titles.add(original_title)
+            
             content = generate_educational_content(
-                title=topic['title'],
+                title=original_title,
                 description=topic['description'],
                 category=topic['category']
             )
@@ -129,7 +78,7 @@ def main():
             read_time = random.randint(7, 12)
             
             slug = fm.save_blog_post(
-                title=topic['title'],
+                title=original_title,
                 content=content,
                 category=topic['category'],
                 read_time=read_time,
@@ -145,18 +94,51 @@ def main():
     print()
     
     # Generate trending articles
+    trending_topics = [
+        {
+            "title": "Why Retail Investors Lose Money: Educational Analysis",
+            "category": "Trading Psychology",
+            "description": "An honest look at trading psychology and common mistakes."
+        },
+        {
+            "title": "FII vs DII: Understanding Institutional Money Flows",
+            "category": "Market Education",
+            "description": "Educational guide to institutional investor activity."
+        },
+        {
+            "title": "Understanding Market Corrections: A Historical Perspective",
+            "category": "Market Education",
+            "description": "Educational analysis of market corrections."
+        },
+        {
+            "title": "The 17% Factor: Why Most IPO Investors Lose Money",
+            "category": "IPO Strategies",
+            "description": "Educational analysis of IPO investing."
+        },
+        {
+            "title": "Smart Money vs Retail: Understanding Market Dynamics",
+            "category": "Market Psychology",
+            "description": "Educational look at market participant behavior."
+        }
+    ]
+    
+    # Shuffle to get random selection
+    random.shuffle(trending_topics)
+    
     for i in range(trending_articles):
         try:
             print(f"📈 [{i+1}/{trending_articles}] Generating trending article...")
             
-            topic = generate_trending_topic()
+            topic = trending_topics[i % len(trending_topics)]
             
-            # Create description from topic
-            description = f"Educational analysis of {topic['title'].lower()}. For learning purposes only."
+            # Ensure unique title
+            if topic['title'] in unique_titles:
+                topic['title'] = f"{topic['title']} - Market Insights"
+            unique_titles.add(topic['title'])
             
             content = generate_educational_content(
                 title=topic['title'],
-                description=description,
+                description=topic['description'],
                 category=topic['category']
             )
             
@@ -183,7 +165,6 @@ def main():
         try:
             print("📊 Generating Daily Market Report...")
             
-            # Call the market report generator
             market_file = generate_market_report_file()
             
             articles_generated += 1
@@ -191,7 +172,6 @@ def main():
             
         except Exception as e:
             print(f"   ⚠️ Error generating market report: {str(e)}")
-            print("   Continuing with other articles...")
     
     print()
     print("=" * 50)

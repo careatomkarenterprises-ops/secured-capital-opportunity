@@ -2,13 +2,16 @@ name: Auto Blog Generator
 
 on:
   schedule:
-    # Run daily at 2 AM IST (8:30 PM UTC previous day)
+    # Market Report - runs at 4:30 PM IST (11:00 UTC) after market close, weekdays only
+    - cron: '00 11 * * 1-5'
+    # Educational Articles - runs daily at 2:00 AM IST (8:30 PM UTC previous day)
     - cron: '30 20 * * *'
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
-  generate-blog:
+  generate-market-report:
     runs-on: ubuntu-latest
+    if: github.event.schedule == '00 11 * * 1-5' || github.event_name == 'workflow_dispatch'
     
     permissions:
       contents: write
@@ -36,7 +39,52 @@ jobs:
       run: |
         git pull origin main
         
-    - name: Generate blog posts (5 educational + 1 market report)
+    - name: Generate Daily Market Report (EOD)
+      run: |
+        python market_report_generator.py
+        
+    - name: Configure Git
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        
+    - name: Commit and push changes
+      run: |
+        git add blog/ sitemap.xml
+        git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generated daily market report [skip ci]"
+        git push
+
+  generate-educational-blogs:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '30 20 * * *' || github.event_name == 'workflow_dispatch'
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        pip install python-slugify
+        pip install requests
+        pip install beautifulsoup4
+        
+    - name: Pull latest changes
+      run: |
+        git pull origin main
+        
+    - name: Generate Educational Blog Posts
       run: |
         python main_runner.py
         
@@ -48,5 +96,5 @@ jobs:
     - name: Commit and push changes
       run: |
         git add blog/ sitemap.xml index.html services/ *.html
-        git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generated blog posts [skip ci]"
+        git diff --quiet && git diff --staged --quiet || git commit -m "Auto-generated educational blog posts [skip ci]"
         git push

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Advanced Auto Blog Generator - Integrated Version
+Advanced Auto Blog Generator - Full Integration
 """
 import sys
 import os
@@ -12,14 +12,14 @@ from file_manager import FileManager
 from topic_generator import generate_topic, reset_topic_tracker
 from article_generator import generate_educational_content
 from market_report_generator import generate_market_report_file
-# NEW IMPORT
+# NEW INTEGRATION
 from strategy_advisory_generator import generate_strategy_advisory
 
 def main():
     reset_topic_tracker()
     
     print("=" * 50)
-    print("🚀 OMKAR SERVICES AUTO-BLOG STARTING")
+    print("🚀 OMKAR SERVICES AUTO-BLOG SYSTEM")
     print("=" * 50)
     
     fm = FileManager()
@@ -30,18 +30,18 @@ def main():
     
     articles_generated = 0
 
-    # 1. Generate Strategic Advisory (News Based)
+    # 1. 🎯 Generate Daily Strategic Advisory (News-Based)
     if generate_strategy:
-        print("🎯 Generating Daily Strategic Advisory (News-Based)...")
+        print("🎯 Generating Daily Strategic Advisory...")
         try:
-            strategy_slug = generate_strategy_advisory()
-            if strategy_slug:
+            advisory_slug = generate_strategy_advisory()
+            if advisory_slug:
+                print(f"   ✅ Saved: {advisory_slug}.html")
                 articles_generated += 1
-                print(f"   ✅ Saved: {strategy_slug}.html")
         except Exception as e:
-            print(f"   ⚠️ Strategy Advisory Error: {str(e)}")
+            print(f"   ⚠️ Advisory Error: {str(e)}")
 
-    # 2. Generate Educational Content
+    # 2. 📚 Generate Educational Content
     print(f"\n📚 Generating {educational_articles} Educational Articles...")
     for i in range(educational_articles):
         try:
@@ -63,7 +63,7 @@ def main():
         except Exception as e:
             print(f"   ⚠️ Error: {str(e)}")
     
-    # 3. Generate Daily Market Report
+    # 3. 📊 Generate Daily Market Report
     if generate_market:
         try:
             print("\n📊 Generating Daily Market Report...")
@@ -73,11 +73,11 @@ def main():
         except Exception as e:
             print(f"   ⚠️ Market Report Error: {str(e)}")
     
-    # 4. Finalize
+    # 4. 🔄 Finalize
     print("\n🔄 Updating sitemap...")
     fm.generate_sitemap()
     print("✅ Sitemap updated")
-    print(f"\n🎉 All done! {articles_generated} articles updated.")
+    print(f"\n🎉 SUCCESS: {articles_generated} posts processed for Omkar Services.")
 
 if __name__ == "__main__":
     main()

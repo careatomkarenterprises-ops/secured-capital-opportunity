@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-G7YK2WKD6G');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G7YK2WKD6G');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Same styles as other category pages */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1e293b; background: #f8fafc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
@@ -38,6 +37,7 @@
         }
         .cin-block i, .contact-header i { color: #d4af37; margin-right: 6px; }
         .contact-header a { color: white; text-decoration: none; margin: 0 10px; }
+        .contact-header a:hover { color: #d4af37; }
         
         .navbar {
             background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 15px 0;
@@ -48,9 +48,9 @@
         .logo-text h1 { font-size: 20px; font-weight: 700; color: #0f172a; }
         .logo-text .tagline { font-size: 11px; color: #64748b; }
         .nav-menu { display: flex; list-style: none; gap: 30px; align-items: center; }
-        .nav-menu a { text-decoration: none; color: #475569; font-weight: 500; }
+        .nav-menu a { text-decoration: none; color: #475569; font-weight: 500; transition: color 0.3s; }
         .nav-menu a:hover, .nav-menu a.active { color: #d4af37; }
-        .hamburger { display: none; font-size: 24px; cursor: pointer; }
+        .hamburger { display: none; font-size: 24px; cursor: pointer; background: none; border: none; }
         
         .category-header {
             background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 60px 0; text-align: center;
@@ -58,6 +58,7 @@
         .category-header h1 { font-size: 42px; margin-bottom: 15px; }
         .category-header h1 span { color: #d4af37; }
         .breadcrumb a { color: #d4af37; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
         .breadcrumb span { color: #94a3b8; margin: 0 8px; }
         
         .categories {
@@ -65,7 +66,7 @@
         }
         .category-btn {
             padding: 10px 25px; border: 1px solid #d4af37; border-radius: 30px; color: #d4af37;
-            text-decoration: none; transition: all 0.3s;
+            text-decoration: none; transition: all 0.3s; font-weight: 500;
         }
         .category-btn:hover, .category-btn.active {
             background: #d4af37; color: #0f172a;
@@ -76,7 +77,7 @@
         }
         .blog-card {
             background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0;
-            transition: all 0.3s; text-decoration: none; color: inherit;
+            transition: all 0.3s; text-decoration: none; color: inherit; display: block;
         }
         .blog-card:hover {
             transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -87,10 +88,13 @@
         .blog-content { padding: 25px; }
         .blog-category {
             color: #d4af37; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px;
+            letter-spacing: 0.5px;
         }
-        .blog-card h3 { font-size: 20px; margin-bottom: 12px; color: #0f172a; }
-        .blog-excerpt { color: #475569; font-size: 14px; margin-bottom: 15px; }
-        .blog-meta { color: #64748b; font-size: 12px; display: flex; gap: 15px; }
+        .blog-card h3 { font-size: 20px; margin-bottom: 12px; color: #0f172a; line-height: 1.4; }
+        .blog-card:hover h3 { color: #d4af37; }
+        .blog-excerpt { color: #475569; font-size: 14px; margin-bottom: 15px; line-height: 1.5; }
+        .blog-meta { color: #64748b; font-size: 12px; display: flex; gap: 15px; align-items: center; }
+        .blog-meta i { margin-right: 4px; }
         
         .footer {
             background: #0f172a; color: white; padding: 60px 0 30px; margin-top: 60px;
@@ -100,22 +104,37 @@
         }
         .footer-col h4 { color: #d4af37; margin-bottom: 20px; }
         .footer-col ul { list-style: none; }
-        .footer-col a { color: white; text-decoration: none; opacity: 0.8; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+        .footer-col a:hover { opacity: 1; color: #d4af37; }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-bottom p { margin: 5px 0; }
         
         .float-whatsapp {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
-            padding: 15px 25px; border-radius: 50px; text-decoration: none; display: flex;
+            padding: 12px 20px; border-radius: 50px; text-decoration: none; display: flex;
             align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 999;
+            font-weight: 500; transition: transform 0.3s;
         }
+        .float-whatsapp:hover { transform: scale(1.05); color: white; }
         
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .nav-menu {
-                position: fixed; top: 70px; right: -100%; width: 100%; background: white;
-                flex-direction: column; padding: 40px; transition: right 0.3s;
+                position: fixed; top: 85px; right: -100%; width: 80%; max-width: 300px;
+                background: white; flex-direction: column; padding: 30px 20px;
+                transition: right 0.3s; box-shadow: -5px 5px 15px rgba(0,0,0,0.1);
+                border-radius: 0 0 0 15px;
             }
             .nav-menu.active { right: 0; }
+            .category-header h1 { font-size: 32px; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .corporate-header .container { flex-direction: column; text-align: center; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .blog-content { padding: 20px; }
         }
     </style>
 </head>
@@ -138,14 +157,14 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="../../index.html" class="logo">
-                <img src="../../assets/logo.png" alt="TRFSK OMKAR SERVICES Logo">
+                <img src="../../assets/logo.png" alt="TRFSK OMKAR SERVICES Logo" onerror="this.style.display='none'">
                 <div class="logo-text">
                     <h1>TRFSK OMKAR SERVICES</h1>
                     <div class="tagline">PRIVATE LIMITED</div>
                 </div>
             </a>
             
-            <button class="hamburger" id="hamburger">☰</button>
+            <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
             
             <ul class="nav-menu" id="navMenu">
                 <li><a href="../../index.html">Home</a></li>
@@ -185,7 +204,8 @@
     <!-- Blog Grid -->
     <section class="container">
         <div class="blog-grid">
-            <!-- Post 1 -->
+            
+            <!-- Capital Deployment Featured Posts -->
             <a href="../post/capital-deployment-strategies-guide.html" class="blog-card">
                 <div class="blog-image">
                     <i class="fas fa-chart-pie" style="font-size: 48px; color: #d4af37;"></i>
@@ -193,15 +213,14 @@
                 <div class="blog-content">
                     <div class="blog-category">Capital Deployment</div>
                     <h3>Capital Deployment Strategies: A Comprehensive Guide</h3>
-                    <p class="blog-excerpt">Understanding how businesses deploy capital for growth, expansion, and strategic objectives.</p>
+                    <p class="blog-excerpt">Understanding how businesses deploy capital for growth, expansion, and strategic objectives. Learn about effective allocation frameworks.</p>
                     <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> Mar 9, 2026</span>
+                        <span><i class="far fa-calendar-alt"></i> March 9, 2026</span>
                         <span><i class="far fa-clock"></i> 7 min read</span>
                     </div>
                 </div>
             </a>
             
-            <!-- Post 2 -->
             <a href="../post/private-capital-investment-structures.html" class="blog-card">
                 <div class="blog-image">
                     <i class="fas fa-handshake" style="font-size: 48px; color: #d4af37;"></i>
@@ -209,15 +228,14 @@
                 <div class="blog-content">
                     <div class="blog-category">Capital Deployment</div>
                     <h3>Private Capital Investment Structures Explained</h3>
-                    <p class="blog-excerpt">Different structures for private capital investment and how they work for investors and businesses.</p>
+                    <p class="blog-excerpt">Different structures for private capital investment and how they work for investors and businesses. From PE to VC frameworks.</p>
                     <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> Mar 8, 2026</span>
+                        <span><i class="far fa-calendar-alt"></i> March 8, 2026</span>
                         <span><i class="far fa-clock"></i> 6 min read</span>
                     </div>
                 </div>
             </a>
             
-            <!-- Post 3 -->
             <a href="../post/capital-allocation-for-business-growth.html" class="blog-card">
                 <div class="blog-image">
                     <i class="fas fa-sitemap" style="font-size: 48px; color: #d4af37;"></i>
@@ -225,2065 +243,170 @@
                 <div class="blog-content">
                     <div class="blog-category">Capital Deployment</div>
                     <h3>Capital Allocation for Business Growth</h3>
-                    <p class="blog-excerpt">How businesses allocate capital effectively to maximize growth and shareholder value.</p>
+                    <p class="blog-excerpt">How businesses allocate capital effectively to maximize growth and shareholder value. Strategic insights for CFOs and founders.</p>
                     <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> Mar 7, 2026</span>
+                        <span><i class="far fa-calendar-alt"></i> March 7, 2026</span>
                         <span><i class="far fa-clock"></i> 5 min read</span>
                     </div>
                 </div>
-                           </a>
+            </a>
             
+            <!-- Additional Capital Deployment Articles -->
+            <a href="../post/investment-valuation-methods-for-private-companies.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-chart-line" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Capital Deployment</div>
+                    <h3>Investment Valuation Methods for Private Companies</h3>
+                    <p class="blog-excerpt">Essential valuation techniques for evaluating private company investments and deployment opportunities.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 5, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                    </div>
+                </div>
+            </a>
             
-                
-                
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Budget Analysis</div>
-                        <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/financial-year-end-portfolio-review-what-to-check.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Portfolio Management</div>
-                        <h3>Financial Year End Portfolio Review: What to Check</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Budget Analysis</div>
-                        <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/financial-year-end-portfolio-review-what-to-check.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Portfolio Management</div>
-                        <h3>Financial Year End Portfolio Review: What to Check</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Budget Analysis</div>
-                        <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/financial-year-end-portfolio-review-what-to-check.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Portfolio Management</div>
-                        <h3>Financial Year End Portfolio Review: What to Check</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Budget Analysis</div>
-                        <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/tax-planning-before-march-31-complete-guide-for-fy2025-2026.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Tax Planning Before March 31: Complete Guide for FY2025-2026</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Budget Analysis</div>
-                        <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/financial-year-end-portfolio-review-what-to-check.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Portfolio Management</div>
-                        <h3>Financial Year End Portfolio Review: What to Check</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Budget Analysis</div>
-                        <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/financial-year-end-portfolio-review-what-to-check.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Portfolio Management</div>
-                        <h3>Financial Year End Portfolio Review: What to Check</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Budget Analysis</div>
-                        <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/financial-year-end-portfolio-review-what-to-check.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Portfolio Management</div>
-                        <h3>Financial Year End Portfolio Review: What to Check</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Budget Analysis</div>
-                        <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Essential Digital Transformation Roadmap Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/last-minute-investment-strategies.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Seasonal Planning</div>
-                        <h3>Last Minute Investment Strategies</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-file-alt" style="font-size: 48px; color: #d4af37;"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Business Strategy</div>
-                        <h3>Your Esg Compliance For Smes Roadmap</h3>
-                        <p class="blog-excerpt">Educational content. For learning purposes only.</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-            <!-- New blog posts will be automatically added here -->
+            <a href="../post/debt-vs-equity-financing-strategic-guide.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-scale-balanced" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Capital Deployment</div>
+                    <h3>Debt vs Equity Financing: Strategic Guide</h3>
+                    <p class="blog-excerpt">Comparative analysis of debt and equity financing options for capital deployment decisions.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 3, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="../post/working-capital-optimization-strategies.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-coins" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Capital Deployment</div>
+                    <h3>Working Capital Optimization Strategies</h3>
+                    <p class="blog-excerpt">Effective strategies to optimize working capital and improve operational efficiency.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 1, 2026</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Related Business Strategy Posts -->
+            <a href="../post/essential-digital-transformation-roadmap-strategies.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-digital-tiling" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Business Strategy</div>
+                    <h3>Essential Digital Transformation Roadmap Strategies</h3>
+                    <p class="blog-excerpt">Strategic framework for implementing digital transformation initiatives across your organization.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="../post/fy26-budget-impact-sector-wise-educational-analysis.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-file-invoice-dollar" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Budget Analysis</div>
+                    <h3>FY26 Budget Impact: Sector-wise Educational Analysis</h3>
+                    <p class="blog-excerpt">Comprehensive analysis of FY26 budget implications across key sectors for strategic planning.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="../post/tax-planning-before-march-31-complete-guide-for-fy2025-2026.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-calculator" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Seasonal Planning</div>
+                    <h3>Tax Planning Before March 31: Complete Guide for FY2025-2026</h3>
+                    <p class="blog-excerpt">Essential tax-saving strategies and year-end planning insights for individuals and businesses.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="../post/financial-year-end-portfolio-review-what-to-check.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-chart-simple" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Portfolio Management</div>
+                    <h3>Financial Year End Portfolio Review: What to Check</h3>
+                    <p class="blog-excerpt">Key metrics and strategies for reviewing and optimizing your investment portfolio before year-end.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 19, 2026</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="../post/last-minute-investment-strategies.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-clock" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Seasonal Planning</div>
+                    <h3>Last Minute Investment Strategies</h3>
+                    <p class="blog-excerpt">Time-sensitive investment approaches for maximizing returns before the financial year closes.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
+                        <span><i class="far fa-clock"></i> 4 min read</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="../post/your-esg-compliance-for-smes-roadmap.html" class="blog-card">
+                <div class="blog-image">
+                    <i class="fas fa-leaf" style="font-size: 48px; color: #d4af37;"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-category">Business Strategy</div>
+                    <h3>Your ESG Compliance For SMEs Roadmap</h3>
+                    <p class="blog-excerpt">Practical guide to implementing Environmental, Social, and Governance compliance for small businesses.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> March 21, 2026</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                    </div>
+                </div>
+            </a>
+            
         </div>   
     </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>TRFSK OMKAR SERVICES</h4>
-                    <p style="opacity: 0.7;">Corporate advisory and technology solutions since 2023.</p>
+                    <p style="opacity: 0.7;">Corporate advisory and technology solutions since 2023. Empowering businesses with strategic insights.</p>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="../../services/corporate-advisory.html">Services</a></li>
-                        <li><a href="../../technology/analytics-platform.html">Technology</a></li>
-                        <li><a href="../index.html">Blog</a></li>
+                        <li><a href="../../services/corporate-advisory.html">Corporate Advisory</a></li>
+                        <li><a href="../../technology/analytics-platform.html">Technology Platform</a></li>
+                        <li><a href="../index.html">Blog & Insights</a></li>
+                        <li><a href="../../index.html#contact">Contact Us</a></li>
                     </ul>
                 </div>
                 
@@ -2293,35 +416,64 @@
                         <li><a href="../../privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="../../terms-of-service.html">Terms of Service</a></li>
                         <li><a href="../../cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="../../disclaimer.html">Disclaimer</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>+91 70663 93830</li>
-                        <li>care@omkarservices.in</li>
-                        <li>Maharashtra, India</li>
+                        <li><i class="fas fa-phone-alt" style="margin-right: 8px; color: #d4af37;"></i> +91 70663 93830</li>
+                        <li><i class="fas fa-envelope" style="margin-right: 8px; color: #d4af37;"></i> care@omkarservices.in</li>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 8px; color: #d4af37;"></i> Maharashtra, India</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>© 2023-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED</p>
-                <p>CIN: U70200MH2023PTC407336</p>
+                <p>CIN: U70200MH2023PTC407336 | GST: 27AAVCT1234P1Z5</p>
             </div>
         </div>
     </footer>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank">
+    <a href="https://wa.me/917066393830?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20capital%20deployment%20strategies" class="float-whatsapp" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
         <span>Chat on WhatsApp</span>
     </a>
 
+    <!-- Mobile Menu Script -->
     <script>
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    hamburger.innerHTML = '✕';
+                } else {
+                    hamburger.innerHTML = '☰';
+                }
+            });
+        }
+        
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                if (hamburger) hamburger.innerHTML = '☰';
+            });
+        });
+        
+        document.addEventListener('click', function(event) {
+            if (navMenu && navMenu.classList.contains('active')) {
+                if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                    navMenu.classList.remove('active');
+                    if (hamburger) hamburger.innerHTML = '☰';
+                }
+            }
         });
     </script>
 </body>

@@ -30,7 +30,8 @@ jobs:
     
     - name: Install dependencies
       run: |
-        pip install python-slugify requests beautifulsoup4
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
     
     - name: Generate Daily Market Report
       run: |
@@ -66,9 +67,12 @@ jobs:
     
     - name: Install dependencies
       run: |
-        pip install python-slugify requests beautifulsoup4
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
     
     - name: Generate Educational Blog Posts
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
         python main_runner.py
     

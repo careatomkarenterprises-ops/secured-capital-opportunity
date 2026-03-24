@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-G7YK2WKD6G');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G7YK2WKD6G');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
     <meta name="googlebot" content="noindex">
     
     <title>Private Capital Deployment | Standard Partnership Rates | TRFSK OMKAR SERVICES</title>
-    <meta name="description" content="Standard capital deployment structure with monthly returns from 2% to 3%. PDC secured. Private consultation for larger amounts.">
+    <meta name="description" content="Standard capital deployment structure with monthly returns from 2% to 3%. PDC secured. Join waiting list for future high-yield offers (30% on ₹5L).">
     
     <!-- Canonical back to main site -->
     <link rel="canonical" href="https://omkarservices.in/">
@@ -28,8 +28,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     
     <!-- Open Graph (for WhatsApp sharing) -->
-    <meta property="og:title" content="🔒 Standard Capital Deployment | TRFSK OMKAR SERVICES">
-    <meta property="og:description" content="Monthly returns from 2% to 3% with full PDC security. Private consultation for larger amounts.">
+    <meta property="og:title" content="🔒 Standard Capital Deployment | Future Offer Waiting List">
+    <meta property="og:description" content="Monthly returns 2% to 3% with PDC security. Join waiting list for next 30% per month offer (₹5L). Terms & conditions apply.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://omkarservices.in/private-offer/">
     <meta property="og:image" content="https://omkarservices.in/assets/og-image.jpg">
@@ -42,7 +42,7 @@
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1e293b; background: #f8fafc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Corporate Header - Exact match with homepage */
+        /* Corporate Header */
         .corporate-header {
             background: #0f172a; color: white; padding: 12px 0; border-bottom: 3px solid #d4af37;
             font-size: 13px;
@@ -53,7 +53,7 @@
         .cin-block i, .contact-header i { color: #d4af37; margin-right: 6px; }
         .contact-header a { color: white; text-decoration: none; margin: 0 10px; }
         
-        /* Navigation - Exact match with homepage */
+        /* Navigation */
         .navbar {
             background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 15px 0;
         }
@@ -106,7 +106,7 @@
         .offer-stat .number { font-size: 32px; font-weight: 700; color: #d4af37; }
         .offer-stat .label { font-size: 12px; text-transform: uppercase; opacity: 0.8; }
         
-        /* PDC Showcase (unchanged) */
+        /* PDC Showcase */
         .pdc-showcase {
             background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 24px;
             padding: 30px; border: 1px solid rgba(212,175,55,0.3);
@@ -154,6 +154,117 @@
         }
         .closed-notice p { color: #7f1d1d; font-weight: 500; }
         
+        /* Waiting List Section - Formspree Integrated */
+        .waiting-list-card {
+            background: linear-gradient(135deg, #fef9e6, #fff7ed);
+            border-radius: 32px;
+            padding: 40px;
+            margin: 40px 0 30px;
+            border: 1px solid #fde047;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .waiting-list-card::before {
+            content: "🔜";
+            font-size: 120px;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+        .waiting-badge {
+            display: inline-block;
+            background: #0f172a;
+            color: #d4af37;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .offer-highlight {
+            background: #0f172a;
+            color: #d4af37;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 18px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .waiting-list-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 25px;
+        }
+        .waiting-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .waiting-feature i {
+            color: #d4af37;
+            font-size: 20px;
+            width: 28px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 60px;
+            border: 1px solid #e2e8f0;
+            font-size: 16px;
+            background: white;
+            transition: all 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.2);
+        }
+        .btn-waitlist {
+            background: #0f172a;
+            color: #d4af37;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 18px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .btn-waitlist:hover {
+            background: #d4af37;
+            color: #0f172a;
+            transform: translateY(-2px);
+        }
+        .waiting-note {
+            font-size: 12px;
+            color: #475569;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .tnc-badge {
+            background: #f1f5f9;
+            border-radius: 30px;
+            padding: 8px 16px;
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
         /* Rate Cards */
         .rate-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px;
@@ -181,7 +292,7 @@
             border-radius: 30px; font-size: 12px; font-weight: 600;
         }
         
-        /* PDC Security Section (short version) */
+        /* Security Grid */
         .security-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
         }
@@ -202,10 +313,12 @@
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             font-weight: 700; flex-shrink: 0;
         }
+        .legal-list { list-style: none; }
+        .legal-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .legal-list li::before { content: "✓"; color: #d4af37; position: absolute; left: 0; font-weight: 700; }
         
-        /* Legal Cards */
         .legal-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 40px;
         }
         .legal-card {
             background: white; border-radius: 20px; padding: 25px; border: 1px solid #e2e8f0;
@@ -216,57 +329,22 @@
         }
         .legal-card h4 { color: #0f172a; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
         .legal-card h4 i { color: #d4af37; }
-        .legal-list { list-style: none; }
-        .legal-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
-        .legal-list li::before { content: "✓"; color: #d4af37; position: absolute; left: 0; font-weight: 700; }
         
         /* Contact Section */
         .contact-section {
-            background: #f8fafc;
-            padding: 60px 0;
-            border-top: 1px solid #e2e8f0;
+            background: #f8fafc; padding: 60px 0; border-top: 1px solid #e2e8f0;
         }
         .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-top: 30px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-top: 30px;
         }
         .contact-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px 20px;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-            transition: transform 0.3s;
+            background: white; border-radius: 20px; padding: 25px 20px; text-align: center;
+            border: 1px solid #e2e8f0; transition: transform 0.3s;
         }
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: #d4af37;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .contact-card i {
-            font-size: 32px;
-            color: #d4af37;
-            margin-bottom: 15px;
-        }
-        .contact-card h4 {
-            color: #0f172a;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        .contact-card a {
-            color: #1e293b;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            display: block;
-            margin: 5px 0;
-            transition: color 0.3s;
-        }
-        .contact-card a:hover {
-            color: #d4af37;
-        }
+        .contact-card:hover { transform: translateY(-5px); border-color: #d4af37; }
+        .contact-card i { font-size: 32px; color: #d4af37; margin-bottom: 15px; }
+        .contact-card a { color: #1e293b; text-decoration: none; font-weight: 500; display: block; margin: 5px 0; transition: color 0.3s; }
+        .contact-card a:hover { color: #d4af37; }
         
         /* Footer */
         .footer {
@@ -278,10 +356,9 @@
         .footer-col h4 { color: #d4af37; margin-bottom: 20px; }
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 12px; }
-        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; }
         .footer-col a:hover { opacity: 1; color: #d4af37; }
         
-        /* Floating WhatsApp */
         .float-whatsapp {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
             padding: 15px 25px; border-radius: 50px; text-decoration: none; display: flex;
@@ -290,13 +367,11 @@
         }
         .float-whatsapp:hover { transform: translateY(-5px); }
         
-        /* Disclaimer */
         .disclaimer {
             background: #f8fafc; padding: 40px 0; border-top: 1px solid #e2e8f0;
         }
         .disclaimer p { font-size: 12px; color: #64748b; text-align: center; max-width: 800px; margin: 0 auto; }
         
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .nav-menu {
@@ -310,13 +385,11 @@
             .security-grid { grid-template-columns: 1fr; }
             .legal-grid { grid-template-columns: 1fr; }
             .contact-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .waiting-list-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .contact-grid { grid-template-columns: 1fr; }
-            .corporate-header .container {
-                flex-direction: column;
-                text-align: center;
-            }
+            .corporate-header .container { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -324,17 +397,12 @@
     <!-- Corporate Header -->
     <div class="corporate-header">
         <div class="container">
-            <div class="cin-block">
-                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong>
-            </div>
+            <div class="cin-block"><i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong></div>
             <div class="contact-header">
                 <i class="fas fa-phone-alt"></i> 
-                <a href="tel:+918169302861">8169302861</a> | 
-                <a href="tel:+919226393837">9226393837</a> | 
-                <a href="tel:+917066393830">7066393830</a> | 
-                <a href="tel:+917066393831">7066393831</a>
-                <span>|</span>
-                <i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
+                <a href="tel:+918169302861">8169302861</a> | <a href="tel:+919226393837">9226393837</a> | 
+                <a href="tel:+917066393830">7066393830</a> | <a href="tel:+917066393831">7066393831</a>
+                <span>|</span> <i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
             </div>
         </div>
     </div>
@@ -344,14 +412,9 @@
         <div class="container nav-container">
             <a href="https://omkarservices.in" class="logo">
                 <img src="assets/logo.png" alt="TRFSK OMKAR SERVICES Logo" onerror="this.style.display='none'">
-                <div class="logo-text">
-                    <h1>TRFSK OMKAR SERVICES</h1>
-                    <div class="tagline">PRIVATE LIMITED</div>
-                </div>
+                <div class="logo-text"><h1>TRFSK OMKAR SERVICES</h1><div class="tagline">PRIVATE LIMITED</div></div>
             </a>
-            
             <button class="hamburger" id="hamburger">☰</button>
-            
             <ul class="nav-menu" id="navMenu">
                 <li><a href="https://omkarservices.in">Home</a></li>
                 <li><a href="https://omkarservices.in/services/corporate-advisory.html">Services</a></li>
@@ -381,277 +444,153 @@
                     <div class="offer-badge">⛔ OFFERS NOW CLOSED</div>
                     <h1>Special 35% & 30% Offers <span>Are No Longer Available</span></h1>
                     <p style="font-size: 18px; opacity: 0.9; margin-bottom: 30px;">The private partnership opportunities with 35% and 30% monthly returns have been fully allocated and closed as of 11th March 2026.</p>
-                    
                     <div class="offer-stats">
-                        <div class="offer-stat">
-                            <div class="number">₹1,400 Cr+</div>
-                            <div class="label">Fund Size</div>
-                        </div>
-                        <div class="offer-stat">
-                            <div class="number">5+ Years</div>
-                            <div class="label">Track Record</div>
-                        </div>
-                        <div class="offer-stat">
-                            <div class="number">100%</div>
-                            <div class="label">Payout History</div>
-                        </div>
+                        <div class="offer-stat"><div class="number">₹1,400 Cr+</div><div class="label">Fund Size</div></div>
+                        <div class="offer-stat"><div class="number">5+ Years</div><div class="label">Track Record</div></div>
+                        <div class="offer-stat"><div class="number">100%</div><div class="label">Payout History</div></div>
                     </div>
                 </div>
-                
-                <!-- PDC Showcase (reminder of security) -->
                 <div class="pdc-showcase">
                     <div class="pdc-cheque">
                         <div style="font-size: 14px; color: #475569;">OUR POST-DATED CHEQUE TO YOU</div>
                         <div class="amount">₹5,00,000</div>
-                        <div style="display: flex; justify-content: space-between; margin: 15px 0;">
-                            <span><i class="fas fa-calendar"></i> Security Instrument</span>
-                            <span><i class="fas fa-user"></i> Your Protection</span>
-                        </div>
+                        <div style="display: flex; justify-content: space-between; margin: 15px 0;"><span><i class="fas fa-calendar"></i> Security Instrument</span><span><i class="fas fa-user"></i> Your Protection</span></div>
                         <div class="date">You hold our PDC – you never encash it unless we default.</div>
                     </div>
-                    <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
-                        <i class="fas fa-shield-alt" style="color: #d4af37;"></i> All deployments are secured by our PDC and Notarized Agreement.
-                    </p>
+                    <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;"><i class="fas fa-shield-alt" style="color: #d4af37;"></i> All deployments secured by PDC & Notarized Agreement.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Cards (unchanged) -->
+    <!-- Stats Cards -->
+    <div class="container"><div class="stats-grid"><div class="stat-card"><div class="number">₹1,400 Cr</div><div class="label">AUM</div></div><div class="stat-card"><div class="number">5+ Years</div><div class="label">Experience</div></div><div class="stat-card"><div class="number">100%</div><div class="label">Payout Record</div></div><div class="stat-card"><div class="number">PDC</div><div class="label">Secured</div></div></div></div>
+
     <div class="container">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="number">₹1,400 Cr</div>
-                <div class="label">AUM</div>
+        <div class="closed-notice"><p><i class="fas fa-exclamation-triangle" style="color:#b91c1c;"></i> <strong>Important:</strong> The private 35% per month (₹5,00,000) and 30% per month (₹1,00,000 trial) offers are now officially CLOSED. No further allocations will be made under those structures.</p></div>
+
+        <!-- ✅ WAITING LIST SECTION - FORMSPREE INTEGRATION with redirect to thank-you.html -->
+        <div class="waiting-list-card">
+            <span class="waiting-badge"><i class="fas fa-hourglass-half"></i> EXCLUSIVE PRIORITY ACCESS</span>
+            <h2 style="font-size: 32px; margin-bottom: 10px;">Join the waiting list for <span style="color:#d4af37;">30% per month</span> future offer</h2>
+            <p style="font-size: 18px; margin-bottom: 10px;">Minimum capital: <strong>₹5,00,000</strong> | Monthly returns: <strong class="offer-highlight">30% per month*</strong></p>
+            <p style="margin-bottom: 20px;">We may introduce a limited slot opportunity again. Register your interest now — priority given to waiting list members when/if the offer reopens.</p>
+            <div class="waiting-list-grid">
+                <div>
+                    <div class="waiting-feature"><i class="fas fa-check-circle"></i> <span>Zero obligation to invest if selected</span></div>
+                    <div class="waiting-feature"><i class="fas fa-chart-line"></i> <span>Target tenure: 12 months with monthly payouts</span></div>
+                    <div class="waiting-feature"><i class="fas fa-lock"></i> <span>Full PDC security & notarized agreement</span></div>
+                    <div class="waiting-feature"><i class="fas fa-trophy"></i> <span>Same robust legal framework as standard plans</span></div>
+                    <div class="tnc-badge" style="margin-top: 20px;"><i class="fas fa-gavel"></i> Terms & Conditions apply*</div>
+                </div>
+                <div>
+                    <!-- FORMSPREE FORM - Redirects to thank-you.html -->
+                    <form action="https://formspree.io/f/mdkqpkqp" method="POST" id="waitlistForm">
+                        <!-- Formspree required fields -->
+                        <input type="hidden" name="_subject" value="New Waiting List Registration - 30% Future Offer">
+                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
+                        
+                        <div class="form-group">
+                            <input type="text" name="Full Name" id="fullName" placeholder="Full Name *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="Mobile Number" id="mobile" placeholder="Mobile Number *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="Email" id="email" placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <select name="Preferred Investment" id="investmentRange">
+                                <option value="">Preferred capital (approx)</option>
+                                <option value="₹5,00,000">₹5,00,000</option>
+                                <option value="₹10,00,000+">₹10,00,000+</option>
+                                <option value="Above ₹10L">Above ₹10L</option>
+                            </select>
+                        </div>
+                        <!-- Optional: Add source tracking -->
+                        <input type="hidden" name="Source" value="Standard Capital Deployment Page">
+                        <button type="submit" class="btn-waitlist"><i class="fab fa-whatsapp"></i> Register Interest →</button>
+                    </form>
+                    <div class="waiting-note"><i class="fas fa-info-circle"></i> By registering you agree to our T&C. Limited slots, subject to company discretion. Future offer may be launched based on capital availability and market conditions. You will be redirected to our thank you page after submission.</div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="number">5+ Years</div>
-                <div class="label">Experience</div>
-            </div>
-            <div class="stat-card">
-                <div class="number">100%</div>
-                <div class="label">Payout Record</div>
-            </div>
-            <div class="stat-card">
-                <div class="number">PDC</div>
-                <div class="label">Secured</div>
+            <div style="margin-top: 20px; font-size: 13px; background: rgba(0,0,0,0.05); padding: 12px; border-radius: 20px;">
+                <i class="fas fa-balance-scale"></i> <strong>Terms & Conditions for future 30% offer (if launched):</strong> Minimum ₹5,00,000 commitment, tenure 12 months, monthly interest disbursed via NEFT/cheque, capital returned in 13th month. PDC for principal amount as security. Company reserves right to modify or cancel offer without prior notice. Only for accredited/experienced investors. Past performance not indicative.
             </div>
         </div>
-    </div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Closed Notification (detailed) -->
-        <div class="closed-notice">
-            <p><i class="fas fa-exclamation-triangle" style="color:#b91c1c;"></i> <strong>Important:</strong> The private 35% per month (₹5,00,000) and 30% per month (₹1,00,000 trial) offers are now officially CLOSED. No further allocations will be made under those structures.</p>
-        </div>
-
-        <!-- New Standard Rates Section -->
+        <!-- Standard Rates Section -->
         <div class="section">
-            <div class="section-title">
-                <h2>Standard <span>Capital Deployment Structure</span></h2>
-                <p>Monthly returns with full PDC security. Capital refund at end of 12 months.</p>
-            </div>
-
+            <div class="section-title"><h2>Standard <span>Capital Deployment Structure</span></h2><p>Monthly returns with full PDC security. Capital refund at end of 12 months.</p></div>
             <div class="rate-grid">
-                <div class="rate-card">
-                    <div class="amount">₹1,00,000</div>
-                    <div class="rate">2% <small>/ month</small></div>
-                    <div class="period">12 months interest • Capital in 13th month</div>
-                    <div class="badge">Monthly payout: ₹2,000</div>
-                </div>
-                <div class="rate-card">
-                    <div class="amount">₹2,00,000</div>
-                    <div class="rate">2.25% <small>/ month</small></div>
-                    <div class="period">12 months interest • Capital in 13th month</div>
-                    <div class="badge">Monthly payout: ₹4,500</div>
-                </div>
-                <div class="rate-card">
-                    <div class="amount">₹3,00,000</div>
-                    <div class="rate">2.5% <small>/ month</small></div>
-                    <div class="period">12 months interest • Capital in 13th month</div>
-                    <div class="badge">Monthly payout: ₹7,500</div>
-                </div>
-                <div class="rate-card">
-                    <div class="amount">₹4,00,000</div>
-                    <div class="rate">2.75% <small>/ month</small></div>
-                    <div class="period">12 months interest • Capital in 13th month</div>
-                    <div class="badge">Monthly payout: ₹11,000</div>
-                </div>
-                <div class="rate-card">
-                    <div class="amount">₹5,00,000</div>
-                    <div class="rate">3% <small>/ month</small></div>
-                    <div class="period">12 months interest • Capital in 13th month</div>
-                    <div class="badge">Monthly payout: ₹15,000</div>
-                </div>
+                <div class="rate-card"><div class="amount">₹1,00,000</div><div class="rate">2% <small>/ month</small></div><div class="period">12 months interest • Capital in 13th month</div><div class="badge">Monthly payout: ₹2,000</div></div>
+                <div class="rate-card"><div class="amount">₹2,00,000</div><div class="rate">2.25% <small>/ month</small></div><div class="period">12 months interest • Capital in 13th month</div><div class="badge">Monthly payout: ₹4,500</div></div>
+                <div class="rate-card"><div class="amount">₹3,00,000</div><div class="rate">2.5% <small>/ month</small></div><div class="period">12 months interest • Capital in 13th month</div><div class="badge">Monthly payout: ₹7,500</div></div>
+                <div class="rate-card"><div class="amount">₹4,00,000</div><div class="rate">2.75% <small>/ month</small></div><div class="period">12 months interest • Capital in 13th month</div><div class="badge">Monthly payout: ₹11,000</div></div>
+                <div class="rate-card"><div class="amount">₹5,00,000</div><div class="rate">3% <small>/ month</small></div><div class="period">12 months interest • Capital in 13th month</div><div class="badge">Monthly payout: ₹15,000</div></div>
             </div>
-
-            <div style="text-align: center; margin: 30px 0; padding: 20px; background: #f1f5f9; border-radius: 16px;">
-                <p style="font-size: 18px; font-weight: 600; color: #0f172a;">📌 For deployments above ₹5,00,000, please contact us privately for custom ROI discussion.</p>
-            </div>
+            <div style="text-align: center; margin: 30px 0; padding: 20px; background: #f1f5f9; border-radius: 16px;"><p style="font-size: 18px; font-weight: 600; color: #0f172a;">📌 For deployments above ₹5,00,000, please contact us privately for custom ROI discussion.</p></div>
         </div>
 
-        <!-- Security Reminder (brief) -->
+        <!-- Security & Legal -->
         <div class="security-grid" style="margin-bottom: 40px;">
-            <div class="security-card">
-                <div class="security-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Your Capital Is Always Secured</h3>
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <div>You deploy capital → We give you our PDC of the same amount.</div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <div>You hold our PDC – you never need to encash it.</div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <div>If we pay as committed, PDC is returned cancelled.</div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">4</div>
-                    <div>If we default, you deposit our PDC – capital recovered immediately.</div>
-                </div>
+            <div class="security-card"><div class="security-icon"><i class="fas fa-shield-alt"></i></div><h3>Your Capital Is Always Secured</h3>
+                <div class="step-item"><div class="step-number">1</div><div>You deploy capital → We give you our PDC of the same amount.</div></div>
+                <div class="step-item"><div class="step-number">2</div><div>You hold our PDC – you never need to encash it.</div></div>
+                <div class="step-item"><div class="step-number">3</div><div>If we pay as committed, PDC is returned cancelled.</div></div>
+                <div class="step-item"><div class="step-number">4</div><div>If we default, you deposit our PDC – capital recovered immediately.</div></div>
             </div>
-            <div class="security-card">
-                <div class="security-icon"><i class="fas fa-gavel"></i></div>
-                <h3>Legal Protection</h3>
-                <ul class="legal-list">
-                    <li>Notarized Agreement on ₹500 Stamp Paper</li>
-                    <li>Indian Partnership Act, 1932</li>
-                    <li>Our PDC governed by NI Act 1881, Section 138</li>
-                    <li>Criminal remedy in case of default</li>
-                </ul>
-            </div>
+            <div class="security-card"><div class="security-icon"><i class="fas fa-gavel"></i></div><h3>Legal Protection</h3><ul class="legal-list"><li>Notarized Agreement on ₹500 Stamp Paper</li><li>Indian Partnership Act, 1932</li><li>Our PDC governed by NI Act 1881, Section 138</li><li>Criminal remedy in case of default</li></ul></div>
         </div>
-
-        <!-- Legal Framework Expanded -->
-        <div class="legal-grid" style="margin-bottom: 40px;">
-            <div class="legal-card">
-                <h4><i class="fas fa-file-signature"></i> Notarized Agreement</h4>
-                <ul class="legal-list">
-                    <li>Executed on ₹500 Stamp Paper</li>
-                    <li>Acknowledges receipt of capital</li>
-                    <li>Defines monthly interest & tenure</li>
-                    <li>Records PDC as security</li>
-                </ul>
-            </div>
-            <div class="legal-card">
-                <h4><i class="fas fa-money-check"></i> Our PDC + Section 138</h4>
-                <ul class="legal-list">
-                    <li>We give you PDC for full capital</li>
-                    <li>You hold it – never encash</li>
-                    <li>Default = criminal offense</li>
-                    <li>Up to 2 years imprisonment</li>
-                </ul>
-            </div>
-            <div class="legal-card">
-                <h4><i class="fas fa-building"></i> Corporate Credentials</h4>
-                <ul class="legal-list">
-                    <li>CIN: U70200MH2023PTC407336</li>
-                    <li>MSME: UDYAM-MH-26-0559186</li>
-                    <li>₹1,400 Cr+ fund size</li>
-                    <li>5+ years track record</li>
-                </ul>
-            </div>
+        <div class="legal-grid">
+            <div class="legal-card"><h4><i class="fas fa-file-signature"></i> Notarized Agreement</h4><ul class="legal-list"><li>Executed on ₹500 Stamp Paper</li><li>Acknowledges receipt of capital</li><li>Defines monthly interest & tenure</li><li>Records PDC as security</li></ul></div>
+            <div class="legal-card"><h4><i class="fas fa-money-check"></i> Our PDC + Section 138</h4><ul class="legal-list"><li>We give you PDC for full capital</li><li>You hold it – never encash</li><li>Default = criminal offense</li><li>Up to 2 years imprisonment</li></ul></div>
+            <div class="legal-card"><h4><i class="fas fa-building"></i> Corporate Credentials</h4><ul class="legal-list"><li>CIN: U70200MH2023PTC407336</li><li>MSME: UDYAM-MH-26-0559186</li><li>₹1,400 Cr+ fund size</li><li>5+ years track record</li></ul></div>
         </div>
     </div>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <div class="section-title">
-                <h2>Contact <span>Us</span></h2>
-                <p>For private consultation or to discuss custom deployments</p>
-            </div>
+            <div class="section-title"><h2>Contact <span>Us</span></h2><p>For private consultation or to discuss custom deployments</p></div>
             <div class="contact-grid">
-                <div class="contact-card">
-                    <i class="fas fa-phone-alt"></i>
-                    <h4>Santosh Shendkar</h4>
-                    <a href="tel:+918169302861">+91 81693 02861</a>
-                    <a href="tel:+919226393837">+91 92263 93837</a>
-                </div>
-                <div class="contact-card">
-                    <i class="fas fa-phone-alt"></i>
-                    <h4>Office</h4>
-                    <a href="tel:+917066393830">+91 70663 93830</a>
-                    <a href="tel:+917066393831">+91 70663 93831</a>
-                </div>
-                <div class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <h4>Email</h4>
-                    <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
-                    <a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a>
-                </div>
-                <div class="contact-card">
-                    <i class="fab fa-whatsapp"></i>
-                    <h4>WhatsApp</h4>
-                    <a href="https://wa.me/917066393830" target="_blank">+91 70663 93830</a>
-                    <a href="https://wa.me/918169302861" target="_blank">+91 81693 02861</a>
-                </div>
+                <div class="contact-card"><i class="fas fa-phone-alt"></i><h4>Santosh Shendkar</h4><a href="tel:+918169302861">+91 81693 02861</a><a href="tel:+919226393837">+91 92263 93837</a></div>
+                <div class="contact-card"><i class="fas fa-phone-alt"></i><h4>Office</h4><a href="tel:+917066393830">+91 70663 93830</a><a href="tel:+917066393831">+91 70663 93831</a></div>
+                <div class="contact-card"><i class="fas fa-envelope"></i><h4>Email</h4><a href="mailto:care@omkarservices.in">care@omkarservices.in</a><a href="mailto:santosh.s@omkarservices.in">santosh.s@omkarservices.in</a></div>
+                <div class="contact-card"><i class="fab fa-whatsapp"></i><h4>WhatsApp</h4><a href="https://wa.me/917066393830" target="_blank">+91 70663 93830</a><a href="https://wa.me/918169302861" target="_blank">+91 81693 02861</a></div>
             </div>
         </div>
     </section>
 
-    <!-- Corporate Disclaimer -->
-    <section class="disclaimer">
-        <div class="container">
-            <p><strong>Legal Disclaimer:</strong> TRFSK OMKAR SERVICES PRIVATE LIMITED (CIN: U70200MH2023PTC407336) is a corporate advisory and management consultancy firm. We are not a SEBI-registered investment advisor. All capital deployment arrangements are private, secured by our Post-Dated Cheque and Notarized Agreement under the Indian Partnership Act, 1932. Past performance does not guarantee future returns. The special 35% and 30% offers are closed and no longer available. For amounts above ₹5,00,000, please contact us directly for a custom structure.</p>
-        </div>
-    </section>
+    <!-- Disclaimer -->
+    <section class="disclaimer"><div class="container"><p><strong>Legal Disclaimer:</strong> TRFSK OMKAR SERVICES PRIVATE LIMITED (CIN: U70200MH2023PTC407336) is a corporate advisory and management consultancy firm. We are not a SEBI-registered investment advisor. All capital deployment arrangements are private, secured by Post-Dated Cheque and Notarized Agreement under Indian Partnership Act, 1932. Past performance does not guarantee future returns. The special 35% and 30% offers are closed. The waiting list is for informational purposes and does not guarantee a future offer. Terms & conditions apply for any future offering. For amounts above ₹5,00,000, please contact us directly.</p></div></section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>TRFSK OMKAR SERVICES</h4>
-                    <p style="opacity: 0.7; font-size: 14px;">Corporate advisory and technology-driven business consulting solutions since 2023.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Sitemap</h4>
-                    <ul>
-                        <li><a href="https://omkarservices.in/services/corporate-advisory.html">Advisory Services</a></li>
-                        <li><a href="https://omkarservices.in/technology/analytics-platform.html">Technology Hub</a></li>
-                        <li><a href="https://omkarservices.in/blog/index.html">Business Blog</a></li>
-                        <li><a href="https://omkarservices.in/privacy-policy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><i class="fas fa-phone" style="color:#d4af37"></i> <a href="tel:+917066393830">+91 70663 93830</a></li>
-                        <li><i class="fas fa-envelope" style="color:#d4af37"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a></li>
-                        <li><i class="fab fa-whatsapp" style="color:#d4af37"></i> <a href="https://wa.me/917066393830">WhatsApp</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Registered Office</h4>
-                    <ul style="font-size: 13px; opacity: 0.8;">
-                        <li>House Opp Bk no. 684, Ulhasnagar,</li>
-                        <li>Thane, Maharashtra - 421002</li>
-                        <li>CIN: U70200MH2023PTC407336</li>
-                        <li>MSME: UDYAM-MH-26-0559186</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="text-align: center; padding-top: 20px; border-top: 1px solid #334155;">
-                <p>© 2023-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-col"><h4>TRFSK OMKAR SERVICES</h4><p style="opacity: 0.7; font-size: 14px;">Corporate advisory and technology-driven business consulting solutions since 2023.</p></div><div class="footer-col"><h4>Sitemap</h4><ul><li><a href="https://omkarservices.in/services/corporate-advisory.html">Advisory Services</a></li><li><a href="https://omkarservices.in/technology/analytics-platform.html">Technology Hub</a></li><li><a href="https://omkarservices.in/blog/index.html">Business Blog</a></li><li><a href="https://omkarservices.in/privacy-policy.html">Privacy Policy</a></li></ul></div><div class="footer-col"><h4>Contact</h4><ul><li><i class="fas fa-phone" style="color:#d4af37"></i> <a href="tel:+917066393830">+91 70663 93830</a></li><li><i class="fas fa-envelope" style="color:#d4af37"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a></li><li><i class="fab fa-whatsapp" style="color:#d4af37"></i> <a href="https://wa.me/917066393830">WhatsApp</a></li></ul></div><div class="footer-col"><h4>Registered Office</h4><ul style="font-size: 13px; opacity: 0.8;"><li>House Opp Bk no. 684, Ulhasnagar,</li><li>Thane, Maharashtra - 421002</li><li>CIN: U70200MH2023PTC407336</li><li>MSME: UDYAM-MH-26-0559186</li></ul></div></div><div style="text-align: center; padding-top: 20px; border-top: 1px solid #334155;"><p>© 2023-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED. All Rights Reserved.</p></div></div></footer>
 
-    <!-- Floating WhatsApp -->
-    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span>Chat on WhatsApp</span>
-    </a>
+    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span></a>
 
-    <!-- Mobile Menu Script -->
     <script>
+        // Mobile menu
         document.getElementById('hamburger').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
         });
+        
+        // Optional: Add form validation before submission (Formspree will handle the actual submit)
+        const waitlistForm = document.getElementById('waitlistForm');
+        if(waitlistForm) {
+            waitlistForm.addEventListener('submit', function(e) {
+                const name = document.getElementById('fullName')?.value.trim();
+                const mobile = document.getElementById('mobile')?.value.trim();
+                if(!name || !mobile) {
+                    e.preventDefault();
+                    alert('Please enter your name and mobile number to join the waiting list.');
+                    return false;
+                }
+                // Form will submit to Formspree and redirect to thank-you.html automatically
+                return true;
+            });
+        }
     </script>
 </body>
 </html>

@@ -12,203 +12,401 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
     <title>Structured Capital Approach | Omkar Enterprises</title>
     <meta name="description" content="A structured, documentation-based financial approach for serious individuals. Private discussions only. Not SEBI registered.">
-    <meta name="keywords" content="structured capital approach India, private financial discussion, capital management process, financial discipline system">
+    <meta name="keywords" content="structured capital approach India, private financial discussion, capital management process">
     <meta name="author" content="TRFSK OMKAR SERVICES PRIVATE LIMITED">
     <meta name="robots" content="index, follow">
     
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://omkarservices.in/structured-capital-approach.html">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary-dark: #0a1929;
+            --primary: #0f2744;
+            --secondary: #1e3a5f;
+            --accent: #c6a23b;
+            --accent-light: #dbb957;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --text-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-light: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #1e293b;
-            background: #f8fafc;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: var(--bg-white);
         }
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
         
-        .corporate-header {
-            background: #0f172a; color: white; padding: 12px 0;
-            border-bottom: 3px solid #d4af37;
-            font-size: 13px;
-        }
-        .corporate-header .container { max-width: 1200px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .cin-block i, .contact-header i { color: #d4af37; margin-right: 6px; }
-        .contact-header a { color: white; text-decoration: none; margin: 0 10px; }
-        
-        .navbar {
-            background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 15px 0; position: sticky; top: 0; z-index: 100;
-        }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
-        .logo-text h1 { font-size: 1.2rem; color: #0f172a; font-weight: 700; }
-        .logo-text .tagline { font-size: 0.7rem; color: #64748b; }
-        .nav-menu { display: flex; gap: 30px; list-style: none; }
-        .nav-menu a { text-decoration: none; color: #475569; font-weight: 500; transition: color 0.3s; }
-        .nav-menu a:hover { color: #d4af37; }
-        .hamburger { display: none; font-size: 24px; background: none; border: none; cursor: pointer; }
-        
+        /* TOP COMPLIANCE BANNER */
         .compliance-banner {
             background: #fef3c7;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 2px solid var(--accent);
             padding: 10px 0;
             font-size: 0.8rem;
             text-align: center;
         }
+        .compliance-banner .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .compliance-banner i { color: var(--accent); margin-right: 5px; }
         
+        /* Corporate Header */
+        .corporate-header {
+            background: var(--primary-dark);
+            color: var(--text-white);
+            padding: 12px 0;
+            border-bottom: 3px solid var(--accent);
+            font-size: 0.9rem;
+        }
+        .corporate-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .cin-block { display: flex; align-items: center; gap: 8px; }
+        .cin-block i { color: var(--accent); }
+        .cin-block strong { color: var(--accent-light); }
+        .contact-header { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .contact-item { display: flex; align-items: center; gap: 8px; }
+        .contact-item i { color: var(--accent); }
+        .contact-item a { color: white; text-decoration: none; transition: color 0.3s; }
+        .contact-item a:hover { color: var(--accent-light); }
+        .contact-separator { color: rgba(255,255,255,0.3); }
+        
+        /* Navigation */
+        .navbar {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 52px;
+            width: auto;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-text h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.2;
+        }
+        .logo-text .tagline {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--accent); }
+        .disclaimer-badge {
+            background: var(--primary-dark);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white; padding: 60px 0; text-align: center;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
+            color: var(--text-white);
+            padding: 60px 0;
+            text-align: center;
         }
         .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
-        .hero h1 span { color: #d4af37; }
+        .hero h1 span { color: var(--accent); }
         
+        /* Trust Grid */
         .trust-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin: 50px 0;
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 50px 0;
         }
         .trust-card {
-            background: white; padding: 25px; border-radius: 16px; text-align: center; border: 1px solid #e2e8f0;
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
         }
-        .trust-icon { font-size: 2rem; color: #d4af37; margin-bottom: 15px; }
+        .trust-icon { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
+        .trust-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
         
+        /* Legal Box */
         .legal-box {
-            background: #fef3c7; padding: 25px; border-radius: 16px;
-            border-left: 4px solid #d4af37; margin: 30px 0;
+            background: #fef3c7;
+            padding: 25px;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            margin: 30px 0;
         }
         
+        /* Process Grid */
         .process-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin: 50px 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 50px 0;
         }
         .process-card {
-            background: #f8fafc; padding: 30px 20px; border-radius: 16px; text-align: center;
+            background: #f8fafc;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
         }
         .process-number {
-            width: 50px; height: 50px; background: #d4af37; color: #0f172a;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; font-weight: 700; margin: 0 auto 15px;
+            width: 50px;
+            height: 50px;
+            background: #d4af37;
+            color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 15px;
         }
         
+        /* Filter Grid */
         .filter-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 50px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 50px 0;
         }
         .filter-card {
-            background: white; padding: 35px; border-radius: 20px; border: 1px solid #e2e8f0;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
         }
         .good { color: #22c55e; }
         .bad { color: #ef4444; }
         
+        /* Lead Form */
         .lead-form {
             background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white; padding: 50px; border-radius: 24px; margin: 50px 0;
+            color: white;
+            padding: 50px;
+            border-radius: 24px;
+            margin: 50px 0;
         }
         .form-group { margin-bottom: 20px; }
         .form-control {
-            width: 100%; padding: 14px 18px; border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1);
-            color: white; font-size: 1rem;
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
         }
         .btn-submit {
-            background: #d4af37; color: #0f172a; border: none;
-            padding: 14px 30px; border-radius: 40px; font-weight: 700; cursor: pointer;
+            background: #d4af37;
+            color: #0f172a;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
             width: 100%;
         }
         
+        /* Footer */
         .footer {
-            background: #0f172a; color: white; padding: 60px 0 30px;
+            background: var(--primary-dark);
+            color: var(--text-white);
+            padding: 80px 0 30px;
             margin-top: 60px;
         }
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
         }
-        .footer-col h4 { color: #d4af37; margin-bottom: 20px; }
+        .footer-col h4 { color: var(--accent); margin-bottom: 25px; font-size: 1.1rem; }
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 12px; }
-        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
-        .footer-col a:hover { opacity: 1; color: #d4af37; }
+        .footer-col a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent); }
         .legal-disclaimer {
             margin: 40px 0;
             padding: 35px;
             background: rgba(0,0,0,0.25);
             border-radius: 16px;
-            border-left: 4px solid #d4af37;
+            border-left: 4px solid var(--accent);
         }
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: rgba(255,255,255,0.5);
         }
         
+        /* Floating WhatsApp */
         .float-whatsapp {
-            position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
-            padding: 15px 25px; border-radius: 50px; text-decoration: none; display: flex;
-            align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            z-index: 999; transition: transform 0.3s;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 15px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(37,211,102,0.3);
+            z-index: 999;
+            transition: all 0.3s;
+            font-weight: 600;
         }
         
+        @media (max-width: 1024px) {
+            .trust-grid, .process-grid, .filter-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
+            .container { padding: 0 20px; }
             .hamburger { display: block; }
             .nav-menu {
                 position: fixed; top: 70px; right: -100%;
                 width: 100%; background: white;
-                flex-direction: column; padding: 30px; gap: 15px;
-                transition: right 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                flex-direction: column; padding: 40px; gap: 20px;
+                transition: right 0.3s;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             }
             .nav-menu.active { right: 0; }
-            .trust-grid, .process-grid, .filter-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 1.8rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .trust-grid, .process-grid, .filter-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <!-- TOP COMPLIANCE BANNER -->
     <div class="compliance-banner">
         <div class="container">
             <i class="fas fa-info-circle"></i>
-            <span><strong>IMPORTANT:</strong> Omkar Enterprises is NOT SEBI-registered. This is educational content only. No investment advice.</span>
+            <span><strong>IMPORTANT:</strong> Omkar Enterprises is NOT a SEBI-registered entity. All content is for educational purposes only. No investment advice or trading calls.</span>
         </div>
     </div>
 
+    <!-- Corporate Header -->
     <div class="corporate-header">
         <div class="container">
             <div class="cin-block">
-                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong>
+                <i class="fas fa-building"></i>
+                <span>CIN: <strong>U70200MH2023PTC407336</strong></span>
             </div>
             <div class="contact-header">
-                <i class="fas fa-phone-alt"></i> <a href="tel:+918169302861">8169302861</a>
-                <span>|</span>
-                <i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+917066393830">+91 70663 93830</a>
+                </div>
+                <span class="contact-separator">|</span>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="container nav-container">
             <a href="index.html" class="logo">
-                <div class="logo-text"><h1>OMKAR ENTERPRISES</h1><div class="tagline">PRIVATE LIMITED</div></div>
+                <img src="assets/logo.png" alt="Omkar Enterprises Logo" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <h1>OMKAR ENTERPRISES</h1>
+                    <span class="tagline">PRIVATE LIMITED</span>
+                </div>
             </a>
-            <button class="hamburger" id="hamburger">☰</button>
+            <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="software-solutions.html">Tools</a></li>
                 <li><a href="structured-capital-approach.html" class="active">Capital</a></li>
                 <li><a href="blog/index.html">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><span class="disclaimer-badge"><i class="fas fa-info-circle"></i> NOT SEBI REGISTERED</span></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h1>Structured Capital <span>Approach</span></h1>
@@ -257,7 +455,7 @@
         </div>
     </div>
 
-    <!-- Footer with ALL Policy Links -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -296,7 +494,7 @@
             <div class="legal-disclaimer">
                 <h4><i class="fas fa-exclamation-triangle"></i> Important Regulatory Disclosure</h4>
                 <p><strong>TRFSK OMKAR SERVICES PRIVATE LIMITED</strong> (CIN: U70200MH2023PTC407336) is a corporate advisory firm. We are <strong>NOT a SEBI-registered investment advisor, stock broker, or portfolio manager</strong>. We do NOT provide stock recommendations, trading calls, or investment advice.</p>
-                <p><strong>Educational Content Only:</strong> All information on this website is for educational purposes only. No content constitutes investment advice.</p>
+                <p><strong>Educational Content Only:</strong> All information on this website is for educational purposes only. No content constitutes investment advice or an offer to buy/sell any securities.</p>
                 <p><strong>No Public Solicitation:</strong> We do not solicit or accept public deposits. Any discussions regarding capital deployment occur only within private, confidential advisory engagements.</p>
             </div>
             
@@ -307,6 +505,7 @@
         </div>
     </footer>
 
+    <!-- Floating WhatsApp -->
     <a href="https://wa.me/919226393837" class="float-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
         <span>Discuss Your Query</span>

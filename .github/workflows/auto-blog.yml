@@ -2,9 +2,9 @@ name: Auto Blog Generator
 
 on:
   schedule:
-    # Market Report - runs at 4:30 PM IST (11:00 UTC) weekdays
+    # Market Report - weekdays 4:30 PM IST (11:00 UTC)
     - cron: '00 11 * * 1-5'
-    # Educational Articles - runs daily at 2:00 AM IST (8:30 PM UTC previous day)
+    # Educational Articles - daily at 2:00 AM IST (8:30 PM UTC)
     - cron: '30 20 * * *'
   workflow_dispatch:
 
@@ -34,10 +34,13 @@ jobs:
         pip install -r requirements.txt
     
     - name: Generate Daily Market Report
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
       run: |
         python market_report_generator.py
     
-    - name: Commit and push (force if needed)
+    - name: Commit and push
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
@@ -73,10 +76,11 @@ jobs:
     - name: Generate Educational Blog Posts
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
       run: |
         python main_runner.py
     
-    - name: Commit and push (force if needed)
+    - name: Commit and push
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"

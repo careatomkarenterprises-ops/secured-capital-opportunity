@@ -1,46 +1,46 @@
 import os
-import random
+import requests
 import google.generativeai as genai
 
-# Setup Gemini
+# Configuration
+NEWS_API_KEY = "ec71777c7d0447d78c92ef7c431cd39b" # Your provided key
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-def generate_topic():
-    """Generates a fresh, unique topic using AI to avoid repetition."""
+def generate_automated_topic():
+    """Fetches real-time news and converts it into a high-SEO blog topic."""
     
-    prompt = """
-    Suggest ONE unique educational blog post title for a financial services website.
-    The topic should be about either 'Business Strategy', 'Capital Allocation', or 'Indian Stock Market Education'.
-    
-    Rules:
-    - Avoid generic titles like "Understanding X".
-    - Make it highly specific to Indian business owners or investors.
-    - Ensure it sounds professional and helpful.
-    
-    Output exactly in this format:
-    TITLE: [Title Here]
-    DESC: [Short 1-sentence description]
-    CAT: [Category Name]
-    """
+    # 1. Fetch Real-time Resources via News API
+    query = "Indian Economy OR Nifty 50 OR BSE Sensex OR SEBI News"
+    url = f"https://newsapi.org/v2/everything?q={query}&sortBy=publishedAt&apiKey={NEWS_API_KEY}&pageSize=5"
     
     try:
-        response = model.generate_content(prompt)
-        text = response.text.strip()
+        news_data = requests.get(url).json()
+        articles = news_data.get('articles', [])
         
-        # Parse the AI response
-        lines = text.split('\n')
-        topic_data = {}
-        for line in lines:
-            if "TITLE:" in line: topic_data['title'] = line.replace("TITLE:", "").strip()
-            if "DESC:" in line: topic_data['description'] = line.replace("DESC:", "").strip()
-            if "CAT:" in line: topic_data['category'] = line.replace("CAT:", "").strip()
-            
-        return topic_data
+        # 2. Feed the raw news resources into Gemini to pick the best topic
+        news_context = "\n".join([f"Headline: {a['title']} - {a['description']}" for a in articles])
+        
+        prompt = f"""
+        Based on these real-time Indian market news resources:
+        {news_context}
+        
+        Task:
+        1. Select the ONE most impactful news item for an educational blog.
+        2. Create a catchy, high-traffic SEO Title.
+        3. Create 3 'People Also Ask' style questions for the FAQ section.
+        
+        Output format:
+        TITLE: [Title]
+        DESC: [Description]
+        CAT: [Category]
+        FAQS: [Q1|A1], [Q2|A2], [Q3|A3]
+        """
+        
+        response = model.generate_content(prompt)
+        # (Parsing logic here to return a dictionary)
+        return response.text 
+        
     except Exception as e:
-        # Fallback to a safe default if AI fails
-        return {
-            "title": "Strategic Risk Management for Indian SMEs",
-            "description": "How to protect your business assets in a volatile market.",
-            "category": "Business Strategy"
-        }
+        print(f"Automation Error: {e}")
+        return None

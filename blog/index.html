@@ -201,6 +201,8 @@
             text-decoration: none;
             transition: all 0.3s;
             font-weight: 500;
+            cursor: pointer;
+            background: transparent;
         }
         .category-btn:hover, .category-btn.active {
             background: var(--accent);
@@ -291,6 +293,26 @@
             transition: transform 0.3s;
         }
         .service-card:hover .read-more { transform: translateX(5px); }
+        
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .load-more-btn {
+            padding: 12px 35px;
+            background: var(--accent);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        .load-more-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
         
         /* Footer */
         .footer {
@@ -427,14 +449,14 @@
 
     <!-- Categories -->
     <div class="container">
-        <div class="categories">
-            <a href="index.html" class="category-btn active">All</a>
-            <a href="category/corporate-advisory.html" class="category-btn">Corporate Advisory</a>
-            <a href="category/technology-analytics.html" class="category-btn">Technology</a>
-            <a href="category/compliance.html" class="category-btn">Compliance</a>
-            <a href="category/business-strategy.html" class="category-btn">Business Strategy</a>
-            <a href="category/stock-market-knowledge.html" class="category-btn">Stock Market</a>
-            <a href="category/capital-deployment.html" class="category-btn">Capital Deployment</a>
+        <div class="categories" id="categoryFilter">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="Corporate Advisory">Corporate Advisory</button>
+            <button class="category-btn" data-category="Technology">Technology</button>
+            <button class="category-btn" data-category="Compliance">Compliance</button>
+            <button class="category-btn" data-category="Business Strategy">Business Strategy</button>
+            <button class="category-btn" data-category="Stock Market">Stock Market</button>
+            <button class="category-btn" data-category="Capital Deployment">Capital Deployment</button>
         </div>
     </div>
 
@@ -446,89 +468,12 @@
                 <p>Recent insights from our team</p>
             </div>
             
-            <div class="services-grid">
-                
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <!-- NEWEST BLOG POSTS WILL BE INSERTED HERE (AT THE TOP) -->
-                
-                <!-- 1. Geopolitical Risk & Portfolio Strategies -->
-                <a href="post/geopolitical-risk-portfolio-strategies-india-2026.html" class="service-card">
-                    <span class="blog-badge">GEOPOLITICAL RISK</span>
-                    <h3>Geopolitical Risk 2026: Smart Portfolio Strategies for Indian Investors</h3>
-                    <p>Educational analysis of FII outflows, Sensex volatility, crude oil impact, and barbell portfolio approaches. Learn about diversification, gold hedging, and risk management concepts.</p>
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> March 18, 2026</span>
-                        <span><i class="far fa-clock"></i> 9 min read</span>
-                    </div>
-                    <span class="read-more">Read Full Analysis →</span>
-                </a>
-
-                <!-- 2. Bandhan Bank Crash Analysis -->
-                <a href="post/bandhan-bank-crash-analysis-fibonacci-footprints.html" class="service-card">
-                    <span class="blog-badge">TECHNICAL ANALYSIS</span>
-                    <h3>10% Crash Overnight? Decoding the "Footprints" Left in Bandhan Bank</h3>
-                    <p>Educational analysis of smart money footprints – Fibonacci, volume analysis, and liquidity concepts explained. For learning purposes only.</p>
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> March 16, 2026</span>
-                        <span><i class="far fa-clock"></i> 12 min read</span>
-                    </div>
-                    <span class="read-more">Read Full Analysis →</span>
-                </a>
-
-                <!-- 3. India Oil Reserves Analysis -->
-                <a href="post/india-oil-reserves-war-energy-security.html" class="service-card">
-                    <span class="blog-badge">ENERGY SECURITY</span>
-                    <h3>India's Oil Reserves During War: Complete Analysis of Strategic Petroleum Reserves</h3>
-                    <p>Educational analysis of India's oil reserves during geopolitical conflicts. Strategic Petroleum Reserve capacity and import diversification.</p>
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> March 14, 2026</span>
-                        <span><i class="far fa-clock"></i> 8 min read</span>
-                    </div>
-                    <span class="read-more">Read Full Analysis →</span>
-                </a>
-
-                <!-- 4. Why Retail Traders Lose -->
-                <a href="post/why-retail-traders-lose-truth.html" class="service-card">
-                    <span class="blog-badge">TRADING PSYCHOLOGY</span>
-                    <h3>Why Retail Traders Lose: The Truth About Market Events and Institutional Money</h3>
-                    <p>An honest look at why 9 out of 10 traders lose money, how institutions really operate, and what to do instead. Educational insights only.</p>
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> March 14, 2026</span>
-                        <span><i class="far fa-clock"></i> 10 min read</span>
-                    </div>
-                    <span class="read-more">Read More →</span>
-                </a>
-
-                <!-- 5. Stock Scanner Explained -->
-                <a href="post/stock-scanner-explained-india.html" class="service-card">
-                    <span class="blog-badge">MARKET TOOLS</span>
-                    <h3>What is a Stock Scanner and How It Works</h3>
-                    <p>Learn how market scanners work and how they can help in systematic analysis. Educational guide for understanding market tools.</p>
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> March 2026</span>
-                        <span><i class="far fa-clock"></i> 6 min read</span>
-                    </div>
-                    <span class="read-more">Read More →</span>
-                </a>
-
-                <!-- 6. Manual vs Automated Trading -->
-                <a href="post/trading-automation-guide.html" class="service-card">
-                    <span class="blog-badge">TRADING EDUCATION</span>
-                    <h3>Manual Trading vs Automated Trading – Which is Better?</h3>
-                    <p>Compare approaches and understand the role of automation in analysis. Educational comparison for learning purposes.</p>
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar-alt"></i> March 2026</span>
-                        <span><i class="far fa-clock"></i> 7 min read</span>
-                    </div>
-                    <span class="read-more">Read More →</span>
-                </a>
-
-                <!-- AUTO BLOG INSERT - DO NOT REMOVE THIS COMMENT -->
-                <!-- Future automated posts will appear here -->
+            <div id="blogGrid" class="services-grid">
+                <!-- Blog posts will be loaded here dynamically -->
             </div>
             
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="index.html" class="category-btn" style="background: var(--accent); color: var(--primary-dark);">Load More Articles →</a>
+            <div class="load-more-container" id="loadMoreContainer">
+                <button id="loadMoreBtn" class="load-more-btn">Load More Articles →</button>
             </div>
         </div>
     </section>
@@ -591,9 +536,233 @@
     </a>
 
     <script>
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
+        // ============================================
+        // COMPLETE BLOG DATA (All your articles)
+        // ============================================
+        const allBlogs = [
+            {
+                title: "Geopolitical Risk 2026: Smart Portfolio Strategies for Indian Investors",
+                description: "Educational analysis of FII outflows (₹1.07 lakh crore), Sensex volatility (11.4%), crude oil impact, and barbell portfolio approaches. Learn about diversification, gold hedging, and risk management concepts.",
+                category: "Stock Market",
+                date: "March 18, 2026",
+                readTime: "9 min read",
+                slug: "geopolitical-risk-portfolio-strategies-india-2026",
+                badge: "GEOPOLITICAL RISK"
+            },
+            {
+                title: "10% Crash Overnight? Decoding the 'Footprints' Left in Bandhan Bank",
+                description: "Educational analysis of smart money footprints – Fibonacci, volume analysis, and liquidity concepts explained. For learning purposes only.",
+                category: "Stock Market",
+                date: "March 16, 2026",
+                readTime: "12 min read",
+                slug: "bandhan-bank-crash-analysis-fibonacci-footprints",
+                badge: "TECHNICAL ANALYSIS"
+            },
+            {
+                title: "India's Oil Reserves During War: Complete Analysis of Strategic Petroleum Reserves",
+                description: "Educational analysis of India's oil reserves during geopolitical conflicts. Strategic Petroleum Reserve capacity and import diversification.",
+                category: "Business Strategy",
+                date: "March 14, 2026",
+                readTime: "8 min read",
+                slug: "india-oil-reserves-war-energy-security",
+                badge: "ENERGY SECURITY"
+            },
+            {
+                title: "Why Retail Traders Lose: The Truth About Market Events and Institutional Money",
+                description: "An honest look at why 9 out of 10 traders lose money, how institutions really operate, and what to do instead. Educational insights only.",
+                category: "Stock Market",
+                date: "March 14, 2026",
+                readTime: "10 min read",
+                slug: "why-retail-traders-lose-truth",
+                badge: "TRADING PSYCHOLOGY"
+            },
+            {
+                title: "What is a Stock Scanner and How It Works",
+                description: "Learn how market scanners work and how they can help in systematic analysis. Educational guide for understanding market tools.",
+                category: "Technology",
+                date: "March 2026",
+                readTime: "6 min read",
+                slug: "stock-scanner-explained-india",
+                badge: "MARKET TOOLS"
+            },
+            {
+                title: "Manual Trading vs Automated Trading – Which is Better?",
+                description: "Compare approaches and understand the role of automation in analysis. Educational comparison for learning purposes.",
+                category: "Technology",
+                date: "March 2026",
+                readTime: "7 min read",
+                slug: "trading-automation-guide",
+                badge: "TRADING EDUCATION"
+            },
+            {
+                title: "Understanding Capital Allocation for Beginners",
+                description: "Educational insights and structured advisory analysis on capital allocation fundamentals.",
+                category: "Capital Deployment",
+                date: "March 10, 2026",
+                readTime: "6 min read",
+                slug: "understanding-capital-allocation-for-beginners",
+                badge: "CAPITAL EDUCATION"
+            },
+            {
+                title: "Complete Guide to Portfolio Diversification",
+                description: "Educational insights and structured advisory analysis on building diversified investment portfolios.",
+                category: "Investment Education",
+                date: "March 10, 2026",
+                readTime: "9 min read",
+                slug: "complete-guide-to-portfolio-diversification",
+                badge: "DIVERSIFICATION"
+            },
+            {
+                title: "Common Mistakes in Asset Allocation Strategy",
+                description: "Educational insights and structured advisory analysis on optimizing asset allocation.",
+                category: "Investment Education",
+                date: "March 10, 2026",
+                readTime: "7 min read",
+                slug: "common-mistakes-in-asset-allocation-strategy",
+                badge: "ASSET ALLOCATION"
+            },
+            {
+                title: "Understanding Business Growth Frameworks for Beginners",
+                description: "Educational insights and structured advisory analysis on scaling businesses.",
+                category: "Business Strategy",
+                date: "March 13, 2026",
+                readTime: "7 min read",
+                slug: "understanding-business-growth-frameworks-for-beginners",
+                badge: "BUSINESS GROWTH"
+            },
+            {
+                title: "GST Return Compliance: Complete Guide",
+                description: "Complete guide to GST return filing for Indian businesses. Forms, deadlines, and common mistakes to avoid.",
+                category: "Compliance",
+                date: "March 04, 2026",
+                readTime: "8 min read",
+                slug: "gst-return-compliance-complete-guide",
+                badge: "GST COMPLIANCE"
+            },
+            {
+                title: "Essential Business Growth Frameworks Strategies",
+                description: "Educational insights and structured advisory analysis on business scaling frameworks.",
+                category: "Business Strategy",
+                date: "March 18, 2026",
+                readTime: "5 min read",
+                slug: "essential-business-growth-frameworks-strategies",
+                badge: "GROWTH STRATEGY"
+            },
+            {
+                title: "Complete Guide to Dividend Growth Investing",
+                description: "Educational insights and structured advisory analysis on dividend investing strategies.",
+                category: "Investment Education",
+                date: "March 18, 2026",
+                readTime: "7 min read",
+                slug: "complete-guide-to-dividend-growth-investing",
+                badge: "DIVIDEND GROWTH"
+            },
+            {
+                title: "Mastering Financial Risk Management",
+                description: "Educational insights and structured advisory analysis on risk mitigation frameworks.",
+                category: "Investment Education",
+                date: "March 18, 2026",
+                readTime: "6 min read",
+                slug: "mastering-financial-risk-management",
+                badge: "RISK MANAGEMENT"
+            },
+            {
+                title: "How Strategic Financial Forecasting Shapes Financial Success",
+                description: "Educational insights and structured advisory analysis on forecasting benefits.",
+                category: "Business Strategy",
+                date: "March 17, 2026",
+                readTime: "6 min read",
+                slug: "how-strategic-financial-forecasting-shapes-financial-success",
+                badge: "FINANCE FORECASTING"
+            }
+        ];
+
+        // ============================================
+        // BLOG DISPLAY LOGIC
+        // ============================================
+        let currentCategory = "all";
+        let visibleCount = 6;
+        let filteredBlogs = [];
+
+        function filterBlogsByCategory() {
+            if (currentCategory === "all") {
+                filteredBlogs = [...allBlogs];
+            } else {
+                filteredBlogs = allBlogs.filter(blog => blog.category === currentCategory);
+            }
+            visibleCount = 6;
+            renderBlogs();
+        }
+
+        function renderBlogs() {
+            const container = document.getElementById('blogGrid');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            
+            const blogsToShow = filteredBlogs.slice(0, visibleCount);
+            
+            if (blogsToShow.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
+                        <i class="fas fa-book-open" style="font-size: 48px; color: var(--accent); margin-bottom: 20px;"></i>
+                        <h3>No articles found in this category</h3>
+                        <p style="color: var(--text-light);">Check back soon for new educational content.</p>
+                    </div>
+                `;
+                loadMoreContainer.style.display = 'none';
+                return;
+            }
+            
+            let html = '';
+            blogsToShow.forEach(blog => {
+                html += `
+                    <a href="post/${blog.slug}.html" class="service-card">
+                        <span class="blog-badge">${blog.badge || blog.category.toUpperCase()}</span>
+                        <h3>${blog.title}</h3>
+                        <p>${blog.description.substring(0, 120)}...</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> ${blog.date}</span>
+                            <span><i class="far fa-clock"></i> ${blog.readTime}</span>
+                            <span style="color: var(--accent);">${blog.category}</span>
+                        </div>
+                        <span class="read-more">Read Article →</span>
+                    </a>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Show/hide load more button
+            if (visibleCount >= filteredBlogs.length) {
+                loadMoreContainer.style.display = 'none';
+            } else {
+                loadMoreContainer.style.display = 'block';
+            }
+        }
+
+        function loadMore() {
+            visibleCount += 6;
+            renderBlogs();
+        }
+
+        // Category filter click handler
+        document.querySelectorAll('#categoryFilter .category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                document.querySelectorAll('#categoryFilter .category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update current category
+                currentCategory = this.getAttribute('data-category');
+                filterBlogsByCategory();
+            });
         });
+
+        // Load more button
+        document.getElementById('loadMoreBtn').addEventListener('click', loadMore);
+
+        // Initialize on page load
+        filterBlogsByCategory();
     </script>
 </body>
 </html>

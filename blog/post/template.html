@@ -9,930 +9,1007 @@
         gtag('js', new Date());
         gtag('config', 'G-G7YK2WKD6G');
     </script>
-    
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
     
-    <!-- SEO TAGS - DYNAMIC (Filled by generator) -->
-    <title>{{TITLE}} | Omkar Enterprises Educational Blog</title>
+    <!-- Primary SEO -->
+    <title>{{TITLE}} | Omkar Enterprises Strategic Advisory</title>
     <meta name="description" content="{{DESCRIPTION}}">
     <meta name="keywords" content="{{KEYWORDS}}">
-    <meta name="author" content="Omkar Enterprises Educational Team">
-    <meta name="robots" content="index, follow">
+    <meta name="author" content="Omkar Enterprises">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
-    
-    <!-- Canonical URL -->
+    <!-- Canonical -->
     <link rel="canonical" href="https://omkarservices.in/blog/post/{{SLUG}}.html">
     
+    <!-- Preconnect for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <!-- Open Graph -->
-    <meta property="og:title" content="{{TITLE}} | Omkar Enterprises">
-    <meta property="og:description" content="{{DESCRIPTION}}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://omkarservices.in/blog/post/{{SLUG}}.html">
-    <meta property="og:image" content="https://omkarservices.in/assets/og-image.jpg">
+    <meta property="og:title" content="{{TITLE}}">
+    <meta property="og:description" content="{{DESCRIPTION}}">
+    <meta property="og:image" content="https://omkarservices.in/assets/og-image-{{SLUG}}.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="article:published_time" content="{{DATE}}">
-    <meta property="article:author" content="Omkar Enterprises">
-    <meta property="article:section" content="{{CATEGORY}}">
     
-    <!-- Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{TITLE}}">
     <meta name="twitter:description" content="{{DESCRIPTION}}">
     
-    <!-- Schema Markup - Article -->
+    <!-- Complete Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Article",
+      "@type": "BlogPosting",
       "headline": "{{TITLE}}",
       "description": "{{DESCRIPTION}}",
-      "author": {
-        "@type": "Organization",
-        "name": "Omkar Enterprises",
-        "url": "https://omkarservices.in"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "TRFSK OMKAR SERVICES PRIVATE LIMITED",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://omkarservices.in/assets/logo.png"
-        }
-      },
       "datePublished": "{{DATE}}",
       "dateModified": "{{DATE}}",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://omkarservices.in/blog/post/{{SLUG}}.html"
+      "author": {"@type": "Organization", "name": "Omkar Enterprises"},
+      "publisher": {
+        "@type": "Organization",
+        "name": "TRFSK Omkar Services Private Limited",
+        "logo": {"@type": "ImageObject", "url": "https://omkarservices.in/assets/logo.png"}
       },
-      "articleSection": "{{CATEGORY}}"
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://omkarservices.in/blog/post/{{SLUG}}.html"}
     }
     </script>
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ========== MOBILE-FIRST DESIGN SYSTEM ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        :root {
+            --primary: #0f172a;
+            --primary-dark: #0a0f1f;
+            --primary-light: #1e293b;
+            --accent: #c5a059;
+            --accent-dark: #9e7e45;
+            --accent-light: #d4af6c;
+            --text-dark: #1e293b;
+            --text-light: #475569;
+            --text-muted: #64748b;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-gray: #f1f5f9;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: #1e293b;
-            background: #f8fafc;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        
-        /* Corporate Header */
-        .corporate-header {
-            background: #0f172a; color: white; padding: 12px 0; border-bottom: 3px solid #d4af37;
-            font-size: 13px;
-        }
-        .corporate-header .container {
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
-        }
-        .cin-block i, .contact-header i { color: #d4af37; margin-right: 6px; }
-        .cin-block strong { color: #d4af37; }
-        .contact-header a { color: white; text-decoration: none; margin: 0 10px; }
-        .contact-header a:hover { color: #d4af37; }
-        .contact-separator { color: #475569; }
-        
-        /* Navigation */
-        .navbar {
-            background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 15px 0;
-        }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo img { height: 50px; width: auto; }
-        .logo-text h1 { font-size: 20px; font-weight: 700; color: #0f172a; }
-        .logo-text .tagline { font-size: 11px; color: #64748b; }
-        .nav-menu { display: flex; list-style: none; gap: 30px; align-items: center; }
-        .nav-menu a { text-decoration: none; color: #475569; font-weight: 500; transition: color 0.3s; }
-        .nav-menu a:hover, .nav-menu a.active { color: #d4af37; }
-        .hamburger { display: none; font-size: 24px; cursor: pointer; background: none; border: none; color: #0f172a; }
-        
-        /* TOP COMPLIANCE BANNER */
-        .compliance-banner {
-            background: #fef3c7;
-            border-bottom: 2px solid #d4af37;
-            padding: 10px 0;
-            font-size: 0.8rem;
-            text-align: center;
-        }
-        .compliance-banner .container {
-            display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px;
-        }
-        .compliance-banner i {
-            color: #d4af37;
-            margin-right: 5px;
-        }
-        .compliance-banner strong {
-            color: #0f172a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            overflow-x: hidden;
         }
         
-        /* Blog Post Header */
-        .post-header {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        /* ========== HEADER ========== */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 60px 0 40px;
+            padding: 48px 0 40px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
         }
-        .post-header .container { max-width: 900px; }
-        .post-category {
-            display: inline-block;
-            background: rgba(212,175,55,0.2);
-            color: #d4af37;
-            padding: 6px 20px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(197,160,89,0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .post-header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
+        
+        .header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             line-height: 1.3;
-        }
-        .post-meta {
-            display: flex;
-            gap: 30px;
-            font-size: 14px;
-            color: rgba(255,255,255,0.8);
-            flex-wrap: wrap;
-        }
-        .post-meta i { color: #d4af37; margin-right: 6px; }
-        
-        /* Blog Content */
-        .post-content {
+            margin-bottom: 16px;
             max-width: 800px;
-            margin: 50px auto;
-            background: white;
-            padding: 50px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
         }
         
-        /* Educational Notice Box */
-        .educational-notice {
-            background: #f8fafc;
-            border-left: 4px solid #d4af37;
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            opacity: 0.85;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* ========== MAIN LAYOUT ========== */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: -20px;
+            margin-bottom: 50px;
+        }
+        
+        @media (min-width: 992px) {
+            .main-grid {
+                grid-template-columns: 1fr 320px;
+            }
+            .container {
+                padding: 0 24px;
+            }
+        }
+        
+        /* ========== CONTENT CARD ========== */
+        .content-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+        
+        .article-content {
+            padding: 24px;
+        }
+        
+        @media (min-width: 768px) {
+            .article-content {
+                padding: 40px;
+            }
+        }
+        
+        /* ========== TABLE OF CONTENTS ========== */
+        .toc {
+            background: var(--bg-gray);
             padding: 20px;
-            margin-bottom: 40px;
-            border-radius: 0 12px 12px 0;
-            font-size: 0.95rem;
-            color: #475569;
-        }
-        .educational-notice i {
-            color: #d4af37;
-            margin-right: 8px;
+            border-radius: var(--radius-md);
+            margin: 24px 0;
+            border-left: 4px solid var(--accent);
         }
         
-        .post-content h2 {
-            color: #0f172a;
-            font-size: 1.8rem;
-            margin: 40px 0 20px;
-            border-bottom: 2px solid #e2e8f0;
+        .toc h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .toc a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            display: inline-block;
+            padding: 4px 0;
+        }
+        
+        .toc a:hover {
+            color: var(--accent);
+        }
+        
+        /* ========== TYPOGRAPHY ========== */
+        h2 {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
             padding-bottom: 10px;
         }
         
-        .post-content h3 {
-            color: #1e293b;
-            font-size: 1.3rem;
-            margin: 30px 0 15px;
-        }
-        
-        .post-content p {
-            margin-bottom: 20px;
-            color: #475569;
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-        
-        .post-content ul, .post-content ol {
-            margin: 20px 0 20px 30px;
-            color: #475569;
-        }
-        
-        .post-content li {
-            margin-bottom: 10px;
-        }
-        
-        .post-content blockquote {
-            background: #f8fafc;
-            border-left: 4px solid #d4af37;
-            padding: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            border-radius: 0 12px 12px 0;
-        }
-        
-        .post-content .note-box {
-            background: #fef3c7;
-            border: 1px solid #d4af37;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 30px 0;
-            border-left: 4px solid #d4af37;
-        }
-        
-        .post-content .note-box i {
-            color: #d4af37;
-            margin-right: 8px;
-        }
-        
-        .post-content .highlight-box {
-            background: #f8fafc;
-            padding: 30px;
-            border-radius: 16px;
-            margin: 30px 0;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .post-content .highlight-box h4 {
-            color: #0f172a;
+        h3 {
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            margin-top: 30px;
             margin-bottom: 15px;
+            color: var(--primary);
         }
         
-        /* Data Tables */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            overflow: hidden;
+        h4 {
+            font-size: 1rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
         }
-        .data-table th {
-            background: #0f172a;
-            color: white;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-        }
-        .data-table td {
-            padding: 12px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-        .data-table .positive { color: #22c55e; font-weight: 600; }
-        .data-table .negative { color: #ef4444; font-weight: 600; }
         
-        /* Author Box */
-        .author-box {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 30px;
-            margin: 50px 0;
+        p {
+            margin-bottom: 18px;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        
+        ul, ol {
+            margin: 18px 0 18px 24px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        /* ========== CONTENT BLOCKS ========== */
+        .highlight {
+            background: linear-gradient(120deg, rgba(197,160,89,0.08) 0%, rgba(197,160,89,0.03) 100%);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin: 25px 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .notice {
+            background: #fff7ed;
+            border-left: 4px solid var(--warning);
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        
+        .success-box {
+            background: #ecfdf5;
+            border-left: 4px solid var(--success);
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: var(--bg-gray);
+            padding: 20px 12px;
+            text-align: center;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+        
+        /* ========== AUTHOR BIO ========== */
+        .author-bio {
             display: flex;
-            gap: 25px;
-            align-items: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 16px;
+            padding: 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            margin: 30px 0;
+            text-align: center;
         }
-        .author-image {
-            width: 80px;
-            height: 80px;
+        
+        @media (min-width: 600px) {
+            .author-bio {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+            }
+        }
+        
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            background: var(--accent);
             border-radius: 50%;
-            background: #d4af37;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            color: #0f172a;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-        .author-info h4 {
-            color: #0f172a;
-            margin-bottom: 5px;
-        }
-        .author-title {
-            color: #d4af37;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        
-        /* Lead Magnet Section */
-        .lead-magnet {
-            background: linear-gradient(135deg, #f8fafc, white);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-            border: 1px solid #e2e8f0;
-        }
-        .lead-magnet h3 {
-            color: #0f172a;
-            margin-bottom: 15px;
             font-size: 1.8rem;
-        }
-        .lead-magnet p {
-            color: #475569;
-            margin-bottom: 25px;
-        }
-        .lead-form {
-            display: flex;
-            gap: 15px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        .lead-form input {
-            flex: 1;
-            min-width: 250px;
-            padding: 15px 20px;
-            border-radius: 40px;
-            border: 1px solid #cbd5e1;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-        }
-        .lead-form button {
-            background: #d4af37;
-            color: #0f172a;
-            border: none;
-            padding: 15px 35px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .lead-form button:hover {
-            background: #b8931c;
-            transform: translateY(-2px);
-        }
-        .lead-note {
-            font-size: 12px;
-            color: #64748b;
-            margin-top: 10px;
+            margin: 0 auto;
         }
         
-        /* Two Column Grid */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
-        .grid-2 .card {
-            background: #f8fafc;
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid #e2e8f0;
-            text-align: center;
-        }
-        .grid-2 .card i {
-            font-size: 40px;
-            color: #d4af37;
-            margin-bottom: 20px;
+        @media (min-width: 600px) {
+            .author-avatar {
+                margin: 0;
+            }
         }
         
-        /* FAQ Section */
-        .faq-section {
-            background: #f8fafc;
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px 0;
+        .author-info h4 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
-        .faq-item {
-            margin-bottom: 25px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 20px;
-        }
-        .faq-item:last-child {
-            border-bottom: none;
+        
+        .author-info p {
+            color: rgba(255,255,255,0.85);
             margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        .faq-item h4 {
-            color: #0f172a;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .faq-item h4 i {
-            color: #d4af37;
-        }
-        .faq-item p {
-            color: #475569;
-            margin-left: 28px;
+            font-size: 0.9rem;
         }
         
-        /* Share Buttons */
-        .share-buttons {
+        /* ========== SOCIAL SHARE ========== */
+        .social-share {
             display: flex;
-            gap: 15px;
-            margin: 40px 0;
+            justify-content: center;
+            gap: 12px;
             flex-wrap: wrap;
+            margin: 30px 0;
         }
+        
         .share-btn {
-            padding: 12px 25px;
-            border-radius: 40px;
-            text-decoration: none;
-            color: white;
-            font-size: 14px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: 0.3s;
-        }
-        .share-btn:hover {
-            transform: translateY(-3px);
-        }
-        .whatsapp-share { background: #25D366; }
-        .linkedin-share { background: #0077B5; }
-        .twitter-share { background: #1DA1F2; }
-        .email-share { background: #EA4335; }
-        
-        /* Related Posts */
-        .related-section {
-            margin: 60px 0;
-            padding: 40px;
-            background: #f8fafc;
-            border-radius: 24px;
-        }
-        .related-section h3 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #0f172a;
-        }
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .related-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
+            padding: 10px 18px;
+            border-radius: 40px;
             text-decoration: none;
-            color: #1e293b;
-            border: 1px solid #e2e8f0;
-            transition: 0.3s;
+            color: white;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: transform 0.2s;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .share-whatsapp { background: #25D366; }
+        .share-linkedin { background: #0077B5; }
+        .share-twitter { background: #1DA1F2; }
+        .share-telegram { background: #0088cc; }
+        
+        @media (max-width: 480px) {
+            .share-btn span {
+                display: none;
+            }
+            .share-btn {
+                padding: 10px;
+            }
+        }
+        
+        /* ========== LEAD MAGNET ========== */
+        .lead-magnet {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 28px 24px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .lead-magnet h3 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        @media (min-width: 500px) {
+            .input-group {
+                flex-direction: row;
+            }
+        }
+        
+        .input-group input {
+            flex: 1;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            background: white;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        /* ========== FAQ SECTION ========== */
+        .faq-section {
+            background: var(--bg-gray);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            margin: 30px 0;
+        }
+        
+        .faq-section h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+        
+        .faq-question {
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding-top: 12px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .faq-answer.active {
             display: block;
         }
-        .related-card:hover {
-            transform: translateY(-5px);
-            border-color: #d4af37;
-        }
-        .related-card h4 {
-            color: #0f172a;
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
-        .related-card p {
-            color: #64748b;
-            font-size: 0.85rem;
-            margin: 0;
+        
+        /* ========== RELATED POSTS ========== */
+        .related-posts {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin: 30px 0;
         }
         
-        /* Back to Blog */
-        .back-to-blog {
-            display: inline-block;
-            margin: 40px 0;
-            color: #d4af37;
+        @media (min-width: 500px) {
+            .related-posts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .related-card {
+            background: var(--bg-gray);
+            padding: 18px;
+            border-radius: var(--radius-md);
             text-decoration: none;
-            font-weight: 600;
-        }
-        .back-to-blog:hover {
-            text-decoration: underline;
+            color: var(--text-dark);
+            transition: all 0.2s;
+            border: 1px solid var(--border);
         }
         
-        /* Footer */
-        .footer {
-            background: #0f172a;
-            color: white;
-            padding: 60px 0 30px;
-            margin-top: 60px;
+        .related-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
         }
+        
+        .related-card h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            margin-top: 0;
+        }
+        
+        .related-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+        
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            margin-top: 0;
+        }
+        
+        .sidebar-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+        }
+        
+        .sidebar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+        
+        /* ========== FOOTER - COMPLETELY FIXED ========== */
+        .footer {
+            background: var(--primary-dark);
+            color: #e2e8f0;
+            padding: 50px 0 30px;
+            margin-top: 60px;
+            border-top: 3px solid var(--accent);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 35px;
             margin-bottom: 40px;
         }
-        .footer-col h4 {
-            color: #d4af37;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-        .footer-col ul {
-            list-style: none;
-        }
-        .footer-col li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: rgba(255,255,255,0.7);
-        }
-        .footer-col a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        .footer-col a:hover {
-            opacity: 1;
-            color: #d4af37;
-        }
-        .footer-col i {
-            color: #d4af37;
-            width: 20px;
+        
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
-        /* Legal Disclaimer Box */
-        .legal-box {
-            margin: 40px 0;
-            padding: 35px;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 16px;
-            border-left: 4px solid #d4af37;
+        .footer-col h4 {
+            color: var(--accent);
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
-        .legal-box h4 {
-            color: #d4af37;
-            margin-bottom: 20px;
+        
+        .footer-col p {
+            color: #cbd5e1;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-contact {
+            margin-top: 10px;
+        }
+        
+        .footer-contact-item {
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
         }
-        .legal-box p {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 15px;
-            line-height: 1.7;
-            font-size: 0.9rem;
+        
+        .footer-contact-item i {
+            color: var(--accent);
+            width: 20px;
         }
         
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
         }
         
-        /* Floating WhatsApp */
-        .float-whatsapp {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25D366;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            text-decoration: none;
+        .footer-bottom p {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links {
             display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .legal-disclaimer {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin: 25px 0;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .legal-disclaimer p {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        /* ========== UTILITIES ========== */
+        .text-center { text-align: center; }
+        .mt-2 { margin-top: 10px; }
+        .mb-2 { margin-bottom: 10px; }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Touch-friendly tap targets */
+        a, button, .clickable {
+            min-height: 44px;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            z-index: 999;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-        .float-whatsapp:hover {
-            transform: translateY(-5px);
-            background: #128C7E;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .related-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 40px;
-                gap: 20px;
-                transition: right 0.3s;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                z-index: 999;
-                align-items: flex-start;
-            }
-            
-            .nav-menu.active { right: 0; }
-            
-            .post-header h1 {
-                font-size: 2rem;
-            }
-            
-            .post-content {
-                padding: 30px 20px;
-                margin: 30px 20px;
-            }
-            
-            .post-meta {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            
-            .related-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .lead-form input,
-            .lead-form button {
-                width: 100%;
-            }
-            
-            .share-buttons {
-                flex-direction: column;
-            }
-            
-            .share-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .post-header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .post-category {
-                font-size: 10px;
-            }
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <!-- TOP COMPLIANCE BANNER -->
-    <div class="compliance-banner">
-        <div class="container">
-            <i class="fas fa-info-circle"></i>
-            <span><strong>IMPORTANT REGULATORY DISCLOSURE:</strong> Omkar Enterprises is NOT a SEBI-registered entity. All content is for educational purposes only. No investment advice or stock recommendations.</span>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <h1>{{TITLE}}</h1>
+        <div class="header-meta">
+            <span><i class="fas fa-calendar-alt"></i> {{DISPLAY_DATE}}</span>
+            <span><i class="fas fa-clock"></i> {{READ_TIME}} min read</span>
+            <span><i class="fas fa-tag"></i> {{CATEGORY}}</span>
+            <span><i class="fas fa-chart-line"></i> Educational Series</span>
         </div>
     </div>
+</header>
 
-    <!-- Corporate Header -->
-    <div class="corporate-header">
-        <div class="container">
-            <div class="cin-block">
-                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong>
-            </div>
-            <div class="contact-header">
-                <i class="fas fa-phone-alt"></i> <a href="tel:+918169302861">8169302861</a>
-                <span class="contact-separator">|</span>
-                <i class="fas fa-phone-alt"></i> <a href="tel:+919226393837">9226393837</a>
-                <span class="contact-separator">|</span>
-                <i class="fab fa-whatsapp"></i> <a href="https://wa.me/917066393830">7066393830</a>
-                <span class="contact-separator">|</span>
-                <i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="../../index.html" class="logo">
-                <img src="../../assets/logo.png" alt="Omkar Enterprises Logo">
-                <div class="logo-text">
-                    <h1>OMKAR ENTERPRISES</h1>
-                    <div class="tagline">PRIVATE LIMITED · EDUCATIONAL RESOURCES</div>
+<div class="container">
+    <div class="main-grid">
+        <!-- Main Content -->
+        <main class="content-card fade-in">
+            <div class="article-content">
+                <!-- Educational Notice -->
+                <div class="notice">
+                    <strong>📚 Educational Purpose Only:</strong> Omkar Enterprises is <strong>NOT SEBI Registered</strong>. 
+                    This content is for informational purposes. No investment advice or solicitation.
                 </div>
-            </a>
-            
-            <button class="hamburger" id="hamburger">☰</button>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../services/corporate-advisory.html">Services</a></li>
-                <li><a href="../../technology/analytics-platform.html">Technology</a></li>
-                <li><a href="../index.html" class="active">Blog</a></li>
-                <li><a href="../../index.html#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Blog Post Header -->
-    <section class="post-header">
-        <div class="container">
-            <span class="post-category"><i class="fas fa-folder"></i> {{CATEGORY}}</span>
-            <h1>{{TITLE}}</h1>
-            <div class="post-meta">
-                <span><i class="far fa-calendar-alt"></i> {{DISPLAY_DATE}}</span>
-                <span><i class="far fa-user"></i> Omkar Enterprises Educational Team</span>
-                <span><i class="far fa-clock"></i> {{READ_TIME}} min read</span>
+                
+                <!-- Table of Contents -->
+                <div class="toc">
+                    <h3><i class="fas fa-list-ul"></i> In This Article</h3>
+                    <ul>
+                        {{TOC_HTML}}
+                    </ul>
+                </div>
+                
+                <!-- Main Article Body - 3000+ Words Content -->
+                <div class="main-content">
+                    {{CONTENT}}
+                </div>
+                
+                <!-- Key Takeaways -->
+                {{KEY_TAKEAWAYS}}
+                
+                <!-- Author Bio -->
+                <div class="author-bio">
+                    <div class="author-avatar">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="author-info">
+                        <h4>Omkar Enterprises Advisory Team</h4>
+                        <p>Strategic advisors with 5+ years of experience in capital deployment, market analysis, and business automation. Committed to educational excellence and helping business leaders make informed decisions.</p>
+                        <div style="margin-top: 12px;">
+                            <a href="/about-founder.html" style="color: var(--accent); font-size: 0.85rem;">Learn more about our approach →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Share -->
+                <div class="social-share">
+                    <a href="https://wa.me/?text={{TITLE}}%20-%20https://omkarservices.in/blog/post/{{SLUG}}.html" 
+                       target="_blank" class="share-btn share-whatsapp">
+                        <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+                    </a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://omkarservices.in/blog/post/{{SLUG}}.html&title={{TITLE}}" 
+                       target="_blank" class="share-btn share-linkedin">
+                        <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text={{TITLE}}&url=https://omkarservices.in/blog/post/{{SLUG}}.html" 
+                       target="_blank" class="share-btn share-twitter">
+                        <i class="fab fa-twitter"></i> <span>Twitter</span>
+                    </a>
+                    <a href="https://t.me/share/url?url=https://omkarservices.in/blog/post/{{SLUG}}.html&text={{TITLE}}" 
+                       target="_blank" class="share-btn share-telegram">
+                        <i class="fab fa-telegram"></i> <span>Telegram</span>
+                    </a>
+                </div>
+                
+                <!-- Primary Lead Magnet -->
+                <div class="lead-magnet">
+                    <h3>🚀 Turn Insights into Action</h3>
+                    <p>Schedule a private consultation with our advisory team to discuss how these strategies apply to your business context.</p>
+                    <form action="https://formspree.io/f/mdkqpkqp" method="POST" class="input-group">
+                        <input type="hidden" name="_subject" value="Consultation Request - {{TITLE}}">
+                        <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="phone" placeholder="WhatsApp (Optional)">
+                        <button type="submit" class="btn">Request Consultation →</button>
+                    </form>
+                    <p style="font-size: 0.75rem; margin-top: 15px; opacity: 0.8;">Private discussion • No obligation • Response within 24 hours</p>
+                </div>
+                
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+                    {{FAQ_HTML}}
+                </div>
+                
+                <!-- Related Posts -->
+                <div class="related-posts">
+                    {{RELATED_POSTS_HTML}}
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Blog Content -->
-    <article class="post-content">
+        </main>
         
-        <!-- EDUCATIONAL NOTICE (COMPLIANCE) -->
-        <div class="educational-notice">
-            <i class="fas fa-graduation-cap"></i>
-            <strong>Educational Purpose Only:</strong> This article is for 
-            <strong>educational and informational purposes only</strong>. 
-            It does NOT constitute investment advice, stock recommendations, 
-            or trading calls. Omkar Enterprises is NOT a SEBI-registered 
-            entity. Readers should consult qualified financial advisors 
-            before making any investment decisions.
-        </div>
-
-        <!-- CONTENT INSERTED BY GENERATOR -->
-        {{CONTENT}}
-        
-        <!-- AUTHOR BOX -->
-        <div class="author-box">
-            <div class="author-image">O</div>
-            <div class="author-info">
-                <h4>Omkar Enterprises Educational Team</h4>
-                <div class="author-title">Corporate Advisory · Market Education</div>
-                <p>We provide educational resources on business advisory, market analysis, and financial awareness. Our content is for general informational purposes only.</p>
-            </div>
-        </div>
-        
-        <!-- LEAD MAGNET 1: Free Guide (Always appears) -->
-        <div class="lead-magnet">
-            <h3>📥 Free Download: {{CATEGORY}} Guide</h3>
-            <p>Get our comprehensive educational guide covering key concepts, frameworks, and practical insights.</p>
-            
-            <form class="lead-form" action="https://formspree.io/f/mdkqpkqp" method="POST">
-                <input type="hidden" name="_subject" value="Free Guide Download - {{TITLE}}">
-                <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
-                <input type="email" name="email" placeholder="Your Email Address *" required>
-                <input type="text" name="name" placeholder="Your Name">
-                <input type="hidden" name="source" value="Blog Post">
-                <input type="hidden" name="topic" value="{{CATEGORY}}">
-                <button type="submit">Download Free Guide →</button>
-            </form>
-            <div class="lead-note">
-                <i class="fas fa-lock"></i> Your information is secure. No spam, unsubscribe anytime.
-            </div>
-        </div>
-
-        <!-- LEAD MAGNET 2: Two-Column Options -->
-        <div class="grid-2">
-            <div class="card">
-                <i class="fas fa-newspaper"></i>
-                <h3>Market Intelligence Newsletter</h3>
-                <p>Subscribe to our weekly newsletter for curated insights on markets, business strategy, and economic trends.</p>
-                <form class="lead-form" action="https://formspree.io/f/mdkqpkqp" method="POST">
-                    <input type="hidden" name="_subject" value="Newsletter Subscription">
-                    <input type="hidden" name="_next" value="https://omkarservices.in/thank-you.html">
-                    <input type="email" name="email" placeholder="Your Email" required style="width: 100%;">
-                    <input type="hidden" name="source" value="Newsletter Signup">
-                    <button type="submit" style="width: 100%;">Subscribe Free</button>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Newsletter Card -->
+            <div class="sidebar-card">
+                <h3><i class="fas fa-envelope"></i> Weekly Insights</h3>
+                <p>Get educational content delivered to your inbox. No spam, unsubscribe anytime.</p>
+                <form action="https://formspree.io/f/mdkqpkqp" method="POST" style="margin-top: 15px;">
+                    <input type="hidden" name="_subject" value="Newsletter Signup - {{TITLE}}">
+                    <input type="email" name="email" placeholder="Your Email" style="width: 100%; padding: 12px; border-radius: 40px; border: 1px solid var(--border); margin-bottom: 12px;">
+                    <button type="submit" class="btn" style="width: 100%;">Subscribe →</button>
                 </form>
             </div>
-            <div class="card">
-                <i class="fas fa-handshake"></i>
-                <h3>Private Consultation</h3>
-                <p>Request a confidential discussion about business advisory, capital structuring, or market analytics.</p>
-                <a href="../../index.html#contact" style="display: inline-block; margin-top: 15px; background: #d4af37; color: #0f172a; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 600;">Request Consultation</a>
-            </div>
-        </div>
-        
-        <!-- SHARE BUTTONS -->
-        <div class="share-buttons">
-            <a href="https://wa.me/?text={{TITLE}}%20-%20https://omkarservices.in/blog/post/{{SLUG}}.html" class="share-btn whatsapp-share" target="_blank">
-                <i class="fab fa-whatsapp"></i> Share on WhatsApp
-            </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://omkarservices.in/blog/post/{{SLUG}}.html" class="share-btn linkedin-share" target="_blank">
-                <i class="fab fa-linkedin"></i> Share on LinkedIn
-            </a>
-            <a href="https://twitter.com/intent/tweet?text={{TITLE}}&url=https://omkarservices.in/blog/post/{{SLUG}}.html" class="share-btn twitter-share" target="_blank">
-                <i class="fab fa-twitter"></i> Share on Twitter
-            </a>
-            <a href="mailto:?subject={{TITLE}}&body=Check out this article: https://omkarservices.in/blog/post/{{SLUG}}.html" class="share-btn email-share">
-                <i class="fas fa-envelope"></i> Share via Email
-            </a>
-        </div>
-        
-        <!-- RELATED POSTS (Dynamic - will be populated) -->
-        <div class="related-section">
-            <h3>📚 Related Educational Content</h3>
-            <div class="related-grid" id="related-posts">
-                <!-- Related posts will be loaded here -->
-                <a href="#" class="related-card">
-                    <h4>Loading related articles...</h4>
-                    <p>Please check back soon</p>
-                </a>
-            </div>
-        </div>
-        
-        <!-- BACK TO BLOG LINK -->
-        <div style="text-align: center;">
-            <a href="../index.html" class="back-to-blog">← Back to Blog Index</a>
-        </div>
-        
-    </article>
-
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>OMKAR ENTERPRISES</h4>
-                    <p>Corporate advisory, market education, and business consulting since 2023.</p>
-                    <p><i class="fas fa-building"></i> CIN: U70200MH2023PTC407336</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><i class="fas fa-chevron-right"></i> <a href="../../services/corporate-advisory.html">Advisory Services</a></li>
-                        <li><i class="fas fa-chevron-right"></i> <a href="../../technology/analytics-platform.html">Analytics Platform</a></li>
-                        <li><i class="fas fa-chevron-right"></i> <a href="../index.html">Educational Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><i class="fas fa-chevron-right"></i> <a href="../../privacy-policy.html">Privacy Policy</a></li>
-                        <li><i class="fas fa-chevron-right"></i> <a href="../../terms-of-service.html">Terms of Service</a></li>
-                        <li><i class="fas fa-chevron-right"></i> <a href="../../cookie-policy.html">Cookie Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+918169302861">8169302861</a></li>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+919226393837">9226393837</a></li>
-                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/917066393830">7066393830</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- LEGAL DISCLAIMER - STRONG -->
-            <div class="legal-box">
-                <h4><i class="fas fa-exclamation-triangle"></i> Important Regulatory Disclosure</h4>
-                <p><strong>TRFSK OMKAR SERVICES PRIVATE LIMITED</strong> (CIN: U70200MH2023PTC407336) is a corporate advisory and management consultancy firm. We are <strong>NOT a SEBI-registered investment advisor, research analyst, stock broker, portfolio manager, or investment company</strong>. We do NOT provide stock recommendations, trading calls, or investment advice.</p>
-                
-                <p><strong>Educational Content Only:</strong> All content on this website, including blog posts, articles, and resources, is for <strong>educational and informational purposes only</strong>. It should not be construed as investment advice, financial planning advice, or an offer to buy/sell any securities. Past performance discussed in articles is not indicative of future results.</p>
-                
-                <p><strong>No Public Solicitation:</strong> We do not solicit or accept public deposits. We do not offer investment schemes or guaranteed returns. Any consultation with our team does not constitute a professional relationship until formal agreements are executed.</p>
-                
-                <p><strong>Market Data:</strong> Any market data shown is for educational reference only. Investors should conduct their own research and consult SEBI-registered advisors before making any investment decisions.</p>
-                
-                <p><strong>By using this website, you acknowledge and agree</strong> to this disclaimer. For specific legal or financial advice, consult qualified professionals.</p>
+            
+            <!-- Tools Card -->
+            <div class="sidebar-card">
+                <h3><i class="fas fa-tools"></i> Free Resources</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 12px;"><a href="/market-analysis-tool-india.html" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 10px;"><i class="fas fa-chart-line" style="color: var(--accent); width: 20px;"></i> Market Scanner Tool</a></li>
+                    <li style="margin-bottom: 12px;"><a href="/structured-capital-approach.html" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 10px;"><i class="fas fa-calculator" style="color: var(--accent); width: 20px;"></i> Capital Calculator</a></li>
+                    <li><a href="/blog/index.html" style="color: var(--text-dark); text-decoration: none; display: flex; align-items: center; gap: 10px;"><i class="fas fa-book" style="color: var(--accent); width: 20px;"></i> All Articles</a></li>
+                </ul>
             </div>
             
-            <div class="footer-bottom">
-                <p>© 2023-2026 OMKAR ENTERPRISES PRIVATE LIMITED. All Rights Reserved.</p>
-                <p style="margin-top: 5px; font-size: 0.7rem;">Not SEBI-registered · Educational purposes only · No investment advice</p>
+            <!-- Telegram Card -->
+            <div class="sidebar-card">
+                <h3><i class="fab fa-telegram"></i> Live Updates</h3>
+                <p>Join 500+ members getting daily market insights and educational content.</p>
+                <a href="https://t.me/OmkarEducation" target="_blank" class="btn" style="display: block; text-align: center; background: #0088cc; color: white; margin-top: 15px;">
+                    <i class="fab fa-telegram"></i> Join Telegram Channel
+                </a>
+            </div>
+            
+            <!-- Contact Card -->
+            <div class="sidebar-card">
+                <h3><i class="fas fa-phone-alt"></i> Need Help?</h3>
+                <p>Have questions about our advisory services? Reach out directly.</p>
+                <a href="https://wa.me/917066393830" target="_blank" class="btn btn-outline" style="display: block; text-align: center; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+                <a href="mailto:care@omkarservices.in" style="display: block; text-align: center; margin-top: 12px; font-size: 0.85rem; color: var(--text-muted);">care@omkarservices.in</a>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<!-- Footer - COMPLETELY FIXED WITH HIGH VISIBILITY -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-grid">
+            <!-- Company Info -->
+            <div class="footer-col">
+                <h4>TRFSK OMKAR SERVICES</h4>
+                <p>Corporate advisory and business consulting firm dedicated to educational excellence and strategic guidance for Indian businesses.</p>
+                <div class="footer-contact">
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Pune | Ulhasnagar, Maharashtra</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/917066393830">+91 70663 93830</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="/services/corporate-advisory.html"><i class="fas fa-chevron-right"></i> Corporate Advisory</a></li>
+                    <li><a href="/blog/index.html"><i class="fas fa-chevron-right"></i> Educational Blog</a></li>
+                    <li><a href="/market-analysis-tool-india.html"><i class="fas fa-chevron-right"></i> Market Tools</a></li>
+                    <li><a href="/structured-capital-approach.html"><i class="fas fa-chevron-right"></i> Capital Strategy</a></li>
+                </ul>
+            </div>
+            
+            <!-- Legal & Compliance -->
+            <div class="footer-col">
+                <h4>Legal & Compliance</h4>
+                <ul>
+                    <li><a href="/privacy-policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    <li><a href="/terms-of-service.html"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    <li><a href="/cookie-policy.html"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
+                    <li><a href="/kyc-policy.html"><i class="fas fa-chevron-right"></i> KYC Policy</a></li>
+                    <li><a href="/disclaimer.html"><i class="fas fa-chevron-right"></i> Full Disclaimer</a></li>
+                </ul>
+                <div style="margin-top: 15px;">
+                    <p><strong>CIN:</strong> U70200MH2023PTC407336</p>
+                    <p><strong>MSME:</strong> UDYAM-MH-26-0559186</p>
+                </div>
             </div>
         </div>
-    </footer>
-
-    <!-- Floating WhatsApp -->
-    <a href="https://wa.me/917066393830" class="float-whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span>Educational Queries</span>
-    </a>
-
-    <script>
-        // Mobile menu toggle
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
         
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('navMenu').classList.remove('active');
-            });
-        });
+        <!-- Legal Disclaimer - Clearly Visible -->
+        <div class="legal-disclaimer">
+            <p><strong>⚠️ Important Regulatory Disclosure</strong></p>
+            <p>TRFSK OMKAR SERVICES PRIVATE LIMITED is a corporate advisory and management consultancy firm. We are <strong>NOT a SEBI-registered investment advisor, stock broker, or portfolio manager</strong>. We do NOT provide stock recommendations, trading calls, or investment advice.</p>
+            <p><strong>Educational Content Only:</strong> All information on this website, including blog posts, articles, and resources, is for educational and informational purposes only. It should not be construed as investment advice, financial planning advice, or an offer to buy/sell any securities.</p>
+            <p><strong>No Public Solicitation:</strong> We do not solicit or accept public deposits. Any discussions regarding capital deployment occur only within private, confidential advisory engagements with proper documentation and PDC security.</p>
+            <p><strong>By using this website, you acknowledge and agree to this disclaimer.</strong> For specific legal or financial advice, consult qualified professionals.</p>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="/index.html">Home</a>
+                <a href="/blog/index.html">Blog</a>
+                <a href="/privacy-policy.html">Privacy</a>
+                <a href="/terms-of-service.html">Terms</a>
+                <a href="https://t.me/OmkarEducation">Telegram</a>
+            </div>
+            <p>© 2023-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED. All Rights Reserved.</p>
+            <p>Not SEBI Registered | Educational Purpose Only | No Investment Advice</p>
+        </div>
+    </div>
+</footer>
 
-        // Simple related posts loader (can be enhanced later)
-        document.addEventListener('DOMContentLoaded', function() {
-            // This will be replaced by dynamic content from generator
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script>
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', () => {
+            const answer = item.nextElementSibling;
+            answer.classList.toggle('active');
+            const icon = item.querySelector('.faq-icon');
+            if (icon) {
+                icon.style.transform = answer.classList.contains('active') ? 'rotate(45deg)' : 'rotate(0)';
+            }
         });
-    </script>
+    });
+    
+    // Smooth scroll for TOC links
+    document.querySelectorAll('.toc a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+    
+    // Track form submissions
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', () => {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'generate_lead', {
+                    'event_category': 'form',
+                    'event_label': 'blog_post_engagement'
+                });
+            }
+        });
+    });
+    
+    // Mobile menu enhancements - touch-friendly
+    const buttons = document.querySelectorAll('.btn, .share-btn, .toc a');
+    buttons.forEach(btn => {
+        btn.addEventListener('touchstart', function() {
+            this.style.opacity = '0.7';
+        });
+        btn.addEventListener('touchend', function() {
+            this.style.opacity = '1';
+        });
+    });
+</script>
 </body>
 </html>

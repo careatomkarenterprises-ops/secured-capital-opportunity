@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G7YK2WKD6G');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Solutions | Omkar Enterprises</title>
+    <meta name="description" content="Business software solutions, market analysis tools, and technology solutions for Indian businesses.">
+    <meta name="keywords" content="business software, market analysis tool, stock scanner, trading software, analytics tools">
+    <meta name="author" content="TRFSK OMKAR SERVICES PRIVATE LIMITED">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="canonical" href="https://omkarservices.in/software-solutions.html">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        
+        .corporate-header {
+            background: #0f172a; color: white; padding: 12px 0;
+            border-bottom: 3px solid #d4af37;
+            font-size: 13px;
+        }
+        .corporate-header .container { max-width: 1200px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .cin-block i, .contact-header i { color: #d4af37; margin-right: 6px; }
+        .contact-header a { color: white; text-decoration: none; margin: 0 10px; }
+        
+        .navbar {
+            background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 0; position: sticky; top: 0; z-index: 100;
+        }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-text h1 { font-size: 1.2rem; color: #0f172a; font-weight: 700; }
+        .logo-text .tagline { font-size: 0.7rem; color: #64748b; }
+        .nav-menu { display: flex; gap: 30px; list-style: none; }
+        .nav-menu a { text-decoration: none; color: #475569; font-weight: 500; transition: color 0.3s; }
+        .nav-menu a:hover { color: #d4af37; }
+        .hamburger { display: none; font-size: 24px; background: none; border: none; cursor: pointer; }
+        
+        .compliance-banner {
+            background: #fef3c7;
+            border-bottom: 2px solid #d4af37;
+            padding: 10px 0;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white; padding: 60px 0; text-align: center;
+        }
+        .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
+        .hero h1 span { color: #d4af37; }
+        
+        .card {
+            background: white; border-radius: 20px; padding: 30px;
+            margin: 30px 0; border: 1px solid #e2e8f0;
+        }
+        
+        .btn {
+            display: inline-block; background: #d4af37; color: #0f172a;
+            padding: 12px 30px; border-radius: 40px; text-decoration: none;
+            font-weight: 600; margin: 10px 0;
+        }
+        
+        .footer {
+            background: #0f172a; color: white; padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 { color: #d4af37; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+        .footer-col a:hover { opacity: 1; color: #d4af37; }
+        .legal-disclaimer {
+            margin: 40px 0;
+            padding: 35px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 16px;
+            border-left: 4px solid #d4af37;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .float-whatsapp {
+            position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
+            padding: 15px 25px; border-radius: 50px; text-decoration: none; display: flex;
+            align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            z-index: 999; transition: transform 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-menu {
+                position: fixed; top: 70px; right: -100%;
+                width: 100%; background: white;
+                flex-direction: column; padding: 30px; gap: 15px;
+                transition: right 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active { right: 0; }
+            .hero h1 { font-size: 1.8rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="compliance-banner">
+        <div class="container">
+            <i class="fas fa-info-circle"></i>
+            <span><strong>IMPORTANT:</strong> Omkar Enterprises is NOT SEBI-registered. This is educational content only. No investment advice.</span>
+        </div>
+    </div>
+
+    <div class="corporate-header">
+        <div class="container">
+            <div class="cin-block">
+                <i class="fas fa-building"></i> CIN: <strong>U70200MH2023PTC407336</strong>
+            </div>
+            <div class="contact-header">
+                <i class="fas fa-phone-alt"></i> <a href="tel:+918169302861">8169302861</a>
+                <span>|</span>
+                <i class="fas fa-envelope"></i> <a href="mailto:care@omkarservices.in">care@omkarservices.in</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-text"><h1>OMKAR ENTERPRISES</h1><div class="tagline">PRIVATE LIMITED</div></div>
+            </a>
+            <button class="hamburger" id="hamburger">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="software-solutions.html" class="active">Tools</a></li>
+                <li><a href="structured-capital-approach.html">Capital</a></li>
+                <li><a href="blog/index.html">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Software <span>Solutions</span></h1>
+            <p>Business software, market analysis tools, and technology solutions</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="card">
+            <h2>📊 Market Analysis Tool</h2>
+            <p>Systematic market scanning and pattern identification. For educational and research purposes.</p>
+            <a href="market-analysis-tool-india.html" class="btn">Explore Tool →</a>
+        </div>
+
+        <div class="card">
+            <h2>🏢 Business Solutions</h2>
+            <p>Custom software solutions for businesses. Contact us for more information.</p>
+            <a href="https://wa.me/919226393837?text=I%20want%20to%20know%20about%20business%20software%20solutions" class="btn">Discuss Your Requirements →</a>
+        </div>
+    </div>
+
+    <!-- Footer with ALL Policy Links -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>OMKAR ENTERPRISES</h4>
+                    <p>Educational resources, market analysis tools, and structured discussions since 2023.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="market-analysis-tool-india.html">Market Analysis Tool</a></li>
+                        <li><a href="structured-capital-approach.html">Structured Capital</a></li>
+                        <li><a href="blog/index.html">Educational Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Telegram Updates</h4>
+                    <ul>
+                        <li><a href="https://t.me/OmkarIntraday" target="_blank"><i class="fab fa-telegram"></i> Intraday Updates</a></li>
+                        <li><a href="https://t.me/OmkarNifty50" target="_blank"><i class="fab fa-telegram"></i> Nifty Analysis</a></li>
+                        <li><a href="https://t.me/OmkarEducation" target="_blank"><i class="fab fa-telegram"></i> Educational Channel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="kyc-policy.html">KYC Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-disclaimer">
+                <h4><i class="fas fa-exclamation-triangle"></i> Important Regulatory Disclosure</h4>
+                <p><strong>TRFSK OMKAR SERVICES PRIVATE LIMITED</strong> (CIN: U70200MH2023PTC407336) is a corporate advisory firm. We are <strong>NOT a SEBI-registered investment advisor, stock broker, or portfolio manager</strong>. We do NOT provide stock recommendations, trading calls, or investment advice.</p>
+                <p><strong>Educational Content Only:</strong> All information on this website is for educational purposes only. No content constitutes investment advice.</p>
+                <p><strong>No Public Solicitation:</strong> We do not solicit or accept public deposits. Any discussions regarding capital deployment occur only within private, confidential advisory engagements.</p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023-2026 OMKAR ENTERPRISES PRIVATE LIMITED</p>
+                <p>Not SEBI Registered | Educational Purpose Only | No Investment Advice</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919226393837" class="float-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Discuss Your Query</span>
+    </a>
+
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

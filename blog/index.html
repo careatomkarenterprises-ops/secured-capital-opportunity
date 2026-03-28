@@ -463,17 +463,19 @@
         </div>
     </section>
 
-<div class="categories" id="categoryFilter">
-    <button class="category-btn active" data-category="all">All</button>
-    <button class="category-btn" data-category="Global Finance">Global Finance</button>  <!-- NEW -->
-    <button class="category-btn" data-category="Stock Market">Stock Market</button>
-    <button class="category-btn" data-category="Business Strategy">Business Strategy</button>
-    <button class="category-btn" data-category="Technology">Technology</button>
-    <button class="category-btn" data-category="Compliance">Compliance</button>
-    <button class="category-btn" data-category="Capital Deployment">Capital Deployment</button>
-    <button class="category-btn" data-category="Investment Education">Investment Education</button>
-    <button class="category-btn" data-category="Market Analysis">Market Analysis</button>
-</div>
+    <!-- Categories -->
+    <div class="container">
+        <div class="categories" id="categoryFilter">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="Stock Market">Stock Market</button>
+            <button class="category-btn" data-category="Business Strategy">Business Strategy</button>
+            <button class="category-btn" data-category="Technology">Technology</button>
+            <button class="category-btn" data-category="Compliance">Compliance</button>
+            <button class="category-btn" data-category="Capital Deployment">Capital Deployment</button>
+            <button class="category-btn" data-category="Investment Education">Investment Education</button>
+            <button class="category-btn" data-category="Market Analysis">Market Analysis</button>
+        </div>
+    </div>
 
     <!-- Blog Grid Section -->
     <section class="blog-section">
@@ -558,9 +560,95 @@
         // COMPLETE BLOG DATA - ALL 80+ ARTICLES FROM YOUR GITHUB
         // Generated from the file list you provided
         // ============================================
-       const allBlogs = [
+        const allBlogs = [
+            // Market Reports (Daily)
+            { title: "Daily Market Wrap: March 26, 2026", description: "Daily market analysis for educational purposes. Nifty, Sensex, top gainers, losers, and institutional activity.", category: "Market Analysis", date: "March 26, 2026", readTime: "8 min read", slug: "daily-market-wrap-2026-03-26", badge: "DAILY REPORT" },
+            { title: "Nifty Futures Technical Analysis: Understanding Fibonacci Retracements & Market Corrections", description: "Educational insights on technical analysis, Fibonacci retracements, and understanding market corrections.", category: "Stock Market", date: "March 09, 2026", readTime: "8 min read", slug: "Nifty_Futures_Technical_Analysis%3A%20Understanding_Fibonacci_Retracements_%26_Market_Corrections", badge: "TECHNICAL ANALYSIS" },
+            { title: "Why Retail Traders Lose: The Truth About Market Events, Institutional Money, and a Smarter Path", description: "An honest look at why 9 out of 10 traders lose money and how institutions operate.", category: "Stock Market", date: "March 14, 2026", readTime: "10 min read", slug: "why-retail-traders-lose-truth", badge: "TRADING PSYCHOLOGY" },
+            { title: "10% Crash Overnight? Decoding the 'Footprints' Left in Bandhan Bank Before the Fall", description: "Educational analysis of smart money footprints – Fibonacci, volume analysis, and liquidity concepts explained.", category: "Stock Market", date: "March 16, 2026", readTime: "12 min read", slug: "bandhan-bank-crash-analysis-fibonacci-footprints", badge: "TECHNICAL ANALYSIS" },
+            { title: "Geopolitical Risk 2026: Smart Portfolio Strategies for Indian Investors", description: "Educational analysis of FII outflows, Sensex volatility, crude oil impact, and portfolio approaches.", category: "Stock Market", date: "March 18, 2026", readTime: "9 min read", slug: "geopolitical-risk-portfolio-strategies-india-2026", badge: "GEOPOLITICAL RISK" },
+            { title: "Global Conflict & Indian Economy: Income Diversification Strategies 2026", description: "How global wars impact the Indian economy and financial markets.", category: "Stock Market", date: "March 11, 2026", readTime: "7 min read", slug: "global-conflict-indian-economy-diversification-2026", badge: "GLOBAL ECONOMY" },
+            { title: "The 17% Factor: Why Most IPO Investors Lose Money", description: "Only 17% of traders profited in FY25. Analysis of common IPO pitfalls.", category: "Stock Market", date: "February 17, 2026", readTime: "12 min read", slug: "17-percent-factor-ipo-strategies-2026", badge: "IPO STRATEGIES" },
+            { title: "Market Dynamics 2026: IPO Impact, Institutional Flows & Investor Psychology", description: "Analysis of market dynamics, institutional flows, and investor behavior.", category: "Stock Market", date: "February 21, 2026", readTime: "10 min read", slug: "liquidity-cycle-investor-behavior-analysis", badge: "MARKET ANALYSIS" },
+            { title: "RBI Strategies for Indian Investors 2026: Complete Educational Guide", description: "RBI strategies decoded: retail holding periods, SIP paradox, and market cycles.", category: "Stock Market", date: "February 17, 2026", readTime: "9 min read", slug: "rbi-strategies-indian-investors-2026-guide", badge: "RBI ANALYSIS" },
+            { title: "Master Rupee & Dollar Dynamics: Institutional Frameworks for 2026", description: "Educational guide on USD/INR trading and institutional analysis models.", category: "Stock Market", date: "February 10, 2026", readTime: "8 min read", slug: "rupee-dollar-mastery-2026", badge: "CURRENCY EDUCATION" },
+            { title: "Global Inflation & Interest Rates: Educational Analysis", description: "Learn how global inflation trends affect financial markets.", category: "Stock Market", date: "February 08, 2026", readTime: "7 min read", slug: "Global_Inflation&Interest_Rates", badge: "MACRO ECONOMICS" },
+            { title: "India's Oil Reserves During War: Complete Analysis of Strategic Petroleum Reserves", description: "Analysis of India's oil reserves during geopolitical conflicts.", category: "Stock Market", date: "March 14, 2026", readTime: "8 min read", slug: "india-oil-reserves-war-energy-security", badge: "ENERGY SECURITY" },
+            
+            // Business Strategy Articles
+            { title: "Understanding Business Growth Frameworks for Beginners", description: "Educational insights on scaling businesses.", category: "Business Strategy", date: "March 13, 2026", readTime: "7 min read", slug: "understanding-business-growth-frameworks-for-beginners", badge: "BUSINESS GROWTH" },
+            { title: "Essential Business Growth Frameworks Strategies", description: "Educational insights on business scaling frameworks.", category: "Business Strategy", date: "March 18, 2026", readTime: "5 min read", slug: "essential-business-growth-frameworks-strategies", badge: "GROWTH STRATEGY" },
+            { title: "How Strategic Financial Forecasting Shapes Financial Success", description: "Educational insights on forecasting benefits.", category: "Business Strategy", date: "March 17, 2026", readTime: "6 min read", slug: "how-strategic-financial-forecasting-shapes-financial-success", badge: "FINANCE FORECASTING" },
+            { title: "Operational Efficiency Consulting for Indian Businesses", description: "How operational efficiency consulting helps Indian businesses.", category: "Business Strategy", date: "March 09, 2026", readTime: "7 min read", slug: "operational-efficiency-consulting-for-indian-businesses", badge: "OPERATIONS" },
+            { title: "Competitive Analysis Framework for SMEs", description: "Practical competitive analysis frameworks for small and medium enterprises.", category: "Business Strategy", date: "March 05, 2026", readTime: "6 min read", slug: "competitive-analysis-framework-for-smes", badge: "COMPETITIVE ANALYSIS" },
+            { title: "Understanding Raising Capital For Business for Beginners", description: "Educational insights on fundraising fundamentals.", category: "Business Strategy", date: "March 12, 2026", readTime: "8 min read", slug: "understanding-raising-capital-for-business-for-beginners", badge: "FUNDRAISING" },
+            { title: "Understanding Corporate Financial Planning Systems for Beginners", description: "Educational insights on financial planning fundamentals.", category: "Business Strategy", date: "March 18, 2026", readTime: "8 min read", slug: "understanding-corporate-financial-planning-systems-for-beginners", badge: "CORPORATE FINANCE" },
+            { title: "How Cash Flow Management Shapes Long Term Financial Success", description: "Educational insights on cash flow optimization.", category: "Business Strategy", date: "March 11, 2026", readTime: "6 min read", slug: "how-cash-flow-management-shapes-long-term-financial-success", badge: "CASH FLOW" },
+            { title: "Business Succession Planning: A Strategic Guide", description: "Learn how to prepare your business for leadership transitions.", category: "Business Strategy", date: "February 10, 2026", readTime: "5 min read", slug: "business-succession-planning", badge: "SUCCESSION PLANNING" },
+            { title: "Mergers and Acquisitions: Basics for Business Owners", description: "Introductory guide to M&A processes and valuation.", category: "Business Strategy", date: "January 28, 2026", readTime: "7 min read", slug: "mergers-acquisitions-basics", badge: "M&A" },
+            
+            // Capital Deployment Articles
+            { title: "What Is Structured Capital Deployment: Complete Guide", description: "Comprehensive guide to understanding structured capital deployment.", category: "Capital Deployment", date: "March 09, 2026", readTime: "10 min read", slug: "what-is-structured-capital-deployment-complete-guide", badge: "CAPITAL DEPLOYMENT" },
+            { title: "Risk Management in Capital Deployment", description: "Understanding risk management principles in capital deployment.", category: "Capital Deployment", date: "March 09, 2026", readTime: "6 min read", slug: "risk-management-in-capital-deployment", badge: "RISK MANAGEMENT" },
+            { title: "How Businesses Evaluate Capital Deployment Decisions", description: "Educational insights on capital allocation frameworks.", category: "Capital Deployment", date: "March 10, 2026", readTime: "8 min read", slug: "how-businesses-evaluate-capital-deployment-decisions", badge: "CAPITAL STRATEGY" },
+            { title: "Understanding Capital Allocation for Beginners", description: "Educational insights on capital allocation fundamentals.", category: "Capital Deployment", date: "March 10, 2026", readTime: "6 min read", slug: "understanding-capital-allocation-for-beginners", badge: "CAPITAL ALLOCATION" },
+            { title: "Complete Guide to Capital Allocation", description: "Educational insights on capital allocation strategies.", category: "Capital Deployment", date: "March 10, 2026", readTime: "7 min read", slug: "complete-guide-to-capital-allocation", badge: "CAPITAL ALLOCATION" },
+            
+            // Investment Education Articles
+            
+{title: "BRICS Currency 2026: Latest News, Launch Date & Impact on India", description: "Complete educational guide on BRICS currency...", category: "Global Finance", date: "March 29, 2026", readTime: "12 min read", slug: "brics-currency-future-of-global-money.html",  // ← MATCH YOUR ACTUAL FILE NAME badge: "GLOBAL ECONOMICS" 
+}
 
-        
+            { title: "Complete Guide to Portfolio Diversification", description: "Educational insights on building diversified investment portfolios.", category: "Investment Education", date: "March 10, 2026", readTime: "9 min read", slug: "complete-guide-to-portfolio-diversification", badge: "DIVERSIFICATION" },
+            { title: "Common Mistakes in Asset Allocation Strategy", description: "Educational insights on optimizing asset allocation.", category: "Investment Education", date: "March 10, 2026", readTime: "7 min read", slug: "common-mistakes-in-asset-allocation-strategy", badge: "ASSET ALLOCATION" },
+            { title: "Common Mistakes in Stock Market Investment Planning", description: "Educational insights on avoiding common pitfalls.", category: "Investment Education", date: "March 10, 2026", readTime: "6 min read", slug: "common-mistakes-in-stock-market-investment-planning", badge: "INVESTMENT EDUCATION" },
+            { title: "Understanding Stock Market Investment Planning for Beginners", description: "Educational insights for new investors.", category: "Investment Education", date: "March 10, 2026", readTime: "8 min read", slug: "understanding-stock-market-investment-planning-for-beginners", badge: "BEGINNER GUIDE" },
+            { title: "Why Wealth Building Strategies Matters in Modern Investing", description: "Educational insights on long-term wealth creation.", category: "Investment Education", date: "March 10, 2026", readTime: "7 min read", slug: "why-wealth-building-strategies-matters-in-modern-investing", badge: "WEALTH BUILDING" },
+            { title: "Complete Guide to Wealth Building Strategies", description: "Educational insights on comprehensive wealth creation.", category: "Investment Education", date: "March 12, 2026", readTime: "10 min read", slug: "complete-guide-to-wealth-building-strategies", badge: "WEALTH STRATEGY" },
+            { title: "How Asset Allocation Strategy Shapes Long Term Financial Success", description: "Educational insights on strategic asset allocation.", category: "Investment Education", date: "March 12, 2026", readTime: "7 min read", slug: "how-asset-allocation-strategy-shapes-long-term-financial-success", badge: "ASSET ALLOCATION" },
+            { title: "Why Value Investing Principles Matters Today", description: "Educational insights on value investing.", category: "Investment Education", date: "March 12, 2026", readTime: "6 min read", slug: "why-value-investing-principles-matters-today", badge: "VALUE INVESTING" },
+            { title: "The Art of Long Term Wealth Building", description: "Educational insights on sustainable wealth creation.", category: "Investment Education", date: "March 12, 2026", readTime: "8 min read", slug: "the-art-of-long-term-wealth-building", badge: "WEALTH BUILDING" },
+            { title: "The Art of Asset Allocation Models", description: "Educational insights on allocation frameworks.", category: "Investment Education", date: "March 13, 2026", readTime: "6 min read", slug: "the-art-of-asset-allocation-models", badge: "ASSET ALLOCATION" },
+            { title: "Understanding Portfolio Diversification Methods for Beginners", description: "Educational insights on diversification techniques.", category: "Investment Education", date: "March 12, 2026", readTime: "7 min read", slug: "understanding-portfolio-diversification-methods-for-beginners", badge: "DIVERSIFICATION" },
+            { title: "Understanding Market Cycle Analysis for Beginners", description: "Educational insights on market cycles.", category: "Investment Education", date: "March 12, 2026", readTime: "6 min read", slug: "understanding-market-cycle-analysis-for-beginners", badge: "MARKET CYCLES" },
+            { title: "Complete Guide to Market Cycle Analysis", description: "Educational insights on comprehensive market analysis.", category: "Investment Education", date: "March 12, 2026", readTime: "9 min read", slug: "complete-guide-to-market-cycle-analysis", badge: "MARKET CYCLES" },
+            { title: "How Dividend Growth Investing Shapes Financial Success", description: "Educational insights on dividend strategies.", category: "Investment Education", date: "March 13, 2026", readTime: "6 min read", slug: "how-dividend-growth-investing-shapes-financial-success", badge: "DIVIDEND GROWTH" },
+            { title: "Mastering Stock Market Analysis Techniques", description: "Educational insights on advanced analysis methods.", category: "Investment Education", date: "March 13, 2026", readTime: "8 min read", slug: "mastering-stock-market-analysis-techniques", badge: "MARKET ANALYSIS" },
+            { title: "The Art of Last Minute Investment Strategies", description: "Educational insights on year-end planning.", category: "Investment Education", date: "March 12, 2026", readTime: "5 min read", slug: "the-art-of-last-minute-investment-strategies", badge: "SEASONAL PLANNING" },
+            { title: "Why Last Minute Investment Strategies Matter Today", description: "Educational insights on time-sensitive planning.", category: "Investment Education", date: "March 16, 2026", readTime: "5 min read", slug: "why-last-minute-investment-strategies-matters-today", badge: "SEASONAL PLANNING" },
+            { title: "Understanding Value Investing Principles for Beginners", description: "Educational insights on value fundamentals.", category: "Investment Education", date: "March 15, 2026", readTime: "7 min read", slug: "understanding-value-investing-principles-for-beginners", badge: "VALUE INVESTING" },
+            { title: "Common Mistakes in Value Investing Principles", description: "Educational insights on value pitfalls.", category: "Investment Education", date: "March 17, 2026", readTime: "6 min read", slug: "common-mistakes-in-value-investing-principles", badge: "VALUE INVESTING" },
+            { title: "Long Term Wealth Building: A Practical Approach", description: "Educational insights on actionable wealth strategies.", category: "Investment Education", date: "March 17, 2026", readTime: "7 min read", slug: "long-term-wealth-building-a-practical-approach", badge: "WEALTH BUILDING" },
+            
+            // Technology Articles
+            { title: "ERP Implementation Guide for Manufacturing Companies", description: "Step-by-step guide to ERP implementation for manufacturing companies.", category: "Technology", date: "March 09, 2026", readTime: "9 min read", slug: "erp-implementation-guide-for-manufacturing-companies", badge: "ERP" },
+            { title: "IT Infrastructure Planning for Growing Companies", description: "Strategic guide to planning IT infrastructure for growing companies.", category: "Technology", date: "March 09, 2026", readTime: "7 min read", slug: "it-infrastructure-planning-for-growing-companies", badge: "INFRASTRUCTURE" },
+            { title: "Business Intelligence Tools for Indian SMEs", description: "Guide to business intelligence tools suitable for Indian SMEs.", category: "Technology", date: "March 06, 2026", readTime: "7 min read", slug: "business-intelligence-tools-for-indian-smes", badge: "BI" },
+            { title: "Process Automation: Where to Start", description: "Guide to getting started with process automation in business.", category: "Technology", date: "March 03, 2026", readTime: "6 min read", slug: "process-automation-where-to-start", badge: "AUTOMATION" },
+            { title: "Technology ROI: Measuring What Matters", description: "How to measure return on investment for technology projects.", category: "Technology", date: "March 03, 2026", readTime: "5 min read", slug: "technology-roi-measuring-what-matters", badge: "ROI" },
+            { title: "How Data Analytics is Transforming Business Decisions", description: "Exploring the role of data analytics in modern business strategy.", category: "Technology", date: "February 20, 2026", readTime: "4 min read", slug: "data-analytics-transforming-business-decisions", badge: "ANALYTICS" },
+            { title: "AI and Machine Learning for Business Applications", description: "Understanding how AI and ML can be applied to solve real business problems.", category: "Technology", date: "February 08, 2026", readTime: "6 min read", slug: "ai-machine-learning-business", badge: "AI/ML" },
+            
+            // Compliance Articles
+            { title: "Companies Act Amendments You Need to Know", description: "Latest amendments to the Companies Act affecting Indian businesses.", category: "Compliance", date: "March 08, 2026", readTime: "6 min read", slug: "companies-act-amendments-you-need-to-know", badge: "COMPLIANCE" },
+            { title: "GST Return Compliance: Complete Guide", description: "Complete guide to GST return filing for Indian businesses.", category: "Compliance", date: "March 04, 2026", readTime: "8 min read", slug: "gst-return-compliance-complete-guide", badge: "GST" },
+            { title: "Business Compliance Strategies for Growing Companies", description: "Educational insights on compliance frameworks for expanding businesses.", category: "Compliance", date: "March 10, 2026", readTime: "6 min read", slug: "business-compliance-strategies-for-growing-companies", badge: "COMPLIANCE" },
+            { title: "Essential Compliance Requirements for Indian Businesses", description: "A practical overview of regulatory obligations for companies operating in India.", category: "Compliance", date: "February 15, 2026", readTime: "6 min read", slug: "compliance-requirements-indian-businesses", badge: "COMPLIANCE" },
+            { title: "ROC Filing Deadlines and Requirements for 2026", description: "Complete guide to annual filings with the Registrar of Companies.", category: "Compliance", date: "February 01, 2026", readTime: "5 min read", slug: "roc-filing-deadlines", badge: "ROC" },
+            { title: "GST Compliance: Tips for Error-Free Filings", description: "Best practices for GST returns, invoice management, and avoiding common mistakes.", category: "Compliance", date: "January 15, 2026", readTime: "4 min read", slug: "gst-compliance-tips", badge: "GST" },
+            
+            // Seasonal Planning Articles
+            { title: "Mastering Tax Planning Before March 31", description: "Educational insights on year-end tax strategies.", category: "Seasonal Planning", date: "March 13, 2026", readTime: "7 min read", slug: "mastering-tax-planning-before-march-31", badge: "TAX PLANNING" },
+            { title: "Essential Tax Planning Before March 31 Strategies", description: "Educational insights on essential tax approaches.", category: "Seasonal Planning", date: "March 14, 2026", readTime: "6 min read", slug: "essential-tax-planning-before-march-31-strategies", badge: "TAX PLANNING" },
+            { title: "Common Mistakes in Tax Planning Before March 31", description: "Educational insights on tax errors to avoid.", category: "Seasonal Planning", date: "March 16, 2026", readTime: "5 min read", slug: "common-mistakes-in-tax-planning-before-march-31", badge: "TAX PLANNING" },
+            { title: "Common Mistakes in Financial Year End Portfolio Review", description: "Educational insights on year-end reviews.", category: "Seasonal Planning", date: "March 14, 2026", readTime: "5 min read", slug: "common-mistakes-in-financial-year-end-portfolio-review", badge: "PORTFOLIO REVIEW" },
+            { title: "How Financial Year End Portfolio Review Shapes Financial Success", description: "Educational insights on review benefits.", category: "Seasonal Planning", date: "March 15, 2026", readTime: "6 min read", slug: "how-financial-year-end-portfolio-review-shapes-financial-success", badge: "PORTFOLIO REVIEW" },
+            { title: "Beyond Basics: Financial Year End Portfolio Review", description: "Educational insights on advanced review techniques.", category: "Seasonal Planning", date: "March 15, 2026", readTime: "6 min read", slug: "beyond-basics-financial-year-end-portfolio-review", badge: "PORTFOLIO REVIEW" },
+            { title: "Financial Year End Portfolio Review: What to Check", description: "Essential steps to review your investment portfolio before the financial year closes.", category: "Seasonal Planning", date: "March 19, 2026", readTime: "7 min read", slug: "financial-year-end-portfolio-review", badge: "PORTFOLIO REVIEW" },
+            { title: "Last Minute Investment Strategies", description: "Educational insights on time-sensitive investment planning.", category: "Seasonal Planning", date: "March 21, 2026", readTime: "5 min read", slug: "last-minute-investment-strategies", badge: "INVESTMENT" }
+        ];
+        // If your file is named: brics-currency-future-of-global-money.html
+// Then update slug to:
         // ============================================
         // BLOG DISPLAY LOGIC
         // ============================================

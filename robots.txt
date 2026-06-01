@@ -1,16 +1,17 @@
 User-agent: *
 Allow: /
 Disallow: /dashboard.html
+Disallow: /404.html
 
-# Googlebot specific
+# Googlebot specific optimization
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
-# Bingbot
+# Bingbot optimization
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 2
 
-# Sitemap
-Sitemap: https://omkarservices.in/sitemap.xml
+# Correct Global Domain Sitemap Alignment
+Sitemap: https://www.trfskomkar.com/sitemap.xml

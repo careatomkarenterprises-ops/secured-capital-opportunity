@@ -1,158 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics Core Tracking Matrix -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7YK2WKD6G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G7YK2WKD6G');
+    </script>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You – TRFSK OMKAR SERVICES</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Protocol Verified | TRFSK OMKAR SERVICES PVT LTD</title>
+    <meta name="robots" content="noindex, follow">
+    
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+        :root { 
+            --bg-main: #060913; 
+            --bg-card: #0f1322; 
+            --accent-blue: #1d4ed8; 
+            --accent-orange: #f97316; 
+            --accent-green: #10b981;
+            --text-primary: #f8fafc; 
+            --text-secondary: #94a3b8; 
+            --border: #1e293b;
         }
-        .thank-you-card {
-            background: white;
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-        }
-        .logo {
-            margin-bottom: 30px;
-        }
-        .logo img {
-            height: 60px;
-            width: auto;
-        }
-        h1 {
-            color: #0f172a;
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-        h1 span {
-            color: #d4af37;
-        }
-        p {
-            color: #334155;
-            font-size: 18px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .download-btn {
-            background: #d4af37;
-            color: #0f172a;
-            border: none;
-            padding: 16px 32px;
-            font-size: 18px;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background 0.3s, transform 0.2s;
-            margin-bottom: 20px;
-        }
-        .download-btn:hover {
-            background: #b8931c;
-            transform: translateY(-2px);
-        }
-        .back-link {
-            color: #64748b;
-            text-decoration: none;
-            font-size: 16px;
-            display: inline-block;
-            margin-top: 20px;
-        }
-        .back-link:hover {
-            color: #d4af37;
-        }
-        .newsletter-message {
-            background: #f1f5f9;
-            padding: 20px;
-            border-radius: 16px;
-            margin-top: 20px;
-        }
-        .hidden {
-            display: none;
-        }
-        .resource-links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 30px 0;
-        }
-        .resource-link {
-            background: #f1f5f9;
-            padding: 15px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #0f172a;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-        .resource-link:hover {
-            background: #e2e8f0;
-        }
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-main); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+        header { border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; background-color: #060913; }
+        .logo-container { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-text h1 { margin: 0; font-size: 1.2rem; color: #fff; font-weight: 700; }
+        .logo-text p { margin: 0; font-size: 0.7rem; color: var(--accent-orange); font-weight: bold; }
+        .main-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; }
+        .thank-you-card { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 0.5rem; padding: 3.5rem 2.5rem; max-width: 600px; width: 100%; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3); text-align: center; }
+        .icon-box { width: 64px; height: 64px; background-color: rgba(16, 185, 129, 0.1); border: 2px solid var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; color: var(--accent-green); }
+        h2 { font-size: 2rem; color: #fff; margin: 0 0 0.5rem 0; font-weight: 800; }
+        .subtitle { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem; }
+        .download-box { background: rgba(29, 78, 216, 0.1); border: 1px dashed var(--accent-blue); padding: 1.75rem; border-radius: 0.375rem; margin-bottom: 2rem; text-align: left; }
+        .download-box p { margin: 0 0 1rem 0; font-size: 0.95rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; }
+        .btn-download { display: width: 100%; box-sizing: border-box; background-color: var(--accent-blue); color: #fff; text-decoration: none; padding: 0.85rem; font-weight: 700; border-radius: 0.25rem; display: flex; justify-content: center; align-items: center; gap: 0.5rem; transition: background 0.2s; font-size: 0.95rem; }
+        .btn-download:hover { background-color: #1e40af; }
+        .resource-stack { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+        .resource-link { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 1rem; border-radius: 0.25rem; text-decoration: none; color: #fff; font-weight: 500; font-size: 0.9rem; text-align: left; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s; }
+        .resource-link:hover { border-color: var(--accent-orange); }
+        .btn-back { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+        .btn-back:hover { color: #fff; }
+        footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--text-secondary); background-color: #03050a; }
     </style>
 </head>
 <body>
-    <div class="thank-you-card">
-        <div class="logo">
-            <img src="/assets/logo.png" alt="TRFSK OMKAR SERVICES">
-        </div>
 
-        <!-- Dynamic content based on URL parameter -->
-        <div id="report-content">
-            <h1>Thank You <span>🙏</span></h1>
-            <p>Your report is ready for download. Click the button below to get your free 20‑page Economic Risk Report 2026.</p>
-            <a href="/assets/reports/economic-risk-report-2026.pdf" download class="download-btn">📥 Download Report Now</a>
-            <p style="font-size: 14px; color: #64748b;">If the download doesn't start, <a href="/assets/reports/economic-risk-report-2026.pdf" download>click here</a>.</p>
-        </div>
-
-        <div id="newsletter-content" class="hidden">
-            <h1>Subscription <span>Confirmed</span></h1>
-            <p>You're now subscribed to our Global Market Intelligence newsletter. You'll receive the next edition in your inbox.</p>
-            <div class="newsletter-message">
-                <p style="margin-bottom: 0;">In the meantime, explore our latest articles:</p>
-                <p><a href="/blog/index.html" style="color: #d4af37;">Visit Knowledge Hub →</a></p>
+    <header>
+        <div class="logo-container">
+            <i data-lucide="building-2" style="color:#f97316; width:22px; height:22px;"></i>
+            <div class="logo-text">
+                <h1>TRFSK OMKAR</h1>
+                <p>SERVICES PVT LTD</p>
             </div>
         </div>
+    </header>
 
-        <!-- Secondary offer (always visible) -->
-        <div class="resource-links">
-            <a href="/blog/post/business-succession-planning.html" class="resource-link">📘 Business Succession Planning Guide</a>
-            <a href="/blog/post/complete-guide-to-capital-allocation.html" class="resource-link">📗 Capital Allocation Framework</a>
-            <a href="/blog/post/portfolio-diversification-strategies.html" class="resource-link">📙 Diversification Checklist</a>
+    <main class="main-wrapper">
+        <div class="thank-you-card">
+            <div class="icon-box"><i data-lucide="shield-check" style="width:32px; height:32px;"></i></div>
+            <h2>Verification Processed</h2>
+            <p class="subtitle">Your secure analytics parameter registry has been initialized.</p>
+            
+            <div class="download-box" id="report-node">
+                <p><i data-lucide="file-text" style="color:var(--accent-orange); width:18px; height:18px;"></i> Comprehensive 20-Page Economic Risk Analysis Reference 2026</p>
+                <a href="assets/reports/economic-risk-report-2026.pdf" download class="btn-download">
+                    <i data-lucide="download-cloud"></i> Execute Secure Download
+                </a>
+            </div>
+
+            <div class="resource-stack">
+                <div style="text-align: left; font-size: 0.8rem; color: var(--text-secondary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Educational Reference Vault</div>
+                <a href="blog/post/business-succession-planning.html" class="resource-link">
+                    <span>📘 Business Succession Planning Module</span> <i data-lucide="chevron-right" style="width:16px; height:16px; color:var(--accent-orange);"></i>
+                </a>
+                <a href="blog/post/complete-guide-to-capital-allocation.html" class="resource-link">
+                    <span>Target Framework: Volumetric Capital Allocation</span> <i data-lucide="chevron-right" style="width:16px; height:16px; color:var(--accent-orange);"></i>
+                </a>
+            </div>
+
+            <a href="index.html" class="btn-back"><i data-lucide="arrow-left" style="width:16px; height:16px;"></i> Return to Main Platform</a>
         </div>
+    </main>
 
-        <a href="/blog/index.html" class="back-link">← Back to Blog</a>
-    </div>
+    <footer>
+        <p>© 2018-2026 TRFSK OMKAR SERVICES PRIVATE LIMITED. Technical Data Log Channels Secured.</p>
+    </footer>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const downloadParam = urlParams.get('download');
-
-        const reportDiv = document.getElementById('report-content');
-        const newsletterDiv = document.getElementById('newsletter-content');
-
-        if (downloadParam === 'report') {
-            reportDiv.classList.remove('hidden');
-            newsletterDiv.classList.add('hidden');
-        } else if (downloadParam === 'newsletter') {
-            reportDiv.classList.add('hidden');
-            newsletterDiv.classList.remove('hidden');
-        } else {
-            // Default to report view
-            reportDiv.classList.remove('hidden');
-            newsletterDiv.classList.add('hidden');
+        lucide.createIcons();
+        // Automatic runtime evaluation of verification payload parameters
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('download') === 'newsletter') {
+            document.getElementById('report-node').innerHTML = `
+                <p style="color:var(--accent-green); font-weight:bold;"><i data-lucide="check-circle" style="width:18px; height:18px;"></i> Subscription Matrix Active</p>
+                <div style="font-size:0.9rem; color:var(--text-secondary); line-height:1.5;">You have successfully established standard link routing to our Global Market Intelligence ledger pipelines. Clear entries updates will forward automatically.</div>
+            `;
+            lucide.createIcons();
         }
     </script>
 </body>

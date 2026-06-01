@@ -38,10 +38,6 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Inter', sans-serif;
             background: #05070f;
@@ -50,6 +46,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Premium Interface Color Framework */
         .gradient-primary {
             background: linear-gradient(135deg, #38bdf8, #a855f7);
             -webkit-background-clip: text;
@@ -124,15 +121,11 @@
             text-decoration: none;
         }
 
-        .logo-icon-wrapper {
-            width: 40px;
+        .logo-image {
             height: 40px;
-            background: rgba(249, 115, 22, 0.1);
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
         }
 
         .logo-text h2 {
@@ -167,6 +160,15 @@
 
         .nav-links a:hover {
             color: #38bdf8;
+        }
+
+        .nav-links .active-blog {
+            color: #f97316;
+            font-weight: 700;
+            border: 1px dashed rgba(249, 115, 22, 0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            background: rgba(249, 115, 22, 0.05);
         }
 
         /* Hero Split Grid */
@@ -387,6 +389,7 @@
             color: #38bdf8;
         }
 
+        /* Luxury Digital Brand Social Grid */
         .social-matrix {
             display: flex;
             flex-wrap: wrap;
@@ -437,7 +440,7 @@
             transition: color 0.2s;
         }
         .phone-item:hover {
-            color: var(--accent-orange);
+            color: #f97316;
         }
 
         .volume-indicator {
@@ -473,9 +476,8 @@
 <header class="container">
     <div class="navbar">
         <a href="#" class="logo-block">
-            <div class="logo-icon-wrapper">
-                <i class="fas fa-chart-line" style="color:#f97316; font-size: 1.2rem;"></i>
-            </div>
+            <!-- PULLS DIRECTLY FROM YOUR CONFIRMED ASSETS/LOGO.PNG PATH -->
+            <img src="assets/logo.png" alt="TRFSK OMKAR SERVICES Logo" class="logo-image">
             <div class="logo-text">
                 <h2>TRFSK <span>OMKAR</span></h2>
                 <p>AI · QUANT · LITERACY</p>
@@ -483,9 +485,9 @@
         </a>
         <nav class="nav-links">
             <a href="#learn">Learning Matrix</a>
-            <a href="#scanner">AI Architectures</a>
-            <a href="#approach">Strategic Approach</a>
-            <a href="tel:+917066393830" class="btn-outline" style="padding: 0.4rem 1.2rem; font-size: 0.85rem;"><i class="fas fa-phone-alt"></i> Desk: +91 70663 93830</a>
+            <a href="software-solutions.html">AI Software Build</a>
+            <a href="structured-capital-approach.html">Capital Approach</a>
+            <a href="blog/index.html" class="active-blog"><i class="fas fa-square-rss"></i> Research Blog</a>
         </nav>
     </div>
 </header>
@@ -501,7 +503,7 @@
             <p>TRFSK OMKAR SERVICES PRIVATE LIMITED engineers standalone market scanning software and structures advanced educational frameworks. Learn to identify volumetric delivery anomalies to form objective, long-term capital choices [cite: Stock market analysis and futures trading tracking... tracking systems... conversation date: 2025-12, Launched a strategic capital allocation initiative tied to the 2026-27 Union Budget focusing on infrastructure liquidity... conversation date: 2026-01].</p>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="#contact" class="btn-primary"><i class="fas fa-shield-check"></i> Register Protocol</a>
-                <a href="#learn" class="btn-outline"><i class="fas fa-graduation-cap"></i> Explore Learning Matrix</a>
+                <a href="blog/index.html" class="btn-outline"><i class="fas fa-book-open"></i> Browse Knowledge Hub</a>
             </div>
             <div class="hero-stats">
                 <div class="stat"><h3>85+</h3><p>Volumetric Cases</p></div>
@@ -560,68 +562,7 @@
         </div>
     </section>
 
-    <!-- Section 3: Bespoke AI Softwares & Applications -->
-    <section id="scanner">
-        <div style="text-align: center; max-width: 700px; margin: 0 auto 4rem auto;">
-            <span class="hero-badge"><i class="fas fa-code"></i> Engineering Division</span>
-            <h2 style="font-size: 2.2rem; color: #fff; font-weight: 800; letter-spacing: -0.5px;">Custom AI Scanning Architectures</h2>
-            <p style="color: #94a3b8; font-size: 1.1rem; margin-top: 0.5rem;">Bespoke standalone program architectures built to parse live market signals exactly to your criteria rules.</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-microchip feature-icon"></i>
-                <h3>Live Session Anomaly Scanning</h3>
-                <p>Build software capable of scanning multiple public instruments simultaneously for rapid adjustments in relative volume levels, data changes, and technical pacing indicators.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-filter feature-icon"></i>
-                <h3>Algorithmic Predictive Processing</h3>
-                <p>Utilize clean mathematical modeling filters configured to evaluate mathematical probabilities of breakout occurrences while working to reduce structural false-signal loops.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-folder-closed feature-icon"></i>
-                <h3>Standalone Private Infrastructure</h3>
-                <p>We program and deliver tailored analytical terminal dashboards based on your custom requirements. Every build runs directly on your local systems, ensuring full code privacy.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Strategic Capital Approach Integrated Framework -->
-    <section id="approach">
-        <div style="text-align: center; max-width: 700px; margin: 0 auto 4rem auto;">
-            <span class="hero-badge"><i class="fas fa-shield-halved"></i> Corporate Strategy</span>
-            <h2 style="font-size: 2.2rem; color: #fff; font-weight: 800; letter-spacing: -0.5px;">Structured Capital Allocation</h2>
-            <p style="color: #94a3b8; font-size: 1.1rem; margin-top: 0.5rem;">Managing data integrity parameters and risk alignment matrices with institutional discipline.</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-landmark"></i></div>
-                <h3>Infrastructure Liquidity Mapping</h3>
-                <p>Aligning data verification with long-term macroeconomic shifts, focusing on major structural shifts, state budget implementations, and systematic allocation changes.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-scale-balanced"></i></div>
-                <h3>Risk Balancing Architectures</h3>
-                <p>Executing mathematical rules to evaluate capital trends, protect principal exposure positions, and maximize data optimization metrics across volatile market environments.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-chess-knight"></i></div>
-                <h3>Tactical 12-Month Cycles</h3>
-                <p>Structuring disciplined tracking calendars built to adapt to seasonal volume expansions and structural equity transformations transparently.</p>
-            </div>
-        </div>
-
-        <div class="cta-block" style="margin-top: 4rem;">
-            <i class="fas fa-robot" style="font-size: 2rem; color: #38bdf8;"></i>
-            <h3 style="margin: 0.75rem 0; font-size: 1.5rem; color: #fff; font-weight: 700;">Initiate Custom Build Specifications</h3>
-            <p style="color: #94a3b8; font-size: 1rem; max-width: 600px; margin: 0 auto 1.5rem auto;">Coordinate with our technical consulting team to outline code parameters customized to your personal analytical view sets.</p>
-            <a href="#contact" class="btn-primary"><i class="fas fa-code-fork"></i> Request Technical Consultation</a>
-        </div>
-    </section>
-
-    <!-- Section 5: Lead Generation Secure Interface -->
+    <!-- Section 3: Lead Generation Secure Interface -->
     <section id="contact">
         <div class="form-card">
             <h3 style="font-size: 1.6rem; text-align: center; color: #fff; margin-bottom: 0.25rem; font-weight: 700;">Secure Identity Protocol</h3>
@@ -689,13 +630,13 @@
                 </div>
             </div>
             
-            <!-- COLUMN 2: INTERNAL DEPLOYMENT CHANNELS -->
+            <!-- COLUMN 2: INTERNAL DEPLOYMENT CHANNELS USING ACTUAL EXISTING FILES -->
             <div class="footer-col" style="text-align: left;">
                 <h5>Knowledge Vault</h5>
                 <ul>
-                    <li><a href="#learn"><i class="fas fa-graduation-cap" style="font-size:0.75rem; color:var(--accent-orange); margin-right:4px;"></i> Volume Learning</a></li>
-                    <li><a href="#scanner">Software Solutions</a></li>
-                    <li><a href="#approach">Capital Approach</a></li>
+                    <li><a href="blog/index.html"><i class="fas fa-book-open" style="font-size:0.75rem; color:#f97316; margin-right:4px;"></i> Research Blog Hub</a></li>
+                    <li><a href="software-solutions.html">Software Capabilities</a></li>
+                    <li><a href="structured-capital-approach.html">Capital Management Frameworks</a></li>
                 </ul>
             </div>
 
@@ -707,6 +648,7 @@
                     <li><a href="terms-of-service.html">Terms of Service</a></li>
                     <li><a href="cookie-policy.html">Cookie Policy</a></li>
                     <li><a href="disclaimer.html">Regulatory Disclaimer</a></li>
+                    <li><a href="kyc-policy.html">KYC Framework</a></li>
                 </ul>
             </div>
 
@@ -716,10 +658,10 @@
                 <p style="line-height: 1.5; color:#94a3b8; margin-bottom: 0.75rem;">DNK Business Bay,<br>Pune, Maharashtra, 411046</p>
                 
                 <div class="phone-list">
-                    <a href="tel:+917066393830" class="phone-item"><i class="fas fa-headset" style="color:var(--accent-orange); font-size:0.75rem;"></i> +91 70663 93830</a>
-                    <a href="tel:+917066393831" class="phone-item"><i class="fas fa-phone-alt" style="color:var(--accent-blue); font-size:0.75rem;"></i> +91 70663 93831</a>
-                    <a href="tel:+918169302861" class="phone-item"><i class="fas fa-phone-alt" style="color:var(--accent-blue); font-size:0.75rem;"></i> +91 81693 02861</a>
-                    <a href="tel:+919226393837" class="phone-item"><i class="fas fa-phone-alt" style="color:var(--accent-blue); font-size:0.75rem;"></i> +91 92263 93837</a>
+                    <a href="tel:+917066393830" class="phone-item"><i class="fas fa-headset" style="color:#f97316; font-size:0.75rem;"></i> +91 70663 93830</a>
+                    <a href="tel:+917066393831" class="phone-item"><i class="fas fa-phone-alt" style="color:#2563eb; font-size:0.75rem;"></i> +91 70663 93831</a>
+                    <a href="tel:+918169302861" class="phone-item"><i class="fas fa-phone-alt" style="color:#2563eb; font-size:0.75rem;"></i> +91 81693 02861</a>
+                    <a href="tel:+919226393837" class="phone-item"><i class="fas fa-phone-alt" style="color:#2563eb; font-size:0.75rem;"></i> +91 92263 93837</a>
                 </div>
                 
                 <p style="color:#94a3b8; font-size:0.8rem; margin-top:0.75rem;"><i class="fas fa-envelope" style="color:#cbd5e1; margin-right: 4px;"></i> care@omkarservices.in</p>
